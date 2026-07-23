@@ -68,7 +68,13 @@ export default function Header() {
               />
             </Link>
             <div className="h-12 w-px bg-white/20"></div>
-            <img src="/images/naac-a-plus.png" alt="NAAC A+" className="h-12" />
+            <Image
+              src="/images/naac-logo.png"
+              alt="naac Logo"
+              className="w-[115px] h-auto block"
+              width={115}
+              height={51}
+            />
             <div className="h-12 w-px bg-white/20"></div>
             <div className="text-white text-sm font-light leading-tight">
               India's AI-First
