@@ -278,6 +278,15 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const local_data = {
   logo: {
@@ -312,17 +321,22 @@ const local_data = {
       icon: "/images/social-link-5.svg",
     },
   ],
+  items: [
+    { label: "Light", value: "light" },
+    { label: "Dark", value: "dark" },
+    { label: "System", value: "system" },
+  ],
 };
 
 export default function Footer({ data = local_data }) {
   return (
-    <footer className="w-full h-auto py-[85px_0] bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] block">
+    <footer className="w-full h-auto py-[85px_0] bg-linear-to-b from-[#FFF8EE] to-[#FFF3E0] block">
       <div className="container max-w-[1725px] mx-auto">
         <div className="[--width:350px] w-full h-auto p-[50px] bg-[#FFEACC] rounded-[10px] flex flex-wrap">
-          <div className="w-[var(--width)] h-auto">
+          <div className="w-(--width) h-auto">
             <Link
               href="/"
-              className="w-[290px] h-auto aspect-[290/95] mb-[40px] overflow-hidden block"
+              className="w-[290px] h-auto aspect-290/95 mb-[40px] overflow-hidden block"
             >
               <Image
                 src={data?.logo?.url}
@@ -335,12 +349,12 @@ export default function Footer({ data = local_data }) {
             <div className="text-[16px] leading-[1.2] font-normal text-black mb-[25px]">
               {data?.description}
             </div>
-            <div className="w-full h-auto gap-4 grid grid-cols-4">
-              {data?.social_links?.map((item, id) => (
-                <div key={item?.id}>
+            <div className="w-full h-auto mb-[90px] gap-[10px] flex flex-wrap">
+              {data?.social_links?.map((item) => (
+                <div key={item?.id} className="w-auto h-auto">
                   <Link
                     href={item?.url}
-                    className="w-[50px] h-auto aspect-square p-[10px] rounded-[5px] overflow-hidden flex items-center justify-center"
+                    className="w-[50px] h-auto aspect-square p-[10px] bg-black rounded-[5px] overflow-hidden transition duration-300 flex items-center justify-center hover:bg-linear-to-r from-[#DC2626] to-[#F97316]"
                   >
                     <Image
                       src={item?.icon}
@@ -353,8 +367,46 @@ export default function Footer({ data = local_data }) {
                 </div>
               ))}
             </div>
-            <div>
-              
+            <div className="">
+              <div className="text-[18px] leading-normal font-medium bg-linear-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
+                DOWNLOAD BROCHURES
+              </div>
+              <Select>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Theme" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {data?.items.map((item) => (
+                      <SelectItem key={item.value} value={item.value}>
+                        {item.label}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="w-[calc(100%-var(--width)]">
+            <div className="w-full h-auto flex flex-wrap">
+              {data?.links?.map((item) => (
+                <div key={item?.id} className="w-1/3">
+                  <div className="w-full h-full block">
+                    <div className="text-[18px] leading-normal font-medium bg-linear-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
+                      {item?.label}
+                    </div>
+                    {item?.links?.map((link) => (
+                      <Link
+                        href={link?.url}
+                        key={link?.id}
+                        className="text-[14px] leading-[1.2] font-normal text-black mb-[10px] block"
+                      >
+                        {link?.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
