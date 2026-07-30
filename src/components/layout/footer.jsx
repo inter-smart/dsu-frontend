@@ -373,7 +373,7 @@ export default function Footer({ data = local_data }) {
               </div>
               <Select>
                 <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Theme" />
+                  <SelectValue placeholder="Select Program" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
