@@ -30,15 +30,31 @@ export default function Header() {
             <div className="w-[1px] h-[14px] 2xl:h-[18px] 3xl:h-[22px] bg-white/20" />
             <Btn2 label="Login" slug="/" icon="/images/icon-user.svg" />
             <div className="w-[1px] h-[14px] 2xl:h-[18px] 3xl:h-[22px] bg-white/20" />
-            <Btn2 label="EN" slug="/" icon="/images/icon-dropdown.svg" />
+            <Link
+              href="/"
+              className={cn(
+                Text_1,
+                "h-[17px] 2xl:h-[20px] 3xl:h-[25px] bg-none flex justify-center items-center gap-1 px-2.5 xl:px-[12px] 2xl:px-[14px] 3xl:px-[17px]",
+              )}
+            >
+              <span>EN</span>
+              <Image
+                src="/images/icon-dropdown.svg"
+                alt="icon-dropdown"
+                width={20}
+                height={20}
+                className="size-[10px] 2xl:size-[10px] 3xl:size-[10px]"
+              />
+            </Link>
             <div className="w-[1px] h-[14px] 2xl:h-[18px] 3xl:h-[22px] bg-white/20" />
             <ThemeToggle />
           </div>
         </div>
       </div>
-      <div className="w-full bg-linear-to-r from-[#450A03]/10 via-[#7F1D1D]/10 to-[#B91C1C]/10">
-        <div className="container">
-          <div className="border border-red-500  relative w-full flex flex-col py-4">
+      <div className="w-full relative flex flex-col flex-1">
+        <div className="absolute -z-1 inset-0 opacity-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C]"></div>
+        <div className="flex-1 relative w-full border-b-1 border-white/10 flex flex-col justify-center">
+          <div className="container">
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-8">
                 <Link href="/" className="flex items-center gap-3">
@@ -70,57 +86,74 @@ export default function Header() {
                 <Btn3 label="NVIDIA's AI Architecture" slug="/" />
                 <Btn3 label="AI-First @ DSU" slug="/" />
                 <Btn3 label="Centres of Excellence" slug="/" />
-                <div className="rounded-[4px] flex bg-linear-to-r from-[#DC2626] to-[#F97316] overflow-hidden">
+                <div className="relative z-0 rounded-[4px] flex bg-linear-to-r from-[#DC2626] to-[#F97316] overflow-hidden">
                   <div className="absolute top-0 right-1/2 translate-x-1/2 text-[10px] font-bold bg-white text-[#f05c2a] px-2 rounded-b shadow-sm z-10">
                     Apply Here
                   </div>
                   <Link
                     href="/apply/nri"
-                    className="px-4 py-3 text-sm font-medium hover:bg-orange-600 pt-5"
+                    className={cn(
+                      Text_2,
+                      "px-4 py-3 text-white hover:bg-orange-600 pt-5",
+                    )}
                   >
                     NRI/Foreigners
                   </Link>
                   <div className="w-px bg-white/20"></div>
                   <Link
                     href="/apply/others"
-                    className="px-4 py-3 text-sm font-medium hover:bg-orange-600 pt-5"
+                    className={cn(
+                      Text_2,
+                      "px-4 py-3 text-white hover:bg-orange-600 pt-5",
+                    )}
                   >
                     Others
                   </Link>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Navigation Menu Row */}
-            <div className="flex items-center justify-between w-full mt-6">
-              <Link href="/" className="text-white hover:text-orange-400">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                </svg>
+        <div className="container">
+          <div className="flex items-center justify-between w-full">
+            <nav className="flex items-center gap-[20px] xl:gap-[34px] 2xl:gap-[40px] 3xl:gap-[52px] [&>*]:py-[14px] xl:[&>*]:py-[19px] 2xl:[&>*]:py-[24px] 3xl:[&>*]:py-[28px]">
+              <Link href="/" className={cn(Text_2, "relative")}>
+                <Image
+                  src="/images/icon-home.svg"
+                  alt="Home"
+                  width={20}
+                  height={20}
+                  className="size-[18px] object-contain hover:scale-110 transition-transform"
+                />
+                <span className="w-full h-1 absolute z-0 bottom-0 inset-x-0 scale-x-140 bg-linear-to-r from-[#DC2626] to-[#F97316] transition duration-500" />
               </Link>
-              <nav className="flex items-center gap-6 text-white text-sm font-medium">
-                {mainMenu.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={item.url}
-                    className="flex items-center gap-1 hover:text-orange-400 transition-colors"
-                  >
-                    {item.label}{" "}
-                    {item.label.includes("Academics") && (
-                      <ChevronDown className="w-4 h-4" />
-                    )}
-                  </Link>
-                ))}
-              </nav>
-              <button className="border-0 bg-none text-white hover:text-orange-400">
-                <Search className="w-5 h-5" />
-              </button>
-            </div>
+              {mainMenu.map((item, idx) => (
+                <Link
+                  key={"mainMenu" + idx}
+                  href={item.url}
+                  className={cn(
+                    Text_2,
+                    "relative flex items-center hover:text-orange-400 transition-colors",
+                  )}
+                >
+                  {item.label}{" "}
+                  {item.label.includes("Academics") && (
+                    <ChevronDown className="w-4 h-4" />
+                  )}
+                  <span className="w-full h-1 absolute z-0 bottom-0 inset-x-0 scale-x-140 bg-linear-to-r from-[#DC2626] to-[#F97316] transition duration-500" />
+                </Link>
+              ))}
+            </nav>
+            <button className="border-0 bg-none text-white hover:text-orange-400">
+              <Image
+                src="/images/icon-search.svg"
+                alt="Search"
+                width={20}
+                height={20}
+                className="size-[16px] object-contain hover:scale-110 transition-transform"
+              />
+            </button>
           </div>
         </div>
       </div>
@@ -147,7 +180,7 @@ function Btn2({ label, slug, icon }) {
       href={slug}
       className={cn(
         Text_1,
-        "h-[17px] 2xl:h-[20px] 3xl:h-[25px] bg-none flex justify-center items-center gap-2 px-2.5 xl:px-[12px] 2xl:px-[14px] 3xl:px-[17px]",
+        "h-[17px] 2xl:h-[20px] 3xl:h-[25px] bg-none flex justify-center items-center gap-1 px-2.5 xl:px-[12px] 2xl:px-[14px] 3xl:px-[17px]",
       )}
     >
       <span>{label}</span>
@@ -170,7 +203,7 @@ function Btn3({ label, slug }) {
       href={slug}
       className={cn(
         Text_1,
-        "h-[35px] 2xl:h-[42px] 3xl:h-[52px] bg-none border border-[#D1D5DC]/50 rounded-[4px] flex justify-center items-center gap-2 px-2.5 xl:px-[12px] 2xl:px-[14px] 3xl:px-[18px]",
+        "h-[35px] 2xl:h-[42px] 3xl:h-[52px] bg-none border border-[#D1D5DC]/50 rounded-[4px] flex justify-center items-center gap-1 px-2.5 xl:px-[12px] 2xl:px-[14px] 3xl:px-[18px]",
       )}
     >
       <span>{label}</span>

@@ -17,12 +17,83 @@ import {
   studentSuccess,
   cta,
 } from "@/data/home";
-import { BsJournal } from "react-icons/bs";
+
+const LocalData = {
+  hero: [
+    {
+      id: 1,
+      title: "Powering the Future with AI-Driven Innovation",
+      description:
+        "Driven by our AI Factory and Multidisciplinary Centers of Excellence",
+      poweredBy: {
+        url: "/images/home-hero-1.jpg",
+        alternativeText: "home-hero-1",
+      },
+    },
+  ],
+  heroNavigation: [
+    {
+      id: 1,
+      icon: {
+        url: "/images/home-banner-item-1.svg",
+        alternativeText: "home-banner-item-1",
+      },
+      label: "Admission Helpline",
+      url: "/academics",
+    },
+    {
+      id: 2,
+      icon: {
+        url: "/images/home-banner-item-2.svg",
+        alternativeText: "home-banner-item-2",
+      },
+      label: "International Students",
+      url: "/academics",
+    },
+    {
+      id: 3,
+      icon: {
+        url: "/images/home-banner-item-3.svg",
+        alternativeText: "home-banner-item-3",
+      },
+      label: "Events",
+      url: "/academics",
+    },
+  ],
+  marqueeText: [
+    {
+      id: 1,
+      label: "Net zero Conclave on 29/12/2025",
+      url: "/",
+    },
+    {
+      id: 2,
+      label: " Academic Calendar for 2025-26 Even Semester (SOE)",
+      url: "/",
+    },
+    {
+      id: 3,
+      label: "Academic Calendar for 2025-26  CLICK HERE",
+      url: "/",
+    },
+    {
+      id: 4,
+      label: "DSU AI Conclave on 29/12/2025",
+      url: "/",
+    },
+    {
+      id: 5,
+      label: "AI Summit 2026 March 25 2026 2PM",
+      url: "/",
+    },
+  ],
+};
 
 export default function Home() {
+  const { hero, heroNavigation, marqueeText } = LocalData;
   return (
     <main className="flex flex-col min-h-screen">
-      <Hero data={hero} />
+      <Hero data={{ hero, heroNavigation, marqueeText }} />
       <About />
       <Programs data={academicPrograms} />
       <Rankings />
