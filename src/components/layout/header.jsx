@@ -17,7 +17,7 @@ export default function Header() {
     <header className="w-full h-(--header-y) fixed z-10 top-0 inset-x-0 bg- flex flex-col">
       <div className="w-full bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] py-1">
         <div className="container">
-          <div className="border border-red-500 flex justify-end items-center gap-[12px] 2xl:gap-[17px] 3xl:gap-[20px]">
+          <div className="flex justify-end items-center gap-[12px] 2xl:gap-[17px] 3xl:gap-[20px]">
             <Btn1 label="CDSIMER" slug="/" />
             <Btn1 label="DSU Online" slug="/" />
             <Btn2 label="Virtual Tour" slug="/" icon="/images/icon-home.svg" />
