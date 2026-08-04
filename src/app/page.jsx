@@ -561,7 +561,7 @@ const homePageData = {
               url: "/images/research-item-1.svg",
               alternativeText: "Research",
             },
-            featuredTitle: "Research",
+            featuredTitle: "Researchreasearch ",
             featuredImage: {
               url: "/images/home-academicPrograms-item1.jpg",
               alternativeText: "DGX B200 Supercomputers",
