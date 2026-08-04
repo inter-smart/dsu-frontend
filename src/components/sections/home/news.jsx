@@ -61,10 +61,10 @@ export default function News({ data = local_data }) {
     [emblaApi],
   );
   return (
-    <section className="w-full h-auto py-[80px] bg-white block">
-      <div className="container xl:max-w-[1160px] 2xl:max-w-[1725px] mx-auto">
-        <div className="w-full h-auto mb-[30px] flex items-center flex-wrap justify-between">
-          <div className="text-[40px] leading-normal font-bold text-[#212121]">
+    <section className="w-full h-auto py-[40px] sm:py-[50px] 2xl:py-[60px] 3xl:py-[80px] bg-white block">
+      <div className="container">
+        <div className="w-full h-auto mb-[30px] sm:mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] flex items-center flex-wrap justify-between">
+          <div className="text-[30px] 3xl:text-[40px] leading-normal font-bold text-[#212121]">
             {data?.title}
           </div>
           <div className="[--size:30px] gap-[5px] flex justify-end">
@@ -99,38 +99,40 @@ export default function News({ data = local_data }) {
           </div>
         </div>
         <div className="w-full h-auto overflow-hidden" ref={emblaRef}>
-          <div className="[--slide--sapcing:20px] ml-[calc(var(--slide--sapcing)*-1)] flex touch-pan-y touch-pinch-zoom">
+          <div className="sm:[--slide--sapcing:15px] 2xl:[--slide--sapcing:20px] ml-[calc(var(--slide--sapcing)*-1)] flex touch-pan-y touch-pinch-zoom">
             {data?.news_list?.map((item) => (
               <div
                 key={item?.id}
                 className="pl-(--slide--sapcing) min-w-0 flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_calc(100%/3)]"
               >
-                <div className="w-full h-full bg-linear-to-b from-[#FFF8EE]/50 to-[#FFF3E0]/50 rounded-[10px] block">
-                  <div className="w-full h-auto aspect-[560/220] mb-[50px] block relative z-0">
-                    <Image
-                      src={item?.path}
-                      width={560}
-                      height={220}
-                      alt={item?.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="w-auto h-auto p-[15px_10px] bg-linear-to-r from-[#DC2626] to-[#F97316] mx-[30px] rounded-[10px] overflow-hidden flex flex-col items-center justify-center absolute z-1 inset-[auto_auto_-20%_0]">
-                      <span className="text-[28px] leading-normal font-semibold text-white">
+                <div className="group w-full h-full bg-linear-to-b from-[#FFF8EE]/50 to-[#FFF3E0]/50 rounded-[6px] 2xl:rounded-[10px] overflow-hidden block">
+                  <div className="w-full h-auto block relative z-0">
+                    <div className="w-full h-auto aspect-[560/220] mb-[30px] 2xl:mb-[40px] 3xl:mb-[50px] block overflow-hidden">
+                      <Image
+                        src={item?.path}
+                        width={560}
+                        height={220}
+                        alt={item?.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
+                      />
+                    </div>
+                    <div className="w-auto h-auto p-[12px_10px] 2xl:p-[15px_10px] bg-linear-to-r from-[#DC2626] to-[#F97316] mx-[20px] 2xl:mx-[25px] 3xl:mx-[30px] rounded-[6px] 2xl:rounded-[10px] overflow-hidden flex flex-col items-center justify-center absolute z-1 inset-[auto_auto_-20%_0]">
+                      <span className="text-[20px] 2xl:text-[24px] 3xl:text-[28px] leading-normal font-semibold text-white">
                         {item?.date}
                       </span>
-                      <span className="text-[14px] leading-normal font-normal text-white">
+                      <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] leading-normal font-normal text-white">
                         {item?.year}
                       </span>
                     </div>
                   </div>
-                  <div className="w-full h-auto p-[20px_30px] flex flex-col justify-between">
-                    <div className="text-[23px] leading-normal font-bold text-[#212121] w-[90%] mb-[30px]">
+                  <div className="w-full h-auto p-[15px_20px] 2xl:p-[15px_25px] 3xl:p-[20px_30px] flex flex-col justify-between">
+                    <div className="text-[16px] 2xl:text-[18px] 3xl:text-[23px] leading-normal font-bold text-[#212121] w-[90%] mb-[20px] 3xl:mb-[30px]">
                       {item?.title}
                     </div>
                     <Link
                       href={item?.link}
                       target="_blank"
-                      className="text-[15px] leading-normal font-bold uppercase bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent"
+                      className="text-[14px] 3xl:text-[15px] leading-normal font-bold uppercase bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent w-fit"
                     >
                       Read More {" > "}
                     </Link>

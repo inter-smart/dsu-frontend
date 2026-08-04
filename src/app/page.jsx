@@ -18,6 +18,7 @@ import {
   cta,
 } from "@/data/home";
 import { BsJournal } from "react-icons/bs";
+import CampusLife from "@/components/sections/home/campus-life";
 
 export default function Home() {
   return (
@@ -26,9 +27,10 @@ export default function Home() {
       <About />
       <Programs data={academicPrograms} />
       <Rankings />
-      <Events data={events} />
       <Testimonials data={studentSuccess} />
       <CTA data={cta} />
+      <CampusLife />
+      <Events />
       <News data={latestNews} />
       <Journey />
     </main>
