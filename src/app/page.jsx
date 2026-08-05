@@ -1,7 +1,9 @@
 import Hero from "@/components/sections/home/hero";
 import About from "@/components/sections/home/about";
-import Programs from "@/components/sections/home/programs";
-import Rankings from "@/components/sections/home/rankings";
+import AcademicPrograms from "@/components/sections/home/academic-programs";
+import ResearchInnovation from "@/components/sections/home/research-innovation";
+import Programs from "@/components/sections/home/academic-programs";
+import Rankings from "@/components/sections/home/research-innovation";
 import News from "@/components/sections/home/news";
 import Events from "@/components/sections/home/events";
 import Journey from "@/components/sections/home/journey";
@@ -554,95 +556,296 @@ const homePageData = {
         title: "Research & Innovation",
         description:
           "We foster a strong research culture through interdisciplinary collaboration, funded projects, and industry partnerships.",
-        programItems: [
+        tabs: [
           {
             id: 1,
-            icon: {
-              url: "/images/research-item-1.svg",
-              alternativeText: "Research",
-            },
-            featuredTitle: "Researchreasearch ",
-            featuredImage: {
-              url: "/images/home-academicPrograms-item1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            slug: "/",
-            title: "Research at DSU",
-            description:
-              "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India’s leading educational institutions today.This growth is the result of the institutions focused effort to advance knowledge and educate students in.",
-            researchItem: [
-              {
-                id: 1,
-                slug: "/school-of-engineering",
-                featuredImage: {
-                  url: "/images/researchItem-1.jpg",
-                  alternativeText: "researchItem-1",
-                },
-                title: "Ph.D Admissions",
-              },
-              {
-                id: 2,
-                slug: "/school-of-engineering",
-                featuredImage: {
-                  url: "/images/researchItem-2.jpg",
-                  alternativeText: "researchItem-2",
-                },
-                title: "Research Supervisors",
-              },
-              {
-                id: 3,
-                slug: "/school-of-engineering",
-                featuredImage: {
-                  url: "/images/researchItem-3.jpg",
-                  alternativeText: "researchItem-3",
-                },
-                title: "Ph.D Regulations",
-              },
-              {
-                id: 4,
-                slug: "/school-of-engineering",
-                featuredImage: {
-                  url: "/images/researchItem-4.jpg",
-                  alternativeText: "researchItem-4",
-                },
-                title: "Ph.D Course Work Syllabus",
-              },
-            ],
-            publicationsInfo: {
+            value: "research",
+            trigger: {
               icon: {
                 url: "/images/research-icon-1.svg",
                 alternativeText: "Research",
               },
-              label: "Publications",
-              count: 200,
-              suffix: "+",
+              label: "Research",
             },
-            fundedResearchInfo: {
-              icon: {
-                url: "/images/research-icon-2.svg",
-                alternativeText: "Research",
+            content: {
+              slug: "/",
+              featuredTitle: "Research",
+              title: "Research at DSU",
+              description:
+                "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India’s leading educational institutions today.This growth is the result of the institutions focused effort to advance knowledge and educate students in.",
+              button: {
+                label: "UG Research Forum",
+                url: "/",
+                icon: {
+                  url: "/images/research-icon-3.svg",
+                  alternativeText: "Research",
+                },
               },
-              label: "Funded Research Projects",
-              count: 85,
-              suffix: "+",
+              gallery: [],
+              statistics: [
+                {
+                  id: 1,
+                  icon: {
+                    url: "/images/research-icon-1.svg",
+                    alternativeText: "Research",
+                  },
+                  value: 200,
+                  suffix: "+",
+                  label: "Publications",
+                },
+                {
+                  id: 2,
+                  icon: {
+                    url: "/images/research-icon-2.svg",
+                    alternativeText: "Research",
+                  },
+                  value: 85,
+                  suffix: "+",
+                  label: "Funded Research Projects",
+                },
+                {
+                  id: 3,
+                  icon: {
+                    url: "/images/research-icon-3.svg",
+                    alternativeText: "Research",
+                  },
+                  value: 24,
+                  suffix: "+",
+                  label: "Innovation Driven Labs",
+                },
+              ],
+              featuredCards: [
+                {
+                  id: 1,
+                  slug: "/school-of-engineering",
+                  title: "Ph.D Admissions",
+                  image: {
+                    url: "/images/researchItem-1.jpg",
+                    alternativeText: "researchItem-1",
+                  },
+                },
+                {
+                  id: 2,
+                  slug: "/school-of-engineering",
+                  title: "Research Supervisors",
+                  image: {
+                    url: "/images/researchItem-2.jpg",
+                    alternativeText: "researchItem-2",
+                  },
+                },
+                {
+                  id: 3,
+                  slug: "/school-of-engineering",
+                  title: "Ph.D Regulations",
+                  image: {
+                    url: "/images/researchItem-3.jpg",
+                    alternativeText: "researchItem-3",
+                  },
+                },
+                {
+                  id: 4,
+                  slug: "/school-of-engineering",
+                  title: "Ph.D Course Work Syllabus",
+                  image: {
+                    url: "/images/researchItem-4.jpg",
+                    alternativeText: "researchItem-4",
+                  },
+                },
+              ],
             },
-            innovationInfo: {
+          },
+          {
+            id: 2,
+            value: "incubation",
+            trigger: {
               icon: {
-                url: "/images/research-icon-3.svg",
-                alternativeText: "Research",
+                url: "/images/research-icon-1.svg",
+                alternativeText: "Incubation",
               },
-              label: "Innovation Driven Labs",
-              count: 24,
-              suffix: "+",
+              label: "Incubation & Entrepreneurship",
             },
-            researchForumBtn: {
-              icon: {
-                url: "/images/research-icon-3.svg",
-                alternativeText: "Research",
+            content: {
+              slug: "/",
+              featuredTitle: "Incubation & Entrepreneurship",
+              title: "Incubation & Entrepreneurship",
+              description:
+                "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India’s leading educational institutions today.This growth is the result of the institutions focused effort to advance knowledge and educate students in.",
+              button: {
+                label: "Incubation Center",
+                url: "/",
+                icon: {
+                  url: "/images/research-icon-3.svg",
+                  alternativeText: "Research",
+                },
               },
-              label: "UG Research Forum",
-              count: 24,
-              suffix: "+",
+              gallery: [],
+              statistics: [
+                {
+                  id: 1,
+                  icon: {
+                    url: "/images/research-icon-1.svg",
+                    alternativeText: "Research",
+                  },
+                  value: 200,
+                  suffix: "+",
+                  label: "Publications",
+                },
+                {
+                  id: 2,
+                  icon: {
+                    url: "/images/research-icon-2.svg",
+                    alternativeText: "Research",
+                  },
+                  value: 85,
+                  suffix: "+",
+                  label: "Funded Research Projects",
+                },
+                {
+                  id: 3,
+                  icon: {
+                    url: "/images/research-icon-3.svg",
+                    alternativeText: "Research",
+                  },
+                  value: 24,
+                  suffix: "+",
+                  label: "Innovation Driven Labs",
+                },
+              ],
+              featuredCards: [
+                {
+                  id: 1,
+                  slug: "/school-of-engineering",
+                  title: "Ph.D Admissions",
+                  image: {
+                    url: "/images/researchItem-1.jpg",
+                    alternativeText: "researchItem-1",
+                  },
+                },
+                {
+                  id: 2,
+                  slug: "/school-of-engineering",
+                  title: "Research Supervisors",
+                  image: {
+                    url: "/images/researchItem-2.jpg",
+                    alternativeText: "researchItem-2",
+                  },
+                },
+                {
+                  id: 3,
+                  slug: "/school-of-engineering",
+                  title: "Ph.D Regulations",
+                  image: {
+                    url: "/images/researchItem-3.jpg",
+                    alternativeText: "researchItem-3",
+                  },
+                },
+                {
+                  id: 4,
+                  slug: "/school-of-engineering",
+                  title: "Ph.D Course Work Syllabus",
+                  image: {
+                    url: "/images/researchItem-4.jpg",
+                    alternativeText: "researchItem-4",
+                  },
+                },
+              ],
+            },
+          },
+          {
+            id: 3,
+            value: "innovation-labs",
+            trigger: {
+              icon: {
+                url: "/images/research-icon-1.svg",
+                alternativeText: "Innovation",
+              },
+              label: "Innovation Labs",
+            },
+            content: {
+              slug: "/",
+              featuredTitle: "Innovation Labs",
+              title: "Innovation Labs",
+              description:
+                "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India’s leading educational institutions today.This growth is the result of the institutions focused effort to advance knowledge and educate students in.",
+              button: {
+                label: "Explore Labs",
+                url: "/",
+                icon: {
+                  url: "/images/research-icon-3.svg",
+                  alternativeText: "Research",
+                },
+              },
+              gallery: [],
+              statistics: [
+                {
+                  id: 1,
+                  icon: {
+                    url: "/images/research-icon-1.svg",
+                    alternativeText: "Research",
+                  },
+                  value: 200,
+                  suffix: "+",
+                  label: "Publications",
+                },
+                {
+                  id: 2,
+                  icon: {
+                    url: "/images/research-icon-2.svg",
+                    alternativeText: "Research",
+                  },
+                  value: 85,
+                  suffix: "+",
+                  label: "Funded Research Projects",
+                },
+                {
+                  id: 3,
+                  icon: {
+                    url: "/images/research-icon-3.svg",
+                    alternativeText: "Research",
+                  },
+                  value: 24,
+                  suffix: "+",
+                  label: "Innovation Driven Labs",
+                },
+              ],
+              featuredCards: [
+                {
+                  id: 1,
+                  slug: "/school-of-engineering",
+                  title: "Ph.D Admissions",
+                  image: {
+                    url: "/images/researchItem-1.jpg",
+                    alternativeText: "researchItem-1",
+                  },
+                },
+                {
+                  id: 2,
+                  slug: "/school-of-engineering",
+                  title: "Research Supervisors",
+                  image: {
+                    url: "/images/researchItem-2.jpg",
+                    alternativeText: "researchItem-2",
+                  },
+                },
+                {
+                  id: 3,
+                  slug: "/school-of-engineering",
+                  title: "Ph.D Regulations",
+                  image: {
+                    url: "/images/researchItem-3.jpg",
+                    alternativeText: "researchItem-3",
+                  },
+                },
+                {
+                  id: 4,
+                  slug: "/school-of-engineering",
+                  title: "Ph.D Course Work Syllabus",
+                  image: {
+                    url: "/images/researchItem-4.jpg",
+                    alternativeText: "researchItem-4",
+                  },
+                },
+              ],
             },
           },
         ],
@@ -709,9 +912,11 @@ export default function Home() {
     <main className="flex flex-col min-h-screen">
       <Hero data={homePageData.hero} />
       <About data={homePageData.centresOfExcellence.data.attributes} />
-      <Programs data={homePageData.academicPrograms.data.attributes} />
-      {/* <Rankings />
-      <Events data={homePageData.events} />
+      <AcademicPrograms data={homePageData.academicPrograms.data.attributes} />
+      <ResearchInnovation
+        data={homePageData.researchInnovation.data.attributes}
+      />
+      {/* <Events data={homePageData.events} />
       <Testimonials data={homePageData.studentSuccess} />
       <CTA data={homePageData.cta} />
       <News data={homePageData.latestNews} />
