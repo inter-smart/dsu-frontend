@@ -10,9 +10,9 @@ const local_data = {
   campus_info: {
     sub_title: "Campus Life",
     title: {
-      text:"Campus",
+      text: "Campus",
       highlight: "Life",
-    }, 
+    },
     description:
       "A dynamic campus environment that supports academic growth, creativity, & overall well-being.",
   },
@@ -112,7 +112,7 @@ export default function CampusLife({ data = local_data }) {
       <div className="container">
         <div className="[--gap:10px] xl:[--gap:15px] 3xl:[--gap:20px] w-full h-auto grid xl:grid-cols-2 gap-(--gap)">
           <div className="w-full h-auto gap-(--gap) flex  xl:flex-col">
-            <div className="lg:[--width:220px] xl:[--width:270px] 2xl:[--width:320px] 3xl:[--width:400px] w-full h-auto sm:p-2.5 2xl:p-3.75 3xl:p-5 bg-white rounded-[7px] 2xl:rounded-[10px] flex flex-wrap xl:items-center">
+            <div className="sm:[--width:220px] xl:[--width:270px] 2xl:[--width:320px] 3xl:[--width:400px] w-full h-auto sm:p-2.5 2xl:p-3.75 3xl:p-5 bg-white rounded-[7px] 2xl:rounded-[10px] flex flex-wrap xl:items-center">
               <div className="w-(--width)">
                 <CampusCard item={data?.info_grid_list?.[0]} />
               </div>
@@ -187,7 +187,6 @@ export default function CampusLife({ data = local_data }) {
 }
 
 function CampusCard({ item, className }) {
-  
   useEffect(() => {
     Fancybox.bind("[data-fancybox='campus']");
   }, []);
