@@ -7,6 +7,7 @@ import Events from "@/components/sections/home/events";
 import Journey from "@/components/sections/home/journey";
 import Testimonials from "@/components/sections/home/testimonials";
 import CTA from "@/components/sections/home/cta";
+import CampusLife from "@/components/sections/home/campus-life";
 
 const homePageData = {
   hero: {
@@ -710,13 +711,13 @@ export default function Home() {
       <Hero data={homePageData.hero} />
       <About data={homePageData.centresOfExcellence.data.attributes} />
       <Programs data={homePageData.academicPrograms.data.attributes} />
-      {/* <Rankings />
-      <Events data={homePageData.events} />
+      <Rankings />
+      <CampusLife />
+      <Events />
       <Testimonials data={homePageData.studentSuccess} />
       <CTA data={homePageData.cta} />
       <News data={homePageData.latestNews} />
       <Journey /> 
-      */}
     </main>
   );
 }
