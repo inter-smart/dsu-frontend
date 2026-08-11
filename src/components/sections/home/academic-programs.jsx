@@ -2,7 +2,7 @@ import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Programs({ data }) {
+export default function AcademicPrograms({ data }) {
   return (
     <section className="w-full py-[40px] xl:py-[60px] 2xl:py-[70px] 3xl:py-[80px] bg-linear-to-b from-[#FFF8EE] to-[#FFF3E0]">
       <div className="container">

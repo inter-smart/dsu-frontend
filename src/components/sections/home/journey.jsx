@@ -35,7 +35,7 @@ export default function Journey({ data = local_data }) {
           {data?.title}
         </div>
         <div
-          className="text-[8px] sm:text-[13px] xl:text-[14px] 2xl:text-[18px] leading-normal font-normal text-center mb-[15px] 2xl:mb-[25px]"
+          className="text-[8px] sm:text-[13px] xl:text-[14px] 2xl:text-[18px] leading-normal font-normal text-center text-[#FFF2F2] mb-[15px] 2xl:mb-[25px]"
           dangerouslySetInnerHTML={{
             __html: data?.description,
           }}

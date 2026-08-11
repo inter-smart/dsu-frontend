@@ -5,7 +5,7 @@ import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
 const local_data = {
-  title: "Latest News & Events",
+  title: "Latest News & Events", 
   description:
     "Stay updated with the latest happenings, achievements, and events across the university.",
   latest_list: [
