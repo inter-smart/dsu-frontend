@@ -86,7 +86,7 @@ export default function Header() {
                 <Btn3 label="NVIDIA's AI Architecture" slug="/" />
                 <Btn3 label="AI-First @ DSU" slug="/" />
                 <Btn3 label="Centres of Excellence" slug="/" />
-                <div className="relative z-0 rounded-[4px] flex bg-linear-to-r from-[#DC2626] to-[#F97316] overflow-hidden">
+                <div className="relative z-0 rounded-[4px] flex bg-linear-to-r from-(--basecolor) to-(--basecolor2) overflow-hidden">
                   <div className="absolute top-0 right-1/2 translate-x-1/2 text-[10px] font-bold bg-white text-[#f05c2a] px-2 rounded-b shadow-sm z-10">
                     Apply Here
                   </div>
@@ -126,7 +126,7 @@ export default function Header() {
                   height={20}
                   className="size-[18px] object-contain hover:scale-110 transition-transform"
                 />
-                <span className="w-full h-1 absolute z-0 bottom-0 inset-x-0 scale-x-140 bg-linear-to-r from-[#DC2626] to-[#F97316] transition duration-500" />
+                <span className="w-full h-1 absolute z-0 bottom-0 inset-x-0 scale-x-140 bg-linear-to-r from-(--basecolor) to-(--basecolor2) transition duration-500" />
               </Link>
               {mainMenu.map((item, idx) => (
                 <Link
@@ -141,7 +141,7 @@ export default function Header() {
                   {item.label.includes("Academics") && (
                     <ChevronDown className="w-4 h-4" />
                   )}
-                  <span className="w-full h-1 absolute z-0 bottom-0 inset-x-0 scale-x-140 bg-linear-to-r from-[#DC2626] to-[#F97316] transition duration-500" />
+                  <span className="w-full h-1 absolute z-0 bottom-0 inset-x-0 scale-x-140 bg-linear-to-r from-(--basecolor) to-(--basecolor2) transition duration-500" />
                 </Link>
               ))}
             </nav>
@@ -167,7 +167,7 @@ function Btn1({ label, slug }) {
       href={slug}
       className={cn(
         Text_1,
-        "h-[17px] 2xl:h-[20px] 3xl:h-[25px] bg-linear-to-r from-[#DC2626] to-[#F97316] rounded-[4px] flex justify-center items-center px-2.5 xl:px-[12px] 2xl:px-[14px] 3xl:px-[17px]",
+        "h-[17px] 2xl:h-[20px] 3xl:h-[25px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[4px] flex justify-center items-center px-2.5 xl:px-[12px] 2xl:px-[14px] 3xl:px-[17px]",
       )}
     >
       <span>{label}</span>

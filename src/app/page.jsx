@@ -1,14 +1,13 @@
-import Hero from "@/components/sections/home/hero";
-import About from "@/components/sections/home/about";
-import AcademicPrograms from "@/components/sections/home/academic-programs";
-import ResearchInnovation from "@/components/sections/home/research-innovation";
-import Rankings from "@/components/sections/home/research-innovation";
-import News from "@/components/sections/home/news";
-import Events from "@/components/sections/home/events";
-import Journey from "@/components/sections/home/journey";
-import Testimonials from "@/components/sections/home/testimonials";
-import CTA from "@/components/sections/home/cta";
-import CampusLife from "@/components/sections/home/campus-life";
+import Hero from "@/components/sections/home/home-hero";
+import About from "@/components/sections/home/home-about";
+import AcademicPrograms from "@/components/sections/home/home-academic-programs";
+import ResearchInnovation from "@/components/sections/home/home-research-innovation";
+import Rankings from "@/components/sections/home/home-research-innovation";
+import News from "@/components/sections/home/home-news";
+import Events from "@/components/sections/home/home-events";
+import Journey from "@/components/sections/home/home-journey";
+import HomeCampusLife from "@/components/sections/home/home-campus-life";
+import HomeTestimonials from "@/components/sections/home/home-testimonials";
 
 const homePageData = {
   hero: {
@@ -874,10 +873,102 @@ const homePageData = {
     },
   },
   campusLife: {
-    data: {
-      id: 1,
-      documentId: "campus-life-1",
-      attributes: { title: "campusLife" },
+    campusInfo: {
+      title: "Campus Life",
+      heading: {
+        text: "Campus",
+        highlight: "Life",
+      },
+      description:
+        "A dynamic campus environment that supports academic growth, creativity, & overall well-being.",
+    },
+    featureCards: [
+      {
+        title: "Campus Life",
+        media: {
+          type: "image",
+          url: "/images/home-campus-life-2.webp",
+        },
+        icon: {
+          url: "/images/home-campus-icon-1.svg",
+          alt: "Campus Life Icon",
+        },
+      },
+      {
+        title: "Modern Infrastructure",
+        media: {
+          type: "image",
+          url: "/images/home-campus-life-4.webp",
+        },
+        icon: {
+          url: "/images/home-campus-icon-4.svg",
+          alt: "Campus Life Icon",
+        },
+      },
+      {
+        title: "Sports & Recreation",
+        media: {
+          type: "video",
+          url: "/videos/home-campus-life-1.mp4",
+          poster: "/images/home-thumbnail-poster.webp",
+        },
+        icon: {
+          url: "/images/home-campus-icon-2.svg",
+          alt: "Campus Life Icon",
+        },
+      },
+      {
+        title: "Hostel & Residential",
+        media: {
+          type: "image",
+          url: "/images/home-campus-life-3.webp",
+        },
+        icon: {
+          url: "/images/home-campus-icon-3.svg",
+          alt: "Campus Life Icon",
+        },
+      },
+      {
+        title: "Clubs & Student Activities",
+        media: {
+          type: "image",
+          url: "/images/home-campus-life-5.webp",
+        },
+        icon: {
+          url: "/images/home-campus-icon-5.svg",
+          alt: "Campus Life Icon",
+        },
+      },
+    ],
+    statistics: {
+      description:
+        "A future-ready campus designed to spark learning, creativity, and student well-being.",
+      items: [
+        {
+          id: 1,
+          label: "Clubs",
+          value: 50,
+          symbol: "+",
+        },
+        {
+          id: 2,
+          label: "Sports Facilities",
+          value: 10,
+          symbol: "+",
+        },
+        {
+          id: 3,
+          label: "Residents",
+          value: 5000,
+          symbol: "+",
+        },
+        {
+          id: 4,
+          label: "Annual Events",
+          value: 200,
+          symbol: "+",
+        },
+      ],
     },
   },
   internationalCollaboration: {
@@ -917,9 +1008,8 @@ export default function Home() {
       <ResearchInnovation
         data={homePageData.researchInnovation.data.attributes}
       />
-      <Testimonials data={homePageData.studentSuccess} />
-      <CTA data={homePageData.cta} />
-      <CampusLife />
+      <HomeTestimonials />
+      <HomeCampusLife data={homePageData?.campusLife} />
       <Events />
       <News data={homePageData.latestNews} />
       <Journey />
