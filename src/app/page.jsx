@@ -1,13 +1,15 @@
 import Hero from "@/components/sections/home/home-hero";
-import About from "@/components/sections/home/home-about";
-import AcademicPrograms from "@/components/sections/home/home-academic-programs";
-import ResearchInnovation from "@/components/sections/home/home-research-innovation";
-import Rankings from "@/components/sections/home/home-research-innovation";
 import News from "@/components/sections/home/home-news";
 import Events from "@/components/sections/home/home-events";
 import Journey from "@/components/sections/home/home-journey";
+import HomeAbout from "@/components/sections/home/home-about";
+import HomeExcellence from "@/components/sections/home/home-excellence";
 import HomeCampusLife from "@/components/sections/home/home-campus-life";
+import Rankings from "@/components/sections/home/home-research-innovation";
 import HomeTestimonials from "@/components/sections/home/home-testimonials";
+import AcademicPrograms from "@/components/sections/home/home-academic-programs";
+import ResearchInnovation from "@/components/sections/home/home-research-innovation";
+import HomeIndustry from "@/components/sections/home/home-industry";
 
 const homePageData = {
   hero: {
@@ -858,6 +860,103 @@ const homePageData = {
       attributes: { title: "industryCollaboration" },
     },
   },
+  homeAbout: {
+    statistics: [
+      {
+        id: 1,
+        value: 5,
+        suffix: "K+",
+        label: "Students Enrolled",
+        icon: {
+          url: "/images/home-about-icon-1.svg",
+          alternativeText: "home-about-icon",
+        },
+      },
+      {
+        id: 2,
+        value: 36,
+        suffix: "+",
+        label: "UG Courses",
+        icon: {
+          url: "/images/home-about-icon-2.svg",
+          alternativeText: "home-about-icon",
+        },
+      },
+      {
+        id: 3,
+        value: 10,
+        suffix: "+",
+        label: "PG Courses",
+        icon: {
+          url: "/images/home-about-icon-3.svg",
+          alternativeText: "home-about-icon",
+        },
+      },
+      {
+        id: 4,
+        value: 1000,
+        suffix: "+",
+        label: "Faculties",
+        icon: {
+          url: "/images/home-about-icon-4.svg",
+          alternativeText: "home-about-icon",
+        },
+      },
+      {
+        id: 5,
+        value: 10,
+        suffix: "+",
+        label: "Colleges",
+        icon: {
+          url: "/images/home-about-icon-5.svg",
+          alternativeText: "home-about-icon",
+        },
+      },
+    ],
+    leadership: {
+      subTitle: "THE VISIONARIES",
+      title: "Our Leadership",
+      leaders: [
+        {
+          id: 1,
+          name: "LATE SHRI R DAYANANDA SAGAR",
+          designation: "Founding Father",
+          description:
+            "Our founding father, late Sri R Dayananda Sagar, was a graduate in Arts & Commerce from India & a barrister-at-law from England.",
+          avatarImage: {
+            url: "/images/home-about-avatar-1.jpg",
+            alt: "leadership-1",
+          },
+        },
+        {
+          id: 2,
+          name: "LATE SHRI R DAYANANDA SAGAR -2",
+          designation: "Founding Father",
+          description:
+            "Our founding father, late Sri R Dayananda Sagar, was a graduate in Arts & Commerce from India & a barrister-at-law from England.",
+          avatarImage: {
+            url: "/images/home-leadership.jpg",
+            alt: "leadership-1",
+          },
+        },
+      ],
+      leaderShipImage: {
+        url: "/images/home-leadership.jpg",
+        alt: "leadership",
+      },
+    },
+    aboutInfo: {
+      subTitle: "ABOUT DSU",
+      title: "Honouring Our Legacy, Inspiring Tomorrow",
+      description:
+        "Dayananda Sagar University is built on a legacy of academic excellence, innovation, and industry relevance. With world-class infrastructure, experienced faculty, and a strong focus on research and placements, DSU prepares students to excel globally.",
+      statistics: {
+        value: 50,
+        suffix: "+",
+        label: "Years of <br> Educational Excellence",
+      },
+    },
+  },
   leadership: {
     data: {
       id: 1,
@@ -866,11 +965,136 @@ const homePageData = {
     },
   },
   studentSuccess: {
-    data: {
-      id: 1,
-      documentId: "student-success-1",
-      attributes: { title: "studentSuccess" },
-    },
+    title: "Celebrating Student Success",
+    description: "Achievements that inspire the future generation.",
+    statistics: [
+      {
+        id: 1,
+        value: 95,
+        suffix: "% Placed",
+        label: "Placement Success Stories",
+      },
+      {
+        id: 2,
+        value: 10000,
+        suffix: "+ Alumni",
+        label: "Alumni Achievements",
+      },
+      {
+        id: 3,
+        value: 50,
+        suffix: "+ Startups",
+        label: "Student-led startups",
+      },
+      {
+        id: 4,
+        value: 100,
+        suffix: "+ Recruiters",
+        label: "Esteemed Organisations",
+      },
+    ],
+    successStories: [
+      {
+        id: 1,
+        media: {
+          type: "video",
+          url: "/videos/home-testimonial-1.mp4",
+          alternativeText: "Success Story",
+        },
+        avatar: {
+          url: "/images/home-testimonial-avatar-1.jpg",
+          alternativeText: "Avatar",
+        },
+        badge: {
+          url: "/images/home-badge-1.png",
+          alternativeText: "Badge",
+          title: "Alumni",
+        },
+        name: "Arjun Menon",
+        designation: "Consultant at McKinsey",
+        education: "B.Tech CSE, 2023",
+      },
+      {
+        id: 2,
+        media: {
+          type: "video",
+          url: "/videos/home-testimonial-2.mp4",
+          alternativeText: "Success Story",
+        },
+        avatar: {
+          url: "/images/home-testimonial-avatar-2.png",
+          alternativeText: "Avatar",
+        },
+        badge: {
+          url: "/images/home-badge-2.png",
+          alternativeText: "Badge",
+          title: "Placement",
+        },
+        name: "Priya Sharma",
+        designation: "Systems Engineer at Infosys",
+        education: "B.Tech CSE, 2025",
+      },
+      {
+        id: 3,
+        media: {
+          type: "video",
+          url: "/videos/home-testimonial-3.mp4",
+          alternativeText: "Success Story",
+        },
+        avatar: {
+          url: "/images/home-testimonial-avatar-3.png",
+          alternativeText: "Avatar",
+        },
+        badge: {
+          url: "/images/home-badge-1.png",
+          alternativeText: "Badge",
+          title: "Alumni",
+        },
+        name: "Arjun Rao",
+        designation: "Consultant at BCG",
+        education: "B.Tech ECE, 2022",
+      },
+      {
+        id: 4,
+        media: {
+          type: "video",
+          url: "/videos/home-testimonial-4.mp4",
+          alternativeText: "Success Story",
+        },
+        avatar: {
+          url: "/images/home-testimonial-avatar-4.jpg",
+          alternativeText: "Avatar",
+        },
+        badge: {
+          url: "/images/home-badge-1.png",
+          alternativeText: "Badge",
+          title: "Startup",
+        },
+        name: "Justin Jose",
+        designation: "Founder, MyHealthAI",
+        education: "B.Tech CSE, 2024",
+      },
+      {
+        id: 5,
+        media: {
+          type: "video",
+          url: "/videos/home-testimonial-2.mp4",
+          alternativeText: "Success Story",
+        },
+        avatar: {
+          url: "/images/home-testimonial-avatar-2.png",
+          alternativeText: "Avatar",
+        },
+        badge: {
+          url: "/images/home-badge-2.png",
+          alternativeText: "Badge",
+          title: "Placement",
+        },
+        name: "Priya Sharma",
+        designation: "Systems Engineer at Infosys",
+        education: "B.Tech CSE, 2025",
+      },
+    ],
   },
   campusLife: {
     campusInfo: {
@@ -1002,13 +1226,15 @@ export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
       <Hero data={homePageData.hero} />
-      <About data={homePageData.centresOfExcellence.data.attributes} />
+      <HomeExcellence data={homePageData.centresOfExcellence.data.attributes} />
       <Rankings />
       <AcademicPrograms data={homePageData.academicPrograms.data.attributes} />
       <ResearchInnovation
         data={homePageData.researchInnovation.data.attributes}
       />
-      <HomeTestimonials />
+      <HomeIndustry />
+      <HomeAbout data={homePageData?.homeAbout} />
+      <HomeTestimonials data={homePageData?.studentSuccess} />
       <HomeCampusLife data={homePageData?.campusLife} />
       <Events />
       <News data={homePageData.latestNews} />

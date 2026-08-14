@@ -9,7 +9,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white border-transparent hover:bg-primary/80",
+          "bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white border-transparent hover:bg-primary/80 transition-colors duration-300 ease-in-out hover:from-(--basecolor2) hover:to-(--basecolor)",
         secondary:
           "bg-[#FF6D00]/15 text-white hover:bg-[#FF6D00]/60 aria-expanded:bg-[#FF6D00]/30 border-[#FF6D00]",
         outline:
