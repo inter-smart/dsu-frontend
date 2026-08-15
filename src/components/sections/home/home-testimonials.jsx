@@ -169,7 +169,7 @@ export default function HomeTestimonials({ data }) {
             className="[--slide-gap:10px] 2xl:[--slide-gap:15px] w-full h-auto sm:overflow-hidden"
             ref={emblaRef}
           >
-            <div className="ml-[calc(var(--slide-gap)*-1)] flex">
+            <div className="ml-[calc(var(--slide-gap)*-1)] touch-pan-y touch-pinch-zoom flex">
               {data?.successStories?.map((item) => (
                 <div
                   key={item?.id}

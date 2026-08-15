@@ -7,9 +7,9 @@ import HomeExcellence from "@/components/sections/home/home-excellence";
 import HomeCampusLife from "@/components/sections/home/home-campus-life";
 import Rankings from "@/components/sections/home/home-research-innovation";
 import HomeTestimonials from "@/components/sections/home/home-testimonials";
-import AcademicPrograms from "@/components/sections/home/home-academic-programs";
 import ResearchInnovation from "@/components/sections/home/home-research-innovation";
 import HomeIndustry from "@/components/sections/home/home-industry";
+import HomeAcademic from "@/components/sections/home/home-academic-programs";
 
 const homePageData = {
   hero: {
@@ -854,11 +854,133 @@ const homePageData = {
     },
   },
   industryCollaboration: {
-    data: {
-      id: 1,
-      documentId: "industry-collaboration-1",
-      attributes: { title: "industryCollaboration" },
+    sectionBackgroundImage: {
+      url: "/images/home-industry-overlay.webp",
+      alternativeTxt: "Industry Background",
     },
+    title: "Industry Collaboration",
+    description: "Built with Industry, Not Just for Industry",
+    collaborations: [
+      {
+        id: 1,
+        tag: "400+ Annual Internships",
+        title: "Internship & Training Opportunities",
+        collaborationImage: {
+          url: "/images/home-industry-1.webp",
+          alternativeTxt: "Internship & Training Opportunities",
+        },
+        link: "/#",
+      },
+      {
+        id: 2,
+        tag: "18+ Sponsored Labs",
+        title: "Industry-sponsored Labs",
+        collaborationImage: {
+          url: "/images/home-industry-2.webp",
+          alternativeTxt: "Internship & Training Opportunities",
+        },
+        link: "/#",
+      },
+      {
+        id: 3,
+        tag: "₹3.2 Cr Consultancy Revenue",
+        title: "Consultancy & Innovation Projects",
+        collaborationImage: {
+          url: "/images/home-industry-3.webp",
+          alternativeTxt: "Internship & Training Opportunities",
+        },
+        link: "/#",
+      },
+      {
+        id: 4,
+        tag: "18+ Sponsored Labs",
+        title: "Industry-sponsored Labs",
+        collaborationImage: {
+          url: "/images/home-industry-2.webp",
+          alternativeTxt: "Internship & Training Opportunities",
+        },
+        link: "/#",
+      },
+    ],
+    industryPartners: [
+      {
+        id: 1,
+        partnerImage: {
+          url: "/images/home-partner-1.png",
+          alternativeTxt: "Industry Partner",
+        },
+      },
+      {
+        id: 2,
+        partnerImage: {
+          url: "/images/home-partner-2.png",
+          alternativeTxt: "Industry Partner",
+        },
+      },
+      {
+        id: 3,
+        partnerImage: {
+          url: "/images/home-partner-3.png",
+          alternativeTxt: "Industry Partner",
+        },
+      },
+      {
+        id: 4,
+        partnerImage: {
+          url: "/images/home-partner-4.png",
+          alternativeTxt: "Industry Partner",
+        },
+      },
+      {
+        id: 5,
+        partnerImage: {
+          url: "/images/home-partner-5.png",
+          alternativeTxt: "Industry Partner",
+        },
+      },
+      {
+        id: 6,
+        partnerImage: {
+          url: "/images/home-partner-6.png",
+          alternativeTxt: "Industry Partner",
+        },
+      },
+      {
+        id: 7,
+        partnerImage: {
+          url: "/images/home-partner-7.png",
+          alternativeTxt: "Industry Partner",
+        },
+      },
+      {
+        id: 8,
+        partnerImage: {
+          url: "/images/home-partner-8.png",
+          alternativeTxt: "Industry Partner",
+        },
+      },
+      {
+        id: 9,
+        partnerImage: {
+          url: "/images/home-partner-9.png",
+          alternativeTxt: "Industry Partner",
+        },
+      },
+      {
+        id: 10,
+        partnerImage: {
+          url: "/images/home-partner-5.png",
+          alternativeTxt: "Industry Partner",
+        },
+      },
+      {
+        id: 11,
+        partnerImage: {
+          url: "/images/home-partner-7.png",
+          alternativeTxt: "Industry Partner",
+        },
+      },
+    ],
   },
   homeAbout: {
     statistics: [
@@ -1228,11 +1350,11 @@ export default function Home() {
       <Hero data={homePageData.hero} />
       <HomeExcellence data={homePageData.centresOfExcellence.data.attributes} />
       <Rankings />
-      <AcademicPrograms data={homePageData.academicPrograms.data.attributes} />
-      <ResearchInnovation
+      <HomeAcademic />
+      {/* <ResearchInnovation
         data={homePageData.researchInnovation.data.attributes}
-      />
-      <HomeIndustry />
+      /> */}
+      <HomeIndustry data={homePageData?.industryCollaboration} />
       <HomeAbout data={homePageData?.homeAbout} />
       <HomeTestimonials data={homePageData?.studentSuccess} />
       <HomeCampusLife data={homePageData?.campusLife} />

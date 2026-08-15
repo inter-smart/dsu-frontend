@@ -72,7 +72,7 @@ export default function HomeAbout({ data }) {
                   key={item?.id}
                   className="w-1/3 sm:w-full h-auto max-sm:p-[2.5px]"
                 >
-                  <div className="group w-full h-full lg:aspect-square text-center p-[15px_10px] sm:p-[20px_10px] lg:p-[25px_10px] 2xl:p-[30px_15px] 3xl:p-[35px_15px] bg-white dark:bg-black/10 border border-black/10 dark:border-white/10 rounded-[15px] sm:rounded-[6px] 2xl:rounded-[10px] dark:backdrop-blur-[2px] overflow-hidden flex flex-col items-center justify-center relative z-0 transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2)">
+                  <div className="group w-full h-full lg:aspect-square text-center p-[15px_10px] sm:p-[20px_10px] lg:p-[25px_10px] 2xl:p-[30px_15px] 3xl:p-[35px_15px] bg-white dark:bg-black/10 border border-black/10 dark:border-white/10 dark:max-sm:rounded-[15px] rounded-[6px] 2xl:rounded-[10px] dark:backdrop-blur-[2px] overflow-hidden flex flex-col items-center justify-center relative z-0 transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2)">
                     <ShineBorder
                       shineColor={["#909191"]}
                       duration={8 + index * 4}

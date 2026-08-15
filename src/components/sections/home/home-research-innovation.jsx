@@ -23,7 +23,7 @@ export default function ResearchInnovation({ data }) {
           >
             {data.tabs.map((tab) => (
               <TabsTrigger
-                key={tab.id}
+                key={tab.id} 
                 value={tab.value}
                 className="gap-[20px] 2xl:gap-[25px] 3xl:gap-[30px] after:bg-linear-to-r after:from-(--basecolor) after:to-(--basecolor2) after:!h-1.5 3xl:after:!h-2 hover:after:opacity-10"
               >
