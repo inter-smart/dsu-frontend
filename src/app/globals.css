@@ -131,7 +131,10 @@
     @apply text-[28px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] leading-tight font-bold tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
   .text_1 {
-    @apply text-[12px] 2xl:text-[14.4px] 3xl:text-[18px] leading-none font-normal tracking-tight text-[#4A5565] dark:text-[#F9FAFB];
+    @apply text-[12px] 2xl:text-[14.4px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#4A5565] dark:text-[#F9FAFB];
+  }
+  p{
+      @apply text-[12px] 2xl:text-[14.4px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#4A5565] dark:text-[#F9FAFB];
   }
 }
 

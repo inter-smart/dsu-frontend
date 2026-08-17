@@ -12,6 +12,7 @@
     "@base-ui/react": "^1.7.0",
     "@fancyapps/ui": "^6.1.14",
     "@radix-ui/react-select": "^2.3.7",
+    "@strapi/blocks-react-renderer": "^1.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-auto-scroll": "^8.6.0",
@@ -37,6 +38,7 @@
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "16.2.11",
+    "husky": "^9.1.7",
     "tailwindcss": "^4"
   }
 }
