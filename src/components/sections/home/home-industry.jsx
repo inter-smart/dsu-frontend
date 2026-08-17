@@ -28,7 +28,10 @@ export default function HomeIndustry({ data }) {
   const [collaborationEmblaRef] = useEmblaCarousel(
     {
       loop: true,
-      align: "start",
+      align: "center",
+      breakpoints: {
+        "(min-width: 640px)": { align: "start" },
+      },
     },
     [
       Autoplay({
@@ -68,10 +71,7 @@ export default function HomeIndustry({ data }) {
       />
       <div className="container">
         <div className="w-full h-auto mb-7.5 3xl:mb-8.75 text-center">
-          <Heading
-            align="center"
-            className="mb-1.25 3xl:mb-2.5 text-white"
-          >
+          <Heading align="center" className="mb-1.25 3xl:mb-2.5 text-white">
             {data?.title}
           </Heading>
           <Text className={"text-white"}>{data?.description}</Text>

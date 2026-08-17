@@ -18,7 +18,7 @@ export default function HomeTestimonials({ data }) {
       loop: false,
       align: "center",
       breakpoints: {
-        "(min-width: 576px)": { align: "start" },
+        "(min-width: 640px)": { align: "start" },
       },
     },
     [

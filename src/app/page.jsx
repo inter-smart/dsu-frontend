@@ -9,7 +9,7 @@ import Rankings from "@/components/sections/home/home-research-innovation";
 import HomeTestimonials from "@/components/sections/home/home-testimonials";
 import ResearchInnovation from "@/components/sections/home/home-research-innovation";
 import HomeIndustry from "@/components/sections/home/home-industry";
-import HomeAcademic from "@/components/sections/home/home-academic-programs";
+import HomeAcademic from "@/components/sections/home/home-academic";
 
 const homePageData = {
   hero: {
@@ -246,308 +246,421 @@ const homePageData = {
     },
   },
   academicPrograms: {
-    data: {
-      id: 1,
-      documentId: "academic-programs-1",
-      attributes: {
-        title: "Industry-Integrated Academic Programs",
-        description:
-          "Designed to align with real-world industry and emerging technologies",
-        programItems: [
+    title: "Industry-Integrated Academic Programs",
+    description:
+      "Designed to align with real-world industry and emerging technologies",
+    academics: [
+      {
+        id: 1,
+        academicImage: {
+          url: "/images/home-academic-1.webp",
+          alternativeTxt: "Academic Programs",
+        },
+        icon: {
+          url: "/images/home-academic-icon-1.svg",
+          alternativeTxt: "Academic Programs",
+        },
+        title: "School of Engineering",
+        courses_list: [
           {
             id: 1,
-            slug: "school-of-engineering",
-            icon: {
-              url: "/images/home-academicPrograms-item-1.svg",
-              alternativeText: "NVIDIA",
-            },
-            featuredImage: {
-              url: "/images/home-academicPrograms-item1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            title: "School of Engineering",
-            programs: [
+            title: "Undergraduate (UG)",
+            courses: [
               {
-                label: "Undergraduate (UG)",
-                courseList: [
-                  { label: "BCA", slug: "/" },
-                  { label: "B.Sc", slug: "/" },
-                ],
-              },
-              {
-                label: "Postgraduate (PG)",
-                courseList: [
-                  { label: "MCA", slug: "/" },
-                  { label: "M.Sc", slug: "/" },
-                ],
+                id: 1,
+                link: "#",
+                label: "BCA",
               },
             ],
           },
           {
             id: 1,
-            slug: "school-of-engineering",
-            icon: {
-              url: "/images/home-academicPrograms-item-2.svg",
-              alternativeText: "NVIDIA",
-            },
-            featuredImage: {
-              url: "/images/home-academicPrograms-item2.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            title: "School of Computer Applications",
-            programs: [
+            title: "Postgraduate (PG)",
+            courses: [
               {
-                label: "Undergraduate (UG)",
-                courseList: [
-                  { label: "BCA", slug: "/" },
-                  { label: "B.Sc", slug: "/" },
-                ],
+                id: 1,
+                link: "#",
+                label: "MCA",
               },
               {
-                label: "Postgraduate (PG)",
-                courseList: [
-                  { label: "MCA", slug: "/" },
-                  { label: "M.Sc", slug: "/" },
-                ],
-              },
-            ],
-          },
-          {
-            id: 1,
-            slug: "school-of-engineering",
-            icon: {
-              url: "/images/home-academicPrograms-item-1.svg",
-              alternativeText: "NVIDIA",
-            },
-            featuredImage: {
-              url: "/images/home-academicPrograms-item1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            title: "School of Law",
-            programs: [
-              {
-                label: "Undergraduate (UG)",
-                courseList: [
-                  { label: "BCA", slug: "/" },
-                  { label: "B.Sc", slug: "/" },
-                ],
-              },
-              {
-                label: "Postgraduate (PG)",
-                courseList: [
-                  { label: "MCA", slug: "/" },
-                  { label: "M.Sc", slug: "/" },
-                ],
-              },
-            ],
-          },
-          {
-            id: 1,
-            slug: "school-of-engineering",
-            icon: {
-              url: "/images/home-academicPrograms-item-1.svg",
-              alternativeText: "NVIDIA",
-            },
-            featuredImage: {
-              url: "/images/home-academicPrograms-item1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            title: "School of Commerce & Management",
-            programs: [
-              {
-                label: "Undergraduate (UG)",
-                courseList: [
-                  { label: "BCA", slug: "/" },
-                  { label: "B.Sc", slug: "/" },
-                ],
-              },
-              {
-                label: "Postgraduate (PG)",
-                courseList: [
-                  { label: "MCA", slug: "/" },
-                  { label: "M.Sc", slug: "/" },
-                ],
-              },
-            ],
-          },
-          {
-            id: 1,
-            slug: "school-of-engineering",
-            icon: {
-              url: "/images/home-academicPrograms-item-1.svg",
-              alternativeText: "NVIDIA",
-            },
-            featuredImage: {
-              url: "/images/home-academicPrograms-item1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            title: "School of Basic & Applied Sciences",
-            programs: [
-              {
-                label: "Undergraduate (UG)",
-                courseList: [
-                  { label: "BCA", slug: "/" },
-                  { label: "B.Sc", slug: "/" },
-                ],
-              },
-              {
-                label: "Postgraduate (PG)",
-                courseList: [
-                  { label: "MCA", slug: "/" },
-                  { label: "M.Sc", slug: "/" },
-                ],
-              },
-            ],
-          },
-          {
-            id: 1,
-            slug: "school-of-engineering",
-            icon: {
-              url: "/images/home-academicPrograms-item-1.svg",
-              alternativeText: "NVIDIA",
-            },
-            featuredImage: {
-              url: "/images/home-academicPrograms-item1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            title: "School of Arts, Design & Humanities",
-            programs: [
-              {
-                label: "Undergraduate (UG)",
-                courseList: [
-                  { label: "BCA", slug: "/" },
-                  { label: "B.Sc", slug: "/" },
-                ],
-              },
-              {
-                label: "Postgraduate (PG)",
-                courseList: [
-                  { label: "MCA", slug: "/" },
-                  { label: "M.Sc", slug: "/" },
-                ],
-              },
-            ],
-          },
-          {
-            id: 1,
-            slug: "school-of-engineering",
-            icon: {
-              url: "/images/home-academicPrograms-item-1.svg",
-              alternativeText: "NVIDIA",
-            },
-            featuredImage: {
-              url: "/images/home-academicPrograms-item1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            title: "School of Design & Digital Transmedia",
-            programs: [
-              {
-                label: "Undergraduate (UG)",
-                courseList: [
-                  { label: "BCA", slug: "/" },
-                  { label: "B.Sc", slug: "/" },
-                ],
-              },
-              {
-                label: "Postgraduate (PG)",
-                courseList: [
-                  { label: "MCA", slug: "/" },
-                  { label: "M.Sc", slug: "/" },
-                ],
-              },
-            ],
-          },
-          {
-            id: 1,
-            slug: "school-of-engineering",
-            icon: {
-              url: "/images/home-academicPrograms-item-1.svg",
-              alternativeText: "NVIDIA",
-            },
-            featuredImage: {
-              url: "/images/home-academicPrograms-item1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            title: "School of Health Sciences",
-            programs: [
-              {
-                label: "Undergraduate (UG)",
-                courseList: [
-                  { label: "BCA", slug: "/" },
-                  { label: "B.Sc", slug: "/" },
-                ],
-              },
-              {
-                label: "Postgraduate (PG)",
-                courseList: [
-                  { label: "MCA", slug: "/" },
-                  { label: "M.Sc", slug: "/" },
-                ],
-              },
-            ],
-          },
-          {
-            id: 1,
-            slug: "school-of-engineering",
-            icon: {
-              url: "/images/home-academicPrograms-item-1.svg",
-              alternativeText: "NVIDIA",
-            },
-            featuredImage: {
-              url: "/images/home-academicPrograms-item1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            title: "Online Degree Programs",
-            programs: [
-              {
-                label: "Undergraduate (UG)",
-                courseList: [
-                  { label: "BCA", slug: "/" },
-                  { label: "B.Sc", slug: "/" },
-                ],
-              },
-              {
-                label: "Postgraduate (PG)",
-                courseList: [
-                  { label: "MCA", slug: "/" },
-                  { label: "M.Sc", slug: "/" },
-                ],
-              },
-            ],
-          },
-          {
-            id: 1,
-            slug: "school-of-engineering",
-            icon: {
-              url: "/images/home-academicPrograms-item-1.svg",
-              alternativeText: "NVIDIA",
-            },
-            featuredImage: {
-              url: "/images/home-academicPrograms-item1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            title:
-              "Dr. Chandramma Dayananda Sagar Institute of Medical Education & Research",
-            programs: [
-              {
-                label: "Undergraduate (UG)",
-                courseList: [
-                  { label: "BCA", slug: "/" },
-                  { label: "B.Sc", slug: "/" },
-                ],
-              },
-              {
-                label: "Postgraduate (PG)",
-                courseList: [
-                  { label: "MCA", slug: "/" },
-                  { label: "M.Sc", slug: "/" },
-                ],
+                id: 2,
+                link: "#",
+                label: "M.Sc",
               },
             ],
           },
         ],
       },
-    },
+      {
+        id: 2,
+        academicImage: {
+          url: "/images/home-academic-2.webp",
+          alternativeTxt: "Academic Programs",
+        },
+        icon: {
+          url: "/images/home-academic-icon-2.svg",
+          alternativeTxt: "Academic Programs",
+        },
+        title: "School of Computer Applications",
+        courses_list: [
+          {
+            id: 1,
+            title: "Undergraduate (UG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "BCA",
+              },
+            ],
+          },
+          {
+            id: 1,
+            title: "Postgraduate (PG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "MCA",
+              },
+              {
+                id: 2,
+                link: "#",
+                label: "M.Sc",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 3,
+        academicImage: {
+          url: "/images/home-academic-3.webp",
+          alternativeTxt: "Academic Programs",
+        },
+        icon: {
+          url: "/images/home-academic-icon-3.svg",
+          alternativeTxt: "Academic Programs",
+        },
+        title: "School of Law",
+        courses_list: [
+          {
+            id: 1,
+            title: "Undergraduate (UG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "BCA",
+              },
+            ],
+          },
+          {
+            id: 1,
+            title: "Postgraduate (PG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "MCA",
+              },
+              {
+                id: 2,
+                link: "#",
+                label: "M.Sc",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 4,
+        academicImage: {
+          url: "/images/home-academic-4.webp",
+          alternativeTxt: "Academic Programs",
+        },
+        icon: {
+          url: "/images/home-academic-icon-4.svg",
+          alternativeTxt: "Academic Programs",
+        },
+        title: "School of Commerce & Management",
+        courses_list: [
+          {
+            id: 1,
+            title: "Undergraduate (UG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "BCA",
+              },
+            ],
+          },
+          {
+            id: 1,
+            title: "Postgraduate (PG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "MCA",
+              },
+              {
+                id: 2,
+                link: "#",
+                label: "M.Sc",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 5,
+        academicImage: {
+          url: "/images/home-academic-5.webp",
+          alternativeTxt: "Academic Programs",
+        },
+        icon: {
+          url: "/images/home-academic-icon-5.svg",
+          alternativeTxt: "Academic Programs",
+        },
+        title: "School of Basic & Applied Sciences",
+        courses_list: [
+          {
+            id: 1,
+            title: "Undergraduate (UG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "BCA",
+              },
+            ],
+          },
+          {
+            id: 1,
+            title: "Postgraduate (PG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "MCA",
+              },
+              {
+                id: 2,
+                link: "#",
+                label: "M.Sc",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 6,
+        academicImage: {
+          url: "/images/home-academic-6.webp",
+          alternativeTxt: "Academic Programs",
+        },
+        icon: {
+          url: "/images/home-academic-icon-6.svg",
+          alternativeTxt: "Academic Programs",
+        },
+        title: "School of Arts, Design & Humanities",
+        courses_list: [
+          {
+            id: 1,
+            title: "Undergraduate (UG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "BCA",
+              },
+            ],
+          },
+          {
+            id: 1,
+            title: "Postgraduate (PG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "MCA",
+              },
+              {
+                id: 2,
+                link: "#",
+                label: "M.Sc",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 7,
+        academicImage: {
+          url: "/images/home-academic-7.webp",
+          alternativeTxt: "Academic Programs",
+        },
+        icon: {
+          url: "/images/home-academic-icon-7.svg",
+          alternativeTxt: "Academic Programs",
+        },
+        title: "School of Design & Digital Transmedia",
+        courses_list: [
+          {
+            id: 1,
+            title: "Undergraduate (UG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "BCA",
+              },
+            ],
+          },
+          {
+            id: 1,
+            title: "Postgraduate (PG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "MCA",
+              },
+              {
+                id: 2,
+                link: "#",
+                label: "M.Sc",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 8,
+        academicImage: {
+          url: "/images/home-academic-8.webp",
+          alternativeTxt: "Academic Programs",
+        },
+        icon: {
+          url: "/images/home-academic-icon-8.svg",
+          alternativeTxt: "Academic Programs",
+        },
+        title: "School of Health Sciences",
+        courses_list: [
+          {
+            id: 1,
+            title: "Undergraduate (UG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "BCA",
+              },
+            ],
+          },
+          {
+            id: 1,
+            title: "Postgraduate (PG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "MCA",
+              },
+              {
+                id: 2,
+                link: "#",
+                label: "M.Sc",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 9,
+        academicImage: {
+          url: "/images/home-academic-9.webp",
+          alternativeTxt: "Academic Programs",
+        },
+        icon: {
+          url: "/images/home-academic-icon-9.svg",
+          alternativeTxt: "Academic Programs",
+        },
+        title: "Online Degree Programs",
+        courses_list: [
+          {
+            id: 1,
+            title: "Undergraduate (UG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "BCA",
+              },
+            ],
+          },
+          {
+            id: 1,
+            title: "Postgraduate (PG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "MCA",
+              },
+              {
+                id: 2,
+                link: "#",
+                label: "M.Sc",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 10,
+        academicImage: {
+          url: "/images/home-academic-10.webp",
+          alternativeTxt: "Academic Programs",
+        },
+        icon: {
+          url: "/images/home-academic-icon-10.svg",
+          alternativeTxt: "Academic Programs",
+        },
+        title: "Dr. Chandramma Dayananda Sagar Institute of Medical Education & Research",
+        courses_list: [
+          {
+            id: 1,
+            title: "Undergraduate (UG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "BCA",
+              },
+            ],
+          },
+          {
+            id: 1,
+            title: "Postgraduate (PG)",
+            courses: [
+              {
+                id: 1,
+                link: "#",
+                label: "MCA",
+              },
+              {
+                id: 2,
+                link: "#",
+                label: "M.Sc",
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   researchInnovation: {
     data: {
@@ -1350,7 +1463,7 @@ export default function Home() {
       <Hero data={homePageData.hero} />
       <HomeExcellence data={homePageData.centresOfExcellence.data.attributes} />
       <Rankings />
-      <HomeAcademic />
+      <HomeAcademic data={homePageData?.academicPrograms}/>
       {/* <ResearchInnovation
         data={homePageData.researchInnovation.data.attributes}
       /> */}
