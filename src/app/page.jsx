@@ -77,183 +77,257 @@ const homePageData = {
     ],
   },
   centresOfExcellence: {
-    data: {
-      id: 1,
-      documentId: "centres-of-excellence-1",
-      attributes: {
-        title: "Centres of Excellence",
-        description:
-          "Our Centers of Excellence bring together advanced infrastructure, expert faculty, and industry collaboration to solve real-world challenges.",
-        infoItems: [
+    title: "Centres of Excellence",
+    description:
+      "Our Centers of Excellence bring together advanced infrastructure, expert faculty, and industry collaboration to solve real-world challenges.",
+    excellence: [
+      {
+        id: 1,
+        specifications: [
           {
-            id: 1,
-            specs: [
-              {
-                title: "NVIDIA DGX B200",
-                description: "160-GPU AI supercomputing cluster",
-              },
-              {
-                title: "Jetson AI Edge",
-                description: "Real-time inferencing and robotics",
-              },
-              {
-                title: "GPU Workstations",
-                description: "Research, simulation, and model training",
-              },
-              {
-                title: "NVLink Fabric",
-                description: "Ultra-fast GPU communication across nodes",
-              },
-            ],
-            featuredImage: {
-              url: "/images/home-about-1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            subtitle: "DSU Centre for",
-            title: "NVIDIA AI Factory & Generative AI",
-            poweredByLogo: {
-              url: "/images/home-about-nvidea-1.png",
-              alternativeText: "NVIDIA",
-            },
-            description:
-              "Our Centers of Excellence bring together advanced infrastructure, expert faculty, and industry collaboratio solve real-world challenges.</p>",
-            // cta: { label: "View All Centers", url: "/centres-of-excellence" },
+            title: "DGX B200",
+            text: "Supercomputers with a combined GPUs",
           },
           {
-            id: 2,
-            specs: [
-              {
-                title: "Robotics Lab",
-                description: "Autonomous systems and precision control",
-              },
-              {
-                title: "Vision AI",
-                description: "Computer vision and perception models",
-              },
-              {
-                title: "Embedded AI",
-                description: "Edge platforms for real-time intelligence",
-              },
-              {
-                title: "Automation Suite",
-                description: "Industrial automation and mechatronics",
-              },
-            ],
-            featuredImage: {
-              url: "/images/home-about-1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            subtitle: "DSU Centre for",
-            title: "Advanced Robotics & Automation",
-            poweredByLogo: {
-              url: "/images/home-about-nvidea-1.png",
-              alternativeText: "NVIDIA",
-            },
-            description:
-              "The robotics center provides students hands-on experience with industrial automation and autonomous systems.",
+            title: "Jetson Family",
+            text: "Edge AI Deployment",
           },
           {
-            id: 3,
-            specs: [
-              {
-                title: "Threat Intel",
-                description: "Real-time monitoring and analysis",
-              },
-              {
-                title: "SOC Lab",
-                description: "Security operations and detection workflows",
-              },
-              {
-                title: "Red Team Ops",
-                description: "Penetration testing and breach simulation",
-              },
-              {
-                title: "Zero Trust",
-                description: "Identity, enforcement, and resilient defense",
-              },
-            ],
-            featuredImage: {
-              url: "/images/home-about-1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            subtitle: "DSU Centre for",
-            title: "Global Cybersecurity & Defense",
-            poweredByLogo: {
-              url: "/images/home-about-nvidea-1.png",
-              alternativeText: "NVIDIA",
-            },
-            description:
-              "Train in advanced threat detection, ethical hacking, and secure system architecture alongside industry leaders.",
+            title: "GPU Workstations",
+            text: "Peak Performance Development",
           },
           {
-            id: 4,
-            specs: [
-              {
-                title: "Quantum Lab",
-                description: "Quantum algorithms and research workflows",
-              },
-              {
-                title: "AI Research",
-                description: "Multi-domain innovation and experimentation",
-              },
-              {
-                title: "Simulation Hub",
-                description: "High-fidelity modeling and analysis",
-              },
-              {
-                title: "Compute Stack",
-                description: "Accelerated infrastructure for advanced studies",
-              },
-            ],
-            featuredImage: {
-              url: "/images/home-about-1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            subtitle: "DSU Centre for",
-            title: "Quantum Computing Research",
-            poweredByLogo: {
-              url: "/images/home-about-nvidea-1.png",
-              alternativeText: "NVIDIA",
-            },
-            description:
-              "Train in advanced threat detection, ethical hacking, and secure system architecture alongside industry leaders.",
-          },
-          {
-            id: 4,
-            specs: [
-              {
-                title: "DGX B200",
-                description: "Supercomputers with a combined 160 GPUs",
-              },
-              {
-                title: "Jetson Family",
-                description: "Edge AI Deployment",
-              },
-              {
-                title: "GPU Workstations",
-                description: "Peak Performance Development",
-              },
-              {
-                title: "NVLink",
-                description: "Ultra-fast GPU-to-GPU communication",
-              },
-            ],
-            featuredImage: {
-              url: "/images/home-about-1.jpg",
-              alternativeText: "DGX B200 Supercomputers",
-            },
-            subtitle: "DSU Centre for",
-            title: "Quantum Computing Research",
-            poweredByLogo: {
-              url: "/images/home-about-nvidea-1.png",
-              alternativeText: "NVIDIA",
-            },
-            description:
-              "Explore quantum computing principles and develop quantum algorithms for next-generation computing systems.",
+            title: "NVLink",
+            text: "Ultra-fast GPU-to-GPU communication",
           },
         ],
+        excellenceImage: {
+          url: "/images/home-excellence-1.jpg",
+          alternativeTxt: "DGX B200 Supercomputer",
+        },
+        excellenceContent: {
+          heading: {
+            title: "DSU Centre for",
+            highlightTxt: "NVIDIA AI Factory & Generative AI",
+          },
+          description:
+            "We have partnered with NVIDIA to create an AI architecture that enables students to build, train & deploy large-scale AI systems across vision, language, and data-intensive domains.",
+          poweredImage: {
+            url: "/images/powered-nvidia.svg",
+            alternativeTxt: "NVIDIA Logo",
+          },
+          button: {
+            link: "#",
+            label: "View All Centers",
+          },
+        },
       },
-    },
+      {
+        id: 2,
+        specifications: [
+          {
+            title: "DGX B2002 2",
+            text: "Supercomputers with a combined 160 GPUs",
+          },
+          {
+            title: "Jetson Family 2",
+            text: "Edge AI Deployment",
+          },
+          {
+            title: "GPU Workstations 2",
+            text: "Peak Performance Development",
+          },
+          {
+            title: "NVLink 2",
+            text: "Ultra-fast GPU-to-GPU communication",
+          },
+        ],
+        excellenceImage: {
+          url: "/images/home-excellence-2.jpg",
+          alternativeTxt: "DGX B200 Supercomputer",
+        },
+        excellenceContent: {
+          heading: {
+            title: "DSU Centre for",
+            highlightTxt: "NVIDIA AI Factory & Generative AI 2",
+          },
+          description:
+            "We have partnered with NVIDIA to create an AI architecture that enables students to build, train & deploy large-scale AI systems across vision, language, and data-intensive domains.",
+          poweredImage: {
+            url: "/images/powered-nvidia.svg",
+            alternativeTxt: "NVIDIA Logo",
+          },
+          button: {
+            link: "#",
+            label: "View All Centers",
+          },
+        },
+      },
+      {
+        id: 3,
+        specifications: [
+          {
+            title: "DGX B2002 3",
+            text: "Supercomputers with a combined 160 GPUs",
+          },
+          {
+            title: "Jetson Family 3",
+            text: "Edge AI Deployment",
+          },
+          {
+            title: "GPU Workstations 3",
+            text: "Peak Performance Development",
+          },
+          {
+            title: "NVLink 3",
+            text: "Ultra-fast GPU-to-GPU communication",
+          },
+        ],
+        excellenceImage: {
+          url: "/images/home-excellence-3.jpg",
+          alternativeTxt: "DGX B200 Supercomputer",
+        },
+        excellenceContent: {
+          heading: {
+            title: "DSU Centre for",
+            highlightTxt: "NVIDIA AI Factory & Generative AI 3",
+          },
+          description:
+            "We have partnered with NVIDIA to create an AI architecture that enables students to build, train & deploy large-scale AI systems across vision, language, and data-intensive domains.",
+          poweredImage: {
+            url: "/images/powered-nvidia.svg",
+            alternativeTxt: "NVIDIA Logo",
+          },
+          button: {
+            link: "#",
+            label: "View All Centers",
+          },
+        },
+      },
+      {
+        id: 4,
+        specifications: [
+          {
+            title: "DGX B2002 4",
+            text: "Supercomputers with a combined 160 GPUs",
+          },
+          {
+            title: "Jetson Family 4",
+            text: "Edge AI Deployment",
+          },
+          {
+            title: "GPU Workstations 4",
+            text: "Peak Performance Development",
+          },
+          {
+            title: "NVLink 4",
+            text: "Ultra-fast GPU-to-GPU communication",
+          },
+        ],
+        excellenceImage: {
+          url: "/images/home-excellence-4.jpg",
+          alternativeTxt: "DGX B200 Supercomputer",
+        },
+        excellenceContent: {
+          heading: {
+            title: "DSU Centre for",
+            highlightTxt: "NVIDIA AI Factory & Generative AI 4",
+          },
+          description:
+            "We have partnered with NVIDIA to create an AI architecture that enables students to build, train & deploy large-scale AI systems across vision, language, and data-intensive domains.",
+          poweredImage: {
+            url: "/images/powered-nvidia.svg",
+            alternativeTxt: "NVIDIA Logo",
+          },
+          button: {
+            link: "#",
+            label: "View All Centers",
+          },
+        },
+      },
+      {
+        id: 5,
+        specifications: [
+          {
+            title: "DGX B2002 5",
+            text: "Supercomputers with a combined 160 GPUs",
+          },
+          {
+            title: "Jetson Family 5",
+            text: "Edge AI Deployment",
+          },
+          {
+            title: "GPU Workstations 5",
+            text: "Peak Performance Development",
+          },
+          {
+            title: "NVLink 5",
+            text: "Ultra-fast GPU-to-GPU communication",
+          },
+        ],
+        excellenceImage: {
+          url: "/images/home-excellence-5.jpg",
+          alternativeTxt: "DGX B200 Supercomputer",
+        },
+        excellenceContent: {
+          heading: {
+            title: "DSU Centre for",
+            highlightTxt: "NVIDIA AI Factory & Generative AI 5",
+          },
+          description:
+            "We have partnered with NVIDIA to create an AI architecture that enables students to build, train & deploy large-scale AI systems across vision, language, and data-intensive domains.",
+          poweredImage: {
+            url: "/images/powered-nvidia.svg",
+            alternativeTxt: "NVIDIA Logo",
+          },
+          button: {
+            link: "#",
+            label: "View All Centers",
+          },
+        },
+      },
+      {
+        id: 6,
+        specifications: [
+          {
+            title: "DGX B2002 6",
+            text: "Supercomputers with a combined 160 GPUs",
+          },
+          {
+            title: "Jetson Family 6",
+            text: "Edge AI Deployment",
+          },
+          {
+            title: "GPU Workstations 6",
+            text: "Peak Performance Development",
+          },
+          {
+            title: "NVLink 6",
+            text: "Ultra-fast GPU-to-GPU communication",
+          },
+        ],
+        excellenceImage: {
+          url: "/images/home-excellence-3.jpg",
+          alternativeTxt: "DGX B200 Supercomputer",
+        },
+        excellenceContent: {
+          heading: {
+            title: "DSU Centre for",
+            highlightTxt: "NVIDIA AI Factory & Generative AI 6",
+          },
+          description:
+            "We have partnered with NVIDIA to create an AI architecture that enables students to build, train & deploy large-scale AI systems across vision, language, and data-intensive domains.",
+          poweredImage: {
+            url: "/images/powered-nvidia.svg",
+            alternativeTxt: "NVIDIA Logo",
+          },
+          button: {
+            link: "#",
+            label: "View All Centers",
+          },
+        },
+      },
+    ],
   },
   academicPrograms: {
     title: "Industry-Integrated Academic Programs",
@@ -639,7 +713,8 @@ const homePageData = {
           url: "/images/home-academic-icon-10.svg",
           alternativeTxt: "Academic Programs",
         },
-        title: "Dr. Chandramma Dayananda Sagar Institute of Medical Education & Research",
+        title:
+          "Dr. Chandramma Dayananda Sagar Institute of Medical Education & Research",
         courses_list: [
           {
             id: 1,
@@ -1471,9 +1546,9 @@ export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
       <Hero data={homePageData.hero} />
-      <HomeExcellence data={homePageData.centresOfExcellence.data.attributes} />
+      <HomeExcellence data={homePageData?.centresOfExcellence} />
       <Rankings />
-      <HomeAcademic data={homePageData?.academicPrograms}/>
+      <HomeAcademic data={homePageData?.academicPrograms} />
       {/* <ResearchInnovation
         data={homePageData.researchInnovation.data.attributes}
       /> */}

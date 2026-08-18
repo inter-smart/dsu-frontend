@@ -128,6 +128,13 @@ export default function Footer({ data }) {
               </Button>
             </div>
           </div>
+          <div className="w-[calc(100%-var(--width))] pl-17.5">
+            <div className="w-full h-auto [&>*]:w1/3 flex flex-wrap">
+              <div className="w-auto h-auto">
+                
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -171,8 +178,6 @@ export default function Footer({ data }) {
     </footer>
   );
 }
-
-
 
 // "use client";
 

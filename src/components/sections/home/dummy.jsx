@@ -626,7 +626,7 @@ export default function HomeExcellence({ data = local_data }) {
 
         {/* Content */}
         <div className="grid w-full h-auto items-center gap-6 lg:grid-cols-[225px_minmax(0,1fr)_250px] 3xl:grid-cols-[225px_minmax(0,875px)_250px] 3xl:gap-10">
-          {/* Left Navigation */}
+
           <div className="order-2 w-full h-auto lg:order-1">
             <div className="flex w-full h-auto flex-col gap-3 lg:gap-5">
               {activeSpecs.map((spec, idx) => (
