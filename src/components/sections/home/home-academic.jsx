@@ -27,7 +27,7 @@ export default function HomeAcademic({ data }) {
   return (
     <section className="w-full h-auto py-12.5 2xl:py-15 3xl:py-20 bg-linear-to-t from-[#FFF3E0] to-[#FFF8EE] dark:bg-none dark:bg-black overflow-hidden block">
       <div className="container">
-        <div className="w-full h-auto mb-6.25 lg:mb-7.5 3xl:mb-10">
+        <div className="w-full h-auto mb-6.25 lg:mb-7.5 3xl:mb-10 text-center">
           <Heading
             aurora
             speed={2}

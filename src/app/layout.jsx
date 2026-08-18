@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
         >
           <Header />
           <main className="flex-1">{children}</main>
-          <Footer />
+          {/* <Footer /> */}
         </ThemeProvider>
       </body>
     </html>
