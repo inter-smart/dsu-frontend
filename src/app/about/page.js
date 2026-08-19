@@ -296,25 +296,24 @@ const local_data = {
             {
                 title: "Recognition",
                 items: [
-                    { label: "UGC Recognition", icon: "document", active: false, url: "" },
-                    { label: "UGC 2(f)", icon: "document", active: true, url: "" },
-                    { label: "AICTE Approval", icon: "document", active: false, url: "" },
-                    { label: "Accreditations", icon: "document", active: false, url: "" },
-                    { label: "Awards & Recognitions", icon: "document", active: false, url: "" }
+                    { label: "UGC Recognition", },
+                    { label: "UGC 2(f)", },
+                    { label: "AICTE Approval", },
+                    { label: "Accreditations", },
+                    { label: "Awards & Recognitions", }
                 ]
             },
             {
                 title: "Rankings",
                 items: [
-                    { label: "NIRF Overall", icon: "document", active: false, url: "" },
-                    { label: "NIRF Engineering", icon: "document", active: false, url: "" },
-                    { label: "NIRF Management", icon: "document", active: false, url: "" },
-                    { label: "NIRF Pharmacy", icon: "document", active: false, url: "" },
-                    { label: "NIRF Innovation", icon: "document", active: false, url: "" },
-
-                    { label: "NIRF SDG", icon: "document", active: false, url: "" },
-                    { label: "Impact Rankings", icon: "document", active: false, url: "" },
-                    { label: "Ranking Reports", icon: "document", active: false, url: "" }
+                    { label: "NIRF Overall", },
+                    { label: "NIRF Engineering", },
+                    { label: "NIRF Management", },
+                    { label: "NIRF Pharmacy", },
+                    { label: "NIRF Innovation", },
+                    { label: "NIRF SDG", },
+                    { label: "Impact Rankings", },
+                    { label: "Ranking Reports", }, 
                 ]
             }
         ]
@@ -417,7 +416,7 @@ const local_data = {
                 name: "Dr. D. Premachandra Sagar",
                 designation: "Pro Chancellor, DSU",
                 image: {
-                      url: "/images/about/leader-2.jpg",
+                    url: "/images/about/leader-2.jpg",
                     alternativeText: "Dr. D. Premachandra Sagar",
                 },
                 description:
@@ -430,7 +429,7 @@ const local_data = {
                 name: "Prof B. S. Satyanarayana",
                 designation: "Vice Chancellor, DSU",
                 image: {
-                      url: "/images/about/leader-3.jpg",
+                    url: "/images/about/leader-3.jpg",
                     alternativeText: "Prof B. S. Satyanarayana",
                 },
                 description: "",
@@ -442,7 +441,7 @@ const local_data = {
                 name: "Prof. R Janardhan",
                 designation: "Pro-Vice Chancellor, DSU",
                 image: {
-                     url: "/images/about/leader-4.jpg",
+                    url: "/images/about/leader-4.jpg",
                     alternativeText: "Prof. R Janardhan",
                 },
                 description: "",
@@ -454,7 +453,7 @@ const local_data = {
                 name: "Dr. Prakash Sheelvanthmath",
                 designation: "Pro-Vice Chancellor, DSU",
                 image: {
-                      url: "/images/about/leader-5.jpg",
+                    url: "/images/about/leader-5.jpg",
                     alternativeText: "Dr. Prakash Sheelvanthmath",
                 },
                 description: "",
@@ -466,7 +465,7 @@ const local_data = {
                 name: "Dr. Puttamadappa C",
                 designation: "Registrar, DSU",
                 image: {
-                     url: "/images/about/leader-6.jpg",
+                    url: "/images/about/leader-6.jpg",
                     alternativeText: "Dr. Puttamadappa C",
                 },
                 description: "",
@@ -478,7 +477,7 @@ const local_data = {
                 name: "Dr. S N Prasad",
                 designation: "Controller of Examinations, DSU",
                 image: {
-                      url: "/images/about/leader-7.jpg",
+                    url: "/images/about/leader-7.jpg",
                     alternativeText: "Dr. S N Prasad",
                 },
                 description: "",
@@ -490,7 +489,7 @@ const local_data = {
                 name: "Mr. Ramanathan",
                 designation: "Finance Officer, DSU",
                 image: {
-                      url: "/images/about/leader-8.jpg",
+                    url: "/images/about/leader-8.jpg",
                     alternativeText: "Mr. Ramanathan",
                 },
                 description: "",

@@ -14,7 +14,7 @@ export default function AboutHistory({ data }) {
     return (
         <section className='relative py-[40px] 2xl:py-[55px] 3xl:py-[75px]'>
             <div className="container">
-                <div className="flex lg:gap-[25px] 2xl:gap-[35px] 3xl:gap-[45px] max-lg:flex-wrap">
+                <div className="flex max-sm:gap-[20px] lg:gap-[25px] 2xl:gap-[35px] 3xl:gap-[45px] max-lg:flex-wrap">
                     <div className="w-full sm:w-1/2 lg:w-1/3">
 
                         <div className="w-full">
@@ -54,7 +54,7 @@ export default function AboutHistory({ data }) {
 
                     </div>
                     <div className="w-full sm:w-1/2 lg:w-1/3">
-                        <div className="w-full h-full rounded-[10px] overflow-hidden">
+                        <div className="w-full h-full rounded-[10px] overflow-hidden ">
                             <Image src={data?.media.url} width={550} height={600} alt={data?.media.alternativeText} className="w-full h-full object-cover" />
                         </div>
                     </div>
