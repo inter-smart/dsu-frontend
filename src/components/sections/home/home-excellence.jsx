@@ -64,7 +64,7 @@ export default function HomeExcellence({ data = local_data }) {
   return (
     <section className="w-full h-auto py-[40px_50px] sm:py-[50px_70px] lg:py-[70px_90px] 2xl:py-[80px_110px] 3xl:py-[100px_140px] dark:bg-[#101010] overflow-hidden block">
       <div className="container">
-        <div className="w-full h-auto mb-12.5 sm:mb-17.5 lg:mb-20 2xl:mb-22.5 3xl:mb-30">
+        <div className="w-full h-auto mb-12.5 sm:mb-17.5 lg:mb-20 2xl:mb-25 3xl:mb-30">
           <Heading
             aurora
             speed={2}
@@ -82,7 +82,7 @@ export default function HomeExcellence({ data = local_data }) {
                 <div
                   key={`${activeItem?.id ?? activeIndex}-spec-${item?.title ?? index}`}
                   style={{ animationDelay: `${index * 120}ms` }}
-                  className="spec-card-flip w-full lg:w-auto h-auto ml-auto"
+                  className="cardFlip w-full lg:w-auto h-auto ml-auto"
                 >
                   <div className="w-full lg:w-auto h-full lg:h-auto lg:text-right p-[15px_10px] lg:p-[15px_25px_15px_10px] 3xl:p-[20px_25px_20px_10px] bg-[#D9D9D91A] max-sm:rounded-[10px] rounded-[4px] lg:rounded-[8px] 3xl:rounded-[10px] border border-black/10 dark:border-white/10 overflow-hidden relative z-0 inline-flex flex-col">
                     <ShineBorder

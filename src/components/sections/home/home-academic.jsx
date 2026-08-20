@@ -165,14 +165,14 @@ function AcademicCard({ item }) {
                 {item?.title}
               </div>
               <div className="w-full h-auto gap-1.25 2xl:gap-2.5 3xl:gap-3.75 flex flex-wrap">
-                {item?.courses?.map((links) => (
-                  <div className="w-auto h-auto inline">
+                {item?.courses?.map((course) => (
+                  <div key={course?.id} className="w-auto h-auto inline">
                     <Link
-                      href={links?.link}
-                      aria-label={links?.label}
+                      href={course?.link}
+                      aria-label={course?.label}
                       className="text-[13px] 2xl:text-[15px] leading-[1.1] font-normal text-[#080C15] w-auto h-auto p-[5px_10px] bg-[#080C15]/10 rounded-full border border-black/20 transition duration-500 inline hover:text-white hover:bg-(--basecolor2) hover:border-(--basecolor2)"
                     >
-                      {links?.label}
+                      {course?.label}
                     </Link>
                   </div>
                 ))}

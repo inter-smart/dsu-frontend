@@ -40,13 +40,13 @@ export default function HomeCampusLife({ data }) {
                   <div className="[--before-size:20px] 2xl:[--before-size:25px] text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-[1.1] font-normal text-[#F57F2A] w-fit h-auto pl-[calc(var(--before-size)+5px)] 2xl:pl-[calc(var(--before-size)+10px)] mb-2.5 relative z-0 before:content-[''] before:w-(--before-size) before:h-0.5 2xl:before:h-1.25 before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:absolute before:z-1 before:inset-[0_auto_0_0]">
                     {data?.campusInfo?.title}
                   </div>
-                  <div className="sm:text-[34px] lg:text-[40px] xl:text-[54px] 2xl:text-[64px] 3xl:text-[80px] leading-[1] font-bold text-[#212121] dark:text-white lg:mb-3.75 2xl:mb-7.5 3xl:mb-10">
+                  <div className="text-3xl sm:text-[34px] lg:text-[40px] xl:text-[54px] 2xl:text-[64px] 3xl:text-[80px] leading-[1] font-bold text-[#212121] dark:text-white lg:mb-3.75 2xl:mb-7.5 3xl:mb-10">
                     {data?.campusInfo?.heading?.text}
                     <span className="italic bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit pr-1.25 block relative z-0 before:content-[''] before:w-full before:h-1 before:bg-white before:opacity-0 dark:before:opacity-100 before:absolute before:z-1 before:inset-[auto_0_-5px_0]">
                       {data?.campusInfo?.heading?.highlight}
                     </span>
                   </div>
-                  <div className="text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-[1.4] font-normal line-clamp-3 text-[#4A5565] dark:text-white">
+                  <div className="text-sm 2xl:text-base 3xl:text-lg leading-[1.4] font-normal line-clamp-3 text-[#4A5565] dark:text-white">
                     {data?.campusInfo?.description}
                   </div>
                   <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25">

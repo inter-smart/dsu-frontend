@@ -358,7 +358,7 @@ const homePageData = {
             ],
           },
           {
-            id: 1,
+            id: 2,
             title: "Postgraduate (PG)",
             courses: [
               {
@@ -399,7 +399,7 @@ const homePageData = {
             ],
           },
           {
-            id: 1,
+            id: 2,
             title: "Postgraduate (PG)",
             courses: [
               {
@@ -440,7 +440,7 @@ const homePageData = {
             ],
           },
           {
-            id: 1,
+            id: 2,
             title: "Postgraduate (PG)",
             courses: [
               {
@@ -481,7 +481,7 @@ const homePageData = {
             ],
           },
           {
-            id: 1,
+            id: 2,
             title: "Postgraduate (PG)",
             courses: [
               {
@@ -522,7 +522,7 @@ const homePageData = {
             ],
           },
           {
-            id: 1,
+            id: 2,
             title: "Postgraduate (PG)",
             courses: [
               {
@@ -563,7 +563,7 @@ const homePageData = {
             ],
           },
           {
-            id: 1,
+            id: 2,
             title: "Postgraduate (PG)",
             courses: [
               {
@@ -604,7 +604,7 @@ const homePageData = {
             ],
           },
           {
-            id: 1,
+            id: 2,
             title: "Postgraduate (PG)",
             courses: [
               {
@@ -645,7 +645,7 @@ const homePageData = {
             ],
           },
           {
-            id: 1,
+            id: 2,
             title: "Postgraduate (PG)",
             courses: [
               {
@@ -686,7 +686,7 @@ const homePageData = {
             ],
           },
           {
-            id: 1,
+            id: 2,
             title: "Postgraduate (PG)",
             courses: [
               {
@@ -728,7 +728,7 @@ const homePageData = {
             ],
           },
           {
-            id: 1,
+            id: 2,
             title: "Postgraduate (PG)",
             courses: [
               {

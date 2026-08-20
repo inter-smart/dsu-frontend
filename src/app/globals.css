@@ -134,7 +134,7 @@
     @apply text-[12px] 2xl:text-[14.4px] 3xl:text-[18px] leading-none font-normal tracking-tight text-[#4A5565] dark:text-[#F9FAFB];
   }
 
-  .spec-card-flip {
+  .cardFlip{
     transform-origin: right center;
     backface-visibility: hidden;
     animation: spec-flip-in 0.7s cubic-bezier(0.25, 0.50, 0.75, 1) both;
