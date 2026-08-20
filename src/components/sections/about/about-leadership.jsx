@@ -11,7 +11,7 @@ export default function AboutLeadership({ data }) {
         <section className='bg-[#F4F6FA] py-[65px]'>
             <div className="container">
                 <h2 className="text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] text-center mb-[10px]
-                            xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black  ">
+                    xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black">
                     {data.heading}
                 </h2>
                 <div className="text_1 leading-[1.2] text-[#4A5565] text-center mb-[30px] 3xl:mb-[50px]">
@@ -21,7 +21,7 @@ export default function AboutLeadership({ data }) {
                     {featuredLeaders.map((item, id) => (
                         <div className="w-full md:w-1/2 p-[5px] lg:p-[10px]" key={id}>
                             <Link href="/" className=" flex flex-wrap items-center p-[20px_15px] lg:p-[25px_15px] xl:p-[30px_20px] 2xl:p-[35px_25px] 3xl:p-[44px_30px] bg-white w-full h-full rounded-[10px] hover:bg-gradient-to-b hover:from-[#FFF8EE] hover:to-[#FFF3E0]
-                            max-sm:text-center">
+                               max-sm:text-center">
                                 <div className="w-[165px] xl:w-[200px] 2xl:w-[250px] 3xl:w-[310px] max-sm:m-auto  max-sm:mb-[10px] ">
                                     <div className="w-full h-full overflow-hidden rounded-[35px] lg:rounded-[55px] xl:rounded-[65px] 2xl:rounded-[85px] 3xl:rounded-[95px] pb-[10px] border-b-[2px] border-[#DC2626]">
                                         <Image src={item?.image.url} width="250" height="250" class="w-full h-full object-cover  rounded-[35px] lg:rounded-[55px] xl:rounded-[65px] 2xl:rounded-[85px] 3xl:rounded-[95px]" alt={item?.image.alternativeText} />
@@ -73,10 +73,7 @@ export default function AboutLeadership({ data }) {
                             </Link>
                         </div>
                     ))}
-
-                </div>
-
-
+                </div> 
             </div>
         </section>
     )

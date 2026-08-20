@@ -1,13 +1,13 @@
 "use client";
 
-import Image from "next/image";
+
 import Link from "next/link";
  
 
 const sidebarMenu = [
     {
         label: "UGC Recognition",
-        slug: "/", 
+        slug: "/ugc-recognition", 
     },
     {
         label: "UGC 2(f)",
@@ -19,12 +19,12 @@ const sidebarMenu = [
     },
     {
         label: "Other Approval",
-        slug: "/finance-commitee", 
+        slug: "/other-approval", 
     },
    
 ];
 
-export default function SidebarSection({ isOpen = false, onClose, title = "Recognition Menu" }) {
+export default function RegulatorySidebarSection({ isOpen = false, onClose, title = "Recognition Menu" }) {
     return (
         <>
             {/* Mobile Backdrop Overlay */}
@@ -62,7 +62,7 @@ export default function SidebarSection({ isOpen = false, onClose, title = "Recog
                         {sidebarMenu.map((item, idx) => (
                             <li key={`${item.slug}-${idx}`} className="border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0">
                                 <Link
-                                    href={`/governance/${item.slug}`}
+                                    href={`/regulatory-approval/${item.slug}`}
                                     onClick={onClose}
                                     className=" flex items-center justify-between"
                                 >                                  
