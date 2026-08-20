@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import SidebarSection from '@/components/layout/common/sidebarSection'
+import SidebarSection from '@/components/sections/governance/sidebarSection'
 import Image from "next/image";
 
 export default function GovernanceFinancecommittte({ data }) {
@@ -11,7 +11,7 @@ export default function GovernanceFinancecommittte({ data }) {
         <section className="relative py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
             <div className="container">
                 <div className="cmnFlx">
-                    <div className="leftBx">
+                    <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <SidebarSection
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
@@ -61,7 +61,7 @@ export default function GovernanceFinancecommittte({ data }) {
                                             key={idx}
                                             className="rounded-[10px] bg-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.08)] hover:bg-gradient-to-b hover:from-[#FFF8EE] hover:to-[#FFF3E0]"
                                         >
-                                            <td className="rounded-l-[10px] p-[15px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px]">
+                                            <td className="rounded-l-[10px] p-[15px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px] relative  after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last-of-type:after:hidden">
                                                 <div className="flex items-center min-w-[200px] xl:min-w-[250px] 2xl:min-w-[300px] 3xl:min-w-[375px]">
                                                     <div className="h-[50px] xl:h-[61px] 2xl:h-[73px] 3xl:h-[92px] w-[50px] xl:w-[61px] 2xl:w-[73px] 3xl:w-[92px] shrink-0 overflow-hidden rounded-full">
                                                         <Image
@@ -87,12 +87,12 @@ export default function GovernanceFinancecommittte({ data }) {
                                                 </div>
                                             </td>
 
-                                            <td className="p-[12px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px] text-center text_1 font-semibold text-[#4A5565]">
+                                            <td className="p-[12px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px] text-center text_1 font-semibold text-[#4A5565] relative  after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last-of-type:after:hidden">
                                                 <div className="max-w-[320px] m-auto text-center">
                                                     {item.designation}
                                                 </div>
                                             </td>
-                                            <td className="rounded-r-[10px] p-[15px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px] text-center">
+                                            <td className="rounded-r-[10px] p-[15px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px] text-center relative  after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last-of-type:after:hidden">
                                                 <div
                                                     className={`mx-auto w-fit flex h-[32px] xl:h-[35px] 2xl:h-[43px] 3xl:h-[52px] min-w-[100px] lg:min-w-[120px] xl:min-w-[155px] 2xl:min-w-[185px] 3xl:min-w-[232px] items-center justify-center overflow-hidden rounded-[100px] p-0 text_1 font-semibold ${item.status === "Chairperson"
                                                         ? "bg-[#E9F3E7] text-[#4D8F55]"
