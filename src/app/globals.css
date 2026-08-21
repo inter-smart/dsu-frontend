@@ -149,6 +149,31 @@
   .cmn_Title{
     @apply text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black
   }
+
+  .cardFlip{
+    transform-origin: right center;
+    backface-visibility: hidden;
+    animation: spec-flip-in 0.7s cubic-bezier(0.25, 0.50, 0.75, 1) both;
+    will-change: transform, opacity, filter;
+  }
+}
+
+@keyframes spec-flip-in {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) rotateY(0deg) translateX(0);
+    filter: blur(5px);
+  }
+  50% {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0deg) translateX(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0deg) translateX(0);
+    filter: blur(0);
+  }
 }
 
 body {

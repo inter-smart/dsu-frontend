@@ -27,7 +27,7 @@ export default function HomeAcademic({ data }) {
   return (
     <section className="w-full h-auto py-12.5 2xl:py-15 3xl:py-20 bg-linear-to-t from-[#FFF3E0] to-[#FFF8EE] dark:bg-none dark:bg-black overflow-hidden block">
       <div className="container">
-        <div className="w-full h-auto mb-6.25 lg:mb-7.5 3xl:mb-10">
+        <div className="w-full h-auto mb-6.25 lg:mb-7.5 3xl:mb-10 text-center">
           <Heading
             aurora
             speed={2}
@@ -165,14 +165,14 @@ function AcademicCard({ item }) {
                 {item?.title}
               </div>
               <div className="w-full h-auto gap-1.25 2xl:gap-2.5 3xl:gap-3.75 flex flex-wrap">
-                {item?.courses?.map((links) => (
-                  <div className="w-auto h-auto inline">
+                {item?.courses?.map((course) => (
+                  <div key={course?.id} className="w-auto h-auto inline">
                     <Link
-                      href={links?.link}
-                      aria-label={links?.label}
+                      href={course?.link}
+                      aria-label={course?.label}
                       className="text-[13px] 2xl:text-[15px] leading-[1.1] font-normal text-[#080C15] w-auto h-auto p-[5px_10px] bg-[#080C15]/10 rounded-full border border-black/20 transition duration-500 inline hover:text-white hover:bg-(--basecolor2) hover:border-(--basecolor2)"
                     >
-                      {links?.label}
+                      {course?.label}
                     </Link>
                   </div>
                 ))}
