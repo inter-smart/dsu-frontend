@@ -60,10 +60,7 @@ const local_data = {
                 title: "NAAC Accreditation",
                 description: "Reflects the university's commitment to quality education, institutional processes, academic delivery, and student-centric development.",
                 logo: "/images/accred-2.png",
-                link: {
-                    text: "View",
-                    url: "#"
-                }
+                 
             },
             {
                 id: 3,
