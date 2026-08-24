@@ -1,4 +1,5 @@
 import InnerHero from "@/components/layout/common/InnerHero";
+import HistoryNewpahse from "@/components/sections/history/history-newpahse";
 
 
 const local_data = {
@@ -44,12 +45,10 @@ const local_data = {
     },
     newPahseSection: {
         title: "Dayananda Sagar University - A New Phase of DSI",
-         media: {
-            type: "image",
-            image: {
-                url: "/images/history/newpaseBanner.jpg",
-                alternativeText: "Dayananda Sagar University",
-            }, 
+        media: {
+            mime: "image/jpg",
+            url: "/images/history/newpaseBanner.jpg",
+            alternativeText: "Dayananda Sagar University",
         },
         description: [
             {
@@ -73,6 +72,7 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
+            <HistoryNewpahse data={local_data.newPahseSection} />
         </>
     )
 }
