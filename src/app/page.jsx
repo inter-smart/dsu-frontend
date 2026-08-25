@@ -1,79 +1,139 @@
-import Hero from "@/components/sections/home/home-hero";
 import News from "@/components/sections/home/home-news";
 import Events from "@/components/sections/home/home-events";
 import Journey from "@/components/sections/home/home-journey";
 import HomeAbout from "@/components/sections/home/home-about";
 import HomeExcellence from "@/components/sections/home/home-excellence";
 import HomeCampusLife from "@/components/sections/home/home-campus-life";
-import Rankings from "@/components/sections/home/home-research-innovation";
 import HomeTestimonials from "@/components/sections/home/home-testimonials";
-import ResearchInnovation from "@/components/sections/home/home-research-innovation";
 import HomeIndustry from "@/components/sections/home/home-industry";
 import HomeAcademic from "@/components/sections/home/home-academic";
+import HomeHero from "@/components/sections/home/home-hero";
+import HomeResearch from "@/components/sections/home/home-research-innovation";
 
 const homePageData = {
-  hero: {
+  heroSlides: {
     hero: [
       {
         id: 1,
-        title: "Powering the Future with AI-Driven Innovation",
-        description:
-          "Driven by our <b>AI Factory and Multidisciplinary Centers of Excellence</b>",
         poweredBy: {
-          url: "/images/home-hero-1.jpg",
-          alternativeText: "home-hero-1",
+          url: "/images/hero-powered.svg",
+          alternativeText: "hero image",
         },
+        media: {
+          type: "video",
+          url: "/videos/home-hero-1.mp4",
+          alternativeText: "Hero image",
+        },
+        title: "Powering the Future with AI-Driven Innovation",
+        description: {
+          text: "Driven by our",
+          highlightText:
+            " AI Factory and Multidisciplinary Centers of Excellence",
+        },
+        featuredItems: [
+          {
+            id: 1,
+            url: "/academics",
+            icon: {
+              url: "/images/home-banner-item-1.svg",
+              alternativeText: "home-banner-item-1",
+            },
+            title: "Admission Helpline",
+          },
+          {
+            id: 2,
+            url: "/academics",
+            icon: {
+              url: "/images/home-banner-item-2.svg",
+              alternativeText: "home-banner-item-2",
+            },
+            title: "International Students",
+          },
+          {
+            id: 3,
+            url: "/academics",
+            icon: {
+              url: "/images/home-banner-item-3.svg",
+              alternativeText: "home-banner-item-3",
+            },
+            title: "Events",
+          },
+        ],
       },
       {
         id: 2,
-        title: "Powering the Future with AI-Driven Innovation",
-        description:
-          "Driven by our <b>AI Factory and Multidisciplinary Centers of Excellence</b>",
         poweredBy: {
-          url: "/images/home-hero-1.jpg",
-          alternativeText: "home-hero-1",
+          url: "/images/hero-powered.svg",
+          alternativeText: "hero image",
         },
+        media: {
+          type: "image",
+          url: "/images/home-excellence-1.jpg",
+          alternativeText: "Hero image",
+        },
+        title: "Powering the Future with AI-Driven Innovation 2",
+        description: {
+          text: "Driven by our 2",
+          highlightText:
+            " AI Factory and Multidisciplinary Centers of Excellence 2",
+        },
+        featuredItems: [
+          {
+            id: 1,
+            url: "/academics",
+            icon: {
+              url: "/images/home-banner-item-1.svg",
+              alternativeText: "home-banner-item-1",
+            },
+            title: "Admission Helpline 2",
+          },
+          {
+            id: 2,
+            url: "/academics",
+            icon: {
+              url: "/images/home-banner-item-2.svg",
+              alternativeText: "home-banner-item-2",
+            },
+            title: "International Students 2",
+          },
+          {
+            id: 3,
+            url: "/academics",
+            icon: {
+              url: "/images/home-banner-item-3.svg",
+              alternativeText: "home-banner-item-3",
+            },
+            title: "Events 2",
+          },
+        ],
       },
     ],
-    heroNavigation: [
+    heroMarquee: [
       {
         id: 1,
-        icon: {
-          url: "/images/home-banner-item-1.svg",
-          alternativeText: "home-banner-item-1",
-        },
-        label: "Admission Helpline",
-        url: "/academics",
+        url: "/",
+        label: "Net zero Conclave on 29/12/2025",
       },
       {
         id: 2,
-        icon: {
-          url: "/images/home-banner-item-2.svg",
-          alternativeText: "home-banner-item-2",
-        },
-        label: "International Students",
-        url: "/academics",
+        url: "/",
+        label: " Academic Calendar for 2025-26 Even Semester (SOE)",
       },
       {
         id: 3,
-        icon: {
-          url: "/images/home-banner-item-3.svg",
-          alternativeText: "home-banner-item-3",
-        },
-        label: "Events",
-        url: "/academics",
-      },
-    ],
-    marqueeText: [
-      { id: 1, label: "Net zero Conclave on 29/12/2025", url: "/" },
-      {
-        id: 2,
-        label: " Academic Calendar for 2025-26 Even Semester (SOE)",
+        label: "Academic Calendar for 2025-26  CLICK HERE",
         url: "/",
       },
-      { id: 3, label: "Academic Calendar for 2025-26  CLICK HERE", url: "/" },
-      { id: 4, label: "DSU AI Conclave on 29/12/2025", url: "/" },
-      { id: 5, label: "AI Summit 2026 March 25 2026 2PM", url: "/" },
+      {
+        id: 4,
+        label: "DSU AI Conclave on 29/12/2025",
+        url: "/",
+      },
+      {
+        id: 5,
+        label: "AI Summit 2026 March 25 2026 2PM",
+        url: "/",
+      },
     ],
   },
   centresOfExcellence: {
@@ -1545,13 +1605,10 @@ const homePageData = {
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
-      <Hero data={homePageData.hero} />
+      <HomeHero data={homePageData?.heroSlides} />
       <HomeExcellence data={homePageData?.centresOfExcellence} />
-      <Rankings />
+      <HomeResearch />
       <HomeAcademic data={homePageData?.academicPrograms} />
-      {/* <ResearchInnovation
-        data={homePageData.researchInnovation.data.attributes}
-      /> */}
       <HomeIndustry data={homePageData?.industryCollaboration} />
       <HomeAbout data={homePageData?.homeAbout} />
       <HomeTestimonials data={homePageData?.studentSuccess} />

@@ -16,7 +16,7 @@ export function ThemeToggle() {
       <Image
         src="/images/icon-lang.svg"
         alt="Language"
-        className="size-[24px] object-contain hover:scale-110 transition-transform rotate-0 scale-100 transition-all  dark:invert"
+        className="size-[15px] sm:size-[24px] object-contain hover:scale-110 transition-transform rotate-0 scale-100 transition-all  dark:invert"
         width={24}
         height={24}
       />
