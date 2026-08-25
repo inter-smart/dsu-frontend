@@ -104,11 +104,11 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
                                     >
                                         <AccordionItem value={item.slug} className="border-0">
                                             <AccordionTrigger
-                                                className="p-[8px_15px] 2xl:p-[10px_20px] 3xl:p-[12px_25px] font-semibold text-[#F97316] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] hover:no-underline
-                                                    [&>svg]:!hidden [&>svg]:w-[14px] [&>svg]:h-[14px] flex items-center w-full justify-between data-open:bg-gradient-to-r data-open:from-[rgba(220,38,38,0.8)] data-open:to-[rgba(249,115,22,0.8)] data-open:text-white "
+                                                className="p-[8px_15px] 2xl:p-[10px_20px] 3xl:p-[12px_25px] font-semibold text-[#F97316] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px]  hover:no-underline
+                                                    [&>svg]:!hidden [&>svg]:w-[14px] [&>svg]:h-[14px] flex items-center w-full justify-between hover:bg-gradient-to-r  hover:from-[rgba(220,38,38,0.8)]  hover:to-[rgba(249,115,22,0.8)]  hover:!text-white  data-open:bg-gradient-to-r data-open:from-[rgba(220,38,38,0.8)] data-open:to-[rgba(249,115,22,0.8)] data-open:text-white rounded-none"
                                             >
                                                 <div
-                                                    className={`text_1 font-semibold transition-colors duration-300 xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] ${isActive ? "text-white" : "text-[#212121] group-hover:text-[#F97316]"
+                                                    className={`text_1 font-semibold xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] ${isActive ? "text-white" : "text-[#212121] group-hover:!text-white"
                                                         }`}
                                                 >
                                                     {item.label}
@@ -141,7 +141,8 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
                                                             <Link
                                                                 href={`/regulatory-approval/${item.slug}/${sub.slug}`}
                                                                 onClick={onClose}
-                                                                className="flex items-center justify-between p-[5px_15px] 2xl:p-[5px_20px] 3xl:p-[5px_25px] !no-underline"
+                                                                className="flex items-center justify-between p-[6px_15px] 2xl:p-[7px_20px] 3xl:p-[8px_25px] !no-underline
+                                                                "
                                                             >
                                                                 <div className="text_1 font-medium text-[#212121] transition-colors duration-300 !no-underline group-hover:text-[#F97316] xl:text-[13px] 2xl:text-[15px] 3xl:text-[16px]">
                                                                     {sub.label}
@@ -157,16 +158,17 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
                                     // ============ PLAIN LINK ITEM ============
                                     <li
                                         key={`${item.slug}-${idx}`}
-                                        className={`border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0 ${isActive ? "bg-gradient-to-r from-[#DC2626] to-[#F97316]" : ""
+                                        className={`border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group hover:bg-gradient-to-r hover:from-[rgba(220,38,38,0.8)]  hover:to-[rgba(249,115,22,0.8)]  hover:text-white last:border-b-0 ${isActive ? "bg-gradient-to-r from-[#DC2626] to-[#F97316]" : ""
                                             }`}
                                     >
                                         <Link
                                             href={`/regulatory-approval/${item.slug}`}
                                             onClick={onClose}
-                                            className="flex items-center justify-between"
+                                            className="flex items-center justify-between
+                                            "
                                         >
                                             <div
-                                                className={`text_1 font-semibold transition-colors duration-300 xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] ${isActive ? "text-white" : "text-[#212121] group-hover:text-[#F97316]"
+                                                className={`text_1 font-semibold transition-colors xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] ${isActive ? "text-white" : "text-[#212121] group-hover:text-white"
                                                     }`}
                                             >
                                                 {item.label}

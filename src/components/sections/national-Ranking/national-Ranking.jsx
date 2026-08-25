@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay } from "swiper/modules";
 
-export default function NationalBanking({ data }) {
+export default function NationalRanking({ data }) {
     return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[120px]">
             <div className="container">

@@ -1,7 +1,6 @@
 
-import InnerHero from '@/components/layout/common/InnerHero'
-import NIRFRanking from '@/components/sections/NIRF/NIRF-ranking'
-import OtherApproval from '@/components/sections/regulatory-approval/other-approval'
+import InnerHero from '@/components/layout/common/InnerHero' 
+import NIRFRanking from '@/components/sections/NIRF/NIRF-ranking' 
 
 
 const local_data = {
@@ -51,7 +50,7 @@ const local_data = {
 
     collegeRanking: {
         title: "NIRF Rankings",
-        name: "India Today Best College Rankings" ,
+        name: "India Today Best College Rankings",
         description: [
             {
                 type: "paragraph",
@@ -63,7 +62,7 @@ const local_data = {
                 ]
             },
             {
-                type: "paragraph",                
+                type: "paragraph",
                 children: [
                     {
                         type: "text",
@@ -85,7 +84,7 @@ const local_data = {
                     children: [
                         {
                             type: "text",
-                            text: "Dayananda Sagar University has secured the  88th Rank", 
+                            text: "Dayananda Sagar University has secured the  88th Rank",
                         },
                         {
                             type: "text",
@@ -107,6 +106,93 @@ const local_data = {
                 label: "Download NIRF Report 2025",
                 url: "#"
             }
+        },
+        discipline: {
+            title: "Ranking by Discipline",
+            items: [
+                { discipline: "Engineering", rank: 24, outOf: 100 },
+                { discipline: "Management", rank: 31, outOf: 100 },
+                { discipline: "Management", rank: 18, outOf: 100 },
+                { discipline: "Commerce", rank: 20, outOf: 100 },
+                { discipline: "Science", rank: 26, outOf: 100 },
+                { discipline: "Engineering", rank: 22, outOf: 100 },
+                { discipline: "Management", rank: 31, outOf: 100 },
+                { discipline: "Management", rank: 18, outOf: 100 },
+                { discipline: "Commerce", rank: 20, outOf: 100, selected: true },
+                { discipline: "Science", rank: 26, outOf: 100 }
+            ]
+        },
+        
+        historicalPerformance: {
+            title: "Historical Performance",
+            columns: [
+                {
+                    key: "discipline",
+                    label: "Discipline"
+                },
+                {
+                    key: "rank2025",
+                    label: "2025 Rank"
+                },
+                {
+                    key: "rank2024",
+                    label: "2024 Rank"
+                },
+                {
+                    key: "rank2023",
+                    label: "2023 Rank"
+                },
+                {
+                    key: "rank2022",
+                    label: "2022 Rank"
+                },
+                {
+                    key: "rank2021",
+                    label: "2021 Rank"
+                }
+            ],
+            items: [
+                {
+                    discipline: "Engineering",
+                    rank2025: 24,
+                    rank2024: 25,
+                    rank2023: 30,
+                    rank2022: 50,
+                    rank2021: 60
+                },
+                {
+                    discipline: "Engineering",
+                    rank2025: 88,
+                    rank2024: 84,
+                    rank2023: 89,
+                    rank2022: 114,
+                    rank2021: 117
+                },
+                {
+                    discipline: "Management",
+                    rank2025: 78,
+                    rank2024: 78,
+                    rank2023: 78,
+                    rank2022: 78,
+                    rank2021: 78
+                },
+                {
+                    discipline: "Law",
+                    rank2025: 78,
+                    rank2024: 78,
+                    rank2023: 78,
+                    rank2022: 78,
+                    rank2021: 78
+                },
+                {
+                    discipline: "Commerce",
+                    rank2025: 78,
+                    rank2024: 78,
+                    rank2023: 78,
+                    rank2022: 78,
+                    rank2021: 78
+                }
+            ]
         }
     }
 
@@ -116,7 +202,7 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <NIRFRanking data={local_data.collegeRanking}/>
+            <NIRFRanking data={local_data.collegeRanking} /> 
         </>
     )
 }

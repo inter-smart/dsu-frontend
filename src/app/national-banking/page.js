@@ -1,8 +1,7 @@
 
 import InnerHero from '@/components/layout/common/InnerHero'
-import NationalBanking from '@/components/sections/national-banking/national-banking'
-import NationalBankingStats from '@/components/sections/national-banking/national-banking-stats'
-import ProfessionalAccredition from '@/components/sections/professional-accredition/professional-accredition'
+import NationalRanking from '@/components/sections/national-Ranking/national-Ranking' 
+import NationalRankingStats from '@/components/sections/national-Ranking/national-Ranking-stats'  
 
 const local_data = {
     id: 24,
@@ -126,8 +125,8 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <NationalBanking data={local_data.nationalRankingsData} />
-            <NationalBankingStats data={local_data.stats} />
+            <NationalRanking data={local_data.nationalRankingsData} />
+            <NationalRankingStats data={local_data.stats} />
         </>
     )
 }
