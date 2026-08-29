@@ -10,7 +10,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { buttonVariants } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
 
-export default function HomeHero({ data = local_data }) {
+export default function HomeHero({ data }) {
   const [heroEmblaRef, heroEmblaApi] = useEmblaCarousel(
     {
       loop: true,
@@ -205,7 +205,7 @@ export default function HomeHero({ data = local_data }) {
                                 className="w-full h-full text-center p-2.5 sm:p-[15px_10px_15px_10px] 2xl:p-[20px_10px_15px_10px] 3xl:p-[25px_10px_20px_10px] bg-black/20 rounded-[15px] sm:rounded-[18px] lg:rounded-[22px] 2xl:rounded-[30px] 3xl:rounded-[35px] backdrop-blur-[2px] overflow-hidden flex items-center sm:block transition-colors duration-400 relative z-0 hover:bg-linear-to-r hover:from-(--basecolor)/80 hover:to-(--basecolor2)/80"
                               >
                                 <ShineBorder
-                                  borderWidth={1}
+                                  borderWidth={1.5}
                                   shineColor={["#909191"]}
                                   duration={8 + index * 4}
                                 />

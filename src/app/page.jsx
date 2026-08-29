@@ -9,6 +9,7 @@ import HomeIndustry from "@/components/sections/home/home-industry";
 import HomeAcademic from "@/components/sections/home/home-academic";
 import HomeHero from "@/components/sections/home/home-hero";
 import HomeResearch from "@/components/sections/home/home-research-innovation";
+import HomeCollaborations from "@/components/sections/home/home-collaborations";
 
 const homePageData = {
   heroSlides: {
@@ -808,307 +809,174 @@ const homePageData = {
     ],
   },
   researchInnovation: {
-    data: {
-      id: 1,
-      documentId: "research-innovation-1",
-      attributes: {
-        title: "Research & Innovation",
+    title: "Research & Innovation",
+    description:
+      "We foster a strong research culture through interdisciplinary collaboration, funded projects, and industry partnerships.",
+    research: {
+      header: {
+        title: "Research at DSU",
         description:
-          "We foster a strong research culture through interdisciplinary collaboration, funded projects, and industry partnerships.",
-        tabs: [
-          {
-            id: 1,
-            value: "research",
-            trigger: {
-              icon: {
-                url: "/images/research-icon-1.svg",
-                alternativeText: "Research",
-              },
-              label: "Research",
-            },
-            content: {
-              slug: "/",
-              featuredTitle: "Research",
-              title: "Research at DSU",
-              description:
-                "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India’s leading educational institutions today.This growth is the result of the institutions focused effort to advance knowledge and educate students in.",
-              button: {
-                label: "UG Research Forum",
-                url: "/",
-                icon: {
-                  url: "/images/research-icon-3.svg",
-                  alternativeText: "Research",
-                },
-              },
-              gallery: [],
-              statistics: [
-                {
-                  id: 1,
-                  icon: {
-                    url: "/images/research-icon-1.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 200,
-                  suffix: "+",
-                  label: "Publications",
-                },
-                {
-                  id: 2,
-                  icon: {
-                    url: "/images/research-icon-2.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 85,
-                  suffix: "+",
-                  label: "Funded Research Projects",
-                },
-                {
-                  id: 3,
-                  icon: {
-                    url: "/images/research-icon-3.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 24,
-                  suffix: "+",
-                  label: "Innovation Driven Labs",
-                },
-              ],
-              featuredCards: [
-                {
-                  id: 1,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Admissions",
-                  image: {
-                    url: "/images/researchItem-1.jpg",
-                    alternativeText: "researchItem-1",
-                  },
-                },
-                {
-                  id: 2,
-                  slug: "/school-of-engineering",
-                  title: "Research Supervisors",
-                  image: {
-                    url: "/images/researchItem-2.jpg",
-                    alternativeText: "researchItem-2",
-                  },
-                },
-                {
-                  id: 3,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Regulations",
-                  image: {
-                    url: "/images/researchItem-3.jpg",
-                    alternativeText: "researchItem-3",
-                  },
-                },
-                {
-                  id: 4,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Course Work Syllabus",
-                  image: {
-                    url: "/images/researchItem-4.jpg",
-                    alternativeText: "researchItem-4",
-                  },
-                },
-              ],
-            },
-          },
-          {
-            id: 2,
-            value: "incubation",
-            trigger: {
-              icon: {
-                url: "/images/research-icon-1.svg",
-                alternativeText: "Incubation",
-              },
-              label: "Incubation & Entrepreneurship",
-            },
-            content: {
-              slug: "/",
-              featuredTitle: "Incubation & Entrepreneurship",
-              title: "Incubation & Entrepreneurship",
-              description:
-                "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India’s leading educational institutions today.This growth is the result of the institutions focused effort to advance knowledge and educate students in.",
-              button: {
-                label: "Incubation Center",
-                url: "/",
-                icon: {
-                  url: "/images/research-icon-3.svg",
-                  alternativeText: "Research",
-                },
-              },
-              gallery: [],
-              statistics: [
-                {
-                  id: 1,
-                  icon: {
-                    url: "/images/research-icon-1.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 200,
-                  suffix: "+",
-                  label: "Publications",
-                },
-                {
-                  id: 2,
-                  icon: {
-                    url: "/images/research-icon-2.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 85,
-                  suffix: "+",
-                  label: "Funded Research Projects",
-                },
-                {
-                  id: 3,
-                  icon: {
-                    url: "/images/research-icon-3.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 24,
-                  suffix: "+",
-                  label: "Innovation Driven Labs",
-                },
-              ],
-              featuredCards: [
-                {
-                  id: 1,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Admissions",
-                  image: {
-                    url: "/images/researchItem-1.jpg",
-                    alternativeText: "researchItem-1",
-                  },
-                },
-                {
-                  id: 2,
-                  slug: "/school-of-engineering",
-                  title: "Research Supervisors",
-                  image: {
-                    url: "/images/researchItem-2.jpg",
-                    alternativeText: "researchItem-2",
-                  },
-                },
-                {
-                  id: 3,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Regulations",
-                  image: {
-                    url: "/images/researchItem-3.jpg",
-                    alternativeText: "researchItem-3",
-                  },
-                },
-                {
-                  id: 4,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Course Work Syllabus",
-                  image: {
-                    url: "/images/researchItem-4.jpg",
-                    alternativeText: "researchItem-4",
-                  },
-                },
-              ],
-            },
-          },
-          {
-            id: 3,
-            value: "innovation-labs",
-            trigger: {
-              icon: {
-                url: "/images/research-icon-1.svg",
-                alternativeText: "Innovation",
-              },
-              label: "Innovation Labs",
-            },
-            content: {
-              slug: "/",
-              featuredTitle: "Innovation Labs",
-              title: "Innovation Labs",
-              description:
-                "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India’s leading educational institutions today.This growth is the result of the institutions focused effort to advance knowledge and educate students in.",
-              button: {
-                label: "Explore Labs",
-                url: "/",
-                icon: {
-                  url: "/images/research-icon-3.svg",
-                  alternativeText: "Research",
-                },
-              },
-              gallery: [],
-              statistics: [
-                {
-                  id: 1,
-                  icon: {
-                    url: "/images/research-icon-1.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 200,
-                  suffix: "+",
-                  label: "Publications",
-                },
-                {
-                  id: 2,
-                  icon: {
-                    url: "/images/research-icon-2.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 85,
-                  suffix: "+",
-                  label: "Funded Research Projects",
-                },
-                {
-                  id: 3,
-                  icon: {
-                    url: "/images/research-icon-3.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 24,
-                  suffix: "+",
-                  label: "Innovation Driven Labs",
-                },
-              ],
-              featuredCards: [
-                {
-                  id: 1,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Admissions",
-                  image: {
-                    url: "/images/researchItem-1.jpg",
-                    alternativeText: "researchItem-1",
-                  },
-                },
-                {
-                  id: 2,
-                  slug: "/school-of-engineering",
-                  title: "Research Supervisors",
-                  image: {
-                    url: "/images/researchItem-2.jpg",
-                    alternativeText: "researchItem-2",
-                  },
-                },
-                {
-                  id: 3,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Regulations",
-                  image: {
-                    url: "/images/researchItem-3.jpg",
-                    alternativeText: "researchItem-3",
-                  },
-                },
-                {
-                  id: 4,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Course Work Syllabus",
-                  image: {
-                    url: "/images/researchItem-4.jpg",
-                    alternativeText: "researchItem-4",
-                  },
-                },
-              ],
-            },
-          },
-        ],
+          "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India's leading educational institutions today. This growth is the result of the institutions focused effort to advance knowledge and educate students in..",
+        button: {
+          label: "Explore More",
+          link: "#",
+        },
       },
+      featuredCards: [
+        {
+          id: 1,
+          title: "Ph.D Admissions",
+          media: {
+            url: "/images/researchItem-1.jpg",
+            alt: "Media-1",
+          },
+          link: "/",
+        },
+        {
+          id: 2,
+          title: "Research Supervisors",
+          media: {
+            url: "/images/researchItem-2.jpg",
+            alt: "Media-2",
+          },
+          link: "/",
+        },
+        {
+          id: 3,
+          title: "Ph.D Regulations",
+          media: {
+            url: "/images/researchItem-3.jpg",
+            alt: "Media-3",
+          },
+          link: "/",
+        },
+        {
+          id: 4,
+          title: "Ph.D Course Work Syllabus",
+          media: {
+            url: "/images/researchItem-4.jpg",
+            alt: "Media-4",
+          },
+          link: "/",
+        },
+      ],
+      statistics: [
+        {
+          id: 1,
+          value: "200",
+          label: "Publications",
+          icon: {
+            url: "/images/research-icon-1.svg",
+            alt: "Icon-1",
+          },
+        },
+        {
+          id: 2,
+          value: "85",
+          label: "Funded Research <br> Projects",
+          icon: {
+            url: "/images/research-icon-2.svg",
+            alt: "Icon-1",
+          },
+        },
+        {
+          id: 3,
+          value: "24",
+          label: "Innovation Driven Labs",
+          icon: {
+            url: "/images/research-icon-3.svg",
+            alt: "Icon-1",
+          },
+        },
+      ],
+      ctaButton: {
+        label: "UG Research Forum",
+        link: "#",
+        icon: "/images/research-researchForumBtn-1.svg",
+      },
+    },
+    incubation: {
+      header: {
+        title: "Incubation & Entrepreneurship",
+        description:
+          "DSU promotes innovation and entrepreneurship through incubation support, industry mentorship, startup guidance, and innovation labs—empowering students to build impactful real-world solutions.",
+        button: {
+          label: "Explore More",
+          link: "#",
+        },
+      },
+      featuredCards: [
+        {
+          id: 1,
+          link: "/",
+          tag: "DERBI Foundation",
+          title: "Entrepreneurship Research & Business Incubation Foundation",
+          description:
+            "Dayananda Sagar Entrepreneurship Research & Business Incubator (DERBI) Foundation is a Technology Business Incubator with the objective of incubating technology ventures.",
+          media: {
+            url: "/images/incubation-1.webp",
+            alt: "Media-1",
+          },
+        },
+        {
+          id: 2,
+          link: "/",
+          tag: "AIC-DSU Foundation",
+          title: "AIC-DSU Innovation Foundation",
+          description:
+            "AIC-DSU Innovation Foundation is an initiative of Atal Incubation Center & Dayananda Sagar University with active support from Atal Innovation Mission (AIM), NITI Aayog & GoI.",
+          media: {
+            url: "/images/incubation-2.webp",
+            alt: "Media-1",
+          },
+        },
+      ],
+    },
+    innovation: {
+      header: {
+        title: "Transformational Opportunities Of Cloud, Big Data & Analytics",
+        description:
+          "IBM collaborates with Dayananda Sagar University in Post graduate programs: Computer Science Engineering with specialization in Cloud Computing, Big Data & Analytics and Internet of Things (IoT). These Post Graduate M.Tech. programs....",
+        button: {
+          label: "Explore More",
+          link: "#",
+        },
+      },
+      featuredCards: [
+        {
+          id: 1,
+          link: "/",
+          title: "ETAS: Automotive <br> System Labs",
+          description:
+            "Today's automotive system is complex with the extensive use of electronics and software.",
+          media: {
+            url: "/images/home-innovation-1.jpg",
+            alt: "Media-1",
+          },
+        },
+        {
+          id: 2,
+          link: "/",
+          title: "Autodesk: Design & <br> Innovation Centre",
+          description:
+            "Centre will focus on providing training to the students & faculty members in the Virtual Design techniques.",
+          media: {
+            url: "/images/home-innovation-2.jpg",
+            alt: "Media-1",
+          },
+        },
+        {
+          id: 3,
+          link: "/",
+          title: "Vmware <br> IT Academy",
+          description:
+            "VMware is a global leader in cloud infrastructure and business mobility.",
+          media: {
+            url: "/images/home-innovation-3.jpg",
+            alt: "Media-1",
+          },
+        },
+      ],
     },
   },
   industryCollaboration: {
@@ -1607,12 +1475,13 @@ export default function Home() {
     <main className="flex flex-col min-h-screen">
       <HomeHero data={homePageData?.heroSlides} />
       <HomeExcellence data={homePageData?.centresOfExcellence} />
-      <HomeResearch />
       <HomeAcademic data={homePageData?.academicPrograms} />
+      <HomeResearch data={homePageData?.researchInnovation} />
       <HomeIndustry data={homePageData?.industryCollaboration} />
       <HomeAbout data={homePageData?.homeAbout} />
       <HomeTestimonials data={homePageData?.studentSuccess} />
       <HomeCampusLife data={homePageData?.campusLife} />
+      <HomeCollaborations data={homePageData?.partners} />
       <Events />
       <News data={homePageData.latestNews} />
       <Journey />
