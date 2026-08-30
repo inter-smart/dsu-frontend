@@ -1724,7 +1724,6 @@ export default function Home() {
       <HomeCampusLife data={homePageData?.campusLife} />
       <HomeCollaborations data={homePageData?.internationalCollaboration} />
       <Events />
-      <hr></hr>
       <News data={homePageData.latestNews} />
       <Journey />
     </main>
