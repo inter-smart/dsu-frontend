@@ -1161,6 +1161,14 @@ const homePageData = {
         },
       },
     ],
+    virtualTour: {
+      link:"/",
+      media:{
+        url:"/images/virtualtour.jpg",
+        alternativeText:"Virtual Tour"
+      },
+      label: "VIRTUAL TOUR",
+    },
     leadership: {
       subTitle: "THE VISIONARIES",
       title: "Our Leadership",
@@ -1716,6 +1724,7 @@ export default function Home() {
       <HomeCampusLife data={homePageData?.campusLife} />
       <HomeCollaborations data={homePageData?.internationalCollaboration} />
       <Events />
+      <hr></hr>
       <News data={homePageData.latestNews} />
       <Journey />
     </main>

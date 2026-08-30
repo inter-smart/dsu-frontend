@@ -97,7 +97,7 @@ export default function HomeAbout({ data }) {
                         enableScrollSpy={true}
                       />
                     </div>
-                    <div className="text-[14px] 2xl:text-base 3xl:text-[22px] leading-[1.1] font-normal text-[#4A5565] dark:text-white transition-colors duration-400 group-hover:text-white">
+                    <div className="text-sm 2xl:text-base 3xl:text-[22px] leading-[1.1] font-normal text-[#4A5565] dark:text-white transition-colors duration-400 group-hover:text-white">
                       {item?.label}
                     </div>
                   </div>
@@ -106,7 +106,34 @@ export default function HomeAbout({ data }) {
             </div>
           </div>
           <div className="w-(--width) h-auto">
-            <div className="w-full h-full max-sm:aspect-390/125 bg-amber-200 rounded-[6px] 2xl:rounded-[10px] overflow-hidden block"></div>
+            <div className="group w-full h-full max-sm:aspect-390/125 bg-amber-200 rounded-[6px] 2xl:rounded-[10px] overflow-hidden block relative z-0">
+              <Image
+                src={data?.virtualTour?.media?.url}
+                alt={data?.virtualTour?.media?.alternativeText}
+                width={390}
+                height={125}
+                className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+              />
+              <Link
+                href={data?.virtualTour?.link || "/"}
+                aria-label="Virtual Tour"
+                target="_blank"
+                className="w-fit h-fit p-[5px_10px] sm:p-[5px_15px] 3xl:p-[5px_20px] m-auto bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[30px] overflow-hidden transition-colors duration-400 absolute z-1 inset-0 inline-flex items-center hover:from-(--basecolor2) hover:to-(--basecolor)"
+              >
+                <span className="w-5 2xl:w-6.25 3xl:w-7.5 h-auto aspect-square overflow-hidden flex items-center justify-center">
+                  <Image
+                    src={"/images/360-icon.svg"}
+                    alt={"360 Icon"}
+                    width={30}
+                    height={30}
+                    className="w-full h-full object-contain"
+                  />
+                </span>
+                <span className="text-[11px] lg:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-normal text-white w-[calc(100%-20px)] 2xl:w-[calc(100%-25px)] 3xl:w-[calc(100%-30px)] pl-1.25 2xl:pl-1.75">
+                  {data?.virtualTour?.label}
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
         <div className="w-full h-auto flex flex-wrap">
@@ -183,10 +210,11 @@ export default function HomeAbout({ data }) {
                                         width="15"
                                         height="15"
                                         viewBox="0 0 24 24"
-                                        className={`transition-all duration-300 ${snapIdx === selectedIndex
-                                          ? "text-[#0B3A60] dark:text-(--basecolor2) opacity-100"
-                                          : "text-[#B0BCC8] dark:text-[#C6C6C6] hover:text-[#0B3A60] opacity-50 hover:opacity-80"
-                                          }`}
+                                        className={`transition-all duration-300 ${
+                                          snapIdx === selectedIndex
+                                            ? "text-[#0B3A60] dark:text-(--basecolor2) opacity-100"
+                                            : "text-[#B0BCC8] dark:text-[#C6C6C6] hover:text-[#0B3A60] opacity-50 hover:opacity-80"
+                                        }`}
                                       >
                                         <path
                                           fill="currentColor"
