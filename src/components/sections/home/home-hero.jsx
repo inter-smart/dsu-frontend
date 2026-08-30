@@ -248,7 +248,7 @@ export default function HomeHero({ data }) {
             </div>
             <Marquee
               pauseOnHover
-              className="mask-l-to-transparent mask-l-from-95% mask-r-to-transparent mask-r-from-95%"
+              className="mask-l-to-transparent mask-l-from-95% mask-r-to-transparent mask-r-from-95% overflow-hidden"
             >
               {data?.heroMarquee?.map((item, index) => (
                 <Link
