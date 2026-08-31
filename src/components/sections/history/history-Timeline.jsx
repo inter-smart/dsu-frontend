@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react"; 
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/thumbs";
@@ -42,29 +42,11 @@ export default function HistoryTimeline({ data }) {
 
     return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[70px] 3xl:py-[100px] bg-[#FFF8F6] overflow-hidden select-none">
-            {/* Background Watermark Left: HISTORY OF */}
-            <div className="absolute left-[-20px] lg:left-4 top-1/2 -translate-y-1/2 pointer-events-none select-none z-0 hidden xl:block">
-                <span
-                    className="block text-[90px] xl:text-[110px] 2xl:text-[130px] font-black text-[#F6E8E2] tracking-[0.25em] uppercase whitespace-nowrap opacity-70"
-                    style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-                >
-                    HISTORY OF
-                </span>
-            </div>
 
-            {/* Background Watermark Right: TIMELINE */}
-            <div className="absolute right-[-20px] lg:right-4 top-1/2 -translate-y-1/2 pointer-events-none select-none z-0 hidden xl:block">
-                <span
-                    className="block text-[90px] xl:text-[110px] 2xl:text-[130px] font-black text-[#F6E8E2] tracking-[0.25em] uppercase whitespace-nowrap opacity-70"
-                    style={{ writingMode: "vertical-rl" }}
-                >
-                    TIMELINE
-                </span>
-            </div>
 
             <div className="container relative z-10">
                 {/* Header Title & Subtitle */}
-                <div className="w-full text-center mb-[40px]">
+                <div className="w-full text-center mb-[40px] xl:mb-[45px] 2xl:mb-[55px] 3xl:mb-[75px]">
                     <h2 className="cmn_Title">
                         {data?.title || "Our History of Timeline"}
                     </h2>
@@ -75,6 +57,26 @@ export default function HistoryTimeline({ data }) {
 
                 {/* Decade Navigation Swiper (Thumb Swiper with Dynamic Gradated Baseline) */}
                 <div className="w-full lg:max-w-[75%] mx-auto mb-10 sm:mb-14 flex items-center justify-between gap-2 sm:gap-4">
+                    {/* Background Watermark Left: HISTORY OF */}
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none select-none z-0 hidden xl:block">
+                        <span
+                            className="block text-[90px] xl:text-[110px] 2xl:text-[130px] font-bold text-balck   uppercase whitespace-nowrap opacity-[0.02]"
+                            style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+                        >
+                            HISTORY OF
+                        </span>
+                    </div>
+
+                    {/* Background Watermark Right: TIMELINE */}
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none z-0 hidden xl:block">
+                        <span
+                            className="block text-[90px] xl:text-[110px] 2xl:text-[130px] font-bold text-balck   uppercase whitespace-nowrap opacity-[0.02]"
+                            style={{ writingMode: "sideways-lr" }}
+                        >
+                            TIMELINE
+                        </span>
+                    </div>
+
                     {/* Prev Navigation Button */}
                     <button
                         type="button"
@@ -124,8 +126,8 @@ export default function HistoryTimeline({ data }) {
                                             {/* Decade Title Label */}
                                             <span
                                                 className={`text-xs sm:text-sm md:text-[15px] lg:text-[16px] xl:text-[18px] 3xl:text-[25px] pb-3 transition-all duration-200 whitespace-nowrap px-1 ${isActive
-                                                        ? "text-[#1F1F1F] font-bold scale-105"
-                                                        : "text-[#A3A3A3] font-medium group-hover:text-[#4B5563]"
+                                                    ? "text-[#1F1F1F] font-bold scale-105"
+                                                    : "text-[#A3A3A3] font-medium group-hover:text-[#4B5563]"
                                                     }`}
                                             >
                                                 {decade.decadeLabel}
@@ -192,8 +194,8 @@ export default function HistoryTimeline({ data }) {
                                                     {/* Event Card Content Box */}
                                                     <div
                                                         className={`w-full md:w-1/2 pl-16 md:pl-0 ${isEven
-                                                                ? "md:order-2 md:pl-12 text-left"
-                                                                : "md:order-1 md:pr-12 md:text-left"
+                                                            ? "md:order-2 md:pl-12 text-left"
+                                                            : "md:order-1 md:pr-12 md:text-left"
                                                             }`}
                                                     >
                                                         <div className="bg-[#FFF9F8] border border-[#FDE6E0] rounded-2xl p-6 sm:p-7 shadow-[0_8px_25px_-5px_rgba(234,88,12,0.06)] hover:shadow-[0_12px_32px_-5px_rgba(234,88,12,0.12)] transition-all duration-300 transform hover:-translate-y-1">

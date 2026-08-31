@@ -6,7 +6,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 export default function AboutRecognition({ data }) {
     const firstcolumn = data?.columns?.slice(0, 1);
     const secondcolumn = data?.columns?.slice(1);
-    return (
+   return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[70px] 3xl:py-[90px]">
             <div className="container">
                 <h2 className=" text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] text-center mb-[10px]
@@ -26,7 +26,7 @@ export default function AboutRecognition({ data }) {
                                 </div>
                                 <div className="flex flex-wrap">
                                     {item.items.map((data, id) => (
-                                        <div className="flex items-center justify-between py-[10px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 w-full" key={id}>
+                                        <div className="flex items-center justify-between py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 w-full" key={id}>
                                             <div className="flex items-center justify-between gap-[15px]">
                                                 <div className="w-[18px] xl:w-[20px] 2xl:w-[25px] 3xl:w-[33px] h-[15px] xl:h-[18px] 2xl:h-[20px] 3xl:h-[23px] flex items-center justify-center">
                                                     <svg width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,6 +51,9 @@ export default function AboutRecognition({ data }) {
                         </div>
                     ))}
                     <div className="w-full md:w-2/3 ">
+                        <div className="text-[15px] lg:text-[18px] xl:text-[23px] 2xl:text-[28px] 3xl:text-[35px] font-bold text-black relative mb-[15px] 2xl:mb-[25px] pb-[8px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px] after:w-[30px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316]">
+                            {secondcolumn?.[0]?.title}
+                        </div>
                         <div className="md:flex w-full md:gap-[50px]">
                             {secondcolumn?.map((item, idx) => {
                                 const firstList = item?.items?.slice(0, 5) || [];
@@ -59,13 +62,10 @@ export default function AboutRecognition({ data }) {
                                     <div className="w-full md:w-1/2"
                                         key={idx}   >
                                         <div className="w-full">
-                                            <div className="text-[15px] lg:text-[18px] xl:text-[23px] 2xl:text-[28px] 3xl:text-[35px] font-bold text-black relative mb-[15px] 2xl:mb-[25px] pb-[8px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px] after:w-[30px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316]">
-                                                {item.title}
-                                            </div>
                                             <div className="w-full">
 
                                                 {firstList.map((data, id) => (
-                                                    <div className="flex items-center justify-between  py-[10px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 " key={id}>
+                                                    <div className="flex items-center justify-between  py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 " key={id}>
                                                         <div className="flex items-center justify-between gap-[15px]">
                                                             <div className="w-[18px] xl:w-[20px] 2xl:w-[25px] 3xl:w-[33px] h-[15px] xl:h-[18px] 2xl:h-[20px] 3xl:h-[23px] flex items-center justify-center">
                                                                 <svg width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,11 +97,11 @@ export default function AboutRecognition({ data }) {
                                     <div className="w-full md:w-1/2"
                                         key={idx}   >
                                         <div className="w-full">
-                                           
+
                                             <div className="w-full">
 
                                                 {secondList.map((data, id) => (
-                                                    <div className="flex items-center justify-between  py-[10px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 " key={id}>
+                                                    <div className="flex items-center justify-between  py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 " key={id}>
                                                         <div className="flex items-center justify-between gap-[15px]">
                                                             <div className="w-[18px] xl:w-[20px] 2xl:w-[25px] 3xl:w-[33px] h-[15px] xl:h-[18px] 2xl:h-[20px] 3xl:h-[23px] flex items-center justify-center">
                                                                 <svg width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">

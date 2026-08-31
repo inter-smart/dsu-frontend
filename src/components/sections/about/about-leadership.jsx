@@ -19,7 +19,7 @@ export default function AboutLeadership({ data }) {
                 </div>
                 <div className="flex flex-wrap -m-[5px] lg:-m-[10px]">
                     {featuredLeaders.map((item, id) => (
-                        <div className="w-full md:w-1/2 p-[5px] lg:p-[10px]" key={id}>
+                        <div className=" xs:w-1/2 p-[5px] lg:p-[10px]" key={id}>
                             <Link href="/" className=" flex flex-wrap items-center p-[20px_15px] lg:p-[25px_15px] xl:p-[30px_20px] 2xl:p-[35px_25px] 3xl:p-[44px_30px] bg-white w-full h-full rounded-[10px] hover:bg-gradient-to-b hover:from-[#FFF8EE] hover:to-[#FFF3E0]
                                max-sm:text-center">
                                 <div className="w-[165px] xl:w-[200px] 2xl:w-[250px] 3xl:w-[310px] max-sm:m-auto  max-sm:mb-[10px] ">
@@ -47,7 +47,7 @@ export default function AboutLeadership({ data }) {
                         </div>
                     ))}
                     {otherLeaders.map((item, id) => (
-                        <div className="w-full w-1/2 md:w-1/3 p-[5px] lg:p-[10px]" key={id}>
+                        <div className="w-1/2 md:w-1/3 p-[5px] lg:p-[10px]" key={id}>
                             <Link href="/" className=" flex flex-wrap items-center p-[20px_10px] lg:p-[8px_12px] xl:p-[10px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] bg-white w-full h-full rounded-[10px] hover:bg-gradient-to-b hover:from-[#FFF8EE] hover:to-[#FFF3E0]
                             max-sm:text-center">
                                 <div className="w-[115px] xl:w-[145px] 2xl:w-[175px] 3xl:w-[215px] max-sm:m-auto  max-sm:mb-[10px] ">

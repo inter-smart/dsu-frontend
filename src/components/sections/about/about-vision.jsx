@@ -4,7 +4,7 @@ export default function AboutVision({ data }) {
     const media = data?.heroMedia;
     const values = data?.values;
     return (
-        <section className="relative py-[40px] before:absolute before:content-[''] before:top-0 before:left-0 before:w-full before:h-full before:bg-black/40 before:z-10 before:pointer-events-none">
+        <section className="relative py-[40px] lg:py-[40px_50px] xl:py-[40px_60px] 2xl:py-[50px_80px] 3xl:py-[60px_100px] before:absolute before:content-[''] before:top-0 before:left-0 before:w-full before:h-full before:bg-black/40 before:z-10 before:pointer-events-none">
             <Image
                 src={media?.url}
                 alt={media?.alternativeText || "Vision"}
@@ -34,7 +34,7 @@ export default function AboutVision({ data }) {
                                     <div className="w-full sm:w-1/2 max-sm:border border-white/20 max-sm:p-[20px] max-sm:rounded-[20px] max-sm:after:hidden relative after:absolute after:content-[''] after:top-0 after:bottom-0 after:right-0 after:h-full after:m-auto after:w-[1px]
                                      after:bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,white_51.44%,rgba(153,153,153,0)_100%)]  last:[&::after]:hidden " key={idx}>
                                         <div className="w-full h-full relative [&_p]:text-white group">
-                                            <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[62px] 3xl:w-[78px] bg-white/20 flex border border-white rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
+                                            <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[65px] 3xl:w-[78px] bg-white/20 flex border border-white rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
                                             group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316]">
                                                 <Image src={item.icon} width={78} height={65} alt={item.alt} className="max-w-[19px] xl:max-w-[21px] 2xl:max-w-[25px] 3xl:max-w-[34px] " />
                                             </div>
