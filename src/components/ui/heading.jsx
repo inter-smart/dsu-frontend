@@ -1,5 +1,6 @@
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 const headingVariants = cva("leading-[1.1] font-bold", {
   variants: {
@@ -22,6 +23,19 @@ const headingVariants = cva("leading-[1.1] font-bold", {
   },
 });
 
+const VALID_ANIMATIONS = [
+  "fadeIn",
+  "blurIn",
+  "blurInUp",
+  "blurInDown",
+  "slideUp",
+  "slideDown",
+  "slideLeft",
+  "slideRight",
+  "scaleUp",
+  "scaleDown",
+];
+
 const auroraInnerClass =
   "dark:animate-aurora dark:[background-image:var(--aurora-gradient)] dark:bg-[length:200%_auto] dark:bg-clip-text dark:text-transparent";
 
@@ -32,6 +46,9 @@ function Heading({
   aurora = false,
   colors = ["--basecolor", "--basecolor2"],
   speed = 1,
+  animation,
+  by = "word",
+  once = true,
   className,
   children,
   ...props
@@ -69,7 +86,19 @@ function Heading({
       className={cn(headingVariants({ size, align, className }))}
       {...props}
     >
-      {children}
+      {animation && typeof children === "string" ? (
+        <TextAnimate
+          by={by}
+          animation={animation}
+          as={Component}
+          once={once}
+          segmentClassName={cn(aurora && auroraInnerClass)}
+        >
+          {children}
+        </TextAnimate>
+      ) : (
+        children
+      )}
     </Component>
   );
 }

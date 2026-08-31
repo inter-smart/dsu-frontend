@@ -332,7 +332,7 @@ export default function Header({ data = local_data }) {
                 <Link
                   href={item?.url}
                   aria-label={item?.label}
-                  className="text-[8px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full lg:h-auto p-2.5 sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center"
+                  className="text-[8px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full lg:h-auto p-2.5 sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
                 >
                   {item?.label}
                 </Link>
@@ -345,7 +345,7 @@ export default function Header({ data = local_data }) {
                 <Link
                   href={item?.url}
                   aria-label={item?.label}
-                  className={cn(TopHeaderTextStyle)}
+                  className={cn("transition-opacity duration-300 hover:opacity-70", TopHeaderTextStyle)}
                 >
                   <span className="w-[calc(100%-10px)] sm:w-[calc(100%-15px)]">
                     {item?.label}
@@ -432,7 +432,7 @@ export default function Header({ data = local_data }) {
                   <Link
                     href={data?.logo?.mainlogo?.link}
                     aria-label={data?.logo?.mainlogo?.alternativeTxt}
-                    className="w-40 2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center"
+                    className="w-40 2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-105"
                   >
                     <Image
                       src={data?.logo?.mainlogo?.url}
@@ -478,13 +478,13 @@ export default function Header({ data = local_data }) {
                     <Link
                       href={item?.url}
                       aria-label={item?.label}
-                      className="text-[10px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-5 border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center"
+                      className="text-[10px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-5 border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
                     >
                       {item?.label}
                     </Link>
                   </div>
                 ))}
-                <div className="w-auto 2xl:h-10 3xl:h-12.5 ml-1.25 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] overflow-x-clip flex items-center relative z-0">
+                <div className="w-auto 2xl:h-10 3xl:h-12.5 ml-1.25 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] overflow-x-clip flex items-center relative z-0 transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)">
                   <div className="w-auto h-full">
                     <Link
                       href="/#"

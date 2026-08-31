@@ -12,6 +12,38 @@ import { ShineBorder } from "@/components/ui/shine-border";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function HomeResearch({ data }) {
+  const [incubationCardEmblaRef] = useEmblaCarousel(
+    {
+      loop: false,
+      align: "center",
+      breakpoints: {
+        "(min-width: 640px)": { align: "start" },
+      },
+    },
+    [
+      Autoplay({
+        delay: 2500,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+      }),
+    ],
+  );
+  const [innovationCardEmblaRef] = useEmblaCarousel(
+    {
+      loop: false,
+      align: "center",
+      breakpoints: {
+        "(min-width: 640px)": { align: "start" },
+      },
+    },
+    [
+      Autoplay({
+        delay: 2500,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+      }),
+    ],
+  );
   const [featuredCardEmblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: false,
@@ -366,7 +398,7 @@ export default function HomeResearch({ data }) {
               </div>
             </div>
             <div
-              ref={featuredCardEmblaRef}
+              ref={incubationCardEmblaRef}
               className="[--slide-gap:10px] xl:[--slide-gap:15px] 3xl:[--slide-gap:20px] w-full h-auto overflow-hidden"
             >
               <div className="ml-[calc(var(--slide-gap)*-1)] touch-pan-y touch-pinch-zoom flex">
@@ -438,7 +470,7 @@ export default function HomeResearch({ data }) {
               </div>
             </div>
             <div
-              ref={featuredCardEmblaRef}
+              ref={innovationCardEmblaRef}
               className="[--slide-gap:10px] xl:[--slide-gap:15px] 3xl:[--slide-gap:20px] w-full h-auto sm:overflow-hidden"
             >
               <div className="ml-[calc(var(--slide-gap)*-1)] touch-pan-y touch-pinch-zoom flex">

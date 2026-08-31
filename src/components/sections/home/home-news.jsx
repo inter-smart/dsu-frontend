@@ -72,7 +72,7 @@ export default function News({ data = local_data }) {
             <button
               type="button"
               onClick={scrollPrev}
-              className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center"
+              className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center transition-opacity duration-500 hover:opacity-50"
               aria-label="Previous slide"
             >
               <Image
@@ -86,7 +86,7 @@ export default function News({ data = local_data }) {
             <button
               type="button"
               onClick={scrollNext}
-              className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center"
+              className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center transition-opacity duration-500 hover:opacity-50"
               aria-label="Next slide"
             >
               <Image
@@ -100,7 +100,7 @@ export default function News({ data = local_data }) {
           </div>
         </div>
         <div className="w-full h-auto overflow-hidden" ref={emblaRef}>
-          <div className="sm:[--slide--sapcing:15px] 2xl:[--slide--sapcing:20px] ml-[calc(var(--slide--sapcing)*-1)] flex touch-pan-y touch-pinch-zoom">
+          <div className="[--slide--sapcing:10px] sm:[--slide--sapcing:15px] 2xl:[--slide--sapcing:20px] ml-[calc(var(--slide--sapcing)*-1)] flex touch-pan-y touch-pinch-zoom">
             {data?.news_list?.map((item) => (
               <div
                 key={item?.id}
@@ -137,7 +137,7 @@ export default function News({ data = local_data }) {
                     <Link
                       href={item?.link}
                       target="_blank"
-                      className="text-[14px] 3xl:text-[15px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit"
+                      className="text-[14px] 3xl:text-[15px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
                     >
                       Read More {" > "}
                     </Link>
