@@ -94,7 +94,7 @@ export default function HomeIndustry({ data }) {
                   <div className="w-full h-full aspect-560/440 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block relative z-0 group-hover:after:opacity-80 before:content-[''] before:w-full before:h-1/2 before:bg-linear-to-t before:from-[#090909] before:to-[#0B2148]/0 before:opacity-50 before:absolute before:z-1 before:inset-[auto_0_0_0] after:content-[''] after:w-full after:h-1/2 after:bg-linear-to-t after:from-black after:to-(--basecolor2)/0 after:opacity-0 after:transition-opacity after:duration-500 after:absolute after:z-1 after:inset-[auto_0_0_0]">
                     <Image
                       src={item?.collaborationImage?.url}
-                      alt={item?.collaborationImage?.alternativeTxt}
+                      alt={item?.collaborationImage?.alternativeTxt || "Collaboration Image"}
                       width={560}
                       height={440}
                       className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
@@ -152,7 +152,7 @@ export default function HomeIndustry({ data }) {
                       <div className="w-17.5 sm:w-21.25 md:w-18.75 lg:w-21.25 2xl:w-27.5 3xl:w-31.25 h-auto aspect-200/50 mx-auto block">
                         <Image
                           src={item?.partnerImage?.url}
-                          alt={item?.partnerImage?.alternativeTxt}
+                          alt={item?.partnerImage?.alternativeTxt || "Partner Logo"}
                           width={200}
                           height={35}
                           className="w-full h-full object-contain"

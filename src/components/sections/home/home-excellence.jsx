@@ -128,7 +128,7 @@ export default function HomeExcellence({ data }) {
                     >
                       <Image
                         src={item?.excellenceImage?.url}
-                        alt={item?.excellenceImage?.alternativeText}
+                        alt={item?.excellenceImage?.alternativeText || "Excellence Image"}
                         fill
                         sizes="(max-width: 1024px) 100vw, 875px"
                         className="h-full w-full object-cover select-none"
@@ -187,7 +187,7 @@ export default function HomeExcellence({ data }) {
                           src={activeItem?.excellenceContent?.poweredImage?.url}
                           alt={
                             activeItem?.excellenceContent?.poweredImage
-                              ?.alternativeTxt
+                              ?.alternativeTxt || "Powered By"
                           }
                           width={160}
                           height={30}

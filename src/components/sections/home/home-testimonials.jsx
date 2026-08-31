@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import CountUp from "react-countup";
+import ClientCountUp from "@/components/ui/client-count-up";
 import { Fancybox } from "@fancyapps/ui";
 import { Text } from "@/components/ui/text";
 import Autoplay from "embla-carousel-autoplay";
@@ -104,16 +104,14 @@ export default function HomeTestimonials({ data }) {
                   className="hidden dark:block"
                 />
                 <div className="text-[20px] sm:text-[24px] 2xl:text-[28px] 3xl:text-[35px] leading-[1.2] font-bold text-[#212121] dark:text-white mb-1.25 transition-colors duration-500 group-hover:text-white">
-                  {/* {typeof item?.value === "string" && ( */}
-                    <CountUp
+                  <ClientCountUp
                     start={0}
                     end={item?.value || 0}
                     duration={2.5}
                     separator=","
                     suffix={item?.suffix || "+"}
                     enableScrollSpy={true}
-                    />
-                  {/* )} */}
+                  />
                 </div>
                 <div className="text-[14px] sm:text-[13px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] dark:text-white transition-colors duration-500 group-hover:text-white">
                   {item?.label}

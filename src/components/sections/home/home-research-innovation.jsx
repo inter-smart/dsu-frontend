@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import CountUp from "react-countup";
+import ClientCountUp from "@/components/ui/client-count-up";
 import { Text } from "@/components/ui/text";
 import Autoplay from "embla-carousel-autoplay";
 import { Heading } from "@/components/ui/heading";
@@ -208,7 +208,7 @@ export default function HomeResearch({ data }) {
                             <div className="w-full h-auto aspect-270/480 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block">
                               <Image
                                 src={item?.media?.url}
-                                alt={item?.media?.alternativeText}
+                                alt={item?.media?.alternativeText || "Publication Media"}
                                 width={270}
                                 height={480}
                                 className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
@@ -267,7 +267,7 @@ export default function HomeResearch({ data }) {
                             <div className="w-(--icon-size) h-auto aspect-square shrink-0 flex items-center justify-center">
                               <Image
                                 src={item?.icon?.url}
-                                alt={item?.icon?.alternativeText}
+                                alt={item?.icon?.alternativeText || "Icon"}
                                 width={40}
                                 height={40}
                                 className="w-full h-full object-contain"
@@ -275,19 +275,14 @@ export default function HomeResearch({ data }) {
                             </div>
                             <div className="pl-2.5 2xl:pl-3.75 3xl:pl-5">
                               <div className="text-[25px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.2] font-bold text-[#212121] w-auto h-auto mb-0.5 sm:mb-1.25 dark:bg-linear-to-r dark:from-(--basecolor) dark:to-(--basecolor2) dark:bg-clip-text dark:text-transparent dark:w-fit">
-                                {/* {
-                                  typeof item?.value === "number" && ( */}
-
-                                    <CountUp
-                                    start={0}
-                                    end={item?.value || 0}
+                                <ClientCountUp
+                                  start={0}
+                                  end={item?.value || 0}
                                   duration={2.5}
                                   separator=","
                                   suffix={item?.suffix || "+"}
                                   enableScrollSpy={true}
-                                  />
-                                {/* )
-                              } */}
+                                />
                               </div>
                               <div
                                 className="text-sm sm:text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] dark:text-white"
@@ -388,7 +383,7 @@ export default function HomeResearch({ data }) {
                       <div className="w-full h-auto aspect-860/470 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block">
                         <Image
                           src={item?.media?.url}
-                          alt={item?.media?.alternativeText}
+                          alt={item?.media?.alternativeText || "Publication Media"}
                           width={270}
                           height={480}
                           className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
@@ -460,7 +455,7 @@ export default function HomeResearch({ data }) {
                       <div className="w-full h-auto aspect-560/350 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block">
                         <Image
                           src={item?.media?.url}
-                          alt={item?.media?.alternativeText}
+                          alt={item?.media?.alternativeText || "Publication Media"}
                           width={270}
                           height={480}
                           className="w-full h-full object-cover transition duration-500 group-hover:scale-110"

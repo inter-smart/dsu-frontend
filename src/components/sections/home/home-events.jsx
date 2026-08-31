@@ -315,7 +315,7 @@ export default function Events({ data = local_data }) {
                             src={item?.announcement_image?.url}
                             width={220}
                             height={120}
-                            alt={item?.announcement_image?.alternativeText}
+                            alt={item?.announcement_image?.alternativeText || "Announcement"}
                             className="w-full h-full object-cover"
                           />
                         </div>

@@ -100,7 +100,7 @@ export default function Journey({ data = local_data }) {
                       src={item?.icon}
                       width={50}
                       height={50}
-                      alt={item?.label}
+                      alt={item?.label || "Journey Icon"}
                       className="w-full h-full object-contain"
                     />
                   </div>

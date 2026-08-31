@@ -136,7 +136,7 @@ function AcademicCard({ item }) {
       <div className="w-full h-full block">
         <Image
           src={item?.academicImage?.url}
-          alt={item?.academicImage?.alternativeTxt}
+          alt={item?.academicImage?.alternativeTxt || "Academic Image"}
           width={335}
           height={355}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -145,7 +145,7 @@ function AcademicCard({ item }) {
       <div className="w-12.5 lg:w-10 2xl:w-12.5 3xl:w-13.75 h-auto aspect-square p-2.5 lg:p-2 2xl:p-2.5 m-(--gap) rounded-[7px] 2xl:rounded-[10px] backdrop-blur-[45px] absolute z-1 inset-[0_auto_auto_0] flex items-center justify-center">
         <Image
           src={item?.icon?.url}
-          alt={item?.icon?.alternativeTxt}
+          alt={item?.icon?.alternativeTxt || "Icon"}
           width={55}
           height={55}
           className="w-full h-full object-contain"

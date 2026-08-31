@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import CountUp from "react-countup";
+import ClientCountUp from "@/components/ui/client-count-up";
 import Fade from "embla-carousel-fade";
 import { Text } from "@/components/ui/text";
 import Autoplay from "embla-carousel-autoplay";
@@ -88,9 +88,7 @@ export default function HomeAbout({ data }) {
                       />
                     </div>
                     <div className="text-[25px] xl:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.2] font-bold text-[#212121] dark:text-white mb-1.25 transition-colors duration-400 group-hover:text-white">
-                      {/* {
-                        typeof item?.value === "string" && ( */}
-                      <CountUp
+                      <ClientCountUp
                         start={0}
                         end={item?.value || 0}
                         duration={2.5}
@@ -98,8 +96,6 @@ export default function HomeAbout({ data }) {
                         suffix={item?.suffix || "+"}
                         enableScrollSpy={true}
                       />
-                      {/* )
-                      } */}
                     </div>
                     <div className="text-sm 2xl:text-base 3xl:text-[22px] leading-[1.1] font-normal text-[#4A5565] dark:text-white transition-colors duration-400 group-hover:text-white">
                       {item?.label}
@@ -113,7 +109,7 @@ export default function HomeAbout({ data }) {
             <div className="group w-full h-full max-sm:aspect-390/125 bg-amber-200 rounded-[6px] 2xl:rounded-[10px] overflow-hidden block relative z-0">
               <Image
                 src={data?.virtualTour?.media?.url}
-                alt={data?.virtualTour?.media?.alternativeText}
+                alt={data?.virtualTour?.media?.alternativeText || "Virtual Tour"}
                 width={390}
                 height={125}
                 className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
@@ -244,7 +240,7 @@ export default function HomeAbout({ data }) {
                 <div className="w-full h-full max-lg:aspect-390/250 rounded-[10px] sm:rounded-[6px] 2xl:rounded-[10px] overflow-hidden block">
                   <Image
                     src={data?.leadership?.leaderShipImage?.url}
-                    alt={data?.leadership?.leaderShipImage?.alternativeText}
+                    alt={data?.leadership?.leaderShipImage?.alternativeText || "Leadership"}
                     width={375}
                     height={470}
                     className="w-full h-full object-cover"
@@ -275,16 +271,14 @@ export default function HomeAbout({ data }) {
               </Text>
               <div className="w-full h-auto flex items-center">
                 <div className="text-[25px] sm:text-[28px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[50px] leading-[1.2] font-bold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent transition-colors duration-500 group-hover:text-white">
-                  {/* {typeof data?.aboutInfo?.statistics?.value === "string" && ( */}
-                    <CountUp
-                      start={0}
-                      end={data?.aboutInfo?.statistics?.value || 0}
-                      duration={2.5}
-                      separator=","
-                      suffix={data?.aboutInfo?.statistics?.suffix || "+"}
-                      enableScrollSpy={true}
-                    />
-                  {/* )} */}
+                  <ClientCountUp
+                    start={0}
+                    end={data?.aboutInfo?.statistics?.value || 0}
+                    duration={2.5}
+                    separator=","
+                    suffix={data?.aboutInfo?.statistics?.suffix || "+"}
+                    enableScrollSpy={true}
+                  />
                 </div>
                 <div
                   className="text-[14px] 2xl:text-base 3xl:text-[20px] leading-[1.1] font-normal text-[#050505] dark:text-white pl-2.5 transition-colors duration-500 group-hover:text-white"

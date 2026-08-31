@@ -495,14 +495,14 @@ export default function Footer({ data = local_data }) {
                   >
                     <Image
                       src={item?.icon?.light}
-                      alt={item?.icon?.alternativeText}
+                      alt={item?.icon?.alternativeText || "Icon"}
                       width={45}
                       height={45}
                       className="w-full h-full object-contain dark:hidden"
                     />
                     <Image
                       src={item?.icon?.dark}
-                      alt={item?.icon?.alternativeText}
+                      alt={item?.icon?.alternativeText || "Icon"}
                       width={45}
                       height={45}
                       className="w-full h-full object-contain hidden dark:block group-hover:filter-[brightness(0)_saturate(100%)_invert(100%)_sepia(0%)_saturate(7487%)_hue-rotate(66deg)_brightness(106%)_contrast(100%)]"

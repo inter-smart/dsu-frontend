@@ -451,7 +451,7 @@ export default function Header({ data = local_data }) {
                   >
                     <Image
                       src={data?.logo?.alternativelogo?.url}
-                      alt={data?.logo?.alternativelogo?.alternativeTxt}
+                      alt={data?.logo?.alternativelogo?.alternativeTxt || "Logo"}
                       width={110}
                       height={80}
                       className="w-full h-full object-contain"
@@ -619,7 +619,7 @@ export default function Header({ data = local_data }) {
                 <span className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none">
                   <Image
                     src="/images/header-search-icon.svg"
-                    alt=""
+                    alt="Search"
                     width={20}
                     height={20}
                     className="w-full h-full object-contain"
