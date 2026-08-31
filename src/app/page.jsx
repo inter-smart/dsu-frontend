@@ -1162,10 +1162,10 @@ const homePageData = {
       },
     ],
     virtualTour: {
-      link:"/",
-      media:{
-        url:"/images/virtualtour.jpg",
-        alternativeText:"Virtual Tour"
+      link: "/",
+      media: {
+        url: "/images/virtualtour.jpg",
+        alternativeText: "Virtual Tour",
       },
       label: "VIRTUAL TOUR",
     },
@@ -1364,6 +1364,7 @@ const homePageData = {
     },
     featureCards: [
       {
+        id: 1,
         title: "Campus Life",
         media: {
           type: "image",
@@ -1375,6 +1376,7 @@ const homePageData = {
         },
       },
       {
+        id: 2,
         title: "Modern Infrastructure",
         media: {
           type: "image",
@@ -1386,6 +1388,7 @@ const homePageData = {
         },
       },
       {
+        id: 3,
         title: "Sports & Recreation",
         media: {
           type: "video",
@@ -1398,6 +1401,7 @@ const homePageData = {
         },
       },
       {
+        id: 4,
         title: "Hostel & Residential",
         media: {
           type: "image",
@@ -1409,6 +1413,7 @@ const homePageData = {
         },
       },
       {
+        id: 5,
         title: "Clubs & Student Activities",
         media: {
           type: "image",
@@ -1453,243 +1458,240 @@ const homePageData = {
   },
   internationalCollaboration: {
     title: "International Collaborations",
-  description: "Click on any item Flag to view DSU's partner universities.",
-  statistics: [
-    {
-      id: 1,
-      value: 50,
-      suffix: "+",
-      label: "Partner Universities",
-    },
-    {
-      id: 2,
-      value: 9,
-      suffix: "+",
-      label: "Countries",
-    },
-    {
-      id: 3,
-      title: "Student",
-      label: "Exchange Programs",
-    },
-    {
-      id: 4,
-      title: "Global",
-      label: "Research Initiatives",
-    },
-    {
-      id: 5,
-      title: "Faculty",
-      label: "Exchange Collaboration",
-    },
-  ],
-  countries: [
-    {
-      id: 1,
-      flagImage: {
-        url: "/images/home-flag-1.svg",
-        alternativeText: "home-flag-1",
+    description: "Click on any item Flag to view DSU's partner universities.",
+    statistics: [
+      {
+        id: 1,
+        value: 50,
+        suffix: "+",
+        label: "Partner Universities",
       },
-      position: {
-        axisX: "18%",
-        axisY: "38%",
+      {
+        id: 2,
+        value: 9,
+        suffix: "+",
+        label: "Countries",
       },
-      featuredImage: {
-        url: "/images/home-colab-1.webp",
-        alternativeText: "collab-usa",
+      {
+        id: 3,
+        title: "Student",
+        label: "Exchange Programs",
       },
-      title: "United States of America",
-      description:
-        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.",
-      partners: [
-        "Northeastern University",
-        "University of Evansville",
-        "LeTourneau University",
-        "University of South Carolina Aiken",
-        "Worcester Polytechnic Institute",
-        "Georgia Institute of Technology",
-      ],
-      moreLink: "/collaborations/usa",
-    },
-    {
-      id: 2,
-      flagImage: {
-        url: "/images/home-flag-2.svg",
-        alternativeText: "home-flag-2",
+      {
+        id: 4,
+        title: "Global",
+        label: "Research Initiatives",
       },
-      position: {
-        axisX: "50%",
-        axisY: "30%",
+      {
+        id: 5,
+        title: "Faculty",
+        label: "Exchange Collaboration",
       },
-      featuredImage: {
-        url: "/images/home-excellence-1.jpg",
-        alternativeText: "collab-usa",
+    ],
+    countries: [
+      {
+        id: 1,
+        flagImage: {
+          url: "/images/home-flag-1.svg",
+          alternativeText: "home-flag-1",
+        },
+        position: {
+          axisX: "18%",
+          axisY: "38%",
+        },
+        featuredImage: {
+          url: "/images/home-colab-1.webp",
+          alternativeText: "collab-usa",
+        },
+        title: "United States of America",
+        description:
+          "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.",
+        partners: [
+          "Northeastern University",
+          "University of Evansville",
+          "LeTourneau University",
+          "University of South Carolina Aiken",
+          "Worcester Polytechnic Institute",
+          "Georgia Institute of Technology",
+        ],
+        moreLink: "/collaborations/usa",
       },
-      title: "Country-2",
-      description:
-        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.2",
-      partners: [
-        "Northeastern University2",
-        "University of Evansville2",
-        "LeTourneau University2",
-      ],
-    },
-    {
-      id: 3,
-      flagImage: {
-        url: "/images/home-flag-3.svg",
-        alternativeText: "home-flag-3",
+      {
+        id: 2,
+        flagImage: {
+          url: "/images/home-flag-2.svg",
+          alternativeText: "home-flag-2",
+        },
+        position: {
+          axisX: "50%",
+          axisY: "30%",
+        },
+        featuredImage: {
+          url: "/images/home-excellence-1.jpg",
+          alternativeText: "collab-usa",
+        },
+        title: "Country-2",
+        description:
+          "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.2",
+        partners: [
+          "Northeastern University2",
+          "University of Evansville2",
+          "LeTourneau University2",
+        ],
       },
-      position: {
-        axisX: "53%",
-        axisY: "40%",
+      {
+        id: 3,
+        flagImage: {
+          url: "/images/home-flag-3.svg",
+          alternativeText: "home-flag-3",
+        },
+        position: {
+          axisX: "53%",
+          axisY: "40%",
+        },
+        featuredImage: {
+          url: "/images/home-excellence-3.jpg",
+          alternativeText: "collab-usa",
+        },
+        title: "Country-3",
+        description:
+          "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.3",
+        partners: [
+          "Northeastern University3",
+          "University of Evansville3",
+          "LeTourneau University3",
+          "University of South Carolina Aiken3",
+          "Worcester Polytechnic Institute3",
+          "Georgia Institute of Technology3",
+        ],
+        moreLink: "/collaborations/usa",
       },
-      featuredImage: {
-        url: "/images/home-excellence-3.jpg",
-        alternativeText: "collab-usa",
+      {
+        id: 4,
+        flagImage: {
+          url: "/images/home-flag-4.svg",
+          alternativeText: "home-flag-4",
+        },
+        position: {
+          axisX: "75%",
+          axisY: "23%",
+        },
+        featuredImage: {
+          url: "/images/home-excellence-4.jpg",
+          alternativeText: "collab-usa",
+        },
+        title: "Country-4",
+        description:
+          "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.4",
+        partners: ["Northeastern University4", "University of Evansville4"],
       },
-      title: "Country-3",
-      description:
-        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.3",
-      partners: [
-        "Northeastern University3",
-        "University of Evansville3",
-        "LeTourneau University3",
-        "University of South Carolina Aiken3",
-        "Worcester Polytechnic Institute3",
-        "Georgia Institute of Technology3",
-      ],
-      moreLink: "/collaborations/usa",
-    },
-    {
-      id: 4,
-      flagImage: {
-        url: "/images/home-flag-4.svg",
-        alternativeText: "home-flag-4",
+      {
+        id: 5,
+        flagImage: {
+          url: "/images/home-flag-5.svg",
+          alternativeText: "home-flag-5",
+        },
+        position: {
+          axisX: "75%",
+          axisY: "57%",
+        },
+        featuredImage: {
+          url: "/images/home-excellence-5.jpg",
+          alternativeText: "collab-usa",
+        },
+        title: "Country-5",
+        description:
+          "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.5",
+        partners: [
+          "Northeastern University5",
+          "University of Evansville5",
+          "LeTourneau University5",
+          "University of South Carolina Aiken5",
+          "Worcester Polytechnic Institute5",
+          "Georgia Institute of Technology5",
+        ],
+        moreLink: "/collaborations/usa",
       },
-      position: {
-        axisX: "75%",
-        axisY: "23%",
+      {
+        id: 6,
+        flagImage: {
+          url: "/images/home-flag-6.svg",
+          alternativeText: "home-flag-6",
+        },
+        position: {
+          axisX: "70%",
+          axisY: "62%",
+        },
+        featuredImage: {
+          url: "/images/home-excellence-2.jpg",
+          alternativeText: "collab-usa",
+        },
+        title: "Country-6",
+        description:
+          "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.6",
+        partners: [
+          "Northeastern University6",
+          "University of Evansville6",
+          "Worcester Polytechnic Institute6",
+          "Georgia Institute of Technology6",
+        ],
+        moreLink: "/collaborations/usa",
       },
-      featuredImage: {
-        url: "/images/home-excellence-4.jpg",
-        alternativeText: "collab-usa",
+      {
+        id: 7,
+        flagImage: {
+          url: "/images/home-flag-7.svg",
+          alternativeText: "home-flag-7",
+        },
+        position: {
+          axisX: "95%",
+          axisY: "90%",
+        },
+        featuredImage: {
+          url: "/images/home-excellence-3.jpg",
+          alternativeText: "collab-usa",
+        },
+        title: "Country-7",
+        description:
+          "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.7",
+        partners: [
+          "Northeastern University7",
+          "University of Evansville7",
+          "LeTourneau University7",
+          "University of South Carolina Aiken7",
+          "Worcester Polytechnic Institute7",
+          "Georgia Institute of Technology7",
+        ],
+        moreLink: "/collaborations/usa",
       },
-      title: "Country-4",
-      description:
-        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.4",
-      partners: [
-        "Northeastern University4",
-        "University of Evansville4",
-      ],
-    },
-    {
-      id: 5,
-      flagImage: {
-        url: "/images/home-flag-5.svg",
-        alternativeText: "home-flag-5",
+      {
+        id: 8,
+        flagImage: {
+          url: "/images/home-flag-8.svg",
+          alternativeText: "home-flag-8",
+        },
+        position: {
+          axisX: "55%",
+          axisY: "75%",
+        },
+        featuredImage: {
+          url: "/images/home-excellence-4.jpg",
+          alternativeText: "collab-usa",
+        },
+        title: "Country-8",
+        description:
+          "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.8",
+        partners: [
+          "Northeastern University8",
+          "University of Evansville8",
+          "LeTourneau University8",
+          "University of South Carolina Aiken8",
+          "Worcester Polytechnic Institute8",
+          "Georgia Institute of Technology8",
+        ],
+        moreLink: "/collaborations/usa",
       },
-      position: {
-        axisX: "75%",
-        axisY: "57%",
-      },
-      featuredImage: {
-        url: "/images/home-excellence-5.jpg",
-        alternativeText: "collab-usa",
-      },
-      title: "Country-5",
-      description:
-        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.5",
-      partners: [
-        "Northeastern University5",
-        "University of Evansville5",
-        "LeTourneau University5",
-        "University of South Carolina Aiken5",
-        "Worcester Polytechnic Institute5",
-        "Georgia Institute of Technology5",
-      ],
-      moreLink: "/collaborations/usa",
-    },
-    {
-      id: 6,
-      flagImage: {
-        url: "/images/home-flag-6.svg",
-        alternativeText: "home-flag-6",
-      },
-      position: {
-        axisX: "70%",
-        axisY: "62%",
-      },
-      featuredImage: {
-        url: "/images/home-excellence-2.jpg",
-        alternativeText: "collab-usa",
-      },
-      title: "Country-6",
-      description:
-        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.6",
-      partners: [
-        "Northeastern University6",
-        "University of Evansville6",
-        "Worcester Polytechnic Institute6",
-        "Georgia Institute of Technology6",
-      ],
-      moreLink: "/collaborations/usa",
-    },
-    {
-      id: 7,
-      flagImage: {
-        url: "/images/home-flag-7.svg",
-        alternativeText: "home-flag-7",
-      },
-      position: {
-        axisX: "95%",
-        axisY: "90%",
-      },
-      featuredImage: {
-        url: "/images/home-excellence-3.jpg",
-        alternativeText: "collab-usa",
-      },
-      title: "Country-7",
-      description:
-        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.7",
-      partners: [
-        "Northeastern University7",
-        "University of Evansville7",
-        "LeTourneau University7",
-        "University of South Carolina Aiken7",
-        "Worcester Polytechnic Institute7",
-        "Georgia Institute of Technology7",
-      ],
-      moreLink: "/collaborations/usa",
-    },
-    {
-      id: 8,
-      flagImage: {
-        url: "/images/home-flag-8.svg",
-        alternativeText: "home-flag-8",
-      },
-      position: {
-        axisX: "55%",
-        axisY: "75%",
-      },
-      featuredImage: {
-        url: "/images/home-excellence-4.jpg",
-        alternativeText: "collab-usa",
-      },
-      title: "Country-8",
-      description:
-        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.8",
-      partners: [
-        "Northeastern University8",
-        "University of Evansville8",
-        "LeTourneau University8",
-        "University of South Carolina Aiken8",
-        "Worcester Polytechnic Institute8",
-        "Georgia Institute of Technology8",
-      ],
-      moreLink: "/collaborations/usa",
-    },
-  ],
+    ],
   },
   latestNews: {
     data: {

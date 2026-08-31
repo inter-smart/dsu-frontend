@@ -275,14 +275,19 @@ export default function HomeResearch({ data }) {
                             </div>
                             <div className="pl-2.5 2xl:pl-3.75 3xl:pl-5">
                               <div className="text-[25px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.2] font-bold text-[#212121] w-auto h-auto mb-0.5 sm:mb-1.25 dark:bg-linear-to-r dark:from-(--basecolor) dark:to-(--basecolor2) dark:bg-clip-text dark:text-transparent dark:w-fit">
-                                <CountUp
-                                  start={0}
-                                  end={item?.value || 0}
+                                {/* {
+                                  typeof item?.value === "number" && ( */}
+
+                                    <CountUp
+                                    start={0}
+                                    end={item?.value || 0}
                                   duration={2.5}
                                   separator=","
                                   suffix={item?.suffix || "+"}
                                   enableScrollSpy={true}
-                                />
+                                  />
+                                {/* )
+                              } */}
                               </div>
                               <div
                                 className="text-sm sm:text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] dark:text-white"

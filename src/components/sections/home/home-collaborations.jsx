@@ -128,14 +128,16 @@ export default function HomeCollaborations({ data }) {
                     <div className="w-auto h-full text-center flex flex-col justify-between">
                       {item?.value && (
                         <div className="text-xs xl:text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-medium text-white mb-1.25">
-                          <CountUp
+                          {/* {typeof item?.value === "string" && ( */}
+                            <CountUp
                             start={0}
                             end={item?.value}
                             duration={2.5}
                             suffix={item?.suffix ?? "+"}
                             enableScrollSpy
                             scrollSpyOnce
-                          />
+                            />
+                          {/* )} */}
                         </div>
                       )}
                       {item?.title && (

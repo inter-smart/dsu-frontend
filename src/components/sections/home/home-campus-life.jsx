@@ -96,14 +96,18 @@ export default function HomeCampusLife({ data }) {
                     >
                       <div className="w-full h-full block">
                         <div className="text-[25px] sm:text-[32px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.2] font-medium text-white mb-1.25">
-                          <CountUp
-                            start={0}
-                            end={item?.value || 0}
+                          {/* {
+                            typeof item?.value === "string" && ( */}
+                              <CountUp
+                              start={0}
+                              end={item?.value || 0}
                             duration={2.5}
                             separator=","
                             suffix={item?.symbol || "+"}
                             enableScrollSpy={true}
                           />
+                        {/* )
+                      } */}
                         </div>
                         <div className="text-sm 2xl:text-[15px] 3xl:text-[21px] leading-[1.1] font-normal text-white">
                           {item?.label}
@@ -175,14 +179,16 @@ export default function HomeCampusLife({ data }) {
                 >
                   <div className="w-full h-full block">
                     <div className="text-[25px] leading-[1.2] font-medium text-white mb-2.5">
-                      <CountUp
+                      {/* {typeof item?.value === "string" && ( */}
+                        <CountUp
                         start={0}
                         end={item?.value || 0}
                         duration={2.5}
                         separator=","
                         suffix={item?.symbol || "+"}
                         enableScrollSpy={true}
-                      />
+                        />
+                      {/* )} */}
                     </div>
                     <div className="text-sm leading-[1.1] font-normal text-white">
                       {item?.label}

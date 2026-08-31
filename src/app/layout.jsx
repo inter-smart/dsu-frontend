@@ -3,6 +3,7 @@ import { Roboto, Roboto_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import SmoothScrollProvider from "@/components/providers/smooth-scroll-provider";
 
 const roboto = Roboto({
   variable: "--font-sans",
@@ -34,9 +35,11 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <SmoothScrollProvider>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -354,7 +354,7 @@ export default function Header({ data = local_data }) {
                     <span className="w-2.5 sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center">
                       <Image
                         src={item?.icon?.url}
-                        alt={item?.icon?.alternativeTxt}
+                        alt={item?.icon?.alternativeTxt || "Icon"}
                         width={20}
                         height={20}
                         className="w-full h-full object-contain"
@@ -436,7 +436,7 @@ export default function Header({ data = local_data }) {
                   >
                     <Image
                       src={data?.logo?.mainlogo?.url}
-                      alt={data?.logo?.mainlogo?.alternativeTxt}
+                      alt={data?.logo?.mainlogo?.alternativeTxt || "Logo"}
                       width={110}
                       height={80}
                       className="w-full h-full object-contain"

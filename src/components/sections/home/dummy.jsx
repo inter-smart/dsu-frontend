@@ -534,467 +534,899 @@ import Link from "next/link";
 // }
 
 // NEW HEADER
+// ("use client");
+// import CountUp from "react-countup";
+// import Fade from "embla-carousel-fade";
+// import useEmblaCarousel from "embla-carousel-react";
+// import { useEffect, useCallback, useState, useRef } from "react";
+
+// const local_data = {
+//   title: "International Collaborations",
+//   description: "Click on any Country Flag to view DSU's partner universities.",
+//   statistics: [
+//     { id: 1, value: 50, suffix: "+", label: "Partner Universities" },
+//     { id: 2, value: 9, suffix: "+", label: "Countries" },
+//     { id: 3, value: 12, suffix: "+", label: "Student Exchange Programs" },
+//     { id: 4, value: 8, suffix: "+", label: "Global Research Initiatives" },
+//     { id: 5, value: 20, suffix: "+", label: "Faculty Exchange Collaboration" },
+//   ],
+//   countries: [
+//     {
+//       id: 1,
+//       name: "United States of America",
+//       flag: "https://flagcdn.com/w80/us.png",
+//       flagAlt: "USA Flag",
+//       posX: "18%",
+//       posY: "38%",
+//       image: "/images/collab-usa.jpg",
+//       description:
+//         "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.",
+//       partners: [
+//         "Northeastern University",
+//         "University of Evansville",
+//         "LeTourneau University",
+//         "University of South Carolina Aiken",
+//         "Worcester Polytechnic Institute",
+//         "Georgia Institute of Technology",
+//       ],
+//       moreLink: "/collaborations/usa",
+//     },
+//     {
+//       id: 2,
+//       name: "United Kingdom",
+//       flag: "https://flagcdn.com/w80/gb.png",
+//       flagAlt: "UK Flag",
+//       posX: "43%",
+//       posY: "22%",
+//       image: "/images/collab-uk.jpg",
+//       description:
+//         "UK partnerships offer DSU students exposure to globally ranked institutions, fostering academic excellence and cultural diversity through collaborative research and exchange.",
+//       partners: [
+//         "University of Leeds",
+//         "Coventry University",
+//         "University of Hertfordshire",
+//         "Brunel University London",
+//       ],
+//       moreLink: "/collaborations/uk",
+//     },
+//     {
+//       id: 3,
+//       name: "Germany",
+//       flag: "https://flagcdn.com/w80/de.png",
+//       flagAlt: "Germany Flag",
+//       posX: "46%",
+//       posY: "26%",
+//       image: "/images/collab-germany.jpg",
+//       description:
+//         "Germany's engineering and research excellence enriches DSU's academic programs, providing students hands-on experience with Europe's innovation leaders.",
+//       partners: [
+//         "TU Dresden",
+//         "Hochschule Rhein-Waal",
+//         "Hochschule Furtwangen University",
+//       ],
+//       moreLink: "/collaborations/germany",
+//     },
+//     {
+//       id: 4,
+//       name: "Russia",
+//       flag: "https://flagcdn.com/w80/ru.png",
+//       flagAlt: "Russia Flag",
+//       posX: "58%",
+//       posY: "18%",
+//       image: "/images/collab-russia.jpg",
+//       description:
+//         "Russia's world-class STEM universities partner with DSU to drive collaborative research and student exchange, strengthening academic ties across continents.",
+//       partners: [
+//         "Lomonosov Moscow State University",
+//         "Peter the Great St. Petersburg Polytechnic University",
+//       ],
+//       moreLink: "/collaborations/russia",
+//     },
+//     {
+//       id: 5,
+//       name: "Malaysia",
+//       flag: "https://flagcdn.com/w80/my.png",
+//       flagAlt: "Malaysia Flag",
+//       posX: "72%",
+//       posY: "55%",
+//       image: "/images/collab-malaysia.jpg",
+//       description:
+//         "Malaysia collaborations provide DSU students with access to Southeast Asia's growing academic hubs, enriching global perspectives in science and technology.",
+//       partners: [
+//         "Universiti Teknologi Malaysia",
+//         "Universiti Putra Malaysia",
+//         "Taylor's University",
+//       ],
+//       moreLink: "/collaborations/malaysia",
+//     },
+//     {
+//       id: 6,
+//       name: "Sri Lanka",
+//       flag: "https://flagcdn.com/w80/lk.png",
+//       flagAlt: "Sri Lanka Flag",
+//       posX: "67%",
+//       posY: "57%",
+//       image: "/images/collab-srilanka.jpg",
+//       description:
+//         "Sri Lanka partnerships strengthen South Asian academic bonds, enabling joint research and cultural exchange to nurture globally competent graduates.",
+//       partners: [
+//         "University of Moratuwa",
+//         "University of Colombo",
+//         "University of Kelaniya",
+//       ],
+//       moreLink: "/collaborations/sri-lanka",
+//     },
+//     {
+//       id: 7,
+//       name: "South Africa",
+//       flag: "https://flagcdn.com/w80/za.png",
+//       flagAlt: "South Africa Flag",
+//       posX: "50%",
+//       posY: "72%",
+//       image: "/images/collab-southafrica.jpg",
+//       description:
+//         "South Africa collaborations connect DSU with Africa's leading academic institutions, driving sustainable development research and cross-cultural innovation.",
+//       partners: [
+//         "University of Cape Town",
+//         "Stellenbosch University",
+//         "University of Pretoria",
+//       ],
+//       moreLink: "/collaborations/south-africa",
+//     },
+//     {
+//       id: 8,
+//       name: "Australia",
+//       flag: "https://flagcdn.com/w80/au.png",
+//       flagAlt: "Australia Flag",
+//       posX: "78%",
+//       posY: "72%",
+//       image: "/images/collab-australia.jpg",
+//       description:
+//         "Australian university partnerships bring DSU students world-class research opportunities in technology, engineering, and sustainability in the Asia-Pacific region.",
+//       partners: [
+//         "Curtin University",
+//         "University of Southern Queensland",
+//         "Charles Darwin University",
+//       ],
+//       moreLink: "/collaborations/australia",
+//     },
+//   ],
+// };
+
+// export default function HomeCollaborations({ data = local_data }) {
+//   const [activeIndex, setActiveIndex] = useState(0);
+//   const [pulsingIndex, setPulsingIndex] = useState(0);
+//   const pulseRef = useRef(null);
+
+//   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, duration: 20 }, [
+//     Fade(),
+//   ]);
+
+//   useEffect(() => {
+//     emblaApi?.scrollTo(activeIndex, true);
+//   }, [emblaApi, activeIndex]);
+
+//   const onEmblaSelect = useCallback(() => {
+//     if (!emblaApi) return;
+//     setActiveIndex(emblaApi.selectedScrollSnap());
+//   }, [emblaApi]);
+
+//   useEffect(() => {
+//     if (!emblaApi) return;
+//     emblaApi.on("select", onEmblaSelect);
+//     emblaApi.on("reInit", onEmblaSelect);
+//     return () => {
+//       emblaApi.off("select", onEmblaSelect);
+//       emblaApi.off("reInit", onEmblaSelect);
+//     };
+//   }, [emblaApi, onEmblaSelect]);
+
+//   useEffect(() => {
+//     if (!data?.countries?.length) return;
+//     pulseRef.current = setInterval(
+//       () => setPulsingIndex((prev) => (prev + 1) % data.countries.length),
+//       900,
+//     );
+//     return () => clearInterval(pulseRef.current);
+//   }, [data?.countries?.length]);
+
+//   return (
+//     <section className="w-full h-auto py-[35px_10px] sm:py-12.5 lg:py-17.5 2xl:py-22.5 3xl:py-27.5 block overflow-hidden">
+//       <style>{`
+//         @keyframes collab-breathe {
+//           0%, 100% { transform: scale(1);    }
+//           50%       { transform: scale(1.08); }
+//         }
+//         @keyframes collab-wave {
+//           0%   { transform: scale(0.85); opacity: 0.7; }
+//           100% { transform: scale(2.6);  opacity: 0;   }
+//         }
+//       `}</style>
+
+//       <div className="container">
+//         <div className="w-full flex flex-col lg:flex-row rounded-[12px] lg:rounded-[16px] 2xl:rounded-[20px] overflow-hidden shadow-2xl min-h-[480px] lg:min-h-[560px] 2xl:min-h-[640px] 3xl:min-h-[720px]">
+//           {/* ━━━━━━━━━━━━━━━━━━ LEFT PANEL ━━━━━━━━━━━━━━━━━━ */}
+//           <div
+//             className="w-full lg:w-[52%] relative flex flex-col p-5 sm:p-7 lg:p-8 2xl:p-10 3xl:p-12 overflow-hidden"
+//             style={{
+//               background:
+//                 "linear-gradient(135deg,#E53000 0%,#CC3D00 50%,#B83200 100%)",
+//             }}
+//           >
+//             {/* Dotted world-map texture */}
+//             <div
+//               className="absolute inset-0 z-0 opacity-[0.18] pointer-events-none"
+//               style={{
+//                 backgroundImage:
+//                   "radial-gradient(circle,rgba(255,255,255,0.7) 1px,transparent 1px)",
+//                 backgroundSize: "18px 18px",
+//               }}
+//             />
+//             {/* Radial vignette */}
+//             <div
+//               className="absolute inset-0 z-0 pointer-events-none"
+//               style={{
+//                 background:
+//                   "radial-gradient(ellipse at center,transparent 35%,rgba(140,18,0,0.55) 100%)",
+//               }}
+//             />
+
+//             {/* Title & Description */}
+//             <div className="relative z-10 mb-3">
+//               <h2 className="text-[26px] sm:text-[32px] lg:text-[36px] 2xl:text-[44px] 3xl:text-[54px] leading-[1.1] font-bold text-white mb-2 max-w-[85%]">
+//                 {data?.title}
+//               </h2>
+//               <p className="text-xs sm:text-sm 2xl:text-base text-white/80 font-normal">
+//                 {data?.description}
+//               </p>
+//             </div>
+
+//             {/* ── Map markers ── */}
+//             <div className="relative z-10 flex-1 w-full mt-1 mb-4 min-h-[220px] sm:min-h-[260px] lg:min-h-0">
+//               {data?.countries?.map((country, index) => (
+//                 <button
+//                   key={country.id}
+//                   onClick={() => setActiveIndex(index)}
+//                   aria-label={"Select " + country.name}
+//                   className="absolute -translate-x-1/2 -translate-y-1/2 group cursor-pointer"
+//                   style={{
+//                     left: country.posX,
+//                     top: country.posY,
+//                     zIndex: activeIndex === index ? 20 : 10,
+//                     // Outer button: smooth spring-lift for active/pulsing/idle
+//                     transform:
+//                       activeIndex === index
+//                         ? "scale(1.22)"
+//                         : pulsingIndex === index
+//                           ? "scale(1.1)"
+//                           : "scale(1)",
+//                     transition:
+//                       "transform 0.55s cubic-bezier(0.34,1.56,0.64,1)",
+//                   }}
+//                 >
+//                   {/* ── Premium sonar wave — ACTIVE ONLY ── */}
+//                   {activeIndex === index && (
+//                     <>
+//                       {/* Ring 1 — fires immediately */}
+//                       <span
+//                         className="absolute inset-0 rounded-full pointer-events-none"
+//                         style={{
+//                           backgroundColor: "rgba(255,255,255,0.5)",
+//                           animation:
+//                             "collab-wave 1.8s cubic-bezier(0.215,0.61,0.355,1) infinite",
+//                         }}
+//                       />
+//                       {/* Ring 2 — offset by 0.6s */}
+//                       <span
+//                         className="absolute inset-0 rounded-full pointer-events-none"
+//                         style={{
+//                           backgroundColor: "rgba(255,255,255,0.35)",
+//                           animation:
+//                             "collab-wave 1.8s cubic-bezier(0.215,0.61,0.355,1) 0.6s infinite",
+//                         }}
+//                       />
+//                       {/* Ring 3 — offset by 1.2s */}
+//                       <span
+//                         className="absolute inset-0 rounded-full pointer-events-none"
+//                         style={{
+//                           backgroundColor: "rgba(255,255,255,0.2)",
+//                           animation:
+//                             "collab-wave 1.8s cubic-bezier(0.215,0.61,0.355,1) 1.2s infinite",
+//                         }}
+//                       />
+//                     </>
+//                   )}
+
+//                   {/* Flag circle — breathes continuously at its own pace */}
+//                   <div
+//                     className="relative rounded-full overflow-hidden"
+//                     style={{
+//                       width: "48px",
+//                       height: "48px",
+//                       border:
+//                         activeIndex === index
+//                           ? "2.5px solid #fff"
+//                           : "2px solid rgba(255,255,255,0.65)",
+//                       boxShadow:
+//                         activeIndex === index
+//                           ? "0 0 0 3px rgba(255,255,255,0.28), 0 6px 22px rgba(0,0,0,0.55)"
+//                           : "0 2px 10px rgba(0,0,0,0.38)",
+//                       transition:
+//                         "border-color 0.4s ease, box-shadow 0.4s ease",
+//                       animation: `collab-breathe ${[1.8, 2.4, 1.5, 2.9, 2.1, 1.6, 2.7, 2.3][index % 8]}s ease-in-out infinite`,
+//                     }}
+//                   >
+//                     {/* eslint-disable-next-line @next/next/no-img-element */}
+//                     <img
+//                       src={country.flag}
+//                       alt={country.flagAlt}
+//                       className="w-full h-full object-cover"
+//                     />
+//                   </div>
+
+//                   {/* Hover tooltip */}
+//                   <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+//                     <div className="bg-black/80 text-white text-[10px] lg:text-xs font-medium px-2 py-1 rounded-md backdrop-blur-sm">
+//                       {country.name}
+//                     </div>
+//                   </div>
+//                 </button>
+//               ))}
+//             </div>
+
+//             {/* ── Statistics row ── */}
+//             <div className="relative z-10 flex flex-wrap items-end gap-x-3 gap-y-2 sm:gap-x-5 lg:gap-x-4 2xl:gap-x-6 mt-auto pt-3 border-t border-white/20">
+//               {data?.statistics?.map((stat) => (
+//                 <div key={stat.id} className="flex flex-col items-start">
+//                   <div className="text-[20px] sm:text-[24px] lg:text-[22px] 2xl:text-[28px] 3xl:text-[34px] font-bold text-white leading-[1.1]">
+//                     <CountUp
+//                       start={0}
+//                       end={stat.value}
+//                       duration={2.5}
+//                       suffix={stat.suffix ?? "+"}
+//                       enableScrollSpy
+//                       scrollSpyOnce
+//                     />
+//                   </div>
+//                   <div className="text-[10px] sm:text-xs 2xl:text-sm text-white/75 font-normal leading-tight max-w-[90px] lg:max-w-[110px]">
+//                     {stat.label}
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+
+//           {/* ━━━━━━━━━━━━━━━━━━ RIGHT PANEL ━━━━━━━━━━━━━━━━━━ */}
+//           <div className="w-full lg:w-[48%] relative min-h-[380px] lg:min-h-0 bg-[#1a1a1a] overflow-hidden">
+//             <div className="w-full h-full overflow-hidden" ref={emblaRef}>
+//               <div className="flex h-full touch-pan-y">
+//                 {data?.countries?.map((country, idx) => (
+//                   <div
+//                     key={country.id}
+//                     className="min-w-0 flex-[0_0_100%] h-full relative z-0 overflow-hidden"
+//                     aria-hidden={idx !== activeIndex}
+//                   >
+//                     <div className="absolute inset-0 z-0">
+//                       {/* eslint-disable-next-line @next/next/no-img-element */}
+//                       <img
+//                         src={country.image}
+//                         alt={country.name}
+//                         className="w-full h-full object-cover"
+//                         onError={(e) => {
+//                           e.currentTarget.style.display = "none";
+//                         }}
+//                       />
+//                       <div
+//                         className="absolute inset-0"
+//                         style={{
+//                           background:
+//                             "linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.45) 50%,rgba(0,0,0,0.32) 100%)",
+//                         }}
+//                       />
+//                       <div
+//                         className="absolute inset-0"
+//                         style={{
+//                           background:
+//                             "linear-gradient(to bottom,rgba(0,0,0,0.55) 0%,transparent 35%)",
+//                         }}
+//                       />
+//                     </div>
+
+//                     <div className="relative z-10 flex flex-col h-full p-5 lg:p-7 2xl:p-8 3xl:p-10">
+//                       <div className="flex items-center gap-3 mb-3">
+//                         <div
+//                           className="w-9 h-9 lg:w-11 lg:h-11 rounded-full overflow-hidden shrink-0 shadow-lg"
+//                           style={{ border: "2px solid rgba(255,255,255,0.6)" }}
+//                         >
+//                           {/* eslint-disable-next-line @next/next/no-img-element */}
+//                           <img
+//                             src={country.flag}
+//                             alt={country.flagAlt}
+//                             className="w-full h-full object-cover"
+//                           />
+//                         </div>
+//                         <h3 className="text-base lg:text-lg 2xl:text-xl 3xl:text-2xl font-bold text-white leading-tight">
+//                           {country.name}
+//                         </h3>
+//                       </div>
+
+//                       <p className="text-xs lg:text-sm 2xl:text-[15px] text-white/80 leading-relaxed max-w-[92%]">
+//                         {country.description}
+//                       </p>
+
+//                       <div className="mt-auto">
+//                         <h4 className="text-sm lg:text-base 2xl:text-lg font-bold text-white mb-3">
+//                           Partner Universities
+//                         </h4>
+//                         <div className="flex flex-wrap gap-2">
+//                           {country.partners?.slice(0, 5).map((uni, i) => (
+//                             <span
+//                               key={i}
+//                               className="text-[11px] lg:text-xs 2xl:text-sm font-medium text-white/90 rounded-md px-2.5 py-1.5 leading-tight"
+//                               style={{
+//                                 background: "rgba(255,255,255,0.1)",
+//                                 backdropFilter: "blur(6px)",
+//                                 border: "1px solid rgba(255,255,255,0.2)",
+//                               }}
+//                             >
+//                               {uni}
+//                             </span>
+//                           ))}
+//                           {(country.partners?.length ?? 0) > 5 && (
+//                             <a
+//                               href={country.moreLink}
+//                               className="text-[11px] lg:text-xs 2xl:text-sm font-bold text-white rounded-md px-3 py-1.5 leading-tight transition-colors duration-300"
+//                               style={{
+//                                 background: "rgba(255,255,255,0.15)",
+//                                 backdropFilter: "blur(6px)",
+//                                 border: "1px solid rgba(255,255,255,0.3)",
+//                               }}
+//                             >
+//                               + {(country.partners?.length ?? 0) - 5} More
+//                             </a>
+//                           )}
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
 ("use client");
-import CountUp from "react-countup";
-import Fade from "embla-carousel-fade";
-import useEmblaCarousel from "embla-carousel-react";
-import { useEffect, useCallback, useState, useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Text } from "../ui/text";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 const local_data = {
-  title: "International Collaborations",
-  description: "Click on any Country Flag to view DSU's partner universities.",
-  statistics: [
-    { id: 1, value: 50, suffix: "+", label: "Partner Universities" },
-    { id: 2, value: 9, suffix: "+", label: "Countries" },
-    { id: 3, value: 12, suffix: "+", label: "Student Exchange Programs" },
-    { id: 4, value: 8, suffix: "+", label: "Global Research Initiatives" },
-    { id: 5, value: 20, suffix: "+", label: "Faculty Exchange Collaboration" },
+  topRow: [
+    {
+      title: "ADMISSION CORNER",
+      items: [
+        [{ text: "Admissions details", href: "#" }],
+        [{ text: "DSAT Admissions - Apply Online", href: "#" }],
+        [{ text: "Direct Admissions - Apply Online", href: "#" }],
+        [{ text: "Course Eligibility & Fee Structure", href: "#" }],
+      ],
+    },
+    {
+      title: "ADMISSIONS HELPLINE",
+      items: [
+        [
+          { text: "Email: " },
+          {
+            text: "admissions@dsu.edu.in",
+            href: "mailto:admissions@dsu.edu.in",
+            bold: true,
+          },
+        ],
+        [
+          { text: "Phone: " },
+          { text: "080 46461800", href: "tel:08046461800", bold: true },
+          { text: " / " },
+          { text: "+91 6366885507", href: "tel:+916366885507", bold: true },
+        ],
+        [{ text: "INTERNATIONAL ADMISSIONS", bold: true }],
+        [
+          { text: "Phone: " },
+          { text: "+91 9606022152", href: "tel:+919606022152", bold: true },
+          { text: " / " },
+          { text: "+91 9606022150", href: "tel:+919606022150", bold: true },
+          { text: " / " },
+          { text: "+91 9606022149", href: "tel:+919606022149", bold: true },
+        ],
+      ],
+    },
+    {
+      title: "REGIONAL PRESENCE",
+      items: [
+        [
+          { text: "East Region: " },
+          { text: "8240216553", href: "tel:8240216553", bold: true },
+        ],
+        [
+          { text: "West Region: " },
+          { text: "9741488001", href: "tel:9741488001", bold: true },
+        ],
+        [
+          { text: "North Region: " },
+          { text: "7488983636", href: "tel:7488983636", bold: true },
+        ],
+        [
+          { text: "South Region: " },
+          { text: "9962835358", href: "tel:9962835358", bold: true },
+        ],
+      ],
+    },
   ],
-  countries: [
+  bottomRow: [
+    {
+      title: "DSU MAIN CAMPUS:",
+      items: [
+        [
+          {
+            text: "Devarakaggalahalli,\nHarohalli, Kanakapura Road,\nBengaluru South Dt. – 562 112",
+          },
+        ],
+        [
+          { text: "Email: " },
+          {
+            text: "admissions@dsu.edu.in",
+            href: "mailto:admissions@dsu.edu.in",
+            bold: true,
+          },
+        ],
+        [
+          { text: "Admissions Helpline: " },
+          { text: "080 46461800", href: "tel:08046461800", bold: true },
+          { text: " / " },
+          { text: "080 49092800", href: "tel:08049092800", bold: true },
+        ],
+      ],
+    },
+    {
+      title: "DSU CITY INNOVATION CAMPUS:",
+      items: [
+        [
+          {
+            text: "Administrative & Main Admission office,\nKudlu Gate, Hosur Road,\nBengaluru - 560 114",
+          },
+        ],
+        [
+          { text: "E-mail: " },
+          {
+            text: "admissions@dsu.edu.in",
+            href: "mailto:admissions@dsu.edu.in",
+            bold: true,
+          },
+          { text: " | " },
+          {
+            text: "dsat@dsu.edu.in",
+            href: "mailto:dsat@dsu.edu.in",
+            bold: true,
+          },
+        ],
+        [
+          { text: "Admissions Helpline: " },
+          { text: "080 46461800", href: "tel:08046461800", bold: true },
+          { text: " / " },
+          { text: "080 49092800", href: "tel:08049092800", bold: true },
+          { text: " / " },
+          { text: "+91 7760964277", href: "tel:+917760964277", bold: true },
+          { text: " / " },
+          { text: "8296316737", href: "tel:8296316737", bold: true },
+          { text: " / " },
+          { text: "6366885507", href: "tel:6366885507", bold: true },
+        ],
+        [
+          { text: "Office of Registrar: " },
+          { text: "080 4909 2910 / 11", bold: true },
+        ],
+        [
+          { text: "Office of Dean (Engineering): " },
+          { text: "+91 80 4909 2986 / 32 / 33", bold: true },
+        ],
+        [{ text: "Dean - MBA: " }, { text: "080 4909 2931", bold: true }],
+        [{ text: "Enquiry EMBA: " }, { text: "080 4909 2930", bold: true }],
+        [{ text: "Research Cell: " }, { text: "080 4909 2912", bold: true }],
+      ],
+    },
+    {
+      title: "DSU CITY ADMISSIONS OFFICE:",
+      items: [
+        [
+          {
+            text: "Gate 2, 6th Floor, University Building,\nDental Block, Kumaraswamy Layout,\nBengaluru - 560111",
+          },
+        ],
+        [
+          { text: "E-mail: " },
+          {
+            text: "enquiry@dsu.edu.in",
+            href: "mailto:enquiry@dsu.edu.in",
+            bold: true,
+          },
+          { text: " / " },
+          {
+            text: "admissions@dsu.edu.in",
+            href: "mailto:admissions@dsu.edu.in",
+            bold: true,
+          },
+        ],
+        [
+          { text: "Admissions Helpline: " },
+          { text: "080 46461800", href: "tel:08046461800", bold: true },
+          { text: " / " },
+          { text: "080 49092800", href: "tel:08049092800", bold: true },
+        ],
+      ],
+    },
+  ],
+  bottomLinks: [
     {
       id: 1,
-      name: "United States of America",
-      flag: "https://flagcdn.com/w80/us.png",
-      flagAlt: "USA Flag",
-      posX: "18%",
-      posY: "38%",
-      image: "/images/collab-usa.jpg",
-      description:
-        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.",
-      partners: [
-        "Northeastern University",
-        "University of Evansville",
-        "LeTourneau University",
-        "University of South Carolina Aiken",
-        "Worcester Polytechnic Institute",
-        "Georgia Institute of Technology",
+      title: "AI & INNOVATION",
+      links: [
+        { label: "AI Factory", url: "#" },
+        { label: "Centres of Excellence", url: "#" },
+        { label: "Research Labs", url: "#" },
+        { label: "Innovation Hub", url: "#" },
+        { label: "Startups & Incubation", url: "#" },
+        { label: "Funded Research Projects", url: "#" },
+        { label: "Publications & Patents", url: "#" },
       ],
-      moreLink: "/collaborations/usa",
     },
     {
       id: 2,
-      name: "United Kingdom",
-      flag: "https://flagcdn.com/w80/gb.png",
-      flagAlt: "UK Flag",
-      posX: "43%",
-      posY: "22%",
-      image: "/images/collab-uk.jpg",
-      description:
-        "UK partnerships offer DSU students exposure to globally ranked institutions, fostering academic excellence and cultural diversity through collaborative research and exchange.",
-      partners: [
-        "University of Leeds",
-        "Coventry University",
-        "University of Hertfordshire",
-        "Brunel University London",
+      title: "STUDENT & ACADEMICS",
+      links: [
+        { label: "AI-Enabled Academics", url: "#" },
+        { label: "Undergraduate Programs", url: "#" },
+        { label: "Postgraduate Programs", url: "#" },
+        { label: "Doctoral Studies", url: "#" },
+        { label: "Schools & Departments", url: "#" },
+        { label: "Academic Calendar", url: "#" },
+        { label: "Examinations", url: "#" },
+        { label: "International Programs", url: "#" },
       ],
-      moreLink: "/collaborations/uk",
     },
     {
       id: 3,
-      name: "Germany",
-      flag: "https://flagcdn.com/w80/de.png",
-      flagAlt: "Germany Flag",
-      posX: "46%",
-      posY: "26%",
-      image: "/images/collab-germany.jpg",
-      description:
-        "Germany's engineering and research excellence enriches DSU's academic programs, providing students hands-on experience with Europe's innovation leaders.",
-      partners: [
-        "TU Dresden",
-        "Hochschule Rhein-Waal",
-        "Hochschule Furtwangen University",
+      title: "COMMUNITY",
+      links: [
+        { label: "Alumni Network", url: "#" },
+        { label: "Testimonials", url: "#" },
+        { label: "Student Stories", url: "#" },
+        { label: "Clubs & Communities", url: "#" },
+        { label: "Community Activities", url: "#" },
+        { label: "Events & Workshops", url: "#" },
+        { label: "Media Coverage", url: "#" },
+        { label: "Gallery (Photo & Video)", url: "#" },
+        { label: "News Letter", url: "#" },
       ],
-      moreLink: "/collaborations/germany",
     },
     {
       id: 4,
-      name: "Russia",
-      flag: "https://flagcdn.com/w80/ru.png",
-      flagAlt: "Russia Flag",
-      posX: "58%",
-      posY: "18%",
-      image: "/images/collab-russia.jpg",
-      description:
-        "Russia's world-class STEM universities partner with DSU to drive collaborative research and student exchange, strengthening academic ties across continents.",
-      partners: [
-        "Lomonosov Moscow State University",
-        "Peter the Great St. Petersburg Polytechnic University",
+      title: "SUPPORT & CAREERS",
+      links: [
+        { label: "Placements & Careers", url: "#" },
+        { label: "Current Openings", url: "#" },
+        { label: "Recruit from DSU", url: "#" },
+        { label: "Career Development", url: "#" },
+        { label: "FAQs", url: "#" },
+        { label: "Downloads", url: "#" },
+        { label: "Contact Us", url: "#" },
+        { label: "Enquiry Form", url: "#" },
       ],
-      moreLink: "/collaborations/russia",
     },
     {
       id: 5,
-      name: "Malaysia",
-      flag: "https://flagcdn.com/w80/my.png",
-      flagAlt: "Malaysia Flag",
-      posX: "72%",
-      posY: "55%",
-      image: "/images/collab-malaysia.jpg",
-      description:
-        "Malaysia collaborations provide DSU students with access to Southeast Asia's growing academic hubs, enriching global perspectives in science and technology.",
-      partners: [
-        "Universiti Teknologi Malaysia",
-        "Universiti Putra Malaysia",
-        "Taylor's University",
+      title: "COMPLIANCE & QUICK LINKS",
+      links: [
+        { label: "IQAC", url: "#" },
+        { label: "NIRF", url: "#" },
+        { label: "NAAC", url: "#" },
+        { label: "Anti Ragging Cell", url: "#" },
+        { label: "Grievances", url: "#" },
+        { label: "Ombudsperson", url: "#" },
+        { label: "Ethics Committee", url: "#" },
+        { label: "IT Policy", url: "#" },
+        { label: "Institutional Development Plan", url: "#" },
+        { label: "Annual Audit Reports", url: "#" },
+        { label: "Mandatory Disclosures", url: "#" },
       ],
-      moreLink: "/collaborations/malaysia",
-    },
-    {
-      id: 6,
-      name: "Sri Lanka",
-      flag: "https://flagcdn.com/w80/lk.png",
-      flagAlt: "Sri Lanka Flag",
-      posX: "67%",
-      posY: "57%",
-      image: "/images/collab-srilanka.jpg",
-      description:
-        "Sri Lanka partnerships strengthen South Asian academic bonds, enabling joint research and cultural exchange to nurture globally competent graduates.",
-      partners: [
-        "University of Moratuwa",
-        "University of Colombo",
-        "University of Kelaniya",
-      ],
-      moreLink: "/collaborations/sri-lanka",
-    },
-    {
-      id: 7,
-      name: "South Africa",
-      flag: "https://flagcdn.com/w80/za.png",
-      flagAlt: "South Africa Flag",
-      posX: "50%",
-      posY: "72%",
-      image: "/images/collab-southafrica.jpg",
-      description:
-        "South Africa collaborations connect DSU with Africa's leading academic institutions, driving sustainable development research and cross-cultural innovation.",
-      partners: [
-        "University of Cape Town",
-        "Stellenbosch University",
-        "University of Pretoria",
-      ],
-      moreLink: "/collaborations/south-africa",
-    },
-    {
-      id: 8,
-      name: "Australia",
-      flag: "https://flagcdn.com/w80/au.png",
-      flagAlt: "Australia Flag",
-      posX: "78%",
-      posY: "72%",
-      image: "/images/collab-australia.jpg",
-      description:
-        "Australian university partnerships bring DSU students world-class research opportunities in technology, engineering, and sustainability in the Asia-Pacific region.",
-      partners: [
-        "Curtin University",
-        "University of Southern Queensland",
-        "Charles Darwin University",
-      ],
-      moreLink: "/collaborations/australia",
     },
   ],
 };
 
-export default function HomeCollaborations({ data = local_data }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [pulsingIndex, setPulsingIndex] = useState(0);
-  const pulseRef = useRef(null);
+export default function Footer({ data = local_data }) {
+  const [openAccordion, setOpenAccordion] = useState(0);
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, duration: 20 }, [
-    Fade(),
-  ]);
-
-  useEffect(() => {
-    emblaApi?.scrollTo(activeIndex, true);
-  }, [emblaApi, activeIndex]);
-
-  const onEmblaSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setActiveIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    emblaApi.on("select", onEmblaSelect);
-    emblaApi.on("reInit", onEmblaSelect);
-    return () => {
-      emblaApi.off("select", onEmblaSelect);
-      emblaApi.off("reInit", onEmblaSelect);
-    };
-  }, [emblaApi, onEmblaSelect]);
-
-  useEffect(() => {
-    if (!data?.countries?.length) return;
-    pulseRef.current = setInterval(
-      () => setPulsingIndex((prev) => (prev + 1) % data.countries.length),
-      900,
-    );
-    return () => clearInterval(pulseRef.current);
-  }, [data?.countries?.length]);
+  const toggleAccordion = (idx) => {
+    setOpenAccordion(openAccordion === idx ? null : idx);
+  };
 
   return (
-    <section className="w-full h-auto py-[35px_10px] sm:py-12.5 lg:py-17.5 2xl:py-22.5 3xl:py-27.5 block overflow-hidden">
-      <style>{`
-        @keyframes collab-breathe {
-          0%, 100% { transform: scale(1);    }
-          50%       { transform: scale(1.08); }
-        }
-        @keyframes collab-wave {
-          0%   { transform: scale(0.85); opacity: 0.7; }
-          100% { transform: scale(2.6);  opacity: 0;   }
-        }
-      `}</style>
-
+    <footer className="w-full h-auto py-[85px_5px] bg-linear-to-t from-[#FFF3E0] to-[#FFF8EE] block">
       <div className="container">
-        <div className="w-full flex flex-col lg:flex-row rounded-[12px] lg:rounded-[16px] 2xl:rounded-[20px] overflow-hidden shadow-2xl min-h-[480px] lg:min-h-[560px] 2xl:min-h-[640px] 3xl:min-h-[720px]">
-          {/* ━━━━━━━━━━━━━━━━━━ LEFT PANEL ━━━━━━━━━━━━━━━━━━ */}
-          <div
-            className="w-full lg:w-[52%] relative flex flex-col p-5 sm:p-7 lg:p-8 2xl:p-10 3xl:p-12 overflow-hidden"
-            style={{
-              background:
-                "linear-gradient(135deg,#E53000 0%,#CC3D00 50%,#B83200 100%)",
-            }}
-          >
-            {/* Dotted world-map texture */}
-            <div
-              className="absolute inset-0 z-0 opacity-[0.18] pointer-events-none"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle,rgba(255,255,255,0.7) 1px,transparent 1px)",
-                backgroundSize: "18px 18px",
-              }}
-            />
-            {/* Radial vignette */}
-            <div
-              className="absolute inset-0 z-0 pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse at center,transparent 35%,rgba(140,18,0,0.55) 100%)",
-              }}
-            />
-
-            {/* Title & Description */}
-            <div className="relative z-10 mb-3">
-              <h2 className="text-[26px] sm:text-[32px] lg:text-[36px] 2xl:text-[44px] 3xl:text-[54px] leading-[1.1] font-bold text-white mb-2 max-w-[85%]">
-                {data?.title}
-              </h2>
-              <p className="text-xs sm:text-sm 2xl:text-base text-white/80 font-normal">
-                {data?.description}
-              </p>
+        <div className="[--width:350px] w-full h-auto flex flex-wrap">
+          <div className="w-(--width) h-auto">
+            <div className="w-72.5 h-auto aspect-290/95 mb-10 overflow-hidden block">
+              <Image
+                src={data?.logo?.url}
+                alt={data?.logo?.alternativeTxt}
+                width={290}
+                height={95}
+                className="w-full h-full object-contain"
+              />
             </div>
-
-            {/* ── Map markers ── */}
-            <div className="relative z-10 flex-1 w-full mt-1 mb-4 min-h-[220px] sm:min-h-[260px] lg:min-h-0">
-              {data?.countries?.map((country, index) => ( 
-                <button
-                  key={country.id}
-                  onClick={() => setActiveIndex(index)}
-                  aria-label={"Select " + country.name}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 group cursor-pointer"
-                  style={{
-                    left: country.posX,
-                    top: country.posY,
-                    zIndex: activeIndex === index ? 20 : 10,
-                    // Outer button: smooth spring-lift for active/pulsing/idle
-                    transform:
-                      activeIndex === index
-                        ? "scale(1.22)"
-                        : pulsingIndex === index
-                          ? "scale(1.1)"
-                          : "scale(1)",
-                    transition:
-                      "transform 0.55s cubic-bezier(0.34,1.56,0.64,1)",
-                  }}
-                >
-                  {/* ── Premium sonar wave — ACTIVE ONLY ── */}
-                  {activeIndex === index && (
-                    <>
-                      {/* Ring 1 — fires immediately */}
-                      <span
-                        className="absolute inset-0 rounded-full pointer-events-none"
-                        style={{
-                          backgroundColor: "rgba(255,255,255,0.5)",
-                          animation:
-                            "collab-wave 1.8s cubic-bezier(0.215,0.61,0.355,1) infinite",
-                        }}
-                      />
-                      {/* Ring 2 — offset by 0.6s */}
-                      <span
-                        className="absolute inset-0 rounded-full pointer-events-none"
-                        style={{
-                          backgroundColor: "rgba(255,255,255,0.35)",
-                          animation:
-                            "collab-wave 1.8s cubic-bezier(0.215,0.61,0.355,1) 0.6s infinite",
-                        }}
-                      />
-                      {/* Ring 3 — offset by 1.2s */}
-                      <span
-                        className="absolute inset-0 rounded-full pointer-events-none"
-                        style={{
-                          backgroundColor: "rgba(255,255,255,0.2)",
-                          animation:
-                            "collab-wave 1.8s cubic-bezier(0.215,0.61,0.355,1) 1.2s infinite",
-                        }}
-                      />
-                    </>
-                  )}
-
-                  {/* Flag circle — breathes continuously at its own pace */}
-                  <div
-                    className="relative rounded-full overflow-hidden"
-                    style={{
-                      width: "48px",
-                      height: "48px",
-                      border:
-                        activeIndex === index
-                          ? "2.5px solid #fff"
-                          : "2px solid rgba(255,255,255,0.65)",
-                      boxShadow:
-                        activeIndex === index
-                          ? "0 0 0 3px rgba(255,255,255,0.28), 0 6px 22px rgba(0,0,0,0.55)"
-                          : "0 2px 10px rgba(0,0,0,0.38)",
-                      transition:
-                        "border-color 0.4s ease, box-shadow 0.4s ease",
-                      animation: `collab-breathe ${[1.8, 2.4, 1.5, 2.9, 2.1, 1.6, 2.7, 2.3][index % 8]}s ease-in-out infinite`,
-                    }}
+            <Text size="p1" className="mb-5">
+              {data?.description}
+            </Text>
+            <div className="w-full h-auto mb-22.5 gap-2.5 flex flex-wrap">
+              {data?.socialLinks?.map((item) => (
+                <div key={item?.id} className="w-auto h-auto">
+                  <Link
+                    href={item?.link}
+                    aria-label={item?.alternativeTxt}
+                    className="w-11.25 h-auto aspect-square bg-black rounded-[5px] overflow-hidden transition duration-500 flex items-center justify-center hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2)"
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={country.flag}
-                      alt={country.flagAlt}
-                      className="w-full h-full object-cover"
+                    <Image
+                      src={item?.socialIcon?.url}
+                      alt={item?.socialIcon?.alternativeTxt}
+                      width={45}
+                      height={45}
+                      className="w-full h-full object-contain"
                     />
-                  </div>
-
-                  {/* Hover tooltip */}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-                    <div className="bg-black/80 text-white text-[10px] lg:text-xs font-medium px-2 py-1 rounded-md backdrop-blur-sm">
-                      {country.name}
-                    </div>
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            {/* ── Statistics row ── */}
-            <div className="relative z-10 flex flex-wrap items-end gap-x-3 gap-y-2 sm:gap-x-5 lg:gap-x-4 2xl:gap-x-6 mt-auto pt-3 border-t border-white/20">
-              {data?.statistics?.map((stat) => (
-                <div key={stat.id} className="flex flex-col items-start">
-                  <div className="text-[20px] sm:text-[24px] lg:text-[22px] 2xl:text-[28px] 3xl:text-[34px] font-bold text-white leading-[1.1]">
-                    <CountUp
-                      start={0}
-                      end={stat.value}
-                      duration={2.5}
-                      suffix={stat.suffix ?? "+"}
-                      enableScrollSpy
-                      scrollSpyOnce
-                    />
-                  </div>
-                  <div className="text-[10px] sm:text-xs 2xl:text-sm text-white/75 font-normal leading-tight max-w-[90px] lg:max-w-[110px]">
-                    {stat.label}
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* ━━━━━━━━━━━━━━━━━━ RIGHT PANEL ━━━━━━━━━━━━━━━━━━ */}
-          <div className="w-full lg:w-[48%] relative min-h-[380px] lg:min-h-0 bg-[#1a1a1a] overflow-hidden">
-            <div className="w-full h-full overflow-hidden" ref={emblaRef}>
-              <div className="flex h-full touch-pan-y">
-                {data?.countries?.map((country, idx) => (
-                  <div
-                    key={country.id}
-                    className="min-w-0 flex-[0_0_100%] h-full relative z-0 overflow-hidden"
-                    aria-hidden={idx !== activeIndex}
-                  >
-                    <div className="absolute inset-0 z-0">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={country.image}
-                        alt={country.name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.style.display = "none";
-                        }}
-                      />
-                      <div
-                        className="absolute inset-0"
-                        style={{
-                          background:
-                            "linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.45) 50%,rgba(0,0,0,0.32) 100%)",
-                        }}
-                      />
-                      <div
-                        className="absolute inset-0"
-                        style={{
-                          background:
-                            "linear-gradient(to bottom,rgba(0,0,0,0.55) 0%,transparent 35%)",
-                        }}
-                      />
-                    </div>
-
-                    <div className="relative z-10 flex flex-col h-full p-5 lg:p-7 2xl:p-8 3xl:p-10">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div
-                          className="w-9 h-9 lg:w-11 lg:h-11 rounded-full overflow-hidden shrink-0 shadow-lg"
-                          style={{ border: "2px solid rgba(255,255,255,0.6)" }}
-                        >
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={country.flag}
-                            alt={country.flagAlt}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <h3 className="text-base lg:text-lg 2xl:text-xl 3xl:text-2xl font-bold text-white leading-tight">
-                          {country.name}
-                        </h3>
-                      </div>
-
-                      <p className="text-xs lg:text-sm 2xl:text-[15px] text-white/80 leading-relaxed max-w-[92%]">
-                        {country.description}
-                      </p>
-
-                      <div className="mt-auto">
-                        <h4 className="text-sm lg:text-base 2xl:text-lg font-bold text-white mb-3">
-                          Partner Universities
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {country.partners?.slice(0, 5).map((uni, i) => (
-                            <span
-                              key={i}
-                              className="text-[11px] lg:text-xs 2xl:text-sm font-medium text-white/90 rounded-md px-2.5 py-1.5 leading-tight"
-                              style={{
-                                background: "rgba(255,255,255,0.1)",
-                                backdropFilter: "blur(6px)",
-                                border: "1px solid rgba(255,255,255,0.2)",
-                              }}
-                            >
-                              {uni}
-                            </span>
-                          ))}
-                          {(country.partners?.length ?? 0) > 5 && (
-                            <a
-                              href={country.moreLink}
-                              className="text-[11px] lg:text-xs 2xl:text-sm font-bold text-white rounded-md px-3 py-1.5 leading-tight transition-colors duration-300"
-                              style={{
-                                background: "rgba(255,255,255,0.15)",
-                                backdropFilter: "blur(6px)",
-                                border: "1px solid rgba(255,255,255,0.3)",
-                              }}
-                            >
-                              + {(country.partners?.length ?? 0) - 5} More
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+            <div className="w-full h-auto block">
+              <div className="text-lg leading-[1.1] font-medium bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mb-3.75">
+                DOWNLOAD BROCHURES
               </div>
+              <div className="w-full h-auto mb-2.5">
+                <Select className="w-full h-auto">
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Program" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Select Program</SelectLabel>
+                      <SelectItem value="apple">BE</SelectItem>
+                      <SelectItem value="banana">B.Tech</SelectItem>
+                      <SelectItem value="blueberry">Bcom</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
+              <Button className="w-full gap-3.75">
+                <span className="w-4.25 h-auto aspect-square overflow-hidden block">
+                  <Image
+                    src={"/images/download-icon.svg"}
+                    alt="Download Icon"
+                    width={15}
+                    height={15}
+                    className="w-full h-full object-contain"
+                  />
+                </span>
+                Download PDF
+              </Button>
+            </div>
+          </div>
+          <div className="w-[calc(100%-var(--width))] pl-17.5">
+            <div className="w-full h-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+              {data?.topRow?.map((item, index) => (
+                <LinkCard key={`top-${index}`} items={item} />
+              ))}
+            </div>
+            <div className="w-full h-[1px] bg-black/10 my-10"></div>
+            <div className="w-full h-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+              {data?.bottomRow?.map((item, index) => (
+                <LinkCard key={`bottom-${index}`} items={item} />
+              ))}
             </div>
           </div>
         </div>
+        <div className="w-full mt-10 pt-10 border-t border-black/10">
+          <div className="w-full grid grid-cols-1 md:grid-cols-5 gap-0 md:gap-4 lg:gap-8">
+            {data?.bottomLinks?.map((column, idx) => (
+              <div
+                key={idx}
+                className="flex flex-col md:border-r border-black/10 last:border-0 md:pr-4 border-b border-black/10 md:border-b-0"
+              >
+                <button
+                  onClick={() => toggleAccordion(idx)}
+                  className="w-full flex items-center justify-between py-4 px-2 md:p-0 md:mb-4 text-left"
+                  aria-expanded={openAccordion === idx}
+                >
+                  <h4 className="text-[#f05c2a] font-bold text-[13px] uppercase">
+                    {column.title}
+                  </h4>
+                  <ChevronDown
+                    className={`w-4 h-4 text-[#f05c2a] md:hidden transition-transform duration-300 ${openAccordion === idx ? "rotate-180" : ""
+                      }`}
+                  />
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 md:!max-h-none md:!opacity-100 ${openAccordion === idx
+                      ? "max-h-[500px] opacity-100 mb-4 md:mb-0"
+                      : "max-h-0 opacity-0"
+                    }`}
+                >
+                  <ul className="flex flex-col gap-2.5 px-2 md:p-0">
+                    {column.links.map((link, linkIdx) => (
+                      <li key={linkIdx}>
+                        <Link
+                          href={link.url || "#"}
+                          className="text-[#111] text-[13px] hover:text-[#f05c2a] transition-colors"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </section>
+    </footer>
+  );
+}
+
+function LinkCard({ items }) {
+  return (
+    <div className="w-full h-auto block mb-5">
+      <div className="text-lg leading-[1.1] font-medium bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mb-3.75 uppercase">
+        {items?.title}
+      </div>
+      <div className="w-full h-auto flex flex-col gap-2.5">
+        {items?.items?.map((item, index) => (
+          <div
+            key={index}
+            className="text-[13px] text-[#111] leading-relaxed whitespace-pre-line"
+          >
+            {item?.map((item, index) => (
+              <span
+                key={index}
+                className={item?.bold ? "font-medium" : "font-normal"}
+              >
+                {item.href ? (
+                  <Link
+                    href={item?.href}
+                    className="hover:text-(--basecolor) transition-colors"
+                  >
+                    {item?.text}
+                  </Link>
+                ) : (
+                  item?.text
+                )}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
