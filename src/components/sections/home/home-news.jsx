@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { ShineBorder } from "@/components/ui/shine-border";
 
 const local_data = {
   title: "News & Events",
@@ -61,17 +62,17 @@ export default function News({ data = local_data }) {
     [emblaApi],
   );
   return (
-    <section className="w-full h-auto py-[40px] sm:py-[50px] 2xl:py-[60px] 3xl:py-[80px] bg-white block">
+    <section className="w-full h-auto py-[40px] sm:py-[50px] 2xl:py-[60px] 3xl:py-[80px] bg-white dark:bg-[#101010] block">
       <div className="container">
         <div className="w-full h-auto mb-[30px] sm:mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] flex items-center flex-wrap justify-between">
-          <div className="text-[30px] 3xl:text-[40px] leading-normal font-bold text-[#212121]">
+          <div className="text-[30px] 3xl:text-[40px] leading-normal font-bold text-[#212121] dark:text-white">
             {data?.title}
           </div>
           <div className="[--size:30px] gap-[5px] flex justify-end">
             <button
               type="button"
               onClick={scrollPrev}
-              className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] flex items-center justify-center"
+              className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center"
               aria-label="Previous slide"
             >
               <Image
@@ -85,7 +86,7 @@ export default function News({ data = local_data }) {
             <button
               type="button"
               onClick={scrollNext}
-              className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] flex items-center justify-center"
+              className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center"
               aria-label="Next slide"
             >
               <Image
@@ -105,9 +106,13 @@ export default function News({ data = local_data }) {
                 key={item?.id}
                 className="pl-(--slide--sapcing) min-w-0 flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_calc(100%/3)]"
               >
-                <div className="group w-full h-full bg-linear-to-b from-[#FFF8EE]/50 to-[#FFF3E0]/50 rounded-[6px] 2xl:rounded-[10px] overflow-hidden block">
+                <div className="group w-full h-full bg-linear-to-b from-[#FFF8EE]/50 to-[#FFF3E0]/50 dark:bg-none dark:bg-white/5 rounded-[6px] 2xl:rounded-[10px] overflow-hidden block relative z-0">
+                  <ShineBorder
+                    shineColor={["#909191"]}
+                    className="hidden dark:block"
+                  />
                   <div className="w-full h-auto block relative z-0">
-                    <div className="w-full h-auto aspect-[560/220] mb-[30px] 2xl:mb-[40px] 3xl:mb-[50px] block overflow-hidden">
+                    <div className="w-full h-auto aspect-[560/220] mb-[30px] 2xl:mb-[40px] 3xl:mb-[50px] border-b border-[#909191] overflow-hidden block">
                       <Image
                         src={item?.path}
                         width={560}
@@ -126,7 +131,7 @@ export default function News({ data = local_data }) {
                     </div>
                   </div>
                   <div className="w-full h-auto p-[15px_20px] 2xl:p-[15px_25px] 3xl:p-[20px_30px] flex flex-col justify-between">
-                    <div className="text-[16px] 2xl:text-[18px] 3xl:text-[23px] leading-normal font-bold text-[#212121] w-[90%] mb-[20px] 3xl:mb-[30px]">
+                    <div className="text-[16px] 2xl:text-[18px] 3xl:text-[23px] leading-normal font-bold text-[#212121] dark:text-white w-[90%] mb-[20px] 3xl:mb-[30px]">
                       {item?.title}
                     </div>
                     <Link

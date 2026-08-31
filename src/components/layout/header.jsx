@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "../theme-toggle";
+import { useEffect, useState, useRef } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,7 +11,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
 import {
   Select,
   SelectContent,
@@ -19,7 +19,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ThemeToggle } from "../theme-toggle";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const local_data = {
   topBar: {
@@ -302,9 +311,9 @@ export default function Header({ data = local_data }) {
       window.removeEventListener("scroll", handleScrollClose);
     };
   }, [isSearchOpen]);
-
+  const isMobile = useIsMobile();
   const TopHeaderTextStyle =
-    "text-[12px] 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-white w-auto h-auto lg:px-[15px] 2xl:px-5 border-r border-white/20 gap-2.5 flex items-center";
+    "text-[9px] sm:text-[12px] 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] lg:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] lg:gap-2.5 flex items-center";
   return (
     <header
       className={cn(
@@ -315,22 +324,22 @@ export default function Header({ data = local_data }) {
           : ["bg-linear-to-r", "from-(--basecolor)/10", "to-(--basecolor2)/10"],
       )}
     >
-      <div className="w-full 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block">
-        <div className="container h-full flex items-center justify-end">
-          <div className="w-auto h-auto gap-1.75 2xl:gap-2.5 flex">
+      <div className="w-full h-11.25 lg:h-7.5 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block">
+        <div className="container h-full flex items-center justify-between lg:justify-end">
+          <div className="w-auto h-auto gap-1.25 sm:gap-1.75 2xl:gap-2.5 flex">
             {data?.topBar?.topBarButtons?.map((item) => (
               <div key={item?.id} className="w-auto h-auto">
                 <Link
                   href={item?.url}
                   aria-label={item?.label}
-                  className="sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-white w-auto h-auto lg:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex"
+                  className="text-[8px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full lg:h-auto p-2.5 sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center"
                 >
                   {item?.label}
                 </Link>
               </div>
             ))}
           </div>
-          <div className="w-auto h-auto gap-1.25 3xl:gap-2.5 flex items-center">
+          <div className="w-auto h-auto lg:gap-2.5 3xl:gap-2.5 flex items-center">
             {data?.topBar?.topBarLinkIcons?.map((item) => (
               <div key={item?.id} className="w-auto h-auto">
                 <Link
@@ -338,9 +347,11 @@ export default function Header({ data = local_data }) {
                   aria-label={item?.label}
                   className={cn(TopHeaderTextStyle)}
                 >
-                  {item?.label}
+                  <span className="w-[calc(100%-10px)] sm:w-[calc(100%-15px)]">
+                    {item?.label}
+                  </span>
                   {item?.icon && (
-                    <span className="sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center">
+                    <span className="w-2.5 sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center">
                       <Image
                         src={item?.icon?.url}
                         alt={item?.icon?.alternativeTxt}
@@ -363,7 +374,7 @@ export default function Header({ data = local_data }) {
                   }
                 >
                   Login
-                  <span className="sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center">
+                  <span className="w-2.5 sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center">
                     <Image
                       src="/images/header-login.svg"
                       alt="login"
@@ -382,16 +393,18 @@ export default function Header({ data = local_data }) {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-            <div className="w-auto h-auto 2xl:px-2.5">
+            <div className="w-auto h-auto px-1.25 sm:px-2.5 2xl:px-2.5 border-r border-white/20">
               <Select className="w-full h-auto">
                 <SelectTrigger
                   className={cn(
                     TopHeaderTextStyle,
-                    "w-full h-auto p-0 border-0 gap-1.25 [&>svg]:text-white",
+                    "w-full !h-auto !p-0 border-0 gap-1.25 [&>svg]:text-bold [&>svg]:text-white max-lg:[&>svg]:translate-y-[-1px]",
                   )}
                 >
                   <SelectValue
-                    className={"sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-white"}
+                    className={
+                      "sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-white"
+                    }
                     placeholder="EN"
                   />
                 </SelectTrigger>
@@ -410,16 +423,16 @@ export default function Header({ data = local_data }) {
           </div>
         </div>
       </div>
-      <div className="w-full h-auto border-b border-white/10">
+      <div className="w-full h-auto max-lg:py-[15px_20px] lg:border-b border-white/10">
         <div className="container">
-          <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex items-center">
-            <div className="w-[45%]">
-              <div className="w-full h-auto lg:-mx-3.75 2xl:-mx-5 3xl:-mx-6.25 lg:[&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 flex items-center">
+          <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex flex-wrap items-center">
+            <div className="w-full lg:w-[45%] max-lg:mb-6.25">
+              <div className="w-full h-auto -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 flex items-center">
                 <div className="w-auto h-auto">
                   <Link
                     href={data?.logo?.mainlogo?.link}
                     aria-label={data?.logo?.mainlogo?.alternativeTxt}
-                    className="lg:w-40 2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center"
+                    className="w-40 2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center"
                   >
                     <Image
                       src={data?.logo?.mainlogo?.url}
@@ -434,7 +447,7 @@ export default function Header({ data = local_data }) {
                   <Link
                     href={data?.logo?.alternativelogo?.link}
                     aria-label={data?.logo?.alternativelogo?.alternativeTxt}
-                    className="lg:w-18.75 2xl:w-22.5 3xl:w-27.5 h-auto aspect-110/50 overflow-hidden flex items-center justify-center"
+                    className="w-18.75 2xl:w-22.5 3xl:w-27.5 h-auto aspect-110/50 overflow-hidden flex items-center justify-center"
                   >
                     <Image
                       src={data?.logo?.alternativelogo?.url}
@@ -447,7 +460,7 @@ export default function Header({ data = local_data }) {
                 </div>
                 <div className="w-auto h-auto">
                   <div
-                    className="lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white"
+                    className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white"
                     dangerouslySetInnerHTML={{
                       __html: data?.logo?.logoText,
                     }}
@@ -455,14 +468,17 @@ export default function Header({ data = local_data }) {
                 </div>
               </div>
             </div>
-            <div className="w-[55%]">
-              <div className="w-full h-auto -mx-[2.5px] flex justify-end">
+            <div className="w-full lg:w-[55%]">
+              <div className="w-full h-auto -mx-[2.5px] flex lg:justify-end">
                 {data?.actionLinks?.map((item, index) => (
-                  <div key={index} className="w-auto h-auto px-[2.5px]">
+                  <div
+                    key={index}
+                    className="w-auto h-auto px-[2.5px] max-lg:flex-1"
+                  >
                     <Link
                       href={item?.url}
                       aria-label={item?.label}
-                      className="sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto lg:h-10 3xl:h-12.5 p-2.5 2xl:p-3.75 3xl:p-5 border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center"
+                      className="text-[10px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-5 border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center"
                     >
                       {item?.label}
                     </Link>
@@ -473,122 +489,158 @@ export default function Header({ data = local_data }) {
                     <Link
                       href="/#"
                       aria-label="Register"
-                      className="text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-white w-full h-full px-3.75 flex items-center justify-center relative z-0 before:content-[''] before:w-px before:h-1/2 before:my-auto before:bg-black/10 before:absolute before:z-1 before:inset-[0_0_0_auto]"
+                      className="text-[10px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center relative z-0 before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:translate-y-0.75 2xl:before:translate-y-1.25 before:absolute before:z-1 before:inset-[0_0_0_auto]"
                     >
-                      <span className="translate-y-0.75 2xl:translate-y-1.25">NRI/Foreigners</span>
+                      <span className="translate-y-0.75 2xl:translate-y-1.25">
+                        NRI/Foreigners
+                      </span>
                     </Link>
                   </div>
                   <div className="w-auto h-full">
                     <Link
                       href="/#"
                       aria-label="Register"
-                      className="text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-medium text-white w-full h-full px-3.75 flex items-center justify-center"
+                      className="text-[10px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-medium text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center"
                     >
-                      <span className="translate-y-0.75 2xl:translate-y-1.25">Others</span>
+                      <span className="translate-y-0.75 2xl:translate-y-1.25">
+                        Others
+                      </span>
                     </Link>
                   </div>
                   <button className="text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold text-black w-fit h-auto p-[3px_5px] mx-auto bg-white rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0]">
                     Apply Here
                   </button>
                 </div>
+                <div className="w-auto h-auto pl-3.75 max-lg:flex hidden">
+                  <Sheet>
+                    <SheetTrigger className="w-7.5 h-full aspect-square bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] border border-[#D1D5DC80]/50 overflow-hidden flex items-center justify-center">
+                      <div className="w-full h-3 flex flex-col items-center justify-between">
+                        <span className="w-1/2 h-0.5 bg-white block"></span>
+                        <span className="w-[25%] h-0.5 bg-white block"></span>
+                        <span className="w-1/2 h-0.5 bg-white block"></span>
+                      </div>
+                    </SheetTrigger>
+                    <SheetContent
+                      className={
+                        "!w-full !max-w-full bg-linear-to-t from-[#FFF3E0] to-[#FFF8EE] pt-[40px]"
+                      }
+                    >
+                      {data?.navigationLinks?.map((item) => (
+                        <NavigationMenu
+                          key={item?.id}
+                          item={item}
+                          level={0}
+                          mobileOpenPath={mobileOpenPath}
+                          setMobileOpenPath={setMobileOpenPath}
+                          className={cn(
+                            "w-auto h-auto transition-opacity duration-400 relative z-0 hover:before:lg:w-[calc(100%-40px)] hover:before:2xl:w-[calc(100%-50px)] hover:before:3xl:w-[calc(100%-70px)] before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
+                            isSearchOpen && "opacity-0",
+                          )}
+                        />
+                      ))}
+                    </SheetContent>
+                  </Sheet>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="container">
-        <div className="w-full h-auto flex items-center justify-between relative z-0">
-          <Link
-            href="/"
-            aria-label="Home"
-            className={cn(
-              "w-auto h-auto lg:py-3.75 2xl:py-5 3xl:py-7.5 inline transition-opacity duration-400 relative z-0 hover:before:w-full before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
-              isSearchOpen && "opacity-0",
-            )}
-          >
-            <span className="w-3.75 3xl:w-5 h-auto aspect-square flex items-center justify-center">
-              <Image
-                src={"/images/header-home.svg"}
-                alt={"Home"}
-                width={20}
-                height={20}
-                className="w-full h-full object-contain"
-              />
-            </span>
-          </Link>
-          {data?.navigationLinks?.map((item) => (
-            <NavigationMenu
-              key={item?.id}
-              item={item}
-              level={0}
-              mobileOpenPath={mobileOpenPath}
-              setMobileOpenPath={setMobileOpenPath}
+      {!isMobile && (
+        <div className="container">
+          <div className="w-full h-auto flex items-center justify-between relative z-0">
+            <Link
+              href="/"
+              aria-label="Home"
               className={cn(
-                "w-auto h-auto lg:p-[20px_20px] 2xl:p-[20px_25px] 3xl:p-[30px_35px] first:pl-0 last:pr-0 transition-opacity duration-400 relative z-0 hover:before:lg:w-[calc(100%-40px)] hover:before:2xl:w-[calc(100%-50px)] hover:before:3xl:w-[calc(100%-70px)] before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
+                "w-auto h-auto lg:py-3.75 2xl:py-5 3xl:py-7.5 inline transition-opacity duration-400 relative z-0 hover:before:w-full before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
                 isSearchOpen && "opacity-0",
               )}
-            />
-          ))}
-          <button
-            type="button"
-            aria-label="Open search"
-            aria-expanded={isSearchOpen}
-            onClick={() => setIsSearchOpen(true)}
-            className={cn(
-              "w-auto h-auto inline shrink-0 transition-opacity duration-400",
-              isSearchOpen && "opacity-0",
-            )}
-          >
-            <span className="2xl:w-3.75 3xl:w-5 h-auto aspect-square flex items-center justify-center">
-              <Image
-                src={"/images/header-search-icon.svg"}
-                alt={"Search"}
-                width={20}
-                height={20}
-                className="w-full h-full object-contain"
-              />
-            </span>
-          </button>
-          <div
-            ref={searchRef}
-            className={cn(
-              "w-full h-auto gap-5 flex items-center transition-all duration-500 ease-out absolute z-10 inset-0",
-              isSearchOpen
-                ? "opacity-100 visible translate-x-0"
-                : "opacity-0 invisible pointer-events-none translate-x-4 absolute",
-            )}
-          >
-            <div className="w-full h-auto relative">
-              <input
-                type="search"
-                autoFocus={isSearchOpen}
-                placeholder="Search..."
-                className="w-full h-12.5 px-5 pr-12 text-base text-white bg-white/10 border border-white/20 rounded-[5px] outline-none placeholder:text-white/50 focus:border-(--basecolor2) transition-colors duration-300"
-              />
-              <span className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none">
+            >
+              <span className="w-3.75 3xl:w-5 h-auto aspect-square flex items-center justify-center">
                 <Image
-                  src="/images/header-search-icon.svg"
-                  alt=""
+                  src={"/images/header-home.svg"}
+                  alt={"Home"}
                   width={20}
                   height={20}
                   className="w-full h-full object-contain"
                 />
               </span>
-            </div>
+            </Link>
+            {data?.navigationLinks?.map((item) => (
+              <NavigationMenu
+                key={item?.id}
+                item={item}
+                level={0}
+                mobileOpenPath={mobileOpenPath}
+                setMobileOpenPath={setMobileOpenPath}
+                className={cn(
+                  "w-auto h-auto lg:p-[20px_10px] xl:p-[20px_20px] 2xl:p-[20px_25px] 3xl:p-[30px_35px] first:pl-0 last:pr-0 transition-opacity duration-400 relative z-0 hover:before:lg:w-[calc(100%-40px)] hover:before:2xl:w-[calc(100%-50px)] hover:before:3xl:w-[calc(100%-70px)] before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
+                  isSearchOpen && "opacity-0",
+                )}
+              />
+            ))}
             <button
               type="button"
-              aria-label="Close search"
-              onClick={() => setIsSearchOpen(false)}
-              className="w-10 h-10 shrink-0 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors duration-300"
+              aria-label="Open search"
+              aria-expanded={isSearchOpen}
+              onClick={() => setIsSearchOpen(true)}
+              className={cn(
+                "w-auto h-auto inline shrink-0 transition-opacity duration-400",
+                isSearchOpen && "opacity-0",
+              )}
             >
-              <span className="relative w-4 h-4">
-                <span className="absolute left-1/2 top-1/2 w-full h-px bg-white -translate-x-1/2 -translate-y-1/2 rotate-45" />
-                <span className="absolute left-1/2 top-1/2 w-full h-px bg-white -translate-x-1/2 -translate-y-1/2 -rotate-45" />
+              <span className="2xl:w-3.75 3xl:w-5 h-auto aspect-square flex items-center justify-center">
+                <Image
+                  src={"/images/header-search-icon.svg"}
+                  alt={"Search"}
+                  width={20}
+                  height={20}
+                  className="w-full h-full object-contain"
+                />
               </span>
             </button>
+            <div
+              ref={searchRef}
+              className={cn(
+                "w-full h-auto gap-5 flex items-center transition-all duration-500 ease-out absolute z-10 inset-0",
+                isSearchOpen
+                  ? "opacity-100 visible translate-x-0"
+                  : "opacity-0 invisible pointer-events-none translate-x-4 absolute",
+              )}
+            >
+              <div className="w-full h-auto relative">
+                <input
+                  type="search"
+                  autoFocus={isSearchOpen}
+                  placeholder="Search..."
+                  className="w-full h-12.5 px-5 pr-12 text-base text-white bg-white/10 border border-white/20 rounded-[5px] outline-none placeholder:text-white/50 focus:border-(--basecolor2) transition-colors duration-300"
+                />
+                <span className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none">
+                  <Image
+                    src="/images/header-search-icon.svg"
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="w-full h-full object-contain"
+                  />
+                </span>
+              </div>
+              <button
+                type="button"
+                aria-label="Close search"
+                onClick={() => setIsSearchOpen(false)}
+                className="w-10 h-10 shrink-0 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors duration-300"
+              >
+                <span className="relative w-4 h-4">
+                  <span className="absolute left-1/2 top-1/2 w-full h-px bg-white -translate-x-1/2 -translate-y-1/2 rotate-45" />
+                  <span className="absolute left-1/2 top-1/2 w-full h-px bg-white -translate-x-1/2 -translate-y-1/2 -rotate-45" />
+                </span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }
@@ -596,7 +648,7 @@ export default function Header({ data = local_data }) {
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const mediaQuery = window.matchMedia("(max-width: 1024px)");
     const update = () => setIsMobile(mediaQuery.matches);
     update();
     mediaQuery.addEventListener("change", update);
@@ -639,10 +691,10 @@ function NavigationMenu({ item, className, level = 0 }) {
         href={item?.url || "#"}
         aria-label={item?.label}
         className={cn(
-          "lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent",
+          "text-[14px] lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full max-lg:p-5 max-lg:border-b max-lg:border-black/10 gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent",
           level > 0
-            ? "text-sm leading-[1.1] text-left text-black py-1.25"
-            : "text-lg leading-[1.1] text-white",
+            ? "leading-[1.1] text-left text-black py-1.25 max-lg:p-[5px_20px] max-lg:border-0"
+            : "leading-[1.1] text-black lg:text-white",
           className,
         )}
       >
@@ -658,8 +710,9 @@ function NavigationMenu({ item, className, level = 0 }) {
     >
       <div
         className={cn(
-          "w-full h-auto flex items-center justify-between",
-          level > 0 && "py-1.25",
+          "w-full h-auto max-lg:p-5 max-lg:border-b max-lg:border-black/10 flex items-center justify-between",
+          level > 0 && "py-1.25 max-lg:p-[5px_20px] max-lg:border-0",
+          isOpen && "max-lg:border-0",
         )}
       >
         {item?.url ? (
@@ -667,17 +720,17 @@ function NavigationMenu({ item, className, level = 0 }) {
             href={item.url}
             aria-label={item.label}
             className={cn(
-              "lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium transition-colors duration-400",
+              "text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium transition-colors duration-400",
               level > 0
                 ? cn(
-                    "text-sm leading-[1.1] py-1.25",
+                    "text-[14px] leading-[1.1] py-1.25",
                     isOpen
                       ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
                       : "text-black",
                   )
                 : isOpen
                   ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
-                  : "text-white",
+                  : "max-lg:text-black text-white",
             )}
           >
             <span>{item.label}</span>
@@ -688,7 +741,7 @@ function NavigationMenu({ item, className, level = 0 }) {
             onClick={toggleSubmenu}
             aria-expanded={isOpen}
             className={cn(
-              "lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-left py-1.25 transition-colors duration-400",
+              "text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-left py-1.25 transition-colors duration-400",
               level > 0
                 ? cn(
                     "text-sm leading-[1.1]",
@@ -715,24 +768,30 @@ function NavigationMenu({ item, className, level = 0 }) {
         >
           <span
             className={cn(
-              "w-1.25 2xl:w-1.75 h-1.75 border-r-1 2xl:border-r-2 border-b-1 2xl:border-b-2 border-white transition-transform duration-300 ease-out",
+              "w-[15px] h-[15px] lg:w-1.75 lg:h-1.75 lg:border-r-1 2xl:border-r-2 lg:border-b-1 2xl:border-b-2 border-white transition-transform duration-300 ease-out",
               isOpen && "border-(--basecolor2)",
               level === 0
-                ? "rotate-45 -translate-y-0.5"
-                : "w-1.25 h-1.25 border-r-1 border-b-1 border-black -rotate-45",
-              isOpen && level === 0 && "rotate-[225deg]",
-              isOpen &&
-                level > 0 &&
-                "max-sm:rotate-[45deg] border-(--basecolor)",
+                ? "rotate-0 lg:rotate-45 -translate-y-0.5"
+                : "w-[15px] h-[15px] lg:w-1.25 lg:h-1.25 lg:border-r-1 lg:border-b-1 lg:border-black rotate-0 lg:-rotate-45",
+              isOpen && level === 0 && "rotate-90 lg:rotate-[225deg]",
+              isOpen && level > 0 && "max-lg:rotate-90 border-(--basecolor)",
             )}
-          />
+          >
+            <Image
+              src={"/images/header-arrow-icon.svg"}
+              width={10}
+              height={5}
+              alt="header-arrow-icon"
+              className="w-full h-full object-contain max-lg:block hidden"
+            />
+          </span>
         </button>
       </div>
       {/* DESKTOP SUBMENU */}
       {!isMobile && (
         <div
           className={cn(
-            "w-full h-auto transition-all duration-250 ease-out absolute z-50",
+            "w-full h-auto transition-all duration-250 ease-out lg:absolute z-50",
             level === 0 ? "left-auto top-full" : "left-full -top-2.5 pl-3",
             isOpen
               ? "visible opacity-100 translate-y-0 pointer-events-auto"
@@ -762,7 +821,7 @@ function NavigationMenu({ item, className, level = 0 }) {
       {isMobile && (
         <div
           className={cn(
-            "grid transition-[grid-template-rows] duration-300 ease-out",
+            "grid transition-[grid-template-rows] lg:hidden duration-300 ease-out",
             isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
           )}
         >
@@ -780,7 +839,6 @@ function NavigationMenu({ item, className, level = 0 }) {
                   key={child?.id}
                   item={child}
                   level={level + 1}
-                  className={"text-sm text-black hover:text-(--basecolor2)"}
                 />
               ))}
             </div>

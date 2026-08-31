@@ -1,79 +1,140 @@
-import Hero from "@/components/sections/home/home-hero";
 import News from "@/components/sections/home/home-news";
 import Events from "@/components/sections/home/home-events";
 import Journey from "@/components/sections/home/home-journey";
 import HomeAbout from "@/components/sections/home/home-about";
 import HomeExcellence from "@/components/sections/home/home-excellence";
 import HomeCampusLife from "@/components/sections/home/home-campus-life";
-import Rankings from "@/components/sections/home/home-research-innovation";
 import HomeTestimonials from "@/components/sections/home/home-testimonials";
-import ResearchInnovation from "@/components/sections/home/home-research-innovation";
 import HomeIndustry from "@/components/sections/home/home-industry";
 import HomeAcademic from "@/components/sections/home/home-academic";
+import HomeHero from "@/components/sections/home/home-hero";
+import HomeResearch from "@/components/sections/home/home-research-innovation";
+import HomeCollaborations from "@/components/sections/home/home-collaborations";
 
 const homePageData = {
-  hero: {
+  heroSlides: {
     hero: [
       {
         id: 1,
-        title: "Powering the Future with AI-Driven Innovation",
-        description:
-          "Driven by our <b>AI Factory and Multidisciplinary Centers of Excellence</b>",
         poweredBy: {
-          url: "/images/home-hero-1.jpg",
-          alternativeText: "home-hero-1",
+          url: "/images/hero-powered.svg",
+          alternativeText: "hero image",
         },
+        media: {
+          type: "video",
+          url: "/videos/home-hero-1.mp4",
+          alternativeText: "Hero image",
+        },
+        title: "Powering the Future with AI-Driven Innovation",
+        description: {
+          text: "Driven by our",
+          highlightText:
+            " AI Factory and Multidisciplinary Centers of Excellence",
+        },
+        featuredItems: [
+          {
+            id: 1,
+            url: "/academics",
+            icon: {
+              url: "/images/home-banner-item-1.svg",
+              alternativeText: "home-banner-item-1",
+            },
+            title: "Admission Helpline",
+          },
+          {
+            id: 2,
+            url: "/academics",
+            icon: {
+              url: "/images/home-banner-item-2.svg",
+              alternativeText: "home-banner-item-2",
+            },
+            title: "International Students",
+          },
+          {
+            id: 3,
+            url: "/academics",
+            icon: {
+              url: "/images/home-banner-item-3.svg",
+              alternativeText: "home-banner-item-3",
+            },
+            title: "Events",
+          },
+        ],
       },
       {
         id: 2,
-        title: "Powering the Future with AI-Driven Innovation",
-        description:
-          "Driven by our <b>AI Factory and Multidisciplinary Centers of Excellence</b>",
         poweredBy: {
-          url: "/images/home-hero-1.jpg",
-          alternativeText: "home-hero-1",
+          url: "/images/hero-powered.svg",
+          alternativeText: "hero image",
         },
+        media: {
+          type: "image",
+          url: "/images/home-excellence-1.jpg",
+          alternativeText: "Hero image",
+        },
+        title: "Powering the Future with AI-Driven Innovation 2",
+        description: {
+          text: "Driven by our 2",
+          highlightText:
+            " AI Factory and Multidisciplinary Centers of Excellence 2",
+        },
+        featuredItems: [
+          {
+            id: 1,
+            url: "/academics",
+            icon: {
+              url: "/images/home-banner-item-1.svg",
+              alternativeText: "home-banner-item-1",
+            },
+            title: "Admission Helpline 2",
+          },
+          {
+            id: 2,
+            url: "/academics",
+            icon: {
+              url: "/images/home-banner-item-2.svg",
+              alternativeText: "home-banner-item-2",
+            },
+            title: "International Students 2",
+          },
+          {
+            id: 3,
+            url: "/academics",
+            icon: {
+              url: "/images/home-banner-item-3.svg",
+              alternativeText: "home-banner-item-3",
+            },
+            title: "Events 2",
+          },
+        ],
       },
     ],
-    heroNavigation: [
+    heroMarquee: [
       {
         id: 1,
-        icon: {
-          url: "/images/home-banner-item-1.svg",
-          alternativeText: "home-banner-item-1",
-        },
-        label: "Admission Helpline",
-        url: "/academics",
+        url: "/",
+        label: "Net zero Conclave on 29/12/2025",
       },
       {
         id: 2,
-        icon: {
-          url: "/images/home-banner-item-2.svg",
-          alternativeText: "home-banner-item-2",
-        },
-        label: "International Students",
-        url: "/academics",
+        url: "/",
+        label: " Academic Calendar for 2025-26 Even Semester (SOE)",
       },
       {
         id: 3,
-        icon: {
-          url: "/images/home-banner-item-3.svg",
-          alternativeText: "home-banner-item-3",
-        },
-        label: "Events",
-        url: "/academics",
-      },
-    ],
-    marqueeText: [
-      { id: 1, label: "Net zero Conclave on 29/12/2025", url: "/" },
-      {
-        id: 2,
-        label: " Academic Calendar for 2025-26 Even Semester (SOE)",
+        label: "Academic Calendar for 2025-26  CLICK HERE",
         url: "/",
       },
-      { id: 3, label: "Academic Calendar for 2025-26  CLICK HERE", url: "/" },
-      { id: 4, label: "DSU AI Conclave on 29/12/2025", url: "/" },
-      { id: 5, label: "AI Summit 2026 March 25 2026 2PM", url: "/" },
+      {
+        id: 4,
+        label: "DSU AI Conclave on 29/12/2025",
+        url: "/",
+      },
+      {
+        id: 5,
+        label: "AI Summit 2026 March 25 2026 2PM",
+        url: "/",
+      },
     ],
   },
   centresOfExcellence: {
@@ -748,307 +809,174 @@ const homePageData = {
     ],
   },
   researchInnovation: {
-    data: {
-      id: 1,
-      documentId: "research-innovation-1",
-      attributes: {
-        title: "Research & Innovation",
+    title: "Research & Innovation",
+    description:
+      "We foster a strong research culture through interdisciplinary collaboration, funded projects, and industry partnerships.",
+    research: {
+      header: {
+        title: "Research at DSU",
         description:
-          "We foster a strong research culture through interdisciplinary collaboration, funded projects, and industry partnerships.",
-        tabs: [
-          {
-            id: 1,
-            value: "research",
-            trigger: {
-              icon: {
-                url: "/images/research-icon-1.svg",
-                alternativeText: "Research",
-              },
-              label: "Research",
-            },
-            content: {
-              slug: "/",
-              featuredTitle: "Research",
-              title: "Research at DSU",
-              description:
-                "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India’s leading educational institutions today.This growth is the result of the institutions focused effort to advance knowledge and educate students in.",
-              button: {
-                label: "UG Research Forum",
-                url: "/",
-                icon: {
-                  url: "/images/research-icon-3.svg",
-                  alternativeText: "Research",
-                },
-              },
-              gallery: [],
-              statistics: [
-                {
-                  id: 1,
-                  icon: {
-                    url: "/images/research-icon-1.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 200,
-                  suffix: "+",
-                  label: "Publications",
-                },
-                {
-                  id: 2,
-                  icon: {
-                    url: "/images/research-icon-2.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 85,
-                  suffix: "+",
-                  label: "Funded Research Projects",
-                },
-                {
-                  id: 3,
-                  icon: {
-                    url: "/images/research-icon-3.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 24,
-                  suffix: "+",
-                  label: "Innovation Driven Labs",
-                },
-              ],
-              featuredCards: [
-                {
-                  id: 1,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Admissions",
-                  image: {
-                    url: "/images/researchItem-1.jpg",
-                    alternativeText: "researchItem-1",
-                  },
-                },
-                {
-                  id: 2,
-                  slug: "/school-of-engineering",
-                  title: "Research Supervisors",
-                  image: {
-                    url: "/images/researchItem-2.jpg",
-                    alternativeText: "researchItem-2",
-                  },
-                },
-                {
-                  id: 3,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Regulations",
-                  image: {
-                    url: "/images/researchItem-3.jpg",
-                    alternativeText: "researchItem-3",
-                  },
-                },
-                {
-                  id: 4,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Course Work Syllabus",
-                  image: {
-                    url: "/images/researchItem-4.jpg",
-                    alternativeText: "researchItem-4",
-                  },
-                },
-              ],
-            },
-          },
-          {
-            id: 2,
-            value: "incubation",
-            trigger: {
-              icon: {
-                url: "/images/research-icon-1.svg",
-                alternativeText: "Incubation",
-              },
-              label: "Incubation & Entrepreneurship",
-            },
-            content: {
-              slug: "/",
-              featuredTitle: "Incubation & Entrepreneurship",
-              title: "Incubation & Entrepreneurship",
-              description:
-                "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India’s leading educational institutions today.This growth is the result of the institutions focused effort to advance knowledge and educate students in.",
-              button: {
-                label: "Incubation Center",
-                url: "/",
-                icon: {
-                  url: "/images/research-icon-3.svg",
-                  alternativeText: "Research",
-                },
-              },
-              gallery: [],
-              statistics: [
-                {
-                  id: 1,
-                  icon: {
-                    url: "/images/research-icon-1.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 200,
-                  suffix: "+",
-                  label: "Publications",
-                },
-                {
-                  id: 2,
-                  icon: {
-                    url: "/images/research-icon-2.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 85,
-                  suffix: "+",
-                  label: "Funded Research Projects",
-                },
-                {
-                  id: 3,
-                  icon: {
-                    url: "/images/research-icon-3.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 24,
-                  suffix: "+",
-                  label: "Innovation Driven Labs",
-                },
-              ],
-              featuredCards: [
-                {
-                  id: 1,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Admissions",
-                  image: {
-                    url: "/images/researchItem-1.jpg",
-                    alternativeText: "researchItem-1",
-                  },
-                },
-                {
-                  id: 2,
-                  slug: "/school-of-engineering",
-                  title: "Research Supervisors",
-                  image: {
-                    url: "/images/researchItem-2.jpg",
-                    alternativeText: "researchItem-2",
-                  },
-                },
-                {
-                  id: 3,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Regulations",
-                  image: {
-                    url: "/images/researchItem-3.jpg",
-                    alternativeText: "researchItem-3",
-                  },
-                },
-                {
-                  id: 4,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Course Work Syllabus",
-                  image: {
-                    url: "/images/researchItem-4.jpg",
-                    alternativeText: "researchItem-4",
-                  },
-                },
-              ],
-            },
-          },
-          {
-            id: 3,
-            value: "innovation-labs",
-            trigger: {
-              icon: {
-                url: "/images/research-icon-1.svg",
-                alternativeText: "Innovation",
-              },
-              label: "Innovation Labs",
-            },
-            content: {
-              slug: "/",
-              featuredTitle: "Innovation Labs",
-              title: "Innovation Labs",
-              description:
-                "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India’s leading educational institutions today.This growth is the result of the institutions focused effort to advance knowledge and educate students in.",
-              button: {
-                label: "Explore Labs",
-                url: "/",
-                icon: {
-                  url: "/images/research-icon-3.svg",
-                  alternativeText: "Research",
-                },
-              },
-              gallery: [],
-              statistics: [
-                {
-                  id: 1,
-                  icon: {
-                    url: "/images/research-icon-1.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 200,
-                  suffix: "+",
-                  label: "Publications",
-                },
-                {
-                  id: 2,
-                  icon: {
-                    url: "/images/research-icon-2.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 85,
-                  suffix: "+",
-                  label: "Funded Research Projects",
-                },
-                {
-                  id: 3,
-                  icon: {
-                    url: "/images/research-icon-3.svg",
-                    alternativeText: "Research",
-                  },
-                  value: 24,
-                  suffix: "+",
-                  label: "Innovation Driven Labs",
-                },
-              ],
-              featuredCards: [
-                {
-                  id: 1,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Admissions",
-                  image: {
-                    url: "/images/researchItem-1.jpg",
-                    alternativeText: "researchItem-1",
-                  },
-                },
-                {
-                  id: 2,
-                  slug: "/school-of-engineering",
-                  title: "Research Supervisors",
-                  image: {
-                    url: "/images/researchItem-2.jpg",
-                    alternativeText: "researchItem-2",
-                  },
-                },
-                {
-                  id: 3,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Regulations",
-                  image: {
-                    url: "/images/researchItem-3.jpg",
-                    alternativeText: "researchItem-3",
-                  },
-                },
-                {
-                  id: 4,
-                  slug: "/school-of-engineering",
-                  title: "Ph.D Course Work Syllabus",
-                  image: {
-                    url: "/images/researchItem-4.jpg",
-                    alternativeText: "researchItem-4",
-                  },
-                },
-              ],
-            },
-          },
-        ],
+          "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India's leading educational institutions today. This growth is the result of the institutions focused effort to advance knowledge and educate students in..",
+        button: {
+          label: "Explore More",
+          link: "#",
+        },
       },
+      featuredCards: [
+        {
+          id: 1,
+          title: "Ph.D Admissions",
+          media: {
+            url: "/images/researchItem-1.jpg",
+            alt: "Media-1",
+          },
+          link: "/",
+        },
+        {
+          id: 2,
+          title: "Research Supervisors",
+          media: {
+            url: "/images/researchItem-2.jpg",
+            alt: "Media-2",
+          },
+          link: "/",
+        },
+        {
+          id: 3,
+          title: "Ph.D Regulations",
+          media: {
+            url: "/images/researchItem-3.jpg",
+            alt: "Media-3",
+          },
+          link: "/",
+        },
+        {
+          id: 4,
+          title: "Ph.D Course Work Syllabus",
+          media: {
+            url: "/images/researchItem-4.jpg",
+            alt: "Media-4",
+          },
+          link: "/",
+        },
+      ],
+      statistics: [
+        {
+          id: 1,
+          value: "200",
+          label: "Publications",
+          icon: {
+            url: "/images/research-icon-1.svg",
+            alt: "Icon-1",
+          },
+        },
+        {
+          id: 2,
+          value: "85",
+          label: "Funded Research <br> Projects",
+          icon: {
+            url: "/images/research-icon-2.svg",
+            alt: "Icon-1",
+          },
+        },
+        {
+          id: 3,
+          value: "24",
+          label: "Innovation Driven Labs",
+          icon: {
+            url: "/images/research-icon-3.svg",
+            alt: "Icon-1",
+          },
+        },
+      ],
+      ctaButton: {
+        label: "UG Research Forum",
+        link: "#",
+        icon: "/images/research-researchForumBtn-1.svg",
+      },
+    },
+    incubation: {
+      header: {
+        title: "Incubation & Entrepreneurship",
+        description:
+          "DSU promotes innovation and entrepreneurship through incubation support, industry mentorship, startup guidance, and innovation labs—empowering students to build impactful real-world solutions.",
+        button: {
+          label: "Explore More",
+          link: "#",
+        },
+      },
+      featuredCards: [
+        {
+          id: 1,
+          link: "/",
+          tag: "DERBI Foundation",
+          title: "Entrepreneurship Research & Business Incubation Foundation",
+          description:
+            "Dayananda Sagar Entrepreneurship Research & Business Incubator (DERBI) Foundation is a Technology Business Incubator with the objective of incubating technology ventures.",
+          media: {
+            url: "/images/incubation-1.webp",
+            alt: "Media-1",
+          },
+        },
+        {
+          id: 2,
+          link: "/",
+          tag: "AIC-DSU Foundation",
+          title: "AIC-DSU Innovation Foundation",
+          description:
+            "AIC-DSU Innovation Foundation is an initiative of Atal Incubation Center & Dayananda Sagar University with active support from Atal Innovation Mission (AIM), NITI Aayog & GoI.",
+          media: {
+            url: "/images/incubation-2.webp",
+            alt: "Media-1",
+          },
+        },
+      ],
+    },
+    innovation: {
+      header: {
+        title: "Transformational Opportunities Of Cloud, Big Data & Analytics",
+        description:
+          "IBM collaborates with Dayananda Sagar University in Post graduate programs: Computer Science Engineering with specialization in Cloud Computing, Big Data & Analytics and Internet of Things (IoT). These Post Graduate M.Tech. programs....",
+        button: {
+          label: "Explore More",
+          link: "#",
+        },
+      },
+      featuredCards: [
+        {
+          id: 1,
+          link: "/",
+          title: "ETAS: Automotive <br> System Labs",
+          description:
+            "Today's automotive system is complex with the extensive use of electronics and software.",
+          media: {
+            url: "/images/home-innovation-1.jpg",
+            alt: "Media-1",
+          },
+        },
+        {
+          id: 2,
+          link: "/",
+          title: "Autodesk: Design & <br> Innovation Centre",
+          description:
+            "Centre will focus on providing training to the students & faculty members in the Virtual Design techniques.",
+          media: {
+            url: "/images/home-innovation-2.jpg",
+            alt: "Media-1",
+          },
+        },
+        {
+          id: 3,
+          link: "/",
+          title: "Vmware <br> IT Academy",
+          description:
+            "VMware is a global leader in cloud infrastructure and business mobility.",
+          media: {
+            url: "/images/home-innovation-3.jpg",
+            alt: "Media-1",
+          },
+        },
+      ],
     },
   },
   industryCollaboration: {
@@ -1233,6 +1161,14 @@ const homePageData = {
         },
       },
     ],
+    virtualTour: {
+      link:"/",
+      media:{
+        url:"/images/virtualtour.jpg",
+        alternativeText:"Virtual Tour"
+      },
+      label: "VIRTUAL TOUR",
+    },
     leadership: {
       subTitle: "THE VISIONARIES",
       title: "Our Leadership",
@@ -1516,11 +1452,244 @@ const homePageData = {
     },
   },
   internationalCollaboration: {
-    data: {
+    title: "International Collaborations",
+  description: "Click on any item Flag to view DSU's partner universities.",
+  statistics: [
+    {
       id: 1,
-      documentId: "international-collaboration-1",
-      attributes: { title: "internationalCollaboration" },
+      value: 50,
+      suffix: "+",
+      label: "Partner Universities",
     },
+    {
+      id: 2,
+      value: 9,
+      suffix: "+",
+      label: "Countries",
+    },
+    {
+      id: 3,
+      title: "Student",
+      label: "Exchange Programs",
+    },
+    {
+      id: 4,
+      title: "Global",
+      label: "Research Initiatives",
+    },
+    {
+      id: 5,
+      title: "Faculty",
+      label: "Exchange Collaboration",
+    },
+  ],
+  countries: [
+    {
+      id: 1,
+      flagImage: {
+        url: "/images/home-flag-1.svg",
+        alternativeText: "home-flag-1",
+      },
+      position: {
+        axisX: "18%",
+        axisY: "38%",
+      },
+      featuredImage: {
+        url: "/images/home-colab-1.webp",
+        alternativeText: "collab-usa",
+      },
+      title: "United States of America",
+      description:
+        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.",
+      partners: [
+        "Northeastern University",
+        "University of Evansville",
+        "LeTourneau University",
+        "University of South Carolina Aiken",
+        "Worcester Polytechnic Institute",
+        "Georgia Institute of Technology",
+      ],
+      moreLink: "/collaborations/usa",
+    },
+    {
+      id: 2,
+      flagImage: {
+        url: "/images/home-flag-2.svg",
+        alternativeText: "home-flag-2",
+      },
+      position: {
+        axisX: "50%",
+        axisY: "30%",
+      },
+      featuredImage: {
+        url: "/images/home-excellence-1.jpg",
+        alternativeText: "collab-usa",
+      },
+      title: "Country-2",
+      description:
+        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.2",
+      partners: [
+        "Northeastern University2",
+        "University of Evansville2",
+        "LeTourneau University2",
+      ],
+    },
+    {
+      id: 3,
+      flagImage: {
+        url: "/images/home-flag-3.svg",
+        alternativeText: "home-flag-3",
+      },
+      position: {
+        axisX: "53%",
+        axisY: "40%",
+      },
+      featuredImage: {
+        url: "/images/home-excellence-3.jpg",
+        alternativeText: "collab-usa",
+      },
+      title: "Country-3",
+      description:
+        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.3",
+      partners: [
+        "Northeastern University3",
+        "University of Evansville3",
+        "LeTourneau University3",
+        "University of South Carolina Aiken3",
+        "Worcester Polytechnic Institute3",
+        "Georgia Institute of Technology3",
+      ],
+      moreLink: "/collaborations/usa",
+    },
+    {
+      id: 4,
+      flagImage: {
+        url: "/images/home-flag-4.svg",
+        alternativeText: "home-flag-4",
+      },
+      position: {
+        axisX: "75%",
+        axisY: "23%",
+      },
+      featuredImage: {
+        url: "/images/home-excellence-4.jpg",
+        alternativeText: "collab-usa",
+      },
+      title: "Country-4",
+      description:
+        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.4",
+      partners: [
+        "Northeastern University4",
+        "University of Evansville4",
+      ],
+    },
+    {
+      id: 5,
+      flagImage: {
+        url: "/images/home-flag-5.svg",
+        alternativeText: "home-flag-5",
+      },
+      position: {
+        axisX: "75%",
+        axisY: "57%",
+      },
+      featuredImage: {
+        url: "/images/home-excellence-5.jpg",
+        alternativeText: "collab-usa",
+      },
+      title: "Country-5",
+      description:
+        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.5",
+      partners: [
+        "Northeastern University5",
+        "University of Evansville5",
+        "LeTourneau University5",
+        "University of South Carolina Aiken5",
+        "Worcester Polytechnic Institute5",
+        "Georgia Institute of Technology5",
+      ],
+      moreLink: "/collaborations/usa",
+    },
+    {
+      id: 6,
+      flagImage: {
+        url: "/images/home-flag-6.svg",
+        alternativeText: "home-flag-6",
+      },
+      position: {
+        axisX: "70%",
+        axisY: "62%",
+      },
+      featuredImage: {
+        url: "/images/home-excellence-2.jpg",
+        alternativeText: "collab-usa",
+      },
+      title: "Country-6",
+      description:
+        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.6",
+      partners: [
+        "Northeastern University6",
+        "University of Evansville6",
+        "Worcester Polytechnic Institute6",
+        "Georgia Institute of Technology6",
+      ],
+      moreLink: "/collaborations/usa",
+    },
+    {
+      id: 7,
+      flagImage: {
+        url: "/images/home-flag-7.svg",
+        alternativeText: "home-flag-7",
+      },
+      position: {
+        axisX: "95%",
+        axisY: "90%",
+      },
+      featuredImage: {
+        url: "/images/home-excellence-3.jpg",
+        alternativeText: "collab-usa",
+      },
+      title: "Country-7",
+      description:
+        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.7",
+      partners: [
+        "Northeastern University7",
+        "University of Evansville7",
+        "LeTourneau University7",
+        "University of South Carolina Aiken7",
+        "Worcester Polytechnic Institute7",
+        "Georgia Institute of Technology7",
+      ],
+      moreLink: "/collaborations/usa",
+    },
+    {
+      id: 8,
+      flagImage: {
+        url: "/images/home-flag-8.svg",
+        alternativeText: "home-flag-8",
+      },
+      position: {
+        axisX: "55%",
+        axisY: "75%",
+      },
+      featuredImage: {
+        url: "/images/home-excellence-4.jpg",
+        alternativeText: "collab-usa",
+      },
+      title: "Country-8",
+      description:
+        "USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.8",
+      partners: [
+        "Northeastern University8",
+        "University of Evansville8",
+        "LeTourneau University8",
+        "University of South Carolina Aiken8",
+        "Worcester Polytechnic Institute8",
+        "Georgia Institute of Technology8",
+      ],
+      moreLink: "/collaborations/usa",
+    },
+  ],
   },
   latestNews: {
     data: {
@@ -1545,17 +1714,15 @@ const homePageData = {
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
-      <Hero data={homePageData.hero} />
+      <HomeHero data={homePageData?.heroSlides} />
       <HomeExcellence data={homePageData?.centresOfExcellence} />
-      <Rankings />
       <HomeAcademic data={homePageData?.academicPrograms} />
-      {/* <ResearchInnovation
-        data={homePageData.researchInnovation.data.attributes}
-      /> */}
+      <HomeResearch data={homePageData?.researchInnovation} />
       <HomeIndustry data={homePageData?.industryCollaboration} />
       <HomeAbout data={homePageData?.homeAbout} />
       <HomeTestimonials data={homePageData?.studentSuccess} />
       <HomeCampusLife data={homePageData?.campusLife} />
+      <HomeCollaborations data={homePageData?.internationalCollaboration} />
       <Events />
       <News data={homePageData.latestNews} />
       <Journey />

@@ -7,7 +7,7 @@ import { Heading } from "@/components/ui/heading";
 import { buttonVariants } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
 
-export default function HomeExcellence({ data = local_data }) {
+export default function HomeExcellence({ data }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
