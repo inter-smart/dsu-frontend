@@ -85,18 +85,29 @@ export default function AboutHistory({ data }) {
                                     ))}
                                 </div>
 
-                                <Link href={data?.cta.url} className="text_1 font-bold capitalize flex items-center justify-center gap-[10px] 2xl:gap-[20px] text-white bg-gradient-to-r from-[#DC2626] to-[#F97316] w-fit 
-                                    h-[30px] xl:h-[35px] 2xl:h-[40px] 3xl:h-[50px] min-w-[160px] xl:min-w-[155px] 2xl:min-w-[185px] 3xl:min-w-[230px] rounded-[6px] 2xl:rounded-[4px]">
-                                    {data?.cta.label}
-                                    <div className="w-[15px] h-[13px] flex items-center justify-center">
-                                        <svg width="11" height="9" viewBox="0 0 11 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <Link
+                                    href={data?.cta.url}
+                                    className="group relative flex h-[30px] w-fit min-w-[160px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px] xl:min-w-[155px] 2xl:h-[40px] 2xl:min-w-[185px] 2xl:gap-[20px] 2xl:rounded-[4px] 3xl:h-[50px] 3xl:min-w-[230px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
+                                >
+                                    <span className="relative z-[1] transition-transform duration-300 group-hover:translate-x-[-2px]">
+                                        {data?.cta.label}
+                                    </span>
+
+                                    <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
+                                        <svg
+                                            width="11"
+                                            height="9"
+                                            viewBox="0 0 11 9"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="transition-transform duration-300 group-hover:rotate-180"
+                                        >
                                             <circle cx="5.12232" cy="0.919192" r="0.919192" fill="white" />
                                             <circle cx="5.12232" cy="4.33325" r="0.919192" fill="white" />
                                             <circle cx="5.12232" cy="7.74732" r="0.919192" fill="white" />
                                             <circle cx="9.32349" cy="4.33325" r="0.919192" fill="white" />
                                             <circle cx="0.919192" cy="4.33325" r="0.919192" fill="white" />
                                         </svg>
-
                                     </div>
                                 </Link>
                             </div>
