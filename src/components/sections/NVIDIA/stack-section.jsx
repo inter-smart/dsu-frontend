@@ -1,4 +1,4 @@
-import React from 'react'
+import Image from "next/image";
 
 function renderTextNodes(nodes) {
     return nodes.map((node, i) =>
@@ -12,16 +12,19 @@ function renderTextNodes(nodes) {
 
 export default function StackSection({ data }) {
     return (
-        <section className="relative py-[40px] xl:py-[50px] 2xl:py-[70px] 3xl:py-[90px] bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] ">
+        <section className="relative z-0 py-[40px] xl:py-[50px] 2xl:py-[70px] 3xl:py-[90px] bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] ">
+            <div className="absolute bottom-0 top-0 left-0 m-auto -z-10 max-w-[850px] w-full">
+                <Image src={data?.media?.url} width={840} height={850} className="w-full h-full object-cover" alt={data?.media?.alternativeText}/>
+            </div>
             <div className="container">
-                <div className="max-w-[80%] ml-auto">
+                <div className="max-w-[65%] ml-auto">
                     <h2 className=" text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] text-center mb-[10px]
                                 xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black  ">
                         {data.sectionHeading}
                     </h2>
                     <div className="flex flex-col gap-[10px]">
                         {data?.layers.map((item, id) => (
-                            <div key={id} className="w-full border border-black/10 rounded-[8px] overflow-hidden p-[24px] flex items-center ">
+                            <div key={id} className="w-full border border-black/10 rounded-[8px] overflow-hidden p-[18px] flex items-center bg-gradient-to-r from-[rgb(230,81,0,0.1)] via-[rgb(255,109,0,0.1)] to-[rgb(255,143,0,0.1)]">
                                 <div className="w-1/2 ">
                                     <div className="flex items-center gap-[15px]">
                                         <div className="w-[106px] h-[96px] bg-black/45 rounded-[10px] p-[10px_20px]">

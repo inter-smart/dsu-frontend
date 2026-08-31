@@ -133,7 +133,7 @@ const local_data = {
             alternativeText: "Layered 3D render of NVIDIA AI stack chip architecture with glowing circuit layers",
             mime: "image/jpg",
             // if video - mime: "video/mp4",
-            url: "/images/nvidia-ai-stack-3d-render.jpg",
+            url: "/images/stack-dsu.png",
         },
         layers: [
             {
