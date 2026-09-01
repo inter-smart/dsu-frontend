@@ -1,25 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const local_data = {
-  background_image: "/images/home-journey.webp",
-  title: "Start Your Journey With Us",
-  description:
-    "<p>Take the next step toward a future-ready education supported by innovation, <br> research, and industry collaboration.</p>",
-  certified_list: [
-    {
-      id: 1,
-      icon: "/images/rating-star.svg",
-      label: "NAAC A+ Accredited",
-    },
-    {
-      id: 2,
-      label: "UGC Recognized",
-    },
-  ],
-};
-
-export default function Journey({ data = local_data }) {
+export default function Journey({ data }) {
   return (
     <section className="w-full h-auto py-12.5 lg:py-15 xl:py-20 2xl:py-30 block relative z-0">
       <Image
@@ -35,7 +17,7 @@ export default function Journey({ data = local_data }) {
           {data?.title}
         </div>
         <div
-          className="text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-normal text-center text-[#FFF2F2] mb-3.75 2xl:mb-6.25"
+          className="text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-normal text-center [&>*]:text-[#FFF2F2] mb-3.75 2xl:mb-6.25"
           dangerouslySetInnerHTML={{
             __html: data?.description,
           }}
@@ -43,7 +25,7 @@ export default function Journey({ data = local_data }) {
         <div className="w-full h-auto gap-1.25 xl:gap-2.5 mb-2.5 sm:mb-3.75 xl:mb-5 2xl:mb-7.5 flex flex-wrap justify-center">
           <Link
             href="#!"
-            className="text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-bold text-[#E05128] w-auto h-5 sm:h-7.5 xl:h-8.75 2xl:h-12.5 px-2.5 sm:px-3.75 2xl:px-5 gap-2.5 xl:gap-3.75 2xl:gap-5 bg-white rounded-[3px] xl:rounded-[5px] overflow-hidden transition-colors duration-500 inline-flex items-center justify-center hover:bg-transparent hover:border-1 hover:border-[#E05128] dark:hover:border-white dark:hover:text-white"
+            className="text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-bold text-[#E05128] w-auto h-5 sm:h-7.5 xl:h-8.75 2xl:h-12.5 px-2.5 sm:px-3.75 2xl:px-5 gap-2.5 xl:gap-3.75 2xl:gap-5 bg-white rounded-[3px] xl:rounded-[5px] overflow-hidden transition-colors duration-500 inline-flex items-center justify-center hover:bg-transparent hover:border hover:border-[#E05128] dark:hover:border-white dark:hover:text-white"
           >
             Apply Now
             <span className="w-2.5 sm:w-3 2xl:w-3.75 h-auto aspect-square overflow-hidden flex items-center justify-center">
@@ -58,10 +40,10 @@ export default function Journey({ data = local_data }) {
           </Link>
           <Link
             href="#!"
-            className="text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-bold text-black w-auto h-[20px] sm:h-[30px] xl:h-[35px] 2xl:h-[50px] px-[10px] sm:px-[15px] 2xl:px-[20px] gap-[10px] xl:gap-[15px] 2xl:gap-[20px] bg-[#FDC72F] rounded-[3px] xl:rounded-[5px] overflow-hidden inline-flex items-center justify-center transition-colors duration-500 hover:bg-(--basecolor2)"
+            className="text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-bold text-black w-auto h-5 sm:h-7.5 xl:h-8.75 2xl:h-12.5 px-2.5 sm:px-3.75 2xl:px-5 gap-2.5 xl:gap-3.75 2xl:gap-5 bg-[#FDC72F] rounded-[3px] xl:rounded-[5px] overflow-hidden inline-flex items-center justify-center transition-colors duration-500 hover:bg-(--basecolor2)"
           >
             Talk to an Advisor
-            <span className="w-[10px] sm:w-[12px] 2xl:w-[15px] h-auto aspect-square overflow-hidden flex items-center justify-center">
+            <span className="w-2.5 sm:w-3 2xl:w-3.75 h-auto aspect-square overflow-hidden flex items-center justify-center">
               <Image
                 src="/images/home-journey-button-2.svg"
                 width={15}
@@ -73,10 +55,10 @@ export default function Journey({ data = local_data }) {
           </Link>
           <Link
             href="#!"
-            className="text-[8px] sm:text-[13px] xl:text-[14px] 2xl:text-[18px] leading-normal font-bold text-white w-auto h-[20px] sm:h-[30px] xl:h-[35px] 2xl:h-[50px] px-[10px] sm:px-[15px] 2xl:px-[20px] gap-[10px] xl:gap-[15px] 2xl:gap-[20px] rounded-[3px] xl:rounded-[5px] border-1 border-white overflow-hidden inline-flex items-center justify-center transition-colors duration-500 hover:bg-(--basecolor)"
+            className="text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-bold text-white w-auto h-5 sm:h-7.5 xl:h-8.75 2xl:h-12.5 px-2.5 sm:px-3.75 2xl:px-5 gap-2.5 xl:gap-3.75 2xl:gap-5 rounded-[3px] xl:rounded-[5px] border border-white overflow-hidden inline-flex items-center justify-center transition-colors duration-500 hover:bg-(--basecolor)"
           >
             Book a Campus Visit
-            <span className="w-[10px] sm:w-[12px] 2xl:w-[15px] h-auto aspect-square overflow-hidden flex items-center justify-center">
+            <span className="w-2.5 sm:w-3 2xl:w-3.75 h-auto aspect-square overflow-hidden flex items-center justify-center">
               <Image
                 src="/images/home-journey-button-3.svg"
                 width={15}
@@ -91,11 +73,11 @@ export default function Journey({ data = local_data }) {
           {data?.certified_list?.map((item) => (
             <div
               key={item?.id}
-              className="w-auto h-auto inline-flex relative z-0 last:before:hidden last:before: before:content-[''] before:w-[1px] h-full before:bg-white/20 before:translate-x-[calc(var(--gap)/2)] before:absolute before:z-1 before:inset-[0_0_0_auto]"
+              className="w-auto h-auto inline-flex relative z-0 last:before:hidden last:before: before:content-[''] before:w-px before:h-full before:bg-white/20 before:translate-x-[calc(var(--gap)/2)] before:absolute before:z-1 before:inset-[0_0_0_auto]"
             >
-              <div className="w-full h-auto gap-[10px] flex items-center">
+              <div className="w-full h-auto gap-2.5 flex items-center">
                 {item?.icon && (
-                  <div className="w-[35px] sm:w-[50px] xl:w-[60px] 2xl:w-[85px] h-auto aspect-[85/25] overflow-hidden flex items-center justify-center">
+                  <div className="w-8.75 sm:w-12.5 xl:w-15 2xl:w-21.25 h-auto aspect-85/25 overflow-hidden flex items-center justify-center">
                     <Image
                       src={item?.icon}
                       width={50}
@@ -105,7 +87,7 @@ export default function Journey({ data = local_data }) {
                     />
                   </div>
                 )}
-                <div className="text-[8px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] leading-normal font-normal text-white flex-1">
+                <div className="text-[8px] sm:text-[10px] xl:text-xs 2xl:text-sm leading-normal font-normal text-white flex-1">
                   {item?.label}
                 </div>
               </div>

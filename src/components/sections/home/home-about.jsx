@@ -106,7 +106,7 @@ export default function HomeAbout({ data }) {
             </div>
           </div>
           <div className="w-(--width) h-auto">
-            <div className="group w-full h-full max-sm:aspect-390/125 bg-amber-200 rounded-[6px] 2xl:rounded-[10px] overflow-hidden block relative z-0">
+            <div className="group w-full h-full max-sm:aspect-390/125 bg-amber-200 rounded-md 2xl:rounded-[10px] overflow-hidden block relative z-0">
               <Image
                 src={data?.virtualTour?.media?.url}
                 alt={data?.virtualTour?.media?.alternativeText || "Virtual Tour"}
@@ -281,7 +281,7 @@ export default function HomeAbout({ data }) {
                   />
                 </div>
                 <div
-                  className="text-[14px] 2xl:text-base 3xl:text-[20px] leading-[1.1] font-normal text-[#050505] dark:text-white pl-2.5 transition-colors duration-500 group-hover:text-white"
+                  className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal text-[#050505] dark:text-white pl-2.5 transition-colors duration-500 group-hover:text-white"
                   dangerouslySetInnerHTML={{
                     __html: data?.aboutInfo?.statistics?.label || "",
                   }}

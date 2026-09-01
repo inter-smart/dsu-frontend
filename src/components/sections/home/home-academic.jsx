@@ -6,9 +6,15 @@ import Autoplay from "embla-carousel-autoplay";
 import { Heading } from "@/components/ui/heading";
 import useEmblaCarousel from "embla-carousel-react";
 import { buttonVariants } from "@/components/ui/button";
+import { useCallback, useEffect, useState } from "react";
 
 export default function HomeAcademic({ data }) {
-  const [academicEmblaRef] = useEmblaCarousel(
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [slidesCount, setSlidesCount] = useState(0);
+  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
+
+  const [academicEmblaRef, academicEmblaApi] = useEmblaCarousel(
     {
       loop: true,
       align: "center",
@@ -24,6 +30,37 @@ export default function HomeAcademic({ data }) {
       }),
     ],
   );
+
+  const scrollPrev = useCallback(() => {
+    if (academicEmblaApi) academicEmblaApi.scrollPrev();
+  }, [academicEmblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (academicEmblaApi) academicEmblaApi.scrollNext();
+  }, [academicEmblaApi]);
+
+  const onSelect = useCallback((api) => {
+    if (!api) return;
+    setSelectedIndex(api.selectedScrollSnap());
+    setPrevBtnDisabled(!api.canScrollPrev());
+    setNextBtnDisabled(!api.canScrollNext());
+  }, []);
+
+  useEffect(() => {
+    if (!academicEmblaApi) return;
+
+    setSlidesCount(academicEmblaApi.scrollSnapList().length);
+    onSelect(academicEmblaApi);
+
+    academicEmblaApi.on("reInit", onSelect);
+    academicEmblaApi.on("select", onSelect);
+
+    return () => {
+      academicEmblaApi.off("reInit", onSelect);
+      academicEmblaApi.off("select", onSelect);
+    };
+  }, [academicEmblaApi, onSelect]);
+
   return (
     <section className="w-full h-auto py-12.5 2xl:py-15 3xl:py-20 bg-linear-to-t from-[#FFF3E0] to-[#FFF8EE] dark:bg-none dark:bg-black overflow-hidden block">
       <div className="container">
@@ -61,19 +98,12 @@ export default function HomeAcademic({ data }) {
               ))}
             </div>
           </div>
-          {/* {!prevBtnDisabled && (
+          {!prevBtnDisabled && (
             <button
               onClick={scrollPrev}
               aria-label="Previous slide"
               className="w-(--navigation-btn-size) h-auto aspect-40/30 my-auto overflow-hidden -translate-x-[calc(var(--navigation-btn-size)/8)]  sm:-translate-x-(--navigation-btn-size) xl:-translate-x-[calc(var(--navigation-btn-size)+5px)] flex items-center justify-center absolute z-1 inset-[0_auto_0_0] transition-opacity duration-500 hover:opacity-50"
             >
-              <Image
-                src={"/images/testimonial-slider-btn.svg"}
-                alt="left-btn"
-                width={40}
-                height={30}
-                className="w-full h-full object-contain hidden sm:block"
-              />
               <Image
                 src={"/images/testimonial-slider-btn-mobile.svg"}
                 alt="left-btn"
@@ -90,13 +120,6 @@ export default function HomeAcademic({ data }) {
               className="w-(--navigation-btn-size) h-auto aspect-40/30 my-auto overflow-hidden translate-x-[calc(var(--navigation-btn-size)/8)] sm:translate-x-(--navigation-btn-size) xl:translate-x-[calc(var(--navigation-btn-size)+5px)] flex items-center justify-center absolute z-1 inset-[0_0_0_auto] transition-opacity duration-500 hover:opacity-50"
             >
               <Image
-                src={"/images/testimonial-slider-btn.svg"}
-                alt="right-btn"
-                width={40}
-                height={30}
-                className="w-full h-full object-contain scale-x-[-1] hidden sm:block"
-              />
-              <Image
                 src={"/images/testimonial-slider-btn-mobile.svg"}
                 alt="right-btn"
                 width={40}
@@ -104,7 +127,22 @@ export default function HomeAcademic({ data }) {
                 className="w-full h-full object-contain scale-x-[-1] block sm:hidden"
               />
             </button>
-          )} */}
+          )}
+          <div className="w-full h-auto mt-5 gap-1.25 max-sm:flex hidden items-center justify-center">
+            {Array.from({ length: slidesCount }).map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => academicEmblaApi?.scrollTo(index)}
+                aria-label={`Go to slide ${index + 1}`}
+                className={`h-1.25 rounded-full transition-all duration-300 ${
+                  selectedIndex === index
+                    ? "w-12.5 bg-[#EA580C]"
+                    : "w-3 bg-[#D3D6DB]"
+                }`}
+              />
+            ))}
+          </div>
         </div>
         <div className="w-full h-auto mt-3.75 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center">
           <Link
