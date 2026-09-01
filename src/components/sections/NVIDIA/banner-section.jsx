@@ -28,7 +28,7 @@ export default function BannerSection({ data }) {
             </div>
             <div className="container flex items-end h-full py-[45px]">
                 <div className="flex items-end justify-between flex-wrap relative z-10 w-full gap-[10px]">
-                    <div className="w-auto lg:max-w-[420px] xl:max-w-[515px] 2xl:max-w-[605px] 3xl:max-w-[750px]">
+                    <div className="w-auto lg:max-w-[420px] xl:max-w-[515px] 2xl:max-w-[605px] 3xl:max-w-[780px]">
                         <div className="flex items-center gap-[10px] mb-[5px]">
                             <span className="text-[16px] text-white font-bold ">Powered by :</span>
                             <Image src={data?.poweredBy?.logo?.url} width={95} height={75} alt={data?.powerBy?.logo?.alternativeText} />
