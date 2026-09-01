@@ -1,12 +1,13 @@
 import InnerHero from "@/components/layout/common/InnerHero";
+import Contact from "@/components/sections/contact/contact";
 
 const local_data = {
   hero: {
     id: 25,
     heroMedia: {
-      alternativeText: "History page title",
+      url: "/images/contact-banner.webp",
+      alternativeText: "Contact page title",
       mime: "image/jpg",
-      url: "/images/history/Banner.jpg",
     },
     title: "Contact us",
     breadcrumb: [
@@ -26,6 +27,7 @@ export default function page() {
   return (
     <>
       <InnerHero data={local_data.hero} />
+      <Contact />
     </>
   );
 }
