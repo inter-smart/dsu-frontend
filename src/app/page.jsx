@@ -1694,23 +1694,149 @@ const homePageData = {
     ],
   },
   latestNews: {
-    data: {
-      id: 1,
-      documentId: "latest-news-1",
-      attributes: { title: "latestNews" },
-    },
-  },
-  announcements: {
-    data: {
-      id: 1,
-      documentId: "announcements-1",
-      attributes: { title: "announcements" },
-    },
+    title: "News & Events",
+    news_list: [
+      {
+        id: 1,
+        path: "/images/home-news-1.webp",
+        title:
+          "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047   ",
+        date: "29th",
+        year: "Dec 2025",
+        link: "#!",
+      },
+      {
+        id: 2,
+        path: "/images/home-news-1.webp",
+        title:
+          "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047   ",
+        date: "29th",
+        year: "Dec 2025",
+        link: "#!",
+      },
+      {
+        id: 3,
+        path: "/images/home-news-1.webp",
+        title:
+          "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047   ",
+        date: "29th",
+        year: "Dec 2025",
+        link: "#!",
+      },
+      {
+        id: 4,
+        path: "/images/home-news-1.webp",
+        title:
+          "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047   ",
+        date: "29th",
+        year: "Dec 2025",
+        link: "#!",
+      },
+    ],
   },
   events: {
-    data: { id: 1, documentId: "events-1", attributes: { title: "events" } },
+    title: "Latest News & Events",
+    description:
+      "Stay updated with the latest happenings, achievements, and events across the university.",
+    latest_list: [
+      {
+        id: 1,
+        featured_image: {
+          url: "/images/home-latest-news-1.webp",
+          alternativeText: "Media image",
+        },
+        title: "The Economic Times",
+        description:
+          "As artificial intelligence reshapes industries, hospitality faces a distinct challenge: preserving human connection while embracing automation.",
+        link: "#!",
+      },
+      {
+        id: 2,
+        featured_image: {
+          url: "/images/home-latest-news-1.webp",
+          alternativeText: "Media image",
+        },
+        title: "The Economic Times",
+        description:
+          "As artificial intelligence reshapes industries, hospitality faces a distinct challenge: preserving human connection while embracing automation.",
+        link: "#!",
+      },
+    ],
+    announcements_list: [
+      {
+        id: 1,
+        announcement_image: {
+          url: "/images/home-announcement-1.webp",
+          alternativeText: "Media image",
+        },
+        title: "PGCET & DSAT",
+        description:
+          "School of commerce and Management studies welcomes the full time MBA students from DSAT & PGCET.",
+        link: "#!",
+      },
+      {
+        id: 2,
+        announcement_image: {
+          url: "/images/home-announcement-2.webp",
+          alternativeText: "Media image",
+        },
+        title: "AIC-DSU Innovation",
+        description:
+          "School of commerce and Management studies Welcomes the full time MBA students from DSAT & PGCET.",
+        link: "#!",
+      },
+      {
+        id: 3,
+        announcement_image: {
+          url: "/images/home-announcement-3.webp",
+          alternativeText: "Media image",
+        },
+        title: "BUSINESS APPLICATIONS OF",
+        description:
+          "School of commerce and Management studies Welcomes the full time MBA students from DSAT & PGCET.",
+        link: "#!",
+      },
+      {
+        id: 4,
+        announcement_image: {
+          url: "/images/home-announcement-2.webp",
+          alternativeText: "Media image",
+        },
+        title: "AIC-DSU Innovation",
+        description:
+          "School of commerce and Management studies Welcomes the full time MBA students from DSAT & PGCET.",
+        link: "#!",
+      },
+      {
+        id: 5,
+        announcement_image: {
+          url: "/images/home-announcement-3.webp",
+          alternativeText: "Media image",
+        },
+        title: "BUSINESS APPLICATIONS OF",
+        description:
+          "School of commerce and Management studies Welcomes the full time MBA students from DSAT & PGCET.",
+        link: "#!",
+      },
+    ],
   },
-  cta: { data: { id: 1, documentId: "cta-1", attributes: { title: "cta" } } },
+  journey: {
+    background_image: "/images/home-journey.webp",
+    title: "Start Your Journey With Us",
+    description:
+      "<p>Take the next step toward a future-ready education supported by innovation, <br> research, and industry collaboration.</p>",
+    certified_list: [
+      {
+        id: 1,
+        icon: "/images/rating-star.svg",
+        label: "NAAC A+ Accredited",
+      },
+      {
+        id: 2,
+        label: "UGC Recognized",
+      },
+    ],
+  },
 };
 
 export default function Home() {
@@ -1725,9 +1851,9 @@ export default function Home() {
       <HomeTestimonials data={homePageData?.studentSuccess} />
       <HomeCampusLife data={homePageData?.campusLife} />
       <HomeCollaborations data={homePageData?.internationalCollaboration} />
-      <Events />
+      <Events data={homePageData?.events} />
       <News data={homePageData.latestNews} />
-      <Journey />
+      <Journey data={homePageData?.journey} />
     </main>
   );
 }
