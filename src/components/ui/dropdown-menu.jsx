@@ -19,9 +19,16 @@ function DropdownMenuPortal({
 }
 
 function DropdownMenuTrigger({
+  nativeButton = false,
   ...props
 }) {
-  return <MenuPrimitive.Trigger data-slot="dropdown-menu-trigger" {...props} />;
+  return (
+    <MenuPrimitive.Trigger
+      data-slot="dropdown-menu-trigger"
+      nativeButton={nativeButton}
+      {...props}
+    />
+  );
 }
 
 function DropdownMenuContent({

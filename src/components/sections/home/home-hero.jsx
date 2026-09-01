@@ -136,7 +136,7 @@ export default function HomeHero({ data }) {
                         <span className="w-20 lg:w-22.5 2xl:w-30 3xl:w-37.5 h-auto aspect-150/30 overflow-hidden flex items-center justify-center">
                           <Image
                             src={item?.poweredBy?.url}
-                            alt={item?.poweredBy?.alternativeText}
+                            alt={item?.poweredBy?.alternativeText || "Powered By"}
                             width={150}
                             height={30}
                             className="w-full h-full object-contain"
@@ -214,7 +214,7 @@ export default function HomeHero({ data }) {
                                     src={item?.icon?.url}
                                     width={50}
                                     height={50}
-                                    alt={item?.icon?.alternativeText}
+                                    alt={item?.icon?.alternativeText || "Icon"}
                                     className="w-full h-full object-contain"
                                   />
                                 </div>

@@ -168,7 +168,7 @@ export default function Events({ data = local_data }) {
                     <button
                       type="button"
                       onClick={scrollPrev}
-                      className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center hover:[filter:brightness(0)_saturate(100%)_inverting(100%)_sepia(3%)_saturate(7%)_hue-rotate(62deg)_brightness(104%)_contrast(100%)] transition-all duration-200"
+                      className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center hover:[filter:brightness(0)_saturate(100%)_inverting(100%)_sepia(3%)_saturate(7%)_hue-rotate(62deg)_brightness(104%)_contrast(100%)] transition-opacity duration-500 hover:opacity-50"
                       aria-label="Previous slide"
                     >
                       <Image
@@ -182,7 +182,7 @@ export default function Events({ data = local_data }) {
                     <button
                       type="button"
                       onClick={scrollNext}
-                      className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center"
+                      className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center transition-opacity duration-500 hover:opacity-50"
                       aria-label="Next slide"
                     >
                       <Image
@@ -198,17 +198,17 @@ export default function Events({ data = local_data }) {
                 <div>
                   <Link
                     href="#!"
-                    className="text-sm 3xl:text-base leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit"
+                    className="text-sm 3xl:text-base leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
                   >
                     View All
                   </Link>
                 </div>
               </div>
               <div className="w-full h-auto overflow-hidden" ref={emblaRef}>
-                <div className="w-full h-auto flex backface-hidden touch-pan-y touch-pinch-zoom">
+                <div className="w-full h-auto -ml-2.5 flex backface-hidden touch-pan-y touch-pinch-zoom">
                   {data?.latest_list?.map((item) => (
-                    <div key={item?.id} className="min-w-0 flex-[0_0_100%]">
-                      <div className="w-full h-full block relative z-0">
+                    <div key={item?.id} className="min-w-0 flex-[0_0_100%] pl-2.5">
+                      <div className="group w-full h-full block relative z-0">
                         <div className="w-full h-auto lg:min-h-92.5 2xl:min-h-92.5 3xl:min-h-107.5 aspect-765/430 rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] overflow-hidden">
                           <Image
                             src={
@@ -221,7 +221,7 @@ export default function Events({ data = local_data }) {
                               item?.featured_image?.alternativeText ||
                               "Latest Happenings"
                             }
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           />
                         </div>
                         <div className="sm:w-[85%] h-auto p-2.5 sm:p-5 absolute z-1 inset-[auto_auto_0_0]">
@@ -233,7 +233,7 @@ export default function Events({ data = local_data }) {
                           </div>
                           <Link
                             href={item?.link}
-                            className="text-[14px] 3xl:text-[15px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit"
+                            className="text-[14px] 3xl:text-[15px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
                           >
                             Read More {" > "}
                           </Link>
@@ -257,7 +257,7 @@ export default function Events({ data = local_data }) {
                     <button
                       type="button"
                       onClick={scrollAnnouncementsPrev}
-                      className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center hover:[filter:brightness(0)_saturate(100%)_inverting(100%)_sepia(3%)_saturate(7%)_hue-rotate(62deg)_brightness(104%)_contrast(100%)] transition-all duration-200"
+                      className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center transition-opacity duration-500 hover:opacity-50"
                       aria-label="Previous announcement"
                     >
                       <Image
@@ -271,7 +271,7 @@ export default function Events({ data = local_data }) {
                     <button
                       type="button"
                       onClick={scrollAnnouncementsNext}
-                      className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center"
+                      className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center transition-opacity duration-500 hover:opacity-50"
                       aria-label="Next announcement"
                     >
                       <Image
@@ -287,7 +287,7 @@ export default function Events({ data = local_data }) {
                 <div>
                   <Link
                     href="#!"
-                    className="text-[14px] 3xl:text-[16px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit"
+                    className="text-[14px] 3xl:text-[16px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
                   >
                     View All
                   </Link>
@@ -304,7 +304,7 @@ export default function Events({ data = local_data }) {
                       className="min-h-0 flex-[0_0_calc(100%/3)]"
                     >
                       <div
-                        className={`[--image-size:130px] lg:[--image-size:150px] 2xl:[--image-size:175px] 3xl:[--image-size:220px] w-full h-full py-6.25 sm:py-2.5 flex flex-wrap max-sm:items-center ${
+                        className={`group [--image-size:130px] lg:[--image-size:150px] 2xl:[--image-size:175px] 3xl:[--image-size:220px] w-full h-full py-6.25 sm:py-2.5 flex flex-wrap max-sm:items-center ${
                           index === lastVisibleIndex
                             ? "pb-0 border-b-0"
                             : "sm:border-b border-black/10"
@@ -315,22 +315,22 @@ export default function Events({ data = local_data }) {
                             src={item?.announcement_image?.url}
                             width={220}
                             height={120}
-                            alt={item?.announcement_image?.alternativeText}
-                            className="w-full h-full object-cover"
+                            alt={item?.announcement_image?.alternativeText || "Announcement"}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
                         <div className="w-[calc(100%-var(--image-size))] h-auto pl-2.5 2xl:pl-3.75 flex flex-col justify-between py-1">
                           <div>
-                            <div className="lg:text-lg 2xl:text-xl 3xl:text-3xl leading-tight font-bold text-[#212121] dark:text-white mb-1 line-clamp-1">
+                            <div className="lg:text-lg 2xl:text-xl 3xl:text-3xl leading-tight font-bold text-[#212121] dark:text-white mb-1 line-clamp-1 transition-colors duration-500 group-hover:!text-(--basecolor2)">
                               {item?.title}
                             </div>
-                            <div className="text-sm 3xl:text-base leading-normal font-normal text-[#4A5565] dark:text-white sm:max-w-[95%] mb-2 line-clamp-2">
+                            <div className="text-sm 3xl:text-base leading-normal font-normal text-[#4A5565] dark:text-white sm:max-w-[95%] mb-2 line-clamp-2 transition-colors duration-500 group-hover:!text-(--basecolor2)">
                               {item?.description}
                             </div>
                           </div>
                           <Link
                             href={item?.link}
-                            className="text-sm leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit"
+                            className="text-sm leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
                           >
                             Read More &gt;
                           </Link>

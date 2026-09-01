@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import CountUp from "react-countup";
+import ClientCountUp from "@/components/ui/client-count-up";
 import { Text } from "@/components/ui/text";
 import Autoplay from "embla-carousel-autoplay";
 import { Heading } from "@/components/ui/heading";
@@ -12,6 +12,38 @@ import { ShineBorder } from "@/components/ui/shine-border";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function HomeResearch({ data }) {
+  const [incubationCardEmblaRef] = useEmblaCarousel(
+    {
+      loop: false,
+      align: "center",
+      breakpoints: {
+        "(min-width: 640px)": { align: "start" },
+      },
+    },
+    [
+      Autoplay({
+        delay: 2500,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+      }),
+    ],
+  );
+  const [innovationCardEmblaRef] = useEmblaCarousel(
+    {
+      loop: false,
+      align: "center",
+      breakpoints: {
+        "(min-width: 640px)": { align: "start" },
+      },
+    },
+    [
+      Autoplay({
+        delay: 2500,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+      }),
+    ],
+  );
   const [featuredCardEmblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: false,
@@ -208,7 +240,7 @@ export default function HomeResearch({ data }) {
                             <div className="w-full h-auto aspect-270/480 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block">
                               <Image
                                 src={item?.media?.url}
-                                alt={item?.media?.alternativeText}
+                                alt={item?.media?.alternativeText || "Publication Media"}
                                 width={270}
                                 height={480}
                                 className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
@@ -267,7 +299,7 @@ export default function HomeResearch({ data }) {
                             <div className="w-(--icon-size) h-auto aspect-square shrink-0 flex items-center justify-center">
                               <Image
                                 src={item?.icon?.url}
-                                alt={item?.icon?.alternativeText}
+                                alt={item?.icon?.alternativeText || "Icon"}
                                 width={40}
                                 height={40}
                                 className="w-full h-full object-contain"
@@ -275,7 +307,7 @@ export default function HomeResearch({ data }) {
                             </div>
                             <div className="pl-2.5 2xl:pl-3.75 3xl:pl-5">
                               <div className="text-[25px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.2] font-bold text-[#212121] w-auto h-auto mb-0.5 sm:mb-1.25 dark:bg-linear-to-r dark:from-(--basecolor) dark:to-(--basecolor2) dark:bg-clip-text dark:text-transparent dark:w-fit">
-                                <CountUp
+                                <ClientCountUp
                                   start={0}
                                   end={item?.value || 0}
                                   duration={2.5}
@@ -366,7 +398,7 @@ export default function HomeResearch({ data }) {
               </div>
             </div>
             <div
-              ref={featuredCardEmblaRef}
+              ref={incubationCardEmblaRef}
               className="[--slide-gap:10px] xl:[--slide-gap:15px] 3xl:[--slide-gap:20px] w-full h-auto overflow-hidden"
             >
               <div className="ml-[calc(var(--slide-gap)*-1)] touch-pan-y touch-pinch-zoom flex">
@@ -383,7 +415,7 @@ export default function HomeResearch({ data }) {
                       <div className="w-full h-auto aspect-860/470 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block">
                         <Image
                           src={item?.media?.url}
-                          alt={item?.media?.alternativeText}
+                          alt={item?.media?.alternativeText || "Publication Media"}
                           width={270}
                           height={480}
                           className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
@@ -438,7 +470,7 @@ export default function HomeResearch({ data }) {
               </div>
             </div>
             <div
-              ref={featuredCardEmblaRef}
+              ref={innovationCardEmblaRef}
               className="[--slide-gap:10px] xl:[--slide-gap:15px] 3xl:[--slide-gap:20px] w-full h-auto sm:overflow-hidden"
             >
               <div className="ml-[calc(var(--slide-gap)*-1)] touch-pan-y touch-pinch-zoom flex">
@@ -455,7 +487,7 @@ export default function HomeResearch({ data }) {
                       <div className="w-full h-auto aspect-560/350 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block">
                         <Image
                           src={item?.media?.url}
-                          alt={item?.media?.alternativeText}
+                          alt={item?.media?.alternativeText || "Publication Media"}
                           width={270}
                           height={480}
                           className="w-full h-full object-cover transition duration-500 group-hover:scale-110"

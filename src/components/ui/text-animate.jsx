@@ -1,6 +1,6 @@
 "use client";
-import { memo } from "react"
-import { AnimatePresence, motion } from "motion/react";
+import { memo, useEffect, useRef, useState } from "react"
+import { AnimatePresence, motion, useInView } from "motion/react";
 
 import { cn } from "@/lib/utils"
 
@@ -265,6 +265,23 @@ const TextAnimateBase = ({
   ...props
 }) => {
   const MotionComponent = motionElements[Component]
+  const animRef = useRef(null)
+  const [mounted, setMounted] = useState(false)
+  const [fallback, setFallback] = useState(false)
+  const inView = useInView(animRef, {
+    once: once || startOnView,
+    amount: 0.01,
+  })
+
+  useEffect(() => {
+    setMounted(true)
+    if (!startOnView) return
+    const t = setTimeout(() => setFallback(true), 900)
+    return () => clearTimeout(t)
+  }, [startOnView])
+
+  const shouldShow = startOnView ? mounted && (inView || fallback) : true
+  const start = shouldShow ? "show" : "hidden"
 
   let segments = []
   switch (by) {

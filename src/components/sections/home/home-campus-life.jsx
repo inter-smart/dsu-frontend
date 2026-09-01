@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useEffect } from "react";
-import CountUp from "react-countup";
+import ClientCountUp from "@/components/ui/client-count-up";
 import { Fancybox } from "@fancyapps/ui";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
@@ -24,7 +24,7 @@ export default function HomeCampusLife({ data }) {
       Fancybox.unbind("[data-fancybox='campus']");
       Fancybox.close();
     };
-  }, []); 
+  }, []);
 
   return (
     <>
@@ -96,7 +96,7 @@ export default function HomeCampusLife({ data }) {
                     >
                       <div className="w-full h-full block">
                         <div className="text-[25px] sm:text-[32px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.2] font-medium text-white mb-1.25">
-                          <CountUp
+                          <ClientCountUp
                             start={0}
                             end={item?.value || 0}
                             duration={2.5}
@@ -175,7 +175,7 @@ export default function HomeCampusLife({ data }) {
                 >
                   <div className="w-full h-full block">
                     <div className="text-[25px] leading-[1.2] font-medium text-white mb-2.5">
-                      <CountUp
+                      <ClientCountUp
                         start={0}
                         end={item?.value || 0}
                         duration={2.5}

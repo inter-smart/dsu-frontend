@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import CountUp from "react-countup";
+import ClientCountUp from "@/components/ui/client-count-up";
 import Fade from "embla-carousel-fade";
 import useEmblaCarousel from "embla-carousel-react";
 import { ShineBorder } from "@/components/ui/shine-border";
@@ -128,14 +128,14 @@ export default function HomeCollaborations({ data }) {
                     <div className="w-auto h-full text-center flex flex-col justify-between">
                       {item?.value && (
                         <div className="text-xs xl:text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-medium text-white mb-1.25">
-                          <CountUp
+                            <ClientCountUp
                             start={0}
                             end={item?.value}
                             duration={2.5}
                             suffix={item?.suffix ?? "+"}
                             enableScrollSpy
                             scrollSpyOnce
-                          />
+                            />
                         </div>
                       )}
                       {item?.title && (
@@ -168,7 +168,7 @@ export default function HomeCollaborations({ data }) {
                       <div className="w-full h-full absolute -z-1 inset-0 before:content-[''] before:w-full before:h-1/2 before:bg-linear-to-b before:from-[#090909] before:to-[#0B2148]/0 before:absolute before:z-1 before:inset-[0_0_auto_0] after:content-[''] after:w-full after:h-[80%] after:bg-linear-to-t after:from-[#090909] after:to-[#0B2148]/0 after:opacity-50 after:absolute after:z-1 after:inset-[auto_0_0_0]">
                         <Image
                           src={item?.featuredImage?.url}
-                          alt={item?.featuredImage?.alternativeText}
+                          alt={item?.featuredImage?.alternativeText || "Featured Image"}
                           width={870}
                           height={830}
                           className="w-full h-full object-cover"
@@ -179,7 +179,7 @@ export default function HomeCollaborations({ data }) {
                           <div className="w-(--flag-icon-size) h-auto aspect-square border-2 border-[#FDC72F] rounded-full overflow-hidden block">
                             <Image
                               src={item?.flagImage?.url}
-                              alt={item?.flagImage?.alternativeText}
+                              alt={item?.flagImage?.alternativeText || "Flag"}
                               width={40}
                               height={40}
                               className="w-full h-full object-cover"
