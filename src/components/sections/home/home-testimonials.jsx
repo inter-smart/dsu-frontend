@@ -103,7 +103,7 @@ export default function HomeTestimonials({ data }) {
                   duration={8 + index * 4}
                   className="hidden dark:block"
                 />
-                <div className="text-[20px] sm:text-[24px] 2xl:text-[28px] 3xl:text-[35px] leading-[1.2] font-bold text-[#212121] dark:text-white mb-1.25 transition-colors duration-500 group-hover:text-white">
+                <div className="text-xl sm:text-2xl 2xl:text-[28px] 3xl:text-[35px] leading-[1.2] font-bold text-[#212121] dark:text-white mb-1.25 transition-colors duration-500 group-hover:text-white">
                   <ClientCountUp
                     start={0}
                     end={item?.value || 0}
@@ -113,7 +113,7 @@ export default function HomeTestimonials({ data }) {
                     enableScrollSpy={true}
                   />
                 </div>
-                <div className="text-[14px] sm:text-[13px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] dark:text-white transition-colors duration-500 group-hover:text-white">
+                <div className="text-sm sm:text-[13px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] dark:text-white transition-colors duration-500 group-hover:text-white">
                   {item?.label}
                 </div>
               </div>
@@ -207,7 +207,7 @@ export default function HomeTestimonials({ data }) {
                     <div className="w-[90%] h-auto pt-3.75 3xl:pt-5 m-[15px_auto] 3xl:m-[25px_auto] border-t border-[#F3F4F6]/20 absolute z-1 inset-[auto_0_0_0] flex items-center flex-wrap">
                       <div className="w-[75%]">
                         <div className="[--avatar-size:45px] 2xl:[--avatar-size:55px] 3xl:[--avatar-size:70px] w-full h-auto flex items-center">
-                          <div className="w-(--avatar-size) h-auto aspect-square rounded-[6px] 2xl:rounded-[8px] 3xl:rounded-[10px] overflow-hidden block">
+                          <div className="w-(--avatar-size) h-auto aspect-square rounded-md 2xl:rounded-lg 3xl:rounded-[10px] overflow-hidden block">
                             <Image
                               src={
                                 item?.avatar?.url || "/images/placeholder.jpg"
