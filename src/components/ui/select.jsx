@@ -2,11 +2,64 @@
 
 import * as React from "react"
 import { Select as SelectPrimitive } from "@base-ui/react/select"
+import { useLenis } from "lenis/react"
 
 import { cn } from "@/lib/utils"
 import { ChevronDownIcon, CheckIcon, ChevronUpIcon } from "lucide-react"
 
-const Select = SelectPrimitive.Root
+function Select({
+  open: openProp,
+  onOpenChange,
+  ...props
+}) {
+  const lenis = useLenis()
+  const [openState, setOpenState] = React.useState(false)
+  const open = openProp !== undefined ? openProp : openState
+
+  const handleOpenChange = React.useCallback(
+    (nextOpen, eventDetails) => {
+      setOpenState(nextOpen)
+      onOpenChange?.(nextOpen, eventDetails)
+    },
+    [onOpenChange]
+  )
+
+  React.useEffect(() => {
+    if (!open) return undefined
+
+    const activeLenis = lenis
+    const html = document.documentElement
+    const body = document.body
+    const prevOverflow = html.style.overflow
+    const scrollY = window.scrollY
+
+    activeLenis?.stop()
+    html.style.overflow = "hidden"
+    body.style.position = "fixed"
+    body.style.top = `-${scrollY}px`
+    body.style.left = "0"
+    body.style.right = "0"
+    body.style.width = "100%"
+
+    return () => {
+      html.style.overflow = prevOverflow
+      body.style.position = ""
+      body.style.top = ""
+      body.style.left = ""
+      body.style.right = ""
+      body.style.width = ""
+      window.scrollTo(0, scrollY)
+      activeLenis?.start()
+    }
+  }, [open, lenis])
+
+  return (
+    <SelectPrimitive.Root
+      onOpenChange={handleOpenChange}
+      {...props}
+    />
+  );
+}
 
 function SelectGroup({
   className,
@@ -79,7 +132,7 @@ function SelectContent({
           data-slot="select-content"
           data-align-trigger={alignItemWithTrigger}
           className={cn(
-            "relative isolate z-50 max-h-(--available-height) w-(--anchor-width) min-w-36 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-lg bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10 duration-100 data-[align-trigger=true]:animate-none data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+            "relative isolate z-50 max-h-(--available-height) w-(--anchor-width) min-w-36 origin-(--transform-origin) overflow-x-hidden overflow-y-auto overscroll-contain rounded-lg bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10 duration-100 data-[align-trigger=true]:animate-none data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
             className
           )}
           {...props}>
