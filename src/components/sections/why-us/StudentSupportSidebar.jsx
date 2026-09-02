@@ -7,15 +7,11 @@ import Link from "next/link";
 const sidebarMenu = [
     {
         label: "Cell",
-        slug: "/DSU-act", 
+        slug: "/support-cell", 
     },
     {
         label: "Committee",
-        slug: "academic-council", 
-    },
-    {
-        label: "Equal Opportunity Cell",
-        slug: "board-of-studies", 
+        slug: "/committe", 
     },
     {
         label: "Squad",
@@ -23,7 +19,11 @@ const sidebarMenu = [
     },
     {
         label: "Ombudsman",
-        slug: "/other-approval", 
+        slug: "/ombudsman", 
+    },
+    {
+        label: "Women Redressal Cell",
+        slug: "/women-Redressal", 
     },
     {
         label: "Grievance Redressal",
@@ -35,11 +35,15 @@ const sidebarMenu = [
     },
     {
         label: "CEADC",
-        slug: "/other-approval", 
+        slug: "/CEADC", 
     },
     {
         label: "Student Welfare Services",
         slug: "/other-approval", 
+    },
+    {
+        label: "Equal Opportunity Cell",
+        slug: "board-of-studies", 
     },
     {
         label: "Support Services",

@@ -68,7 +68,7 @@ const local_data = {
                 ]
             }
         ],
-        logo: "/images/nba.png",
+        logo: "/images/naac.png",
 
     },
 
