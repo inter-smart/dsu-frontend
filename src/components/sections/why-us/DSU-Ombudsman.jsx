@@ -36,7 +36,7 @@ export default function DSUOmbudsman({ data }) {
                             </div>
                             <span>Menu</span>
                         </button>
-                        <div className="w-full h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[30px] 2xl:p-[35px] 3xl:p-[45px_55px]">
+                        <div className="w-full lg:h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[30px] 2xl:p-[35px] 3xl:p-[45px_55px]">
                             <div className="cmn_Title mb-[20px]">{data.title}</div>
                             <div className="flex flex-wrap w-full  max-sm:gap-[15px]">
                                 <div className="w-full sm:w-[200px] lg:w-[225px] xl:w-[280px] 2xl:w-[335px] 3xl:w-[420px]  ">

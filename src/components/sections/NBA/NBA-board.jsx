@@ -15,7 +15,7 @@ export default function NBABoard({ data }) {
                         </h2>
                     </div>
                     <div className="lg:w-2/3">
-                        <div className="flex max-lg:flex-wrap justify-between gap-[15px] w-full">
+                        <div className="flex max-lg:flex-wrap justify-between gap-[15px] w-full items-start">
                             <div className="text_1 leading-[1.2] text-[#4A5565] lg:mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]  lg:w-2/3">
                                 <BlocksRenderer content={data.description} />
                                 {data.Button && (
@@ -52,8 +52,8 @@ export default function NBABoard({ data }) {
                                     </Link>
                                 )}
                             </div>
-                            <div className="max-w-[100px] xl:max-w-[120px] 2xl:max-w-[150px] 3xl:max-w-[180px] w-full lg:m-auto lg:w-1/3">
-                                <div className="w-full">
+                            <div className="w-full lg:m-0 lg:w-1/3 ">
+                                <div className="w-full max-w-[100px] xl:max-w-[180px] 2xl:max-w-[250px] 3xl:max-w-[360px] ">
                                     <Image src={data.logo} width={180} height={118} className="w-full h-full object-contain" />
                                 </div>
                             </div>

@@ -37,7 +37,7 @@ export default function DSUCell({ data }) {
                             </div>
                             <span>Menu</span>
                         </button>
-                        <div className="w-full h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_40px] 2xl:p-[40px_45px] 3xl:p-[50px_55px]">
+                        <div className="w-full lg:h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_40px] 2xl:p-[40px_45px] 3xl:p-[50px_55px]">
                             <h2 className="cmn_Title">
                                 {data.heading}
                             </h2>
