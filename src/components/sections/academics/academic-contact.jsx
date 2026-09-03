@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { PhoneInput, COUNTRIES } from "@/components/ui/phone-input";
 import {
     Select,
     SelectContent,
@@ -18,6 +19,7 @@ export default function AcademicContact({ data }) {
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
+        country: COUNTRIES[0],
         email: "",
         course: "",
         state: "",
@@ -110,55 +112,20 @@ export default function AcademicContact({ data }) {
                                     {/* Phone */}
                                     <div>
                                         <Label htmlFor="phone">PHONE *</Label>
-                                        <div className="flex h-[42px] 2xl:h-[46px] w-full rounded-[8px] border border-[#E5E7EB] dark:border-[#333] bg-white dark:bg-[#1f1f1f] overflow-hidden focus-within:border-[#F97316] focus-within:ring-1 focus-within:ring-[#F97316] transition-colors">
-                                            {/* Flag + Dial Code */}
-                                            <div className="flex items-center gap-1.5 px-3 bg-[#F9FAFB] dark:bg-[#252525] border-r border-[#E5E7EB] dark:border-[#333] select-none shrink-0 text-[12px] 2xl:text-[13px] font-medium text-[#374151] dark:text-[#D1D5DB]">
-                                                {/* India Flag SVG */}
-                                                <svg
-                                                    className="w-4 h-3 rounded-[2px] shrink-0"
-                                                    viewBox="0 0 640 480"
-                                                >
-                                                    <path fill="#f93" d="M0 0h640v160H0z" />
-                                                    <path fill="#fff" d="M0 160h640v160H0z" />
-                                                    <path fill="#128807" d="M0 320h640v160H0z" />
-                                                    <circle
-                                                        cx="320"
-                                                        cy="240"
-                                                        r="45"
-                                                        fill="none"
-                                                        stroke="#000088"
-                                                        strokeWidth="10"
-                                                    />
-                                                </svg>
-                                                <svg
-                                                    className="w-2.5 h-2.5 text-[#6B7280]"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth="2"
-                                                        d="M19 9l-7 7-7-7"
-                                                    />
-                                                </svg>
-                                                <span>+91</span>
-                                            </div>
-
-                                            {/* Number Input */}
-                                            <input
-                                                id="phone"
-                                                type="tel"
-                                                required
-                                                placeholder="000 000 0000"
-                                                value={formData.phone}
-                                                onChange={(e) =>
-                                                    setFormData({ ...formData, phone: e.target.value })
-                                                }
-                                                className="w-full bg-transparent px-3 py-2 text-[13px] 2xl:text-[14px] text-[#212121] dark:text-[#F9FAFB] placeholder:text-[#9CA3AF] dark:placeholder:text-[#6B7280] outline-none"
-                                            />
-                                        </div>
+                                        <PhoneInput
+                                            id="phone"
+                                            required
+                                            placeholder="000 000 0000"
+                                            value={formData.phone}
+                                            selectedCountry={formData.country}
+                                            className="w-full"
+                                            onCountryChange={(country) =>
+                                                setFormData({ ...formData, country })
+                                            }
+                                            onChange={(e) =>
+                                                setFormData({ ...formData, phone: e.target.value })
+                                            }
+                                        />
                                     </div>
 
                                     {/* Email */}

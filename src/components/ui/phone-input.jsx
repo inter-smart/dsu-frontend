@@ -6,43 +6,69 @@ import { ChevronDown, Search, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const COUNTRIES = [
-    { name: "India", code: "IN", dialCode: "+91", flag: "🇮🇳" },
-    { name: "United States", code: "US", dialCode: "+1", flag: "🇺🇸" },
-    { name: "United Kingdom", code: "GB", dialCode: "+44", flag: "🇬🇧" },
-    { name: "United Arab Emirates", code: "AE", dialCode: "+971", flag: "🇦🇪" },
-    { name: "Canada", code: "CA", dialCode: "+1", flag: "🇨🇦" },
-    { name: "Australia", code: "AU", dialCode: "+61", flag: "🇦🇺" },
-    { name: "Singapore", code: "SG", dialCode: "+65", flag: "🇸🇬" },
-    { name: "Saudi Arabia", code: "SA", dialCode: "+966", flag: "🇸🇦" },
-    { name: "Qatar", code: "QA", dialCode: "+974", flag: "🇶🇦" },
-    { name: "Oman", code: "OM", dialCode: "+968", flag: "🇴🇲" },
-    { name: "Kuwait", code: "KW", dialCode: "+965", flag: "🇰🇼" },
-    { name: "Bahrain", code: "BH", dialCode: "+973", flag: "🇧🇭" },
-    { name: "Germany", code: "DE", dialCode: "+49", flag: "🇩🇪" },
-    { name: "France", code: "FR", dialCode: "+33", flag: "🇫🇷" },
-    { name: "Malaysia", code: "MY", dialCode: "+60", flag: "🇲🇾" },
-    { name: "Nepal", code: "NP", dialCode: "+977", flag: "🇳🇵" },
-    { name: "Sri Lanka", code: "LK", dialCode: "+94", flag: "🇱🇰" },
-    { name: "Bangladesh", code: "BD", dialCode: "+880", flag: "🇧🇩" },
-    { name: "New Zealand", code: "NZ", dialCode: "+64", flag: "🇳🇿" },
-    { name: "South Africa", code: "ZA", dialCode: "+27", flag: "🇿🇦" },
-    { name: "Japan", code: "JP", dialCode: "+81", flag: "🇯🇵" },
-    { name: "China", code: "CN", dialCode: "+86", flag: "🇨🇳" },
-    { name: "Indonesia", code: "ID", dialCode: "+62", flag: "🇮🇩" },
-    { name: "Philippines", code: "PH", dialCode: "+63", flag: "🇵🇭" },
-    { name: "Thailand", code: "TH", dialCode: "+66", flag: "🇹🇭" },
-    { name: "Vietnam", code: "VN", dialCode: "+84", flag: "🇻🇳" },
-    { name: "Nigeria", code: "NG", dialCode: "+234", flag: "🇳🇬" },
-    { name: "Kenya", code: "KE", dialCode: "+254", flag: "🇰🇪" },
-    { name: "Brazil", code: "BR", dialCode: "+55", flag: "🇧🇷" },
-    { name: "Mexico", code: "MX", dialCode: "+52", flag: "🇲🇽" },
-    { name: "Italy", code: "IT", dialCode: "+39", flag: "🇮🇹" },
-    { name: "Spain", code: "ES", dialCode: "+34", flag: "🇪🇸" },
-    { name: "Netherlands", code: "NL", dialCode: "+31", flag: "🇳🇱" },
-    { name: "Switzerland", code: "CH", dialCode: "+41", flag: "🇨🇭" },
-    { name: "Sweden", code: "SE", dialCode: "+46", flag: "🇸🇪" },
-    { name: "Ireland", code: "IE", dialCode: "+353", flag: "🇮🇪" },
+    { name: "India", code: "in", dialCode: "+91" },
+    { name: "United States", code: "us", dialCode: "+1" },
+    { name: "United Kingdom", code: "gb", dialCode: "+44" },
+    { name: "United Arab Emirates", code: "ae", dialCode: "+971" },
+    { name: "Canada", code: "ca", dialCode: "+1" },
+    { name: "Australia", code: "au", dialCode: "+61" },
+    { name: "Singapore", code: "sg", dialCode: "+65" },
+    { name: "Saudi Arabia", code: "sa", dialCode: "+966" },
+    { name: "Qatar", code: "qa", dialCode: "+974" },
+    { name: "Oman", code: "om", dialCode: "+968" },
+    { name: "Kuwait", code: "kw", dialCode: "+965" },
+    { name: "Bahrain", code: "bh", dialCode: "+973" },
+    { name: "Germany", code: "de", dialCode: "+49" },
+    { name: "France", code: "fr", dialCode: "+33" },
+    { name: "Malaysia", code: "my", dialCode: "+60" },
+    { name: "Nepal", code: "np", dialCode: "+977" },
+    { name: "Sri Lanka", code: "lk", dialCode: "+94" },
+    { name: "Bangladesh", code: "bd", dialCode: "+880" },
+    { name: "New Zealand", code: "nz", dialCode: "+64" },
+    { name: "South Africa", code: "za", dialCode: "+27" },
+    { name: "Japan", code: "jp", dialCode: "+81" },
+    { name: "China", code: "cn", dialCode: "+86" },
+    { name: "Indonesia", code: "id", dialCode: "+62" },
+    { name: "Philippines", code: "ph", dialCode: "+63" },
+    { name: "Thailand", code: "th", dialCode: "+66" },
+    { name: "Vietnam", code: "vn", dialCode: "+84" },
+    { name: "Nigeria", code: "ng", dialCode: "+234" },
+    { name: "Kenya", code: "ke", dialCode: "+254" },
+    { name: "Brazil", code: "br", dialCode: "+55" },
+    { name: "Mexico", code: "mx", dialCode: "+52" },
+    { name: "Italy", code: "it", dialCode: "+39" },
+    { name: "Spain", code: "es", dialCode: "+34" },
+    { name: "Netherlands", code: "nl", dialCode: "+31" },
+    { name: "Switzerland", code: "ch", dialCode: "+41" },
+    { name: "Sweden", code: "se", dialCode: "+46" },
+    { name: "Ireland", code: "ie", dialCode: "+353" },
 ];
+
+function FlagImage({ code, alt, className = "w-5 h-3.5" }) {
+    const [hasError, setHasError] = useState(false);
+    const countryCode = code?.toLowerCase() || "in";
+
+    if (hasError) {
+        return (
+            <span className={cn("inline-flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-[10px] font-bold rounded-[2px]", className)}>
+                {countryCode.toUpperCase()}
+            </span>
+        );
+    }
+
+    return (
+        <img
+            src={`https://flagcdn.com/w40/${countryCode}.png`}
+            srcSet={`https://flagcdn.com/w80/${countryCode}.png 2x`}
+            alt={alt || countryCode}
+            width={20}
+            height={14}
+            onError={() => setHasError(true)}
+            className={cn("object-cover rounded-[2px] shadow-xs shrink-0", className)}
+            loading="lazy"
+        />
+    );
+}
 
 export const PhoneInput = React.forwardRef(
     (
@@ -121,7 +147,7 @@ export const PhoneInput = React.forwardRef(
                     aria-label={`Select country code, currently ${selectedCountry.name} ${selectedCountry.dialCode}`}
                     aria-expanded={isOpen}
                 >
-                    <span className="text-base leading-none">{selectedCountry.flag}</span>
+                    <FlagImage code={selectedCountry.code} alt={selectedCountry.name} className="w-[18px] h-[13px] 2xl:w-[20px] 2xl:h-[14px]" />
                     <ChevronDown className="w-3 h-3 text-[#6B7280] transition-transform duration-200" />
                     <span className="font-semibold text-[#111827] dark:text-[#F3F4F6]">
                         {selectedCountry.dialCode}
@@ -144,7 +170,7 @@ export const PhoneInput = React.forwardRef(
 
                 {/* Country Dropdown Popover */}
                 {isOpen && (
-                    <div className="absolute top-[calc(100%+6px)] left-0 w-[280px] sm:w-[300px] max-h-[300px] bg-white dark:bg-[#1f1f1f] border border-[#E5E7EB] dark:border-[#333] rounded-[10px] shadow-2xl z-50 overflow-hidden flex flex-col animate-in fade-in-0 zoom-in-95 duration-150">
+                    <div className="absolute top-[calc(100%+6px)] left-0 w-full max-h-[300px] bg-white dark:bg-[#1f1f1f] border border-[#E5E7EB] dark:border-[#333] rounded-[10px] shadow-2xl z-50 overflow-hidden flex flex-col animate-in fade-in-0 zoom-in-95 duration-150">
                         {/* Search Box */}
                         <div className="p-2 border-b border-[#E5E7EB] dark:border-[#333] bg-[#F9FAFB] dark:bg-[#252525]">
                             <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-[6px] bg-white dark:bg-[#191919] border border-[#E5E7EB] dark:border-[#3a3a3a]">
@@ -161,7 +187,12 @@ export const PhoneInput = React.forwardRef(
                         </div>
 
                         {/* Country List */}
-                        <div className="overflow-y-auto flex-1 p-1 scrollbar-thin">
+                        <div
+                            data-lenis-prevent="true"
+                            data-lenis-prevent-touch="true"
+                            onWheel={(e) => e.stopPropagation()}
+                            className="overflow-y-auto max-h-[220px] flex-1 p-1 overscroll-contain touch-pan-y scrollbar-thin"
+                        >
                             {filteredCountries.length > 0 ? (
                                 filteredCountries.map((country) => {
                                     const isSelected = selectedCountry.code === country.code;
@@ -177,7 +208,7 @@ export const PhoneInput = React.forwardRef(
                                             )}
                                         >
                                             <div className="flex items-center gap-2.5 truncate mr-2">
-                                                <span className="text-base leading-none">{country.flag}</span>
+                                                <FlagImage code={country.code} alt={country.name} className="w-[18px] h-[13px]" />
                                                 <span className="text-[#374151] dark:text-[#E5E7EB] truncate">
                                                     {country.name}
                                                 </span>
