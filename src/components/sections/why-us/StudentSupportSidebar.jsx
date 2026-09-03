@@ -1,58 +1,59 @@
 "use client";
 
-
 import Link from "next/link";
- 
+import { usePathname } from "next/navigation";
 
 const sidebarMenu = [
     {
         label: "Cell",
-        slug: "/support-cell", 
+        slug: "/support-cell",
     },
     {
         label: "Committee",
-        slug: "/committe", 
+        slug: "/committe",
     },
     {
         label: "Squad",
-        slug: "/other-approval", 
+        slug: "/other-approval",
     },
     {
         label: "Ombudsman",
-        slug: "/ombudsman", 
+        slug: "/ombudsman",
     },
     {
         label: "Women Redressal Cell",
-        slug: "/women-Redressal", 
+        slug: "/women-Redressal",
     },
     {
         label: "Grievance Redressal",
-        slug: "/other-approval", 
+        slug: "/other-approval",
     },
     {
         label: "Complaint Mechanism",
-        slug: "/other-approval", 
+        slug: "/other-approval",
     },
     {
         label: "CEADC",
-        slug: "/CEADC", 
+        slug: "/CEADC",
     },
     {
         label: "Student Welfare Services",
-        slug: "/other-approval", 
+        slug: "/other-approval",
     },
     {
         label: "Equal Opportunity Cell",
-        slug: "board-of-studies", 
+        slug: "board-of-studies",
     },
     {
         label: "Support Services",
-        slug: "/other-approval", 
+        slug: "/other-approval",
     },
-   
+
 ];
 
 export default function StudentSupportSidebar({ isOpen = false, onClose, title = "Recognition Menu" }) {
+    const pathname = usePathname();
+
     return (
         <>
             {/* Mobile Backdrop Overlay */}
@@ -87,34 +88,48 @@ export default function StudentSupportSidebar({ isOpen = false, onClose, title =
                     </div>
 
                     <ul>
-                        {sidebarMenu.map((item, idx) => (
-                            <li key={`${item.slug}-${idx}`} className="border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0">
-                                <Link
-                                    href={`/why-us/${item.slug}`} 
-                                    className=" flex items-center justify-between"
-                                >                                  
+                        {sidebarMenu.map((item, idx) => {
+                            const normalizedSlug = item.slug.startsWith("/") ? item.slug : `/${item.slug}`;
+                            const href = `/why-us${normalizedSlug}`;
+                            const isActive = pathname === href;
 
-                                        <div className="text_1 font-semibold text-[#212121] transition-colors duration-300 group-hover:text-[#F97316] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px]">
-                                            {item.label}
-                                        </div> 
+                            return (
+                                <li
+                                    key={`${item.slug}-${idx}`}
+                                    className={`border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0 transition-colors duration-300 `}
+                                >
+                                    <Link
+                                        href={href}
+                                        aria-current={isActive ? "page" : undefined}
+                                        className=" flex items-center justify-between"
+                                    >
 
-                                    <div className="flex h-[8px] 3xl:h-[12px] w-[8px] 3xl:w-[10px] items-center justify-center  ">
-                                        <svg 
-                                            viewBox="0 0 7 11"
-                                            fill="none" 
-                                            className="transition-all w-full h-full object-contain duration-300 group-hover:translate-x-[2px]"
+                                        <div
+                                            className={`text_1 font-semibold transition-colors duration-300 group-hover:text-[#F97316] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] ${
+                                                isActive ? "text-[#F97316]" : "text-[#212121]"
+                                            }`}
                                         >
-                                            <path
-                                                d="M0.568359 1.46289C0.449124 1.22017 0.4878 0.923845 0.680664 0.71875L0.734375 0.667969L0.841796 0.591797C1.1018 0.44291 1.43979 0.472188 1.66992 0.678711L1.6709 0.677734L6.00195 4.52344C6.30253 4.79061 6.30274 5.25141 6.00195 5.51855L1.6709 9.36426L1.66406 9.36914C1.40048 9.59519 1.0028 9.5951 0.739258 9.36914L0.685547 9.31836C0.451825 9.06971 0.442751 8.68635 0.669922 8.42773L0.72168 8.375L0.728516 8.36914L4.49902 5.02148L0.735351 1.67871C0.729474 1.67367 0.722548 1.66837 0.716796 1.66309L0.716796 1.66211L0.572265 1.53418L0.568359 1.46289Z"
-                                                fill="#212121"
-                                                stroke="#212121"
-                                                className="transition-all duration-300 group-hover:fill-[#F97316] group-hover:stroke-[#F97316]"
-                                            />
-                                        </svg>
-                                    </div>
-                                </Link>
-                            </li>
-                        ))}
+                                            {item.label}
+                                        </div>
+
+                                        <div className="flex h-[8px] 3xl:h-[12px] w-[8px] 3xl:w-[10px] items-center justify-center  ">
+                                            <svg
+                                                viewBox="0 0 7 11"
+                                                fill="none"
+                                                className="transition-all w-full h-full object-contain duration-300 group-hover:translate-x-[2px]"
+                                            >
+                                                <path
+                                                    d="M0.568359 1.46289C0.449124 1.22017 0.4878 0.923845 0.680664 0.71875L0.734375 0.667969L0.841796 0.591797C1.1018 0.44291 1.43979 0.472188 1.66992 0.678711L1.6709 0.677734L6.00195 4.52344C6.30253 4.79061 6.30274 5.25141 6.00195 5.51855L1.6709 9.36426L1.66406 9.36914C1.40048 9.59519 1.0028 9.5951 0.739258 9.36914L0.685547 9.31836C0.451825 9.06971 0.442751 8.68635 0.669922 8.42773L0.72168 8.375L0.728516 8.36914L4.49902 5.02148L0.735351 1.67871C0.729474 1.67367 0.722548 1.66837 0.716796 1.66309L0.716796 1.66211L0.572265 1.53418L0.568359 1.46289Z"
+                                                    fill={isActive ? "#F97316" : "#212121"}
+                                                    stroke={isActive ? "#F97316" : "#212121"}
+                                                    className="transition-all duration-300 group-hover:fill-[#F97316] group-hover:stroke-[#F97316]"
+                                                />
+                                            </svg>
+                                        </div>
+                                    </Link>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
             </div>

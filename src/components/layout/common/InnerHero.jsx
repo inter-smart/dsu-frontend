@@ -9,12 +9,13 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 
 export default function InnerHero({ data }) {
   const isVideo = data?.heroMedia?.mime?.includes("video");
 
   return (
-    <section className="relative block h-[300px] w-full md:h-[400px] xl:h-[500px] 2xl:h-[600px] 3xl:h-[750px]">
+    <section className="relative block h-[350px] w-full md:h-[450px] xl:h-[500px] 2xl:h-[600px] 3xl:h-[750px]">
       {/* Background Media */}
       <div className="absolute inset-0 z-0 h-full w-full">
         <div className="absolute inset-0 z-10 bg-black/40" />
@@ -38,8 +39,11 @@ export default function InnerHero({ data }) {
       </div>
 
       {/* Content */}
-      <div className="container relative z-20 h-full">
-        <div className="flex h-full w-full flex-col justify-end overflow-hidden py-[40px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[80px]">
+      <div className=" relative z-20 flex w-full flex-col justify-end h-full">
+        <div
+          className={`flex container w-full flex-col justify-end overflow-hidden pt-[40px] xl:pt-[55px] 2xl:pt-[65px] 3xl:pt-[80px] ${data?.menuBar ? "pb-[40px] md:pb-0" : "pb-[40px] xl:pb-[55px] 2xl:pb-[65px] 3xl:pb-[80px]"
+            }`}
+        >
           {/* Breadcrumb */}
           {data?.breadcrumb?.length > 0 && (
             <Breadcrumb className="mb-3 md:mb-5">
@@ -80,7 +84,13 @@ export default function InnerHero({ data }) {
             </h1>
           )}
         </div>
+        <div className="max-md:hidden">
+          {data?.menuBar && (
+            <AcademicMenubar />
+          )}
+        </div>
       </div>
+
     </section>
   );
 }

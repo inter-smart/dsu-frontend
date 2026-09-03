@@ -317,7 +317,7 @@ export default function Header({ data = local_data }) {
   return (
     <header
       className={cn(
-        "w-full h-auto block transition-all duration-800 fixed z-50 inset-[0_0_auto_0]",
+        "w-full h-auto block transition-all duration-800 fixed z-20 md:z-[99] inset-[0_0_auto_0]",
         isHeaderVisible ? "translate-y-0" : "-translate-y-full",
         isScrolled
           ? ["bg-black/40 backdrop-blur-xl transition-all duration-800"]
