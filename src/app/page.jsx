@@ -1,6 +1,6 @@
 import News from "@/components/sections/home/home-news";
 import Events from "@/components/sections/home/home-events";
-import Journey from "@/components/sections/home/home-journey";
+import Journey from "@/components/layout/common/journey";
 import HomeAbout from "@/components/sections/home/home-about";
 import HomeExcellence from "@/components/sections/home/home-excellence";
 import HomeCampusLife from "@/components/sections/home/home-campus-life";
