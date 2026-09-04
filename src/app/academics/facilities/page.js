@@ -1,7 +1,5 @@
 import InnerHero from "@/components/layout/common/InnerHero";
-import AcademicMenubar from "@/components/sections/academics/academicMenubar";
-import AcademicContact from "@/components/sections/academics/academic-contact";
-import AcademicProgram from "@/components/sections/academics/academic-program";
+import AcademicMenubar from "@/components/sections/academics/academicMenubar"; 
 import AcademicFacilities from "@/components/sections/academics/academic-facilities";
 
 const local_data = {
@@ -12,14 +10,14 @@ const local_data = {
     publishedAt: "2026-06-11T06:26:08.337Z",
     seo: {
         id: 21,
-        metaTitle: "Departments page title",
-        metaDescription: "Departments page description ",
+        metaTitle: "Facility page title",
+        metaDescription: "Facility page description ",
         canonicalUrl: null,
     },
     hero: {
         id: 25,
         heroMedia: {
-            alternativeText: "Departments page title",
+            alternativeText: "Facility page title",
             mime: "image/jpg",
             // if video - mime: "video/mp4",
             url: "/images/academic-banner.jpg",
