@@ -25,7 +25,7 @@ export default function Journey({ data }) {
         <div className="w-full h-auto gap-1.25 xl:gap-2.5 mb-2.5 sm:mb-3.75 xl:mb-5 2xl:mb-7.5 flex flex-wrap justify-center">
           <Link
             href="#!"
-            className="text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-bold text-[#E05128] w-auto h-5 sm:h-7.5 xl:h-8.75 2xl:h-12.5 px-2.5 sm:px-3.75 2xl:px-5 gap-2.5 xl:gap-3.75 2xl:gap-5 bg-white rounded-[3px] xl:rounded-[5px] overflow-hidden transition-colors duration-500 inline-flex items-center justify-center hover:bg-transparent hover:border hover:border-[#E05128] dark:hover:border-white dark:hover:text-white"
+            className="text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-bold text-[#E05128] w-auto h-5 sm:h-7.5 xl:h-8.75 2xl:h-12.5 px-2.5 sm:px-3.75 2xl:px-5 gap-2.5 xl:gap-3.75 2xl:gap-5 bg-white rounded-[3px] xl:rounded-[5px] overflow-hidden transition-colors duration-500 inline-flex items-center justify-center hover:bg-(--basecolor)/10 hover:border hover:border-[#E05128] dark:hover:border-white dark:hover:text-white"
           >
             Apply Now
             <span className="w-2.5 sm:w-3 2xl:w-3.75 h-auto aspect-square overflow-hidden flex items-center justify-center">
@@ -40,7 +40,7 @@ export default function Journey({ data }) {
           </Link>
           <Link
             href="#!"
-            className="text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-bold text-black w-auto h-5 sm:h-7.5 xl:h-8.75 2xl:h-12.5 px-2.5 sm:px-3.75 2xl:px-5 gap-2.5 xl:gap-3.75 2xl:gap-5 bg-[#FDC72F] rounded-[3px] xl:rounded-[5px] overflow-hidden inline-flex items-center justify-center transition-colors duration-500 hover:bg-(--basecolor2)"
+            className="group text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-bold text-black w-auto h-5 sm:h-7.5 xl:h-8.75 2xl:h-12.5 px-2.5 sm:px-3.75 2xl:px-5 gap-2.5 xl:gap-3.75 2xl:gap-5 bg-[#FDC72F] rounded-[3px] xl:rounded-[5px] overflow-hidden inline-flex items-center justify-center transition-colors duration-500 hover:bg-(--basecolor2) hover:text-white"
           >
             Talk to an Advisor
             <span className="w-2.5 sm:w-3 2xl:w-3.75 h-auto aspect-square overflow-hidden flex items-center justify-center">
@@ -49,7 +49,7 @@ export default function Journey({ data }) {
                 width={15}
                 height={15}
                 alt="Arrow"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain transition-all duration-500 group-hover:invert"
               />
             </span>
           </Link>
