@@ -4,7 +4,7 @@ export default function NewsEventsDetail({ data }) {
   return (
     <section className="w-full h-auto py-[130px_160px] block">
       <div className="container">
-        <div className="[--width:500px] w-full h-auto block">
+        {/* <div className="[--width:500px] w-full h-auto block">
           <div className="w-(--width) h-auto">
             <div className="w-full h-auto aspect-1210/665 rounded-[10px] overflow-hidden block">
               <Image
@@ -26,7 +26,7 @@ export default function NewsEventsDetail({ data }) {
             </div>
           </div>
           <div className="w-[calc(100%-var(--width))] pl-7.5"></div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
