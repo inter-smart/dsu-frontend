@@ -257,7 +257,7 @@ export default function AcademicContact({ data }) {
                     </div>
 
                     {/* Right Column: Journey Info Card */}
-                    <div className="bg-[#FFF9F2] dark:bg-[#1c1815] border border-[#FDEEE0] dark:border-[#2e2620] rounded-[4px] 2xl:rounded-[8px] xl:rounded-[10px] p-[24px_20px] sm:p-[30px_25px] xl:p-[35px_30px] 2xl:p-[40px_35px] flex flex-col justify-between">
+                    <div className="bg-gradient-to-b from-[#FFF9F2] to-[#FFF3E0] dark:bg-[#1c1815] border border-[#FDEEE0] dark:border-[#2e2620] rounded-[4px] 2xl:rounded-[8px] xl:rounded-[10px] p-[24px_20px] sm:p-[30px_25px] xl:p-[35px_30px] 2xl:p-[40px_35px] flex flex-col justify-between">
                         <div>
                             {/* Heading */}
                             <h2 className="cmn_Title mb-[10px] xl:mb-[12px]">

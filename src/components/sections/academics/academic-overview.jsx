@@ -12,7 +12,7 @@ export default function AcademicOverview({ data }) {
         <section className="relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]">
             <div className="container">
                 {/* TOP SECTION: Float Right for Image + Stats */}
-                <div className="relative after:content-[''] after:table after:clear-both mb-[30px] lg:mb-[50px] xl:mb-[65px]">
+                <div className="relative max-lg:flex max-lg:flex-col-reverse gap-[20px] after:content-[''] after:table after:clear-both mb-[0px] lg:mb-[50px] xl:mb-[65px]">
                     {/* Floated Right Block (Image + Stat Cards) */}
                     <div className="w-full lg:w-[50%]  lg:float-right ml-0 lg:ml-[30px] xl:ml-[45px] 2xl:ml-[55px] mb-[25px] lg:mb-[20px]">
                         {primaryImage && (
