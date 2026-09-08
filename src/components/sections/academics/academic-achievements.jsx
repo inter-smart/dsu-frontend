@@ -24,7 +24,7 @@ export default function AcademicAchievements({ data }) {
                                         <div className="text_1">
                                             {stat.label}
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
                             ))}
                         </div>
