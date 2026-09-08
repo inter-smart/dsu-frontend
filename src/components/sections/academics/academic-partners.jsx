@@ -34,8 +34,8 @@ export default function AcademicPartners({ data }) {
                         }}
                         breakpoints={{
                             480: { slidesPerView: 4 },
-                            768: { slidesPerView: 5 },
-                            1024: { slidesPerView: 5 },
+                            768: { slidesPerView: 6 },
+                            1024: { slidesPerView: 6 },
                             1280: { slidesPerView: 6 },
                         }}
                         className="w-full relative   after:absolute after:content-[''] after:top-0 after:left-[0px] after:z-10 after:w-full after:h-full after:border-[#EFF6FF] after:border "
