@@ -7,10 +7,9 @@ import Image from "next/image";
 import "swiper/css";
 import "swiper/css/grid";
 
-export default function AcademicPartners({ data }) {
+export default function AcademicPartners({ data , varient }) {
     return (
-        <section className="relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]
-                bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)]">
+        <section className={`relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)] ${varient === "home" ? "!pt-[25px]" : ""} `}>
             <div className="container">
                 <div className="w-full">
                     {data?.label && (

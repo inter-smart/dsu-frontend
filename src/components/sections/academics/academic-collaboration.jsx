@@ -2,9 +2,9 @@
  
 import Link from "next/link";
 
-export default function AcademicCollaboration({ data }) {
+export default function AcademicCollaboration({ data, varient }) {
     return (
-        <section className="relative py-[20px_40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] ">
+        <section className={`relative py-[20px_40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]  ${varient === "home" ? "!pb-0  bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)]": "" }`}>
             <div className="container">
                 <div className="relative max-lg:flex max-lg:flex-col-reverse  after:content-[''] after:table after:clear-both ">
                     <div className="w-full lg:w-[580px] xl:w-[650px] 2xl:w-[750px] 3xl:w-[950px]  lg:float-right lg:pl-[40px]  ">
