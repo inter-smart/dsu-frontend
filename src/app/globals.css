@@ -74,6 +74,7 @@
     }
   }
   --animate-aurora: aurora 8s ease-in-out infinite alternate;
+
   @keyframes aurora {
     0% {
       background-position: 0% 50%;
@@ -169,20 +170,20 @@
   .text_1 {
     @apply text-[12px] 2xl:text-[14.4px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#4A5565] dark:text-[#F9FAFB];
   }
-  p{
-      @apply text-[12px] 2xl:text-[14.4px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#4A5565] dark:text-[#F9FAFB];
+  p {
+    @apply text-[12px] 2xl:text-[14.4px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#4A5565] dark:text-[#F9FAFB];
   }
-  .cmnFlx{
-    @apply flex flex-wrap
+  .cmnFlx {
+    @apply flex flex-wrap;
   }
-  .leftBx{
-    @apply w-[210px] xl:w-[260px] 2xl:w-[310px] 3xl:w-[390px]
+  .leftBx {
+    @apply w-[210px] xl:w-[260px] 2xl:w-[310px] 3xl:w-[390px];
   }
-  .rtBx{
-    @apply w-full lg:w-[calc(100%-210px)] xl:w-[calc(100%-260px)] 2xl:w-[calc(100%-310px)] 3xl:w-[calc(100%-390px)] lg:pl-[20px] xl:pl-[30px] 2xl:pl-[40px] 3xl:pl-[50px]
+  .rtBx {
+    @apply w-full lg:w-[calc(100%-210px)] xl:w-[calc(100%-260px)] 2xl:w-[calc(100%-310px)] 3xl:w-[calc(100%-390px)] lg:pl-[20px] xl:pl-[30px] 2xl:pl-[40px] 3xl:pl-[50px];
   }
-  .cmn_Title{
-    @apply text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black
+  .cmn_Title {
+    @apply text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black;
   }
 
   .cardFlip {
@@ -190,6 +191,62 @@
     backface-visibility: hidden;
     animation: spec-flip-in 0.7s cubic-bezier(0.25, 0.5, 0.75, 1) both;
     will-change: transform, opacity, filter;
+  }
+  .typography {
+    --text-color: #212121;
+
+    * {
+      @apply my-2.5 lg:my-4;
+    }
+
+    p,
+    &,
+    li {
+      @apply text-[14px] lg:text-[14px] 2xl:text-[15px] 3xl:text-[18px] leading-normal font-normal text-(--text-color);
+    }
+
+    h1 {
+      @apply text-[30px] sm:text-[40px] lg:text-[54px] 2xl:text-[65px] 3xl:text-[80px] leading-tight font-normal text-(--text-color);
+    }
+
+    h2 {
+      @apply text-[20px] sm:text-[24px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-tight font-bold text-(--text-color);
+    }
+
+    h3 {
+      @apply text-[16px] sm:text-[18px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[30px] leading-tight font-bold text-(--text-color);
+    }
+
+    h4 {
+      @apply text-[12px] sm:text-[12px] lg:text-[12px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
+    }
+
+    h5 {
+      @apply text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal text-(--text-color);
+    }
+
+    h6 {
+      @apply text-[13px] 2xl:text-[14px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
+    }
+
+    &[dir="ltr"] ul,
+    &[dir="ltr"] ol {
+      @apply pl-4 sm:pl-5;
+    }
+
+    &[dir="rtl"] ul,
+    &[dir="rtl"] ol {
+      @apply pr-4 sm:pr-5;
+    }
+
+    ul > li,
+    ol > li {
+      @apply my-1 lg:my-1.5 font-medium;
+    }
+
+    ul > li {
+      @apply list-disc;
+    }
   }
 }
 
@@ -232,8 +289,13 @@
 }
 
 @keyframes gradient-move {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 body {
