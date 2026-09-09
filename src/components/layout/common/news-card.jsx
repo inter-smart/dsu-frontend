@@ -16,7 +16,7 @@ export default function NewsCard({ item }) {
             className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
           />
         </div>
-        <div className="w-auto h-auto p-[12px_10px] 2xl:p-[15px_10px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) mx-5 2xl:mx-6.25 3xl:mx-7.5 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col items-center justify-center absolute z-1 inset-[auto_auto_0_0]">
+        <div className="w-auto h-auto p-[12px_15px] 2xl:p-[15px_15px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) mx-7 2xl:mx-6.25 3xl:mx-7.5 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col items-center justify-center absolute z-1 inset-[auto_auto_0_0]">
           <span className="text-xl 2xl:text-2xl 3xl:text-[28px] leading-normal font-semibold text-white">
             {item?.date}
           </span>
@@ -25,7 +25,7 @@ export default function NewsCard({ item }) {
           </span>
         </div>
       </div>
-      <div className="w-full h-full p-[15px_20px] 2xl:p-[15px_25px] 3xl:p-[20px_30px] flex flex-col justify-between">
+      <div className="w-full h-full p-[15px_25px] 2xl:p-[15px_25px] 3xl:p-[20px_30px] flex flex-col justify-between">
         <div className="text-base 2xl:text-lg 3xl:text-[23px] leading-normal font-bold line-clamp-3 text-[#212121] dark:text-white w-[90%] mb-5 3xl:mb-7.5">
           {item?.title}
         </div>

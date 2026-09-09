@@ -35,7 +35,7 @@ const menuItems = [
     },
     {
         label: "Infrastructure & Facilities",
-        href: "/academics/infrastructure-facilities",
+        href: "/academics/facilities",
     },
     {
         label: "Placements Snapshot",
