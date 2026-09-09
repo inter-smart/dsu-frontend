@@ -31,7 +31,7 @@ const menuItems = [
     },
     {
         label: "Industry Collaborations",
-        href: "/academics/industry-collaborations",
+        href: "/academics/industry-collabration",
     },
     {
         label: "Infrastructure & Facilities",
@@ -39,7 +39,7 @@ const menuItems = [
     },
     {
         label: "Placements Snapshot",
-        href: "/academics/placements-snapshot",
+        href: "/academics/placement-snapshot",
     },
     {
         label: "Achievements",
