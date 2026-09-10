@@ -10,6 +10,7 @@ import AcademicWhychoose from "@/components/sections/academics/academic-whychoos
 import AcademicProgram from "@/components/sections/academics/academic-program";
 import AcademicContact from "@/components/sections/academics/academic-contact";
 import AcademicNews from "@/components/sections/academics/academic-news";
+import AcademicInfrastructure from "@/components/sections/academics/academic-infrastructure";
 
 const local_data = {
     id: 24,
@@ -440,6 +441,10 @@ const local_data = {
     industryCollaborationsSection: {
         heading: "Industry Collaborations & Programmes",
         description: "The School of Computer Applications at Dayananda Sagar University collaborates with leading technology companies and industry pioneers to bridge the gap between academics and real-world innovation. Through internships, live industry projects, expert mentoring, certifications, research initiatives, and campus recruitment, students gain practical exposure that prepares them for successful careers in the rapidly evolving digital world.",
+        cta: {
+            label: "View All",
+            url: "/infrastructure-and-facilities",
+        },
         stats: [
             {
                 id: 1,
@@ -581,6 +586,77 @@ const local_data = {
             },
         ],
     },
+    modernSpacesSection: {
+        eyebrow: "INFRASTRUCTURE & FACILITIES",
+        heading: "Modern Spaces for Learning & Experimentation",
+        description: [
+            {
+                type: "paragraph",
+                children: [
+                    {
+                        type: "text",
+                        text: "At DSU School of Computer Applications, we provide state-of-the-art infrastructure that inspires learning, innovation, and collaboration. Equipped with advanced technology and resources, our spaces empower students to explore ideas, build solutions, and grow into future-ready professionals.",
+                    },
+                ],
+            }
+        ],
+        cta: {
+            label: "View All",
+            url: "/infrastructure-and-facilities",
+        },
+        facilities: [
+            {
+                id: 1,
+                title: "Smart Classrooms",
+                media: {
+                    alternativeText: "Students in a smart classroom with modern infrastructure",
+                    mime: "image/jpg",
+                    // if video - mime: "video/mp4",
+                    url: "/images/infra-1.jpg",
+                },
+            },
+            {
+                id: 2,
+                title: "Library",
+                media: {
+                    alternativeText: "Student browsing books at the library",
+                    mime: "image/jpg",
+                    // if video - mime: "video/mp4",
+                    url: "/images/infra-2.jpg",
+                },
+            },
+            {
+                id: 3,
+                title: "Student Clubs",
+                media: {
+                    alternativeText: "Students collaborating at student club activities",
+                    mime: "image/jpg",
+                    // if video - mime: "video/mp4",
+                    url: "/images/infra-3.jpg",
+                },
+            },
+            {
+                id: 4,
+                title: "Computer Labs",
+                media: {
+                    alternativeText: "Students working in a computer lab",
+                    mime: "image/jpg",
+                    // if video - mime: "video/mp4",
+                    url: "/images/infra-4.jpg",
+                },
+            },
+            {
+                id: 5,
+                title: "Research Centers",
+                media: {
+                    alternativeText: "Student working at a research center computer station",
+                    mime: "image/jpg",
+                    // if video - mime: "video/mp4",
+                    url: "/images/infra-5.jpg",
+                },
+            },
+        ],
+    }
 
 
 }
@@ -596,9 +672,10 @@ export default function page() {
             <AcademicWhychoose data={local_data.whyChooseThisSchool} />
             <AcademicProgram data={local_data.computerApplicationsPrograms} />
             <AcademicCollaboration data={local_data.industryCollaborationsSection} varient="home" />
-            <AcademicPartners data={local_data.partnersSection} varient="home"/>
-            <AcademicContact data={local_data.contact} />
+            <AcademicPartners data={local_data.partnersSection} varient="home" />
+            <AcademicInfrastructure data={local_data.modernSpacesSection} />
             <AcademicNews data={local_data.newsEvents} />
+            <AcademicContact data={local_data.contact} />
         </>
     )
 }
