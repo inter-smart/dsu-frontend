@@ -1,4 +1,4 @@
-import InnerHero from "@/components/layout/common/InnerHero"; 
+import InnerHero from "@/components/layout/common/InnerHero";
 import SdgIntroduction from "@/components/sections/SDG/SdgInroduction";
 
 const local_data = {
@@ -71,126 +71,141 @@ const local_data = {
         },
         goals: [
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 1: No Poverty",
                     mime: "image/jpg",
                     url: "/images/sdg-1.jpg",
-                }, 
+                },
+
             },
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 2: Zero Hunger",
                     mime: "image/jpg",
                     url: "/images/sdg-2.jpg",
-                }, 
+                },
             },
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 3: Good Health and Well-being",
                     mime: "image/jpg",
                     url: "/images/sdg-3.jpg",
-                }, 
+                },
             },
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 4: Quality Education",
                     mime: "image/jpg",
                     url: "/images/sdg-4.jpg",
-                }, 
+                },
             },
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 5: Gender Equality",
                     mime: "image/jpg",
                     url: "/images/sdg-5.jpg",
-                }, 
+                },
             },
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 6: Clean Water and Sanitation",
                     mime: "image/jpg",
                     url: "/images/sdg-6.jpg",
-                }, 
+                },
             },
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 7: Affordable and Clean Energy",
                     mime: "image/jpg",
                     url: "/images/sdg-7.jpg",
-                }, 
+                },
             },
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 8: Decent Work and Economic Growth",
                     mime: "image/jpg",
                     url: "/images/sdg-8.jpg",
-                }, 
+                },
             },
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 9: Industry, Innovation and Infrastructure",
                     mime: "image/jpg",
                     url: "/images/sdg-9.jpg",
-                }, 
+                },
             },
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 10: Reduced Inequalities",
                     mime: "image/jpg",
                     url: "/images/sdg-10.jpg",
-                }, 
+                },
             },
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 11: Sustainable Cities and Communities",
                     mime: "image/jpg",
                     url: "/images/sdg-11.jpg",
-                }, 
+                },
             },
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 12: Responsible Consumption and Production",
                     mime: "image/jpg",
                     url: "/images/sdg-12.jpg",
-                }, 
+                },
             },
             {
-
+                url: "/",
                 image: {
                     alternativeText: "Goal 13: Climate Action",
                     mime: "image/jpg",
                     url: "/images/sdg-13.jpg",
-                }, 
+                },
             },
             {
-
+                url: "/",
                 image: {
                     alternativeText: "Goal 14: Life Below Water",
                     mime: "image/jpg",
                     url: "/images/sdg-14.jpg",
-                }, 
+                },
             },
             {
-
+                url: "/",
                 image: {
                     alternativeText: "Goal 15: Life on Land",
                     mime: "image/jpg",
                     url: "/images/sdg-15.jpg",
-                }, 
+                },
             },
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 16: Peace, Justice and Strong Institutions",
                     mime: "image/jpg",
                     url: "/images/sdg-16.jpg",
-                }, 
+                },
             },
             {
+                url: "/",
                 image: {
                     alternativeText: "Goal 17: Partnerships for the Goals",
                     mime: "image/jpg",
                     url: "/images/sdg-17.jpg",
-                }, 
+                },
             },
         ],
     }

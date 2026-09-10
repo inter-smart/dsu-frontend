@@ -1,9 +1,8 @@
 
-"use client";
-
-import { useState } from "react";
+"use client"; 
 
 import Image from "next/image";
+import Link from "next/link";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function SdgIntroduction({ data }) {
@@ -26,9 +25,9 @@ export default function SdgIntroduction({ data }) {
                 <div className="flex flex-wrap lg:-m-[4px] md:-m-[5px] lg:-m-[7px] xl:-m-[10px] 3xl:-m-[15px] w-full">
                     {data?.goals.map((item, id) => (
                         <div className="w-1/3 sm:w-1/4 lg:w-1/5 p-[4px] md:p-[5px] lg:p-[7px] xl:p-[10px] 3xl:p-[15px]" key={id}>
-                            <div className="w-full h-full relative">
+                            <Link href={item.url} className="w-full h-full relative">
                                 <Image src={item.image.url} className="object-cover w-full h-full" width={530} height={430} alt={item?.image.alternativeText} />
-                            </div>
+                            </Link>
                         </div>
                     ))}
                 </div>
