@@ -71,16 +71,15 @@ const local_data = {
         },
         goals: [
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-1",
                 image: {
                     alternativeText: "Goal 1: No Poverty",
                     mime: "image/jpg",
                     url: "/images/sdg-1.jpg",
                 },
-
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-2",
                 image: {
                     alternativeText: "Goal 2: Zero Hunger",
                     mime: "image/jpg",
@@ -88,7 +87,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-3",
                 image: {
                     alternativeText: "Goal 3: Good Health and Well-being",
                     mime: "image/jpg",
@@ -96,7 +95,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-4",
                 image: {
                     alternativeText: "Goal 4: Quality Education",
                     mime: "image/jpg",
@@ -104,7 +103,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-5",
                 image: {
                     alternativeText: "Goal 5: Gender Equality",
                     mime: "image/jpg",
@@ -112,7 +111,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-6",
                 image: {
                     alternativeText: "Goal 6: Clean Water and Sanitation",
                     mime: "image/jpg",
@@ -120,7 +119,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-7",
                 image: {
                     alternativeText: "Goal 7: Affordable and Clean Energy",
                     mime: "image/jpg",
@@ -128,7 +127,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-8",
                 image: {
                     alternativeText: "Goal 8: Decent Work and Economic Growth",
                     mime: "image/jpg",
@@ -136,7 +135,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-9",
                 image: {
                     alternativeText: "Goal 9: Industry, Innovation and Infrastructure",
                     mime: "image/jpg",
@@ -144,7 +143,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-10",
                 image: {
                     alternativeText: "Goal 10: Reduced Inequalities",
                     mime: "image/jpg",
@@ -152,7 +151,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-11",
                 image: {
                     alternativeText: "Goal 11: Sustainable Cities and Communities",
                     mime: "image/jpg",
@@ -160,7 +159,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-12",
                 image: {
                     alternativeText: "Goal 12: Responsible Consumption and Production",
                     mime: "image/jpg",
@@ -168,7 +167,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-13",
                 image: {
                     alternativeText: "Goal 13: Climate Action",
                     mime: "image/jpg",
@@ -176,7 +175,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-14",
                 image: {
                     alternativeText: "Goal 14: Life Below Water",
                     mime: "image/jpg",
@@ -184,7 +183,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-15",
                 image: {
                     alternativeText: "Goal 15: Life on Land",
                     mime: "image/jpg",
@@ -192,7 +191,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-16",
                 image: {
                     alternativeText: "Goal 16: Peace, Justice and Strong Institutions",
                     mime: "image/jpg",
@@ -200,7 +199,7 @@ const local_data = {
                 },
             },
             {
-                url: "/",
+                url: "/SDG-initiative/sdg-17",
                 image: {
                     alternativeText: "Goal 17: Partnerships for the Goals",
                     mime: "image/jpg",
