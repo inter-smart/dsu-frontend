@@ -54,11 +54,11 @@ const local_data = {
         description: "Our students continue to secure rewarding career opportunitieswith leading organizations across diverse industries. Throughindustry-oriented learning, practical exposure, internships,and dedicated placement support, graduates are well prepared to excel in today's competitive job market.",
         cta: {
             label: "View Placement Report PDF",
-            file: {
-                alternativeText: "Placement Report PDF",
-                mime: "application/pdf",
-                url: "/documents/placement-report.pdf",
-            },
+
+            alternativeText: "Placement Report PDF",
+            mime: "application/pdf",
+            url: "/documents/placement-report.pdf",
+
         },
         stats: [
             {
@@ -266,9 +266,6 @@ export default function page() {
             <AcademicCollaboration data={local_data.industryCollaborationsSection} />
             <AcademicPartners data={local_data.partnersSection} />
             <AcademicPlacementReport data={local_data.placementReportsSection} />
-
-
-
         </>
     )
 }

@@ -99,6 +99,15 @@ const local_data = {
                 children: [
                     {
                         type: "text",
+                        text: "As Steve Jobs once said, \"Innovation distinguishes between a leader and a follower,\" and we strive to instill this spirit of innovation in our students. Our dedication to research and innovation is reflected in our state-of-the-art facilities and active engagement in pioneering projects, offering students ample opportunities to participate in research groups, attend conferences, and publish their findings. We echo Albert Einstein's belief that \"Education is not the learning of facts, but the training of the mind to think,\" by emphasizing critical thinking, problem-solving, and creativity.",
+                    },
+                ],
+            },
+            {
+                type: "paragraph",
+                children: [
+                    {
+                        type: "text",
                         text: "Additionally, our world-class infrastructure, featuring modern classrooms, well-equipped laboratories, a vast library, and collaborative spaces, creates an optimal learning environment.",
                     },
                 ],
