@@ -17,17 +17,24 @@ export default function AcademicQualitySection({ data }) {
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[120px]">
             <div className="container">
                 <Tabs defaultValue={defaultTab} className="w-full">
-                    <TabsList variant="line" className="gap-[4px] sm:gap-[8px] bg-transparent p-0 mb-[25px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px] flex-wrap">
-                        {tabs.map((tab) => (
+                    <TabsList
+                        variant="line"
+                        className="self-start inline-flex w-fit max-w-full p-0 mb-[25px] xl:mb-[35px] 2xl:mb-[45px] bg-white rounded-[8px] lg:rounded-[10px] shadow-[0_2px_14px_rgba(0,0,0,0.06)]   overflow-x-auto !h-auto"
+                    >
+                        {tabs.map((tab, idx) => (
                             <TabsTrigger
                                 key={tab.id}
                                 value={tab.value}
-                                className="h-[35px] xl:h-[40px] 2xl:h-[48px] 3xl:h-[56px] px-[12px] sm:px-[18px] xl:px-[25px] 2xl:px-[30px] 3xl:px-[35px]
-                                    min-w-fit rounded-none border-0 overflow-hidden !no-underline flex items-center justify-center 
-                                    text-[12px] sm:text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] font-medium text-[#4A5565]
-                                    transition-all duration-200 ease-in-out
-                                    data-active:text-[#212121] data-active:font-bold
-                                    data-[state=active]:text-[#212121] data-[state=active]:font-bold"
+                                className={`relative h-[44px] md:h-[48px] xl:h-[54px] px-[16px] sm:px-[22px] xl:px-[28px] 2xl:px-[32px]
+                                rounded-none border-0 overflow-visible !no-underline flex items-center justify-center whitespace-nowrap !bg-transparent
+                                text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] font-medium text-[#374151] shrink-0
+                                transition-colors duration-150 bg-transparent
+                                hover:text-[#111827]
+                                data-active:text-[#111827] data-active:font-semibold
+                                data-[state=active]:text-[#111827] data-[state=active]:font-semibold
+                                after:content-[''] after:absolute after:!bottom-0 after:!left-0 after:!right-0 after:!h-[3.5px] after:!bg-[#F97316] after:w-[75%] after:m-auto after:opacity-0 after:transition-opacity after:duration-150
+                                data-active:after:!opacity-100 data-[state=active]:after:!opacity-100
+                                ${idx !== tabs.length - 1 ? "before:absolute before:content-[''] before:right-0 before:w-[1px] before:h-[75%] before:bg-[rgba(33,33,33,0.1)] before:top-0 before:bottom-0 before:m-auto" : ""}`}
                             >
                                 {tab.label}
                             </TabsTrigger>
@@ -36,7 +43,13 @@ export default function AcademicQualitySection({ data }) {
 
                     {tabs.map((tab) => {
                         const tabData = data?.tabContent?.[tab.value];
-                        if (!tabData) return <TabsContent key={tab.id} value={tab.value}><p className="text_1 text-gray-400 py-[14px]">No content available.</p></TabsContent>;
+                        if (!tabData) {
+                            return (
+                                <TabsContent key={tab.id} value={tab.value}>
+                                    <p className="text_1 text-gray-400 py-[14px]">No content available.</p>
+                                </TabsContent>
+                            );
+                        }
 
                         const defaultAccordionItem = tabData?.bestPractices?.find((bp) => bp.expanded)?.value ||
                             (tabData?.bestPractices?.[1]?.value || tabData?.bestPractices?.[0]?.value);
@@ -78,7 +91,7 @@ export default function AcademicQualitySection({ data }) {
                                             <AccordionItem
                                                 key={practice.id}
                                                 value={practice.value}
-                                                className="border border-[#FDE5DC] bg-[#FFF9F6] rounded-[8px] lg:rounded-[10px] xl:rounded-[12px] 2xl:rounded-[15px] 3xl:rounded-[19px] overflow-hidden"
+                                                className="border border-[#2121212a] rounded-[2px] lg:rounded-[3px] xl:rounded-[4px] 2xl:rounded-[5px] 3xl:rounded-[6px] overflow-hidden"
                                             >
                                                 <AccordionTrigger
                                                     className="relative p-[12px_15px] md:p-[14px_18px] xl:p-[18px_25px] 2xl:p-[20px_30px] 3xl:p-[24px_35px] font-semibold !text-[#212121] text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[22px] hover:no-underline pr-[35px] md:pr-[40px] xl:pr-[50px] 2xl:pr-[55px] 3xl:pr-[65px]
