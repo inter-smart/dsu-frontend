@@ -7,10 +7,9 @@ import Image from "next/image";
 import "swiper/css";
 import "swiper/css/grid";
 
-export default function AcademicPartners({ data }) {
+export default function AcademicPartners({ data, varient }) {
     return (
-        <section className="relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]
-                bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)]">
+        <section className={`relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)] ${varient === "home" ? "!pt-[25px]" : ""} `}>
             <div className="container">
                 <div className="w-full">
                     {data?.label && (
@@ -18,45 +17,86 @@ export default function AcademicPartners({ data }) {
                             {data.label}
                         </div>
                     )}
+                    <div className={`w-full relative ${varient === "home" ? "hidden" : ""} `}>
 
-                    <Swiper
-                        modules={[Grid, Autoplay]}
-                        grid={{
-                            rows: 2,
-                            fill: "row",
-                        }}
-                        slidesPerView={3}
-                        spaceBetween={0}
-                        loop={true}
-                        autoplay={{
-                            delay: 2000,
-                            disableOnInteraction: false,
-                        }}
-                        breakpoints={{
-                            480: { slidesPerView: 4 },
-                            768: { slidesPerView: 6 },
-                            1024: { slidesPerView: 6 },
-                            1280: { slidesPerView: 6 },
-                        }}
-                        className="w-full relative   after:absolute after:content-[''] after:top-0 after:left-[0px] after:z-10 after:w-full after:h-full after:border-[#EFF6FF] after:border "
-                    >
-                        {data?.partners?.map((partner,id) => (
-                            <SwiperSlide
-                                key={id}
-                                className="!h-[80px] lg:!h-[110px] xl:!h-[130px] border-r border-b border-black/10 last-of-type:border-0"
-                            >
-                              <div className="w-full h-full flex items-center justify-center p-[15px]">
-                                  <Image
-                                    src={partner.logo.url}
-                                    alt={partner.logo.alternativeText}
-                                    width={110}
-                                    height={40}
-                                    className="object-contain max-h-[30px] xl:max-h-[36px] w-auto flex items-center justify-center"
-                                />
-                              </div>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
+                        <Swiper
+                            modules={[Grid, Autoplay]}
+                            grid={{
+                                rows: 2,
+                                fill: "row",
+                            }}
+                            slidesPerView={3}
+                            spaceBetween={0}
+                            loop={true}
+                            autoplay={{
+                                delay: 2000,
+                                disableOnInteraction: false,
+                            }}
+                            breakpoints={{
+                                480: { slidesPerView: 4 },
+                                768: { slidesPerView: 6 },
+                                1024: { slidesPerView: 6 },
+                                1280: { slidesPerView: 6 },
+                            }}
+                            className="w-full relative   after:absolute after:content-[''] after:top-0 after:left-[0px] after:z-10 after:w-full after:h-full after:border-[#EFF6FF] after:border "
+                        >
+                            {data?.partners?.map((partner, id) => (
+                                <SwiperSlide
+                                    key={id}
+                                    className="!h-[80px] lg:!h-[110px] xl:!h-[130px] border-r border-b border-black/10 last-of-type:border-0"
+                                >
+                                    <div className="w-full h-full flex items-center justify-center p-[15px]">
+                                        <Image
+                                            src={partner.logo.url}
+                                            alt={partner.logo.alternativeText}
+                                            width={110}
+                                            height={40}
+                                            className="object-contain max-h-[30px] xl:max-h-[36px] w-auto flex items-center justify-center"
+                                        />
+                                    </div>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    </div>
+                    <div className={`w-full relative ${varient === "home" ? "" : "hidden"} `}>
+
+                        <Swiper
+                            modules={[Grid, Autoplay]}                             
+                            slidesPerView={4}
+                            spaceBetween={0}
+                            loop={true}
+                            autoplay={{
+                                delay: 2000,
+                                disableOnInteraction: false,
+                            }}
+                            breakpoints={{
+                                480: { slidesPerView: 5 },
+                                768: { slidesPerView: 8 },
+                                1024: { slidesPerView: 10 },
+                                1280: { slidesPerView: 10 },
+                            }}
+                            className="w-full relative   after:absolute after:content-[''] after:top-0 after:left-[0px] after:z-10 after:w-full after:h-full after:border-[#EFF6FF] after:border "
+                        >
+                            {data?.partners?.map((partner, id) => (
+                                <SwiperSlide
+                                    key={id}
+                                    className="!h-[50px] lg:!h-[70px] xl:!h-[1-0px] border-r border-b border-black/10 last-of-type:border-0"
+                                >
+                                    <div className="w-full h-full flex items-center justify-center p-[15px]">
+                                        <Image
+                                            src={partner.logo.url}
+                                            alt={partner.logo.alternativeText}
+                                            width={110}
+                                            height={40}
+                                            className="object-contain max-h-[30px] xl:max-h-[36px] w-auto flex items-center justify-center"
+                                        />
+                                    </div>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    </div>
+
+
                 </div>
             </div>
         </section>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
@@ -10,6 +10,9 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 
 export default function AcademicFacultyAchievements({ data }) {
+    const prevRef = useRef(null);
+    const nextRef = useRef(null);
+
     if (!data) return null;
 
     // Active Toggle Tab (Faculty Achievements / Student Achievements)
@@ -66,9 +69,6 @@ export default function AcademicFacultyAchievements({ data }) {
 
     return (
         <section className="relative py-[40px] sm:py-[50px] lg:py-[70px] xl:py-[85px] bg-[linear-gradient(135deg,_#EFF6FF_0%,_#F2F7FE_28.22%,_#F9FAFB_100%)] overflow-hidden">
-            {/* Background Vertical Grid Column Lines matching exact reference image */}
-             
-
             <div className="container relative ">
                 {/* Header Row: Title on Left, Tab Toggle Buttons on Right */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 xl:mb-10">
@@ -103,6 +103,7 @@ export default function AcademicFacultyAchievements({ data }) {
                     <div className="relative mb-10 xl:mb-14 flex items-center gap-2 sm:gap-3">
                         {/* Prev Arrow Navigation Button */}
                         <button
+                            ref={prevRef}
                             aria-label="Previous month filter"
                             className="faculty-filter-prev shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-gray-300/80 shadow-xs flex items-center justify-center text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10"
                         >
@@ -119,9 +120,13 @@ export default function AcademicFacultyAchievements({ data }) {
                                 spaceBetween={10}
                                 freeMode={true}
                                 grabCursor={true}
+                                onBeforeInit={(swiper) => {
+                                    swiper.params.navigation.prevEl = prevRef.current;
+                                    swiper.params.navigation.nextEl = nextRef.current;
+                                }}
                                 navigation={{
-                                    prevEl: ".faculty-filter-prev",
-                                    nextEl: ".faculty-filter-next",
+                                    prevEl: prevRef.current,
+                                    nextEl: nextRef.current,
                                 }}
                                 className="w-full !py-1"
                             >
@@ -146,6 +151,7 @@ export default function AcademicFacultyAchievements({ data }) {
 
                         {/* Next Arrow Navigation Button */}
                         <button
+                            ref={nextRef}
                             aria-label="Next month filter"
                             className="faculty-filter-next shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-gray-300/80 shadow-xs flex items-center justify-center text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10"
                         >
@@ -191,7 +197,7 @@ export default function AcademicFacultyAchievements({ data }) {
                                         )}
 
                                         {item.title && (
-                                            <h3 className="text-[22px] sm:text-[26px] lg:text-[28px] xl:text-[32px] 2xl:text-[35px] 3xl:text-[45px] font-bold text-[#111827] leading-[1.25] tracking-tight mb-4  ">
+                                            <h3 className="text-[22px] sm:text-[26px] lg:text-[28px] xl:text-[32px] 2xl:text-[35px] 3xl:text-[45px] font-bold text-[#111827] leading-[1.25] tracking-tight mb-4">
                                                 {item.title}
                                             </h3>
                                         )}

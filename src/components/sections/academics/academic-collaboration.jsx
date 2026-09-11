@@ -2,9 +2,9 @@
  
 import Link from "next/link";
 
-export default function AcademicCollaboration({ data }) {
+export default function AcademicCollaboration({ data, varient }) {
     return (
-        <section className="relative py-[20px_40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] ">
+        <section className={`relative py-[20px_40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]  ${varient === "home" ? "!pb-0  bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)]": "" }`}>
             <div className="container">
                 <div className="relative max-lg:flex max-lg:flex-col-reverse  after:content-[''] after:table after:clear-both ">
                     <div className="w-full lg:w-[580px] xl:w-[650px] 2xl:w-[750px] 3xl:w-[950px]  lg:float-right lg:pl-[40px]  ">
@@ -32,8 +32,8 @@ export default function AcademicCollaboration({ data }) {
                         <div className="cmn_Title mb-[25px]">{data.heading}</div>
                         <p>{data.description}</p>
                         {data.cta && (
-                            <Link href={data.cta.file.url}
-                                className="group relative flex h-[30px] mt-[15px] w-fit min-w-[130px] items-center justify-center gap-[10px] overflow-hidden rounded-[4px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
+                            <Link href={data.cta.url}
+                                className="group relative flex h-[30px] mt-[15px] xl:mt-[30px] w-fit min-w-[130px] items-center justify-center gap-[10px] overflow-hidden rounded-[4px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                             >
                                 <span className="relative z-[1] transition-transform duration-300  ">
                                     {data.cta.label}
