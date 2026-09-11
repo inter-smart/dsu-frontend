@@ -23,7 +23,7 @@ export default function DeanMessage({ data, varient }) {
                     {/* Floating Dean Image Card (Floated Left on md and above) */}
                     <div className={`w-full ${varient === "home"
                         ? "md:w-[50%] "
-                        : "md:w-[320px] lg:w-[300px] xl:w-[420px] 2xl:w-[480px] 3xl:w-[550px]"} md:float-left mr-0 md:mr-[15px] lg:mr-[20px] xl:mr-[25px] 2xl:mr-[30px] 3xl:mr-[40px] mb-[25px] md:mb-[20px] xl:mb-[30px]`}>
+                        : "md:w-[320px] lg:w-[300px] xl:w-[360px] 2xl:w-[440px] 3xl:w-[500px]"} md:float-left mr-0 md:mr-[15px] lg:mr-[20px] xl:mr-[25px] 2xl:mr-[30px] 3xl:mr-[40px] mb-[25px] md:mb-[20px] xl:mb-[30px] `}>
                         <div className="relative overflow-hidden rounded-[16px] xl:rounded-[20px] 2xl:rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.12)] bg-[#111]">
                             {/* Dean Photo */}
                             {media?.url && (
@@ -92,7 +92,7 @@ export default function DeanMessage({ data, varient }) {
 
                     {/* Message Body Paragraphs */}
                     {message && (
-                        <div className="text_1 [&_p]:text-[#4A5565] dark:[&_p]:text-[#4A5565] [&_p]:mb-[14px] [&_p]:xl:mb-[18px] [&_p]:2xl:mb-[22px] [&_p]:leading-[22px] [&_p]:2xl:leading-[25px] [&_p]:3xl:leading-[28px] [&_p]:last:mb-0">
+                        <div className="text_1 [&_p]:text-[#4A5565] dark:[&_p]:text-[#4A5565] [&_p]:mb-[14px] [&_p]:xl:mb-[18px] [&_p]:2xl:mb-[28px] [&>_p]:3xl:mb-[35px] [&_p]:leading-[22px] [&_p]:2xl:leading-[25px] [&_p]:3xl:leading-[28px] [&_p]:last:mb-0 lg:max-w-[92%] ">
                             {Array.isArray(message) ? (
                                 <BlocksRenderer content={message} />
                             ) : (
