@@ -270,7 +270,7 @@ const local_data = {
                 }
             ]
         },
-        chancellorMessage: {
+        chairmanMessage: {
             title: "Director’s Message" ,
             name: "Dr. Ananth J. P.",
             designation: "Director, IQAC", 
@@ -284,31 +284,11 @@ const local_data = {
                     children: [
                         {
                             type: "text",
-                            text: "Join me in taking the first steps as we set up the Dayananda Sagar University (DSU) that is backed by the legacy of Dayananda Sagar Institutions. The Year 2015 would be one more major milestone in our pursuit of excellence in the higher education space opening up a significant opportunity to the community that we belong to."
+                            text: "Welcome to the Internal Quality Assurance Cell (IQAC) of Dayananda Sagar University. Quality is not merely a benchmark but a continuous journey of improvement and innovation. IQAC plays a pivotal role in nurturing a culture of excellence by encouraging best practices, promoting academic quality, and strengthening institutional processes. Through collaboration with faculty, students, industry, and other stakeholders, we remain committed to enhancing teaching, research, governance, and overall institutional performance while preparing our learners for global challenges."
                         },
 
                     ],
-                },
-                {
-                    type: "paragraph",
-                    children: [
-
-                        {
-                            type: "text",
-                            text: "DSU is committed to give more now and in the days to come by designing academic programs that reflect present societal needs and that of the distant future. This knowledge would vest a new power and intellect in an individual. The education and training at DSU allows a young graduate to be seen as a proficient & master, in a chosen domain. "
-                        },
-                    ],
-                },
-                {
-                    type: "paragraph",
-                    children: [
-
-                        {
-                            type: "text",
-                            text: "The journey of the past five decades in our campuses is one of great fulfillment witnessed by the successes that we have achieved; encouraging us to develop a new vision – to achieve newer goals to be realized in the years to come. Welcome to Dayananda Sagar University and wishing all of you a great future!"
-                        },
-                    ],
-                },
+                }, 
             ], 
         }
     },

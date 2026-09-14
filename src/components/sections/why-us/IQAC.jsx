@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import IQACAbout from "./iqac-about";
 import IQACAccredition from "./IQAC-Accredition";
+import IQACChairmanMessage from "./IQAC-chairmanMessage";
 
 export default function IQAC({ data }) {
 
@@ -49,6 +50,7 @@ export default function IQAC({ data }) {
                 <TabsContent value="about-iqac" className="mt-[10px]">
                     <IQACAbout data={data?.aboutIqacSection} />
                     <IQACAccredition data={data?.accreditationsData} />
+                    <IQACChairmanMessage data={data?.chairmanMessage} />
                 </TabsContent>
 
                 {/* IQAC Activities Tab Content */}
