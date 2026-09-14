@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState } from "react";
 import Link from "next/link";
 import {
     Accordion,
@@ -8,38 +9,130 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 export default function AcademicQualitySection({ data }) {
     const tabs = data?.tabs || [];
     const defaultTab = tabs.find((t) => t.active)?.value || tabs[0]?.value;
 
+    const prevRef = useRef(null);
+    const nextRef = useRef(null);
+    const swiperRef = useRef(null);
+    const [canSlide, setCanSlide] = useState(false);
+
+    const defaultTabIndex = tabs.findIndex((t) => (t.active ? true : t.value === defaultTab));
+    const initialIndex = defaultTabIndex !== -1 ? defaultTabIndex : 0;
+
     return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[120px]">
             <div className="container">
                 <Tabs defaultValue={defaultTab} className="w-full">
-                    <TabsList
-                        variant="line"
-                        className="self-start inline-flex w-fit max-w-full p-0 mb-[25px] xl:mb-[35px] 2xl:mb-[45px] bg-white rounded-[8px] lg:rounded-[10px] shadow-[0_2px_14px_rgba(0,0,0,0.06)]   overflow-x-auto !h-auto"
-                    >
-                        {tabs.map((tab, idx) => (
-                            <TabsTrigger
-                                key={tab.id}
-                                value={tab.value}
-                                className={`relative h-[44px] md:h-[48px] xl:h-[54px] px-[16px] sm:px-[22px] xl:px-[28px] 2xl:px-[32px]
-                                rounded-none border-0 overflow-visible !no-underline flex items-center justify-center whitespace-nowrap !bg-transparent
-                                text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] font-medium text-[#374151] shrink-0
-                                transition-colors duration-150 bg-transparent
-                                hover:text-[#111827]
-                                data-active:text-[#111827] data-active:font-semibold
-                                data-[state=active]:text-[#111827] data-[state=active]:font-semibold
-                                after:content-[''] after:absolute after:!bottom-0 after:!left-0 after:!right-0 after:!h-[3.5px] after:!bg-[#F97316] after:w-[75%] after:m-auto after:opacity-0 after:transition-opacity after:duration-150
-                                data-active:after:!opacity-100 data-[state=active]:after:!opacity-100
-                                ${idx !== tabs.length - 1 ? "before:absolute before:content-[''] before:right-0 before:w-[1px] before:h-[75%] before:bg-[rgba(33,33,33,0.1)] before:top-0 before:bottom-0 before:m-auto" : ""}`}
+                    {/* Tab Navigation Swiper with Nav Buttons */}
+                    <div className={`self-start flex items-center gap-[8px] sm:gap-[12px] mb-[25px] xl:mb-[35px] 2xl:mb-[45px] max-w-full ${
+                        canSlide ? "w-full" : "w-fit"
+                    }`}>
+                        {/* Prev Arrow Button - only visible if items exceed slider limit */}
+                        <button
+                            ref={prevRef}
+                            type="button"
+                            aria-label="Previous tab"
+                            className={`academic-tab-prev w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] xl:w-[42px] xl:h-[42px] rounded-full bg-white border border-[#2121211a] shadow-[0_2px_10px_rgba(0,0,0,0.06)] items-center justify-center text-[#212121] hover:bg-[#F97316] hover:text-white hover:border-[#F97316] transition-all cursor-pointer shrink-0 z-10 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-[#212121] disabled:hover:border-[#2121211a] [&.swiper-button-lock]:!hidden ${
+                                !canSlide ? "!hidden" : "flex"
+                            }`}
+                        >
+                            <svg className="w-[14px] h-[14px] sm:w-[16px] sm:h-[16px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+
+                        {/* Swiper Slider containing TabsList */}
+                        <div className="flex-1 min-w-0 max-w-full overflow-hidden bg-white rounded-[8px] lg:rounded-[10px] shadow-[0_2px_14px_rgba(0,0,0,0.06)]">
+                            <TabsList
+                                variant="line"
+                                className="w-full max-w-full p-0 bg-transparent rounded-none shadow-none !h-auto border-0 flex"
                             >
-                                {tab.label}
-                            </TabsTrigger>
-                        ))}
-                    </TabsList>
+                                <Swiper
+                                    modules={[Navigation]}
+                                    slidesPerView="auto"
+                                    spaceBetween={0}
+                                    speed={400}
+                                    initialSlide={initialIndex}
+                                    watchOverflow={true}
+                                    watchSlidesProgress={true}
+                                    snapToSlideEdge={true}
+                                    slidesOffsetAfter={16}
+                                    onSwiper={(swiper) => {
+                                        swiperRef.current = swiper;
+                                        setCanSlide(!swiper.isLocked);
+                                    }}
+                                    onInit={(swiper) => {
+                                        setCanSlide(!swiper.isLocked);
+                                    }}
+                                    onResize={(swiper) => {
+                                        setCanSlide(!swiper.isLocked);
+                                    }}
+                                    onLock={() => {
+                                        setCanSlide(false);
+                                    }}
+                                    onUnlock={() => {
+                                        setCanSlide(true);
+                                    }}
+                                    onBeforeInit={(swiper) => {
+                                        swiper.params.navigation.prevEl = prevRef.current;
+                                        swiper.params.navigation.nextEl = nextRef.current;
+                                    }}
+                                    navigation={{
+                                        prevEl: ".academic-tab-prev",
+                                        nextEl: ".academic-tab-next",
+                                    }}
+                                    className="w-full !m-0"
+                                >
+                                    {tabs.map((tab, idx) => (
+                                        <SwiperSlide key={tab.id} className="!w-auto">
+                                            <TabsTrigger
+                                                key={tab.id}
+                                                value={tab.value}
+                                                onClick={() => {
+                                                    if (swiperRef.current && !swiperRef.current.destroyed) {
+                                                        swiperRef.current.slideTo(idx);
+                                                    }
+                                                }}
+                                                className={`relative h-[44px] md:h-[48px] xl:h-[54px] px-[16px] sm:px-[22px] xl:px-[28px] 2xl:px-[32px]
+                                                rounded-none border-0 overflow-visible !no-underline flex items-center justify-center whitespace-nowrap !bg-transparent
+                                                text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] font-medium text-[#374151] shrink-0
+                                                transition-colors duration-150 bg-transparent
+                                                hover:text-[#111827]
+                                                data-active:text-[#111827] data-active:font-semibold
+                                                data-[state=active]:text-[#111827] data-[state=active]:font-semibold
+                                                after:content-[''] after:absolute after:!bottom-0 after:!left-0 after:!right-0 after:!h-[3.5px] after:!bg-[#F97316] after:w-[75%] after:m-auto after:opacity-0 after:transition-opacity after:duration-150
+                                                data-active:after:!opacity-100 data-[state=active]:after:!opacity-100
+                                                ${idx !== tabs.length - 1 ? "before:absolute before:content-[''] before:right-0 before:w-[1px] before:h-[75%] before:bg-[rgba(33,33,33,0.1)] before:top-0 before:bottom-0 before:m-auto" : ""}`}
+                                            >
+                                                {tab.label}
+                                            </TabsTrigger>
+                                        </SwiperSlide>
+                                    ))}
+                                </Swiper>
+                            </TabsList>
+                        </div>
+
+                        {/* Next Arrow Button - only visible if items exceed slider limit */}
+                        <button
+                            ref={nextRef}
+                            type="button"
+                            aria-label="Next tab"
+                            className={`academic-tab-next w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] xl:w-[42px] xl:h-[42px] rounded-full bg-white border border-[#2121211a] shadow-[0_2px_10px_rgba(0,0,0,0.06)] items-center justify-center text-[#212121] hover:bg-[#F97316] hover:text-white hover:border-[#F97316] transition-all cursor-pointer shrink-0 z-10 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-[#212121] disabled:hover:border-[#2121211a] [&.swiper-button-lock]:!hidden ${
+                                !canSlide ? "!hidden" : "flex"
+                            }`}
+                        >
+                            <svg className="w-[14px] h-[14px] sm:w-[16px] sm:h-[16px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
 
                     {tabs.map((tab) => {
                         const tabData = data?.tabContent?.[tab.value];
