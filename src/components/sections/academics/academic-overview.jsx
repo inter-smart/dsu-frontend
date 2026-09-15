@@ -46,6 +46,12 @@ export default function AcademicOverview({ data }) {
                                 ))}
                             </div>
                         )}
+
+                        {data?.nursingBannerSection && (
+                            <div className="w-full rounded-[10px]">
+
+                            </div>
+                        )}
                     </div>
 
                     

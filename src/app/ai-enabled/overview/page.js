@@ -1,4 +1,4 @@
-import InnerHero from "@/components/layout/common/InnerHero"; 
+import InnerHero from "@/components/layout/common/InnerHero";
 import AcademicOverview from "@/components/sections/academics/academic-overview";
 import AcademicContact from "@/components/sections/academics/academic-contact";
 import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenubar";
@@ -79,9 +79,35 @@ const local_data = {
                 url: "/images/overview-img.jpg",
             },
         ],
-         
+        nursingBannerSection: {
+            backgroundImage: {
+                alternativeText: "Group of nursing students in uniform",
+                mime: "image/jpeg",
+                url: "/images/nursing/nursing-group.jpg",
+            },
+            description: [
+                {
+                    type: "paragraph",
+                    children: [
+                        {
+                            type: "text",
+                            text: "Nursing course at Dayananda Sagar University will equip the graduate nurse with the knowledge, skills and attitude to deliver high quality complex essential care to patients.",
+                        },
+                    ],
+                },
+            ],
+            badge: {
+                label: "INC Recognition",
+                icon: {
+                    alternativeText: "INC recognition medal icon",
+                    mime: "image/svg+xml",
+                    url: "/icons/medal.svg",
+                },
+            },
+        },
+
     },
-      contact: {
+    contact: {
         pageTitle: "Contact",
         formTitle: "Enquire Now for More",
         info: {
