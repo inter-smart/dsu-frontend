@@ -76,7 +76,7 @@ const local_data = {
                 alternativeText: "Students collaborating in a modern computer lab with laptops",
                 mime: "image/jpg",
                 // if video - mime: "video/mp4",
-                url: "/images/program-overview-1.jpg",
+                url: "/images/overview-img.jpg",
             },
         ],
          

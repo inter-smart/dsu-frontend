@@ -16,7 +16,7 @@ export default function AcademicOverview({ data }) {
                     {/* Floated Right Block (Image + Stat Cards) */}
                     <div className="w-full lg:w-[50%]  lg:float-right ml-0 lg:ml-[30px] xl:ml-[45px] 2xl:ml-[55px] mb-[25px] lg:mb-[20px]">
                         {primaryImage && (
-                            <div className="w-full aspect-[16/9] sm:aspect-[800/330] rounded-[8px] xl:rounded-[10px] overflow-hidden shadow-sm mb-[15px] xl:mb-[20px]">
+                            <div className="w-full aspect-[16/9] sm:aspect-[800/350] rounded-[8px] xl:rounded-[10px] overflow-hidden shadow-sm mb-[15px] xl:mb-[20px]">
                                 <Image
                                     src={primaryImage.url?.replace("program-overview", "overview") || primaryImage.url}
                                     width={750}
