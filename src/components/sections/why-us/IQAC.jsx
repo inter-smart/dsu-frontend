@@ -6,19 +6,21 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import IQACAbout from "./iqac-about";
 import IQACAccredition from "./IQAC-Accredition";
 import IQACChairmanMessage from "./IQAC-chairmanMessage";
+import IQACTeam from "./IQAC-team";
+import IQACContact from "./IQAC-contact";
 
 export default function IQAC({ data }) {
 
     const defaultTab = data?.tabs?.find((t) => t.active)?.value || data?.tabs?.[0]?.value || "about-iqac";
 
     const activities = data?.activities?.items || [];
-    const activitiesHeading = data?.activities?.heading || "IQAC Activities";
+    const activitiesHeading = data?.activities?.heading || "about-iqac";
     const activitiesDescription = data?.activities?.description || "";
 
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[90px]">
+        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[90px] !pb-0">
 
-            <Tabs defaultValue={defaultTab} className="w-full">
+            <Tabs defaultValue="about-iqac" className="w-full">
                 <div className="container">
                     {/* Tabs Header */}
                     <TabsList
@@ -51,6 +53,9 @@ export default function IQAC({ data }) {
                     <IQACAbout data={data?.aboutIqacSection} />
                     <IQACAccredition data={data?.accreditationsData} />
                     <IQACChairmanMessage data={data?.chairmanMessage} />
+                    <IQACTeam data={data?.teamData} />
+                    <IQACContact data={data?.contactData}/>
+
                 </TabsContent>
 
                 {/* IQAC Activities Tab Content */}

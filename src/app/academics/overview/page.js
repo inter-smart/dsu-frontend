@@ -1,6 +1,5 @@
 import InnerHero from "@/components/layout/common/InnerHero";
-import AcademicMenubar from "@/components/sections/academics/academicMenubar";
-import AcademicFacilities from "@/components/sections/academics/academic-facilities";
+import AcademicMenubar from "@/components/sections/academics/academicMenubar"; 
 import AcademicOverview from "@/components/sections/academics/academic-overview";
 import AcademicContact from "@/components/sections/academics/academic-contact";
 

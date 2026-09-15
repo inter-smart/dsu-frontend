@@ -10,6 +10,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import AcademicMenubar from "@/components/sections/academics/academicMenubar";
+import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenubar";
 
 export default function InnerHero({ data }) {
   const isVideo = data?.heroMedia?.mime?.includes("video");
@@ -87,6 +88,9 @@ export default function InnerHero({ data }) {
         <div className="max-md:hidden">
           {data?.menuBar && (
             <AcademicMenubar />
+          )}
+          {data?.AimenuBar && (
+            <AiAcademicMenubar />
           )}
         </div>
       </div>

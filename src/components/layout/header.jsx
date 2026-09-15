@@ -265,6 +265,13 @@ export default function Header({ data = local_data }) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
   useEffect(() => {
+    document.body.classList.toggle("header-visible", isHeaderVisible);
+
+    return () => {
+      document.body.classList.remove("header-visible");
+    };
+  }, [isHeaderVisible]);
+  useEffect(() => {
     let lastScrollY = window.scrollY;
     let ticking = false;
 
@@ -723,11 +730,11 @@ function NavigationMenu({ item, className, level = 0 }) {
               "text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium transition-colors duration-400",
               level > 0
                 ? cn(
-                    "text-[14px] leading-[1.1] py-1.25",
-                    isOpen
-                      ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
-                      : "text-black",
-                  )
+                  "text-[14px] leading-[1.1] py-1.25",
+                  isOpen
+                    ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
+                    : "text-black",
+                )
                 : isOpen
                   ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
                   : "max-lg:text-black text-white",
@@ -744,11 +751,11 @@ function NavigationMenu({ item, className, level = 0 }) {
               "text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-left py-1.25 transition-colors duration-400",
               level > 0
                 ? cn(
-                    "text-sm leading-[1.1]",
-                    isOpen
-                      ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
-                      : "text-black",
-                  )
+                  "text-sm leading-[1.1]",
+                  isOpen
+                    ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
+                    : "text-black",
+                )
                 : isOpen
                   ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
                   : "text-white",

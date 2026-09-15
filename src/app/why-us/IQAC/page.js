@@ -271,9 +271,9 @@ const local_data = {
             ]
         },
         chairmanMessage: {
-            title: "Director’s Message" ,
+            title: "Director’s Message",
             name: "Dr. Ananth J. P.",
-            designation: "Director, IQAC", 
+            designation: "Director, IQAC",
             image: {
                 url: "/images/director-1.jpg",
                 alternativeText: "Director’s Message",
@@ -288,9 +288,264 @@ const local_data = {
                         },
 
                     ],
-                }, 
-            ], 
-        }
+                },
+            ],
+        },
+        teamData: {
+            title: "IQAC Team Composition",
+            description: "The IQAC Committee includes representatives from the University's leadership, academic departments, administration, industry, alumni, students, and parents. Together, they contribute their expertise and perspectives to strengthen quality assurance practices and support the University's mission of continuous improvement.",
+            tabs: [
+                {
+                    id: "leadership-admin",
+                    label: "Leadership & Administration",
+                    rows: [
+                        {
+                            designation: "Vice Chancellor",
+                            name: "Dr. Satyanarayana B S",
+                            role: "Chairperson",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Secretary",
+                            name: "Mr. Galiswamy",
+                            role: "Management Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Pro Vice Chancellor",
+                            name: "Prof. R Janardhan",
+                            role: "Management Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Pro Vice Chancellor",
+                            name: "Dr Prakash S",
+                            role: "Management Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Registrar",
+                            name: "Dr. Puttamadappa C",
+                            role: "Senior Administrative Officer",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Dy. Registrar",
+                            name: "Mr. Nataraju C",
+                            role: "Senior Administrative Officer",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Chief Finance Officer",
+                            name: "Mr. D. Ramanathan",
+                            role: "Senior Administrative Officer",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Controller of Examinations",
+                            name: "Dr. S N Prasad",
+                            role: "Senior Administrative Officer",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Student Affairs",
+                            name: "Mrs Shyamantha Suryaprakash",
+                            role: "Chairperson",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "IQAC",
+                            name: "Dr. Satyanarayana B S",
+                            role: "Dy. Director",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Vice Chancellor",
+                            name: "Dr Subrahmanya S. Katte",
+                            role: "Director",
+                            email: "dsu@dsu.in"
+                        }
+                    ]
+                },
+                {
+                    id: "deans",
+                    label: "Deans",
+                    rows: [
+                        {
+                            designation: "Dean, School of Engineering",
+                            name: "Dr. A. Srinivas",
+                            role: "Teacher Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Dean, School of Commerce & Management",
+                            name: "Dr. K. Venkatesh",
+                            role: "Teacher Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Dean, School of Health Sciences",
+                            name: "Dr. M. Pushpalatha",
+                            role: "Teacher Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Dean, School of Basic & Applied Sciences",
+                            name: "Dr. Sunil S. More",
+                            role: "Teacher Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Dean, School of Law",
+                            name: "Dr. V. Sudesh",
+                            role: "Teacher Representative",
+                            email: "dsu@dsu.in"
+                        }
+                    ]
+                },
+                {
+                    id: "faculty-members",
+                    label: "Faculty Members",
+                    rows: [
+                        {
+                            designation: "Professor, Department of CSE",
+                            name: "Dr. Girisha G. S.",
+                            role: "Teacher Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Professor, Department of ECE",
+                            name: "Dr. T. C. Manjunath",
+                            role: "Teacher Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Professor, Department of Mechanical",
+                            name: "Dr. C. P. S. Prakash",
+                            role: "Teacher Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Associate Professor, Pharmacy",
+                            name: "Dr. S. Mohana Lakshmi",
+                            role: "Teacher Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Associate Professor, Management Studies",
+                            name: "Dr. Shilpa K.",
+                            role: "Teacher Representative",
+                            email: "dsu@dsu.in"
+                        }
+                    ]
+                },
+                {
+                    id: "industry-representatives",
+                    label: "Industry Representatives",
+                    rows: [
+                        {
+                            designation: "Senior Director, Infosys Ltd.",
+                            name: "Mr. S. Ramakrishna",
+                            role: "Industry Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "VP - Technology, Wipro Ltd.",
+                            name: "Mr. Anand Raghavan",
+                            role: "Industry Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Head - Research & Development, Biocon",
+                            name: "Dr. Rajesh Kumar",
+                            role: "Industry Representative",
+                            email: "dsu@dsu.in"
+                        }
+                    ]
+                },
+                {
+                    id: "student-representatives",
+                    label: "Student Representatives",
+                    rows: [
+                        {
+                            designation: "Student (B.Tech CSE - Final Year)",
+                            name: "Mr. Rahul Sharma",
+                            role: "Student Nominee",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Student (MBA - 2nd Year)",
+                            name: "Ms. Ananya Rao",
+                            role: "Student Nominee",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Student (M.Pharm - 2nd Year)",
+                            name: "Mr. Karthik V.",
+                            role: "Student Nominee",
+                            email: "dsu@dsu.in"
+                        }
+                    ]
+                },
+                {
+                    id: "alumni-representatives",
+                    label: "Alumni Representatives",
+                    rows: [
+                        {
+                            designation: "Founder & CEO, TechSphere Solutions",
+                            name: "Mr. Vikramaditya Hegde",
+                            role: "Alumni Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Lead Data Scientist, Microsoft",
+                            name: "Ms. Sneha Narayan",
+                            role: "Alumni Representative",
+                            email: "dsu@dsu.in"
+                        }
+                    ]
+                },
+                {
+                    id: "parent-representatives",
+                    label: "Parent Representatives",
+                    rows: [
+                        {
+                            designation: "Parent of B.Tech Student",
+                            name: "Mr. Ramesh Kulkarni",
+                            role: "Parent Representative",
+                            email: "dsu@dsu.in"
+                        },
+                        {
+                            designation: "Parent of MBA Student",
+                            name: "Mrs. Meenakshi Sundaram",
+                            role: "Parent Representative",
+                            email: "dsu@dsu.in"
+                        }
+                    ]
+                }
+            ]
+        },
+        contactData: {
+            title: "Contact IQAC",
+            description: "Have questions about IQAC, quality initiatives, accreditation, or institutional processes? Our team is here to assist you.",
+            address: {
+                label: "Address",
+                lines: [
+                    "Internal Quality Assurance Cell (IQAC)",
+                    "Dayananda Sagar University",
+                    "Harohalli Campus, Kanakapura Road",
+                    "Bengaluru – 562112, Karnataka, India"
+                ]
+            },
+            email: {
+                label: "Email",
+                value: "iqac@dsu.edu.in"
+            },
+            phone: {
+                label: "Phone",
+                value: "+91 80 XXXX XXXX"
+            }
+        },
     },
 };
 
