@@ -2,6 +2,8 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import AcademicOverview from "@/components/sections/academics/academic-overview";
 import AcademicContact from "@/components/sections/academics/academic-contact";
 import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenubar";
+import AiVisionMission from "@/components/sections/ai-enabled/Ai-vision-mission";
+import AiHighlights from "@/components/sections/ai-enabled/Ai-highlights";
 
 const local_data = {
     id: 24,
@@ -80,11 +82,7 @@ const local_data = {
             },
         ],
         nursingBannerSection: {
-            backgroundImage: {
-                alternativeText: "Group of nursing students in uniform",
-                mime: "image/jpeg",
-                url: "/images/nursing/nursing-group.jpg",
-            },
+
             description: [
                 {
                     type: "paragraph",
@@ -98,10 +96,11 @@ const local_data = {
             ],
             badge: {
                 label: "INC Recognition",
+                link: "/",
                 icon: {
                     alternativeText: "INC recognition medal icon",
                     mime: "image/svg+xml",
-                    url: "/icons/medal.svg",
+                    url: "/images/badge.png",
                 },
             },
         },
@@ -142,8 +141,48 @@ const local_data = {
             "Other",
         ],
     },
-
-
+    missionVisionSection: {
+        cards: [
+            {
+                id: 1,
+                icon: {
+                    alternativeText: "Mission flag icon",
+                    mime: "image/svg+xml",
+                    url: "/images/mission.svg",
+                },
+                title: "Mission",
+                items: [
+                    { label: "To inspire students to become professionals who would strengthen and advance health of individuals and communities worldwide." },
+                    { label: "To offer interactive education within an environment that enhances integrity, creativity, innovation and scholarly pursuits." },
+                    { label: "To enhance academic standards through use of latest pedagogy of training methodology by proficient faculty." },
+                    { label: "To promote lifelong learning through innovation and scholarly engagement." },
+                ],
+            },
+            {
+                id: 2,
+                icon: {
+                    alternativeText: "Vision target icon",
+                    mime: "image/svg+xml",
+                    url: "/images/vision.svg",
+                },
+                title: "Vision",
+                description: "College of Nursing Sciences of Dayananda Sagar University, Bangalore has a vision to be a center of excellence in nursing education supporting interdisciplinary teaching, research and innovation to create human resource of exceptional quality to serve global health care needs.",
+            },
+        ],
+    },
+    departmentHighlightsSection: {
+        heading: "Highlights of the Department",
+        items: [
+            { label: "State-of the art infra-structure with modern amenities for training." },
+            { label: "Special training in English and foreign languages." },
+            { label: "Innovative teaching learning methods for curriculum delivery." },
+            { label: "Clinical Facilities with Parent Hospital, CDSIMER for clinical training." },
+            { label: "Affiliation to Government hospitals like Victoria Hospital, Vanivilas Hospital, Kidwai Cancer Institute, Indira Gandhi Institute of Child Health and NIMHANS." },
+            { label: "Experienced faculty to implement systematic and well-designed teaching learning sessions and clinical training." },
+            { label: "MOU with our partner institutions in Malaysia." },
+            { label: "Placements to various hospitals are facilitated." },
+        ],
+    },
 }
 
 export default function page() {
@@ -152,6 +191,8 @@ export default function page() {
             <InnerHero data={local_data.hero} />
             <AiAcademicMenubar className="md:!hidden block" />
             <AcademicOverview data={local_data.programOverviewSection} />
+            <AiVisionMission data={local_data.missionVisionSection} />
+            <AiHighlights data={local_data.departmentHighlightsSection} />
             <AcademicContact data={local_data.contact} />
 
         </>

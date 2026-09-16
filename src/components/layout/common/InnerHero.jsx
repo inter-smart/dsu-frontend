@@ -80,7 +80,7 @@ export default function InnerHero({ data }) {
 
           {/* Title */}
           {data?.title && (
-            <h1 className="w-full text-[18px] font-bold leading-[1] text-white sm:text-[22px] md:text-[26px] lg:text-[32px]  xl:text-[40px] 3xl:text-[60px]">
+            <h1 className="w-full text-[18px] font-bold leading-normal text-white sm:text-[22px] md:text-[26px] lg:text-[32px]  xl:text-[40px] 3xl:text-[60px]">
               {data.title}
             </h1>
           )}
