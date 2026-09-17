@@ -97,14 +97,14 @@ export default function AiFaculty({ data }) {
                                             <div className="text-center mt-1">
                                                 {/* Name */}
                                                 <Link href={profileHref} className="block">
-                                                    <h4 className="font-bold text-[14px] sm:text-[15px] xl:text-[16px] 2xl:text-[20px] text-[#212121] dark:text-[#F3F4F6] group-hover:text-[#E05338] dark:group-hover:text-[#F97316] transition-colors line-clamp-1 leading-snug">
+                                                    <h4 className="font-bold text-[14px] sm:text-[15px] xl:text-[16px] 2xl:text-[20px] text-[#212121] dark:text-[#F3F4F6] group-hover:text-[#E05338] dark:group-hover:text-[#F97316] transition-colors line-clamp-1 leading-snug mb-[2px]">
                                                         {member.name}
                                                     </h4>
                                                 </Link>
 
                                                 {/* Designation */}
                                                 {member.designation && (
-                                                    <div className="text_1 inline-block bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent tracking-tighter leading-tight">
+                                                    <div className="text_1 inline-block bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent tracking-tighter leading-tight mb-[4px]">
                                                         {member.designation}
                                                     </div>
                                                 )}
