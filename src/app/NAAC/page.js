@@ -1,9 +1,12 @@
-
+﻿
 import InnerHero from '@/components/layout/common/InnerHero'
 import NAACAquarSection from '@/components/sections/NAAC/NAAC-AquarSection'
 import NAACJourney from '@/components/sections/NAAC/NAAC-journey'
 import NBABoard from '@/components/sections/NBA/NBA-board'
 import { Button } from '@base-ui/react/button'
+
+export const revalidate = 60;
+
 
 const local_data = {
     id: 24,
@@ -256,7 +259,7 @@ const local_data = {
     }
 
 }
-export default function page() {
+export default function Page() {
     return (
         <>
             <InnerHero data={local_data.hero} />

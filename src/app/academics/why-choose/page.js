@@ -1,6 +1,9 @@
-import InnerHero from "@/components/layout/common/InnerHero";
+﻿import InnerHero from "@/components/layout/common/InnerHero";
 import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 import WhyChoose from "@/components/sections/academics/why-choose";
+
+export const revalidate = 60;
+
 
 
 const local_data = {
@@ -127,7 +130,7 @@ const local_data = {
     }
 }
 
-export default function page() {
+export default function Page() {
     return (
         <>
             <InnerHero data={local_data.hero} />

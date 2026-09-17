@@ -1,5 +1,8 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import NewsEvents from "@/components/sections/news-events/news-events";
+import { getNewsEvents } from "@/lib/api/index";
+
+export const revalidate = 60;
 
 const local_data = {
   hero: {
@@ -80,11 +83,19 @@ const local_data = {
   },
 };
 
-export default function page() {
+export default async function Page() {
+  const data = await getNewsEvents();
+
+  // data from Strapi is an array of news events; local_data.newsEvents.newsEvents is the same shape
+  const hero = local_data.hero;
+  const newsEvents = Array.isArray(data) && data.length > 0
+    ? { title: "News & Events", newsEvents: data }
+    : local_data.newsEvents;
+
   return (
     <>
-      <InnerHero data={local_data?.hero} />
-      <NewsEvents data={local_data?.newsEvents} />
+      <InnerHero data={hero} />
+      {newsEvents && <NewsEvents data={newsEvents} />}
     </>
   );
 }

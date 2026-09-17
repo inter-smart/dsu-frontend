@@ -1,7 +1,10 @@
-
+﻿
 import InnerHero from '@/components/layout/common/InnerHero'
 import NBAAccreditedProgram from '@/components/sections/NBA/NBA-accredited-program'
 import NBABoard from '@/components/sections/NBA/NBA-board'
+
+export const revalidate = 60;
+
 
 const local_data = {
     id: 24,
@@ -136,7 +139,7 @@ const local_data = {
     }
 
 }
-export default function page() {
+export default function Page() {
     return (
         <>
             <InnerHero data={local_data.hero} />

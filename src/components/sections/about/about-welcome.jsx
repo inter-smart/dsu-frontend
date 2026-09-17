@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function AboutWelcome({ data }) {
+  if (!data) return null;
   const isVideo = data?.media?.type === "video";
 
   return (
@@ -22,7 +23,7 @@ export default function AboutWelcome({ data }) {
                     </h2>
                   )}
 
-                  {data?.description && (
+                  {Array.isArray(data?.description) && (
                     <div className="text_1 leading-[1.2] text-[#4A5565]">
                       <BlocksRenderer content={data.description} />
                     </div>
@@ -35,33 +36,34 @@ export default function AboutWelcome({ data }) {
                 <div className="aspect-[665/500] h-full w-full overflow-hidden rounded-[10px]">
                   {isVideo
                     ? data?.media?.video?.url && (
-                        <video
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          className="h-full w-full object-cover"
-                        >
-                          <source
-                            src={data.media.video.url}
-                            type={data.media.video.mime}
-                          />
-                        </video>
-                      )
-                    : data?.media?.image?.url && (
-                        <Image
-                          src={data.media.image.url}
-                          alt={
-                            data.media.image.alternativeText ||
-                            data?.title ||
-                            "About DSU"
-                          }
-                          width={1920}
-                          height={750}
-                          priority
-                          className="h-full w-full object-cover"
+                      <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="h-full w-full object-cover"
+                      >
+                        <source
+                          src={data.media.video.url}
+                          type={data.media.video.mime}
                         />
-                      )}
+                      </video>
+                    )
+                    : data?.media?.image?.url && (
+                      <Image
+                        unoptimized
+                        src={data.media.image.url}
+                        alt={
+                          data.media.image.alternativeText ||
+                          data?.title ||
+                          "About DSU"
+                        }
+                        width={1920}
+                        height={750}
+                        priority
+                        className="h-full w-full object-cover"
+                      />
+                    )}
                 </div>
               </div>
             </div>
@@ -97,7 +99,9 @@ export default function AboutWelcome({ data }) {
                         {item.title}
                       </div>
                       <div className="text_1 leading-[1.2] text-white [&_p]:text-white">
-                        <BlocksRenderer content={item.description} />
+                        {Array.isArray(item.description) && (
+                          <BlocksRenderer content={item.description} />
+                        )}
                       </div>
                     </div>
                   ))}

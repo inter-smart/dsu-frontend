@@ -1,5 +1,8 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import SdgIntroduction from "@/components/sections/SDG/SdgInroduction";
+import { getSdgInitiatives } from "@/lib/api/index";
+
+export const revalidate = 60;
 
 const local_data = {
     id: 24,
@@ -210,11 +213,19 @@ const local_data = {
     }
 
 };
-export default function page() {
+export default async function Page() {
+    const data = await getSdgInitiatives();
+    const pageData = local_data;
+
+    // Merge Strapi intro section if available
+    const sdgSection = (data && data.introSection)
+        ? data.introSection
+        : pageData.sdgIntroductionSection;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
-            <SdgIntroduction data={local_data.sdgIntroductionSection} />
+            {pageData.hero && <InnerHero data={pageData.hero} />}
+            {sdgSection && <SdgIntroduction data={sdgSection} />}
         </>
     );
 }

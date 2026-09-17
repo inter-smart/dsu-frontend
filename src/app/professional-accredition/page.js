@@ -1,6 +1,9 @@
-
+﻿
 import InnerHero from '@/components/layout/common/InnerHero'
 import ProfessionalAccredition from '@/components/sections/professional-accredition/professional-accredition'
+
+export const revalidate = 60;
+
 
 const local_data = {
     id: 24,
@@ -90,7 +93,7 @@ const local_data = {
     } 
 
 }
-export default function page() {
+export default function Page() {
     return (
         <>
             <InnerHero data={local_data.hero} />

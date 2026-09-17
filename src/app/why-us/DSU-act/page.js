@@ -1,5 +1,8 @@
-import InnerHero from "@/components/layout/common/InnerHero"
-import DSUAct from "@/components/sections/why-us/DSU-act"
+import InnerHero from "@/components/layout/common/InnerHero";
+import DSUAct from "@/components/sections/why-us/DSU-act";
+import { getDsuActPage } from "@/lib/api/index";
+
+export const revalidate = 60;
 
 
 const local_data = {
@@ -83,11 +86,16 @@ const local_data = {
         },
     }
 }
-export default function page() {
+export default async function Page() {
+    const data = await getDsuActPage();
+    const pageData = data || local_data;
+
+    if (!pageData) return null;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
-            <DSUAct data={local_data.dsuActSection}/>
+            {pageData.hero && <InnerHero data={pageData.hero} />}
+            {pageData.dsuActSection && <DSUAct data={pageData.dsuActSection} />}
         </>
-    )
+    );
 }

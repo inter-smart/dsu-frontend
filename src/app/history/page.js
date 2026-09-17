@@ -3,6 +3,9 @@ import HistoryDetails from "@/components/sections/history/history-Details";
 import HistoryNewpahse from "@/components/sections/history/history-newpahse";
 import HistoryPillers from "@/components/sections/history/history-pillers";
 import HistoryTimeline from "@/components/sections/history/history-Timeline";
+import { getHistoryPage } from "@/lib/api/index";
+
+export const revalidate = 60;
 
 
 const local_data = {
@@ -370,15 +373,19 @@ const local_data = {
     }
 }
 
-export default function page() {
+export default async function Page() {
+    const data = await getHistoryPage();
+    const pageData = data || local_data;
+
+    if (!pageData) return null;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
-            <HistoryTimeline data={local_data.historyTimeline} />
-            <HistoryDetails data={local_data.aboutInstitutions} />
-            <HistoryPillers data={local_data.foundingPillars} />
-            <HistoryNewpahse data={local_data.newPahseSection} />
+            {pageData.hero && <InnerHero data={pageData.hero} />}
+            {pageData.historyTimeline && <HistoryTimeline data={pageData.historyTimeline} />}
+            {pageData.aboutInstitutions && <HistoryDetails data={pageData.aboutInstitutions} />}
+            {pageData.foundingPillars && <HistoryPillers data={pageData.foundingPillars} />}
+            {pageData.newPahseSection && <HistoryNewpahse data={pageData.newPahseSection} />}
         </>
-    )
+    );
 }
-

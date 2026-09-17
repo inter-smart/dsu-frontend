@@ -1,6 +1,9 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import Journey from "@/components/layout/common/journey";
 import Contact from "@/components/sections/contact/contact";
+import { getContactPage } from "@/lib/api/index";
+
+export const revalidate = 60;
 
 const local_data = {
   hero: {
@@ -232,12 +235,20 @@ const local_data = {
   },
 };
 
-export default function page() {
+export default async function Page() {
+  const data = await getContactPage();
+  const pageData = local_data;
+
+  // Use Strapi hero if available
+  const hero = data?.hero || pageData.hero;
+  const contactSection = pageData.contactSection;
+  const journey = pageData.journey;
+
   return (
     <>
-      <InnerHero data={local_data?.hero} />
-      <Contact data={local_data?.contactSection} />
-      <Journey data={local_data?.journey} />
+      <InnerHero data={hero} />
+      {contactSection && <Contact data={contactSection} />}
+      {journey && <Journey data={journey} />}
     </>
   );
 }

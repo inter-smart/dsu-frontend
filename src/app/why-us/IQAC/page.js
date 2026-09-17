@@ -1,6 +1,8 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import IQAC from "@/components/sections/why-us/IQAC";
 
+export const revalidate = 60;
+
 const local_data = {
     id: 24,
     documentId: "a67zp5r21a35cb8qlzrjp54s",
@@ -294,11 +296,13 @@ const local_data = {
     },
 };
 
-export default function page() {
+export default function Page() {
+    const pageData = local_data;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
-            <IQAC data={local_data.iqacSection} />
+            {pageData.hero && <InnerHero data={pageData.hero} />}
+            {pageData.iqacSection && <IQAC data={pageData.iqacSection} />}
         </>
     );
 }

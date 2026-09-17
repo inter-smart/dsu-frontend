@@ -4,13 +4,14 @@ import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function AboutLegacy({ data }) {
+    if (!data || !data?.legacyHighlights?.length) return null;
     return (
 
         <section className="relative z-0 bg-gradient-to-b from-[#FFF8EE]
          to-[#FFF3E0] rounded-[50px_50px_0_0] md:rounded-[80px_80px_0_0] overflow-hidden ">
             <div className="container">
                 <div className="flex flex-wrap relative before:absolute before:content-[''] before:left-0 before:w-[calc(100%-1px)] before:h-full before:top-0 before:border before:border-[#FFF8EE] before:pointer-events-none">
-                    {data.legacyHighlights.map((item, idx) => (
+                    {(data?.legacyHighlights || []).map((item, idx) => (
                         <div className="w-full sm:w-1/2 md:w-1/3" key={idx}>
                             <div className="w-full h-full border-b border-l border-black/10 py-[25px] sm:p-[25px] 2xl:p-[30px] 3xl:p-[40px]
                             group transition-all duration-200 hover:bg-[#FFEACC]">
@@ -23,7 +24,9 @@ export default function AboutLegacy({ data }) {
                                     {item.title}
                                 </div>
                                 <div className="text_1 leading-[1.2] text-[#4A5565]">
-                                    <BlocksRenderer content={item.description} />
+                                    {Array.isArray(item.description) && (
+                                        <BlocksRenderer content={item.description} />
+                                    )}
                                 </div>
 
                             </div>

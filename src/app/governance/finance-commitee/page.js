@@ -1,6 +1,9 @@
 
-import InnerHero from '@/components/layout/common/InnerHero'
-import GovernanceFinancecommittte from '@/components/sections/governance/governance-financecommittte'
+import InnerHero from '@/components/layout/common/InnerHero';
+import GovernanceFinancecommittte from '@/components/sections/governance/governance-financecommittte';
+import { getCommittees } from '@/lib/api/index';
+
+export const revalidate = 60;
 
 
 const local_data = {
@@ -93,11 +96,24 @@ const local_data = {
   }
 
 }
-export default function page() {
+export default async function Page() {
+  const committees = await getCommittees('finance');
+  const hero = local_data.hero;
+
+  // Use Strapi committee data if available, otherwise fall back to local_data
+  const financeData = committees && committees.length > 0
+    ? {
+        title: committees[0].name || 'Finance Committee',
+        subtitle: committees[0].description || local_data.financeCommitteeData.subtitle,
+        tableHeaders: local_data.financeCommitteeData.tableHeaders,
+        financeCommittee: committees[0].members || local_data.financeCommitteeData.financeCommittee,
+      }
+    : local_data.financeCommitteeData;
+
   return (
     <>
-      <InnerHero data={local_data.hero} />
-      <GovernanceFinancecommittte data={local_data.financeCommitteeData} />
+      <InnerHero data={hero} />
+      {financeData && <GovernanceFinancecommittte data={financeData} />}
     </>
-  )
+  );
 }

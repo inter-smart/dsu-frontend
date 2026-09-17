@@ -1,6 +1,9 @@
-import InnerHero from "@/components/layout/common/InnerHero"
-import DSUAct from "@/components/sections/why-us/DSU-act"
-import DSUCommitee from "@/components/sections/why-us/DSU-Commitee"
+import InnerHero from "@/components/layout/common/InnerHero";
+import DSUAct from "@/components/sections/why-us/DSU-act";
+import DSUCommitee from "@/components/sections/why-us/DSU-Commitee";
+import { getCommittees } from "@/lib/api/index";
+
+export const revalidate = 60;
 
 
 const local_data = {
@@ -108,11 +111,23 @@ const local_data = {
 
     }
 }
-export default function page() {
+export default async function Page() {
+    const committees = await getCommittees();
+    const hero = local_data.hero;
+
+    // Use first matching Strapi committee or fallback to local_data
+    const committee = committees && committees.length > 0
+        ? {
+            heading: committees[0].name || local_data.dsuCommiteeSection.heading,
+            description: committees[0].description || local_data.dsuCommiteeSection.description,
+            committeeMembers: committees[0].committeeMembers || local_data.dsuCommiteeSection.committeeMembers,
+          }
+        : local_data.dsuCommiteeSection;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
-            <DSUCommitee data={local_data.dsuCommiteeSection} />
+            <InnerHero data={hero} />
+            {committee && <DSUCommitee data={committee} />}
         </>
-    )
+    );
 }

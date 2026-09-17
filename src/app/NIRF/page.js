@@ -1,6 +1,9 @@
-
+﻿
 import InnerHero from '@/components/layout/common/InnerHero' 
 import NIRFRanking from '@/components/sections/NIRF/NIRF-ranking' 
+
+export const revalidate = 60;
+
 
 
 const local_data = {
@@ -198,7 +201,7 @@ const local_data = {
 
 }
 
-export default function page() {
+export default function Page() {
     return (
         <>
             <InnerHero data={local_data.hero} />

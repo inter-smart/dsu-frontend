@@ -12,6 +12,7 @@ import {
 import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 
 export default function InnerHero({ data }) {
+  if (!data) return null;
   const isVideo = data?.heroMedia?.mime?.includes("video");
 
   return (

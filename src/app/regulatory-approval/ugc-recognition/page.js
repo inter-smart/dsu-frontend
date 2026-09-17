@@ -2,6 +2,10 @@
 import InnerHero from '@/components/layout/common/InnerHero'
 import GovernanceFinancecommittte from '@/components/sections/governance/governance-financecommittte'
 import UgcRegnition from '@/components/sections/regulatory-approval/ugc-recognition'
+import { getUgcRecognitionPage } from '@/lib/api/index'
+
+export const revalidate = 60;
+
 
 
 const local_data = {
@@ -218,11 +222,16 @@ const local_data = {
 
 
 }
-export default function page() {
+export default async function Page() {
+  const data = await getUgcRecognitionPage();
+  const pageData = data || local_data;
+
+  if (!pageData) return null;
+
   return (
     <>
-      <InnerHero data={local_data.hero} />
-      <UgcRegnition data={local_data.ugcRecognition} />
+      {pageData.hero && <InnerHero data={pageData.hero} />}
+      {pageData.ugcRecognition && <UgcRegnition data={pageData.ugcRecognition} />}
     </>
-  )
+  );
 }

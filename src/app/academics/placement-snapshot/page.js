@@ -1,8 +1,11 @@
-import InnerHero from "@/components/layout/common/InnerHero";
+﻿import InnerHero from "@/components/layout/common/InnerHero";
 import AcademicCollaboration from "@/components/sections/academics/academic-collaboration";
 import AcademicPartners from "@/components/sections/academics/academic-partners";
 import AcademicPlacementReport from "@/components/sections/academics/academic-placement-report";
 import AcademicMenubar from "@/components/sections/academics/academicMenubar";
+
+export const revalidate = 60;
+
 
 const local_data = {
     id: 24,
@@ -258,7 +261,7 @@ const local_data = {
 
 }
 
-export default function page() {
+export default function Page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
