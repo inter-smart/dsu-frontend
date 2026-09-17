@@ -3,7 +3,8 @@ import Image from "next/image";
 
 export default function AiVisionMission({ data }) {
     return (
-        <section className="relative py-[40px] xl:py-[50px] 2xl:py-[60px] 3xl:py-[80px] bg-gradient-to-b from-[rgba(255,248,238,0.5)] to-[rgba(255,243,224,0.5)] dark:from-[#131416] dark:to-[#0f1011] transition-colors duration-300 after:absolute after:content-[''] after:top-0 after:left-0 after:right-0 after:m-auto after:w-[1px] after:h-full after:sm:bg-black/10 dark:after:sm:bg-white/10">
+        <section id="vision-mission" className="scroll-mt-[80px] lg:scroll-mt-[120px] relative py-[40px] xl:py-[50px] 2xl:py-[60px] 3xl:py-[80px] bg-gradient-to-b from-[rgba(255,248,238,0.5)] to-[rgba(255,243,224,0.5)] dark:from-[#131416] dark:to-[#0f1011] transition-colors duration-300 after:absolute after:content-[''] after:top-0 after:left-0 after:right-0 after:m-auto after:w-[1px] after:h-full after:sm:bg-black/10 dark:after:sm:bg-white/10">
+            <span id="vision" className="sr-only" />
             <div className="container">
                 <div className="flex flex-wrap">
                     {data?.cards.map((item, id) => (

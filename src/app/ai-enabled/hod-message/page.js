@@ -1,5 +1,5 @@
 import InnerHero from "@/components/layout/common/InnerHero";
-import AcademicMenubar from "@/components/sections/academics/academicMenubar";
+import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenubar";
 import DeanMessage from "@/components/sections/academics/dean-message";
 
 
@@ -122,7 +122,7 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <AcademicMenubar className="md:!hidden block" />
+            <AiAcademicMenubar className="md:!hidden block" />
             <DeanMessage data={local_data.messageFromDean} />
         </>
     )

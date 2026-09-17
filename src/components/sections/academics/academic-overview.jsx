@@ -1,5 +1,5 @@
 "use client";
- 
+
 import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
@@ -10,10 +10,10 @@ export default function AcademicOverview({ data }) {
     const primaryImage = data?.media?.[0];
 
     return (
-        <section className="relative py-[10px_30px] sm:py-[20px_40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]">
+        <section id="overview" className="relative py-[10px_30px] sm:py-[20px_40px] xl:py-[55px_40px] 2xl:py-[70px_40px] 3xl:py-[90px_40px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
             <div className="container">
                 {/* TOP SECTION: Float Right for Image + Stats */}
-                <div className="relative max-lg:flex max-lg:flex-col-reverse gap-[20px] after:content-[''] after:table after:clear-both mb-[0px] lg:mb-[50px] xl:mb-[65px]">
+                <div className="relative max-lg:flex max-lg:flex-col-reverse gap-[20px] after:content-[''] after:table after:clear-both ">
                     {/* Floated Right Block (Image + Stat Cards) */}
                     <div className="w-full lg:w-[50%]  lg:float-right ml-0 lg:ml-[30px] xl:ml-[45px] 2xl:ml-[55px] mb-[25px] lg:mb-[20px]">
                         {primaryImage && (
@@ -35,12 +35,12 @@ export default function AcademicOverview({ data }) {
                                 {data.stats.map((stat, idx) => (
                                     <div
                                         key={stat.id || idx}
-                                        className="bg-white border border-[rgba(249,115,22,0.3)] rounded-[8px] p-[10px] sm:p-[12px] xl:p-[16px] flex flex-col justify-center shadow-[0_2px_8px_rgba(0,0,0,0.03)]"
+                                        className="bg-white dark:bg-[#18191B] border border-[rgba(249,115,22,0.3)] dark:border-white/10 rounded-[8px] p-[10px] sm:p-[12px] xl:p-[16px] flex flex-col justify-center shadow-[0_2px_8px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
                                     >
-                                        <div className="text-[18px] sm:text-[20px] xl:text-[24px] 2xl:text-[28px] font-bold text-[#DC2626] leading-none mb-[4px] xl:mb-[6px]">
+                                        <div className="text-[18px] sm:text-[20px] xl:text-[24px] 2xl:text-[28px] font-bold text-[#DC2626] dark:text-[#F97316] leading-none mb-[4px] xl:mb-[6px]">
                                             {stat.value}
                                         </div>
-                                        <div className="text_1">
+                                        <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF]">
                                             {stat.label}
                                         </div>
                                     </div>
@@ -57,11 +57,11 @@ export default function AcademicOverview({ data }) {
                                     className="group relative flex h-[30px] w-fit mt-[25px] 2xl:mt-[30px] min-w-[130px] mx-auto px-[30px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-white text_1 font-bold capitalize text-[#F97316] transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                                 >
                                     <span className="relative z-[1] transition-transform duration-300  ">
-                                       {data?.nursingBannerSection?.badge.label}</span>
+                                        {data?.nursingBannerSection?.badge.label}</span>
 
                                     <div className="relative z-[1] flex h-[13px] w-[15px] xl:w-[22] xl:h-[22px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
-                                         <Image src={data?.nursingBannerSection?.badge?.icon?.url} width={22} height={22} className="w-full h-full object-contain" />
-                                    </div> 
+                                        <Image src={data?.nursingBannerSection?.badge?.icon?.url} width={22} height={22} className="w-full h-full object-contain" />
+                                    </div>
                                 </Link>
                             </div>
                         )}
@@ -79,53 +79,55 @@ export default function AcademicOverview({ data }) {
                         )}
 
                         {data?.heading && (
-                            <h2 className="cmn_Title mb-[15px] xl:mb-[20px] 2xl:mb-[25px]">
+                            <h2 className="cmn_Title mb-[15px] xl:mb-[20px] 2xl:mb-[25px] text-black dark:text-white">
                                 {data.heading}
                             </h2>
                         )}
 
                         {data?.intro && (
-                            <div className="text_1 text-[#4A5565] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
+                            <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
                                 <BlocksRenderer content={data.intro} />
                             </div>
                         )}
                     </div>
                 </div>
 
-                <div className="relative after:content-[''] after:table after:clear-both pt-[10px] lg:pt-[20px]">
-                    {/* Floated Left Block (Secondary Media from JSON) */}
-                    {data?.secondaryMedia?.length > 0 && (
-                        <div className="w-full lg:w-[50%] lg:float-left mr-0 lg:mr-[30px] xl:mr-[45px] 2xl:mr-[55px] mb-[25px] lg:mb-[20px]">
-                            <div className="flex gap-[10px] xl:gap-[15px]">
-                                {data.secondaryMedia.map((mediaItem, idx) => (
-                                    <div
-                                        key={idx}
-                                        className={`  rounded-[6px] xl:rounded-[8px] overflow-hidden shadow-sm 
+                {/* Floated Left Block (Secondary Media from JSON) */}
+                {data?.secondaryMedia && (
+                    <div className="relative after:content-[''] after:table after:clear-both mt-[0px] lg:mt-[50px] xl:mt-[65px]">
+                        {data?.secondaryMedia?.length > 0 && (
+                            <div className="w-full lg:w-[50%] lg:float-left mr-0 lg:mr-[30px] xl:mr-[45px] 2xl:mr-[55px] mb-[25px] lg:mb-[20px]">
+                                <div className="flex gap-[10px] xl:gap-[15px]">
+                                    {data.secondaryMedia.map((mediaItem, idx) => (
+                                        <div
+                                            key={idx}
+                                            className={`  rounded-[6px] xl:rounded-[8px] overflow-hidden shadow-sm 
                                             ${idx === 1 ? "w-[60%]" : "w-[40%]"
-                                            }`}
-                                    >
-                                        <Image
-                                            src={mediaItem.url?.replace("program-overview", "overview") || mediaItem.url}
-                                            width={400}
-                                            height={400}
-                                            alt={mediaItem.alternativeText || `Overview image ${idx + 2}`}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                ))}
+                                                }`}
+                                        >
+                                            <Image
+                                                src={mediaItem.url?.replace("program-overview", "overview") || mediaItem.url}
+                                                width={400}
+                                                height={400}
+                                                alt={mediaItem.alternativeText || `Overview image ${idx + 2}`}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )}
 
-                    {/* Right Flowing Content: Outro */}
-                    {data?.outro && (
-                        <div>
-                            <div className="text_1 text-[#4A5565] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
-                                <BlocksRenderer content={data.outro} />
+                        {/* Right Flowing Content: Outro */}
+                        {data?.outro && (
+                            <div>
+                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
+                                    <BlocksRenderer content={data.outro} />
+                                </div>
                             </div>
-                        </div>
-                    )}
-                </div>
+                        )}
+                    </div>
+                )}
             </div>
         </section>
     );

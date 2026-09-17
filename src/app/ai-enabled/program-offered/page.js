@@ -1,5 +1,5 @@
 import InnerHero from "@/components/layout/common/InnerHero";
-import AcademicMenubar from "@/components/sections/academics/academicMenubar";
+import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenubar";
 import AcademicContact from "@/components/sections/academics/academic-contact";
 import AcademicProgram from "@/components/sections/academics/academic-program";
 
@@ -159,7 +159,7 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <AcademicMenubar className="md:!hidden block" />
+            <AiAcademicMenubar className="md:!hidden block" />
             <AcademicProgram data={local_data.computerApplicationsPrograms} variant="aiprogram"/>
             <AcademicContact data={local_data.contact} />
         </>

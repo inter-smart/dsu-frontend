@@ -1,25 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLenis } from "lenis/react";
 
 const menuItems = [
     {
         label: "Overview",
-        href: "/academics/overview"
+        href: "/ai-enabled/overview"
     },
     {
         label: "Vision & Mission",
-        href: "/academics/vision-mission"
+        href: "/ai-enabled/overview#vision-mission"
     },
     {
         label: "HoD Message",
-        href: "/academics/dean-message"
+        href: "/ai-enabled/hod-message"
     },
     {
         label: "Programs Offered",
-        href: "/academics/why-choose"
+        href: "/ai-enabled/program-offered"
     },
     {
         label: "Faculty",
@@ -27,45 +28,107 @@ const menuItems = [
     },
     {
         label: "Laboratories",
-        href: "/academics/research-innovation"
+        href: "/ai-enabled/laboratory"
     },
     {
         label: "Research Areas",
-        href: "/academics/industry-collabration",
+        href: "/ai-enabled/industry-collabration",
     },
     {
         label: "Industry Connect",
-        href: "/academics/facilities",
+        href: "/ai-enabled/facilities",
     },
     {
         label: "Library",
-        href: "/academics/placement-snapshot",
+        href: "/ai-enabled/placement-snapshot",
     },
     {
         label: "Student Chapters",
-        href: "/academics/achievements"
+        href: "/ai-enabled/achievements"
     },
     {
         label: "Placements",
-        href: "/academics/news-events"
+        href: "/ai-enabled/news-events"
     },
     {
         label: "Achievements",
-        href: "/academics/contact"
+        href: "/ai-enabled/contact"
     },
     {
         label: "News & Events",
-        href: "/academics/contact"
+        href: "/ai-enabled/contact"
     },
     {
         label: "Contact",
-        href: "/academics/contact" 
+        href: "/ai-enabled/contact" 
     },
 ];
 
 export default function AiAcademicMenubar({ title = "Academic Menu", className = "" }) {
     const pathname = usePathname();
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+    const [currentHash, setCurrentHash] = useState("");
+    const lenis = useLenis();
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setCurrentHash(window.location.hash);
+            const handleHashChange = () => setCurrentHash(window.location.hash);
+            window.addEventListener("hashchange", handleHashChange);
+            return () => window.removeEventListener("hashchange", handleHashChange);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (typeof window !== "undefined" && window.location.hash) {
+            const id = window.location.hash.replace("#", "");
+            const target = document.getElementById(id);
+            if (target) {
+                const timer = setTimeout(() => {
+                    if (lenis) {
+                        lenis.scrollTo(target, { offset: -100 });
+                    } else {
+                        target.scrollIntoView({ behavior: "smooth" });
+                    }
+                }, 300);
+                return () => clearTimeout(timer);
+            }
+        }
+    }, [pathname, lenis]);
+
+    const handleNavClick = (e, href) => {
+        if (href.includes("#")) {
+            const [targetPath, hash] = href.split("#");
+            const currentPath = pathname.split("#")[0];
+
+            if (currentPath === targetPath) {
+                e.preventDefault();
+                const target = document.getElementById(hash);
+                if (target) {
+                    if (lenis) {
+                        lenis.scrollTo(target, { offset: -100 });
+                    } else {
+                        target.scrollIntoView({ behavior: "smooth" });
+                    }
+                    window.history.pushState(null, "", href);
+                    setCurrentHash(`#${hash}`);
+                }
+            }
+        } else {
+            setCurrentHash("");
+        }
+    };
+
+    const isCurrentItemActive = (href) => {
+        if (href.includes("#")) {
+            const [targetPath, hash] = href.split("#");
+            return pathname === targetPath && currentHash === `#${hash}`;
+        }
+        if (currentHash && menuItems.some((m) => m.href.includes("#") && m.href.split("#")[0] === href)) {
+            return false;
+        }
+        return pathname === href;
+    };
 
     return (
         <div className={className}>
@@ -158,7 +221,7 @@ export default function AiAcademicMenubar({ title = "Academic Menu", className =
 
                         {/* Menu Items */}
                         {menuItems.map((item, idx) => {
-                            const isActive = pathname === item.href;
+                            const isActive = isCurrentItemActive(item.href);
 
                             return (
                                 <li
@@ -167,7 +230,10 @@ export default function AiAcademicMenubar({ title = "Academic Menu", className =
                                 >
                                     <Link
                                         href={item.href}
-                                        onClick={() => setIsMobileSidebarOpen(false)}
+                                        onClick={(e) => {
+                                            setIsMobileSidebarOpen(false);
+                                            handleNavClick(e, item.href);
+                                        }}
                                         aria-current={isActive ? "page" : undefined}
                                         className="flex items-center justify-between"
                                     >
@@ -245,12 +311,13 @@ export default function AiAcademicMenubar({ title = "Academic Menu", className =
 
                             {/* Menu items */}
                             {menuItems.map((item) => {
-                                const isActive = pathname === item.href;
+                                const isActive = isCurrentItemActive(item.href);
 
                                 return (
                                     <Link
                                         key={item.href}
                                         href={item.href}
+                                        onClick={(e) => handleNavClick(e, item.href)}
                                         className={`
                                         group inline-flex items-center justify-center
                                         text_1 font-medium p-[2px] rounded-[10px]  whitespace-nowrap
