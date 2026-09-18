@@ -60,8 +60,11 @@ export default function InnerHero({ data }) {
                             {item.label}
                           </BreadcrumbPage>
                         ) : (
-                          <BreadcrumbLink asChild className="text-[10px] xl:text-[12px]2xl:text-[14px] 3xl:text-[18px] font-light text-white transition-opacity hover:text-white hover:opacity-70">
-                            <Link href={item.href || "#"}>{item.label}</Link>
+                          <BreadcrumbLink
+                            render={<Link href={item.href || "#"} />}
+                            className="text-[10px] xl:text-[12px]2xl:text-[14px] 3xl:text-[18px] font-light text-white transition-opacity hover:text-white hover:opacity-70"
+                          >
+                            {item.label}
                           </BreadcrumbLink>
                         )}
                       </BreadcrumbItem>
