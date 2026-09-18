@@ -237,7 +237,7 @@ const local_data = {
 
 export default async function Page() {
   const data = await getContactPage();
-  const pageData = local_data;
+  const pageData = data;
 
   // Use Strapi hero if available
   const hero = data?.hero || pageData.hero;
