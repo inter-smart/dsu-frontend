@@ -234,7 +234,7 @@ export default function DSUWomenRedressal({ data }) {
                                                         <div className="flex gap-[10px] group">
                                                             <div className="w-[25px] xl:w-[30px] 3xl:w-[35px] h-[25px] xl:h-[30px] 3xl:h-[35px] bg-black rounded-full overflow-hidden p-[8px] xl:p-[10px] flex">
                                                                 <svg className="w-full h-full " viewBox="0 0 16 16" fill="none" >
-                                                                    <g clip-path="url(#clip0_4939_89951)">
+                                                                    <g clipPath="url(#clip0_4939_89951)">
                                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C5.79086 0 4 1.79086 4 4C4 6.20914 5.79086 8 8 8C10.2091 8 12 6.20914 12 4C12 1.79086 10.2091 0 8 0ZM5.33333 4C5.33333 2.52724 6.52724 1.33333 8 1.33333C9.47273 1.33333 10.6667 2.52724 10.6667 4C10.6667 5.47276 9.47273 6.66667 8 6.66667C6.52724 6.66667 5.33333 5.47276 5.33333 4Z" fill="white" />
                                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.66667 8.66797C2.08934 8.66797 0 10.7573 0 13.3346V15.3346C0 15.7028 0.298477 16.0013 0.666667 16.0013H15.3333C15.7015 16.0013 16 15.7028 16 15.3346V13.3346C16 10.7573 13.9107 8.66797 11.3333 8.66797H4.66667ZM1.33333 13.3346C1.33333 11.4937 2.82572 10.0013 4.66667 10.0013H11.3333C13.1743 10.0013 14.6667 11.4937 14.6667 13.3346V14.668H1.33333V13.3346Z" fill="white" />
                                                                     </g>
