@@ -1,6 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+
+    return [
+      {
+        source: "/uploads/:path*",
+        destination: `${strapiUrl}/uploads/:path*`,
+      },
+    ];
+  },
   images: {
     unoptimized: true,
     remotePatterns: [
