@@ -246,26 +246,17 @@ const local_data = {
             heading: "Specialized Areas:",
             subheading: "The clinical areas are",
             columns: [
-                {
-                    id: 1,
-                    items: [
-                        { label: "Medical, Surgical" },
-                        { label: "Paediatrics" },
-                        { label: "Gynae and Obstetrics" },
-                        { label: "Orthopaedics" },
-                        { label: "Psychiatry" },
-                    ],
-                },
-                {
-                    id: 2,
-                    items: [
-                        { label: "Eye, ENT" },
-                        { label: "Coronary/ICCU/ICU" },
-                        { label: "Neurology, Emergency" },
-                        { label: "ICU Oncology" },
-                        { label: "Paediatric and Neonatal Care Unit." },
-                    ],
-                },
+                { label: "Medical, Surgical" },
+                { label: "Paediatrics" },
+                { label: "Gynae and Obstetrics" },
+                { label: "Orthopaedics" },
+                { label: "Psychiatry" },
+                { label: "Eye, ENT" },
+                { label: "Coronary/ICCU/ICU" },
+                { label: "Neurology, Emergency" },
+                { label: "ICU Oncology" },
+                { label: "Paediatric and Neonatal Care Unit." },
+
             ],
             note: "Equipped with state-of-the-art technology, this unit allows students to gain specialized in all areas.",
         },

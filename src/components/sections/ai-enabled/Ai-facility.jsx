@@ -38,10 +38,10 @@ export default function AiFacility({ data }) {
                             </div>
                             <div className="w-full lg:w-1/2 flex items-center lg:py-[30px]">
                                 <div
-                                    className={`w-full lg:max-h-[280px] sm:max-h-[220px xl:max-h-[280px] 2xl:max-h-[350px] 3xl::max-h-[400px] overflow-auto pt-[20px] lg:pt-0 ${id % 2 === 0 ? "lg:pl-[40px] xl:pl-[60px] 3xl:pl-[80px] pr-0" : "pl-0 lg:pr-[40px] xl:pr-[60px] 3xl:pr-[80px]"
+                                    className={`w-full lg:max-h-[320px] sm:max-h-[340px] xl:max-h-[360px] 2xl:max-h-[400px] 3xl::max-h-[450px] overflow-auto pt-[20px] lg:pt-0 ${id % 2 === 0 ? "lg:pl-[40px] xl:pl-[60px] 3xl:pl-[80px] pr-0" : "pl-0 lg:pr-[40px] xl:pr-[60px] 3xl:pr-[80px]"
                                         }`}
                                 >
-                                    <div className="text-[18px] lg:text-[24px] xl:text-[32px] 2xl:text-[38px] 3xl:text-[45px] font-bold text-[#212121] mb-[12px] sm:mb-[16px] lg:mb-[25px]">
+                                    <div className="text-[18px] lg:text-[24px] xl:text-[26px] 2xl:text-[32px] 3xl:text-[42px] font-bold text-[#212121] mb-[12px] sm:mb-[16px] 2xl:mb-[25px]">
                                         {item.title}
                                     </div>
                                     <p className="text_1">
