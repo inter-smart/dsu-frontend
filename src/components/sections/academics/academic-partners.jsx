@@ -9,7 +9,7 @@ import "swiper/css/grid";
 
 export default function AcademicPartners({ data, varient }) {
     return (
-        <section className={`relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)] ${varient === "home" ? "!pt-[25px]" : ""} `}>
+        <section className={`relative py-[30px] sm:py-[35px] xl:py-[40px] 2xl:py-[60px] 3xl:py-[90px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)] ${varient === "home" ? "!pt-[25px]" : ""} `}>
             <div className="container">
                 <div className="w-full">
                     {data?.label && (
@@ -51,7 +51,7 @@ export default function AcademicPartners({ data, varient }) {
                                             alt={partner.logo.alternativeText}
                                             width={110}
                                             height={40}
-                                            className="object-contain max-h-[30px] xl:max-h-[36px] w-auto flex items-center justify-center"
+                                            className="object-contain max-h-[35px] xl:max-h-[36px] min-w-[150px] w-auto flex items-center justify-center"
                                         />
                                     </div>
                                 </SwiperSlide>

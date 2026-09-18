@@ -85,7 +85,7 @@ export default function AcademicFacultyAchievements({ data }) {
                                     <button
                                         key={tab.id}
                                         onClick={() => setActiveTabId(tab.id)}
-                                        className={`px-3 py-2.5 rounded-[8px] text-[12px] sm:text-[13px] md:text-[14px] font-semibold transition-all duration-300 ${isCurrent
+                                        className={`px-3 py-2.5 rounded-[4px] text_1 h-[38px] 2xl:h-[40px] 3xl:h-[46px] font-semibold transition-all duration-300 ${isCurrent
                                                 ? "bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white shadow-sm cursor-pointer"
                                                 : "bg-white border border-gray-200/90 text-[#374151] hover:bg-gray-50 cursor-pointer"
                                             }`}
@@ -117,9 +117,7 @@ export default function AcademicFacultyAchievements({ data }) {
                             <Swiper
                                 modules={[FreeMode, Navigation]}
                                 slidesPerView="auto"
-                                spaceBetween={10}
-                                freeMode={true}
-                                grabCursor={true}
+                                spaceBetween={10} 
                                 onBeforeInit={(swiper) => {
                                     swiper.params.navigation.prevEl = prevRef.current;
                                     swiper.params.navigation.nextEl = nextRef.current;
@@ -136,7 +134,7 @@ export default function AcademicFacultyAchievements({ data }) {
                                         <SwiperSlide key={filter.id} className="!w-auto">
                                             <button
                                                 onClick={() => setSelectedFilterId(filter.id)}
-                                                className={`px-5 py-2 rounded-full text-[11px] sm:text-[14px] font-medium whitespace-nowrap transition-all duration-300 ${isCurrent
+                                                className={`px-5 py-2 rounded-full text_1 font-medium whitespace-nowrap transition-all duration-300 ${isCurrent
                                                         ? "bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white shadow-sm cursor-pointer"
                                                         : "bg-white/90 border border-gray-300/80 text-[#374151] hover:border-gray-400 hover:bg-gray-50 cursor-pointer"
                                                     }`}

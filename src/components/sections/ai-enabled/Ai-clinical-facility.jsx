@@ -40,7 +40,7 @@ export default function AiClinicalFacility({ data }) {
                             </div>
                         )}
                         {data?.simulationLabs && (
-                            <div className="w-full">
+                            <div className="w-full mb-[15px] 3xl:mb-[20px]">
                                 <div className="cmn_Txt mb-[10px] 2xl:mb-[15px]">
                                     {data?.simulationLabs.heading}
                                 </div>
@@ -53,10 +53,21 @@ export default function AiClinicalFacility({ data }) {
                                             </li>
                                         ))}
                                     </ul>
-                                )} 
+                                )}
                             </div>
                         )}
-                        
+                        {data?.communityFacilities && (
+                            <div className="w-full">
+                                <div className="cmn_Txt mb-[10px] 2xl:mb-[15px]">
+                                    {data?.communityFacilities.heading}
+                                </div>
+                                <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:mb-[15px] [&_p]:3xl:mb-[20px]">
+                                    <BlocksRenderer content={data?.communityFacilities.description} />
+                                </div>
+
+                            </div>
+                        )}
+
                     </div>
 
                 </div>
