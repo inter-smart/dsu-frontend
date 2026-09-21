@@ -36,7 +36,7 @@ const menuItems = [
     },
     {
         label: "Industry Connect",
-        href: "/ai-enabled/facilities",
+        href: "/ai-enabled/industry-connect",
     },
     {
         label: "Library",

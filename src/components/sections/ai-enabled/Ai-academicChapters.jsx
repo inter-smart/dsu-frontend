@@ -28,7 +28,7 @@ export default function AiAcademicChapters({ data }) {
                                         alt={item?.image.alternativeText}
                                     />
                                 </div>
-                                <div className="p-[15px]   xl:p-[25px] 3xl:p-[30px] relative">
+                                <div className="p-[15px] xl:p-[25px] 3xl:p-[30px] relative">
                                     <div
                                         className="text-[15px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] text-white font-semibold
                                         flex items-center justify-center w-[50px] xl:w-[55px] 2xl:w-[70px] 3xl:w-[82px] h-[50px] xl:h-[55px] 2xl:h-[70px] 3xl:h-[82px] rounded-[8px] bg-gradient-to-r from-[#DC2626] to-[#F97316]
