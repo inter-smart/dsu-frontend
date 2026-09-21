@@ -44,7 +44,7 @@ const menuItems = [
     },
     {
         label: "Student Chapters",
-        href: "/ai-enabled/student-chapter"
+        href: "/ai-enabled/student-chapters"
     },
     {
         label: "Placements",

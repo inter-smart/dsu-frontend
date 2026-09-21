@@ -3,12 +3,12 @@
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
 
-export default function AcademicAchievements({ data }) {
+export default function AcademicAchievements({ data, variant }) {
     return (
         <section className="relative py-[20px_40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] ">
             <div className="container">
                 <div className="relative max-lg:flex max-lg:flex-col-reverse  after:content-[''] after:table after:clear-both ">
-                    <div className="w-full lg:w-[380px] xl:w-[450px] 2xl:w-[550px] 3xl:w-[650px]  lg:float-right lg:pl-[40px]  ">
+                    <div className={`w-full ${variant=== "AiChapter" ? "lg:w-[50%] lg:pl-[100px] 2xl:pl-[150px]" : "lg:w-[380px] xl:w-[450px] 2xl:w-[550px] 3xl:w-[650px] lg:pl-[40px]"}  lg:float-right   `}>
                         <div className="flex flex-wrap justify-center -m-[4px] lg:-m-[5px] xl:-m-[8px] 3xl:-m-[10px]">
                             {data?.stats.map((stat, idx) => (
                                 <div className="p-[4px] lg:p-[5px] xl:p-[8px] 3xl:p-[10px] max-sm:flex-grow-1 w-1/3 sm:w-1/6 lg:w-1/2 lg:mb-[10px] xl:mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px]">
