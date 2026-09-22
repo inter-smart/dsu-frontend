@@ -36,7 +36,7 @@ const menuItems = [
     },
     {
         label: "Industry Connect",
-        href: "/ai-enabled/facilities",
+        href: "/ai-enabled/industry-connect",
     },
     {
         label: "Library",
@@ -44,7 +44,7 @@ const menuItems = [
     },
     {
         label: "Student Chapters",
-        href: "/ai-enabled/student-chapter"
+        href: "/ai-enabled/student-chapters"
     },
     {
         label: "Placements",
