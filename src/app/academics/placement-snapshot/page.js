@@ -254,8 +254,6 @@ const local_data = {
             url: "/images/report-img.jpg",
         },
     }
-
-
 }
 
 export default function page() {
