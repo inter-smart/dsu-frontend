@@ -85,7 +85,7 @@ export default function InnerHero({ data }) {
             </h1>
           )}
         </div>
-        <div className="max-md:hidden">
+        <div className="max-lg:hidden">
           {data?.menuBar && (
             <AcademicMenubar />
           )}

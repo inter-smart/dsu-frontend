@@ -41,7 +41,7 @@ export default function HistoryTimeline({ data }) {
     };
 
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[70px] 3xl:py-[100px] bg-[#FFF8F6] overflow-hidden select-none">
+        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[70px] 3xl:py-[100px] bg-[#FFF8F6] dark:bg-[#101010] overflow-hidden select-none">
 
 
             <div className="container relative z-10">
@@ -80,7 +80,7 @@ export default function HistoryTimeline({ data }) {
                     {/* Prev Navigation Button */}
                     <button
                         type="button"
-                        className="thumb-prev-btn w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white border border-[#FDE6E0] shadow-sm flex items-center justify-center text-[#212121] hover:bg-[#EA580C] hover:text-white hover:border-[#EA580C] transition-all cursor-pointer shrink-0 z-20 disabled:opacity-40 disabled:cursor-not-allowed"
+                        className="thumb-prev-btn w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white dark:bg-[#18191B] border border-[#FDE6E0] dark:border-white/10 shadow-sm flex items-center justify-center text-[#212121] dark:text-white hover:bg-[#EA580C] hover:text-white hover:border-[#EA580C] transition-all cursor-pointer shrink-0 z-20 disabled:opacity-40 disabled:cursor-not-allowed"
                         aria-label="Previous Decade"
                     >
                         <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -126,8 +126,8 @@ export default function HistoryTimeline({ data }) {
                                             {/* Decade Title Label */}
                                             <span
                                                 className={`text-xs sm:text-sm md:text-[15px] lg:text-[16px] xl:text-[18px] 3xl:text-[25px] pb-3 transition-all duration-200 whitespace-nowrap px-1 ${isActive
-                                                    ? "text-[#1F1F1F] font-bold scale-105"
-                                                    : "text-[#A3A3A3] font-medium group-hover:text-[#4B5563]"
+                                                    ? "text-[#1F1F1F] dark:text-white font-bold scale-105"
+                                                    : "text-[#A3A3A3] dark:text-[#6B7280] font-medium group-hover:text-[#4B5563] dark:group-hover:text-white"
                                                     }`}
                                             >
                                                 {decade.decadeLabel}
@@ -150,7 +150,7 @@ export default function HistoryTimeline({ data }) {
                     {/* Next Navigation Button */}
                     <button
                         type="button"
-                        className="thumb-next-btn w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white border border-[#FDE6E0] shadow-sm flex items-center justify-center text-[#212121] hover:bg-[#EA580C] hover:text-white hover:border-[#EA580C] transition-all cursor-pointer shrink-0 z-20 disabled:opacity-40 disabled:cursor-not-allowed"
+                        className="thumb-next-btn w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white dark:bg-[#18191B] border border-[#FDE6E0] dark:border-white/10 shadow-sm flex items-center justify-center text-[#212121] dark:text-white hover:bg-[#EA580C] hover:text-white hover:border-[#EA580C] transition-all cursor-pointer shrink-0 z-20 disabled:opacity-40 disabled:cursor-not-allowed"
                         aria-label="Next Decade"
                     >
                         <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -198,11 +198,11 @@ export default function HistoryTimeline({ data }) {
                                                             : "md:order-1 md:pr-12 md:text-left"
                                                             }`}
                                                     >
-                                                        <div className="bg-[#FFF9F8] border border-[#FDE6E0] rounded-2xl p-6 sm:p-7 shadow-[0_8px_25px_-5px_rgba(234,88,12,0.06)] hover:shadow-[0_12px_32px_-5px_rgba(234,88,12,0.12)] transition-all duration-300 transform hover:-translate-y-1">
-                                                            <h3 className="text-[15px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] font-medium text-[#212121] mb-2 leading-snug">
+                                                        <div className="bg-[#FFF9F8] dark:bg-[#18191B] border border-[#FDE6E0] dark:border-white/10 rounded-2xl p-6 sm:p-7 shadow-[0_8px_25px_-5px_rgba(234,88,12,0.06)] hover:shadow-[0_12px_32px_-5px_rgba(234,88,12,0.12)] transition-all duration-300 transform hover:-translate-y-1">
+                                                            <h3 className="text-[15px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] font-medium text-[#212121] dark:text-white mb-2 leading-snug">
                                                                 {event.title}
                                                             </h3>
-                                                            <p className="text_1 text-[#4A5565]">
+                                                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF]">
                                                                 {event.description}
                                                             </p>
                                                         </div>
@@ -210,9 +210,9 @@ export default function HistoryTimeline({ data }) {
 
                                                     {/* Central Landmark Icon Badge */}
                                                     <div className="absolute left-6 md:left-1/2 -translate-x-1/2 top-[35px] -translate-y-1/2 z-20 flex items-center justify-center">
-                                                        <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FCEEE6] border-2 p-[10px] border-[#FDBA74] flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110">
+                                                        <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FCEEE6] dark:bg-[#18191B] border-2 p-[10px] border-[#FDBA74] dark:border-white/20 flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110">
                                                             <svg className="w-full h-full" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M26 10.5731V8.59191H23.3996V7.2241L12.9996 0L2.60041 7.2241V8.59191H0V10.574H3.48261V20.0852H0.812938L0 24.8804H26L25.1871 20.0852H22.5174V10.5731H26ZM13.0004 2.94092C13.9181 2.94092 14.6617 3.68543 14.6617 4.6039C14.6617 5.52155 13.9181 6.26605 13.0004 6.26605C12.0819 6.26605 11.3366 5.52155 11.3366 4.6039C11.3366 3.6846 12.0819 2.94092 13.0004 2.94092ZM8.81205 20.0852H6.52659V10.5731H8.81205V20.0852ZM14.1423 20.0852H11.8577V10.5731H14.1423V20.0852ZM19.4734 20.0852H17.1888V10.5731H19.4734V20.0852Z" fill="#212121" />
+                                                                <path d="M26 10.5731V8.59191H23.3996V7.2241L12.9996 0L2.60041 7.2241V8.59191H0V10.574H3.48261V20.0852H0.812938L0 24.8804H26L25.1871 20.0852H22.5174V10.5731H26ZM13.0004 2.94092C13.9181 2.94092 14.6617 3.68543 14.6617 4.6039C14.6617 5.52155 13.9181 6.26605 13.0004 6.26605C12.0819 6.26605 11.3366 5.52155 11.3366 4.6039C11.3366 3.6846 12.0819 2.94092 13.0004 2.94092ZM8.81205 20.0852H6.52659V10.5731H8.81205V20.0852ZM14.1423 20.0852H11.8577V10.5731H14.1423V20.0852ZM19.4734 20.0852H17.1888V10.5731H19.4734V20.0852Z" fill="#212121" className="dark:fill-white" />
                                                             </svg>
                                                         </div>
                                                     </div>

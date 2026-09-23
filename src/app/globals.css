@@ -189,7 +189,9 @@
   .cmn_Txt{
     @apply text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold
   }
-
+  .base-gradient{
+    @apply bg-gradient-to-r from-[#DC2626] to-[#F97316]
+  }
   .cardFlip {
     transform-origin: right center;
     backface-visibility: hidden;
@@ -198,6 +200,10 @@
   }
   .typography {
     --text-color: #212121;
+
+    :is(.dark &) {
+      --text-color: #f9fafb;
+    }
 
     * {
       @apply my-2.5 lg:my-4;

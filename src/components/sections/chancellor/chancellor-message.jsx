@@ -5,16 +5,16 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function ChancellorMessage({ data }) {
     return (
-        <section className="relative py-[40px] xl:py-[65px] 2xl:py-[90px] 3xl:py-[120px] bg-white">
+        <section className="relative py-[40px] xl:py-[65px] 2xl:py-[90px] 3xl:py-[120px] bg-white dark:bg-[#101010]">
             <div className="container">
                 <div className="flex flex-wrap lg:max-w-[75%] xl:max-w-[80%] m-auto max-md:gap-[15px]">
                     <div className="w-full md:w-[200px] lg:w-[225px] xl:w-[280px] 2xl:w-[335px] 3xl:w-[420px]  ">
                         <div className="w-full lg:aspect-[420/420] mb-[15px] rounded-[10px] overflow-hidden">
                             <Image src={data?.image.url} width={420} height={414} className="w-full h-full object-cover" alt={data.name} />
                         </div>
-                        <div className="w-full bg-[#FFEACB] rounded-[8px] 2xl:rounded-[10px] p-[12px_15px] lg:p-[15px_20px] xl:p-[18px_30px] overflow-hidden">
+                        <div className="w-full bg-[#FFEACB] dark:bg-white/5 rounded-[8px] 2xl:rounded-[10px] p-[12px_15px] lg:p-[15px_20px] xl:p-[18px_30px] overflow-hidden">
                             <ul className="w-full">
-                                <li className="py-[13px] border-b border-black/20 last-of-type:border-0">
+                                <li className="py-[13px] border-b border-black/20 dark:border-white/10 last-of-type:border-0">
                                     <Link href={`mailto:${data?.email}`} className="flex gap-[10px] group">
                                         <div className="w-[18px] xl:w-[20px] 3xl:w-[22px] h-[18px] 2xl:w-[20px] 3xl:h-[22px] flex">
                                             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,12 +32,12 @@ export default function ChancellorMessage({ data }) {
                                                 </defs>
                                             </svg>
                                         </div>
-                                        <div className="text_1 font-semibold text-[#212121] w-[calc(100%-18px)] 2xl:w-[calc(100%-20px)] 3xl:w-[calc(100%-22px)] transition-all group-hover:text-[#DC2626]">
+                                        <div className="text_1 font-semibold text-[#212121] dark:text-white w-[calc(100%-18px)] 2xl:w-[calc(100%-20px)] 3xl:w-[calc(100%-22px)] transition-all group-hover:text-[#DC2626]">
                                             {data?.email}
                                         </div>
                                     </Link>
                                 </li>
-                                <li className="py-[13px] border-b border-black/20 last-of-type:border-0">
+                                <li className="py-[13px] border-b border-black/20 dark:border-white/10 last-of-type:border-0">
                                     <Link href={`tel:${data?.phone}`} className="flex gap-[10px] group">
                                         <div className="w-[18px] xl:w-[20px] 3xl:w-[22px] h-[18px] 2xl:w-[20px] 3xl:h-[22px] flex">
                                             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,12 +51,12 @@ export default function ChancellorMessage({ data }) {
                                             </svg>
 
                                         </div>
-                                        <div className="text_1 font-semibold text-[#212121] w-[calc(100%-18px)] 2xl:w-[calc(100%-20px)] 3xl:w-[calc(100%-22px)] transition-all group-hover:text-[#DC2626]">
+                                        <div className="text_1 font-semibold text-[#212121] dark:text-white w-[calc(100%-18px)] 2xl:w-[calc(100%-20px)] 3xl:w-[calc(100%-22px)] transition-all group-hover:text-[#DC2626]">
                                             {data?.phone}
                                         </div>
                                     </Link>
                                 </li>
-                                <li className="py-[13px] border-b border-black/20 last-of-type:border-0">
+                                <li className="py-[13px] border-b border-black/20 dark:border-white/10 last-of-type:border-0">
                                     <Link href={data?.linkUrl || "#"} className="flex gap-[10px] group">
                                         <div className="w-[18px] xl:w-[20px] 3xl:w-[22px] h-[18px] 2xl:w-[20px] 3xl:h-[22px] flex">
                                             <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +90,7 @@ export default function ChancellorMessage({ data }) {
                                             </svg>
 
                                         </div>
-                                        <div className="text_1 font-semibold text-[#212121] w-[calc(100%-18px)] 2xl:w-[calc(100%-20px)] 3xl:w-[calc(100%-22px)] transition-all group-hover:text-[#DC2626]">
+                                        <div className="text_1 font-semibold text-[#212121] dark:text-white w-[calc(100%-18px)] 2xl:w-[calc(100%-20px)] 3xl:w-[calc(100%-22px)] transition-all group-hover:text-[#DC2626]">
                                             {data?.linkText}
                                         </div>
                                     </Link>
@@ -100,19 +100,19 @@ export default function ChancellorMessage({ data }) {
                     </div>
                     <div className="md:w-[calc(100%-200px)] lg:w-[calc(100%-225px)] xl:w-[calc(100%-280px)] 2xl:w-[calc(100%-335px)] 3xl:w-[calc(100%-420px)]
                     md:pl-[40px] lg:pl-[60px] xl:pl-[80px] 2xl:pl-[100px] 3xl:pl-[120px]">
-                        <div className="text-[13px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-black font-bold mb-[6px]">
+                        <div className="text-[13px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold mb-[6px]">
                             {data.name}
                         </div>
                         <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#DC2626] font-semibold relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px]
                                      after:w-[30px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316] ">
                             {data.designation}
                         </div>
-                        <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
+                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
                         w-full max-w-[550px] xl:max-w-[590px] 2xl:max-w-[790px] 3xl:max-w-[820px]">
                             <BlocksRenderer content={data.description} />
                         </div>
                         {data.closingNote && (
-                            <div className="text-[15px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[28px] text-[#212121] font-semibold uppercase">
+                            <div className="text-[15px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[28px] text-[#212121] dark:text-white font-semibold uppercase">
                                 {data.closingNote}
                             </div>
                         )}

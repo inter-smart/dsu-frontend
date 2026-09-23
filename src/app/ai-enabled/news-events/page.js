@@ -111,7 +111,7 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <AcademicMenubar className="md:!hidden block" />
+            <AcademicMenubar className="lg:!hidden block" />
             <NewsEvents data={local_data?.newsEvents} />
 
 

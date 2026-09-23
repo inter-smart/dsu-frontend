@@ -7,7 +7,7 @@ export default function AboutWelcome({ data }) {
   const isVideo = data?.media?.type === "video";
 
   return (
-    <section className="bg-white py-[40px] 2xl:py-[50px] 3xl:py-[70px]">
+    <section className="bg-white dark:bg-[#101010] py-[40px] 2xl:py-[50px] 3xl:py-[70px]">
       <div className="container">
         <div className="flex max-lg:flex-wrap gap-[15px]">
           {/* Left Content */}
@@ -17,13 +17,13 @@ export default function AboutWelcome({ data }) {
               <div className="w-full sm:w-1/2 lg:w-[calc(100%-360px)] xl:w-[calc(100%-440px)] 2xl:w-[calc(100%-530px)] 3xl:w-[calc(100%-665px)] flex items-center">
                 <div className="sm:max-w-[90%] lg:max-w-[280px] xl:max-w-[350px] 2xl:max-w-[420px] 3xl:max-w-[520px]">
                   {data?.title && (
-                    <h2 className="mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black">
+                    <h2 className="mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white">
                       {data.title}
                     </h2>
                   )}
 
                   {data?.description && (
-                    <div className="text_1 leading-[1.2] text-[#4A5565]">
+                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]">
                       <BlocksRenderer content={data.description} />
                     </div>
                   )}

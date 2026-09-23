@@ -189,7 +189,7 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <AiAcademicMenubar className="md:!hidden block" />
+            <AiAcademicMenubar className="lg:!hidden block" />
             <AcademicOverview data={local_data.programOverviewSection} />
             <AiVisionMission data={local_data.missionVisionSection} />
             <AiHighlights data={local_data.departmentHighlightsSection} />

@@ -4,6 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLenis } from "lenis/react";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const menuItems = [
     {
@@ -40,7 +46,13 @@ const menuItems = [
     },
     {
         label: "Library",
-        href: "/ai-enabled/placement-snapshot",
+        href: "/ai-enabled/library",
+        submenu: [
+            { label: "Library Services", href: "/ai-enabled/library#services" },
+            { label: "Library Collections", href: "/ai-enabled/library#collections" },
+            { label: "Membership", href: "/ai-enabled/library#membership" },
+            { label: "Downloads", href: "/ai-enabled/library#downloads" },
+        ],
     },
     {
         label: "Student Chapters",
@@ -127,14 +139,14 @@ export default function AiAcademicMenubar({ title = "Academic Menu", className =
         if (currentHash && menuItems.some((m) => m.href.includes("#") && m.href.split("#")[0] === href)) {
             return false;
         }
-        return pathname === href;
+        return pathname === href || pathname.startsWith(href + "/");
     };
 
     return (
         <div className={className}>
             {/* Mobile Menu Button (under md) */}
             <div className="container">
-                <div className="md:hidden mt-[15px] mb-[10px]">
+                <div className="lg:hidden mt-[15px] mb-[10px]">
                     <button
                         onClick={() => setIsMobileSidebarOpen((prev) => !prev)}
                         className="bg-gradient-to-r from-[rgba(220,38,38,0.8)] to-[rgba(249,115,22,0.8)] text-white rounded-[5px] px-[15px] flex items-center gap-2 text-[13px] h-[35px] font-medium hover:opacity-90 transition-opacity focus:outline-none cursor-pointer"
@@ -155,7 +167,7 @@ export default function AiAcademicMenubar({ title = "Academic Menu", className =
             {/* Mobile Backdrop Overlay */}
             {isMobileSidebarOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50 z-50 md:hidden transition-opacity duration-300"
+                    className="fixed inset-0 bg-black/50 z-50 lg:hidden transition-opacity duration-300"
                     onClick={() => setIsMobileSidebarOpen(false)}
                     aria-hidden="true"
                 />
@@ -163,7 +175,7 @@ export default function AiAcademicMenubar({ title = "Academic Menu", className =
 
             
             <div
-                className={`fixed top-0 left-0 h-full w-[300px] sm:w-[320px] z-50 shadow-2xl transition-all duration-300 md:hidden overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] p-[1px]
+                className={`fixed top-0 left-0 h-full w-[300px] sm:w-[320px] z-50 shadow-2xl transition-all duration-300 lg:hidden overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] p-[1px]
                  ${isMobileSidebarOpen ? "translate-x-0 opacity-100 pointer-events-auto" : "-translate-x-full opacity-0 pointer-events-none"}
                 `}
             >
@@ -188,6 +200,73 @@ export default function AiAcademicMenubar({ title = "Academic Menu", className =
                         {/* Menu Items */}
                         {menuItems.map((item, idx) => {
                             const isActive = isCurrentItemActive(item.href);
+                            const hasSubmenu = Array.isArray(item.submenu) && item.submenu.length > 0;
+
+                            if (hasSubmenu) {
+                                return (
+                                    <li
+                                        key={`${item.href}-${idx}`}
+                                        className="border-b border-black/10 group last:border-b-0 transition-colors duration-300"
+                                    >
+                                        <Accordion type="single" collapsible>
+                                            <AccordionItem value={`item-${idx}`} className="border-none">
+                                                <div className="flex items-center justify-between p-[11px_15px]">
+                                                    <Link
+                                                        href={item.href}
+                                                        onClick={(e) => {
+                                                            setIsMobileSidebarOpen(false);
+                                                            handleNavClick(e, item.href);
+                                                        }}
+                                                        aria-current={isActive ? "page" : undefined}
+                                                        className="flex-1"
+                                                    >
+                                                        <div
+                                                            className={`text_1 font-semibold transition-colors duration-300 group-hover:text-[#F97316] text-[13px] ${isActive ? "text-[#F97316]" : "text-[#212121] dark:text-[#F9FAFB]"
+                                                                }`}
+                                                        >
+                                                            {item.label}
+                                                        </div>
+                                                    </Link>
+
+                                                    <AccordionTrigger className="p-0 ml-[8px] shrink-0 [&>svg]:w-[14px] [&>svg]:h-[14px] [&>svg]:text-[#212121] hover:no-underline" />
+                                                </div>
+
+                                                <AccordionContent className="pb-[11px] px-[15px]">
+                                                    <ul>
+                                                        {item.submenu.map((subItem, subIdx) => {
+                                                            const isSubActive = isCurrentItemActive(subItem.href);
+                                                            return (
+                                                                <li key={`${subItem.href}-${subIdx}`}>
+                                                                    <Link
+                                                                        href={subItem.href}
+                                                                        onClick={(e) => {
+                                                                            setIsMobileSidebarOpen(false);
+                                                                            handleNavClick(e, subItem.href);
+                                                                        }}
+                                                                        aria-current={isSubActive ? "page" : undefined}
+                                                                        className="flex items-center gap-[8px] py-[8px] pl-[15px]"
+                                                                    >
+                                                                        <span
+                                                                            className={`w-[4px] h-[4px] rounded-full shrink-0 ${isSubActive ? "bg-[#F97316]" : "bg-[#212121]/40 dark:bg-white/40"
+                                                                                }`}
+                                                                        />
+                                                                        <span
+                                                                            className={`text_1 text-[12px] transition-colors duration-300 hover:text-[#F97316] ${isSubActive ? "text-[#F97316] font-semibold" : "text-[#212121]/80 dark:text-[#F9FAFB]/80"
+                                                                                }`}
+                                                                        >
+                                                                            {subItem.label}
+                                                                        </span>
+                                                                    </Link>
+                                                                </li>
+                                                            );
+                                                        })}
+                                                    </ul>
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                        </Accordion>
+                                    </li>
+                                );
+                            }
 
                             return (
                                 <li
@@ -233,7 +312,7 @@ export default function AiAcademicMenubar({ title = "Academic Menu", className =
             </div>
 
             {/* Desktop Horizontal Menubar   */}
-            <nav className="w-full z-0 relative mt-[30px] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[50%] after:bg-white dark:after:bg-[#0f1011] after:content-[''] after:-z-1 hidden md:block transition-colors duration-300">
+            <nav className="w-full z-0 relative mt-[30px] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[50%] after:bg-white dark:after:bg-[#0f1011] after:content-[''] after:-z-1 hidden lg:block transition-colors duration-300">
                 <div className="container">
                     <div className="relative rounded-[12px] lg:rounded-[15px] xl:rounded-[20px] 2xl:rounded-[23px] 3xl:rounded-[30px] bg-white border border-[#F3DFD2] dark:bg-[#1a1a1a] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-hidden transition-colors duration-300">
                         {/* Menu content */}
@@ -286,4 +365,3 @@ export default function AiAcademicMenubar({ title = "Academic Menu", className =
         </div>
     );
 }
-
