@@ -15,13 +15,15 @@ export default function Contact({ data }) {
                 <div className="w-full h-auto mb-2.5 lg:mb-3.75 3xl:mb-5">
                   <div className="[--icon-size:30px] sm:[--icon-size:35px] lg:[--icon-size:40px] 2xl:[--icon-size:50px] 3xl:[--icon-size:60px] w-full h-auto mb-2.5 lg:mb-3.75 2xl:mb-5 3xl:mb-7.5 flex items-center">
                     <div className="w-(--icon-size) h-auto aspect-square overflow-hidden flex items-center justify-center">
-                      <Image
-                        src={item?.icon?.url}
-                        alt={item?.icon?.alternativeText || "Icon"}
-                        width={60}
-                        height={60}
-                        className="w-full h-full object-contain"
-                      />
+                      {item?.icon?.url && (
+                        <Image
+                          src={item.icon.url}
+                          alt={item?.icon?.alternativeText || "Icon"}
+                          width={60}
+                          height={60}
+                          className="w-full h-full object-contain"
+                        />
+                      )}
                     </div>
                     <div className="w-[calc(100%-var(--icon-size))] pl-2.5 lg:pl-3.75 2xl:pl-5 3xl:pl-6.25">
                       <div className="text-lg sm:text-xl lg:text-[27px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.1] font-bold text-(--text-color)">
@@ -68,9 +70,19 @@ export default function Contact({ data }) {
                         <div className="w-(--icon-size) h-auto aspect-square p-1.75 lg:p-2 2xl:p-2.75 3xl:p-3.25 bg-[#BABABA]/10 rounded-[5px] border border-black/10 overflow-hidden flex items-center justify-center transition-colors duration-300 group-hover:bg-(--basecolor2)/20 group-hover:border-(--basecolor2)">
                           <Image
                             src={
-                              item?.icon?.url || "/images/icon-placeholder.svg"
+                              item?.type === "email"
+                                ? "/images/contact-inner-icon-1.svg"
+                                : item?.type === "phone"
+                                  ? "/images/contact-inner-icon-2.svg"
+                                  : "/images/icon-placeholder.svg"
                             }
-                            alt={item?.icon?.alternativeTxt || "Icon"}
+                            alt={
+                              item?.type === "email"
+                                ? "Email"
+                                : item?.type === "phone"
+                                  ? "Phone"
+                                  : "Contact"
+                            }
                             width={60}
                             height={60}
                             className="w-full h-full object-contain"
@@ -89,8 +101,8 @@ export default function Contact({ data }) {
                                 <Link
                                   href={
                                     item?.type === "email"
-                                      ? `mailto:${value}`
-                                      : `tel:${value.replace(/\s+/g, "")}`
+                                      ? `mailto:${typeof value === "string" ? value : value?.value}`
+                                      : `tel:${(typeof value === "string" ? value : value?.value)?.replace(/\s+/g, "")}`
                                   }
                                   className="transition-colors hover:underline hover:text-(--basecolor)"
                                 >
@@ -148,10 +160,19 @@ export default function Contact({ data }) {
                           <div className="w-(--icon-size) h-auto aspect-square p-1.75 lg:p-2 2xl:p-2.75 3xl:p-3.25 bg-[#BABABA]/10 rounded-[5px] border border-black/10 overflow-hidden flex items-center justify-center transition-colors duration-300 group-hover:bg-(--basecolor2)/20 group-hover:border-(--basecolor2)">
                             <Image
                               src={
-                                item?.icon?.url ||
-                                "/images/icon-placeholder.svg"
+                                item?.type === "email"
+                                  ? "/images/contact-inner-icon-1.svg"
+                                  : item?.type === "phone"
+                                    ? "/images/contact-inner-icon-2.svg"
+                                    : "/images/icon-placeholder.svg"
                               }
-                              alt={item?.icon?.alternativeTxt || "Icon"}
+                              alt={
+                                item?.type === "email"
+                                  ? "Email"
+                                  : item?.type === "phone"
+                                    ? "Phone"
+                                    : "Contact"
+                              }
                               width={60}
                               height={60}
                               className="w-full h-full object-contain"
@@ -170,8 +191,8 @@ export default function Contact({ data }) {
                                   <Link
                                     href={
                                       item?.type === "email"
-                                        ? `mailto:${value}`
-                                        : `tel:${value.replace(/\s+/g, "")}`
+                                        ? `mailto:${typeof value === "string" ? value : value?.value}`
+                                        : `tel:${(typeof value === "string" ? value : value?.value)?.replace(/\s+/g, "")}`
                                     }
                                     className="transition-colors hover:underline hover:text-(--basecolor)"
                                   >
