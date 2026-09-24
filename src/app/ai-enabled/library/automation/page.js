@@ -1,7 +1,6 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenubar";
-import LibraryDownloads from "@/components/sections/ai-enabled/library/library-download";
-import LibraryOverview from "@/components/sections/ai-enabled/library/library-overview";
+import LibraryAutomation from "@/components/sections/ai-enabled/library/library-automation"; 
 
 const local_data = {
     id: 24,
@@ -46,104 +45,40 @@ const local_data = {
                 href: "/",
             },
         ],
-        AimenuBar: true
+        AimenuBar: true,
     },
-    downloadsSection: {
-        heading: "Downloads",
-        description: "Access essential programme resources, including the B.Sc. Nursing handbook, curriculum, academic guidelines, admission information, and other important documents to help students plan and understand their academic journey.",
-        files: [
+    automationSection: {
+        heading: "Library Automation",
+        subheading: "ILMS (INTEGRATED LIBRARY MANAGEMENT SOFTWARE):",
+        description: [
             {
-                id: 1,
-                label: "Library Brochure 2024",
-                file: {
-                    alternativeText: "Library Brochure 2024",
-                    mime: "application/pdf",
-                    url: "/documents/library/library-brochure-2024.pdf",
-                },
-            },
-            {
-                id: 2,
-                label: "Library Membership Form (Staff)",
-                file: {
-                    alternativeText: "Library Membership Form (Staff)",
-                    mime: "application/pdf",
-                    url: "/documents/library/library-membership-form-staff.pdf",
-                },
-            },
-            {
-                id: 3,
-                label: "Library Membership Form (Student)",
-                file: {
-                    alternativeText: "Library Membership Form (Student)",
-                    mime: "application/pdf",
-                    url: "/documents/library/library-membership-form-student.pdf",
-                },
-            },
-            {
-                id: 4,
-                label: "Library Event Calendar 2024",
-                file: {
-                    alternativeText: "Library Event Calendar 2024",
-                    mime: "application/pdf",
-                    url: "/documents/library/library-event-calendar-2024.pdf",
-                },
-            },
-            {
-                id: 5,
-                label: "Book Indent",
-                file: {
-                    alternativeText: "Book Indent",
-                    mime: "application/pdf",
-                    url: "/documents/library/book-indent.pdf",
-                },
-            },
-            {
-                id: 6,
-                label: "Plagiarism Form",
-                file: {
-                    alternativeText: "Plagiarism Form",
-                    mime: "application/pdf",
-                    url: "/documents/library/plagiarism-form.pdf",
-                },
-            },
-            {
-                id: 7,
-                label: "Library fine form",
-                file: {
-                    alternativeText: "Library fine form",
-                    mime: "application/pdf",
-                    url: "/documents/library/library-fine-form.pdf",
-                },
-            },
-            {
-                id: 8,
-                label: "Library Caution Deposit Refund Form",
-                file: {
-                    alternativeText: "Library Caution Deposit Refund Form",
-                    mime: "application/pdf",
-                    url: "/documents/library/library-caution-deposit-refund-form.pdf",
-                },
-            },
-            {
-                id: 9,
-                label: "Library Lost Book Replacement Letter",
-                file: {
-                    alternativeText: "Library Lost Book Replacement Letter",
-                    mime: "application/pdf",
-                    url: "/documents/library/library-lost-book-replacement-letter.pdf",
-                },
+                type: "paragraph",
+                children: [
+                    {
+                        type: "text",
+                        text: "The Library is automated using Koha, Integrated Library management software for housekeeping jobs in different sections viz. Acquisition, Technical, Reference and Circulation for the Issue/Returns. The Integrated Library management software is upgraded to its latest version and the Web OPAC (Online Public Access Catalogue) provided for Users. Through web OPAC users can find availability of all library resources and can download PDF's of e-books.",
+                    },
+                ],
             },
         ],
+        webOpac: {
+            heading: "Web OPAC:",
+            items: [
+                { label: "Web OPAC is the Online Public Access Catalogue which allows users avail the services of the library." },
+                { label: "Search & find the available books in the library" },
+                { label: "E-Books- Users can directly search and download PDF's of available E-books." },
+                { label: "Public IP for Library Web OPAC https://dsuunivopac.ltsinformatics.com" },
+            ],
+        },
     },
-}
+};
 
-export default function page() {
+export default function Page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <AiAcademicMenubar className="lg:!hidden block" /> 
-
+            <AiAcademicMenubar className="lg:!hidden block" />
+            <LibraryAutomation data={local_data.automationSection} />
         </>
-    )
+    );
 }
-

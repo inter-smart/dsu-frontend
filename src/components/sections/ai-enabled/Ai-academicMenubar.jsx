@@ -46,10 +46,10 @@ const menuItems = [
     },
     {
         label: "Library",
-        href: "/ai-enabled/library",
+        href: "/ai-enabled/library/overview",
         submenu: [
-            { label: "Library Services", href: "/ai-enabled/library#services" },
-            { label: "Library Collections", href: "/ai-enabled/library#collections" },
+            { label: "Library Services", href: "/ai-enabled/library/services" },
+            { label: "Library Collections", href: "/ai-enabled/library/collections" },
             { label: "Membership", href: "/ai-enabled/library#membership" },
             { label: "Downloads", href: "/ai-enabled/library#downloads" },
         ],
