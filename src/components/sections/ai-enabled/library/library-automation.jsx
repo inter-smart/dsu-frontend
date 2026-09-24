@@ -41,11 +41,7 @@ export default function LibraryAutomation({ data }) {
                                         ))}
                                     </ul>
                                 </div>
-
                             )}
-
-
-
                         </div>
                     </div>
                 </div>

@@ -1,37 +1,25 @@
-"use client";
 
-import { useState } from "react";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
-import LibrarySidebar from "./library-sidemenubar";
 
-export default function LibraryDownloads({ data }) {
-    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+export default function BscDownloads({ data }) {
 
     return (
         <section className="relative py-[20px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
             <div className="container">
-                <div className="cmnFlx">
-                    <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
-                        <LibrarySidebar
-                            isOpen={isMobileSidebarOpen}
-                            onClose={() => setIsMobileSidebarOpen(false)}
-                        />
+                <div className="w-full">
+                    <h2 className="cmn_Title mb-[25px]">
+                        {data.heading}
+                    </h2>
+                    <div className="text_1 leading-[1.2] text-[#4A5565] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
+                        {data.description}
                     </div>
-                    <div className="rtBx">                        
-                        <div className="w-full lg:h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_30px] 2xl:p-[40px_40px] 3xl:p-[50px]">
-                            <h2 className="cmn_Title mb-[25px]">
-                                {data.heading}
-                            </h2>
-                            <div className="text_1 leading-[1.2] text-[#4A5565] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
-                                {data.description}
-                            </div>
-
-                            {data?.files.map((item, id) => (
+                    <div className="flex flex-wrap">
+                        {data?.files.map((item, id) => (
+                            <div className="w-full lg:w-1/2">
                                 <Link
                                     href={item?.file.url}
                                     key={id}
-                                    className="group relative flex items-center justify-between lg:max-w-[45%] py-[15px] 2xl:py-[18px] 3xl:py-[22px]   dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
+                                    className="group relative flex items-center justify-between lg:max-w-[70%] py-[15px] 2xl:py-[18px] 3xl:py-[22px]   dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
                                 >
                                     {/* Sliding background highlight on hover — scaleX instead of width */}
                                     <span className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 bg-gradient-to-r from-[#DC2626]/5 to-[#F97316]/5 transition-transform duration-500 ease-out -z-10" />
@@ -54,11 +42,10 @@ export default function LibraryDownloads({ data }) {
                                         </svg>
                                     </div>
                                 </Link>
-                            ))}
-
-
-                        </div>
+                            </div>
+                        ))}
                     </div>
+
                 </div>
             </div>
         </section>

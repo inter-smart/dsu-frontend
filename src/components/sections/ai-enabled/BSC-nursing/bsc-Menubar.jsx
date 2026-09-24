@@ -14,72 +14,44 @@ import {
 const menuItems = [
     {
         label: "Overview",
-        href: "/ai-enabled/overview"
+        href: "/ai-enabled/BSC-nursing/overview"
     },
     {
-        label: "Vision & Mission",
-        href: "/ai-enabled/overview#vision-mission"
+        label: "Eligibility",
+        href: "/ai-enabled/BSC-nursing/eligibility"
     },
     {
-        label: "HoD Message",
-        href: "/ai-enabled/hod-message"
+        label: "Curriculum",
+        href: "/ai-enabled/BSC-nursing/curriculum"
     },
     {
-        label: "Programs Offered",
-        href: "/ai-enabled/program-offered"
+        label: "PEO",
+        href: "/ai-enabled/BSC-nursing/PEO"
+    },
+    {
+        label: "PO & PSO",
+        href: "/ai-enabled/BSC-nursing/PEO"
     },
     {
         label: "Faculty",
-        href: "/ai-enabled/faculty"
+        href: "/ai-enabled/BSC-nursing/PEO"
     },
     {
-        label: "Laboratories",
-        href: "/ai-enabled/laboratory"
+        label: "Career Opportunities",
+        href: "/ai-enabled/BSC-nursing/PEO"
     },
     {
-        label: "Research Areas",
-        href: "/ai-enabled/industry-collabration",
+        label: "Admissions",
+        href: "/ai-enabled/BSC-nursing/PEO"
     },
     {
-        label: "Industry Connect",
-        href: "/ai-enabled/industry-connect",
+        label: "Downloads",
+        href: "/ai-enabled/BSC-nursing/downloads"
     },
-    {
-        label: "Library",
-        href: "/ai-enabled/library",
-        submenu: [
-            { label: "Overview", href: "/ai-enabled/library/overview" },
-            { label: "Library Services", href: "/ai-enabled/library/services" },
-            { label: "Library Downloads", href: "/ai-enabled/library/downloads" },
-            { label: "Quick Abbreviations", href: "/ai-enabled/library/abbreviations" },
-            { label: "Library Automation", href: "/ai-enabled/library/automation" },
-            { label: "FAQ’s ", href: "/ai-enabled/library/faqs" },
-            { label: "Gallery ", href: "/ai-enabled/library/gallery" },
-        ],
-    },
-    {
-        label: "Student Chapters",
-        href: "/ai-enabled/student-chapters"
-    },
-    {
-        label: "Placements",
-        href: "/ai-enabled/placement"
-    },
-    {
-        label: "Achievements",
-        href: "/ai-enabled/achievements"
-    },
-    {
-        label: "News & Events",
-        href: "/ai-enabled/news-events"
-    },
-    {
-        label: "Contact",
-        href: "/ai-enabled/contact" 
-    },
+   
 ];
 
-export default function AiAcademicMenubar({ title = "Academic Menu", className = "" }) {
+export default function AiBSCMenubar({ title = "BSC Menu", className = "" }) {
     const pathname = usePathname();
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
     const [currentHash, setCurrentHash] = useState("");
@@ -319,7 +291,7 @@ export default function AiAcademicMenubar({ title = "Academic Menu", className =
                 <div className="container">
                     <div className="relative rounded-[12px] lg:rounded-[15px] xl:rounded-[20px] 2xl:rounded-[23px] 3xl:rounded-[30px] bg-white border border-[#F3DFD2] dark:bg-[#1a1a1a] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-hidden transition-colors duration-300">
                         {/* Menu content */}
-                        <div className="flex flex-wrap items-center justify-center gap-[8px] xl:gap-[10px] 2xl:gap-[12px] 3xl:gap-[14px] p-[20px_15px] md:p-[20px] lg:p-[25px_20px] xl:p-[30px_50px] 2xl:p-[30px_60px] 3xl:p-[35px_70px]">
+                        <div className="flex flex-wrap items-center max-w-[75%]  xl:max-w-[70%] xl:max-w-[75%] 3xl:max-w-[70%] m-auto justify-center gap-[8px] xl:gap-[10px] 2xl:gap-[12px] 3xl:gap-[14px] p-[20px_15px] md:p-[20px] lg:p-[25px_20px] xl:p-[30px_50px] 2xl:p-[30px_60px] 3xl:p-[35px_0px]">
                             
 
                             {/* Menu items */}
