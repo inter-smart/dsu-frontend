@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 const sidebarMenu = [
     {
         label: "Overview",
-        slug: "/ai-enabled/library/overview",
+        slug: "/ai-enabled/library",
     },
     {
         label: "Library Services",
