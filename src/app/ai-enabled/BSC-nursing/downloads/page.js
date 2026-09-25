@@ -1,5 +1,5 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenubar";
+import InnerHero from "@/components/layout/common/InnerHero"; 
+import AiBSCMenubar from "@/components/sections/ai-enabled/BSC-nursing/bsc-Menubar";
 import BscDownloads from "@/components/sections/ai-enabled/BSC-nursing/downloads";
  
 const local_data = {
@@ -10,14 +10,14 @@ const local_data = {
     publishedAt: "2026-06-11T06:26:08.337Z",
     seo: {
         id: 21,
-        metaTitle: "Industry Collaborations page title",
-        metaDescription: "Industry Collaborations page description ",
+        metaTitle: "Downloads page title",
+        metaDescription: "Downloads page description ",
         canonicalUrl: null,
     },
     hero: {
         id: 25,
         heroMedia: {
-            alternativeText: "Industry Collaborations page title",
+            alternativeText: "Downloads page title",
             mime: "image/jpg",
             // if video - mime: "video/mp4",
             url: "/images/academic-banner.jpg",
@@ -41,7 +41,11 @@ const local_data = {
                 href: "/",
             },
             {
-                label: "Library",
+                label: "Basic B. Sc Nursing",
+                href: "/",
+            },
+            {
+                label: "Downloads",
                 href: "/",
             },
         ],
@@ -114,7 +118,7 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <AiAcademicMenubar className="lg:!hidden block" />
+            <AiBSCMenubar className="lg:!hidden block" />
             <BscDownloads data={local_data.downloadsSection}  varient="Bsc-nursing"/>
 
         </>
