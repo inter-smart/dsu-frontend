@@ -1,3 +1,32 @@
 {
-    "folder-color.pathColors": []
+  "files.associations": {
+    "*.js": "javascriptreact",
+    "*.jsx": "javascriptreact"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "javascriptreact": "html",
+    "typescript": "typescriptreact",
+    "typescriptreact": "html"
+  },
+  "tailwindCSS.includeLanguages": {
+    "javascript": "html",
+    "javascriptreact": "html",
+    "typescript": "html",
+    "typescriptreact": "html"
+  },
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "class:list",
+    "ngClass"
+  ],
+  "editor.quickSuggestions": {
+    "strings": "on",
+    "comments": "off",
+    "other": "on"
+  },
+  "css.validate": true,
+  "html.validate.scripts": true,
+  "html.validate.styles": true
 }

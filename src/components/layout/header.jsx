@@ -105,6 +105,43 @@ const local_data = {
           id: 1,
           url: "#!",
           label: "About DSU",
+          children: [
+            {
+              id: 1,
+              url: "#!",
+              label: "Chancellor",
+            },
+            {
+              id: 2,
+              url: "#!",
+              label: "Pro Chancellor",
+            },
+            {
+              id: 3,
+              url: "#!",
+              label: "Vice Chancellor",
+            },
+            {
+              id: 4,
+              url: "#!",
+              label: "Pro-Vice Chancellor",
+            },
+            {
+              id: 5,
+              url: "#!",
+              label: "Registrar",
+            },
+            {
+              id: 6,
+              url: "#!",
+              label: "COE",
+            },
+            {
+              id: 7,
+              url: "#!",
+              label: "Finance Officer",
+            },
+          ],
         },
         {
           id: 2,
@@ -114,12 +151,37 @@ const local_data = {
             {
               id: 1,
               url: "#!",
-              label: "Leadership-1",
+              label: "Chancellor",
             },
             {
               id: 2,
               url: "#!",
-              label: "Leadership-2",
+              label: "Pro Chancellor",
+            },
+            {
+              id: 3,
+              url: "#!",
+              label: "Vice Chancellor",
+            },
+            {
+              id: 4,
+              url: "#!",
+              label: "Pro-Vice Chancellor",
+            },
+            {
+              id: 5,
+              url: "#!",
+              label: "Registrar",
+            },
+            {
+              id: 6,
+              url: "#!",
+              label: "COE",
+            },
+            {
+              id: 7,
+              url: "#!",
+              label: "Finance Officer",
             },
           ],
         },
@@ -159,6 +221,7 @@ const local_data = {
         },
         {
           id: 5,
+          url: "#!",
           label: "Excellence & Quality Assurance",
           children: [
             {
@@ -185,34 +248,103 @@ const local_data = {
                   url: "#!",
                   label: "IQAC Composition",
                 },
+                {
+                  id: 5,
+                  url: "#!",
+                  label: "AQAR",
+                },
+                {
+                  id: 6,
+                  url: "#!",
+                  label: "AQAR Reports",
+                },
+                {
+                  id: 7,
+                  url: "#!",
+                  label: "Quality Initiatives",
+                },
               ],
             },
             {
               id: 2,
-              url: "#!",
-              label: "Student Life",
+              label: "Feedback",
               children: [
                 {
                   id: 1,
                   url: "#!",
-                  label: "Clubs",
-                  children: [
-                    {
-                      id: 1,
-                      url: "#!",
-                      label: "Clubs",
-                    },
-                    {
-                      id: 2,
-                      url: "#!",
-                      label: "Events",
-                    },
-                  ],
+                  label: "Student Feedback",
                 },
                 {
                   id: 2,
                   url: "#!",
-                  label: "Events",
+                  label: "Faculty Feedback",
+                },
+                {
+                  id: 3,
+                  url: "#!",
+                  label: "Alumni Feedback",
+                },
+                {
+                  id: 4,
+                  url: "#!",
+                  label: "Employer Feedback",
+                },
+                {
+                  id: 5,
+                  url: "#!",
+                  label: "Stakeholder Feedback",
+                },
+                {
+                  id: 6,
+                  url: "#!",
+                  label: "Feedback Analysis",
+                },
+                {
+                  id: 7,
+                  url: "#!",
+                  label: "Action Taken Reports",
+                },
+              ],
+            },
+            {
+              id: 3,
+              label: "Quality Process",
+              children: [
+                {
+                  id: 1,
+                  url: "#!",
+                  label: "Academic Audit",
+                },
+                {
+                  id: 2,
+                  url: "#!",
+                  label: "Administrative Audit",
+                },
+                {
+                  id: 3,
+                  url: "#!",
+                  label: "Best Practices",
+                },
+                {
+                  id: 4,
+                  url: "#!",
+                  label: "Institutional Distinctiveness",
+                },
+              ],
+            },
+            {
+              id: 4,
+              label: "AQAR",
+              children: [
+                {
+                  id: 1,
+                  url: "#!",
+                  label: "AQAR Reports",
+                },
+                {
+                  id: 2,
+                  url: "#!",
+                  label: "Quality",
                 },
               ],
             },
@@ -224,6 +356,50 @@ const local_data = {
       id: 2,
       url: "#!",
       label: "AI-Enabled Academics",
+      children: [
+        {
+          id: 1,
+          url: "#!",
+          label: "Undergraduate",
+          children: [
+            { id: 1, url: "#!", label: "B.Tech Programs" },
+            { id: 2, url: "#!", label: "B.Sc AI & Data Science" },
+            { id: 3, url: "#!", label: "B.Des Interaction Design" },
+            { id: 4, url: "#!", label: "BBA Technology Management" },
+          ],
+        },
+        {
+          id: 2,
+          url: "#!",
+          label: "Postgraduate",
+          children: [
+            { id: 1, url: "#!", label: "M.Tech Artificial Intelligence" },
+            { id: 2, url: "#!", label: "M.Sc Data Science" },
+            { id: 3, url: "#!", label: "MBA AI & Analytics" },
+          ],
+        },
+        {
+          id: 3,
+          url: "#!",
+          label: "Doctoral",
+          children: [
+            { id: 1, url: "#!", label: "PhD Programmes" },
+            { id: 2, url: "#!", label: "Integrated PhD" },
+            { id: 3, url: "#!", label: "Research Fellowships" },
+          ],
+        },
+        {
+          id: 4,
+          url: "#!",
+          label: "AI Curriculum",
+          children: [
+            { id: 1, url: "#!", label: "AI + Domain Majors" },
+            { id: 2, url: "#!", label: "Interdisciplinary Learning" },
+            { id: 3, url: "#!", label: "Industry Certifications" },
+            { id: 4, url: "#!", label: "Capstone Projects" },
+          ],
+        },
+      ],
     },
     {
       id: 3,
@@ -244,6 +420,51 @@ const local_data = {
       id: 6,
       url: "#!",
       label: "Admissions",
+      children: [
+        {
+          id: 1,
+          url: "#!",
+          label: "Undergraduate Admissions",
+          children: [
+            { id: 1, url: "#!", label: "Eligibility" },
+            { id: 2, url: "#!", label: "Application Process" },
+            { id: 3, url: "#!", label: "Entrance Exams" },
+            { id: 4, url: "#!", label: "Fee Structure" },
+          ],
+        },
+        {
+          id: 2,
+          url: "#!",
+          label: "Postgraduate Admissions",
+          children: [
+            { id: 1, url: "#!", label: "Eligibility" },
+            { id: 2, url: "#!", label: "Application Process" },
+            { id: 3, url: "#!", label: "Entrance Exams" },
+            { id: 4, url: "#!", label: "Scholarships" },
+          ],
+        },
+        {
+          id: 3,
+          url: "#!",
+          label: "International Admissions",
+          children: [
+            { id: 1, url: "#!", label: "Eligibility" },
+            { id: 2, url: "#!", label: "Application Process" },
+            { id: 3, url: "#!", label: "Visa Support" },
+            { id: 4, url: "#!", label: "Fee Structure" },
+          ],
+        },
+        {
+          id: 4,
+          url: "#!",
+          label: "Scholarships",
+          children: [
+            { id: 1, url: "#!", label: "Merit Scholarships" },
+            { id: 2, url: "#!", label: "Need-Based Aid" },
+            { id: 3, url: "#!", label: "Sports Quota" },
+          ],
+        },
+      ],
     },
     {
       id: 7,
@@ -264,6 +485,21 @@ export default function Header({ data = local_data }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
+  const [openMenuId, setOpenMenuId] = useState(null);
+  const [activeChildId, setActiveChildId] = useState(null);
+  const closeMenuTimer = useRef(null);
+  const openMenu = (id) => {
+    clearTimeout(closeMenuTimer.current);
+    setOpenMenuId(id);
+  };
+  const scheduleCloseMenu = () => {
+    clearTimeout(closeMenuTimer.current);
+    closeMenuTimer.current = setTimeout(() => setOpenMenuId(null), 180);
+  };
+  const keepMenuOpen = () => clearTimeout(closeMenuTimer.current);
+  useEffect(() => {
+    return () => clearTimeout(closeMenuTimer.current);
+  }, []);
   useEffect(() => {
     document.body.classList.toggle("header-visible", isHeaderVisible);
 
@@ -534,9 +770,19 @@ export default function Header({ data = local_data }) {
                     </SheetTrigger>
                     <SheetContent
                       className={
-                        "!w-full !max-w-full bg-linear-to-t from-[#FFF3E0] to-[#FFF8EE] pt-[40px]"
+                        "!w-full !max-w-full bg-white dark:bg-[#0B0F14] pt-0"
                       }
                     >
+                      <div className="w-full h-auto flex items-center justify-between max-lg:py-4 max-lg:px-5 border-b border-black/10 dark:border-white/10">
+                        <span className="flex flex-col gap-0.5 leading-[1.1]">
+                          <span className="text-[17px] 2xl:text-[19px] 3xl:text-[24px] font-bold text-black dark:text-white uppercase">
+                            Dayananda Sagar University
+                          </span>
+                          <span className="text-[11px] 2xl:text-xs 3xl:text-sm font-semibold text-black/70 dark:text-white/60 tracking-[0.22em] uppercase">
+                            University
+                          </span>
+                        </span>
+                      </div>
                       {data?.navigationLinks?.map((item) => (
                         <NavigationMenu
                           key={item?.id}
@@ -559,7 +805,7 @@ export default function Header({ data = local_data }) {
         </div>
       </div>
       {!isMobile && (
-        <div className="container">
+        <div className="container relative">
           <div className="w-full h-auto flex items-center justify-between relative z-0">
             <Link
               href="/"
@@ -586,8 +832,11 @@ export default function Header({ data = local_data }) {
                 level={0}
                 mobileOpenPath={mobileOpenPath}
                 setMobileOpenPath={setMobileOpenPath}
+                onActivate={() => openMenu(item?.id)}
+                onDeactivate={scheduleCloseMenu}
+                isMenuOpen={openMenuId === item?.id}
                 className={cn(
-                  "w-auto h-auto lg:p-[20px_10px] xl:p-[20px_20px] 2xl:p-[20px_25px] 3xl:p-[30px_35px] first:pl-0 last:pr-0 transition-opacity duration-400 relative z-0 hover:before:lg:w-[calc(100%-40px)] hover:before:2xl:w-[calc(100%-50px)] hover:before:3xl:w-[calc(100%-70px)] before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
+                  "w-auto h-auto lg:p-[20px_10px] xl:p-[20px_20px] 2xl:p-[20px_25px] 3xl:p-7.5 first:pl-0 last:pr-0 transition-opacity duration-400 relative z-0 hover:before:lg:w-[calc(100%-40px)] hover:before:2xl:w-[calc(100%-50px)] hover:before:3xl:w-[calc(100%-70px)] before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
                   isSearchOpen && "opacity-0",
                 )}
               />
@@ -596,7 +845,10 @@ export default function Header({ data = local_data }) {
               type="button"
               aria-label="Open search"
               aria-expanded={isSearchOpen}
-              onClick={() => setIsSearchOpen(true)}
+              onClick={() => {
+                setOpenMenuId(null);
+                setIsSearchOpen(true);
+              }}
               className={cn(
                 "w-auto h-auto inline shrink-0 transition-opacity duration-400",
                 isSearchOpen && "opacity-0",
@@ -651,6 +903,14 @@ export default function Header({ data = local_data }) {
               </button>
             </div>
           </div>
+          <MegaMenuPanel
+            itemId={openMenuId}
+            items={data?.navigationLinks}
+            activeChildId={activeChildId}
+            setActiveChildId={setActiveChildId}
+            onKeepOpen={keepMenuOpen}
+            onLeave={scheduleCloseMenu}
+          />
         </div>
       )}
     </header>
@@ -671,7 +931,171 @@ function useIsMobile() {
   return isMobile;
 }
 
-function NavigationMenu({ item, className, level = 0 }) {
+function MegaMenuPanel({
+  itemId,
+  items,
+  activeChildId,
+  setActiveChildId,
+  onKeepOpen,
+  onLeave,
+}) {
+  const item = items?.find((i) => i?.id === itemId);
+  const children = item?.children || [];
+  const hasChildMenu = item?.children?.length > 0;
+  const itemIndex = items?.findIndex((i) => i?.id === itemId) ?? -1;
+  const alignRight = itemIndex >= 0 && itemIndex >= (items?.length || 0) / 2;
+
+  useEffect(() => {
+    if (!hasChildMenu) return;
+    const preferred = children.find((c) => c?.children?.length) || children[0];
+    setActiveChildId((prev) => {
+      if (children.some((c) => c?.id === prev)) return prev;
+      return preferred?.id ?? null;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemId]);
+
+  if (!item || !hasChildMenu) return null;
+
+  const activeChild =
+    children.find((c) => c?.id === activeChildId) || children[0] || {};
+  const grandGroups = activeChild?.children || [];
+  const hasColumnGroups = grandGroups.some((g) => g?.children?.length > 0);
+
+  return (
+    <div
+      onMouseEnter={onKeepOpen}
+      onMouseLeave={onLeave}
+      className={cn(
+        "h-auto absolute top-full z-50 max-w-full",
+        alignRight ? "right-0" : "left-0",
+      )}
+    >
+      <div className="w-auto h-auto max-w-full animate-in fade-in-0 zoom-in-95 slide-in-from-top-1 duration-200 ease-out">
+        <div className="w-auto h-auto max-w-325 overflow-hidden shadow-[0_28px_60px_rgba(0,0,0,0.22)] rounded-b-[6px] 2xl:rounded-b-[10px]">
+          <div className="w-auto h-auto max-w-full min-h-60 2xl:min-h-72.5 3xl:min-h-87.5 flex items-stretch">
+            {/* ─── Red gradient sidebar ─── */}
+            <nav className="w-75 2xl:w-90 3xl:w-106.25 shrink-0 bg-linear-to-br from-(--basecolor) to-(--basecolor2) lg:py-7.5 2xl:py-9 3xl:py-11.25 lg:px-4 2xl:px-6.25 3xl:px-8.75 flex flex-col justify-start gap-3.75 2xl:gap-4.5 3xl:gap-6">
+              {children.map((child) => {
+                const isActive = child?.id === activeChild?.id;
+                return (
+                  <Link
+                    key={child?.id}
+                    href={child?.url || "#"}
+                    aria-label={child?.label}
+                    onMouseEnter={() => setActiveChildId(child?.id)}
+                    className={cn(
+                      "w-full h-auto flex items-center gap-2.5 rounded-[4px] transition-colors duration-300",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "w-1 h-1 shrink-0 rounded-full bg-white transition-opacity duration-300",
+                        isActive ? "opacity-100" : "opacity-0",
+                      )}
+                    />
+                    <span
+                      className={cn(
+                        "text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.15] text-white transition-all duration-300",
+                        isActive
+                          ? "font-semibold opacity-100"
+                          : "font-normal opacity-75 hover:opacity-100",
+                      )}
+                    >
+                      {child?.label}
+                    </span>
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* ─── Cream columns ─── */}
+            <div className="w-auto h-auto min-w-0 bg-linear-to-t from-[#FFF3E0] to-[#FFF7EC] lg:py-7.5 2xl:py-9 3xl:py-11.25 lg:px-5 2xl:px-7.5 3xl:px-10">
+              {hasColumnGroups ? (
+                <div className="w-auto h-auto columns-3 gap-y-5 2xl:gap-y-6.25 3xl:gap-y-7.5">
+                  {grandGroups.map((group) => (
+                    <div
+                      key={group?.id}
+                      className="w-full h-auto min-w-0  w-full"
+                    >
+                      {group?.children?.length > 0 ? (
+                        <>
+                          <span className="text-[11px] 2xl:text-[13px] 3xl:text-[15px] leading-[1.2] font-bold uppercase tracking-[0.08em] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent inline-block lg:mb-2.5 2xl:mb-3 3xl:mb-3.75">
+                            {group?.label}
+                          </span>
+                          <ul className="w-full h-auto flex flex-col gap-1.75 2xl:gap-2 3xl:gap-2.5">
+                            {group.children.map((leaf) => (
+                              <li key={leaf?.id} className="w-full h-auto">
+                                <Link
+                                  href={leaf?.url || "#"}
+                                  aria-label={leaf?.label}
+                                  className="w-full h-auto inline-flex items-center gap-2 text-[12px] 2xl:text-[13.5px] 3xl:text-[17px] leading-[1.2] font-normal text-[#212121]/85 hover:text-(--basecolor2) transition-colors duration-300"
+                                >
+                                  <span className="w-1.75 2xl:w-2 3xl:w-2.5 h-auto aspect-square shrink-0 rounded-full bg-linear-to-tr from-(--basecolor) to-(--basecolor2)" />
+                                  <span>{leaf?.label}</span>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      ) : (
+                        <Link
+                          href={group?.url || "#"}
+                          aria-label={group?.label}
+                          className="w-full h-auto inline-flex items-center gap-2 text-[12px] 2xl:text-[13.5px] 3xl:text-[17px] leading-[1.2] font-normal text-[#212121]/85 hover:text-(--basecolor2) transition-colors duration-300"
+                        >
+                          <span className="w-1.75 2xl:w-2 3xl:w-2.5 h-auto aspect-square shrink-0 rounded-full bg-linear-to-tr from-(--basecolor) to-(--basecolor2)" />
+                          <span>{group?.label}</span>
+                        </Link>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : activeChild?.children?.length > 0 ? (
+                <div className="w-full h-auto max-w-62.5 2xl:max-w-72.5 3xl:max-w-90">
+                  <span className="text-[11px] 2xl:text-[13px] 3xl:text-[15px] leading-[1.2] font-bold uppercase tracking-[0.08em] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent inline-block lg:mb-2.5 2xl:mb-3 3xl:mb-3.75">
+                    {activeChild?.label}
+                  </span>
+                  <ul className="w-full h-auto flex flex-col gap-1.75 2xl:gap-2 3xl:gap-2.5">
+                    {activeChild.children.map((leaf) => (
+                      <li key={leaf?.id} className="w-full h-auto">
+                        <Link
+                          href={leaf?.url || "#"}
+                          aria-label={leaf?.label}
+                          className="w-full h-auto inline-flex items-center gap-2 text-[12px] 2xl:text-[13.5px] 3xl:text-[17px] leading-[1.2] font-normal text-[#212121]/85 hover:text-(--basecolor2) transition-colors duration-300"
+                        >
+                          <span className="w-1.75 2xl:w-2 3xl:w-2.5 h-auto aspect-square shrink-0 rounded-full bg-linear-to-tr from-(--basecolor) to-(--basecolor2)" />
+                          <span>{leaf?.label}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <Link
+                  href={activeChild?.url || "#"}
+                  aria-label={activeChild?.label}
+                  className="inline-flex items-center gap-2 text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
+                >
+                  {activeChild?.label}
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function NavigationMenu({
+  item,
+  className,
+  level = 0,
+  onActivate,
+  onDeactivate,
+  isMenuOpen = false,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
   const hasSubmenu = item?.children?.length > 0;
@@ -697,6 +1121,59 @@ function NavigationMenu({ item, className, level = 0 }) {
     }
   };
 
+  if (!isMobile) {
+    if (level > 0) return null;
+    if (!hasSubmenu) {
+      return (
+        <Link
+          href={item?.url || "#"}
+          aria-label={item?.label}
+          className={cn(
+            "text-[14px] lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent",
+            className,
+          )}
+        >
+          <span>{item?.label}</span>
+        </Link>
+      );
+    }
+    return (
+      <div
+        className={cn("relative z-0", className)}
+        onMouseEnter={onActivate}
+        onMouseLeave={onDeactivate}
+      >
+        <div className="w-full h-auto flex items-center justify-center gap-1.25">
+          {item?.url ? (
+            <Link
+              href={item.url}
+              aria-label={item.label}
+              className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium text-white transition-colors duration-400"
+            >
+              <span>{item.label}</span>
+            </Link>
+          ) : (
+            <button
+              type="button"
+              aria-haspopup="true"
+              className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-white transition-colors duration-400"
+            >
+              <span>{item.label}</span>
+            </button>
+          )}
+          <span
+            className={cn(
+              "w-[15px] h-[15px] lg:w-2 lg:h-2 2xl:w-2.5 2xl:h-2.5 3xl:w-3 3xl:h-3 lg:border-r-1 2xl:border-r-2 lg:border-b-1 2xl:border-b-2 border-white transition-transform duration-300 ease-out",
+              isMenuOpen
+                ? "lg:rotate-[225deg]"
+                : "lg:rotate-45 -translate-y-0.5",
+            )}
+          />
+        </div>
+      </div>
+    );
+  }
+
   if (!hasSubmenu) {
     return (
       <Link
@@ -705,11 +1182,14 @@ function NavigationMenu({ item, className, level = 0 }) {
         className={cn(
           "text-[14px] lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full max-lg:p-5 max-lg:border-b max-lg:border-black/10 gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent",
           level > 0
-            ? "leading-[1.1] text-left text-black py-1.25 max-lg:p-[5px_20px] max-lg:border-0"
-            : "leading-[1.1] text-black lg:text-white",
+            ? "leading-[1.1] text-left text-black dark:text-white py-1.25 max-lg:p-[7px_20px] max-lg:border-0"
+            : "leading-[1.1] text-black lg:text-white max-lg:text-left",
           className,
         )}
       >
+        {level > 1 && (
+          <span className="w-1.5 2xl:w-2 h-1.5 2xl:h-2 aspect-square rounded-full shrink-0 bg-linear-to-tr from-(--basecolor) to-(--basecolor2) inline-block" />
+        )}
         <span>{item?.label}</span>
       </Link>
     );
@@ -738,11 +1218,11 @@ function NavigationMenu({ item, className, level = 0 }) {
                     "text-[14px] leading-[1.1] py-1.25",
                     isOpen
                       ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
-                      : "text-black",
+                      : "text-black dark:text-white",
                   )
                 : isOpen
                   ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
-                  : "max-lg:text-black text-white",
+                  : "max-lg:text-[15px] max-lg:text-black text-white dark:max-lg:text-white",
             )}
           >
             <span>{item.label}</span>
@@ -783,10 +1263,10 @@ function NavigationMenu({ item, className, level = 0 }) {
               "w-[15px] h-[15px] lg:w-1.75 lg:h-1.75 lg:border-r-1 2xl:border-r-2 lg:border-b-1 2xl:border-b-2 border-white transition-transform duration-300 ease-out",
               isOpen && "border-(--basecolor2)",
               level === 0
-                ? "rotate-0 lg:rotate-45 -translate-y-0.5"
-                : "w-[15px] h-[15px] lg:w-1.25 lg:h-1.25 lg:border-r-1 lg:border-b-1 lg:border-black rotate-0 lg:-rotate-45",
-              isOpen && level === 0 && "rotate-90 lg:rotate-[225deg]",
-              isOpen && level > 0 && "max-lg:rotate-90 border-(--basecolor)",
+                ? "rotate-90 lg:rotate-45 -translate-y-0.5"
+                : "w-[15px] h-[15px] lg:w-1.25 lg:h-1.25 lg:border-r-1 lg:border-b-1 lg:border-black rotate-90 lg:-rotate-45",
+              isOpen && level === 0 && "-rotate-90 lg:rotate-[225deg]",
+              isOpen && level > 0 && "max-lg:-rotate-90 border-(--basecolor)",
             )}
           >
             <Image
@@ -837,8 +1317,7 @@ function NavigationMenu({ item, className, level = 0 }) {
           <div className="overflow-hidden">
             <div
               className={cn(
-                "ml-3 mb-1",
-                "border-l border-white/10",
+                "ml-2 mb-1",
                 "transition-opacity duration-300",
                 isOpen ? "opacity-100" : "opacity-0",
               )}
