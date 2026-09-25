@@ -9,13 +9,16 @@ import "swiper/css/grid";
 
 export default function AcademicPartners({ data, varient }) {
     return (
-        <section className={`relative py-[30px] sm:py-[35px] xl:py-[40px] 2xl:py-[60px] 3xl:py-[90px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)] ${varient === "home" ? "!pt-[25px]" : ""} `}>
+        <section className={`relative py-[30px] sm:py-[35px] xl:py-[40px] 2xl:py-[60px] 3xl:py-[90px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)] dark:bg-none dark:bg-[#101010] ${varient === "home" ? "!pt-[25px]" : ""} `}>
             <div className="container">
                 <div className="w-full">
                     {data?.label && (
-                        <div className="text-center text-[11px] xl:text-[12px] 2xl:text-[14px] uppercase tracking-wider text-black/40 font-normal mb-[25px] xl:mb-[35px] 2xl:mb-[45px]">
+                        <div className={` ${varient === "AiChapter" ? "cmn_Title mb-[25px]" : "text-[11px] xl:text-[12px] 2xl:text-[14px] uppercase tracking-wider text-black/40  font-normal mb-[25px] xl:mb-[35px] 2xl:mb-[45px] "} text-center `}>
                             {data.label}
                         </div>
+                    )}
+                    {data?.description && (
+                        <p className="text-center mb-[30px]">{data.description}</p>
                     )}
                     <div className={`w-full relative ${varient === "home" ? "hidden" : ""} `}>
 
@@ -43,7 +46,7 @@ export default function AcademicPartners({ data, varient }) {
                             {data?.partners?.map((partner, id) => (
                                 <SwiperSlide
                                     key={id}
-                                    className="!h-[80px] lg:!h-[110px] xl:!h-[130px] border-r border-b border-black/10 last-of-type:border-0"
+                                    className="!h-[80px] lg:!h-[110px] xl:!h-[130px] border-r border-b border-black/10 dark:border-white/10 last-of-type:border-0"
                                 >
                                     <div className="w-full h-full flex items-center justify-center p-[15px]">
                                         <Image
@@ -95,8 +98,6 @@ export default function AcademicPartners({ data, varient }) {
                             ))}
                         </Swiper>
                     </div>
-
-
                 </div>
             </div>
         </section>

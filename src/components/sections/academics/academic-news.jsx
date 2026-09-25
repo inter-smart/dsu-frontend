@@ -8,6 +8,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
+
 export default function AcademicNews({ data }) {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
@@ -20,7 +21,7 @@ export default function AcademicNews({ data }) {
 
     return (
         <section className="relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]
-                bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)]">
+                bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)] dark:bg-none dark:bg-[#101010]">
             <div className="container">
                 <div className="flex flex-wrap items-center justify-between gap-[20px] mb-[20px] xl:mb-[35px] 2xl:mb-[45px] 3xl:mb-[55px]">
                     <div className="cmn_Title mb-0">
@@ -91,8 +92,8 @@ export default function AcademicNews({ data }) {
                         ref={prevRef}
                         aria-label="Previous news item"
                         className="academic-news-prev absolute left-[-15px] sm:left-[-16px] top-1/2 -translate-y-1/2 z-20 w-[36px] h-[36px] xl:w-[40px] xl:h-[40px] 2xl:w-[44px] 2xl:h-[44px]
-                        rounded-full bg-white/95 backdrop-blur-md border border-gray-200/80 shadow-[0_4px_15px_rgba(0,0,0,0.12)]
-                        flex items-center justify-center text-[#212121]
+                        rounded-full bg-white/95 dark:bg-[#18191B] backdrop-blur-md border border-gray-200/80 dark:border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.12)]
+                        flex items-center justify-center text-[#212121] dark:text-white
                         hover:bg-gradient-to-r hover:from-[#DC2626] hover:to-[#F97316] hover:text-white hover:border-transparent transition-all duration-300
                         cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed group-hover:scale-105"
                     >
@@ -106,8 +107,8 @@ export default function AcademicNews({ data }) {
                         ref={nextRef}
                         aria-label="Next news item"
                         className="academic-news-next absolute right-[-15px] sm:right-[-16px] top-1/2 -translate-y-1/2 z-20 w-[36px] h-[36px] xl:w-[40px] xl:h-[40px] 2xl:w-[44px] 2xl:h-[44px]
-                        rounded-full bg-white/95 backdrop-blur-md border border-gray-200/80 shadow-[0_4px_15px_rgba(0,0,0,0.12)]
-                        flex items-center justify-center text-[#212121]
+                        rounded-full bg-white/95 dark:bg-[#18191B] backdrop-blur-md border border-gray-200/80 dark:border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.12)]
+                        flex items-center justify-center text-[#212121] dark:text-white
                         hover:bg-gradient-to-r hover:from-[#DC2626] hover:to-[#F97316] hover:text-white hover:border-transparent transition-all duration-300
                         cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed group-hover:scale-105"
                     >

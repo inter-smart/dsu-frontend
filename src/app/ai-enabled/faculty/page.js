@@ -524,7 +524,7 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <AiAcademicMenubar className="md:!hidden block" />
+            <AiAcademicMenubar className="lg:!hidden block" />
             <AiFaculty data={local_data.facultiesCollegeNursing} />
         </>
     )

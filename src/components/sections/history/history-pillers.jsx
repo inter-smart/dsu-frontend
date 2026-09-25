@@ -11,10 +11,10 @@ import { Autoplay } from "swiper/modules";
 
 export default function HistoryPillers({ data }) {
     return (
-        <section className="relative py-[40px] xl:py-[50px] 2xl:py-[60px] 3xl:py-[80px]">
+        <section className="relative py-[40px] xl:py-[50px] 2xl:py-[60px] 3xl:py-[80px] dark:bg-[#101010]">
             <div className="container">
                 <div className="text-center m-auto max-w-[950px]">
-                    <h2 className="cmn_Title text-[#212121] mb-[15px] xl:mb-[25px] 2xl:mb-[35px] 3xl:mb-[45px]">
+                    <h2 className="cmn_Title text-[#212121] dark:text-white mb-[15px] xl:mb-[25px] 2xl:mb-[35px] 3xl:mb-[45px]">
                         {data?.title} <br />
                         {data?.subtitle}
                     </h2>
@@ -53,13 +53,13 @@ export default function HistoryPillers({ data }) {
                     >
                         {data?.items?.map((itemList, idx) => (
                             <SwiperSlide key={idx} className="!h-auto" >
-                                <div className="relative w-full h-full group p-[20px] lg:p-[25px_30px] xl:p-[30px_35px] 2xl:p-[35px_40px] 3xl:p-[45px_50px] border border-[#f97416bb] rounded-[10px]">
+                                <div className="relative w-full h-full group p-[20px] lg:p-[25px_30px] xl:p-[30px_35px] 2xl:p-[35px_40px] 3xl:p-[45px_50px] border border-[#f97416bb] dark:border-white/10 rounded-[10px] dark:bg-[#18191B]">
                                     <div className="flex flex-wrap gap-[12px] 2xl:gap-[15px] 3xl:gap-[20px] items-center mb-[10px] lg:mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]">
                                         <div className="w-[75px] xl:w-[95px] 2xl:w-[112px] 3xl:w-[140px] h-[75px] xl:h-[95px] 2xl:h-[112px] 3xl:h-[140px] rounded-full flex items-center justify-center">
                                             <Image src={itemList.image} width={140} height={140} alt={itemList.name} />
                                         </div>
                                         <div className="w-[calc(100%-75px)] xl:w-[calc(100%-95px)] 2xl:w-[calc(100%-112px)] 3xl:w-[calc(100%-140px)]">
-                                            <div className="text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] text-[#212121] font-bold">{itemList.name}</div>
+                                            <div className="text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] text-[#212121] dark:text-white font-bold">{itemList.name}</div>
                                             <div className="text_1">{itemList.designation}</div>
                                         </div>
                                     </div>

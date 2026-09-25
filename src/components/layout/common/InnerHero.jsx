@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenubar";
+import AiBSCMenubar from "@/components/sections/ai-enabled/BSC-nursing/bsc-Menubar";
 
 export default function InnerHero({ data }) {
   const isVideo = data?.heroMedia?.mime?.includes("video");
@@ -85,12 +86,15 @@ export default function InnerHero({ data }) {
             </h1>
           )}
         </div>
-        <div className="max-md:hidden">
+        <div className="max-lg:hidden">
           {data?.menuBar && (
             <AcademicMenubar />
           )}
           {data?.AimenuBar && (
             <AiAcademicMenubar />
+          )}
+          {data?.AiBscmenuBar && (
+            <AiBSCMenubar />
           )}
         </div>
       </div>

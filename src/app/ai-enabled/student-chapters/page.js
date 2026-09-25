@@ -201,8 +201,7 @@ const local_data = {
                 link: "#!",
             },
         ],
-    },
-
+    },     
 
 }
 

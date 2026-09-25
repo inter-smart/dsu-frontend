@@ -147,7 +147,7 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <AcademicMenubar className="md:!hidden block" />
+            <AcademicMenubar className="lg:!hidden block" />
             <AcademicAchievements data={local_data.achievementSection} />
             <AcademicFacultyAchievements data={local_data.facultyAchievementsSection} />
 
