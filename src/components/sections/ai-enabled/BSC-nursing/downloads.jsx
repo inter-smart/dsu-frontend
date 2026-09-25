@@ -10,7 +10,7 @@ export default function BscDownloads({ data }) {
                     <h2 className="cmn_Title mb-[25px]">
                         {data.heading}
                     </h2>
-                    <div className="text_1 leading-[1.2] text-[#4A5565] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
+                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                         {data.description}
                     </div>
                     <div className="flex flex-wrap">

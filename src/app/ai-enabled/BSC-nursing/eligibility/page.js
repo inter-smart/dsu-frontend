@@ -23,7 +23,7 @@ const local_data = {
             // if video - mime: "video/mp4",
             url: "/images/academic-banner.jpg",
         },
-        title: "School of Computer Applications",
+        title: "Basic B. Sc Nursing",
         breadcrumb: [
             {
                 label: "Home",

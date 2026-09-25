@@ -30,7 +30,7 @@ const menuItems = [
     },
     {
         label: "PO & PSO",
-        href: "/ai-enabled/BSC-nursing/PEO"
+        href: "/ai-enabled/BSC-nursing/PO-PSO"
     },
     {
         label: "Faculty",

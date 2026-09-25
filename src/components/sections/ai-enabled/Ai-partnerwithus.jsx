@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function AiPartnerwithus({ data }) {
     return (
-        <section className="relative py-[40px] xl:py-[50px_60px] 2xl:py-[70px_90px] 3xl:py-[95px_105px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)]">
+        <section className="relative py-[40px] xl:py-[50px_60px] 2xl:py-[70px_90px] 3xl:py-[95px_105px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-gradient-to-r dark:from-[#383838b5] dark:to-[#383838b5]">
             <div className="container">
                 <div className="flex flex-wrap items-center justify-between">
                     <div className="w-auto lg:max-w-[65%] xl:max-w-[57%]">

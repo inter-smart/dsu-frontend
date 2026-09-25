@@ -13,7 +13,7 @@ export default function AcademicPartners({ data, varient }) {
             <div className="container">
                 <div className="w-full">
                     {data?.label && (
-                        <div className={` ${varient === "AiChapter" ? "cmn_Title mb-[25px]" : "text-[11px] xl:text-[12px] 2xl:text-[14px] uppercase tracking-wider text-black/40  font-normal mb-[25px] xl:mb-[35px] 2xl:mb-[45px] "} text-center `}>
+                        <div className={` ${varient === "AiChapter" ? "cmn_Title mb-[25px]" : "text-[11px] xl:text-[12px] 2xl:text-[14px] uppercase tracking-wider text-black/40 dark:text-white/50 font-normal mb-[25px] xl:mb-[35px] 2xl:mb-[45px] "} text-center `}>
                             {data.label}
                         </div>
                     )}
@@ -41,7 +41,7 @@ export default function AcademicPartners({ data, varient }) {
                                 1024: { slidesPerView: 6 },
                                 1280: { slidesPerView: 6 },
                             }}
-                            className="w-full relative   after:absolute after:content-[''] after:top-0 after:left-[0px] after:z-10 after:w-full after:h-full after:border-[#EFF6FF] after:border "
+                            className="w-full relative after:absolute after:content-[''] after:top-0 after:left-[0px] after:z-10 after:w-full after:h-full after:border-[#EFF6FF] dark:after:border-white/10 after:border "
                         >
                             {data?.partners?.map((partner, id) => (
                                 <SwiperSlide

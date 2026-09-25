@@ -68,7 +68,7 @@ export default function AcademicFacultyAchievements({ data }) {
     }, [data, selectedFilter, activeTab]);
 
     return (
-        <section className="relative py-[40px] sm:py-[50px] lg:py-[70px] xl:py-[85px] bg-[linear-gradient(135deg,_#EFF6FF_0%,_#F2F7FE_28.22%,_#F9FAFB_100%)] overflow-hidden">
+        <section className="relative py-[40px] sm:py-[50px] lg:py-[70px] xl:py-[85px] bg-[linear-gradient(135deg,_#EFF6FF_0%,_#F2F7FE_28.22%,_#F9FAFB_100%)] dark:bg-none dark:bg-[#101010] overflow-hidden transition-colors duration-300">
             <div className="container relative ">
                 {/* Header Row: Title on Left, Tab Toggle Buttons on Right */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 xl:mb-10">
@@ -87,7 +87,7 @@ export default function AcademicFacultyAchievements({ data }) {
                                         onClick={() => setActiveTabId(tab.id)}
                                         className={`px-3 py-2.5 rounded-[4px] text_1 h-[38px] 2xl:h-[40px] 3xl:h-[46px] font-semibold transition-all duration-300 ${isCurrent
                                                 ? "bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white shadow-sm cursor-pointer"
-                                                : "bg-white border border-gray-200/90 text-[#374151] hover:bg-gray-50 cursor-pointer"
+                                                : "bg-white dark:bg-[#18191B] border border-gray-200/90 dark:border-white/10 text-[#374151] dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
                                             }`}
                                     >
                                         {tab.label}
@@ -105,7 +105,7 @@ export default function AcademicFacultyAchievements({ data }) {
                         <button
                             ref={prevRef}
                             aria-label="Previous month filter"
-                            className="faculty-filter-prev shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-gray-300/80 shadow-xs flex items-center justify-center text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10"
+                            className="faculty-filter-prev shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 shadow-xs flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -136,7 +136,7 @@ export default function AcademicFacultyAchievements({ data }) {
                                                 onClick={() => setSelectedFilterId(filter.id)}
                                                 className={`px-5 py-2 rounded-full text_1 font-medium whitespace-nowrap transition-all duration-300 ${isCurrent
                                                         ? "bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white shadow-sm cursor-pointer"
-                                                        : "bg-white/90 border border-gray-300/80 text-[#374151] hover:border-gray-400 hover:bg-gray-50 cursor-pointer"
+                                                        : "bg-white/90 dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 text-[#374151] dark:text-gray-200 hover:border-gray-400 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
                                                     }`}
                                             >
                                                 {filter.label}
@@ -151,7 +151,7 @@ export default function AcademicFacultyAchievements({ data }) {
                         <button
                             ref={nextRef}
                             aria-label="Next month filter"
-                            className="faculty-filter-next shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-gray-300/80 shadow-xs flex items-center justify-center text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10"
+                            className="faculty-filter-next shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 shadow-xs flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -171,7 +171,7 @@ export default function AcademicFacultyAchievements({ data }) {
                                 {/* Left Side: Media Image Box */}
                                 {item?.media?.url && (
                                     <div className="w-full md:w-[380px] lg:w-[420px] xl:w-[460px] 2xl:w-[490px] shrink-0">
-                                        <div className="relative w-full aspect-[4/3] rounded-[12px] overflow-hidden bg-white p-2 border border-red-500/20 shadow-[0_4px_20px_rgba(0,0,0,0.04)] group">
+                                        <div className="relative w-full aspect-[4/3] rounded-[12px] overflow-hidden bg-white dark:bg-[#18191B] p-2 border border-red-500/20 shadow-[0_4px_20px_rgba(0,0,0,0.04)] group">
                                             <div className="relative w-full h-full rounded-[8px] overflow-hidden">
                                                 <Image
                                                     src={item.media.url}
@@ -189,13 +189,13 @@ export default function AcademicFacultyAchievements({ data }) {
                                 <div className="flex-1 flex flex-col justify-center py-1">
                                     <div className="w-full lg:max-w-[80%]">
                                         {item.date && (
-                                            <div className="text-[13px] sm:text-[14px] font-bold text-[#374151] mb-2 tracking-wide">
+                                            <div className="text-[13px] sm:text-[14px] font-bold text-[#374151] dark:text-[#F97316] mb-2 tracking-wide">
                                                 {item.date}
                                             </div>
                                         )}
 
                                         {item.title && (
-                                            <h3 className="text-[22px] sm:text-[26px] lg:text-[28px] xl:text-[32px] 2xl:text-[35px] 3xl:text-[45px] font-bold text-[#111827] leading-[1.25] tracking-tight mb-4">
+                                            <h3 className="text-[22px] sm:text-[26px] lg:text-[28px] xl:text-[32px] 2xl:text-[35px] 3xl:text-[45px] font-bold text-[#111827] dark:text-white leading-[1.25] tracking-tight mb-4">
                                                 {item.title}
                                             </h3>
                                         )}
@@ -211,8 +211,8 @@ export default function AcademicFacultyAchievements({ data }) {
                         ))}
                     </div>
                 ) : (
-                    <div className="py-16 px-4 text-center bg-white/70 rounded-[12px] border border-dashed border-gray-300">
-                        <p className="text-[15px] sm:text-[16px] font-medium text-gray-500">
+                    <div className="py-16 px-4 text-center bg-white/70 dark:bg-[#18191B]/70 rounded-[12px] border border-dashed border-gray-300 dark:border-white/10">
+                        <p className="text-[15px] sm:text-[16px] font-medium text-gray-500 dark:text-gray-400">
                             No {activeTab?.label || "achievements"} recorded for {selectedFilter?.label || "this period"}.
                         </p>
                     </div>

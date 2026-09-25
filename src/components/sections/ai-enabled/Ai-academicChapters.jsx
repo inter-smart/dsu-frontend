@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function AiAcademicChapters({ data }) {
     return (
-        <section className="py-[40px] xl:py-[45px] 2xl:py-[60px] 3xl:py-[80px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)]">
+        <section className="py-[40px] xl:py-[45px] 2xl:py-[60px] 3xl:py-[80px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-[linear-gradient(135deg,#000_0%,#000_100%)]">
             <div className="container">
                 <div className="text-center md:max-w-[65%] m-auto mb-[30px]">
                     <div className="cmn_Title mb-[25px]">{data.heading}</div>
@@ -18,7 +18,7 @@ export default function AiAcademicChapters({ data }) {
                 <div className="flex flex-wrap  -m-[5px] 2xl:-m-[10px]">
                     {data.chapters.map((item, id) => (
                         <div className="w-full sm:w-1/2 md:w-1/3  p-[5px] 2xl:p-[10px]" key={id}>
-                            <div className="block w-full h-full rounded-[10px] overflow-hidden bg-gradient-to-b from-[#FFF8EE] to-[#FFFFFF]">
+                            <div className="block w-full h-full rounded-[10px] overflow-hidden bg-gradient-to-b from-[#FFF8EE] to-[#FFFFFF] dark:bg-gradient-to-r dark:from-[#383838b5] dark:to-[#383838b5]">
                                 <div className="relative w-full aspect-[530/220] overflow-hidden">
                                     <Image
                                         src={item?.image.url}
@@ -38,12 +38,12 @@ export default function AiAcademicChapters({ data }) {
                                     </div>
                                     <div className="cmn_Txt mb-[5px]">{item.title}</div>
                                     <p>{item.description}</p>
-                                    <div className="flex flex-wrap items-center justify-between gap-[5px] mt-[15px] pt-[15px] border-t border-black/10">
+                                    <div className="flex flex-wrap items-center justify-between gap-[5px] mt-[15px] pt-[15px] border-t border-black/10 dark:border-white/10">
                                         <div className="flex flex-wrap gap-[3px]">
                                             {[item.stats?.members, item.stats?.events, item.stats?.established]
                                                 .filter(Boolean)
                                                 .map((stat, idx, arr) => (
-                                                    <span key={idx} className="text-[10px] 2xl:text-[12px] 3xl:text-[14px] text-[#212121]">
+                                                    <span key={idx} className="text-[10px] 2xl:text-[12px] 3xl:text-[14px] text-[#212121] dark:text-white">
                                                         {stat}
                                                         {idx < arr.length - 1 && <span className="mx-[3px] text-[#212121]">|</span>}
                                                     </span>
