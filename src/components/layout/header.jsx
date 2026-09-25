@@ -836,7 +836,7 @@ export default function Header({ data = local_data }) {
                 onDeactivate={scheduleCloseMenu}
                 isMenuOpen={openMenuId === item?.id}
                 className={cn(
-                  "w-auto h-auto lg:p-[20px_10px] xl:p-[20px_20px] 2xl:p-[20px_25px] 3xl:p-7.5 first:pl-0 last:pr-0 transition-opacity duration-400 relative z-0 hover:before:lg:w-[calc(100%-40px)] hover:before:2xl:w-[calc(100%-50px)] hover:before:3xl:w-[calc(100%-70px)] before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
+                  "w-auto h-auto lg:p-[20px_10px] xl:p-[20px_20px] 2xl:p-5 3xl:p-7.5 first:pl-0 last:pr-0 transition-opacity duration-400 relative z-0 hover:before:lg:w-[calc(100%-40px)] hover:before:2xl:w-[calc(100%-50px)] hover:before:3xl:w-[calc(100%-70px)] before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
                   isSearchOpen && "opacity-0",
                 )}
               />
