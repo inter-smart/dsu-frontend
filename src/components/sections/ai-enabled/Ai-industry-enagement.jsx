@@ -9,7 +9,7 @@ import "swiper/css/grid";
 
 export default function AiIndustryEngagement({ data }) {
     return (
-        <section className={`relative py-[30px] sm:py-[35px] xl:py-[40px] 2xl:py-[60px] 3xl:py-[90px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)]   `}>
+        <section className={`relative py-[30px] sm:py-[35px] xl:py-[40px] 2xl:py-[60px] 3xl:py-[90px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)] dark:bg-gradient-to-r dark:from-[#383838b5] dark:to-[#383838b5]  `}>
             <div className="container">
                 <div className="w-full">
                     {data?.heading && (
@@ -51,7 +51,7 @@ export default function AiIndustryEngagement({ data }) {
                                     spaceBetween: 20
                                 },
                             }}
-                            className="w-full relative !h-auto  after:absolute after:content-[''] after:top-0 after:left-[0px] after:z-10 after:w-full after:h-full after:border-[#EFF6FF] after:border "
+                            className="w-full relative !h-auto  after:absolute after:content-[''] after:top-0 after:left-[0px] after:z-10 after:w-full after:h-full after:border-[#EFF6FF] after:border dark:after:border-white/0 "
                         >
                             {data?.stats?.map((indus, id) => (
                                 <SwiperSlide
@@ -59,7 +59,7 @@ export default function AiIndustryEngagement({ data }) {
                                     className="w-full !h-auto p-[2px]"
                                 >
                                     <div
-                                        className="bg-white  border border-[rgba(249,115,22,0.3)] text-center rounded-[8px] w-full h-full
+                                        className="bg-white dark:bg-black/20  border border-[rgba(249,115,22,0.3)] text-center rounded-[8px] w-full h-full
                                         p-[10px] sm:p-[12px] xl:p-[16px] flex flex-col justify-center 
                                         shadow-[0_2px_8px_rgba(0,0,0,0.03)] min-h-[70px] xl:min-[80px] 2xl:min-h-[90px] 3xl:min-h-[100px]"
                                     >

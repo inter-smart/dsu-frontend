@@ -9,7 +9,7 @@ import "swiper/css/grid";
 
 export default function AiAcademicCollaboration({ data }) {
     return (
-        <section className="relative py-[40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]">
+        <section className="relative py-[40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010]">
             <div className="container">
                 <div className="mb-[40px]">
                     <div className="cmn_Title mb-[15px]">{data.heading}</div>
@@ -42,7 +42,7 @@ export default function AiAcademicCollaboration({ data }) {
 
                             },
                         }}
-                        className="w-full relative   after:absolute after:content-[''] after:top-0 after:left-[0px] after:z-10 after:w-full after:h-full after:border-[#EFF6FF] after:border "
+                        className="w-full relative   after:absolute after:content-[''] after:top-0 after:left-[0px] after:z-10 after:w-full after:h-full after:border-[#EFF6FF] dark:after:border-white/10 after:border "
                     >
                         {data?.collaborations?.map((collab, id) => (
                             <SwiperSlide
