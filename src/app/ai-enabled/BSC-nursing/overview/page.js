@@ -34,15 +34,15 @@ const local_data = {
                 href: "/",
             },
             {
-                label: "Schools",
+                label: "School of Health Sciences",
                 href: "/",
             },
             {
-                label: "Computer Applications",
+                label: "College of Nursing Sciences",
                 href: "/",
             },
             {
-                label: "Overview",
+                label: "Basic B. Sc Nursing",
                 href: "/",
             },
         ],

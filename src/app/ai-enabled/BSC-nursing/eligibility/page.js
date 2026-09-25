@@ -11,14 +11,14 @@ const local_data = {
     publishedAt: "2026-06-11T06:26:08.337Z",
     seo: {
         id: 21,
-        metaTitle: "Overview page title",
-        metaDescription: "Overview page description ",
+        metaTitle: "Eligibility page title",
+        metaDescription: "Eligibility page description ",
         canonicalUrl: null,
     },
     hero: {
         id: 25,
         heroMedia: {
-            alternativeText: "Overview page title",
+            alternativeText: "Eligibility page title",
             mime: "image/jpg",
             // if video - mime: "video/mp4",
             url: "/images/academic-banner.jpg",
@@ -34,15 +34,19 @@ const local_data = {
                 href: "/",
             },
             {
-                label: "Schools",
+                label: "School of Health Sciences",
                 href: "/",
             },
             {
-                label: "Computer Applications",
+                label: "College of Nursing Sciences",
                 href: "/",
             },
             {
-                label: "Overview",
+                label: "Basic B. Sc Nursing",
+                href: "/",
+            },
+            {
+                label: "Eligibility",
                 href: "/",
             },
         ],

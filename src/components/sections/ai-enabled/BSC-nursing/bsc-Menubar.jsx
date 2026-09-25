@@ -34,15 +34,15 @@ const menuItems = [
     },
     {
         label: "Faculty",
-        href: "/ai-enabled/BSC-nursing/PEO"
+        href: "/ai-enabled/BSC-nursing/faculty"
     },
     {
         label: "Career Opportunities",
-        href: "/ai-enabled/BSC-nursing/PEO"
+        href: "/ai-enabled/BSC-nursing/career-opportunity"
     },
     {
         label: "Admissions",
-        href: "/ai-enabled/BSC-nursing/PEO"
+        href: "/ai-enabled/BSC-nursing/admissions"
     },
     {
         label: "Downloads",
