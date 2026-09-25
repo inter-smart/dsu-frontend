@@ -111,10 +111,10 @@ export default function BscCurriculum({ data }) {
                                 <ul className="flex flex-col gap-[20px] xl:gap-[25px] mb-[25px] xl:mb-[30px] 2xl:mb-[40px]">
                                     {item.subjects?.map((subject, subIdx) => (
                                         <li key={subIdx} className="flex items-center gap-[15px]">
-                                            <span className="w-[25px] 2xl:w-[34px] h-[25px] 2xl:h-[34px] rounded-full overflow-hidden base-gradient p-[1px] text-[rgba(33,33,33,0.5)] text_1">
-                                                <span className="w-full h-full rounded-full flex items-center justify-center bg-white">{String(subIdx + 1).padStart(2, '0')}</span>
+                                            <span className="w-[25px] 2xl:w-[34px] h-[25px] 2xl:h-[34px] rounded-full overflow-hidden base-gradient p-[1px] text-[rgba(33,33,33,0.5)] text_1 dark:text-white">
+                                                <span className="w-full h-full rounded-full flex items-center justify-center bg-white dark:bg-black">{String(subIdx + 1).padStart(2, '0')}</span>
                                             </span>
-                                            <span className="text_1 text-[#4A5565] dark:text-gray-300">{subject}</span>
+                                            <span className="text_1 text-[#4A5565] dark:text-white">{subject}</span>
                                         </li>
                                     ))}
                                 </ul>

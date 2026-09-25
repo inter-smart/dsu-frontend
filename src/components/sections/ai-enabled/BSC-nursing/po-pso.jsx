@@ -19,7 +19,7 @@ export default function PoPsoSection({ data }) {
                             {data.po.items?.map((item, index) => (
                                 <div key={index}>
                                     <h3 className="cmn_Txt mb-[5px] xl:mb-[10px]">{item.title}</h3>
-                                    <p className="text_1 text-[#4A5565]">{item.description}</p>
+                                    <p className="text_1 text-[#4A5565] dark:text-white">{item.description}</p>
                                 </div>
                             ))}
                         </div>
