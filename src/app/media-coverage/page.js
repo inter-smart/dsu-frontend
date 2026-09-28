@@ -1,6 +1,6 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import MediaCoverage from "@/components/sections/media-coverage/media-coverage";
-import MediaCoverageFloatingContact from "@/components/sections/media-coverage/media-coverage-floating-contact";
+import FloatingContactRail from "@/components/layout/common/floating-contact-rail";
 
 const local_data = {
   hero: {
@@ -87,7 +87,7 @@ export default function page() {
     <>
       <InnerHero data={local_data?.hero} />
       <MediaCoverage data={local_data?.mediaCoverage} />
-      <MediaCoverageFloatingContact />
+      <FloatingContactRail />
     </>
   );
 }

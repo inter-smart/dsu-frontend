@@ -38,7 +38,7 @@ const items = [
   },
 ];
 
-export default function MediaCoverageFloatingContact() {
+export default function FloatingContactRail() {
   return (
     <div className="fixed right-2.5 md:right-3 xl:right-4 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-2 xl:gap-2.5 3xl:gap-3.5">
       {items.map((item) => (

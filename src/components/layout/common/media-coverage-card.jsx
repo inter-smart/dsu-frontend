@@ -3,7 +3,10 @@ import Image from "next/image";
 
 export default function MediaCoverageCard({ item }) {
   return (
-    <div className="group w-full h-full bg-linear-to-b from-[#FFF8EE]/50 to-[#FFF3E0]/50 dark:bg-none dark:bg-white/5 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col border border-black/5">
+    <Link
+      href={item?.link || "#!"}
+      className="group w-full h-full bg-linear-to-b from-[#FFF8EE]/50 to-[#FFF3E0]/50 dark:bg-none dark:bg-white/5 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col border border-black/5"
+    >
       <div className="w-full h-auto aspect-564/222 overflow-hidden block">
         <Image
           src={item?.path}
@@ -22,14 +25,10 @@ export default function MediaCoverageCard({ item }) {
             {item?.title}
           </div>
         </div>
-        <Link
-          href={item?.link || "#!"}
-          target={item?.link ? "_blank" : undefined}
-          className="mt-5 3xl:mt-7.5 text-sm 3xl:text-[15px] leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
-        >
+        <span className="mt-5 3xl:mt-7.5 text-sm 3xl:text-[15px] leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 group-hover:opacity-50">
           Read Article {" > "}
-        </Link>
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }
