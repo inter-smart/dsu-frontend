@@ -14,11 +14,11 @@ import {
 const menuItems = [
     {
         label: "About Placement Cell",
-        href: "/placement/"
+        href: "/placement"
     },
     {
         label: "Placement Statistics",
-        href: "/ai-enabled/overview#vision-mission"
+        href: "/placement-contact"
     },
     {
         label: "Career Development Centre",
@@ -30,7 +30,7 @@ const menuItems = [
     },
     {
         label: "Placement Contact",
-        href: "/ai-enabled/faculty"
+        href: "/placement/placement-contact"
     },
      
 ];
@@ -67,12 +67,19 @@ export default function PlacementmenuBar({ title = "Placement Menu", className =
         }
     }, [pathname, lenis]);
 
+    const normalizePath = (path) => {
+        if (!path) return "";
+        const clean = path.split("#")[0].split("?")[0].replace(/\/+$/, "");
+        return clean === "" ? "/" : clean;
+    };
+
     const handleNavClick = (e, href) => {
         if (href.includes("#")) {
             const [targetPath, hash] = href.split("#");
-            const currentPath = pathname.split("#")[0];
+            const currentCleanPath = normalizePath(pathname);
+            const targetCleanPath = normalizePath(targetPath);
 
-            if (currentPath === targetPath) {
+            if (currentCleanPath === targetCleanPath) {
                 e.preventDefault();
                 const target = document.getElementById(hash);
                 if (target) {
@@ -91,14 +98,39 @@ export default function PlacementmenuBar({ title = "Placement Menu", className =
     };
 
     const isCurrentItemActive = (href) => {
+        if (!href) return false;
+        const currentCleanPath = normalizePath(pathname);
+
         if (href.includes("#")) {
             const [targetPath, hash] = href.split("#");
-            return pathname === targetPath && currentHash === `#${hash}`;
+            const targetCleanPath = normalizePath(targetPath);
+            return currentCleanPath === targetCleanPath && currentHash === `#${hash}`;
         }
-        if (currentHash && menuItems.some((m) => m.href.includes("#") && m.href.split("#")[0] === href)) {
+
+        if (currentHash && menuItems.some((m) => m.href.includes("#") && normalizePath(m.href.split("#")[0]) === normalizePath(href))) {
             return false;
         }
-        return pathname === href || pathname.startsWith(href + "/");
+
+        const cleanHref = normalizePath(href);
+        if (cleanHref === "/") {
+            return currentCleanPath === "/";
+        }
+
+        // Exact match
+        if (currentCleanPath === cleanHref) {
+            return true;
+        }
+
+        // Subpath match only if no other menu item is a closer match
+        if (currentCleanPath.startsWith(cleanHref + "/")) {
+            const hasMoreSpecificMatch = menuItems.some((m) => {
+                const mClean = normalizePath(m.href.split("#")[0]);
+                return mClean !== cleanHref && (mClean === currentCleanPath || currentCleanPath.startsWith(mClean + "/"));
+            });
+            return !hasMoreSpecificMatch;
+        }
+
+        return false;
     };
 
     return (
