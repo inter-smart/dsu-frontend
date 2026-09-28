@@ -3,7 +3,6 @@
 
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import Link from "next/link";
 
 export default function HistoryNewpahse({ data }) {
     const isVideo = data?.media?.mime?.includes("video");
@@ -33,7 +32,7 @@ export default function HistoryNewpahse({ data }) {
                                 {data.title}
                             </h2>
                       <div className="text_1 leading-[1.2] text-white mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[20px] [&_p]:xl:mb-[25px] [&_p]:2xl:mb-[30px] [&_p]:3xl:mb-[40px] [&_p]:text-white">
-                                <BlocksRenderer content={data.description} />
+                                <BlocksRenderer content={data?.description || []} />
                             </div>
                 </div>
             </div>
