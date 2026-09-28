@@ -12,9 +12,11 @@ import {
 import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenubar";
 import AiBSCMenubar from "@/components/sections/ai-enabled/BSC-nursing/bsc-Menubar";
+import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
 
 export default function InnerHero({ data }) {
   const isVideo = data?.heroMedia?.mime?.includes("video");
+  const hasMenubar = Boolean(data?.menuBar || data?.AimenuBar || data?.AiBscmenuBar || data?.PlacementmenuBar);
 
   return (
     <section className="relative block h-[350px] w-full md:h-[450px] xl:h-[500px] 2xl:h-[600px] 3xl:h-[750px]">
@@ -43,7 +45,7 @@ export default function InnerHero({ data }) {
       {/* Content */}
       <div className=" relative z-20 flex w-full flex-col justify-end h-full">
         <div
-          className={`flex container w-full flex-col justify-end overflow-hidden pt-[40px] xl:pt-[55px] 2xl:pt-[65px] 3xl:pt-[80px] ${data?.menuBar ? "pb-[40px] md:pb-0" : "pb-[40px] xl:pb-[55px] 2xl:pb-[65px] 3xl:pb-[80px]"
+          className={`flex container w-full flex-col justify-end overflow-hidden pt-[40px] xl:pt-[55px] 2xl:pt-[65px] 3xl:pt-[80px] ${hasMenubar ? "pb-[40px] md:pb-0" : "pb-[40px] xl:pb-[55px] 2xl:pb-[65px] 3xl:pb-[80px]"
             }`}
         >
           {/* Breadcrumb */}
@@ -95,6 +97,9 @@ export default function InnerHero({ data }) {
           )}
           {data?.AiBscmenuBar && (
             <AiBSCMenubar />
+          )}
+          {data?.PlacementmenuBar && (
+            <PlacementmenuBar />
           )}
         </div>
       </div>

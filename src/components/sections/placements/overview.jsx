@@ -17,7 +17,7 @@ export default function PlacementOverview({ data }) {
                     {/* Floated Right Block (Image + Stat Cards) */}
                     <div className="w-full lg:w-[50%] xl:w-[600px] 2xl:w-[670px] 3xl:w-[770px] lg:float-right ml-0 lg:ml-[30px] xl:ml-[45px] 2xl:ml-[55px] mb-[25px] lg:mb-[20px]">
                         {primaryImage && (
-                            <div className="w-full aspect-[16/9] sm:aspect-[770/630] rounded-[8px] xl:rounded-[10px] overflow-hidden shadow-sm mb-[15px] xl:mb-[20px]">
+                            <div className="w-full rounded-[8px] xl:rounded-[10px] overflow-hidden shadow-sm mb-[15px] xl:mb-[20px]">
                                 <Image
                                     src={primaryImage.url?.replace("program-overview", "overview") || primaryImage.url}
                                     width={750}
@@ -27,7 +27,7 @@ export default function PlacementOverview({ data }) {
                                     priority
                                 />
                             </div>
-                        )}  
+                        )}
                     </div>
 
 
@@ -52,9 +52,23 @@ export default function PlacementOverview({ data }) {
                                 <BlocksRenderer content={data.intro} />
                             </div>
                         )}
+                        {data.listHeading && (
+                            <div className="text_1 font-semibold text-[#4A5565] mb-[20px] mt-[25px]">
+                                {data.listHeading}
+                            </div>
+                        )}
+                        {data?.list && (
+                            <ul className="space-y-4">
+                                {data?.list.map((item, id) => (
+                                    <li className="text_1 text-[#4A5565] dark:text-[#9CA3AF] relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]" key={id}>
+                                        {item.label}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
                 </div>
- 
+
             </div>
         </section>
     );
