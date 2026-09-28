@@ -1,7 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Fancybox } from "@fancyapps/ui";
 import GalleryCard from "./gallery-card";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 const FILTERS = ["All", "Events", "Campus", "Sports", "Videos"];
 
@@ -13,6 +15,17 @@ export default function Gallery({ data }) {
     if (activeFilter === "Videos") return data?.items?.filter((item) => item?.isVideo) || [];
     return data?.items?.filter((item) => item?.category === activeFilter) || [];
   }, [data?.items, activeFilter]);
+
+  useEffect(() => {
+    Fancybox.bind("[data-fancybox^='gallery-']", {
+      Hash: false,
+    });
+
+    return () => {
+      Fancybox.unbind("[data-fancybox^='gallery-']");
+      Fancybox.close();
+    };
+  }, []);
 
   return (
     <section className="w-full h-auto py-10 sm:py-15 lg:py-20 2xl:py-25 3xl:py-30 block">

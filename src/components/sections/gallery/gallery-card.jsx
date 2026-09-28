@@ -40,13 +40,21 @@ export default function GalleryCard({ item }) {
           <div className="w-full h-full flex">
             {item?.images?.map((image, index) => (
               <div key={index} className="min-w-0 flex-[0_0_100%]">
-                <Image
-                  src={image}
-                  width={562}
-                  height={370}
-                  alt={item?.title || "Gallery"}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-                />
+                <a
+                  href={item?.isVideo && item?.videoUrl ? item.videoUrl : image}
+                  data-fancybox={`gallery-${item?.id}`}
+                  data-caption={item?.title}
+                  data-type={item?.isVideo && item?.videoUrl ? "html5video" : "image"}
+                  className="block w-full h-full cursor-zoom-in"
+                >
+                  <Image
+                    src={image}
+                    width={562}
+                    height={370}
+                    alt={item?.title || "Gallery"}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
+                  />
+                </a>
               </div>
             ))}
           </div>
