@@ -10,8 +10,8 @@ import {
 } from "@/components/ui/accordion";
 
 export default function CommunityActivities({ data }) {
-  const defaultOpen =
-    data?.items?.filter((item) => item?.defaultOpen).map((item) => `item-${item.id}`) || [];
+  const firstOpenItem = data?.items?.find((item) => item?.defaultOpen);
+  const defaultOpen = firstOpenItem ? [`item-${firstOpenItem.id}`] : [];
 
   return (
     <section className="w-full h-auto py-10 sm:py-15 lg:py-20 2xl:py-25 3xl:py-30 block">
@@ -20,7 +20,7 @@ export default function CommunityActivities({ data }) {
           <h2 className="title_1 mb-2.5 xl:mb-3 2xl:mb-3.5">{data?.title}</h2>
           {data?.description && <p className="text_1 max-w-[820px]">{data.description}</p>}
         </div>
-        <Accordion multiple defaultValue={defaultOpen} className="gap-3.75 xl:gap-5 flex flex-col">
+        <Accordion defaultValue={defaultOpen} className="gap-3.75 xl:gap-5 flex flex-col">
           {data?.items?.map((item) => (
             <AccordionItem
               key={item?.id}

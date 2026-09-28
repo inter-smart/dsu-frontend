@@ -44,7 +44,6 @@ const local_data = {
           "Students visited an adopted village near the main campus for health-awareness sessions and basic infrastructure support.",
         link: "#!",
         image: "/images/community-village-outreach.png",
-        defaultOpen: true,
       },
       {
         id: 3,
