@@ -17,42 +17,42 @@ export default function ExaminationContact({ data }) {
             />
           </div>
           <div className="w-full lg:w-[calc(100%-var(--width))] lg:pl-3.75 2xl:pl-5 3xl:pl-7.5">
-            <div className="w-full h-auto p-[20px_20px_0px_20px] sm:p-[30px_30px_40px_30px] 2xl:p-[40px_40px_50px_40px] 3xl:p-[50px_20px_60px_50px] border border-black/10 rounded-[10px] sm:rounded-[13px] 2xl:rounded-[20px] overflow-hidden">
-              <div className="w-full h-auto mb-6.25 lg:mb-2.5">
+            <div className="w-full h-auto p-[20px_20px_30px_20px] sm:p-[30px_30px_40px_30px] 2xl:p-[40px_40px_50px_40px] 3xl:p-[50px_20px_60px_50px] border border-black/10 rounded-[10px] sm:rounded-[13px] 2xl:rounded-[20px] overflow-hidden">
+              <div className="w-full h-auto mb-5 sm:mb-6.25 md:mb-2.5">
                 <Heading>{data?.title}</Heading>
               </div>
-              <div className="xl:[--gap:40px] 2xl:[--gap:50px] 3xl:[--gap:70px] w-full h-auto mx-[calc(var(--gap)*-1)_-20px] flex flex-wrap">
+              <div className="[--gap:20px] sm:[--gap:30px] md:[--gap:20px] xl:[--gap:30px] 2xl:[--gap:40px] 3xl:[--gap:70px] w-full h-auto md:mx-[calc(var(--gap)*-1)_-10px] 2xl:mx-[calc(var(--gap)*-1)_-20px] flex flex-wrap">
                 {data?.contacts?.map((item) => (
                   <div
                     key={item?.id}
-                    className="w-1/2 h-auto p-[20px_20px_20px_var(--gap)] odd:border-r odd:border-black/10 block"
+                    className="w-full md:w-1/2 h-auto max-md:py-(--gap) md:p-[10px_10px_10px_var(--gap)] 2xl:p-[20px_20px_20px_var(--gap)] first:max-md:pt-0 max-md:not-last:border-b md:odd:border-r border-black/10 block"
                   >
                     <div className="w-full h-full block">
                       {data?.title && (
-                        <div className="2xl:text-[25px] 3xl:text-[32px] leading-[1.2] font-semibold text-[#212121] 2xl:mb-7.5 3xl:mb-10">
+                        <div className="text-base sm:text-lg lg:text-xl 2xl:text-[25px] 3xl:text-[32px] leading-[1.2] font-semibold text-[#212121] mb-2.5 sm:mb-3.75 lg:mb-5 2xl:mb-7.5 3xl:mb-10">
                           {item?.title}
                         </div>
                       )}
-                      <div className="w-full h-auto 2xl:mb-10 3xl:mb-15">
-                        <div className="2xl:text-[22px] 3xl:text-[28px] leading-[1.2] font-semibold text-[#4A5565] mb-1.25 3xl:mb-2.5">
+                      <div className="w-full h-auto mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-15">
+                        <div className="text-base lg:text-lg 2xl:text-[22px] 3xl:text-[28px] leading-[1.2] font-semibold text-[#4A5565] mb-1.25 3xl:mb-2.5">
                           {item?.addressDetail?.title}
                         </div>
                         <div
-                          className="2xl:text-[15px] 3xl:text-lg leading-[1.8] font-normal text-[#4A5565]"
+                          className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.8] font-normal text-[#4A5565]"
                           dangerouslySetInnerHTML={{
                             __html: item?.addressDetail?.address ?? "",
                           }}
                         />
                       </div>
-                      <div className="w-full h-auto mb-7.5 block">
+                      <div className="w-full h-auto mb-5 2xl:mb-7.5 block">
                         {item?.contactDetail?.map((item) => (
                           <div
                             key={item?.id}
-                            className="w-full h-auto not-last:mb-7.5 block"
+                            className="w-full h-auto not-last:mb-3.75 lg:not-last:mb-5 2xl:not-last:mb-7.5 block"
                           >
-                            <div className="2xl:[--icon-size:70px] 3xl:[--icon-size:80px] w-full h-full flex items-center">
+                            <div className="[--icon-size:40px] sm:[--icon-size:50px] lg:[--icon-size:60px] 2xl:[--icon-size:70px] 3xl:[--icon-size:80px] w-full h-full flex sm:items-center">
                               {item?.icon && (
-                                <div className="w-(--icon-size) h-auto aspect-square 2xl:p-5 3xl:p-6.25 bg-neutral-400/10 rounded-[5px] overflow-hidden flex items-center justify-center">
+                                <div className="w-(--icon-size) h-auto aspect-square p-2.5 sm:p-3.25 lg:p-4.25 2xl:p-5 3xl:p-6.25 bg-neutral-400/10 rounded-[5px] overflow-hidden flex items-center justify-center">
                                   <Image
                                     src={item?.icon?.url}
                                     alt={item?.icon?.alternativeText}
@@ -65,12 +65,12 @@ export default function ExaminationContact({ data }) {
                               <div
                                 className={
                                   item?.icon
-                                    ? "w-[calc(100%-var(--icon-size))] pl-7.5"
+                                    ? "w-[calc(100%-var(--icon-size))] pl-2.5 sm:pl-3.75 lg:pl-5 2xl:pl-7.5"
                                     : "w-full h-auto block"
                                 }
                               >
                                 {item?.title && (
-                                  <div className="2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-[#212121] mb-2.5">
+                                  <div className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-[#212121] mb-0.5 sm:mb-1.25 2xl:mb-2.5">
                                     {item?.title}
                                   </div>
                                 )}
@@ -78,10 +78,10 @@ export default function ExaminationContact({ data }) {
                                   {item?.details?.map((detail) => (
                                     <div
                                       key={detail?.id}
-                                      className="w-full h-auto lg:not-last:mb-1.25 3xl:not-last:mb-2.5 block"
+                                      className="w-full h-auto 2xl:not-last:mb-1.25 3xl:not-last:mb-2.5 block"
                                     >
                                       {detail?.label && (
-                                        <span className="2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-[#4A5565]">
+                                        <span className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-[#4A5565]">
                                           {detail?.label} -{" "}
                                         </span>
                                       )}
@@ -93,7 +93,7 @@ export default function ExaminationContact({ data }) {
                                               ? `mailto:${detail?.value}`
                                               : "#"
                                         }
-                                        className="2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-[#4A5565] transition-colors duration-300 hover:text-(--basecolor2)"
+                                        className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-[#4A5565] transition-colors duration-300 hover:text-(--basecolor2)"
                                       >
                                         {detail?.value}
                                       </Link>
@@ -106,7 +106,7 @@ export default function ExaminationContact({ data }) {
                         ))}
                       </div>
                       {item?.contactTime && (
-                        <div className="2xl:text-base 3xl:text-xl leading-[1.2] font-semibold underline bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent">
+                        <div className="text-sm 2xl:text-base 3xl:text-xl leading-[1.2] font-semibold underline bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent">
                           Contact Time: {item?.contactTime}
                         </div>
                       )}
