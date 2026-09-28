@@ -60,11 +60,13 @@ export default function GalleryCard({ item }) {
           </div>
         </div>
 
+        <div className="absolute z-1 inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 pointer-events-none" />
+
         <button
           type="button"
           onClick={scrollPrev}
           aria-label="Previous image"
-          className="absolute z-2 top-1/2 left-2.5 xl:left-3.5 -translate-y-1/2 opacity-90 transition-opacity duration-300 hover:opacity-100"
+          className="absolute z-2 top-1/2 left-2.5 xl:left-3.5 -translate-y-1/2 opacity-70 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100"
         >
           <Image
             src="/images/icon-gallery-arrow-left.svg"
@@ -78,7 +80,7 @@ export default function GalleryCard({ item }) {
           type="button"
           onClick={scrollNext}
           aria-label="Next image"
-          className="absolute z-2 top-1/2 right-2.5 xl:right-3.5 -translate-y-1/2 opacity-90 transition-opacity duration-300 hover:opacity-100"
+          className="absolute z-2 top-1/2 right-2.5 xl:right-3.5 -translate-y-1/2 opacity-70 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100"
         >
           <Image
             src="/images/icon-gallery-arrow-right.svg"
