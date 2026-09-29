@@ -1,8 +1,21 @@
 ﻿
 import InnerHero from '@/components/layout/common/InnerHero'
 import OtherApproval from '@/components/sections/regulatory-approval/other-approval'
+import { getOtherApprovalsPage } from '@/lib/api/index'
 
 export const revalidate = 60;
+
+export async function generateMetadata() {
+    const pageData = (await getOtherApprovalsPage()) || local_data;
+
+    return {
+        title: pageData?.seo?.metaTitle || "Other Approvals | Dayananda Sagar University",
+        description: pageData?.seo?.metaDescription || undefined,
+        alternates: pageData?.seo?.canonicalUrl
+            ? { canonical: pageData.seo.canonicalUrl }
+            : undefined,
+    };
+}
 
 
 
@@ -121,11 +134,16 @@ const local_data = {
         ]
     }
 }
-export default function Page() {
+export default async function Page() {
+    const data = await getOtherApprovalsPage();
+    const pageData = data
+    
+    if (!pageData) return null;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
-            <OtherApproval data={local_data.otherApproval} />
+            {pageData.hero && <InnerHero data={pageData.hero} />}
+            {pageData.otherApproval && <OtherApproval data={pageData.otherApproval} />}
         </>
     )
 }

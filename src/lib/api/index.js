@@ -46,6 +46,11 @@ export async function getUgcRecognitionPage() {
   return fetchAPI('/api/ugc-recognition-page', {}, { next: { revalidate: 60 } });
 }
 
+// ── Other Approvals Page ──────────────────────────────────────────────────────
+export async function getOtherApprovalsPage() {
+  return fetchAPI('/api/other-approvals-page', {}, { next: { revalidate: 60 } });
+}
+
 // ── Schools (Academics Cluster) ───────────────────────────────────────────────
 export async function getSchools() {
   return fetchAPI('/api/schools', {}, { next: { revalidate: 60 } });
