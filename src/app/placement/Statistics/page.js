@@ -129,26 +129,26 @@ const local_data = {
             {
                 id: 1,
                 title: "Student Success Story 1",
-                videoUrl: "/videos/home-testimonial-1.mp4",
-                poster: "/images/home-about-1.jpg",
+                videoUrl: "/videos/testimonial-1.mp4",
+                poster: "/images/test-1.jpg",
             },
             {
                 id: 2,
                 title: "Student Success Story 2",
-                videoUrl: "/videos/home-testimonial-2.mp4",
-                poster: "/images/chapter-1.jpg",
+                videoUrl: "/videos/testimonial-2.mp4",
+                poster: "/images/test-2.jpg",
             },
             {
                 id: 3,
                 title: "Student Success Story 3",
-                videoUrl: "/videos/home-testimonial-3.mp4",
-                poster: "/images/chapter-2.jpg",
+                videoUrl: "/videos/testimonial-3.mp4",
+                poster: "/images/test-3.jpg",
             },
             {
                 id: 4,
                 title: "Student Success Story 4",
-                videoUrl: "/videos/home-testimonial-4.mp4",
-                poster: "/images/facility-1.jpg",
+                videoUrl: "/videos/testimonial-4.mp4",
+                poster: "/images/test-4.jpg",
             },
         ],
         stories: [
@@ -170,7 +170,7 @@ const local_data = {
                 role: "Advisor at Bain & Company",
                 degree: "B.Sc Computer Science, 2023",
                 avatar: "/images/home-testimonial-avatar-2.png",
-                badge: "/images/home-badge-2.png",
+                badge: "/images/test-2.jpg",
             },
             {
                 id: 3,
@@ -180,7 +180,7 @@ const local_data = {
                 role: "Analyst at Deloitte",
                 degree: "B.Tech CSE, 2023",
                 avatar: "/images/home-testimonial-avatar-3.png",
-                badge: "/images/home-badge-2.png",
+                badge: "/images/test-3.jpg",
             },
             {
                 id: 4,
@@ -190,7 +190,7 @@ const local_data = {
                 role: "Strategist at Accenture",
                 degree: "B.Tech in CSE, 2023",
                 avatar: "/images/home-testimonial-avatar-4.jpg",
-                badge: "/images/home-badge-2.png",
+                badge: "/images/test-4.jpg",
             },
         ],
     }
