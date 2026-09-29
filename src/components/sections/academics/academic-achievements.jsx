@@ -9,9 +9,9 @@ export default function AcademicAchievements({ data, variant }) {
             <div className="container">
                 <div className="relative max-lg:flex max-lg:flex-col-reverse  after:content-[''] after:table after:clear-both ">
                     <div className={`w-full ${variant=== "AiChapter" ? "lg:w-[50%] lg:pl-[100px] 2xl:pl-[150px]" : "lg:w-[380px] xl:w-[450px] 2xl:w-[550px] 3xl:w-[650px] lg:pl-[40px]"}  lg:float-right   `}>
-                        <div className="flex flex-wrap justify-center -m-[4px] lg:-m-[5px] xl:-m-[8px] 3xl:-m-[10px]">
+                        <div className="flex flex-wrap justify-center -m-[4px] lg:-m-[5px] xl:-m-[8px] 3xl:-m-[10px] !mb-[15px]">
                             {data?.stats.map((stat, idx) => (
-                                <div className="p-[4px] lg:p-[5px] xl:p-[8px] 3xl:p-[10px] max-sm:flex-grow-1 w-1/3 sm:w-1/6 lg:w-1/2 lg:mb-[10px] xl:mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px]" key={idx}>
+                                <div className={`p-[4px] lg:p-[5px] xl:p-[8px] 3xl:p-[10px] max-sm:flex-grow-1 w-1/3 sm:w-1/6 lg:w-1/2 ${variant=== "AiChapter" ? "mb-0": "lg:mb-[10px] xl:mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px]"}`} key={idx}>
                                     <div
                                         className="bg-white dark:bg-[#18191B] border border-[rgba(249,115,22,0.3)] dark:border-[#F97316]/40 text-center rounded-[8px] w-full h-full
                                         p-[10px] sm:p-[12px] xl:p-[16px] flex flex-col justify-center 
@@ -27,6 +27,9 @@ export default function AcademicAchievements({ data, variant }) {
                                 </div>
                             ))}
                         </div>
+                        {data.note && (
+                            <p >{data.note}</p>
+                        )}
                     </div>
                     <div className="w-full max-lg:mb-[20px]">
                         <div className="cmn_Title mb-[25px]">{data.heading}</div>

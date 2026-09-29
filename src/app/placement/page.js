@@ -17,38 +17,27 @@ const local_data = {
     publishedAt: "2026-06-11T06:26:08.337Z",
     seo: {
         id: 21,
-        metaTitle: "Overview page title",
-        metaDescription: "Overview page description ",
+        metaTitle: "Placements page title",
+        metaDescription: "Placements page description ",
         canonicalUrl: null,
     },
     hero: {
         id: 25,
         heroMedia: {
-            alternativeText: "Overview page title",
+            alternativeText: "Placements page title",
             mime: "image/jpg",
             // if video - mime: "video/mp4",
             url: "/images/academic-banner.jpg",
         },
-        title: "School of Computer Applications",
+        title: "Placements",
         breadcrumb: [
             {
                 label: "Home",
                 href: "/",
             },
+           
             {
-                label: "AI Enabled Academics",
-                href: "/",
-            },
-            {
-                label: "Schools",
-                href: "/",
-            },
-            {
-                label: "Computer Applications",
-                href: "/",
-            },
-            {
-                label: "Overview",
+                label: "Placements",
                 href: "/",
             },
         ],
