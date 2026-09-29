@@ -16,7 +16,7 @@ export default function MediaCoverageCard({ item }) {
           className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
         />
       </div>
-      <div className="w-full h-full p-[20px_25px_25px] 2xl:p-[22px_28px_28px] 3xl:p-[27px_29px_33px] flex flex-col justify-between grow">
+      <div className="w-full h-auto p-[20px_25px_25px] 2xl:p-[22px_28px_28px] 3xl:p-[27px_29px_33px] flex flex-col justify-between grow">
         <div>
           <div className="text-[11px] 2xl:text-[12.5px] 3xl:text-[14.6px] leading-normal font-bold uppercase text-[#4A5565] dark:text-gray-300 mb-2.5 2xl:mb-3">
             {item?.source} {item?.source && item?.date ? "|" : ""} {item?.date}

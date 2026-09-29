@@ -18,14 +18,19 @@ export default function CommunityActivities({ data }) {
       <div className="container">
         <div className="w-full h-auto mb-6.25 lg:mb-7.5 2xl:mb-10">
           <h2 className="title_1 mb-2.5 xl:mb-3 2xl:mb-3.5">{data?.title}</h2>
-          {data?.description && <p className="text_1 max-w-[820px]">{data.description}</p>}
+          {data?.description && (
+            <p className="text_1 max-w-[820px]">{data.description}</p>
+          )}
         </div>
-        <Accordion defaultValue={defaultOpen} className="gap-3.75 xl:gap-5 flex flex-col">
+        <Accordion
+          defaultValue={defaultOpen}
+          className="gap-3.75 xl:gap-5 flex flex-col"
+        >
           {data?.items?.map((item) => (
             <AccordionItem
               key={item?.id}
               value={`item-${item?.id}`}
-              className="not-last:border-b-0 border border-black/10 rounded-md 2xl:rounded-[10px] p-[18px_20px] xl:p-[22px_25px] 3xl:p-[28px_35px]"
+              className="last:border-b-0 border border-black/10 rounded-md 2xl:rounded-[10px] p-[18px_20px] xl:p-[22px_25px] 3xl:p-[28px_35px]"
             >
               <AccordionTrigger className="p-0 hover:no-underline after:content-['+'] after:text-2xl xl:after:text-3xl 3xl:after:text-[32px] after:font-semibold after:leading-none after:text-[#212121] dark:after:text-white data-[panel-open]:after:content-['-'] [&>svg]:!hidden">
                 <div>
@@ -40,9 +45,13 @@ export default function CommunityActivities({ data }) {
               {(item?.description || item?.image) && (
                 <AccordionContent className="pt-4 xl:pt-5">
                   <div className="flex flex-col lg:flex-row items-start gap-5 lg:gap-7.5 3xl:gap-10">
-                    <div className={item?.image ? "w-full lg:flex-1" : "w-full"}>
+                    <div
+                      className={item?.image ? "w-full lg:flex-1" : "w-full"}
+                    >
                       {item?.description && (
-                        <p className="text_1 mb-3.75 xl:mb-5">{item.description}</p>
+                        <p className="text_1 mb-3.75 xl:mb-5">
+                          {item.description}
+                        </p>
                       )}
                       <Link
                         href={item?.link || "#!"}

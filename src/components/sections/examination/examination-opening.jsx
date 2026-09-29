@@ -9,7 +9,7 @@ import { buttonVariants } from "@/components/ui/button";
 export default function ExaminationOpening({ data }) {
   return (
     <section className="w-full h-auto py-10 sm:py-12.5 lg:py-17.5 2xl:py-20 3xl:py-25 bg-linear-to-br from-[#EFF6FF] to-[#F9FAFB] block">
-      <div class="container">
+      <div className="container">
         <Heading
           align="center"
           className="mb-5 sm:mb-7.5 lg:mb-10 2xl:mb-15 3xl:mb-22.5"
