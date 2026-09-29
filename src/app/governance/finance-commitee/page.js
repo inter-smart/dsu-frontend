@@ -1,7 +1,7 @@
 
 import InnerHero from '@/components/layout/common/InnerHero';
 import GovernanceFinancecommittte from '@/components/sections/governance/governance-financecommittte';
-import { getCommittees } from '@/lib/api/index';
+import { getGovernancePageBySlug } from '@/lib/api/index';
 
 export const revalidate = 60;
 
@@ -14,9 +14,9 @@ const local_data = {
   publishedAt: "2026-06-11T06:26:08.337Z",
   seo: {
     id: 21,
-    metaTitle: "about page title",
-    metaDescription: "about page description ",
-    canonicalUrl: null,
+    metaTitle: "Finance Committee | Governance | DSU",
+    metaDescription: "Meet the members of the Dayananda Sagar University Finance Committee.",
+    canonicalUrl: "https://dsu.edu.in/governance/finance-commitee",
   },
   hero: {
     id: 25,
@@ -46,11 +46,6 @@ const local_data = {
   financeCommitteeData : {
     title: "Finance Committee",
     subtitle: "Details of the members of the Finance Committee.",
-    tableHeaders: [
-      "Name",
-      "Address/Designation",
-      "Status in the Authority"
-    ],
     financeCommittee: [
       {
         id: 1,
@@ -97,23 +92,29 @@ const local_data = {
 
 }
 export default async function Page() {
-  const committees = await getCommittees('finance');
-  const hero = local_data.hero;
-
-  // Use Strapi committee data if available, otherwise fall back to local_data
-  const financeData = committees && committees.length > 0
-    ? {
-        title: committees[0].name || 'Finance Committee',
-        subtitle: committees[0].description || local_data.financeCommitteeData.subtitle,
-        tableHeaders: local_data.financeCommitteeData.tableHeaders,
-        financeCommittee: committees[0].members || local_data.financeCommitteeData.financeCommittee,
-      }
-    : local_data.financeCommitteeData;
+  const pageData = await getGovernancePageBySlug('finance-committee') || local_data;
 
   return (
     <>
-      <InnerHero data={hero} />
-      {financeData && <GovernanceFinancecommittte data={financeData} />}
+      <InnerHero data={pageData.hero} />
+      {pageData.financeCommitteeData && (
+        <GovernanceFinancecommittte data={pageData.financeCommitteeData} />
+      )}
     </>
   );
+}
+
+export async function generateMetadata() {
+  const pageData = await getGovernancePageBySlug('finance-committee') || local_data;
+  const seo = pageData.seo;
+
+  return {
+    title: seo?.metaTitle || "Finance Committee | Governance | DSU",
+    description:
+      seo?.metaDescription ||
+      "Meet the members of the Dayananda Sagar University Finance Committee.",
+    ...(seo?.canonicalUrl
+      ? { alternates: { canonical: seo.canonicalUrl } }
+      : {}),
+  };
 }

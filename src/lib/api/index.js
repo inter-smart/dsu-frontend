@@ -20,6 +20,11 @@ export async function getHistoryPage() {
   return fetchAPI('/api/history-page', {}, { next: { revalidate: 60 } });
 }
 
+// ── Governance Pages ──────────────────────────────────────────────────────────
+export async function getGovernancePageBySlug(slug) {
+  return fetchAPI(`/api/governance-pages/${encodeURIComponent(slug)}`, {}, { next: { revalidate: 60 } });
+}
+
 export async function getLeadershipMemberBySlug(slug) {
   const params = new URLSearchParams({ slug }).toString();
   const members = await fetchAPI(`/api/leadership-members?${params}`, {}, { next: { revalidate: 60 } });

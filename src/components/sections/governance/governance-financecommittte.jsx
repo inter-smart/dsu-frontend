@@ -44,7 +44,7 @@ export default function GovernanceFinancecommittte({ data }) {
                             <table className="w-full min-w-[700px] border-separate border-spacing-y-[10px]">
                                 <thead>
                                     <tr className="bg-gradient-to-r from-[rgba(220,38,38,0.8)] to-[rgba(249,115,22,0.8)]">
-                                        {data?.tableHeaders?.map((item, idx) => (
+                                        {["Name", "Address/Designation", "Status in the Authority"].map((item, idx) => (
                                             <th
                                                 key={idx}
                                                 className="whitespace-nowrap p-[10px_15px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px] text-center text-[13px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[20px] font-normal uppercase text-white first:rounded-l-[10px] last:rounded-r-[10px]"
