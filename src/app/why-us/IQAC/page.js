@@ -210,7 +210,7 @@ const local_data = {
                     description: "Relevant programmes are aligned with statutory and professional education requirements prescribed by national regulatory bodies.",
                     logo: "/images/accred-3.png",
                     type: "accreditations",
-                    linkUrl: "/regulatory-approval/other-approval",
+                    linkUrl: "/regulatory-approval/aicte-approval",
                 },
                 {
                     id: 4,
@@ -218,7 +218,7 @@ const local_data = {
                     description: "Indicates recognition under the appropriate UGC provisions, strengthening institutional standing in higher education.",
                     logo: "/images/accred-4.png",
                     type: "accreditations",
-                    linkUrl: "/regulatory-approval/ugc-recognition",
+                    linkUrl: "/regulatory-approval/ugc-2f",
                 },
                 {
                     id: 5,
