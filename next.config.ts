@@ -50,6 +50,11 @@ const nextConfig: NextConfig = {
         hostname: "wasso.intersmart.in",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "dsu-beta.intersmarthosting.in",
+        pathname: "/**",
+      },
     ],
   },
 };
