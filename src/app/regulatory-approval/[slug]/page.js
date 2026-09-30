@@ -11,7 +11,9 @@ export const revalidate = 60;
 
 export async function generateStaticParams() {
   const menu = (await getRegulatoryApprovals()) || [];
-  return menu.map((item) => ({ slug: item.slug }));
+  return menu
+    .filter((item) => item.slug)
+    .map((item) => ({ slug: item.slug }));
 }
 
 export async function generateMetadata({ params }) {
