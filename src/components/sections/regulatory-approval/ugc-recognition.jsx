@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/accordion";
 import RegulatorySidebarSection from "@/components/sections/regulatory-approval/regulatorySidebarSection";
 
-export default function UgcRegnition({ data }) {
+export default function UgcRegnition({ data, menu = [] }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
@@ -23,6 +23,7 @@ export default function UgcRegnition({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <RegulatorySidebarSection
+                            menu={menu}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />

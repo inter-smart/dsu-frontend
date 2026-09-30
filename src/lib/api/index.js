@@ -1,59 +1,70 @@
-import { fetchAPI } from './strapi';
+import { fetchAPI } from "./strapi";
 
 // ── About DSU ────────────────────────────────────────────────────────────────
 export async function getAboutPage() {
-  return fetchAPI('/api/about-page', {}, { next: { revalidate: 60 } });
+  return fetchAPI("/api/about-page", {}, { next: { revalidate: 60 } });
 }
 
 // ── Home Page ─────────────────────────────────────────────────────────────────
 export async function getHomePage() {
-  return fetchAPI('/api/home-page', {}, { next: { revalidate: 60 } });
+  return fetchAPI("/api/home-page", {}, { next: { revalidate: 60 } });
 }
 
 // ── Navigation ────────────────────────────────────────────────────────────────
 export async function getNavigation() {
-  return fetchAPI('/api/navigation', {}, { next: { revalidate: 300 } });
+  return fetchAPI("/api/navigation", {}, { next: { revalidate: 300 } });
 }
 
 // ── History Page ──────────────────────────────────────────────────────────────
 export async function getHistoryPage() {
-  return fetchAPI('/api/history-page', {}, { next: { revalidate: 60 } });
+  return fetchAPI("/api/history-page", {}, { next: { revalidate: 60 } });
 }
 
 export async function getLeadershipMemberBySlug(slug) {
   const params = new URLSearchParams({ slug }).toString();
-  const members = await fetchAPI(`/api/leadership-members?${params}`, {}, { next: { revalidate: 60 } });
+  const members = await fetchAPI(
+    `/api/leadership-members?${params}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
   return members?.[0] || null;
 }
 
 // ── Contact Page ──────────────────────────────────────────────────────────────
 export async function getContactPage() {
-  return fetchAPI('/api/contact-page', {}, { next: { revalidate: 60 } });
+  return fetchAPI("/api/contact-page", {}, { next: { revalidate: 60 } });
 }
 
 // ── NVIDIA / AI CoE Page ──────────────────────────────────────────────────────
 export async function getNvidiaPage() {
-  return fetchAPI('/api/nvidia-page', {}, { next: { revalidate: 60 } });
+  return fetchAPI("/api/nvidia-page", {}, { next: { revalidate: 60 } });
 }
 
 // ── DSU Act Page ──────────────────────────────────────────────────────────────
 export async function getDsuActPage() {
-  return fetchAPI('/api/dsu-act-page', {}, { next: { revalidate: 60 } });
+  return fetchAPI("/api/dsu-act-page", {}, { next: { revalidate: 60 } });
 }
 
-// ── UGC Recognition Page ──────────────────────────────────────────────────────
-export async function getUgcRecognitionPage() {
-  return fetchAPI('/api/ugc-recognition-page', {}, { next: { revalidate: 60 } });
+// ── Regulatory Approvals (UGC Recognition, UGC 2(f), AICTE, Other Approvals) ──
+export async function getRegulatoryApprovals() {
+  return fetchAPI(
+    "/api/regulatory-approvals",
+    {},
+    { next: { revalidate: 60 } },
+  );
 }
 
-// ── Other Approvals Page ──────────────────────────────────────────────────────
-export async function getOtherApprovalsPage() {
-  return fetchAPI('/api/other-approvals-page', {}, { next: { revalidate: 60 } });
+export async function getRegulatoryApprovalBySlug(slug) {
+  return fetchAPI(
+    `/api/regulatory-approvals/${slug}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
 }
 
 // ── Schools (Academics Cluster) ───────────────────────────────────────────────
 export async function getSchools() {
-  return fetchAPI('/api/schools', {}, { next: { revalidate: 60 } });
+  return fetchAPI("/api/schools", {}, { next: { revalidate: 60 } });
 }
 
 export async function getSchoolBySlug(slug) {
@@ -62,7 +73,7 @@ export async function getSchoolBySlug(slug) {
 
 // ── Departments ───────────────────────────────────────────────────────────────
 export async function getDepartments() {
-  return fetchAPI('/api/departments', {}, { next: { revalidate: 60 } });
+  return fetchAPI("/api/departments", {}, { next: { revalidate: 60 } });
 }
 
 export async function getDepartmentBySlug(slug) {
@@ -72,7 +83,11 @@ export async function getDepartmentBySlug(slug) {
 // ── Programmes ────────────────────────────────────────────────────────────────
 export async function getProgrammes(filters = {}) {
   const params = new URLSearchParams(filters).toString();
-  return fetchAPI(`/api/programmes${params ? '?' + params : ''}`, {}, { next: { revalidate: 60 } });
+  return fetchAPI(
+    `/api/programmes${params ? "?" + params : ""}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
 }
 
 export async function getProgrammeBySlug(slug) {
@@ -82,22 +97,34 @@ export async function getProgrammeBySlug(slug) {
 // ── Faculty Members ───────────────────────────────────────────────────────────
 export async function getFacultyList(filters = {}) {
   const params = new URLSearchParams(filters).toString();
-  return fetchAPI(`/api/faculty-members${params ? '?' + params : ''}`, {}, { next: { revalidate: 60 } });
+  return fetchAPI(
+    `/api/faculty-members${params ? "?" + params : ""}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
 }
 
 export async function getFacultyBySlug(slug) {
-  return fetchAPI(`/api/faculty-members/${slug}`, {}, { next: { revalidate: 60 } });
+  return fetchAPI(
+    `/api/faculty-members/${slug}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
 }
 
 // ── Leadership Members ────────────────────────────────────────────────────────
 export async function getLeadershipMembers(category) {
-  const params = category ? `?category=${encodeURIComponent(category)}` : '';
-  return fetchAPI(`/api/leadership-members${params}`, {}, { next: { revalidate: 60 } });
+  const params = category ? `?category=${encodeURIComponent(category)}` : "";
+  return fetchAPI(
+    `/api/leadership-members${params}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
 }
 
 // ── Committees ────────────────────────────────────────────────────────────────
 export async function getCommittees(type) {
-  const params = type ? `?type=${encodeURIComponent(type)}` : '';
+  const params = type ? `?type=${encodeURIComponent(type)}` : "";
   return fetchAPI(`/api/committees${params}`, {}, { next: { revalidate: 60 } });
 }
 
@@ -107,16 +134,20 @@ export async function getCommitteeBySlug(slug) {
 
 // ── Research Centres ──────────────────────────────────────────────────────────
 export async function getResearchCentres() {
-  return fetchAPI('/api/research-centres', {}, { next: { revalidate: 60 } });
+  return fetchAPI("/api/research-centres", {}, { next: { revalidate: 60 } });
 }
 
 export async function getResearchCentreBySlug(slug) {
-  return fetchAPI(`/api/research-centres/${slug}`, {}, { next: { revalidate: 60 } });
+  return fetchAPI(
+    `/api/research-centres/${slug}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
 }
 
 // ── News & Events ─────────────────────────────────────────────────────────────
 export async function getNewsEvents() {
-  return fetchAPI('/api/news-events', {}, { next: { revalidate: 60 } });
+  return fetchAPI("/api/news-events", {}, { next: { revalidate: 60 } });
 }
 
 export async function getNewsEventBySlug(slug) {
@@ -125,14 +156,18 @@ export async function getNewsEventBySlug(slug) {
 
 // ── Announcements ─────────────────────────────────────────────────────────────
 export async function getAnnouncements() {
-  return fetchAPI('/api/announcements', {}, { next: { revalidate: 60 } });
+  return fetchAPI("/api/announcements", {}, { next: { revalidate: 60 } });
 }
 
 // ── SDG Initiatives ───────────────────────────────────────────────────────────
 export async function getSdgInitiatives() {
-  return fetchAPI('/api/sdg-initiatives', {}, { next: { revalidate: 60 } });
+  return fetchAPI("/api/sdg-initiatives", {}, { next: { revalidate: 60 } });
 }
 
 export async function getSdgInitiativeBySlug(slug) {
-  return fetchAPI(`/api/sdg-initiatives/${slug}`, {}, { next: { revalidate: 60 } });
+  return fetchAPI(
+    `/api/sdg-initiatives/${slug}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
 }
