@@ -16,7 +16,17 @@ const nextConfig: NextConfig = {
     ];
   },
   async rewrites() {
-    const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+    const defaultStrapiUrl =
+      process.env.NODE_ENV === "production"
+        ? "https://dsu-beta.intersmarthosting.in"
+        : "http://localhost:1337";
+    const configuredStrapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
+    const strapiUrl =
+      process.env.NODE_ENV === "production" &&
+      configuredStrapiUrl &&
+      /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?/i.test(configuredStrapiUrl)
+        ? defaultStrapiUrl
+        : configuredStrapiUrl || defaultStrapiUrl;
 
     return [
       {
