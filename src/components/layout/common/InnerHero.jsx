@@ -13,6 +13,7 @@ import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenubar";
 import AiBSCMenubar from "@/components/sections/ai-enabled/BSC-nursing/bsc-Menubar";
 import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
+import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
 
 export default function InnerHero({ data }) {
   const isVideo = data?.heroMedia?.mime?.includes("video");
@@ -100,6 +101,9 @@ export default function InnerHero({ data }) {
           )}
           {data?.PlacementmenuBar && (
             <PlacementmenuBar />
+          )}
+          {data?.admissionMenubar && (
+            <AdmissionMenubar />
           )}
         </div>
       </div>

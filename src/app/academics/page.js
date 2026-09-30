@@ -67,14 +67,21 @@ const local_data = {
                 ],
             },
         ],
-        cta: {
-            label: "Read More  ",
-            file: {
-                alternativeText: "Placement Report PDF",
-                mime: "application/pdf",
-                url: "/ ",
+        buttons: [
+            {
+                id: 1,
+                label: "Admissions Open 2026–27",
+                href: "#",
+                variant: "primary",
             },
-        },
+            {
+                id: 2,
+                label: "Download Brochure",
+                href: "#",
+                variant: "secondary",
+                icon: "download",
+            },
+        ],
         media: [
             {
                 alternativeText: "Students collaborating in a modern computer lab with laptops",

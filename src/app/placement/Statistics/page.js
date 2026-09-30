@@ -159,8 +159,7 @@ const local_data = {
                 name: "Arjun Menon",
                 role: "Infosys",
                 degree: "B.Tech CSE, 2023",
-                avatar: "/images/home-testimonial-avatar-1.jpg",
-                badge: "/images/home-badge-2.png",
+                avatar: "/images/avatar-1.jpg"
             },
             {
                 id: 2,
@@ -169,8 +168,7 @@ const local_data = {
                 name: "Ravi Sharma",
                 role: "Advisor at Bain & Company",
                 degree: "B.Sc Computer Science, 2023",
-                avatar: "/images/home-testimonial-avatar-2.png",
-                badge: "/images/test-2.jpg",
+                avatar: "/images/avatar-1.jpg", 
             },
             {
                 id: 3,
@@ -179,8 +177,7 @@ const local_data = {
                 name: "Nisha Patel",
                 role: "Analyst at Deloitte",
                 degree: "B.Tech CSE, 2023",
-                avatar: "/images/home-testimonial-avatar-3.png",
-                badge: "/images/test-3.jpg",
+                avatar: "/images/avatar-1.jpg", 
             },
             {
                 id: 4,
@@ -189,8 +186,7 @@ const local_data = {
                 name: "Karan Singh",
                 role: "Strategist at Accenture",
                 degree: "B.Tech in CSE, 2023",
-                avatar: "/images/home-testimonial-avatar-4.jpg",
-                badge: "/images/test-4.jpg",
+                avatar: "/images/avatar-1.jpg", 
             },
         ],
     }

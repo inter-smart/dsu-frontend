@@ -21,7 +21,7 @@ export default function SchoolPlacement({ data }) {
                         {data?.accordion?.map((item) => (
                             <AccordionItem key={item.id} value={`item-${item.id}`} className="p-[8px_10px] md:p-[15px] xl:p-[20px] 3xl:p-[25px] border border-[#E5E9EE] rounded-[6px] mb-[10px] xl:mb-[20px]">
                                 <AccordionTrigger
-                                    className="relative p-0  font-medium !text-black text-[11px] hover:no-underline  md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]  3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold after:text-base2 dark:after:text-white data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden"
+                                    className="relative p-0 font-medium !text-black text-[11px] hover:no-underline  md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold after:text-base2 dark:after:text-white data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden"
                                 >
                                     <div className="w-full">
                                         <div className="cmn_Txt  text-[#212121] dark:text-white font-semibold mb-[4px]">

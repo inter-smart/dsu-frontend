@@ -68,13 +68,13 @@ export default function StudentSuccessStories({ data }) {
                         </h3>
 
                         {/* Orange Arrow Navigation Buttons */}
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-2 2xl:gap-1">
                             <button
                                 type="button"
                                 aria-label="Previous video"
                                 onClick={() => videoSwiperRef.current?.slidePrev()}
                                 disabled={videoPrevDisabled}
-                                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+                                className="w-3 h-3 2xl:w-9 2xl:h-9 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
                             >
                                 <svg width="16" height="29" viewBox="0 0 16 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15.1855 2.32715C15.6012 1.91269 15.6054 1.23886 15.1943 0.819336C14.7809 0.39766 14.1041 0.392766 13.6846 0.808594L13.6826 0.811523L0.832032 13.7363L0.833008 13.7373C0.62052 13.9389 0.50025 14.2184 0.500977 14.5117L0.500001 14.5107L0.500977 14.5127L0.500001 14.5137L0.500977 14.5137C0.501149 14.7939 0.610929 15.0631 0.808594 15.2627L0.808594 15.2637L13.6592 28.1885L13.6611 28.1914L14.0137 27.8359L13.6621 28.1914C14.0817 28.6071 14.7577 28.6021 15.1709 28.1807C15.5828 27.7604 15.5781 27.0842 15.1602 26.6699L15.1592 26.6709L3.07227 14.5127L15.1855 2.32715Z" fill="#F97316" stroke="#F97316" />
@@ -86,7 +86,7 @@ export default function StudentSuccessStories({ data }) {
                                 aria-label="Next video"
                                 onClick={() => videoSwiperRef.current?.slideNext()}
                                 disabled={videoNextDisabled}
-                                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+                                className="w-3 h-3 2xl:w-9 2xl:h-9 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
                             >
                                 <svg width="16" height="29" viewBox="0 0 16 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M0.814452 2.32715C0.398848 1.91269 0.394622 1.23886 0.805663 0.819336C1.21905 0.39766 1.89592 0.392766 2.31543 0.808594L2.31738 0.811523L15.168 13.7363L15.167 13.7373C15.3795 13.9389 15.4998 14.2184 15.499 14.5117L15.5 14.5107L15.499 14.5127L15.5 14.5137L15.499 14.5137C15.4989 14.7939 15.3891 15.0631 15.1914 15.2627L15.1914 15.2637L2.34082 28.1885L2.33887 28.1914L1.98633 27.8359L2.33789 28.1914C1.91834 28.6071 1.24231 28.6021 0.829102 28.1807C0.417212 27.7604 0.421942 27.0842 0.839844 26.6699L0.84082 26.6709L12.9277 14.5127L0.814452 2.32715Z" fill="#F97316" stroke="#F97316" />
@@ -105,15 +105,15 @@ export default function StudentSuccessStories({ data }) {
                             }}
                             onSlideChange={(swiper) => syncVideoSwiper(swiper)}
                             onResize={(swiper) => syncVideoSwiper(swiper)}
-                            slidesPerView={1.15}
+                            slidesPerView={1.5}
                             spaceBetween={14}
                             breakpoints={{
                                 480: {
-                                    slidesPerView: 1.8,
+                                    slidesPerView: 2,
                                     spaceBetween: 16,
                                 },
-                                768: {
-                                    slidesPerView: 2.6,
+                                578: {
+                                    slidesPerView: 3,
                                     spaceBetween: 18,
                                 },
                                 1024: {
@@ -125,7 +125,7 @@ export default function StudentSuccessStories({ data }) {
                                     spaceBetween: 20,
                                 },
                             }}
-                            className="w-full !overflow-visible"
+                            className="w-full "
                         >
                             {videos.map((item, idx) => (
                                 <SwiperSlide key={item.id || idx} className="!h-auto">
@@ -169,13 +169,13 @@ export default function StudentSuccessStories({ data }) {
                         </h3>
 
                         {/* Orange Arrow Navigation Buttons */}
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-2 2xl:gap-1">
                             <button
                                 type="button"
                                 aria-label="Previous stories"
                                 onClick={() => otherSwiperRef.current?.slidePrev()}
                                 disabled={otherPrevDisabled}
-                                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+                                className="w-3 h-3 2xl:w-9 2xl:h-9 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
                             >
                                 <svg width="16" height="29" viewBox="0 0 16 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15.1855 2.32715C15.6012 1.91269 15.6054 1.23886 15.1943 0.819336C14.7809 0.39766 14.1041 0.392766 13.6846 0.808594L13.6826 0.811523L0.832032 13.7363L0.833008 13.7373C0.62052 13.9389 0.50025 14.2184 0.500977 14.5117L0.500001 14.5107L0.500977 14.5127L0.500001 14.5137L0.500977 14.5137C0.501149 14.7939 0.610929 15.0631 0.808594 15.2627L0.808594 15.2637L13.6592 28.1885L13.6611 28.1914L14.0137 27.8359L13.6621 28.1914C14.0817 28.6071 14.7577 28.6021 15.1709 28.1807C15.5828 27.7604 15.5781 27.0842 15.1602 26.6699L15.1592 26.6709L3.07227 14.5127L15.1855 2.32715Z" fill="#F97316" stroke="#F97316" />
@@ -187,7 +187,7 @@ export default function StudentSuccessStories({ data }) {
                                 aria-label="Next stories"
                                 onClick={() => otherSwiperRef.current?.slideNext()}
                                 disabled={otherNextDisabled}
-                                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+                                className="w-3 h-3 2xl:w-9 2xl:h-9 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
                             >
                                 <svg width="16" height="29" viewBox="0 0 16 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M0.814452 2.32715C0.398848 1.91269 0.394622 1.23886 0.805663 0.819336C1.21905 0.39766 1.89592 0.392766 2.31543 0.808594L2.31738 0.811523L15.168 13.7363L15.167 13.7373C15.3795 13.9389 15.4998 14.2184 15.499 14.5117L15.5 14.5107L15.499 14.5127L15.5 14.5137L15.499 14.5137C15.4989 14.7939 15.3891 15.0631 15.1914 15.2627L15.1914 15.2637L2.34082 28.1885L2.33887 28.1914L1.98633 27.8359L2.33789 28.1914C1.91834 28.6071 1.24231 28.6021 0.829102 28.1807C0.417212 27.7604 0.421942 27.0842 0.839844 26.6699L0.84082 26.6709L12.9277 14.5127L0.814452 2.32715Z" fill="#F97316" stroke="#F97316" />
@@ -206,15 +206,19 @@ export default function StudentSuccessStories({ data }) {
                             }}
                             onSlideChange={(swiper) => syncOtherSwiper(swiper)}
                             onResize={(swiper) => syncOtherSwiper(swiper)}
-                            slidesPerView={1.15}
-                            spaceBetween={14}
+                            slidesPerView={1.1}
+                            spaceBetween={10}
                             breakpoints={{
-                                480: {
-                                    slidesPerView: 1.8,
+                                300: {
+                                    slidesPerView: 1,
                                     spaceBetween: 16,
                                 },
-                                768: {
-                                    slidesPerView: 2.6,
+                                480: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 16,
+                                },
+                                57: {
+                                    slidesPerView: 3,
                                     spaceBetween: 18,
                                 },
                                 1024: {
@@ -226,11 +230,11 @@ export default function StudentSuccessStories({ data }) {
                                     spaceBetween: 20,
                                 },
                             }}
-                            className="w-full !overflow-visible"
+                            className="w-full"
                         >
                             {stories.map((story, idx) => (
                                 <SwiperSlide key={story.id || idx} className="!h-auto flex">
-                                    <div className="w-full bg-[#F8FAFC] dark:bg-[#151618] rounded-[4px] p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-md">
+                                    <div className="w-full h-full bg-[#F8FAFC] dark:bg-[#151618] rounded-[4px] p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-md">
                                         {/* Top Content */}
                                         <div>
                                             {/* Double Orange Quotation Marks */}
@@ -264,10 +268,10 @@ export default function StudentSuccessStories({ data }) {
                                         </div>
 
                                         {/* Bottom Author Row */}
-                                        <div className="mt-6 pt-4 flex items-center justify-between">
-                                            <div className="flex items-center gap-3 min-w-0">
+                                        <div className="pt-6 border-t border-black/10 flex items-center justify-between">
+                                            <div className="flex gap-3 min-w-0">
                                                 {/* Student Avatar */}
-                                                <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-lg overflow-hidden shrink-0 bg-neutral-200 dark:bg-neutral-700">
+                                                <div className="relative w-[65px] h-[65px] rounded-lg overflow-hidden shrink-0 bg-neutral-200 dark:bg-neutral-700">
                                                     <Image
                                                         src={story.avatar || "/images/home-testimonial-avatar-1.jpg"}
                                                         alt={story.name || "Student"}
@@ -278,30 +282,17 @@ export default function StudentSuccessStories({ data }) {
 
                                                 {/* Student Information */}
                                                 <div className="min-w-0">
-                                                    <h5 className="text-[14px] sm:text-[14.5px] font-bold text-[#1F1F1F] dark:text-white leading-tight truncate">
+                                                    <h5 className="text-[14px] sm:text-[14.5px] 2xl:text-[16px] 3xl:text-[20px] font-bold text-[#212121] dark:text-white leading-tight truncate mb-[3px]">
                                                         {story.name}
                                                     </h5>
-                                                    <p className="text-[11.5px] sm:text-[12px] text-[#475569] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate">
+                                                    <p className="text-[11.5px] sm:text-[12px] 2xl:text-[14px] text-[#212121] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate">
                                                         {story.role}
                                                     </p>
-                                                    <p className="text-[11px] sm:text-[11.5px] text-[#94A3B8] leading-tight mt-0.5 truncate">
+                                                    <p className="text-[11px] sm:text-[11.5px] 2xl:text-[14px] text-[#212121] leading-tight mt-0.5 truncate">
                                                         {story.degree}
                                                     </p>
                                                 </div>
-                                            </div>
-
-                                            {/* Right side subtle badge/watermark */}
-                                            {story.badge && (
-                                                <div className="w-6 h-6 sm:w-7 sm:h-7 shrink-0 opacity-25">
-                                                    <Image
-                                                        src={story.badge}
-                                                        alt="Badge"
-                                                        width={28}
-                                                        height={28}
-                                                        className="w-full h-full object-contain"
-                                                    />
-                                                </div>
-                                            )}
+                                            </div> 
                                         </div>
                                     </div>
                                 </SwiperSlide>
@@ -314,7 +305,7 @@ export default function StudentSuccessStories({ data }) {
             {/* Video Modal Popup */}
             {activeVideoModal && (
                 <div
-                    className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 backdrop-blur-sm"
+                    className="fixed inset-0 z-[999999] bg-black/80 flex items-center justify-center p-4 backdrop-blur-sm"
                     onClick={() => setActiveVideoModal(null)}
                 >
                     <div
@@ -329,7 +320,7 @@ export default function StudentSuccessStories({ data }) {
                         >
                             ✕
                         </button>
-                        <div className="aspect-[16/9] w-full">
+                        <div className="aspect-[10/10] w-full">
                             <video
                                 src={activeVideoModal.videoUrl}
                                 controls

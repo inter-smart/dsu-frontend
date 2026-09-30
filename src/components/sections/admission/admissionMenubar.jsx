@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLenis } from "lenis/react";
+
 import {
     Accordion,
     AccordionContent,
@@ -13,29 +14,45 @@ import {
 
 const menuItems = [
     {
-        label: "About Placement Cell",
+        label: "Overview",
         href: "/placement"
     },
     {
-        label: "Placement Statistics",
+        label: "Programme",
+        href: "/placement"
+    },
+    {
+        label: "Admission Process",
         href: "/placement/Statistics"
     },
     {
-        label: "Career Development Centre",
+        label: "Eligibility & Selection",
         href: "/placement/career"
     },
     {
-        label: "Corporate Connect",
+        label: "Fees & Scholarships",
         href: "/placement/corporate-connect"
     },
     {
-        label: "Placement Contact",
+        label: "Hostel & Campus Life",
+        href: "/placement/placement-contact"
+    },
+    {
+        label: "Important Dates",
+        href: "/placement/placement-contact"
+    },
+    {
+        label: "FAQs",
+        href: "/placement/placement-contact"
+    },
+    {
+        label: "Contact Admissions",
         href: "/placement/placement-contact"
     },
      
 ];
 
-export default function PlacementmenuBar({ title = "Placement Menu", className = "" }) {
+export default function AdmissionMenubar({ title = "Placement Menu", className = "" }) {
     const pathname = usePathname();
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
     const [currentHash, setCurrentHash] = useState("");
