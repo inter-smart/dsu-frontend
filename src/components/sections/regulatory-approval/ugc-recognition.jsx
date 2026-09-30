@@ -48,18 +48,25 @@ export default function UgcRegnition({ data }) {
                             <h2 className="cmn_Title">
                                 {data.title}
                             </h2>
-                            <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
-                                <BlocksRenderer content={data.description} />
-                            </div>
+                            {data?.description?.length > 0 && (
+                                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
+                                    <BlocksRenderer content={data.description} />
+                                </div>
+                            )}
+                            {(data?.recognition?.logo || data?.recognition?.title) && (
                             <div className="w-full text-center mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
                                 <div className="max-w-[90px] lg:max-[95px] xl:max-[120px] 2xl:max-w-[140px] 3xl:max-w-[175px] w-full flex items-center justify-center m-auto mb-[10px]">
-                                    <Image src={data?.recognition.logo} width={175} height={175} alt="ugc_logo" />
+                                    {data?.recognition?.logo && (
+                                        <Image src={data.recognition.logo} width={175} height={175} alt={data.recognition.title || "logo"} />
+                                    )}
                                 </div>
-                                <div className="text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[30px] font-bold text-[#212121]">{data?.recognition.title}</div>
+                                <div className="text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[30px] font-bold text-[#212121]">{data?.recognition?.title}</div>
 
                             </div>
+                            )}
+                            {data?.recognition?.status?.length > 0 && (
                             <div className="flex max-lg:flex-wrap gap-[10px] lg:gap-[20px] xl:gap-[40px] 2xl:gap-[60px] 3xl:gap-[80px] mb-[20px] 2xl:mb-[30px] 3xl:mb-[40px]">
-                                {data?.recognition?.status.map((item, id) => (
+                                {data.recognition.status.map((item, id) => (
                                     <div className="lg:w-1/3 grow-1" key={id}>
                                         <div className="w-full h-full  rounded-[8px] lg:rounded-[10px] xl:rounded-[12px] 2xl:rounded-[15px] 3xl:rounded-[20px] border border-black/10 overflow-hidden p-[10px_15px] xl:p-[15px_20px] 2xl:p-[17px_25px] 3xl:p-[22px_30px]">
                                             <div className="text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] text-black font-bold mb-[3px]">
@@ -72,11 +79,15 @@ export default function UgcRegnition({ data }) {
                                     </div>
                                 ))}
                             </div>
+                            )}
+                            {(data?.recognitionDetails?.items?.length > 0 || data?.documentPdf?.url) && (
                             <div className="w-full mb-[25px] 2xl:mb-[40px]">
-                                <div className="text-[14px] lg:text-[18px] xl:text-[23px] 2xl:text-[28px] 3xl:text-[35px] text-[#212121] font-bold mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px]">{data?.recognitionDetails.title}</div>
+                                {data?.recognitionDetails?.title && (
+                                    <div className="text-[14px] lg:text-[18px] xl:text-[23px] 2xl:text-[28px] 3xl:text-[35px] text-[#212121] font-bold mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px]">{data.recognitionDetails.title}</div>
+                                )}
                                 <ul className="flex flex-wrap mb-[15px]">
-                                    {data?.recognitionDetails?.items.map((item, id) => (
-                                        <li className="relative flex items-start gap-[15px] w-full md:w-1/2 before:block before:h-[13px] before:w-[13px] before:relative before:top-[10px] before:shrink-0 before:bg-[url('/images/ugc/round_icon.svg')] before:bg-contain before:bg-center before:bg-no-repeat before:content-['']">
+                                    {data?.recognitionDetails?.items?.map((item, id) => (
+                                        <li key={id} className="relative flex items-start gap-[15px] w-full md:w-1/2 before:block before:h-[13px] before:w-[13px] before:relative before:top-[10px] before:shrink-0 before:bg-[url('/images/ugc/round_icon.svg')] before:bg-contain before:bg-center before:bg-no-repeat before:content-['']">
                                             <div>
                                                 <div className="text_1 text-[#212121] font-bold">
                                                     {item.title}
@@ -88,8 +99,11 @@ export default function UgcRegnition({ data }) {
                                         </li>
                                     ))}
                                 </ul>
+                                {data?.documentPdf?.url && (
                                 <Link 
-                                    href="/"
+                                    href={data.documentPdf.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="min-w-[115px] xl:min-w-[135px] 2xl:min-w-[165px] 3xl:min-w-[204px] h-[35px] 2xl:h-[40px] 3xl:h-[54px] flex items-center justify-between p-[1px] rounded-[5px] w-fit overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] transition-all duration-200 ease-in-out hover:shadow-[0_6px_20px_rgba(220,38,38,0.18)] !no-underline"
                                 >
                                     <div className="text_1 text-[#212121] font-bold bg-white w-full h-full flex items-center justify-between !no-underline gap-[10px] rounded-[5px] px-[15px] transition-all duration-100 ease-in-out hover:bg-transparent hover:text-white">
@@ -119,10 +133,13 @@ export default function UgcRegnition({ data }) {
                                         </div>
                                     </div>
                                 </Link>
+                                )}
                             </div>
+                            )}
 
+                            {data?.faq?.items?.length > 0 && (
                             <div className="w-full">
-                                <div className="cmn_Title mb-[30px]">{data?.faq.title}</div>
+                                <div className="cmn_Title mb-[30px]">{data.faq.title}</div>
                                 <Accordion type="single" collapsible defaultValue="item-2" className="mt-[30px] w-full xl:mt-[40px]">
                                     {data?.faq?.items?.map((item) => (
                                         <AccordionItem key={item.id} value={`item-${item.id}`} className="border border-[#E5E9EE] rounded-[8px] lg:rounded-[10px] xl:rounded-[12px] 2xl:rounded-[15px] 3xl:rounded-[19px] mb-[10px] xl:mb-[20px]">
@@ -142,6 +159,7 @@ export default function UgcRegnition({ data }) {
                                 </Accordion>
 
                             </div>
+                            )}
                         </div>
                     </div>
                 </div>
