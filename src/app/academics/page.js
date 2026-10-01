@@ -68,7 +68,7 @@ const local_data = {
             },
         ],
         cta: {
-            label: "Read More  ",
+            label: "Admissions Open 2026–27",
             file: {
                 alternativeText: "Placement Report PDF",
                 mime: "application/pdf",

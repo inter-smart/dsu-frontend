@@ -18,15 +18,15 @@ const menuItems = [
     },
     {
         label: "Placement Statistics",
-        href: "/placement-contact"
+        href: "/placement/Statistics"
     },
     {
         label: "Career Development Centre",
-        href: "/ai-enabled/hod-message"
+        href: "/placement/career"
     },
     {
         label: "Corporate Connect",
-        href: "/ai-enabled/program-offered"
+        href: "/placement/corporate-connect"
     },
     {
         label: "Placement Contact",
