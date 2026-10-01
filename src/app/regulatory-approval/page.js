@@ -32,8 +32,10 @@ export default async function Page() {
 
   return (
     <>
-      <InnerHero data={pageData?.hero || DEFAULT_HERO} />
-      <RegulatoryApprovalList items={pageData?.listSection || []} />
+      {pageData?.hero && <InnerHero data={pageData.hero} />}
+      {pageData?.listSection && (
+        <RegulatoryApprovalList items={pageData.listSection} />
+      )}
     </>
   );
 }

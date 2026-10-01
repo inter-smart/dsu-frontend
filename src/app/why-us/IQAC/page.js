@@ -202,7 +202,7 @@ const local_data = {
                     description: "Reflects the university's commitment to quality education, institutional processes, academic delivery, and student-centric development.",
                     logo: "/images/accred-2.png",
                     type: "accreditations",
-                    linkUrl: "/NAAC",
+                    linkUrl: "/accreditions/naac",
                 },
                 {
                     id: 3,

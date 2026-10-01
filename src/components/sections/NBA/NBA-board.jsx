@@ -5,6 +5,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
 
 export default function NBABoard({ data }) {
+    console.log(data?.Button.isExternal)
     return (
         <section className='relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[110px]'>
             <div className="container">
@@ -20,7 +21,8 @@ export default function NBABoard({ data }) {
                                 <BlocksRenderer content={data.description} />
                                 {data.Button && (
                                     <Link
-                                        href={data?.Button.slug || "/"}
+                                    href={data?.Button.slug || "/"}
+                                    target={data?.Button.isExternal ? "_blank" : "_self"}
                                         className="min-w-[115px] xl:min-w-[135px] 2xl:min-w-[165px] 3xl:min-w-[204px] h-[35px] 2xl:h-[40px] 3xl:h-[50px] mt-[20px] xl:mt-[30px] flex items-center justify-between p-[1px] rounded-[5px] w-fit overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] transition-all duration-200 ease-in-out hover:shadow-[0_6px_20px_rgba(220,38,38,0.18)] !no-underline"
                                     >
                                         <div className="text_1 text-[#212121] font-bold bg-white w-full h-full flex items-center justify-between !no-underline gap-[10px] rounded-[5px] px-[15px] transition-all duration-100 ease-in-out hover:bg-transparent hover:text-white">

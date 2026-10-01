@@ -13,6 +13,16 @@ const nextConfig: NextConfig = {
         destination: "/regulatory-approval/aicte-approval",
         permanent: true,
       },
+      {
+        source: "/professional-accredition",
+        destination: "/accreditions/accredition",
+        permanent: true,
+      },
+      {
+        source: "/NAAC",
+        destination: "/accreditions/naac",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

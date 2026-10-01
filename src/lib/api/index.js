@@ -26,7 +26,11 @@ export async function getGovernancePages() {
 }
 
 export async function getGovernancePageBySlug(slug) {
-  return fetchAPI(`/api/governance-pages/${encodeURIComponent(slug)}`, {}, { next: { revalidate: 60 } });
+  return fetchAPI(
+    `/api/governance-pages/${encodeURIComponent(slug)}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
 }
 
 export async function getLeadershipMemberBySlug(slug) {
@@ -80,7 +84,25 @@ export async function getRegulatoryApprovalPage() {
   );
 }
 
-// ── Schools (Academics Cluster) ───────────────────────────────────────────────
+// ── Accreditations ───────────────────────────────────────────────
+// Landing page (single type): { seo, hero, listSection: [...] }
+export async function getAccreditationPage() {
+  return fetchAPI(
+    "/api/accreditation-page",
+    {},
+    { next: { revalidate: 60 } },
+  );
+}
+
+export async function getAccreditationBySlug(slug) {
+  return fetchAPI(
+    `/api/accreditions/${encodeURIComponent(slug)}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
+}
+
+// ── Schools (Academics Cluster)───────────────────────────────────────────────
 export async function getSchools() {
   return fetchAPI("/api/schools", {}, { next: { revalidate: 60 } });
 }
