@@ -21,6 +21,10 @@ export async function getHistoryPage() {
 }
 
 // ── Governance Pages ──────────────────────────────────────────────────────────
+export async function getGovernancePages() {
+  return fetchAPI("/api/governance-pages", {}, { cache: "no-store" });
+}
+
 export async function getGovernancePageBySlug(slug) {
   return fetchAPI(`/api/governance-pages/${encodeURIComponent(slug)}`, {}, { next: { revalidate: 60 } });
 }
