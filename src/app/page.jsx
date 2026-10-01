@@ -1843,7 +1843,7 @@ export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
       <HomeHero data={homePageData?.heroSlides} />
-      <HomeExcellence data={homePageData?.centresOfExcellence} />
+      {/* <HomeExcellence data={homePageData?.centresOfExcellence} /> */}
       <HomeAcademic data={homePageData?.academicPrograms} />
       <HomeResearch data={homePageData?.researchInnovation} />
       <HomeIndustry data={homePageData?.industryCollaboration} />

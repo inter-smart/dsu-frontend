@@ -240,7 +240,10 @@ export default function HomeResearch({ data }) {
                             <div className="w-full h-auto aspect-270/480 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block">
                               <Image
                                 src={item?.media?.url}
-                                alt={item?.media?.alternativeText || "Publication Media"}
+                                alt={
+                                  item?.media?.alternativeText ||
+                                  "Publication Media"
+                                }
                                 width={270}
                                 height={480}
                                 className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
@@ -415,7 +418,9 @@ export default function HomeResearch({ data }) {
                       <div className="w-full h-auto aspect-860/470 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block">
                         <Image
                           src={item?.media?.url}
-                          alt={item?.media?.alternativeText || "Publication Media"}
+                          alt={
+                            item?.media?.alternativeText || "Publication Media"
+                          }
                           width={270}
                           height={480}
                           className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
@@ -487,7 +492,9 @@ export default function HomeResearch({ data }) {
                       <div className="w-full h-auto aspect-560/350 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block">
                         <Image
                           src={item?.media?.url}
-                          alt={item?.media?.alternativeText || "Publication Media"}
+                          alt={
+                            item?.media?.alternativeText || "Publication Media"
+                          }
                           width={270}
                           height={480}
                           className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
