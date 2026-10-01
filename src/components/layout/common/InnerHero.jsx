@@ -62,13 +62,13 @@ export default function InnerHero({ data }) {
                     <Fragment key={`${item.label}-${index}`}>
                       <BreadcrumbItem>
                         {isLast ? (
-                          <BreadcrumbPage className="text-[10px] xl:text-[12px]2xl:text-[14px] 3xl:text-[18px] font-semibold text-white">
+                          <BreadcrumbPage className="text-[10px] xl:text-[12px]2xl:text-[14px] 3xl:text-[18px] font-semibold text-white capitalize">
                             {item.label}
                           </BreadcrumbPage>
                         ) : (
                           <BreadcrumbLink
                             render={<Link href={item.href || "#"} />}
-                            className="text-[10px] xl:text-[12px]2xl:text-[14px] 3xl:text-[18px] font-light text-white transition-opacity hover:text-white hover:opacity-70"
+                            className="text-[10px] xl:text-[12px]2xl:text-[14px] 3xl:text-[18px] font-light text-white transition-opacity hover:text-white hover:opacity-70 capitalize"
                           >
                             {item.label}
                           </BreadcrumbLink>
