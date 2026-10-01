@@ -1,7 +1,9 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
+import AdmissionSection from "@/components/sections/admission/admissionSection";
 import OverviewSection from "@/components/sections/admission/overviewSection";
 import OVerviewSection from "@/components/sections/admission/overviewSection";
+import SchoolCampus from "@/components/sections/admission/SchoolCampus";
 import WhySection from "@/components/sections/admission/WhySection";
 
 const local_data = {
@@ -280,7 +282,7 @@ const local_data = {
                     icon: {
                         alternativeText: "Main campus building icon",
                         mime: "image/svg+xml",
-                        url: "/images/icons/campus-main.svg",
+                        url: "/images/campus-img1.svg",
                     },
                     name: "DSU Main Campus",
                     subtitle: "Dayananda Sagar University",
@@ -295,7 +297,7 @@ const local_data = {
                     icon: {
                         alternativeText: "City campus building icon",
                         mime: "image/svg+xml",
-                        url: "/images/icons/campus-city.svg",
+                        url: "/images/campus-img2.svg",
                     },
                     name: "DSU City Innovation Campus",
                     subtitle: "Innovation Campus",
@@ -307,6 +309,28 @@ const local_data = {
                 },
             ],
         },
+    },
+    admission: {
+        cards: [
+            {
+                id: 1,
+                heading: "Admission India",
+                description: "Indian students can apply to DSU through DSAT, CET, COMEDK, Uni-GAUGE, or PGCET, depending on their chosen programme. Our admissions team guides you through eligibility, entrance exams, and document submission every step of the way",
+                button: {
+                    label: "Start Your Applications",
+                    href: "#",
+                },
+            },
+            {
+                id: 2,
+                heading: "Admissions International",
+                description: "International and NRI applicants can join DSU through a simplified direct admission process, with dedicated support for visa documentation, equivalency certification, and programme selection. Reach out to our International Admissions team to get started.",
+                button: {
+                    label: "Start Your Applications",
+                    href: "#",
+                },
+            },
+        ],
     }
 
 }
@@ -318,9 +342,8 @@ export default function page() {
             <AdmissionMenubar className="lg:!hidden block" />
             <OverviewSection data={local_data.programOverviewSection} />
             <WhySection data={local_data.whyChoose} />
-            
-
-
+            <SchoolCampus data={local_data.schollCampus} />
+            <AdmissionSection data={local_data.admission} />
         </>
     )
 }

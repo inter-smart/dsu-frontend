@@ -57,7 +57,7 @@ export default function OverviewSection({ data }) {
                         {data?.eyebrow && (
                             <div className="flex items-center gap-[8px] mb-[10px] xl:mb-[14px]">
                                 <span className="w-[18px] xl:w-[22px] h-[2px] bg-[#DC2626]" />
-                                <span className="text-[12px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] font-normal tracking-wider mb-[15px] bg-gradient-to-r from-[#DC2626] from-[80%] to-[#F97316] tracking-tighter bg-clip-text text-transparent uppercase">
+                                <span className="text-[12px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] font-normal tracking-wider   bg-gradient-to-r from-[#DC2626] from-[80%] to-[#F97316] tracking-tighter bg-clip-text text-transparent uppercase">
                                     {data.eyebrow}
                                 </span>
                             </div>
