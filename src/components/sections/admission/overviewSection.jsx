@@ -11,7 +11,7 @@ export default function OverviewSection({ data }) {
     const primaryImage = data?.media?.[0];
 
     return (
-        <section className="relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010]">
+        <section className="relative py-[0_30px] sm:py-[0_40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010]">
             <div className="container">
                 {/* TOP SECTION: Float Right for Image + Stats */}
                 <div className="relative max-lg:flex max-lg:flex-col-reverse gap-[20px] after:content-[''] after:table after:clear-both  mb-0">

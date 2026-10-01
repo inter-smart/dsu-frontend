@@ -205,6 +205,108 @@ const local_data = {
                 description: "Gain industry exposure, career guidance, internships and placement opportunities to prepare for the professional world.",
             },
         ],
+    },
+    schollCampus: {
+        heading: "Schools & Campuses",
+        description: [
+            {
+                type: "paragraph",
+                children: [
+                    {
+                        type: "text",
+                        text: "Discover the schools shaping learning at DSU, then explore the complete programme list and admission requirements.",
+                    },
+                ],
+            },
+        ],
+        schoolsSection: {
+            heading: "Schools",
+            items: [
+                {
+                    id: 1,
+                    title: "School of Engineering",
+                    programCount: "19 Programs",
+                    href: "#",
+                },
+                {
+                    id: 2,
+                    title: "School of Computer Applications",
+                    programCount: "07 Programs",
+                    href: "#",
+                },
+                {
+                    id: 3,
+                    title: "School of Law",
+                    programCount: "04 Programs",
+                    href: "#",
+                },
+                {
+                    id: 4,
+                    title: "School of Basic & Applied Sciences",
+                    programCount: "07 Programs",
+                    href: "#",
+                },
+                {
+                    id: 5,
+                    title: "School of Commerce & Management",
+                    programCount: "5 Programs",
+                    href: "#",
+                },
+                {
+                    id: 6,
+                    title: "School of Health Sciences",
+                    programCount: "17 Programs",
+                    href: "#",
+                },
+                {
+                    id: 7,
+                    title: "School of Arts, Design & Humanities",
+                    programCount: "01 Programs",
+                    href: "#",
+                },
+                {
+                    id: 8,
+                    title: "School of Design & Digital Trans Media",
+                    programCount: "04 Programs",
+                    href: "#",
+                },
+            ],
+        },
+        campusesSection: {
+            heading: "Campuses",
+            items: [
+                {
+                    id: 1,
+                    icon: {
+                        alternativeText: "Main campus building icon",
+                        mime: "image/svg+xml",
+                        url: "/images/icons/campus-main.svg",
+                    },
+                    name: "DSU Main Campus",
+                    subtitle: "Dayananda Sagar University",
+                    address: "Devarakaggalahalli, Harohalli, Kanakapura Road, Bengaluru South Dt. - 562 112",
+                    directions: {
+                        label: "Get Directions",
+                        href: "#",
+                    },
+                },
+                {
+                    id: 2,
+                    icon: {
+                        alternativeText: "City campus building icon",
+                        mime: "image/svg+xml",
+                        url: "/images/icons/campus-city.svg",
+                    },
+                    name: "DSU City Innovation Campus",
+                    subtitle: "Innovation Campus",
+                    address: "Administrative & Main Admission office, Kudlu Gate, Hosur Road, Bengaluru - 560 068",
+                    directions: {
+                        label: "Get Directions",
+                        href: "#",
+                    },
+                },
+            ],
+        },
     }
 
 }
@@ -216,6 +318,8 @@ export default function page() {
             <AdmissionMenubar className="lg:!hidden block" />
             <OverviewSection data={local_data.programOverviewSection} />
             <WhySection data={local_data.whyChoose} />
+            
+
 
         </>
     )
