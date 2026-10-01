@@ -11,7 +11,8 @@ import ReadyCta from "@/components/sections/ai-first/ai-first-ready-cta";
 const local_data = {
   hero: {
     title: "AI First @ DSU",
-    subtitle: "Invitation To Experience India's First AI-Native Research Ecosystem.",
+    subtitle:
+      "Invitation To Experience India's First AI-Native Research Ecosystem.",
     heroMedia: {
       url: "/images/ai-first/hero-bg.jpg",
       alternativeText: "DSU campus at night with AI network overlay",
@@ -23,25 +24,35 @@ const local_data = {
     title: "What is the AI-First Initiative?",
     description:
       "The AI-First initiative at DSU represents a fundamental shift in how we design education, conduct research, and foster innovation. Rather than treating AI as a peripheral tool, we place artificial intelligence at the core of every academic and operational aspect of the university.",
-    image: {
-      url: "/images/ai-first/leadership-2.jpg",
+    media: {
+      type: "video",
+      url: "/videos/ai-first-about.mp4",
       alternativeText: "AI-First initiative at DSU",
     },
     pillars: [
       {
-        icon: "/images/ai-first/icons/learning.svg",
+        icon: {
+          url: "/images/ai-first/icons/learning.svg",
+          alternativeText: "Learning",
+        },
         title: "Learning",
         description:
           "AI-enhanced curricula and adaptive learning systems that personalize education for every student",
       },
       {
-        icon: "/images/ai-first/icons/research.svg",
+        icon: {
+          url: "/images/ai-first/icons/research.svg",
+          alternativeText: "Learning",
+        },
         title: "Research",
         description:
           "Leveraging AI to accelerate breakthrough discoveries and solve complex real-world problems",
       },
       {
-        icon: "/images/ai-first/icons/innovation.svg",
+        icon: {
+          url: "/images/ai-first/icons/innovation.svg",
+          alternativeText: "Learning",
+        },
         title: "Innovation",
         description:
           "Building an ecosystem where AI drives entrepreneurship and industry partnerships",
@@ -61,17 +72,20 @@ const local_data = {
         {
           icon: "/images/ai-first/icons/pill-personalized-learning.svg",
           title: "Personalized Learning Pathways",
-          description: "AI-driven recommendations tailored to each student's learning style",
+          description:
+            "AI-driven recommendations tailored to each student's learning style",
         },
         {
           icon: "/images/ai-first/icons/pill-247-support.svg",
           title: "24/7 Intelligent Support",
-          description: "AI tutoring systems available round the clock for student assistance",
+          description:
+            "AI tutoring systems available round the clock for student assistance",
         },
         {
           icon: "/images/ai-first/icons/pill-collaborative-spaces.svg",
           title: "Collaborative Innovation Spaces",
-          description: "Modern facilities for student projects and research initiatives",
+          description:
+            "Modern facilities for student projects and research initiatives",
         },
       ],
     },
@@ -83,6 +97,10 @@ const local_data = {
         title: "Adaptive Learning Systems",
         description:
           "Dynamic content delivery that adjusts difficulty and pace based on individual student progress",
+        icon: {
+          url: "/images/ai-icon-1.svg",
+          alternativeText: "Adaptive learning systems",
+        },
         image: {
           url: "/images/ai-first/feature-adaptive.jpg",
           alternativeText: "Adaptive learning systems",
@@ -91,7 +109,11 @@ const local_data = {
       {
         title: "Collaborative Tools",
         description:
-          "AI-enhanced platforms enable seamless student-to-student and student-to-faculty collaboration",
+        "AI-enhanced platforms enable seamless student-to-student and student-to-faculty collaboration",
+        icon: {
+          url: "/images/ai-icon-2.svg",
+          alternativeText: "Adaptive learning systems",
+        },
         image: {
           url: "/images/ai-first/feature-collab.jpg",
           alternativeText: "Collaborative tools",
@@ -100,7 +122,11 @@ const local_data = {
       {
         title: "Smart Classrooms",
         description:
-          "AI-powered analytics provide real-time insights into student engagement and learning outcomes",
+        "AI-powered analytics provide real-time insights into student engagement and learning outcomes",
+        icon: {
+          url: "/images/ai-icon-3.svg",
+          alternativeText: "Adaptive learning systems",
+        },
         image: {
           url: "/images/ai-first/feature-smart.jpg",
           alternativeText: "Smart classrooms",
@@ -110,7 +136,8 @@ const local_data = {
   },
   domainsSection: {
     title: "Research & Innovation Domains",
-    description: "Driving impact across industries through collaborative AI research",
+    description:
+      "Driving impact across industries through collaborative AI research",
     image: {
       url: "/images/ai-first/domains-image.jpg",
       alternativeText: "Research and innovation domains",
@@ -120,33 +147,39 @@ const local_data = {
       {
         icon: "/images/ai-first/icons/nlp.svg",
         title: "Natural Language Processing",
-        description: "Pioneering research and practical applications in natural language processing",
+        description:
+          "Pioneering research and practical applications in natural language processing",
       },
       {
         icon: "/images/ai-first/icons/autonomous-systems.svg",
         title: "Autonomous Systems",
-        description: "Pioneering research and practical applications in computer vision",
+        description:
+          "Pioneering research and practical applications in computer vision",
       },
       {
         icon: "/images/ai-first/icons/industrial-automation.svg",
         title: "Industrial Automation",
-        description: "Pioneering research and practical applications in natural language processing",
+        description:
+          "Pioneering research and practical applications in natural language processing",
       },
       {
         icon: "/images/ai-first/icons/computer-vision.svg",
         title: "Computer Vision",
-        description: "Pioneering research and practical applications in computer vision",
+        description:
+          "Pioneering research and practical applications in computer vision",
         variant: "highlight",
       },
       {
         icon: "/images/ai-first/icons/healthcare-ai.svg",
         title: "Healthcare AI",
-        description: "Pioneering research and practical applications in natural language processing",
+        description:
+          "Pioneering research and practical applications in natural language processing",
       },
       {
         icon: "/images/ai-first/icons/enterprise-intelligence.svg",
         title: "Enterprise Intelligence",
-        description: "Pioneering research and practical applications in natural language processing",
+        description:
+          "Pioneering research and practical applications in natural language processing",
       },
     ],
   },
@@ -178,7 +211,11 @@ const local_data = {
         icon: "/images/ai-first/icons/manufacturing-iot.svg",
         title: "Manufacturing & IoT",
         description: "Optimize production intelligence",
-        focusAreas: ["Smart Factories", "Quality Control", "Predictive Maintenance"],
+        focusAreas: [
+          "Smart Factories",
+          "Quality Control",
+          "Predictive Maintenance",
+        ],
       },
       {
         icon: "/images/ai-first/icons/cybersecurity-defense.svg",
@@ -225,7 +262,8 @@ const local_data = {
   },
   leadershipSection: {
     title: "Building India's AI Leadership",
-    description: "Establishing DSU as the premier destination for AI research, innovation, and talent development",
+    description:
+      "Establishing DSU as the premier destination for AI research, innovation, and talent development",
     image: {
       url: "/images/ai-first/leadership-1.jpg",
       alternativeText: "Building India's AI leadership",
@@ -268,25 +306,37 @@ const local_data = {
         title: "World-Class Infrastructure",
         description:
           "Access NVIDIA's cutting-edge GPU labs, DGX B200 systems, and state-of-the-art research facilities designed for AI innovation",
-        image: { url: "/images/ai-first/future-infra.jpg", alternativeText: "World-class infrastructure" },
+        image: {
+          url: "/images/ai-first/future-infra.jpg",
+          alternativeText: "World-class infrastructure",
+        },
       },
       {
         title: "Industry Collaboration",
         description:
           "Work directly with leading companies across automotive, healthcare, finance, and manufacturing sectors on real-world problems",
-        image: { url: "/images/ai-first/future-industry.jpg", alternativeText: "Industry collaboration" },
+        image: {
+          url: "/images/ai-first/future-industry.jpg",
+          alternativeText: "Industry collaboration",
+        },
       },
       {
         title: "Career & Entrepreneurship",
         description:
           "Launch your career with AI expertise in high demand, or build your AI-powered startup with our incubation support and mentorship",
-        image: { url: "/images/ai-first/future-career.jpg", alternativeText: "Career and entrepreneurship" },
+        image: {
+          url: "/images/ai-first/future-career.jpg",
+          alternativeText: "Career and entrepreneurship",
+        },
       },
       {
         title: "Global Recognition",
         description:
           "Publish groundbreaking research, contribute to NVIDIA initiatives, and position yourself as an AI thought leader",
-        image: { url: "/images/ai-first/future-global.jpg", alternativeText: "Global recognition" },
+        image: {
+          url: "/images/ai-first/future-global.jpg",
+          alternativeText: "Global recognition",
+        },
       },
     ],
   },

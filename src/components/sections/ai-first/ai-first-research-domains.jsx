@@ -34,7 +34,13 @@ function DomainCard({ domain }) {
       >
         {domain.title}
       </h3>
-      <p className={isHighlight ? "text-[14px] leading-[1.4] text-white/90 3xl:text-[16px]" : "text_1 3xl:text-[16px]"}>
+      <p
+        className={
+          isHighlight
+            ? "text-[14px] leading-[1.4] text-white/90 3xl:text-[16px]"
+            : "text_1 3xl:text-[16px]"
+        }
+      >
         {domain.description}
       </p>
     </div>
@@ -45,7 +51,10 @@ function DomainsSlider({ domains }) {
   const [autoplayPlugin] = useState(() =>
     Autoplay({ delay: 3500, stopOnInteraction: false, stopOnMouseEnter: true }),
   );
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" }, [autoplayPlugin]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: "start" },
+    [autoplayPlugin],
+  );
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
 
@@ -86,50 +95,24 @@ function DomainsSlider({ domains }) {
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="ml-[calc(var(--slide-gap)*-1)] flex touch-pan-y touch-pinch-zoom">
           {domains.map((domain) => (
-            <div key={domain.title} className="min-w-0 flex-[0_0_100%] pl-(--slide-gap)">
+            <div
+              key={domain.title}
+              className="min-w-0 flex-[0_0_100%] pl-(--slide-gap)"
+            >
               <DomainCard domain={domain} />
             </div>
           ))}
         </div>
       </div>
-
-      {!prevBtnDisabled && (
-        <button
-          onClick={scrollPrev}
-          aria-label="Previous slide"
-          className="absolute top-1/2 left-0 z-10 flex size-9 -translate-x-3 -translate-y-1/2 items-center justify-center overflow-hidden rounded-full backdrop-blur-[5px] transition-opacity duration-300 hover:opacity-70"
-        >
-          <Image
-            src="/images/testimonial-slider-btn.svg"
-            alt="Previous"
-            width={40}
-            height={30}
-            className="h-full w-full rotate-180 object-contain"
-          />
-        </button>
-      )}
-      {!nextBtnDisabled && (
-        <button
-          onClick={scrollNext}
-          aria-label="Next slide"
-          className="absolute top-1/2 right-0 z-10 flex size-9 translate-x-3 -translate-y-1/2 items-center justify-center overflow-hidden rounded-full backdrop-blur-[5px] transition-opacity duration-300 hover:opacity-70"
-        >
-          <Image
-            src="/images/testimonial-slider-btn.svg"
-            alt="Next"
-            width={40}
-            height={30}
-            className="h-full w-full object-contain"
-          />
-        </button>
-      )}
     </div>
   );
 }
 
 export default function ResearchDomains({ data }) {
   const domains = data?.domains || [];
-  const isMobile = useMediaQuery("(max-width: 639px)", { initializeWithValue: false });
+  const isMobile = useMediaQuery("(max-width: 639px)", {
+    initializeWithValue: false,
+  });
 
   return (
     <section className="w-full bg-[#fff8ed] py-10 dark:bg-[#111111] sm:py-14 lg:py-16 xl:py-20 2xl:py-24 3xl:py-28">
@@ -137,7 +120,9 @@ export default function ResearchDomains({ data }) {
         {(data?.title || data?.description) && (
           <div className="mx-auto mb-10 max-w-[765px] text-center xl:mb-14">
             {data.title && <h2 className="cmn_Title">{data.title}</h2>}
-            {data.description && <p className="text_1 3xl:text-[18px]">{data.description}</p>}
+            {data.description && (
+              <p className="text_1 3xl:text-[18px]">{data.description}</p>
+            )}
           </div>
         )}
 
@@ -147,7 +132,7 @@ export default function ResearchDomains({ data }) {
               {isMobile ? (
                 <DomainsSlider domains={domains} />
               ) : (
-                <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 xl:gap-5">
+                <div className="grid w-full h-full grid-cols-1 gap-4 sm:grid-cols-2 xl:gap-5">
                   {domains.map((domain) => (
                     <DomainCard key={domain.title} domain={domain} />
                   ))}
