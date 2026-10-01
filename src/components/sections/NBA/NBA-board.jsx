@@ -5,7 +5,6 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
 
 export default function NBABoard({ data }) {
-    console.log(data?.Button.isExternal)
     return (
         <section className='relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[110px]'>
             <div className="container">
@@ -56,7 +55,9 @@ export default function NBABoard({ data }) {
                             </div>
                             <div className="w-full lg:m-0 lg:w-1/3 ">
                                 <div className="w-full max-w-[100px] xl:max-w-[180px] 2xl:max-w-[250px] 3xl:max-w-[360px] ">
-                                    <Image src={data.logo} width={180} height={118} className="w-full h-full object-contain" />
+                                    {data.logo && (
+                                        <Image src={data.logo} alt={data.title || ""} width={180} height={118} className="w-full h-full object-contain" />
+                                    )}
                                 </div>
                             </div>
                         </div>

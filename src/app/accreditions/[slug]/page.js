@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
 import NAACAquarSection from "@/components/sections/NAAC/NAAC-AquarSection";
 import NAACJourney from "@/components/sections/NAAC/NAAC-journey";
+import NBAAccreditedProgram from "@/components/sections/NBA/NBA-accredited-program";
 import NBABoard from "@/components/sections/NBA/NBA-board";
 import ProfessionalAccredition from "@/components/sections/professional-accredition/professional-accredition";
 import { getAccreditationBySlug, getAccreditationPage } from "@/lib/api/index";
@@ -48,6 +49,8 @@ export default async function Page({ params }) {
     heroMedia: pageData.hero.heroMedia || DEFAULT_HERO_MEDIA,
   };
 
+  console.log("pageData", pageData.template);
+
   return (
     <>
       {hero && <InnerHero data={hero} />}
@@ -61,6 +64,15 @@ export default async function Page({ params }) {
           )}
           {pageData.aqarSection && (
             <NAACAquarSection data={pageData.aqarSection} />
+          )}
+        </>
+      ) : pageData.template === "nba" ? (
+        <>
+          {pageData.nbaAccreditationData && (
+            <NBABoard data={pageData.nbaAccreditationData} />
+          )}
+          {pageData.nbaProgram && (
+            <NBAAccreditedProgram data={pageData.nbaProgram} />
           )}
         </>
       ) : (

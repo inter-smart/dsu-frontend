@@ -11,6 +11,9 @@ import {
 } from "@/components/ui/accordion";
 
 export default function NBAAccreditedProgram({ data }) {
+    const firstProgramme = data?.programmes?.[0];
+    const defaultProgramme = firstProgramme ? [`item-${firstProgramme.id}`] : [];
+
     return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[100px]
               bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)]">
@@ -22,7 +25,7 @@ export default function NBAAccreditedProgram({ data }) {
                     <BlocksRenderer content={data.description} />
                 </div>
                 <div className="w-full">
-                    <Accordion type="single" collapsible defaultValue="item-2" className="mt-[30px] w-full xl:mt-[40px]">
+                    <Accordion type="single" collapsible defaultValue={defaultProgramme}className="mt-[30px] w-full xl:mt-[40px]">
                         {data?.programmes?.map((item) => (
                             <AccordionItem key={item.id} value={`item-${item.id}`} className="p-[8px_10px] md:p-[10px] xl:p-[15px] 3xl:p-[20px_30px] border border-[#E5E9EE] rounded-[6px] mb-[10px] xl:mb-[20px]">
                                 <AccordionTrigger
@@ -39,18 +42,23 @@ export default function NBAAccreditedProgram({ data }) {
                                 </AccordionTrigger>
 
                                 <AccordionContent className="p-0 border-t border-[#E5E9EE]  text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] text-[#797979] pt-[25px]">
-                                    <div className="text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] text-black font-bold mb-[8px]">
-                                        Key Highlights
-                                    </div>
-                                    <p className="text_1">
-                                        {item.keyHighlights}
-                                    </p>
+                                    {item.keyHighlights && (
+                                        <>
+                                            <div className="text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] text-black font-bold mb-[8px]">
+                                                Key Highlights
+                                            </div>
+                                            <p className="text_1">
+                                                {item.keyHighlights}
+                                            </p>
+                                        </>
+                                    )}
                                     <div className="flex flex-wrap gap-[10px] xl:gap-[20px]">
 
-                                        {item?.certificates.map((doc, id) => (
+                                        {item?.certificates?.map((doc, id) => (
                                             <Link
                                                 key={id}
                                                 href={doc?.url || "/"}
+                                                target={doc?.isExternal ? "_blank" : "_self"}
                                                 className="min-w-[115px] xl:min-w-[135px] 2xl:min-w-[165px] 3xl:min-w-[204px] h-[35px] 2xl:h-[40px] 3xl:h-[54px] flex items-center justify-between border border-[#212121] rounded-[5px] w-fit overflow-hidden transition-all grow-1 duration-200 ease-in-out hover:shadow-[0_6px_20px_rgba(220,38,38,0.18)] !no-underline"
                                             >
                                                 <div className="text_1 text-[#212121] font-normal bg-white w-full h-full flex items-center justify-between !no-underline gap-[10px] rounded-[5px] px-[15px] transition-all duration-100 ease-in-out hover:bg-transparent hover:text-white">
