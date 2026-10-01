@@ -1,64 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
-const title = "Governance Menu";
-
-const sidebarMenu = [
-    {
-        label: "Board of Management",
-        slug: "board-of-management",
-        icon: "/images/governance/side_icon-1.svg",
-    },
-    {
-        label: "Academic Council",
-        slug: "academic-council",
-        icon: "/images/governance/side_icon-2.svg",
-    },
-    {
-        label: "Board of Studies",
-        slug: "board-of-studies",
-        icon: "/images/governance/side_icon-3.svg",
-    },
-    {
-        label: "Finance Committee",
-        slug: "/finance-commitee",
-        icon: "/images/governance/side_icon-4.svg",
-    },
-    {
-        label: "Board of Studies",
-        slug: "board-of-studies-2",
-        icon: "/images/governance/side_icon-5.svg",
-    },
-    {
-        label: "Research & Innovation Council",
-        slug: "research-innovation-council",
-        icon: "/images/governance/side_icon-6.svg",
-    },
-    {
-        label: "Organizational Structure",
-        slug: "organizational-structure",
-        icon: "/images/governance/side_icon-7.svg",
-    },
-    {
-        label: "Annual Reports",
-        slug: "annual-reports",
-        icon: "/images/governance/side_icon-8.svg",
-    },
-    {
-        label: "Institutional Committees",
-        slug: "institutional-committees",
-        icon: "/images/governance/side_icon-9.svg",
-    },
-    {
-        label: "Ethics Committee",
-        slug: "ethics-committee",
-        icon: "/images/governance/side_icon-10.svg",
-    },
-];
-
-export default function SidebarSection({ isOpen = false, onClose, title = "Governance Menu" }) {
+export default function SidebarSection({ menu = [], isOpen = false, onClose, title = "Governance Menu" }) {
     return (
         <>
             {/* Mobile Backdrop Overlay */}
@@ -93,8 +38,8 @@ export default function SidebarSection({ isOpen = false, onClose, title = "Gover
                     </div>
 
                     <ul>
-                        {sidebarMenu.map((item, idx) => (
-                            <li key={`${item.slug}-${idx}`} className="border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0">
+                        {menu.map((item) => (
+                            <li key={item.slug} className="border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0">
                                 <Link
                                     href={`/governance/${item.slug}`}
                                     onClick={onClose}
@@ -103,16 +48,16 @@ export default function SidebarSection({ isOpen = false, onClose, title = "Gover
                                     <div className="flex items-center gap-[10px] 3xl:gap-[15px]">
                                         <div className="flex h-[15px] w-[18px] items-center justify-center xl:h-[18px] xl:w-[20px] 2xl:h-[20px] 2xl:w-[25px] 3xl:h-[23px] 3xl:w-[33px]">
                                             <Image
-                                                src={item.icon}
+                                                src={item.sidebarIcon?.url || "/images/governance/side_icon-1.svg"}
                                                 width={33}
                                                 height={23}
-                                                alt={item.label}
+                                                alt=""
                                                 className="h-full w-full max-w-[33px] object-contain brightness-[22] invert transition-all duration-300 group-hover:brightness-[0] group-hover:invert-[-1]"
                                             />
                                         </div>
 
                                         <div className="text_1 font-semibold text-[#212121] transition-colors duration-300 group-hover:text-[#F97316] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px]">
-                                            {item.label}
+                                            {item.name}
                                         </div>
                                     </div>
 

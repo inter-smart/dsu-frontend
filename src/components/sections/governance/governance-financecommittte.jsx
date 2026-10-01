@@ -4,7 +4,7 @@ import { useState } from "react";
 import SidebarSection from '@/components/sections/governance/sidebarSection'
 import Image from "next/image";
 
-export default function GovernanceFinancecommittte({ data }) {
+export default function GovernanceFinancecommittte({ data, title, governancePages = [] }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
@@ -13,6 +13,7 @@ export default function GovernanceFinancecommittte({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <SidebarSection
+                            menu={governancePages}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
@@ -35,11 +36,14 @@ export default function GovernanceFinancecommittte({ data }) {
                             <span>Menu</span>
                         </button>
 
-                        <div className="text-[20px] xl:text-[25px] 2xl:text-[35px] 3xl:text-[45px] text-[#212121] font-semibold">
-                            {data.title}
-                        </div>
-                        <div className="text_1 text-[#4A5565]">{data.subtitle}</div>
+                        {(data?.title || title) && (
+                            <div className="text-[20px] xl:text-[25px] 2xl:text-[35px] 3xl:text-[45px] text-[#212121] font-semibold">
+                                {data?.title || title}
+                            </div>
+                        )}
+                        {data?.subtitle && <div className="text_1 text-[#4A5565]">{data.subtitle}</div>}
                         {/* table */}
+                        {data && (
                         <div className="w-full rounded-[10px] max-lg:overflow-x-auto">
                             <table className="w-full min-w-[700px] border-separate border-spacing-y-[10px]">
                                 <thead>
@@ -107,6 +111,7 @@ export default function GovernanceFinancecommittte({ data }) {
                                 </tbody>
                             </table>
                         </div>
+                        )}
                     </div>
                 </div>
             </div>

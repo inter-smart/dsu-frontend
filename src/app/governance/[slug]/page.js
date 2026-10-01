@@ -1,7 +1,6 @@
-import { notFound } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
 import GovernanceFinancecommittte from "@/components/sections/governance/governance-financecommittte";
-import { getGovernancePageBySlug } from "@/lib/api/index";
+import { getGovernancePageBySlug, getGovernancePages } from "@/lib/api/index";
 
 export const revalidate = 60;
 
@@ -21,16 +20,22 @@ export async function generateMetadata({ params }) {
 
 export default async function GovernancePage({ params }) {
   const { slug } = await params;
-  const pageData = await getGovernancePageBySlug(slug);
 
-  if (!pageData) notFound();
+  const [pageData, governancePages] = await Promise.all([
+    getGovernancePageBySlug(slug),
+    getGovernancePages(),
+  ]);
+
+  if (!pageData) return null;
 
   return (
     <>
       {pageData.hero && <InnerHero data={pageData.hero} />}
-      {pageData.financeCommitteeData && (
-        <GovernanceFinancecommittte data={pageData.financeCommitteeData} />
-      )}
+      <GovernanceFinancecommittte
+        data={pageData.financeCommitteeData}
+        title={pageData.name}
+        governancePages={governancePages || []}
+      />
     </>
   );
 }
