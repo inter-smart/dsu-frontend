@@ -61,7 +61,16 @@ export async function getRegulatoryApprovals() {
 
 export async function getRegulatoryApprovalBySlug(slug) {
   return fetchAPI(
-    `/api/regulatory-approvals/${slug}`,
+    `/api/regulatory-approvals/${encodeURIComponent(slug)}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
+}
+
+// Landing page (single type): { seo, hero, listSection: [...] }
+export async function getRegulatoryApprovalPage() {
+  return fetchAPI(
+    "/api/regulatory-approval-page",
     {},
     { next: { revalidate: 60 } },
   );

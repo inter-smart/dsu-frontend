@@ -42,11 +42,11 @@ export default function RegulatorySidebarSection({ menu = [], isOpen = false, on
                     </div>
 
                     <ul>
-                        {menu.map((item, idx) => {
+                        {menu.map((item) => {
                             const isActive = pathname === `/regulatory-approval/${item.slug}`;
 
                             return (
-                            <li key={`${item.slug}-${idx}`} className="border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0">
+                            <li key={item.slug} className="border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0">
                                 <Link
                                     href={`/regulatory-approval/${item.slug}`}
                                     onClick={onClose}
