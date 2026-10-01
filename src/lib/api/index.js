@@ -211,3 +211,9 @@ export async function getSdgInitiativeBySlug(slug) {
     { next: { revalidate: 60 } },
   );
 }
+
+
+// National ranking page
+export async function getNationalRankingPage() {
+  return fetchAPI("/api/national-ranking-page", {}, { next: { revalidate: 60 } });
+}
