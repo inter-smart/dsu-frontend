@@ -61,7 +61,7 @@ export default function WhySection({ data }) {
                                 key={id}
                                 className="w-full group !h-auto"
                             >
-                                <div className="w-full h-full bg-white border border-[#E9E6EE] rounded-[12px] p-[25px_15px] 2xl:p-[30px_20px] 3xl:p-[35px_25px]">
+                                <div className="w-full h-full bg-white dark:bg-[#242424] border border-[#E9E6EE] dark:border-white/10 rounded-[12px] p-[25px_15px] 2xl:p-[30px_20px] 3xl:p-[35px_25px]">
                                     <div className="cmn_Txt mb-[10px] leading-tight">{process.title}</div>
                                     <p>{process.description}</p>
                                 </div>

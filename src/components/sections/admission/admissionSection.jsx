@@ -14,10 +14,10 @@ export default function AdmissionSection({data}) {
                             <div className="p-[5px] 3xl:p-[10px]">
                                 <div className="w-full h-full bg-[linear-gradient(180deg,#FFF8EE_0%,#FFF3E0_100%)] border border-black/10 rounded-[8px] p-[15px] xl:p-[20px_25px] 2xl:p-[30px_35px] 3xl:p-[40px_45px]">
                                      
-                                    <div className="text-[12px] lg:text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[31px] font-semibold text-[#212121] mb-[8px]">
+                                    <div className="text-[12px] lg:text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[31px] font-semibold text-[#212121] dark:text-black mb-[8px]">
                                         {item.heading}
                                     </div>
-                                    <p>{item.description}</p>
+                                    <p className="dark:text-black">{item.description}</p>
                                      <Link
                                         key={item?.button.id}
                                         href={item?.button.href}
