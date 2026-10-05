@@ -122,11 +122,11 @@ export default function SDGInitativeDetails({ data, menu }) {
                                                                         <h4 className="text_1 text-[#4A5565] font-bold mb-1.5">
                                                                             {indicator.label}
                                                                         </h4>
-                                                                        {indicator.description && (
+                                                                        {/* {indicator.description && ( */}
                                                                             <p className="text-[#4A5565] font-normal leading-relaxed mb-0">
-                                                                                {indicator.description}
+                                                                                {indicator.description ? indicator.description : "No specific targets currently in place (N/A)."}
                                                                             </p>
-                                                                        )}
+                                                                        {/* )} */}
                                                                     </div>
 
                                                                     {indicator.evidenceLink && (
