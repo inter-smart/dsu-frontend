@@ -53,9 +53,21 @@ export async function getNvidiaPage() {
   return fetchAPI("/api/nvidia-page", {}, { next: { revalidate: 60 } });
 }
 
-// ── DSU Act Page ──────────────────────────────────────────────────────────────
-export async function getDsuActPage() {
-  return fetchAPI("/api/dsu-act-page", {}, { next: { revalidate: 60 } });
+// ── Compliance & Disclosures (DSU Act, Statutes, IT Policy ...) ──────────────
+export async function getComplianceDisclosures() {
+  return fetchAPI(
+    "/api/compliance-and-disclosures",
+    {},
+    { next: { revalidate: 60 } },
+  );
+}
+
+export async function getComplianceDisclosureBySlug(slug) {
+  return fetchAPI(
+    `/api/compliance-and-disclosures/${encodeURIComponent(slug)}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
 }
 
 // ── Regulatory Approvals (UGC Recognition, UGC 2(f), AICTE, Other Approvals) ──
