@@ -3,14 +3,18 @@ import Link from "next/link";
 
 export default function ShapeFuture({ data }) {
   return (
-    <section className="w-full bg-[#0b0b0b] px-4 pb-10 sm:pb-14 lg:pb-16 xl:pb-20 2xl:pb-24 3xl:pb-28">
+    <section className="w-full px-4 py-10 lg:py-15 xl:py-20 2xl:py-25 3xl:py-32.5">
       <div className="container">
         <div className="group relative overflow-hidden rounded-[20px]">
           {data?.image?.url && (
-            <div className="relative h-[360px] w-full sm:h-[420px] xl:h-[480px] 2xl:h-[540px] 3xl:h-[620px]">
+            <div className="relative h-[420px] w-full sm:h-[420px] xl:h-[480px] 2xl:h-[540px] 3xl:h-[620px]">
               <Image
                 src={data.image.url}
-                alt={data.image.alternativeText || data?.title || "Shape India's AI Future"}
+                alt={
+                  data.image.alternativeText ||
+                  data?.title ||
+                  "Shape India's AI Future"
+                }
                 fill
                 sizes="100vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -19,7 +23,7 @@ export default function ShapeFuture({ data }) {
             </div>
           )}
 
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center sm:px-10">
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-end px-6 text-center pb-10">
             {data?.title && (
               <h2 className="mb-4 text-[26px] font-bold text-white sm:text-[32px] xl:text-[40px] 3xl:text-[55px]">
                 {data.title}

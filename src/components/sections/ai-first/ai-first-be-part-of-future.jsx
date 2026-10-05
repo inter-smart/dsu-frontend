@@ -1,9 +1,12 @@
+import { Heading } from "@/components/ui/heading";
+import { ShineBorder } from "@/components/ui/shine-border";
+import { Text } from "@/components/ui/text";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function BePartOfFuture({ data }) {
   return (
-    <section className="relative w-full bg-[#0b0b0b] py-10 sm:py-14 lg:py-16 xl:py-20 2xl:py-24 3xl:py-28">
+    <section className="relative w-full py-10 sm:py-14 lg:py-16 xl:py-20 2xl:py-[60px_170px] 3xl:py-[80px_210px]">
       {data?.backgroundImage?.url && (
         <div className="absolute inset-0 -z-10">
           <Image
@@ -18,10 +21,10 @@ export default function BePartOfFuture({ data }) {
       )}
       <div className="container">
         {(data?.title || data?.description || data?.ctas?.length > 0) && (
-          <div className="mb-10 flex flex-wrap items-start justify-between gap-6 xl:mb-14">
-            <div className="max-w-[600px]">
-              {data.title && <h2 className="cmn_Title text-white!">{data.title}</h2>}
-              {data.description && <p className="text-[13px] leading-relaxed text-white/80 xl:text-[18px]">{data.description}</p>}
+          <div className="mb-10 flex 3xl:items-center flex-wrap justify-between gap-6 2xl:mb-12.5 3xl:mb-20">
+            <div className="sm:w-[50%] [&>*]:text-white 3xl:flex 3xl:items-center gap-2.5">
+              <Heading>{data.title}</Heading>
+              <Text>{data.description}</Text>
             </div>
             {data?.ctas?.length > 0 && (
               <div className="flex flex-wrap items-center gap-3 xl:gap-4">
@@ -51,14 +54,15 @@ export default function BePartOfFuture({ data }) {
         )}
 
         {data?.cards?.length > 0 && (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-6">
+          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3.75 2xl:gap-3.75 3xl:gap-5">
             {data.cards.map((card) => (
               <div
                 key={card.title}
-                className="group rounded-[10px] bg-white/5 p-3 transition-colors duration-300 hover:bg-white/10"
+                className="group rounded-md 2xl:rounded-[10px] bg-white/5 p-2.5 transition-colors duration-300 hover:bg-white/10 backdrop-blur-[10px] relative z-0"
               >
+                <ShineBorder shineColor={["#909191"]} />
                 {card.image?.url && (
-                  <div className="relative mb-5 aspect-[407/249] w-full overflow-hidden rounded-[10px]">
+                  <div className="relative mb-5 aspect-[407/249] w-full overflow-hidden rounded-md 2xl:rounded-[10px]">
                     <Image
                       src={card.image.url}
                       alt={card.image.alternativeText || card.title}
@@ -68,12 +72,14 @@ export default function BePartOfFuture({ data }) {
                     />
                   </div>
                 )}
-                <h3 className="mb-2 px-1 text-[20px] font-semibold text-white xl:text-[25px]">
+                <div className="w-full h-auto py-[0px_20px] 2xl:py-[10px_30px] 3xl:py-[10px_50px]">
+                <h3 className="mb-2 px-1 text-base font-semibold text-white 2xl:text-xl 3xl:text-[25px]">
                   {card.title}
                 </h3>
-                <p className="px-1 pb-2 text-[13px] leading-relaxed text-white/80 xl:text-[18px]">
+                <p className="text-[13px] leading-relaxed text-white/80 2xl:text-base 3xl:text-lg">
                   {card.description}
                 </p>
+                </div>
               </div>
             ))}
           </div>
