@@ -225,6 +225,26 @@ export async function getRankings() {
   return fetchAPI("/api/rankings", {}, { next: { revalidate: 60 } });
 }
 
+// International ranking page
+export async function getInternationalRankingPage() {
+  return fetchAPI("/api/international-ranking-page", {}, { next: { revalidate: 60 } });
+}
+
+// ── International Rankings (QS, THE ...) - NIRF template only ────────────────
+// Sidebar menu: [{ id, label, slug, order, subItems: [] }]
+export async function getInternationalRankings() {
+  return fetchAPI("/api/international-rankings", {}, { next: { revalidate: 60 } });
+}
+
+// Full page: { seo, hero, collegeRanking }
+export async function getInternationalRankingBySlug(slug) {
+  return fetchAPI(
+    `/api/international-rankings/${encodeURIComponent(slug)}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
+}
+
 // Full page: { seo, hero, collegeRanking, sdgInitiative, sdgGoal, sdgGoalMenu }
 // `goal` is an SDG Goal slug under an SDG discipline (`category`)
 export async function getRankingBySlug(slug, category, goal) {
