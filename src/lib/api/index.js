@@ -199,14 +199,16 @@ export async function getAnnouncements() {
   return fetchAPI("/api/announcements", {}, { next: { revalidate: 60 } });
 }
 
-// ── SDG Initiatives ───────────────────────────────────────────────────────────
-export async function getSdgInitiatives() {
-  return fetchAPI("/api/sdg-initiatives", {}, { next: { revalidate: 60 } });
+// ── SDG Goals (/SDG-initiative pages) ─────────────────────────────────────────
+// Tiles + sidebar: [{ id, slug, title, heading, order, url, image }]
+export async function getSdgGoals() {
+  return fetchAPI("/api/sdg-goals", {}, { next: { revalidate: 60 } });
 }
 
-export async function getSdgInitiativeBySlug(slug) {
+// Detail page: tile fields + { seo, hero, description, metrics } (hero is null when not set)
+export async function getSdgGoalBySlug(slug) {
   return fetchAPI(
-    `/api/sdg-initiatives/${slug}`,
+    `/api/sdg-goals/${encodeURIComponent(slug)}`,
     {},
     { next: { revalidate: 60 } },
   );
@@ -223,11 +225,12 @@ export async function getRankings() {
   return fetchAPI("/api/rankings", {}, { next: { revalidate: 60 } });
 }
 
-// Full page: { seo, hero, collegeRanking }
-export async function getRankingBySlug(slug, category) {
+// Full page: { seo, hero, collegeRanking, sdgInitiative, sdgGoal, sdgGoalMenu }
+// `goal` is an SDG Goal slug under an SDG discipline (`category`)
+export async function getRankingBySlug(slug, category, goal) {
   return fetchAPI(
     `/api/rankings/${encodeURIComponent(slug)}`,
-    category ? { category } : {},
+    { ...(category ? { category } : {}), ...(goal ? { goal } : {}) },
     { next: { revalidate: 60 } },
   );
 }

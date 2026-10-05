@@ -1,6 +1,7 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import SdgIntroduction from "@/components/sections/SDG/SdgInroduction";
-import { getSdgInitiatives } from "@/lib/api/index";
+import { getSdgGoals } from "@/lib/api/index";
+import { sdgHero } from "@/data/sdg";
 
 export const revalidate = 60;
 
@@ -15,34 +16,6 @@ const local_data = {
         metaTitle: "SDG Initiatives page title",
         metaDescription: "SDG Initiatives page description ",
         canonicalUrl: null,
-    },
-    hero: {
-        id: 25,
-        heroMedia: {
-            alternativeText: "SDG Initiatives",
-            mime: "image/jpg",
-            // if video - mime: "video/mp4",
-            url: "/images/ugc/ugc-banner.jpg",
-        },
-        title: "SDG Initiatives",
-        breadcrumb: [
-            {
-                label: "Home",
-                href: "/",
-            },
-            {
-                label: "About",
-                href: "/why-dsu",
-            },
-            {
-                label: "Institutional Framework",
-                href: "/",
-            },
-            {
-                label: "SDG Initiatives",
-                href: "/",
-            },
-        ],
     },
     sdgIntroductionSection: {
         heading: "SDG Introduction",
@@ -214,18 +187,23 @@ const local_data = {
 
 };
 export default async function Page() {
-    const data = await getSdgInitiatives();
+    const goals = (await getSdgGoals()) || [];
     const pageData = local_data;
 
-    // Merge Strapi intro section if available
-    const sdgSection = (data && data.introSection)
-        ? data.introSection
-        : pageData.sdgIntroductionSection;
+    // goal tiles come from the SDG Goal collection; the local tiles are only a
+    // placeholder until goals are published
+    const sdgSection = {
+        ...pageData.sdgIntroductionSection,
+        goals:
+            goals.length > 0
+                ? goals.map((g) => ({ id: g.id, url: g.url, image: g.image }))
+                : pageData.sdgIntroductionSection.goals,
+    };
 
     return (
         <>
-            {pageData.hero && <InnerHero data={pageData.hero} />}
-            {sdgSection && <SdgIntroduction data={sdgSection} />}
+            <InnerHero data={sdgHero} />
+            <SdgIntroduction data={sdgSection} />
         </>
     );
 }

@@ -13,7 +13,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export default function SDGInitativeDetails({ data }) {
+export default function SDGInitativeDetails({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     // Default open items (e.g. metrics with indicators)
@@ -27,6 +27,7 @@ export default function SDGInitativeDetails({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <SDGSidebarSection
+                            menu={menu || []}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
