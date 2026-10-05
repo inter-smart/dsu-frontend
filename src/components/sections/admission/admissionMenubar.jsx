@@ -329,8 +329,7 @@ export default function AdmissionMenubar({ title = "Placement Menu", className =
                     <div className="relative rounded-[12px] lg:rounded-[15px] xl:rounded-[20px] 2xl:rounded-[23px] 3xl:rounded-[30px] bg-white border border-[#F3DFD2] dark:bg-[#1a1a1a] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-hidden transition-colors duration-300">
                         {/* Menu content */}
                         <div className="flex flex-wrap items-center justify-center gap-[8px] xl:gap-[10px] 2xl:gap-[12px] 3xl:gap-[14px] p-[20px_15px] md:p-[20px] lg:p-[25px_20px] xl:p-[30px_70px] 2xl:p-[30px_80px] 3xl:p-[45px_90px]">
-                            
-
+                           
                             {/* Menu items */}
                             {menuItems.map((item) => {
                                 const isActive = isCurrentItemActive(item.href);
