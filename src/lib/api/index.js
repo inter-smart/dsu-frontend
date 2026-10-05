@@ -217,3 +217,17 @@ export async function getSdgInitiativeBySlug(slug) {
 export async function getNationalRankingPage() {
   return fetchAPI("/api/national-ranking-page", {}, { next: { revalidate: 60 } });
 }
+// ── Rankings (NIRF, India Today, Outlook ...) ─────────────────────────────────
+// Sidebar menu: [{ id, label, slug, order, subItems: [{ label, slug }] }]
+export async function getRankings() {
+  return fetchAPI("/api/rankings", {}, { next: { revalidate: 60 } });
+}
+
+// Full page: { seo, hero, collegeRanking }
+export async function getRankingBySlug(slug, category) {
+  return fetchAPI(
+    `/api/rankings/${encodeURIComponent(slug)}`,
+    category ? { category } : {},
+    { next: { revalidate: 60 } },
+  );
+}

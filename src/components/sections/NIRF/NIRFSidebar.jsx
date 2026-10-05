@@ -8,55 +8,13 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const nirfSidebarData = {
-    menuItems: [
-        {
-            id: 1,
-            label: "NIRF",
-            slug: "nirf",
-            subItems: [
-                { id: 1, label: "Overall", slug: "overall" },
-                { id: 2, label: "Engineering", slug: "engineering" },
-                { id: 3, label: "Management", slug: "management" },
-                { id: 4, label: "Pharmacy", slug: "pharmacy" },
-                { id: 5, label: "Innovation", slug: "innovation" },
-                { id: 6, label: "SDG", slug: "sdg" },
-                { id: 7, label: "Historical Performance", slug: "historical-performance" }
-            ]
-        },
-        {
-            id: 2,
-            label: "India Today",
-            slug: "india-today",
-            subItems: []
-        },
-        {
-            id: 3,
-            label: "Outlook",
-            slug: "outlook",
-            subItems: []
-        },
-        {
-            id: 4,
-            label: "IIRF",
-            slug: "iirf",
-            subItems: []
-        },
-        {
-            id: 5,
-            label: "NIRFFF",
-            slug: "nirfff",
-            subItems: []
-        }
-    ]
-};
-
-export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognition Menu" }) {
+export default function NIRFSidebar({ menu = [], basePath = "/national-Ranking", activeSlug, isOpen = false, onClose, title = "Rankings Menu" }) {
     const pathname = usePathname();
 
-    const activeParentSlug = nirfSidebarData.menuItems.find((item) =>
-        pathname.includes(`/regulatory-approval/${item.slug}`)
-    )?.slug;
+    const activeParentSlug = activeSlug || menu.find((item) => {
+        const href = `${basePath}/${item.slug}`;
+        return pathname === href || pathname.startsWith(`${href}/`);
+    })?.slug;
 
     return (
         <>
@@ -91,10 +49,10 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
                         </button>
                     </div>
 
-                    <Accordion type="single" collapsible  >
+                    <Accordion type="single" collapsible defaultValue={activeParentSlug}>
                         <ul>
-                            {nirfSidebarData.menuItems.map((item, idx) => {
-                                const isActive = pathname === `/regulatory-approval/${item.slug}`;
+                            {menu.map((item, idx) => {
+                                const isActive = activeParentSlug === item.slug;
 
                                 return item.subItems?.length > 0 ? (
                                     // ============ ITEM WITH SUB-ITEMS ============
@@ -133,23 +91,28 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
 
                                             <AccordionContent className="pb-0">
                                                 <ul>
-                                                    {item.subItems.map((sub, subIdx) => (
+                                                    {item.subItems.map((sub, subIdx) => {
+                                                        const subHref = `${basePath}/${item.slug}/${sub.slug}`;
+                                                        const isSubActive = pathname === subHref;
+
+                                                        return (
                                                         <li
                                                             key={`${sub.slug}-${subIdx}`}
                                                             className="group"
                                                         >
                                                             <Link
-                                                                href={`/regulatory-approval/${item.slug}/${sub.slug}`}
+                                                                href={subHref}
                                                                 onClick={onClose}
                                                                 className="flex items-center justify-between p-[6px_15px] 2xl:p-[7px_20px] 3xl:p-[8px_25px] !no-underline
                                                                 "
                                                             >
-                                                                <div className="text_1 font-medium text-[#212121] transition-colors duration-300 !no-underline group-hover:text-[#F97316] xl:text-[13px] 2xl:text-[15px] 3xl:text-[16px]">
+                                                                <div className={`text_1 font-medium text-[#212121] transition-colors duration-300 !no-underline group-hover:text-[#F97316] xl:text-[13px] 2xl:text-[15px] 3xl:text-[16px] ${isSubActive ? "!text-[#F97316]" : ""}`}>
                                                                     {sub.label}
                                                                 </div>
                                                             </Link>
                                                         </li>
-                                                    ))}
+                                                        );
+                                                    })}
                                                 </ul>
                                             </AccordionContent>
                                         </AccordionItem>
@@ -162,7 +125,7 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
                                             }`}
                                     >
                                         <Link
-                                            href={`/regulatory-approval/${item.slug}`}
+                                            href={`${basePath}/${item.slug}`}
                                             onClick={onClose}
                                             className="flex items-center justify-between
                                             "

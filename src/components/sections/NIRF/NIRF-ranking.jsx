@@ -7,7 +7,7 @@ import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
 
-export default function NIRFRanking({ data }) {
+export default function NIRFRanking({ data, menu = [], basePath = "/national-Ranking", activeSlug }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
@@ -19,6 +19,9 @@ export default function NIRFRanking({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <NIRFSidebar
+                            menu={menu}
+                            basePath={basePath}
+                            activeSlug={activeSlug}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
@@ -45,26 +48,27 @@ export default function NIRFRanking({ data }) {
                                 {data.name}
                             </h2>
                             <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[20px] [&_p]:xl:mb-[25px] [&_p]:2xl:mb-[30px] [&_p]:3xl:mb-[40px]">
-                                <BlocksRenderer content={data.description} />
+                                <BlocksRenderer content={data.description || []} />
                             </div>
+                            {data?.ranking && (
                             <div className="flex flex-wrap max-lg:gap-[15px] mb-[30px]">
                                 <div className="w-full lg:w-[350px] xl:w-[380px] 2xl:w-[440px] 3xl:w-[550px] ">
                                     <div className="w-full h-full rounded-[10px] overflow-hidden border border-[rgba(249,115,22,0.3)] ">
                                         <div className="w-full bg-linear-to-b from-[#FFF8EE] to-[#FFF3E0] p-[37px_15px_25px] text-center">
                                             <div className="text-[38px] xl:text-[47px] 2xl:text-[57px] 3xl:text-[72px] leading-[72px] font-bold flex items-center justify-center bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
-                                                <span className="text-[17px] xl:text-[21px] 2xl:text-[26px] 3xl:text-[32px] mb-0 leading-1">#</span> {data?.ranking.rank}
+                                                <span className="text-[17px] xl:text-[21px] 2xl:text-[26px] 3xl:text-[32px] mb-0 leading-1">#</span> {data.ranking.rank}
                                             </div>
-                                            <div className="text_1 font-bold text-[#212121]">{data?.ranking.title}</div>
-                                            <div className="text_1 font-bold text-[#4A5565]">{data?.ranking.cat_year}</div>
+                                            <div className="text_1 font-bold text-[#212121]">{data.ranking.title}</div>
+                                            <div className="text_1 font-bold text-[#4A5565]">{data.ranking.cat_year}</div>
                                         </div>
                                         <div className="w-full p-[20px_15px] 3xl:p-[20px_25px]">
                                             <div className="text_1 font-bold text-[#212121]">
                                                 <span className="font-light pr-[10px]">Category:</span>
-                                                {data?.ranking.category}
+                                                {data.ranking.category}
                                             </div>
                                             <div className="text_1 font-bold text-[#212121]">
                                                 <span className="font-light pr-[10px]">recognizingAuthority:</span>
-                                                {data?.ranking.recognizingAuthority}
+                                                {data.ranking.recognizingAuthority}
                                             </div>
                                         </div>
                                     </div>
@@ -72,15 +76,17 @@ export default function NIRFRanking({ data }) {
                                 <div className="lg:w-[calc(100%-350px)] xl:w-[calc(100%-380px)] 2xl:w-[calc(100%-440px)] 3xl:w-[calc(100%-550px)] lg:pl-[15px] xl:pl-[25px] 2xl:pl-[35px] 3xl:pl-[45px]">
                                     <div className="w-full">
                                         <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[25px] [&_p]:xl:mb-[35px] [&_p]:2xl:mb-[40px] [&_p]:3xl:mb-[50px]">
-                                            <BlocksRenderer content={data?.ranking.description} />
+                                            <BlocksRenderer content={data.ranking.description || []} />
                                         </div>
+                                        {data.ranking.report && (
                                         <Link
-                                            href="#"
+                                            href={data.ranking.report.url}
+                                            {...(data.ranking.report.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                                             className="min-w-[115px] xl:min-w-[135px] 2xl:min-w-[165px] 3xl:min-w-[204px] h-[35px] 2xl:h-[40px] 3xl:h-[54px] flex items-center justify-between p-[1px] rounded-[5px] w-fit overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] transition-all duration-200 ease-in-out hover:shadow-[0_6px_20px_rgba(220,38,38,0.18)] !no-underline"
                                         >
                                             <div className="text_1 text-[#212121] font-bold bg-white w-full h-full flex items-center justify-between !no-underline gap-[10px] rounded-[5px] px-[15px] transition-all duration-100 ease-in-out hover:bg-transparent hover:text-white">
                                                 <span className="!no-underline transition-transform duration-100 ease-in-out hover:translate-x-[3px]">
-                                                    Download NIRF Report 2025
+                                                    {data.ranking.report.label}
                                                 </span>
 
                                                 <div className="w-[12px] 2xl:w-[15px] h-[12px] 2xl:h-[15px] transition-transform duration-500 ease-in-out group-hover:translate-x-[3px]">
@@ -105,17 +111,20 @@ export default function NIRFRanking({ data }) {
                                                 </div>
                                             </div>
                                         </Link>
+                                        )}
                                     </div>
                                 </div>
                             </div>
+                            )}
 
+                            {data?.discipline?.items?.length > 0 && (
                             <div className="w-full mb-[20px]">
                                 <div className="text-[25px] text-[#212121] font-bold mb-[20px]">
                                     {data?.discipline?.title}
                                 </div>
                                 <div className="flex flex-wrap -m-[5px] lg:max-w-[90%]">
                                     {data?.discipline?.items?.map((item, idx) => (
-                                        <div key={idx} className="w-1/2 xs:w-1/3 sm:w-1/4 md:w-1/5 p-[5px]">
+                                        <div key={item.id ?? idx} className="w-1/2 xs:w-1/3 sm:w-1/4 md:w-1/5 p-[5px]">
                                             <div className="w-full h-full bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] border border-[rgba(33,33,33,0.1)] text-center rounded-[8px] p-[20px]">
                                                 <div className="text_1 font-bold text-[#212121]">
                                                     {item.discipline}
@@ -132,7 +141,9 @@ export default function NIRFRanking({ data }) {
                                     ))}
                                 </div>
                             </div>
-                            <div className="w-full lg:max-w-[90%]">
+                            )}
+                            {data?.historicalPerformance?.items?.length > 0 && (
+                            <div id="historical-performance" className="w-full lg:max-w-[90%]">
                                 <div className="text-[25px] text-[#212121] font-bold mb-[20px]">
                                     {data?.historicalPerformance?.title}
                                 </div>
@@ -170,6 +181,7 @@ export default function NIRFRanking({ data }) {
                                     </div>
                                 </div>
                             </div>
+                            )}
                         </div>
                     </div>
                 </div>
