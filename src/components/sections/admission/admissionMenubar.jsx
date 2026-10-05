@@ -15,7 +15,7 @@ import {
 const menuItems = [
     {
         label: "Overview",
-        href: "/placement"
+        href: "/admission"
     },
     {
         label: "Programme",
@@ -23,7 +23,7 @@ const menuItems = [
     },
     {
         label: "Admission Process",
-        href: "/placement/Statistics"
+        href: "/admission/process"
     },
     {
         label: "Eligibility & Selection",
@@ -35,23 +35,23 @@ const menuItems = [
     },
     {
         label: "Hostel & Campus Life",
-        href: "/placement/placement-contact"
+        href: "/admission/hostel"
     },
-    {
+    {       
         label: "Important Dates",
-        href: "/placement/placement-contact"
+        href: "/admission/ImportantDates"
     },
     {
         label: "Downloads",
-        href: "/placement/placement-contact"
+        href: "/admission/download"
     },
     {
         label: "FAQs",
-        href: "/placement/placement-contact"
+        href: "/admission/faq"
     },
     {
         label: "Contact Admissions",
-        href: "/placement/placement-contact"
+        href: "/admission/contact"
     },
      
 ];
