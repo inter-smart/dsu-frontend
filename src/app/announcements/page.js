@@ -91,8 +91,9 @@ export default async function Page() {
   const pageData = await getAnnouncementsPage();
 
   const hero = pageData?.hero;
-  const announcement = pageData.announcement;
+  const announcement = pageData?.announcement;
 
+  console.log("pageData", announcement);
   return (
     <>
       {hero && <InnerHero data={hero} />}
