@@ -17,8 +17,7 @@ export async function generateMetadata({ params }) {
   const pageData = await getNewsEventBySlug(slug);
 
   return {
-    title:
-      pageData?.seo?.metaTitle || "News & Events | Dayananda Sagar University",
+    title: pageData?.seo?.metaTitle || undefined,
     description: pageData?.seo?.metaDescription || undefined,
     alternates: pageData?.seo?.canonicalUrl
       ? { canonical: pageData.seo.canonicalUrl }

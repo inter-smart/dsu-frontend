@@ -51,20 +51,19 @@ export default function Announcement({ data }) {
               <div
                 className={`group [--image-size:130px] sm:[--image-size:200px] lg:[--image-size:230px] 2xl:[--image-size:270px] 3xl:[--image-size:340px] w-full h-full flex flex-wrap items-center`}
               >
-                <div className="w-(--image-size) h-auto aspect-340/190 rounded-[5px] lg:rounded-[15px] 2xl:rounded-[20px] overflow-hidden block shrink-0">
-                  <Image
-                    src={
-                      item?.announcement_image?.url ||
-                      "/images/news-events-banner.jpg"
-                    }
-                    width={340}
-                    height={190}
-                    alt={
-                      item?.announcement_image?.alternativeText ||
-                      "Announcement"
-                    }
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                <div className="w-(--image-size) h-auto aspect-340/190 rounded-[5px] lg:rounded-[15px] 2xl:rounded-[20px] overflow-hidden block shrink-0 bg-gray-200 dark:bg-white/10">
+                  {item?.announcement_image?.url && (
+                    <Image
+                      src={item.announcement_image.url}
+                      width={340}
+                      height={190}
+                      alt={
+                        item?.announcement_image?.alternativeText ||
+                        "Announcement"
+                      }
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  )}
                 </div>
                 <div className="w-[calc(100%-var(--image-size))] h-auto pl-2.5 lg:pl-10 2xl:pl-12.5 3xl:pl-16.25 py-1">
                   <div className="w-full h-auto sm:mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5">
