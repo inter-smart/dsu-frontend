@@ -117,7 +117,7 @@ export default function NewsEventsDetail({ data }) {
                     )}
                     {group?.otherMembers && (
                       <div
-                        className="typography w-full h-auto mb-4 text-sm text-[#4A5565] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-sm 2xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-[15px] 3xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-lg [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:leading-[1.1] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:font-medium [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-black [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:mb-3.75 [&_ul]:list-disc [&_ul]:list-inside [&_ul]:pl-0 [&_ol]:list-decimal [&_ol]:list-inside [&_ol]:pl-0 [&_li]:leading-relaxed 2xl:[&_li]:mb-1.25 3xl:[&_li]:mb-2.5 [&_p]:mb-2.5"
+                        className="w-full h-auto mb-4 text-sm text-[#4A5565] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-sm 2xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-[15px] 3xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-lg [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:leading-[1.1] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:font-medium [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-black [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:mb-3.75 [&_ul]:list-disc [&_ul]:list-inside [&_ul]:pl-0 [&_ol]:list-decimal [&_ol]:list-inside [&_ol]:pl-0 [&_li]:leading-relaxed 2xl:[&_ul]:space-y-1.25 3xl:[&_ul]:space-y-2.5 [&_p]:mb-2.5"
                         dangerouslySetInnerHTML={{
                           __html: group?.otherMembers,
                         }}
@@ -215,18 +215,20 @@ export default function NewsEventsDetail({ data }) {
                 ))}
               </div>
             )}
-            <div className="w-full h-auto p-[10px_0_10px_10px] sm:p-[15px_0_15px_15px] 3xl:p-[20px_0_20px_20px] border-l border-black/20 block">
-              <div className="text-xl sm:text-2xl lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.1] font-bold text-[#212121] mb-5 sm:mb-7.5 3xl:mb-11.25">
-                {data?.relatedNewsTitle}
+            {data?.relatedNews?.length > 0 && (
+              <div className="w-full h-auto p-[10px_0_10px_10px] sm:p-[15px_0_15px_15px] 3xl:p-[20px_0_20px_20px] border-l border-black/20 block">
+                <div className="text-xl sm:text-2xl lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.1] font-bold text-[#212121] mb-5 sm:mb-7.5 3xl:mb-11.25">
+                  {data?.relatedNewsTitle}
+                </div>
+                <div className="w-full h-auto lg:space-y-5 2xl:space-y-8.75 grid sm:grid-cols-2 gap-2.5 lg:block">
+                  {data?.relatedNews?.map((item) => (
+                    <div key={item?.id} className="w-full h-full">
+                      <NewsCard item={item} />
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="w-full h-auto lg:space-y-5 2xl:space-y-8.75 grid sm:grid-cols-2 gap-2.5 lg:block">
-                {data?.relatedNews?.map((item) => (
-                  <div key={item?.id} className="w-full h-full">
-                    <NewsCard item={item} />
-                  </div>
-                ))}
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
