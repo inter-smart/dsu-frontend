@@ -9,7 +9,6 @@ export default function AboutLeadership({ data }) {
   const otherLeaders = data.leaders.slice(2);
 
 
-  console.log("AboutLeadership data:", data.description);
   return (
     <section className="bg-[#F4F6FA] dark:bg-[#101010] py-[65px] transition-colors duration-300">
       <div className="container">
@@ -21,9 +20,13 @@ export default function AboutLeadership({ data }) {
             {data.heading}
           </h2>
         )}
-        {Array.isArray(data.description) && (
+        {data.description && (
           <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] text-center mb-[30px] 3xl:mb-[50px]">
-            <BlocksRenderer content={data.description} />
+            {Array.isArray(data.description) ? (
+              <BlocksRenderer content={data.description} />
+            ) : (
+              <p>{data.description}</p>
+            )}
           </div>
         )}
         <div className="flex flex-wrap -m-[5px] lg:-m-[10px]">
