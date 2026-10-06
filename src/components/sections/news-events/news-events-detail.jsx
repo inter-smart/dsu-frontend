@@ -2,24 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { Heading } from "@/components/ui/heading";
 import NewsCard from "@/components/layout/common/news-card";
+import { getOrdinal } from "@/lib/utils";
 
 export default function NewsEventsDetail({ data }) {
-  const getOrdinal = (date) => {
-    const num = Number(date);
 
-    if (num % 100 >= 11 && num % 100 <= 13) return "th";
-
-    switch (num % 10) {
-      case 1:
-        return "st";
-      case 2:
-        return "nd";
-      case 3:
-        return "rd";
-      default:
-        return "th";
-    }
-  };
   return (
     <section className="w-full h-auto py-10 sm:py-[70px_80px] lg:py-[90px_110px] 2xl:py-[110px_130px] 3xl:py-[130px_160px] block">
       <div className="container">
@@ -73,82 +59,81 @@ export default function NewsEventsDetail({ data }) {
               <div
                 className="typography [&_p]:text-[#4A5565] [&_p]:mb-2.5 sm:[&_p]:mb-3.75 lg:[&_p]:mb-5 2xl:[&_p]:mb-7.5 3xl:[&_p]:mb-10 [&_h2]:mb-5 sm:[&_h2]:mb-6.25 2xl:[&_h2]:mb-8.75 [&_h3]:mb-3.75 2xl:[&_h3]:mb-5"
                 dangerouslySetInnerHTML={{
-                  __html: data?.content || "",
+                  __html: data?.description1 || "",
                 }}
               />
               <div className="w-full h-auto block">
-                {data?.leadership?.map((items) => (
+                {data?.leadership?.map((group) => (
                   <div
-                    key={items?.id}
+                    key={group?.id}
                     className="w-full h-auto mb-5 sm:mb-7.5 lg:mb-10 2xl:mb-12.5 3xl:mb-17.5"
                   >
-                    <div className="w-full h-full block">
+                    {group?.title && (
                       <div className="text-lg sm:text-xl 2xl:text-2xl 3xl:text-3xl leading-[1.1] font-bold text-[#212121] max-sm:mt-5 mb-5 2xl:mb-7.5">
-                        {items?.title}
+                        {group?.title}
                       </div>
-                      {items?.leaders?.map((item) => (
-                        <div key={item?.id} className="w-full h-full block">
-                          <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-black mb-2.5 sm:mb-3.75">
-                            {item?.title}
-                          </div>
-                          <div className="w-full h-auto grid md:grid-cols-2 sm:gap-5 lg:gap-10 2xl:gap-12.5 3xl:gap-17.5 mb-3.75 sm:mb-5 3xl:mb-10">
-                            {item?.members?.map((item) => (
-                              <div key={item?.id} className="w-auto h-auto">
-                                <div className="[--width:120px] sm:[--width:120px] 2xl:[--width:150px] 3xl:[--width:185px] w-full h-full flex items-center">
-                                  <div className="w-(--width) h-full overflow-hidden block">
-                                    <Image
-                                      src={item?.memberImage?.url}
-                                      alt={
-                                        item?.memberImage?.alternativeText ||
-                                        "Member"
-                                      }
-                                      width={185}
-                                      height={185}
-                                      className="w-full h-full object-cover"
-                                    />
-                                  </div>
-                                  <div className="w-[calc(100%-var(--width))] pl-3.75 3xl:pl-5">
-                                    <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-bold text-[#4A5565] mb-3.75">
-                                      {item?.name}
-                                    </div>
-                                    <div
-                                      className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.6] font-normal text-[#4A5565] mb-3.75"
-                                      dangerouslySetInnerHTML={{
-                                        __html: item?.designation || "",
-                                      }}
-                                    />
-                                  </div>
+                    )}
+                    {group?.members?.length > 0 && (
+                      <div className="w-full h-auto grid md:grid-cols-2 gap-5 lg:gap-10 2xl:gap-12.5 3xl:gap-17.5 mb-3.75 sm:mb-5 3xl:mb-10">
+                        {group?.members?.map((member) => (
+                          <div key={member?.id} className="w-auto h-auto">
+                            <div className="[--width:120px] 2xl:[--width:150px] 3xl:[--width:185px] w-full h-full flex items-center">
+                              {member?.profileImage?.url && (
+                                <div className="w-(--width) h-full overflow-hidden block">
+                                  <Image
+                                    src={member?.profileImage?.url}
+                                    alt={
+                                      member?.profileImage?.alternativeText ||
+                                      member?.name ||
+                                      "Member"
+                                    }
+                                    width={185}
+                                    height={185}
+                                    className="w-full h-full object-cover"
+                                  />
+                                </div>
+                              )}
+                              <div className="w-[calc(100%-var(--width))] pl-3.75 3xl:pl-5">
+                                <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-bold text-[#4A5565] mb-3.75">
+                                  {member?.name}
+                                </div>
+                                <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.6] font-normal text-[#4A5565]">
+                                  {member?.designation && (
+                                    <span className="block">
+                                      {member?.designation}
+                                    </span>
+                                  )}
+                                  {member?.organization && (
+                                    <span className="block">
+                                      {member?.organization}
+                                    </span>
+                                  )}
                                 </div>
                               </div>
-                            ))}
+                            </div>
                           </div>
-                          <div className="w-full h-auto mb-4">
-                            {item?.patronTitle && (
-                              <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-black mb-3.75">
-                                {item?.patronTitle}
-                              </div>
-                            )}
-                            <ul className="list-disc list-inside 2xl:space-y-1.25 3xl:space-y-2.5 text-sm text-[#4A5565]">
-                              {item?.patrons?.map((item) => (
-                                <li key={item?.id} className="leading-relaxed">
-                                  {item?.text}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    )}
+                    {group?.otherMembers && (
+                      <div
+                        className="typography w-full h-auto mb-4 text-sm text-[#4A5565] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-sm 2xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-[15px] 3xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-lg [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:leading-[1.1] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:font-medium [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-black [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:mb-3.75 [&_ul]:list-disc [&_ul]:list-inside [&_ul]:pl-0 [&_ol]:list-decimal [&_ol]:list-inside [&_ol]:pl-0 [&_li]:leading-relaxed 2xl:[&_li]:mb-1.25 3xl:[&_li]:mb-2.5 [&_p]:mb-2.5"
+                        dangerouslySetInnerHTML={{
+                          __html: group?.otherMembers,
+                        }}
+                      />
+                    )}
                   </div>
                 ))}
               </div>
               <div
                 className="typography [&_p]:leading-[1.8] [&_p]:text-[#4A5565] [&_p]:mb-2.5 sm:[&_p]:mb-3.75 2xl:[&_p]:mb-5 3xl:[&_p]:mb-7.5 [&_h2]:mb-3.75 sm:[&_h2]:mb-6.25 2xl:[&_h2]:mb-8.75"
                 dangerouslySetInnerHTML={{
-                  __html: data?.contentParagraphs || "",
+                  __html: data?.description2 || "",
                 }}
               />
-              <div className="my-5 lg:my-7.5 3xl:my-10 flex items-center">
+              
+              {/* <div className="my-5 lg:my-7.5 3xl:my-10 flex items-center">
                 <button className="group/button inline-flex shrink-0 items-center justify-center rounded-sm border bg-clip-padding outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 text-[12px] 2xl:text-[14.4px] 3xl:text-[18px] leading-none font-bold whitespace-nowrap text-white bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white border-transparent hover:bg-primary/80 h-[34px] 2xl:h-[40px] 3xl:h-[50px] gap-2 2xl:gap-4 3xl:gap-5 px-3 2xl:px-4 3xl:px-5 transition-colors duration-300 ease-in-out hover:from-(--basecolor2) hover:to-(--basecolor)">
                   Read More
                   <Image
@@ -160,9 +145,16 @@ export default function NewsEventsDetail({ data }) {
                     data-icon="inline-end"
                   />
                 </button>
-              </div>
+              </div> */}
+
               <div className="[--size:40px] 2xl:[--size:50px] 3xl:[--size:60px] w-full h-auto py-5 2xl:py-7.5 border-y border-black/10 flex items-center justify-between">
-                <Link href={"/"} className="group group flex items-center">
+                <Link
+                  href={data?.previous?.link || "/news-events"}
+                  title={data?.previous?.title}
+                  aria-hidden={!data?.previous}
+                  tabIndex={data?.previous ? undefined : -1}
+                  className={`group flex items-center ${data?.previous ? "" : "invisible"}`}
+                >
                   <div className="w-(--size) h-auto aspect-60/50 p-2.25 2xl:p-3.25 3xl:p-3.75 rounded-[10px] border border-black/20 overflow-hidden flex items-center justify-center transition-colors duration-500 group-hover:border-(--basecolor2) group-hover:bg-(--basecolor2)/10">
                     <Image
                       src={"/images/arrow-left.svg"}
@@ -182,7 +174,13 @@ export default function NewsEventsDetail({ data }) {
                 >
                   Back to News & Events
                 </Link>
-                <Link href={"/"} className="group flex items-center">
+                <Link
+                  href={data?.next?.link || "/news-events"}
+                  title={data?.next?.title}
+                  aria-hidden={!data?.next}
+                  tabIndex={data?.next ? undefined : -1}
+                  className={`group flex items-center ${data?.next ? "" : "invisible"}`}
+                >
                   <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#1B1B1B] w-[calc(100%-var(--size))] pr-3.75 3xl:pr-5 transition-colors duration-500 group-hover:text-(--basecolor2)">
                     Next
                   </div>
@@ -200,15 +198,26 @@ export default function NewsEventsDetail({ data }) {
             </div>
           </div>
           <div className="w-(--width)">
-            <div
-              className="typography max-lg:gap-2.5 max-lg:grid max-lg:grid-cols-2 [&_img]:w-full [&_img]:h-auto [&_img]:aspect-490/307 [&_img]:rounded-[5px] sm:[&_img]:rounded-[7px] 2xl:[&_img]:rounded-[10px] [&_img]:m-0 lg:not-last:[&_img]:mb-5 3xl:not-last:[&_img]:mb-7.5 mb-5 sm:mb-7.5 2xl:mb-15 3xl:mb-17.5"
-              dangerouslySetInnerHTML={{
-                __html: data?.eventsImages || "",
-              }}
-            />
+            {data?.gallery?.length > 0 && (
+              <div className="max-lg:gap-2.5 max-lg:grid max-lg:grid-cols-2 mb-5 sm:mb-7.5 2xl:mb-15 3xl:mb-17.5">
+                {data?.gallery?.map((image, idx) => (
+                  <Image
+                    key={image?.id || idx}
+                    src={image?.url}
+                    alt={
+                      image?.alternativeText ||
+                      `${data?.title || "News & Events"} – image ${idx + 1}`
+                    }
+                    width={490}
+                    height={307}
+                    className="w-full h-auto aspect-490/307 object-cover rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] lg:not-last:mb-5 3xl:not-last:mb-7.5"
+                  />
+                ))}
+              </div>
+            )}
             <div className="w-full h-auto p-[10px_0_10px_10px] sm:p-[15px_0_15px_15px] 3xl:p-[20px_0_20px_20px] border-l border-black/20 block">
               <div className="text-xl sm:text-2xl lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.1] font-bold text-[#212121] mb-5 sm:mb-7.5 3xl:mb-11.25">
-                Related News & Events
+                {data?.relatedNewsTitle}
               </div>
               <div className="w-full h-auto lg:space-y-5 2xl:space-y-8.75 grid sm:grid-cols-2 gap-2.5 lg:block">
                 {data?.relatedNews?.map((item) => (

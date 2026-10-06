@@ -198,12 +198,23 @@ export async function getResearchCentreBySlug(slug) {
 }
 
 // ── News & Events ─────────────────────────────────────────────────────────────
+// Listing page (single type): { seo, hero, newsEvents: { title, newsEvents: [...] } }
+export async function getNewsEventsPage() {
+  return fetchAPI("/api/news-and-event", {}, { next: { revalidate: 60 } });
+}
+
+// News cards: [{ id, slug, path, title, date, year, link }]
 export async function getNewsEvents() {
   return fetchAPI("/api/news-events", {}, { next: { revalidate: 60 } });
 }
 
+// Detail page: { seo, hero, newsEventsDetail }
 export async function getNewsEventBySlug(slug) {
-  return fetchAPI(`/api/news-events/${slug}`, {}, { next: { revalidate: 60 } });
+  return fetchAPI(
+    `/api/news-events/${encodeURIComponent(slug)}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
 }
 
 // ── Announcements ─────────────────────────────────────────────────────────────
