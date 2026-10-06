@@ -76,10 +76,10 @@ export default function AcademicContact({ data }) {
     ];
 
     return (
-        <section className="relative py-[20px_40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]">
+        <section className="relative py-[20px_40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
             <div className="container">
                 {/* Section Title */}
-                <h1 className="cmn_Title mb-[25px] xl:mb-[35px]">
+                <h1 className="cmn_Title mb-[25px] xl:mb-[35px] text-black dark:text-white">
                     {data?.pageTitle || "Contact"}
                 </h1>
 
@@ -95,7 +95,7 @@ export default function AcademicContact({ data }) {
                             <form onSubmit={handleSubmit} className="space-y-4 xl:space-y-5">
                                 {/* Name */}
                                 <div>
-                                    <Label htmlFor="name" className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px]  font-normal text-[#212121]">NAME *</Label>
+                                    <Label htmlFor="name" className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px] font-normal text-[#212121] dark:text-[#E5E7EB]">NAME *</Label>
                                     <Input
                                         id="name"
                                         type="text"
@@ -113,7 +113,7 @@ export default function AcademicContact({ data }) {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-5">
                                     {/* Phone */}
                                     <div>
-                                        <Label htmlFor="phone" className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px]  font-normal text-[#212121]">PHONE *</Label>
+                                        <Label htmlFor="phone" className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px] font-normal text-[#212121] dark:text-[#E5E7EB]">PHONE *</Label>
                                         <PhoneInput
                                             id="phone"
                                             required
@@ -132,7 +132,7 @@ export default function AcademicContact({ data }) {
 
                                     {/* Email */}
                                     <div>
-                                        <Label htmlFor="email" className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px]  font-normal text-[#212121]">EMAIL ID *</Label>
+                                        <Label htmlFor="email" className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px] font-normal text-[#212121] dark:text-[#E5E7EB]">EMAIL ID *</Label>
                                         <Input
                                             id="email"
                                             type="email"
@@ -151,7 +151,7 @@ export default function AcademicContact({ data }) {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-5">
                                     {/* Course */}
                                     <div>
-                                        <Label className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px]  font-normal text-[#212121]">SELECT COURSE</Label>
+                                        <Label className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px] font-normal text-[#212121] dark:text-[#E5E7EB]">SELECT COURSE</Label>
                                         <Select
                                             value={formData.course}
                                             onValueChange={(val) =>
@@ -177,7 +177,7 @@ export default function AcademicContact({ data }) {
 
                                     {/* State */}
                                     <div>
-                                        <Label className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px]  font-normal text-[#212121]">SELECT STATE</Label>
+                                        <Label className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px] font-normal text-[#212121] dark:text-[#E5E7EB]">SELECT STATE</Label>
                                         <Select
                                             value={formData.state}
                                             onValueChange={(val) =>
@@ -204,7 +204,7 @@ export default function AcademicContact({ data }) {
 
                                 {/* Message */}
                                 <div>
-                                    <Label htmlFor="message" className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px] font-normal text-[#212121]">MESSAGE</Label>
+                                    <Label htmlFor="message" className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px] font-normal text-[#212121] dark:text-[#E5E7EB]">MESSAGE</Label>
                                     <Textarea
                                         id="message"
                                         placeholder="Write Here..."
@@ -257,23 +257,23 @@ export default function AcademicContact({ data }) {
                     </div>
 
                     {/* Right Column: Journey Info Card */}
-                    <div className="bg-gradient-to-b from-[#FFF9F2] to-[#FFF3E0] dark:bg-[#1c1815] border border-[#FDEEE0] dark:border-[#2e2620] rounded-[4px] 2xl:rounded-[8px] xl:rounded-[10px] p-[24px_20px] sm:p-[30px_25px] xl:p-[35px_30px] 2xl:p-[40px_35px] flex flex-col justify-between">
+                    <div className="bg-gradient-to-b from-[#FFF9F2] to-[#FFF3E0] dark:from-[#1c1815] dark:to-[#131416] border border-[#FDEEE0] dark:border-white/10 rounded-[4px] 2xl:rounded-[8px] xl:rounded-[10px] p-[24px_20px] sm:p-[30px_25px] xl:p-[35px_30px] 2xl:p-[40px_35px] flex flex-col justify-between">
                         <div>
                             {/* Heading */}
-                            <h2 className="cmn_Title mb-[10px] xl:mb-[12px]">
+                            <h2 className="cmn_Title mb-[10px] xl:mb-[12px] text-black dark:text-white">
                                 {contactInfo.title}
                             </h2>
 
                             {/* Subtitle */}
-                            <p className="text_1 mb-[24px] xl:mb-[28px] lg:max-w-[85%]">
+                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[24px] xl:mb-[28px] lg:max-w-[85%]">
                                 {contactInfo.description}
                             </p>
 
                             {/* Inner White Contact Card */}
-                            <div className="bg-white dark:bg-[#151515]   rounded-[3px] xl:rounded-[5px] p-[20px] xl:p-[24px] 2xl:p-[28px] space-y-4 xl:space-y-5">
+                            <div className="bg-white dark:bg-[#151515] border border-transparent dark:border-white/10 rounded-[3px] xl:rounded-[5px] p-[20px] xl:p-[24px] 2xl:p-[28px] space-y-4 xl:space-y-5">
                                 {/* Address */}
                                 <div>
-                                    <p className="text_1 max-w-[80%]">
+                                    <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] max-w-[80%]">
                                         {contactInfo.address}
                                     </p>
                                 </div>

@@ -6,7 +6,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function AcademicInfrastructure({ data }) {
     return (
-        <section className="relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]">
+        <section className="relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010]">
             <div className="container">
                 <div className="flex flex-wrap max-lg:gap-[20px]">
                     <div className="w-full lg:w-1/2">
@@ -27,7 +27,7 @@ export default function AcademicInfrastructure({ data }) {
                             )}
 
                             {data?.description && (
-                                <div className="text_1 text-[#4A5565] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
+                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
                                     <BlocksRenderer content={data.description} />
                                 </div>
                             )}

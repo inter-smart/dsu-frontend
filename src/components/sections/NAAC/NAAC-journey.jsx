@@ -5,12 +5,12 @@ import Link from "next/link";
 export default function NAACJourney({ data }) {
     return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[100px]
-              bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)]">
+              bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-none dark:bg-[#101010]">
             <div className="container">
                 <h2 className="cmn_Title">
                     {data.title}
                 </h2>
-                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
+                <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
                     <BlocksRenderer content={data.description} />
                 </div>
                 <div className="flex flex-wrap gap-[10px] xl:gap-[20px]">

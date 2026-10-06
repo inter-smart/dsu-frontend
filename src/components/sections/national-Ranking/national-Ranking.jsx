@@ -11,12 +11,12 @@ import { Autoplay } from "swiper/modules";
 
 export default function NationalRanking({ data }) {
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[120px]">
+        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[120px] dark:bg-[#101010]">
             <div className="container">
                 <h2 className="cmn_Title">
                     {data.sectionTitle}
                 </h2>
-                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] lg:max-w-[92%]">
+                <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] lg:max-w-[92%]">
                     <BlocksRenderer content={data.sectionDescription} />
                 </div>
 
@@ -53,12 +53,12 @@ export default function NationalRanking({ data }) {
                     >
                         {data?.rankingAgencies.map((itemList, idx) => (
                             <SwiperSlide key={idx} className="!h-auto">
-                                <div className="relative w-full h-full group p-[15px] xl:p-[20px] 2xl:p-[25px] 3xl:p-[35px] border border-[#EFD8CA] rounded-[5px] xl:rounded-[10px] 2xl:rounded-[15px] 3xl:rounded-[20px]">
+                                <div className="relative w-full h-full group p-[15px] xl:p-[20px] 2xl:p-[25px] 3xl:p-[35px] border border-[#EFD8CA] dark:border-white/10 dark:bg-[#18191B] rounded-[5px] xl:rounded-[10px] 2xl:rounded-[15px] 3xl:rounded-[20px]">
                                     <div className="w-[60px] xl:w-[80px] 2xl:w-[110px] 3xl:w-[140px] h-[50px] xl:h-[70px] 2xl:h-[90px] 3xl:h-[105px] flex items-center justify-center mb-[20px] lg:mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]">
                                         <Image src={itemList.logo} width={140} height={105} alt="logo" className="w-full h-full object-contain" />
                                     </div>
 
-                                    <div className="text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[28px] text-[#212121] font-bold mb-[10px]">
+                                    <div className="text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[28px] text-[#212121] dark:text-white font-bold mb-[10px]">
                                         {itemList.name}
                                     </div>
                                     <p>{itemList.description}</p>

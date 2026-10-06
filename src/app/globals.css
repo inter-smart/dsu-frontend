@@ -115,6 +115,7 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
     font-family:
       var(--font-sora),
       system-ui,
@@ -177,15 +178,20 @@
     @apply flex flex-wrap;
   }
   .leftBx {
-    @apply w-[210px] xl:w-[260px] 2xl:w-[310px] 3xl:w-[390px];
+    @apply w-[210px] xl:w-[260px] 2xl:w-[310px] 3xl:w-[390px] transition-all duration-500;
   }
   .rtBx {
     @apply w-full lg:w-[calc(100%-210px)] xl:w-[calc(100%-260px)] 2xl:w-[calc(100%-310px)] 3xl:w-[calc(100%-390px)] lg:pl-[20px] xl:pl-[30px] 2xl:pl-[40px] 3xl:pl-[50px];
   }
   .cmn_Title {
-    @apply text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black;
+    @apply text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white;
   }
-
+  .cmn_Txt{
+    @apply text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold
+  }
+  .base-gradient{
+    @apply bg-gradient-to-r from-[#DC2626] to-[#F97316]
+  }
   .cardFlip {
     transform-origin: right center;
     backface-visibility: hidden;
@@ -194,6 +200,10 @@
   }
   .typography {
     --text-color: #212121;
+
+    :is(.dark &) {
+      --text-color: #f9fafb;
+    }
 
     * {
       @apply my-2.5 lg:my-4;
@@ -298,6 +308,17 @@
   }
 }
 
+@keyframes megamenu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 body {
   font-family: var(--font-sans), sans-serif;
 }
@@ -379,4 +400,8 @@ body {
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+}
+.header-visible .leftBx {
+  
+  top: 260px !important;
 }

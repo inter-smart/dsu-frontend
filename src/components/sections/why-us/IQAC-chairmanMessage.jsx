@@ -4,7 +4,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function IQACChairmanMessage({ data }) {
     return (
-        <section className="relative py-[40px] xl:py-[65px] 2xl:py-[90px] 3xl:py-[120px] bg-white">
+        <section className="relative py-[40px] xl:py-[65px] 2xl:py-[90px] 3xl:py-[120px] bg-[linear-gradient(135deg,_#EFF6FF_0%,_#F9FAFB_100%)] dark:bg-[linear-gradient(135deg,_#0f1011_0%,_#0f1011_100%)]">
             <div className="container">
                 <div className="flex flex-wrap m-auto max-md:gap-[15px] m-auto relative lg:max-w-[90%]">
                     <div className="absolute top-[30px] md:top-0 right-[30px] md:right-0 w-[60px] 2xl:w-[90px] h-[60px] 2xl:h-[90px] flex items-center pointer-events-none">
@@ -30,16 +30,16 @@ export default function IQACChairmanMessage({ data }) {
                     <div className="md:w-[calc(100%-200px)] lg:w-[calc(100%-225px)] xl:w-[calc(100%-280px)] 2xl:w-[calc(100%-335px)] 3xl:w-[calc(100%-420px)]
                     md:pl-[40px] lg:pl-[30px] xl:pl-[50px] 2xl:pl-[60px] 3xl:pl-[80px] flex items-center">
                         <div className="w-full">
-                            <div className="cmn_Title">{data?.title}</div>
+                            <div className="cmn_Title mb-[40px]">{data?.title}</div>
 
-                            <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
-                        w-full max-w-[550px] xl:max-w-[590px] 2xl:max-w-[790px] 3xl:max-w-[820px]">
+                            <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white [&_p]:text-[#4A5565] dark:[&_p]:text-white mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
+                                w-full max-w-[550px] xl:max-w-[590px] 2xl:max-w-[790px] 3xl:max-w-[820px]">
                                 <BlocksRenderer content={data.description} />
                             </div>
-                            <div className="text-[13px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-black font-bold mb-[6px]">
+                            <div className="text-[13px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-black font-bold mb-[6px] dark:text-white">
                                 {data.name}
                             </div>
-                            <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#4A5565] font-normal relative pb-[8px] ">
+                            <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#4A5565] font-normal relative pb-[8px] dark:text-white ">
                                 {data.designation}
                             </div>
                         </div>
