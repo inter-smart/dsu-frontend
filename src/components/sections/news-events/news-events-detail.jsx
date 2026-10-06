@@ -4,7 +4,11 @@ import { Heading } from "@/components/ui/heading";
 import NewsCard from "@/components/layout/common/news-card";
 import { getOrdinal } from "@/lib/utils";
 
-export default function NewsEventsDetail({ data }) {
+export default function NewsEventsDetail({
+  data,
+  backHref = "/news-events",
+  backLabel = "Back to News & Events",
+}) {
 
   return (
     <section className="w-full h-auto py-10 sm:py-[70px_80px] lg:py-[90px_110px] 2xl:py-[110px_130px] 3xl:py-[130px_160px] block">
@@ -22,19 +26,21 @@ export default function NewsEventsDetail({ data }) {
                 height={665}
                 className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
               />
-              <div className="w-fit h-auto aspect-square p-2.5 sm:p-[15px_10px] 2xl:p-[20px_15px] m-2.5 sm:m-[20px_10px] 2xl:m-[30px_15px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block absolute z-1 inset-[auto_auto_0_0]">
-                <div className="text-[10px] sm:text-[13px] 2xl:text-sm 3xl:text-base leading-[1.1] font-normal text-white text-center">
-                  <div className="flex items-start justify-center">
-                    <span className="text-base sm:text-lg lg:text-[22px] 2xl:text-[26px] 3xl:text-[32px] font-semibold block">
-                      {data?.newsEventsDetailDate}
-                    </span>
-                    <sup className="text-xs sm:text-sm lg:text-xl font-medium leading-none mt-[10px]">
-                      {getOrdinal(data?.newsEventsDetailDate)}
-                    </sup>
+              {data?.newsEventsDetailDate && (
+                <div className="w-fit h-auto aspect-square p-2.5 sm:p-[15px_10px] 2xl:p-[20px_15px] m-2.5 sm:m-[20px_10px] 2xl:m-[30px_15px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block absolute z-1 inset-[auto_auto_0_0]">
+                  <div className="text-[10px] sm:text-[13px] 2xl:text-sm 3xl:text-base leading-[1.1] font-normal text-white text-center">
+                    <div className="flex items-start justify-center">
+                      <span className="text-base sm:text-lg lg:text-[22px] 2xl:text-[26px] 3xl:text-[32px] font-semibold block">
+                        {data?.newsEventsDetailDate}
+                      </span>
+                      <sup className="text-xs sm:text-sm lg:text-xl font-medium leading-none mt-[10px]">
+                        {getOrdinal(data?.newsEventsDetailDate)}
+                      </sup>
+                    </div>
+                    {data?.newsEventsDetailMonth}
                   </div>
-                  {data?.newsEventsDetailMonth}
                 </div>
-              </div>
+              )}
             </div>
             <div className="w-full h-auto block">
               <div className="w-full h-auto mb-5 sm:mb-6.25 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5">
@@ -42,18 +48,24 @@ export default function NewsEventsDetail({ data }) {
                   {data?.title}
                 </Heading>
                 <div className="w-full h-auto space-y-2.5 block">
-                  <div className="text-sm sm:text-base lg:text-lg 2xl:text-[23px] 3xl:text-[28px] leading-[1.1] font-medium text-[#212121]">
-                    <span className="font-bold pr-1.25">Organized by:</span>
-                    {data?.organized?.name}
-                  </div>
-                  <div className="text-sm sm:text-base lg:text-lg 2xl:text-[23px] 3xl:text-[28px] leading-[1.1] font-medium text-[#212121]">
-                    <span className="font-bold pr-1.25">Date:</span>
-                    {data?.organized?.date}
-                  </div>
-                  <div className="text-sm sm:text-base lg:text-lg 2xl:text-[23px] 3xl:text-[28px] leading-[1.1] font-medium text-[#212121]">
-                    <span className="font-bold pr-1.25">Time:</span>
-                    {data?.organized?.time}
-                  </div>
+                  {data?.organized?.name && (
+                    <div className="text-sm sm:text-base lg:text-lg 2xl:text-[23px] 3xl:text-[28px] leading-[1.1] font-medium text-[#212121]">
+                      <span className="font-bold pr-1.25">Organized by:</span>
+                      {data?.organized?.name}
+                    </div>
+                  )}
+                  {data?.organized?.date && (
+                    <div className="text-sm sm:text-base lg:text-lg 2xl:text-[23px] 3xl:text-[28px] leading-[1.1] font-medium text-[#212121]">
+                      <span className="font-bold pr-1.25">Date:</span>
+                      {data?.organized?.date}
+                    </div>
+                  )}
+                  {data?.organized?.time && (
+                    <div className="text-sm sm:text-base lg:text-lg 2xl:text-[23px] 3xl:text-[28px] leading-[1.1] font-medium text-[#212121]">
+                      <span className="font-bold pr-1.25">Time:</span>
+                      {data?.organized?.time}
+                    </div>
+                  )}
                 </div>
               </div>
               <div
@@ -71,6 +83,11 @@ export default function NewsEventsDetail({ data }) {
                     {group?.title && (
                       <div className="text-lg sm:text-xl 2xl:text-2xl 3xl:text-3xl leading-[1.1] font-bold text-[#212121] max-sm:mt-5 mb-5 2xl:mb-7.5">
                         {group?.title}
+                      </div>
+                    )}
+                    {group?.chiefPatronsTitle && (
+                      <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-black mb-3.75">
+                        {group?.chiefPatronsTitle}
                       </div>
                     )}
                     {group?.members?.length > 0 && (
@@ -115,6 +132,11 @@ export default function NewsEventsDetail({ data }) {
                         ))}
                       </div>
                     )}
+                    {group?.patronsTitle && (
+                      <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-black mb-2.5 sm:mb-3.75">
+                        {group?.patronsTitle}
+                      </div>
+                    )}
                     {group?.otherMembers && (
                       <div
                         className="w-full h-auto mb-4 text-sm text-[#4A5565] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-sm 2xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-[15px] 3xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-lg [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:leading-[1.1] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:font-medium [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-black [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:mb-3.75 [&_ul]:list-disc [&_ul]:list-inside [&_ul]:pl-0 [&_ol]:list-decimal [&_ol]:list-inside [&_ol]:pl-0 [&_li]:leading-relaxed 2xl:[&_ul]:space-y-1.25 3xl:[&_ul]:space-y-2.5 [&_p]:mb-2.5"
@@ -149,7 +171,7 @@ export default function NewsEventsDetail({ data }) {
 
               <div className="[--size:40px] 2xl:[--size:50px] 3xl:[--size:60px] w-full h-auto py-5 2xl:py-7.5 border-y border-black/10 flex items-center justify-between">
                 <Link
-                  href={data?.previous?.link || "/news-events"}
+                  href={data?.previous?.link || backHref}
                   title={data?.previous?.title}
                   aria-hidden={!data?.previous}
                   tabIndex={data?.previous ? undefined : -1}
@@ -169,13 +191,13 @@ export default function NewsEventsDetail({ data }) {
                   </div>
                 </Link>
                 <Link
-                  href="/news-events"
+                  href={backHref}
                   className="text-[10px] sm:text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#1B1B1B] transition-colors duration-500 hover:text-(--basecolor2)"
                 >
-                  Back to News & Events
+                  {backLabel}
                 </Link>
                 <Link
-                  href={data?.next?.link || "/news-events"}
+                  href={data?.next?.link || backHref}
                   title={data?.next?.title}
                   aria-hidden={!data?.next}
                   tabIndex={data?.next ? undefined : -1}

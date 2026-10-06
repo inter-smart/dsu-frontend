@@ -223,8 +223,28 @@ export async function getNewsEventBySlug(slug) {
 }
 
 // ── Announcements ─────────────────────────────────────────────────────────────
+// Listing page (single type): { seo, hero, announcement: { title, announcements: [...], pagination } }
+export async function getAnnouncementsPage() {
+  return fetchAPI("/api/announcements-page", {}, { next: { revalidate: 60 } });
+}
+
+// Announcement cards: [{ id, slug, title, description, announcement_image, link, ... }]
 export async function getAnnouncements() {
   return fetchAPI("/api/announcements", {}, { next: { revalidate: 60 } });
+}
+
+// Paged announcement cards ("Load More"): { data: [card], pagination: { page, pageSize, pageCount, total } }
+export async function getAnnouncementsPaged(page, pageSize = 6) {
+  return fetchAPI("/api/announcements", { page, pageSize }, { cache: "no-store" });
+}
+
+// Detail page: { seo, hero, newsEventsDetail } (same shape as News & Events)
+export async function getAnnouncementBySlug(slug) {
+  return fetchAPI(
+    `/api/announcements/${encodeURIComponent(slug)}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
 }
 
 // ── SDG Goals (/SDG-initiative pages) ─────────────────────────────────────────
