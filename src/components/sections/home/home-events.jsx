@@ -224,14 +224,16 @@ export default function Events({ data }) {
                             : "sm:border-b border-black/10"
                         }`}
                       >
-                        <div className="w-(--image-size) h-auto aspect-220/120 rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] overflow-hidden block shrink-0">
-                          <Image
-                            src={item?.announcement_image?.url}
-                            width={220}
-                            height={120}
-                            alt={item?.announcement_image?.alternativeText || "Announcement"}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
+                        <div className="w-(--image-size) h-auto aspect-220/120 rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] overflow-hidden block shrink-0 bg-gray-200 dark:bg-white/10">
+                          {item?.announcement_image?.url && (
+                            <Image
+                              src={item.announcement_image.url}
+                              width={220}
+                              height={120}
+                              alt={item?.announcement_image?.alternativeText || "Announcement"}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                          )}
                         </div>
                         <div className="w-[calc(100%-var(--image-size))] h-auto pl-2.5 2xl:pl-3.75 flex flex-col justify-between py-1">
                           <div>

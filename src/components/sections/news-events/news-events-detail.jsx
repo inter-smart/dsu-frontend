@@ -15,17 +15,19 @@ export default function NewsEventsDetail({
       <div className="container">
         <div className="[--width:100%] lg:[--width:285px] xl:[--width:330px] 2xl:[--width:390px] 3xl:[--width:500px] w-full h-auto flex flex-wrap">
           <div className="w-(--width) lg:w-[calc(100%-var(--width))] h-auto lg:pr-3.75 2xl:pr-5 3xl:pr-7.5 max-lg:mb-5">
-            <div className="group w-full h-auto aspect-1210/665 mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block relative z-0">
-              <Image
-                src={data?.newsEventsDetailImage?.url}
-                alt={
-                  data?.newsEventsDetailImage?.alternativeText ||
-                  "News & Events"
-                }
+            <div className="group w-full h-auto aspect-1210/665 mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block relative z-0 bg-gray-200 dark:bg-white/10">
+              {data?.newsEventsDetailImage?.url && (
+                <Image
+                  src={data.newsEventsDetailImage?.url}
+                  alt={
+                    data?.newsEventsDetailImage?.alternativeText ||
+                    "News & Events"
+                  }
                 width={1210}
-                height={665}
-                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-              />
+                  height={665}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
+                />
+              )}
               {data?.newsEventsDetailDate && (
                 <div className="w-fit h-auto aspect-square p-2.5 sm:p-[15px_10px] 2xl:p-[20px_15px] m-2.5 sm:m-[20px_10px] 2xl:m-[30px_15px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block absolute z-1 inset-[auto_auto_0_0]">
                   <div className="text-[10px] sm:text-[13px] 2xl:text-sm 3xl:text-base leading-[1.1] font-normal text-white text-center">
