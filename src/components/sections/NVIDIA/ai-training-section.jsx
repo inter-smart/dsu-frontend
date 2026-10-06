@@ -188,7 +188,7 @@ export default function AiTrainingSection({ data }) {
     const jetson = trainingData?.jetsonSection || defaultData.jetsonSection;
 
     return (
-        <section className="relative py-[40px] md:py-[60px] xl:py-[80px] 2xl:py-[100px] bg-white dark:bg-[#0c0c0e] overflow-hidden">
+        <section className="relative py-[40px] md:py-[60px] xl:py-[80px] 2xl:py-[100px] bg-[#F4F6FA] dark:bg-[#0c0c0e] overflow-hidden">
             <div className="container">
                 <div className="text-center max-w-[900px] mx-auto mb-[35px] sm:mb-[45px] xl:mb-[60px]">
                     <h2 className="text-[25px] sm:text-[30px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold text-[#1E1E1E] dark:text-white tracking-tight leading-[1.2]">
