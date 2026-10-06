@@ -42,31 +42,30 @@ export default function AdmissionAccomodation({ data }) {
     };
 
     return (
-        <>
-            {/* ===== Section 1: Accommodation Hero ===== */}
-            <section className="relative bg-white dark:bg-[#101010] py-[30px] sm:py-[40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]">
+        <div className="bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-[#101010]">         
+            <section className="relative py-[30px] sm:py-[25px] lg:py-[30px] xl:py-[45px] 2xl:py-[50px] 3xl:py-[70px]">
                 <div className="container">
-                    {/* 3-Column Grid: Text | Image | Highlights */}
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 2xl:gap-10 3xl:gap-12">
+                  
+                    <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 lg:gap-6 xl:gap-4 2xl:gap-7 3xl:gap-12">
 
-                        {/* Column 1: Text Content */}
-                        <div className="lg:col-span-5">
+                   
+                        <div className="xl:col-span-5">
                             {/* Eyebrow */}
                             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                                 <span className="w-[20px] sm:w-[24px] 2xl:w-[28px] 3xl:w-[32px] h-[3px] bg-gradient-to-r from-[#DC2626] to-[#F97316] rounded-full" />
-                                <span className="text-[11px] sm:text-[12px] 2xl:text-[13px] 3xl:text-[15px] font-semibold uppercase tracking-[0.1em] bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
+                                <span className="text-[11px] sm:text-[12px] lg:text-[14px] 2xl:text-[17px] 3xl:text-[20px] font-normal uppercase tracking-[0.1em] bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
                                     {hero.eyebrow}
                                 </span>
                             </div>
 
                             {/* Heading */}
-                            <h2 className="text-2xl sm:text-3xl lg:text-[36px] 2xl:text-[42px] 3xl:text-[48px] leading-[1.15] font-bold text-[#1E1E1E] dark:text-white tracking-tight mb-4 sm:mb-5 xl:mb-6">
+                            <h2 className="cmn_Title leading-[1.15] font-bold text-[#1E1E1E] dark:text-white tracking-tight mb-4 sm:mb-5 xl:mb-6">
                                 {hero.heading}
                             </h2>
 
                             {/* Description */}
                             {hero.description && hero.description.length > 0 && (
-                                <div className="text-[13px] sm:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#6B7280] dark:text-[#9CA3AF] leading-[1.7] mb-5 sm:mb-6 xl:mb-8 [&>p]:mb-3 [&>p:last-child]:mb-0">
+                                <div className="text-[13px] sm:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#4A5565] dark:text-[#9CA3AF] leading-[1.7] mb-5 sm:mb-6 xl:mb-8 [&>p]:mb-3 [&>p:last-child]:mb-0">
                                     <BlocksRenderer content={hero.description} />
                                 </div>
                             )}
@@ -85,7 +84,7 @@ export default function AdmissionAccomodation({ data }) {
                                                     </linearGradient>
                                                 </defs>
                                             </svg>
-                                            <span className="text-[13px] sm:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#1E1E1E] dark:text-white">
+                                            <span className="text-[13px] sm:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#4A5565] dark:text-white">
                                                 {item.label}
                                             </span>
                                         </li>
@@ -94,9 +93,9 @@ export default function AdmissionAccomodation({ data }) {
                             )}
                         </div>
 
-                        {/* Column 2: Main Image */}
-                        <div className="lg:col-span-4">
-                            <div className="relative w-full aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] rounded-lg sm:rounded-xl overflow-hidden">
+                     
+                        <div className="xl:col-span-5">
+                            <div className="relative w-full  aspect-[580/510] 2xl:aspect-[580/495] rounded-lg sm:rounded-xl overflow-hidden">
                                 <Image
                                     src={hero.media?.url || "/images/accomodation.jpg"}
                                     alt={hero.media?.alternativeText || "S' Residences"}
@@ -106,18 +105,14 @@ export default function AdmissionAccomodation({ data }) {
                                 />
                             </div>
                         </div>
-
-                        {/* Column 3: Highlight Cards */}
-                        <div className="lg:col-span-3 flex flex-col gap-3 sm:gap-4 lg:justify-center">
+ 
+                        <div className="xl:col-span-2 flex flex-col  ">
                             {hero.highlights && hero.highlights.map((highlight) => (
                                 <div
                                     key={highlight.id}
-                                    className="relative overflow-hidden border border-[#F0F0F0] dark:border-white/8 rounded-[6px] sm:rounded-[8px] bg-[#FAFAFA] dark:bg-[#141414] pl-5 sm:pl-6 xl:pl-7 2xl:pl-8 pr-4 sm:pr-5 xl:pr-6 2xl:pr-7 py-4 sm:py-5 xl:py-6 2xl:py-7 3xl:py-8"
+                                    className="relative overflow-hidden border border-[#f974162f] dark:border-white/8 rounded-[6px] sm:rounded-[8px] bg-white dark:bg-[#141414] p-[15px_10px] 2xl:p-[20px_15px] 3xl:p-[35px_10px] mb-[10px] 2xl:mb-[20px] 3xl:mb-[35px] last-of-type:mb-0"
                                 >
-                                    {/* Gradient Left Border */}
-                                    <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#DC2626] to-[#F97316]" />
-
-                                    <h4 className="text-[15px] sm:text-[16px] 2xl:text-[18px] 3xl:text-[22px] font-bold text-[#1E1E1E] dark:text-white leading-[1.3] mb-1.5 sm:mb-2">
+                                    <h4 className="text-[15px] sm:text-[16px] 2xl:text-[18px] 3xl:text-[22px] font-bold text-[#1E1E1E] dark:text-white max-w-[50%] leading-[1.3] mb-1.5 2xl:mb-4">
                                         {highlight.title}
                                     </h4>
                                     <p className="text-[12px] sm:text-[13px] 2xl:text-[14px] 3xl:text-[16px] text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6]">
@@ -130,19 +125,19 @@ export default function AdmissionAccomodation({ data }) {
                 </div>
             </section>
 
-            {/* ===== Section 2: Accommodation Options ===== */}
-            <section className="relative bg-white dark:bg-[#101010] py-[30px] sm:py-[40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] border-t border-[#F0F0F0] dark:border-white/5">
+           
+            <section className="relative  pb-[30px] sm:pb-[40px] lg:pb-[40px] xl:pb-[55px] 2xl:pb-[70px] 3xl:pb-[90px] ">
                 <div className="container">
                     {/* Eyebrow */}
-                    <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                    <div className="flex items-center gap-2 mb-2.5  border-t border-[#F0F0F0] dark:border-white/5 pt-[30px] sm:pt-[40px] lg:pt-[40px] xl:pt-[45px] 2xl:pt-[60px] 3xl:pt-[70px]">
                         <span className="w-[20px] sm:w-[24px] 2xl:w-[28px] 3xl:w-[32px] h-[3px] bg-gradient-to-r from-[#DC2626] to-[#F97316] rounded-full" />
-                        <span className="text-[11px] sm:text-[12px] 2xl:text-[13px] 3xl:text-[15px] font-semibold uppercase tracking-[0.1em] bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
+                        <span className="text-[11px] sm:text-[12px] 2xl:text-[13px] 3xl:text-[15px] font-normal uppercase tracking-[0.1em] bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
                             {options.eyebrow}
                         </span>
                     </div>
 
                     {/* Heading */}
-                    <h2 className="text-2xl sm:text-3xl lg:text-[36px] 2xl:text-[42px] 3xl:text-[48px] leading-[1.15] font-bold text-[#1E1E1E] dark:text-white tracking-tight mb-3 sm:mb-4">
+                    <h2 className="cmn_Title leading-[1.15] font-bold text-[#1E1E1E] dark:text-white tracking-tight mb-3 sm:mb-4">
                         {options.heading}
                     </h2>
 
@@ -215,29 +210,26 @@ export default function AdmissionAccomodation({ data }) {
                             className="w-full"
                         >
                             {options.rooms && options.rooms.map((room) => (
-                                <SwiperSlide key={room.id}>
-                                    <div className="relative overflow-hidden border border-[#F0F0F0] dark:border-white/8 rounded-[6px] sm:rounded-[8px] bg-[#FAFAFA] dark:bg-[#141414] pl-5 sm:pl-6 xl:pl-7 pr-4 sm:pr-5 xl:pr-6 py-5 sm:py-6 xl:py-7 2xl:py-8 3xl:py-10 h-full flex flex-col">
-                                        {/* Gradient Left Border */}
-                                        <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#DC2626] to-[#F97316]" />
-
-                                        {/* Category */}
-                                        <span className="text-[11px] sm:text-[12px] 2xl:text-[13px] 3xl:text-[15px] font-semibold uppercase tracking-[0.08em] bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent mb-2 sm:mb-3">
+                                <SwiperSlide key={room.id} className="!h-auto">
+                                    <div className="relative overflow-hidden border border-[#F0F0F0] dark:border-white/8 rounded-[6px] sm:rounded-[8px] bg-white dark:bg-[#141414] pl-5 sm:pl-6 xl:pl-7 pr-4 sm:pr-5 xl:pr-6 py-5 sm:py-6 xl:py-7 2xl:py-8 3xl:py-10 h-full flex flex-col">
+                             {/* Category */}
+                                        <span className="text_1 font-semibold uppercase tracking-[0.08em] bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent mb-2 sm:mb-3">
                                             {room.category}
                                         </span>
 
                                         {/* Tier */}
-                                        <h3 className="text-xl sm:text-2xl 2xl:text-[28px] 3xl:text-[32px] font-bold text-[#1E1E1E] dark:text-white leading-[1.2] mb-3 sm:mb-4">
+                                        <h3 className="cmn_Txt font-bold text-[#1E1E1E] dark:text-white leading-[1.2] mb-3 sm:mb-4">
                                             {room.tier}
                                         </h3>
 
                                         {/* Description */}
-                                        <p className="text-[12px] sm:text-[13px] 2xl:text-[14px] 3xl:text-[16px] text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6] mb-4 sm:mb-5 xl:mb-6 flex-1">
+                                        <p className="text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6] mb-4 sm:mb-5 xl:mb-6 flex-1">
                                             {room.description}
                                         </p>
 
                                         {/* Tag */}
                                         {room.tag && (
-                                            <span className="text-[11px] sm:text-[12px] 2xl:text-[13px] 3xl:text-[15px] font-medium bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
+                                            <span className="text_1 font-medium bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
                                                 {room.tag}
                                             </span>
                                         )}
@@ -248,6 +240,6 @@ export default function AdmissionAccomodation({ data }) {
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     );
 }
