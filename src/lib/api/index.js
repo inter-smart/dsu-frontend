@@ -208,6 +208,11 @@ export async function getNewsEvents() {
   return fetchAPI("/api/news-events", {}, { next: { revalidate: 60 } });
 }
 
+// Paged news cards ("Load More"): { data: [card], pagination: { page, pageSize, pageCount, total } }
+export async function getNewsEventsPaged(page, pageSize = 6) {
+  return fetchAPI("/api/news-events", { page, pageSize }, { cache: "no-store" });
+}
+
 // Detail page: { seo, hero, newsEventsDetail }
 export async function getNewsEventBySlug(slug) {
   return fetchAPI(
