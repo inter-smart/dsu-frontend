@@ -1,8 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function IQACChairmanMessage({ data }) {
+    if (!data) return null;
+
     return (
         <section className="relative py-[40px] xl:py-[65px] 2xl:py-[90px] 3xl:py-[120px] bg-[linear-gradient(135deg,_#EFF6FF_0%,_#F9FAFB_100%)] dark:bg-[linear-gradient(135deg,_#0f1011_0%,_#0f1011_100%)]">
             <div className="container">
@@ -21,9 +22,17 @@ export default function IQACChairmanMessage({ data }) {
                         </svg>
 
                     </div>
-                    <div className="w-full md:w-[200px] lg:w-[225px] xl:w-[280px] 2xl:w-[335px] 3xl:w-[420px]  ">
+                    <div className={data.image?.url ? "w-full md:w-[200px] lg:w-[225px] xl:w-[280px] 2xl:w-[335px] 3xl:w-[420px]" : "hidden"}>
                         <div className="w-full lg:aspect-[420/420] mb-[15px] rounded-[10px] overflow-hidden">
-                            <Image src={data?.image.url} width={420} height={414} className="w-full h-full object-cover" alt={data.name} />
+                            {data.image?.url && (
+                                <Image
+                                    src={data.image.url}
+                                    width={420}
+                                    height={414}
+                                    className="w-full h-full object-cover"
+                                    alt={data.image.alternativeText || data.name || data.title || "IQAC director"}
+                                />
+                            )}
                         </div>
 
                     </div>
@@ -34,13 +43,13 @@ export default function IQACChairmanMessage({ data }) {
 
                             <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white [&_p]:text-[#4A5565] dark:[&_p]:text-white mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
                                 w-full max-w-[550px] xl:max-w-[590px] 2xl:max-w-[790px] 3xl:max-w-[820px]">
-                                <BlocksRenderer content={data.description} />
+                                <BlocksRenderer content={data.description || []} />
                             </div>
                             <div className="text-[13px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-black font-bold mb-[6px] dark:text-white">
-                                {data.name}
+                                {data.name || ""}
                             </div>
                             <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#4A5565] font-normal relative pb-[8px] dark:text-white ">
-                                {data.designation}
+                                {data.designation || ""}
                             </div>
                         </div>
                     </div>

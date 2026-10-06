@@ -114,6 +114,15 @@ export async function getAccreditationBySlug(slug) {
   );
 }
 
+// ── IQAC pages ───────────────────────────────────────────────────────────────
+export async function getIqacPageBySlug(slug) {
+  return fetchAPI(
+    `/api/iqacs/${encodeURIComponent(slug)}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
+}
+
 // ── Schools (Academics Cluster)───────────────────────────────────────────────
 export async function getSchools() {
   return fetchAPI("/api/schools", {}, { next: { revalidate: 60 } });

@@ -21,15 +21,16 @@ export default function IQACAccredition({ data }) {
 
     const allCards = data?.cards || [];
     const rankingsCards =
-        data?.rankings || allCards.filter((c) => c.type === "rankings");
+        Array.isArray(data?.rankings)
+            ? data.rankings
+            : allCards.filter((card) => card.type === "rankings");
     const accreditationsCards = allCards.filter((c) => c.type !== "rankings");
 
-    const currentCards =
-        activeTab === "rankings" && rankingsCards.length > 0
-            ? rankingsCards
-            : activeTab === "accreditations" && accreditationsCards.length > 0
-                ? accreditationsCards
-                : allCards;
+    const activeTabData = tabs.find((tab) => tab.id === activeTab);
+    const isRankingsTab = String(activeTabData?.id || activeTabData?.value || "")
+        .toLowerCase()
+        .includes("ranking");
+    const currentCards = isRankingsTab ? rankingsCards : accreditationsCards;
 
     const title = data?.title || "Recognised for\nMeasured Excellence";
 
@@ -64,6 +65,7 @@ export default function IQACAccredition({ data }) {
                 {/* Swiper Slider with partially visible side cards */}
                 <div className="w-full">
                     <Swiper
+                        key={activeTab}
                         modules={[Autoplay]}
                         slidesPerView={1.15}
                         spaceBetween={16}
