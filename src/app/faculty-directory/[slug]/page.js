@@ -20,7 +20,7 @@ const local_data = {
         href: "/",
       },
       {
-        label: "Faculty Directory",
+        label: "Faculty Directory", 
         href: "/",
       },
       {
