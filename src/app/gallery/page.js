@@ -1,6 +1,9 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import Gallery from "@/components/sections/gallery/gallery";
 import FloatingContactRail from "@/components/layout/common/floating-contact-rail";
+import { getGalleryPage, getGalleryItems } from "@/lib/api/gallery";
+
+export const revalidate = 60;
 
 const local_data = {
   hero: {
@@ -88,11 +91,21 @@ const local_data = {
   },
 };
 
-export default function page() {
+export default async function page() {
+  const pageData = await getGalleryPage();
+  const items = await getGalleryItems();
+
+  const hero = pageData?.hero || local_data.hero;
+  const gallery = {
+    title: pageData?.title || local_data.gallery.title,
+    description: pageData?.description || local_data.gallery.description,
+    items: items || local_data.gallery.items,
+  };
+
   return (
     <>
-      <InnerHero data={local_data?.hero} />
-      <Gallery data={local_data?.gallery} />
+      <InnerHero data={hero} />
+      <Gallery data={gallery} />
       <FloatingContactRail />
     </>
   );
