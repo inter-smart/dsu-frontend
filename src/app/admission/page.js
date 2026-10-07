@@ -1,8 +1,7 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
 import AdmissionSection from "@/components/sections/admission/admissionSection";
-import OverviewSection from "@/components/sections/admission/overviewSection";
-import OVerviewSection from "@/components/sections/admission/overviewSection";
+import OverviewSection from "@/components/sections/admission/overviewSection"; 
 import SchoolCampus from "@/components/sections/admission/SchoolCampus";
 import WhySection from "@/components/sections/admission/WhySection";
 
@@ -14,14 +13,14 @@ const local_data = {
     publishedAt: "2026-06-11T06:26:08.337Z",
     seo: {
         id: 21,
-        metaTitle: "Placements page title",
-        metaDescription: "Placements page description ",
+        metaTitle: "Admission page title",
+        metaDescription: "Admission page description ",
         canonicalUrl: null,
     },
     hero: {
         id: 25,
         heroMedia: {
-            alternativeText: "Placements page title",
+            alternativeText: "Admission page title",
             mime: "image/jpg",
             // if video - mime: "video/mp4",
             url: "/images/academic-banner.jpg",
