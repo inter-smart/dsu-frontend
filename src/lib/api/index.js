@@ -131,6 +131,14 @@ export async function getAqarPageBySlug(slug) {
   );
 }
 
+export async function getAcademicQualityBySlug(slug) {
+  return fetchAPI(
+    `/api/academic-qualities/${encodeURIComponent(slug)}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
+}
+
 // ── Schools (Academics Cluster)───────────────────────────────────────────────
 export async function getSchools() {
   return fetchAPI("/api/schools", {}, { next: { revalidate: 60 } });
