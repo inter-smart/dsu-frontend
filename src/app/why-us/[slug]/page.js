@@ -3,9 +3,11 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import DSUAct from "@/components/sections/why-us/DSU-act";
 import IQAC from "@/components/sections/why-us/IQAC";
 import IQACReport from "@/components/sections/why-us/IQAC-reports";
+import WhyusAQAR from "@/components/sections/why-us/Whyus-AQAR";
 import {
     getComplianceDisclosureBySlug,
     getComplianceDisclosures,
+    getAqarPageBySlug,
     getIqacPageBySlug,
 } from "@/lib/api/index";
 
@@ -20,8 +22,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
-    const iqacPage = await getIqacPageBySlug(slug);
-    const pageData = iqacPage || await getComplianceDisclosureBySlug(slug);
+    const [aqarPage, iqacPage, disclosurePage] = await Promise.all([
+        getAqarPageBySlug(slug),
+        getIqacPageBySlug(slug),
+        getComplianceDisclosureBySlug(slug),
+    ]);
+    const pageData = aqarPage || iqacPage || disclosurePage;
 
     return {
         title: pageData?.seo?.metaTitle || "Compliance & Disclosures | Dayananda Sagar University",
@@ -34,6 +40,19 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
     const { slug } = await params;
+    const aqarPage = await getAqarPageBySlug(slug);
+
+    if (aqarPage) {
+        return (
+            <>
+                {aqarPage.hero && <InnerHero data={aqarPage.hero} />}
+                {aqarPage.aqarReportsSection && (
+                    <WhyusAQAR data={aqarPage.aqarReportsSection} />
+                )}
+            </>
+        );
+    }
+
     const iqacPage = await getIqacPageBySlug(slug);
 
     if (iqacPage) {

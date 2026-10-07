@@ -123,6 +123,14 @@ export async function getIqacPageBySlug(slug) {
   );
 }
 
+export async function getAqarPageBySlug(slug) {
+  return fetchAPI(
+    `/api/aqars/${encodeURIComponent(slug)}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
+}
+
 // ── Schools (Academics Cluster)───────────────────────────────────────────────
 export async function getSchools() {
   return fetchAPI("/api/schools", {}, { next: { revalidate: 60 } });
