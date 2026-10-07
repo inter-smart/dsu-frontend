@@ -1823,12 +1823,16 @@ const homePageData = {
   journey: {
     background_image: "/images/home-journey.webp",
     title: "Start Your Journey With Us",
+    ctaLinks: [
+      { url: "#!", label: "Apply Now" },
+      { url: "#!", label: "Talk to an Advisor" },
+      { url: "#!", label: "Book a Campus Visit" },
+    ],
     description:
       "<p>Take the next step toward a future-ready education supported by innovation, <br> research, and industry collaboration.</p>",
     certified_list: [
       {
         id: 1,
-        icon: "/images/rating-star.svg",
         label: "NAAC A+ Accredited",
       },
       {

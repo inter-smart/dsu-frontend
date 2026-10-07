@@ -1,6 +1,9 @@
-import InnerHero from "@/components/layout/common/InnerHero"
+﻿import InnerHero from "@/components/layout/common/InnerHero"
 import DSUAct from "@/components/sections/why-us/DSU-act"
 import DSUOmbudsman from "@/components/sections/why-us/DSU-Ombudsman"
+
+export const revalidate = 60;
+
 
 
 const local_data = {
@@ -100,7 +103,7 @@ const local_data = {
     }
    
 }
-export default function page() {
+export default function Page() {
     return (
         <>
             <InnerHero data={local_data.hero} /> 

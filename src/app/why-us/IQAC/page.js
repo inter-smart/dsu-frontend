@@ -1,6 +1,8 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import IQAC from "@/components/sections/why-us/IQAC";
 
+export const revalidate = 60;
+
 const local_data = {
     id: 24,
     documentId: "a67zp5r21a35cb8qlzrjp54s",
@@ -200,7 +202,7 @@ const local_data = {
                     description: "Reflects the university's commitment to quality education, institutional processes, academic delivery, and student-centric development.",
                     logo: "/images/accred-2.png",
                     type: "accreditations",
-                    linkUrl: "/NAAC",
+                    linkUrl: "/accreditions/naac",
                 },
                 {
                     id: 3,
@@ -208,7 +210,7 @@ const local_data = {
                     description: "Relevant programmes are aligned with statutory and professional education requirements prescribed by national regulatory bodies.",
                     logo: "/images/accred-3.png",
                     type: "accreditations",
-                    linkUrl: "/regulatory-approval/other-approval",
+                    linkUrl: "/regulatory-approval/aicte-approval",
                 },
                 {
                     id: 4,
@@ -216,7 +218,7 @@ const local_data = {
                     description: "Indicates recognition under the appropriate UGC provisions, strengthening institutional standing in higher education.",
                     logo: "/images/accred-4.png",
                     type: "accreditations",
-                    linkUrl: "/regulatory-approval/ugc-recognition",
+                    linkUrl: "/regulatory-approval/ugc-2f",
                 },
                 {
                     id: 5,
@@ -549,11 +551,13 @@ const local_data = {
     },
 };
 
-export default function page() {
+export default function Page() {
+    const pageData = local_data;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
-            <IQAC data={local_data.iqacSection} />
+            {pageData.hero && <InnerHero data={pageData.hero} />}
+            {pageData.iqacSection && <IQAC data={pageData.iqacSection} />}
         </>
     );
 }

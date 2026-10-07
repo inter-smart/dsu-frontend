@@ -13,10 +13,18 @@ import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenubar";
 import AiBSCMenubar from "@/components/sections/ai-enabled/BSC-nursing/bsc-Menubar";
 import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
+import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
 
 export default function InnerHero({ data }) {
+  if (!data) return null;
   const isVideo = data?.heroMedia?.mime?.includes("video");
   const hasMenubar = Boolean(data?.menuBar || data?.AimenuBar || data?.AiBscmenuBar || data?.PlacementmenuBar);
+  const breadcrumb = Array.isArray(data.breadcrumb) && data.breadcrumb.length > 0
+    ? data.breadcrumb
+    : [
+      { label: "Home", href: "/" },
+      ...(data.title ? [{ label: data.title }] : []),
+    ];
 
   return (
     <section className="relative block h-[350px] w-full md:h-[450px] xl:h-[500px] 2xl:h-[600px] 3xl:h-[750px]">
@@ -49,22 +57,25 @@ export default function InnerHero({ data }) {
             }`}
         >
           {/* Breadcrumb */}
-          {data?.breadcrumb?.length > 0 && (
+          {breadcrumb.length > 0 && (
             <Breadcrumb className="mb-3 md:mb-5">
               <BreadcrumbList className="gap-2">
-                {data.breadcrumb.map((item, index) => {
-                  const isLast = index === data.breadcrumb.length - 1;
+                {breadcrumb.map((item, index) => {
+                  const isLast = index === breadcrumb.length - 1;
 
                   return (
                     <Fragment key={`${item.label}-${index}`}>
                       <BreadcrumbItem>
                         {isLast ? (
-                          <BreadcrumbPage className="text-[10px] xl:text-[12px]2xl:text-[14px] 3xl:text-[18px] font-semibold text-white">
+                          <BreadcrumbPage className="text-[10px] xl:text-[12px]2xl:text-[14px] 3xl:text-[18px] font-semibold text-white capitalize">
                             {item.label}
                           </BreadcrumbPage>
                         ) : (
-                          <BreadcrumbLink asChild className="text-[10px] xl:text-[12px]2xl:text-[14px] 3xl:text-[18px] font-light text-white transition-opacity hover:text-white hover:opacity-70">
-                            <Link href={item.href || "#"}>{item.label}</Link>
+                          <BreadcrumbLink
+                            render={<Link href={item.href || "#"} />}
+                            className="text-[10px] xl:text-[12px]2xl:text-[14px] 3xl:text-[18px] font-light text-white transition-opacity hover:text-white hover:opacity-70 capitalize"
+                          >
+                            {item.label}
                           </BreadcrumbLink>
                         )}
                       </BreadcrumbItem>
@@ -100,6 +111,9 @@ export default function InnerHero({ data }) {
           )}
           {data?.PlacementmenuBar && (
             <PlacementmenuBar />
+          )}
+          {data?.admissionMenubar && (
+            <AdmissionMenubar />
           )}
         </div>
       </div>

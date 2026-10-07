@@ -7,7 +7,23 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link"; 
 import DsuActSidebarSection from "./dsuActSidebarSection";
 
-export default function DSUAct({ data }) {
+const P_CLASS = "text_1 leading-[1.2] text-[#4A5565] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]";
+const UL_CLASS = "mb-[20px] lg:mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]";
+const LI_CLASS = "text_1 relative flex items-start gap-[10px] w-full before:block before:h-[13px] before:w-[13px] before:relative before:top-[6px] before:shrink-0 before:bg-[url('/images/red-round.svg')] before:bg-contain before:bg-center before:bg-no-repeat before:content-[''] mb-[6px] xl:mb-[8px] 3xl:mb-[10px]";
+
+// Convert CMS HTML (plain <p>/<ul>/<li>) into the styled markup used by this section.
+// Consecutive <p> tags are wrapped in the description div (as the design did around BlocksRenderer),
+// so paragraphs keep the global `p` line-height and the margin applies once after the block.
+export function formatContentHtml(html) {
+    if (!html || typeof html !== "string") return "";
+    return html
+        .replace(/<p(\s[^>]*)?>/gi, "<p>")
+        .replace(/((?:<p>[\s\S]*?<\/p>\s*)+)/gi, `<div class="${P_CLASS}">$1</div>`)
+        .replace(/<ul(\s[^>]*)?>/gi, `<ul class="${UL_CLASS}">`)
+        .replace(/<li(?:\s[^>]*)?>([\s\S]*?)<\/li>/gi, `<li class="${LI_CLASS}"><span>$1</span></li>`);
+}
+
+export default function DSUAct({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
@@ -16,6 +32,7 @@ export default function DSUAct({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <DsuActSidebarSection
+                            menu={menu}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
@@ -41,19 +58,32 @@ export default function DSUAct({ data }) {
                             <h2 className="cmn_Title">
                                 {data.heading}
                             </h2>
-                            <div className="text_1 leading-[1.2] text-[#4A5565] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
-                                <BlocksRenderer content={data.description} />
-                            </div>
-                            <ul className="mb-[20px] lg:mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]">
-                                {data?.points.map((item, id) => (
-                                    <li className="text_1 relative flex items-start gap-[10px] w-full before:block before:h-[13px] before:w-[13px] before:relative before:top-[6px] before:shrink-0 before:bg-[url('/images/red-round.svg')] before:bg-contain before:bg-center before:bg-no-repeat before:content-[''] mb-[6px] xl:mb-[8px] 3xl:mb-[10px]">
-                                        {item.text}
-                                    </li>
+                            {data?.content ? (
+                                <div dangerouslySetInnerHTML={{ __html: formatContentHtml(data.content) }} />
+                            ) : (
+                                <>
+                                    {data?.description && (
+                                        <div className={P_CLASS}>
+                                            <BlocksRenderer content={data.description} />
+                                        </div>
+                                    )}
+                                    {data?.points?.length > 0 && (
+                                        <ul className={UL_CLASS}>
+                                            {data.points.map((item, id) => (
+                                                <li key={id} className={LI_CLASS}>
+                                                    {item.text}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </>
+                            )}
 
-                                ))}
-                            </ul>
-
-                            <Link href={data?.document?.file.url} className="flex items-center justify-between pb-[14px] 2xl:pb-[15px] 3xl:pb-[20px] border-b border-black/20 w-full sm:w-1/2 md:w-[220px] lg:w-[250px] xl:w-[300px] 2xl:w-[360px] 3xl::w-[450px]"  >
+                            {data?.document?.file?.url && (
+                            <Link
+                                href={data.document.file.url}
+                                {...(data.document.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                className="flex items-center justify-between pb-[14px] 2xl:pb-[15px] 3xl:pb-[20px] border-b border-black/20 w-full sm:w-1/2 md:w-[220px] lg:w-[250px] xl:w-[300px] 2xl:w-[360px] 3xl::w-[450px]"  >
                                 <div className="flex items-center justify-between gap-[15px]">
                                     <div className="w-[16px] xl:w-[18px] 2xl:w-[22px] 3xl:w-[30px] h-[12px] xl:h-[16px] 2xl:h-[18px] 3xl:h-[20px] flex items-center justify-center">
                                         <svg width="24" height="33" viewBox="0 0 24 33" fill="none" >
@@ -72,6 +102,7 @@ export default function DSUAct({ data }) {
                                     </svg>
                                 </div>
                             </Link>
+                            )}
 
                         </div>
                     </div>

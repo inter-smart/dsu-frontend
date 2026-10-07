@@ -1,4 +1,7 @@
 import InnerHero from "@/components/layout/common/InnerHero";
+import { getFacultyList } from "@/lib/api/index";
+
+export const revalidate = 60;
 
 const local_data = {
   hero: {
@@ -25,10 +28,14 @@ const local_data = {
   },
 };
 
-export default function page({ data }) {
+export default async function Page() {
+  const faculty = await getFacultyList();
+  const hero = local_data.hero;
+
   return (
     <>
-      <InnerHero data={local_data?.hero} />
+      <InnerHero data={hero} />
+      {/* Faculty list section — wire a FacultyList component here when ready */}
     </>
   );
 }

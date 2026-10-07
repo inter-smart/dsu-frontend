@@ -1,6 +1,9 @@
-import InnerHero from "@/components/layout/common/InnerHero";
+﻿import InnerHero from "@/components/layout/common/InnerHero";
 import DSUDEADC from "@/components/sections/why-us/DSU-DEADC";
 import WhyusAQAR from "@/components/sections/why-us/Whyus-AQAR";
+
+export const revalidate = 60;
+
 
 const local_data = {
     id: 24,
@@ -92,7 +95,7 @@ const local_data = {
     }
 
 };
-export default function page() {
+export default function Page() {
     return (
         <>
             <InnerHero data={local_data.hero} />

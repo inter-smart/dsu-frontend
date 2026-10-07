@@ -1,7 +1,10 @@
-import ArchitectureSection from "@/components/sections/NVIDIA/architecture-section"
-import BannerSection from "@/components/sections/NVIDIA/banner-section"
-import StackSection from "@/components/sections/NVIDIA/stack-section"
-import TechnologySection from "@/components/sections/NVIDIA/technology-section"
+import ArchitectureSection from "@/components/sections/NVIDIA/architecture-section";
+import BannerSection from "@/components/sections/NVIDIA/banner-section";
+import StackSection from "@/components/sections/NVIDIA/stack-section";
+import TechnologySection from "@/components/sections/NVIDIA/technology-section";
+import { getNvidiaPage } from "@/lib/api/index";
+
+export const revalidate = 60;
 
 
 const local_data = {
@@ -249,15 +252,18 @@ const local_data = {
     }
 
 }
-export default function page() {
+export default async function Page() {
+    const data = await getNvidiaPage();
+    const pageData = data || local_data;
+
+    if (!pageData) return null;
+
     return (
         <>
-            <BannerSection data={local_data.heroBanner} />
-            <TechnologySection data={local_data.technologySection} />
-            <ArchitectureSection data={local_data.ArchitectureSection} />
-            <StackSection data={local_data.nvidiaAiStackSection} />
-
+            {pageData.heroBanner && <BannerSection data={pageData.heroBanner} />}
+            {pageData.technologySection && <TechnologySection data={pageData.technologySection} />}
+            {pageData.ArchitectureSection && <ArchitectureSection data={pageData.ArchitectureSection} />}
+            {pageData.nvidiaAiStackSection && <StackSection data={pageData.nvidiaAiStackSection} />}
         </>
-    )
+    );
 }
-

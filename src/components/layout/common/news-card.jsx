@@ -31,7 +31,6 @@ export default function NewsCard({ item }) {
         </div>
         <Link
           href={item?.link}
-          target="_blank"
           className="text-sm 3xl:text-[15px] leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
         >
           Read More {" > "}

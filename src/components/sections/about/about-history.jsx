@@ -10,7 +10,15 @@ import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
 
+
+const renderText = (value) =>
+    Array.isArray(value) ? <BlocksRenderer content={value} /> : value;
+
+
 export default function AboutHistory({ data }) {
+    if (!data) return null;
+    const timeline = data?.timeline || [];
+    const founders = data?.founders || [];
     return (
         <section className='relative py-[40px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[75px] dark:bg-[#101010] transition-colors duration-300'>
             <div className="container">
@@ -31,7 +39,7 @@ export default function AboutHistory({ data }) {
                                 }}
                                 className="h-[320px] lg:h-[360px] xl:h-[400px] 2xl:h-[484px] 3xl:h-[610px] w-full "
                             >
-                                {data?.timeline.map((itemList, idx) => (
+                                {timeline.map((itemList, idx) => (
                                     <SwiperSlide key={idx} className="!h-auto relative before:absolute before:content-[''] before:left-[22px] before:xl:left-[27px] before:2xl:left-[32px] before:3xl:left-[40px] before:top-0 before:h-[calc(100%-40px)] before:bottom-0 before:m-auto before:-z-1 before:w-[1px] before:bg-black/20 dark:before:bg-white/20">
                                         <div className="w-full flex pb-[30px] xl:pb-[40px] 2xl:pb-[60px] 3xl:pb-[80px]">
                                             <div className="w-[45px] xl:w-[55px] 2xl:w-[65px] 3xl:w-[83px] h-[45px] xl:h-[55px] 2xl:h-[65px] 3xl:h-[85px] mt-[10px] bg-[#FFF8EE] dark:bg-[#18191B] rounded-full border border-[#FF6D00] dark:border-[#F97316]/50 p-[10px] lg:p-[15px] 2xl:p-[20px] 3xl:p-[25px]
@@ -44,7 +52,7 @@ export default function AboutHistory({ data }) {
                                                 <div className="text-[24px] xl:text-[30px] 2xl:text-[36px] 3xl:text-[45px] text-black dark:text-white font-semibold">
                                                     {itemList.period}
                                                 </div>
-                                                <p className="dark:text-[#9CA3AF]">{itemList.description}</p>
+                                                <p className="dark:text-[#9CA3AF]">{renderText(itemList.description)}</p>
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -56,7 +64,9 @@ export default function AboutHistory({ data }) {
                     <div className="flex gap-[40px] lg:w-[calc(100%-260px)] xl:w-[calc(100%-330px)] 2xl:w-[calc(100%-400px)] 3xl:w-[calc(100%-500px)] max-sm:flex-wrap">
                         <div className="w-full sm:w-1/2 lg:w-1/2">
                             <div className="w-full h-full rounded-[10px] overflow-hidden ">
-                                <Image src={data?.media.url} width={550} height={600} alt={data?.media.alternativeText} className="w-full h-full object-cover" />
+                                {data?.media?.url && (
+                                    <Image src={data.media.url} width={550} height={600} alt={data.media.alternativeText || "History"} className="w-full h-full object-cover" />
+                                )}
                             </div>
                         </div>
                         <div className="w-full lg:w-1/2">
@@ -85,31 +95,33 @@ export default function AboutHistory({ data }) {
                                     ))}
                                 </div>
 
-                                <Link
-                                    href={data?.cta.url}
-                                    className="group relative flex h-[30px] w-fit min-w-[160px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px] xl:min-w-[155px] 2xl:h-[40px] 2xl:min-w-[185px] 2xl:gap-[20px] 2xl:rounded-[4px] 3xl:h-[50px] 3xl:min-w-[230px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
-                                >
-                                    <span className="relative z-[1] transition-transform duration-300 group-hover:translate-x-[-2px]">
-                                        {data?.cta.label}
-                                    </span>
+                                {data?.cta?.url && (
+                                    <Link
+                                        href={data.cta.url}
+                                        className="group relative flex h-[30px] w-fit min-w-[160px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px] xl:min-w-[155px] 2xl:h-[40px] 2xl:min-w-[185px] 2xl:gap-[20px] 2xl:rounded-[4px] 3xl:h-[50px] 3xl:min-w-[230px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
+                                    >
+                                        <span className="relative z-[1] transition-transform duration-300 group-hover:translate-x-[-2px]">
+                                            {data?.cta.label}
+                                        </span>
 
-                                    <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
-                                        <svg
-                                            width="11"
-                                            height="9"
-                                            viewBox="0 0 11 9"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="transition-transform duration-300 group-hover:rotate-180"
-                                        >
-                                            <circle cx="5.12232" cy="0.919192" r="0.919192" fill="white" />
-                                            <circle cx="5.12232" cy="4.33325" r="0.919192" fill="white" />
-                                            <circle cx="5.12232" cy="7.74732" r="0.919192" fill="white" />
-                                            <circle cx="9.32349" cy="4.33325" r="0.919192" fill="white" />
-                                            <circle cx="0.919192" cy="4.33325" r="0.919192" fill="white" />
-                                        </svg>
-                                    </div>
-                                </Link>
+                                        <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
+                                            <svg
+                                                width="11"
+                                                height="9"
+                                                viewBox="0 0 11 9"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="transition-transform duration-300 group-hover:rotate-180"
+                                            >
+                                                <circle cx="5.12232" cy="0.919192" r="0.919192" fill="white" />
+                                                <circle cx="5.12232" cy="4.33325" r="0.919192" fill="white" />
+                                                <circle cx="5.12232" cy="7.74732" r="0.919192" fill="white" />
+                                                <circle cx="9.32349" cy="4.33325" r="0.919192" fill="white" />
+                                                <circle cx="0.919192" cy="4.33325" r="0.919192" fill="white" />
+                                            </svg>
+                                        </div>
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>

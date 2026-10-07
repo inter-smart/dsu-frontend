@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/accordion";
 import RegulatorySidebarSection from "@/components/sections/regulatory-approval/regulatorySidebarSection";
 
-export default function OtherApproval({ data }) {
+export default function OtherApproval({ data, menu = [] }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
@@ -23,6 +23,7 @@ export default function OtherApproval({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <RegulatorySidebarSection
+                            menu={menu}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
@@ -48,9 +49,11 @@ export default function OtherApproval({ data }) {
                             <h2 className="cmn_Title">
                                 {data.title}
                             </h2>
-                            <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
-                                <BlocksRenderer content={data.description} />
-                            </div>
+                            {data?.description?.length > 0 && (
+                                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
+                                    <BlocksRenderer content={data.description} />
+                                </div>
+                            )}
 
 
 
@@ -63,7 +66,9 @@ export default function OtherApproval({ data }) {
                                             >
                                                 <div className="flex gap-[15px]">
                                                     <div className="w-[35px] lg:xl:w-[55px] 2xl:w-[65px] 3xl:w-[70px]">
-                                                        <Image src={item.logo} width={70} height={70} alt="logo" />
+                                                        {item.logo && (
+                                                            <Image src={item.logo} width={70} height={70} alt={item.title || "logo"} />
+                                                        )}
                                                     </div>
                                                     <div className="w-[calc(100%-35px)] lg:w-[calc(100%-45px)] xl:w-[calc(100%-55px)] 2xl:w-[calc(100%-65px)] 3xl:w-[calc(100%-70px)] ">
                                                         <div className="font-medium !text-black hover:no-underline text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] mb-[2px] xl:mb-[4px]">
@@ -75,14 +80,18 @@ export default function OtherApproval({ data }) {
                                             </AccordionTrigger>
 
                                             <AccordionContent className=" text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_a]:no-underline [&_a]:hover:no-underline text-[#797979] px-[15px] xl:px-[20px] 2xl:px-[25px] 3xl:px-[30px]">
-                                                <div className="text_1 text-[#4A5565] mb-[10px]">
-                                                    {item?.content.description}
-                                                </div>
-                                                <div className="font-medium !text-[#212121] hover:no-underline text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] mb-[10px] ">
-                                                    {item?.content.approvedProgrammesTitle}
-                                                </div>
+                                                {item?.content?.description && (
+                                                    <div className="text_1 text-[#4A5565] mb-[10px]">
+                                                        {item.content.description}
+                                                    </div>
+                                                )}
+                                                {item?.content?.approvedProgrammesTitle && (
+                                                    <div className="font-medium !text-[#212121] hover:no-underline text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] mb-[10px] ">
+                                                        {item.content.approvedProgrammesTitle}
+                                                    </div>
+                                                )}
                                                 <ul className="mb-[20px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[45px]">
-                                                    {item?.content?.approvedProgrammes.map((prog, idx) => (
+                                                    {item?.content?.approvedProgrammes?.map((prog, idx) => (
                                                         <li key={idx} className="text_1 font-semibold text-[#4A5565] relative before:absolute before:content-[''] before:top-0 before:left-0 before:bottom-0 before:m-auto before:w-[4px] before:h-[4px] before:rounded-full before:bg-[#4A5565] pl-[10px]">
                                                             {prog}
                                                         </li>
@@ -90,10 +99,11 @@ export default function OtherApproval({ data }) {
                                                 </ul>
                                                 <div className="flex flex-wrap gap-[10px] xl:gap-[20px] mb-[25px]">
 
-                                                    {item?.content?.documents.map((doc, id) => (
+                                                    {item?.content?.documents?.map((doc, id) => (
                                                         <Link
                                                             key={id}
                                                             href={doc?.url || "/"}
+                                                            target="_blank"
                                                             className="min-w-[115px] xl:min-w-[135px] 2xl:min-w-[165px] 3xl:min-w-[204px] h-[35px] 2xl:h-[40px] 3xl:h-[54px] flex items-center justify-between p-[1px] rounded-[5px] w-fit overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] transition-all duration-200 ease-in-out hover:shadow-[0_6px_20px_rgba(220,38,38,0.18)] !no-underline"
                                                         >
                                                             <div className="text_1 text-[#212121] font-bold bg-white w-full h-full flex items-center justify-between !no-underline gap-[10px] rounded-[5px] px-[15px] transition-all duration-100 ease-in-out hover:bg-transparent hover:text-white">

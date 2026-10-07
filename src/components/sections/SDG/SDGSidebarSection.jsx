@@ -3,27 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const sidebarMenu = [
-    { label: "SDG 1", slug: "/SDG-initiative/sdg-1" },
-    { label: "SDG 2", slug: "/SDG-initiative/sdg-2" },
-    { label: "SDG 3", slug: "/SDG-initiative/sdg-3" },
-    { label: "SDG 4", slug: "/SDG-initiative/sdg-4" },
-    { label: "SDG 5", slug: "/SDG-initiative/sdg-5" },
-    { label: "SDG 6", slug: "/SDG-initiative/sdg-6" },
-    { label: "SDG 7", slug: "/SDG-initiative/sdg-7" },
-    { label: "SDG 8", slug: "/SDG-initiative/sdg-8" },
-    { label: "SDG 9", slug: "/SDG-initiative/sdg-9" },
-    { label: "SDG 10", slug: "/SDG-initiative/sdg-10" },
-    { label: "SDG 11", slug: "/SDG-initiative/sdg-11" },
-    { label: "SDG 12", slug: "/SDG-initiative/sdg-12" },
-    { label: "SDG 13", slug: "/SDG-initiative/sdg-13" },
-    { label: "SDG 14", slug: "/SDG-initiative/sdg-14" },
-    { label: "SDG 15", slug: "/SDG-initiative/sdg-15" },
-    { label: "SDG 16", slug: "/SDG-initiative/sdg-16" },
-    { label: "SDG 17", slug: "/SDG-initiative/sdg-17" },
-];
-
-export default function SDGSidebarSection({ isOpen = false, onClose, title = "SDG Menu" }) {
+// `menu`: [{ label, slug }] - slug is the goal page URL
+export default function SDGSidebarSection({ menu = [], isOpen = false, onClose, title = "SDG Menu" }) {
      const pathname = usePathname();
     
         return (
@@ -60,7 +41,7 @@ export default function SDGSidebarSection({ isOpen = false, onClose, title = "SD
                         </div>
     
                         <ul>
-                            {sidebarMenu.map((item, idx) => {
+                            {menu.map((item, idx) => {
                                 const href = item.slug;
                                 const isActive = pathname === href;
     

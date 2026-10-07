@@ -12,9 +12,7 @@ export default function PlacementOverview({ data }) {
     return (
         <section id="overview" className="relative py-[10px_30px] sm:py-[20px_40px] xl:py-[55px_40px] 2xl:py-[70px_40px] 3xl:py-[90px_40px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
             <div className="container">
-                {/* TOP SECTION: Float Right for Image + Stats */}
-                <div className="relative max-lg:flex max-lg:flex-col-reverse gap-[20px] after:content-[''] after:table after:clear-both ">
-                    {/* Floated Right Block (Image + Stat Cards) */}
+               <div className="relative max-lg:flex max-lg:flex-col-reverse gap-[20px] after:content-[''] after:table after:clear-both ">
                     <div className="w-full lg:w-[50%] xl:w-[600px] 2xl:w-[670px] 3xl:w-[770px] lg:float-right ml-0 lg:ml-[30px] xl:ml-[45px] 2xl:ml-[55px] mb-[25px] lg:mb-[20px]">
                         {primaryImage && (
                             <div className="w-full rounded-[8px] xl:rounded-[10px] overflow-hidden shadow-sm mb-[15px] xl:mb-[20px]">
@@ -28,9 +26,7 @@ export default function PlacementOverview({ data }) {
                                 />
                             </div>
                         )}
-                    </div>
-
-
+                    </div> 
                     <div>
                         {data?.eyebrow && (
                             <div className="flex items-center gap-[8px] mb-[10px] xl:mb-[14px]">
@@ -39,8 +35,7 @@ export default function PlacementOverview({ data }) {
                                     {data.eyebrow}
                                 </span>
                             </div>
-                        )}
-
+                        )} 
                         {data?.heading && (
                             <h2 className="cmn_Title mb-[15px] xl:mb-[20px] 2xl:mb-[25px] text-black dark:text-white">
                                 {data.heading}
@@ -67,8 +62,7 @@ export default function PlacementOverview({ data }) {
                             </ul>
                         )}
                     </div>
-                </div>
-
+                </div> 
             </div>
         </section>
     );

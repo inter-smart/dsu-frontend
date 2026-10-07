@@ -2,29 +2,12 @@
 
 
 import Link from "next/link";
- 
+import { usePathname } from "next/navigation";
 
-const sidebarMenu = [
-    {
-        label: "UGC Recognition",
-        slug: "/ugc-recognition", 
-    },
-    {
-        label: "UGC 2(f)",
-        slug: "academic-council", 
-    },
-    {
-        label: "AICTE Approval",
-        slug: "board-of-studies", 
-    },
-    {
-        label: "Other Approval",
-        slug: "/other-approval", 
-    },
-   
-];
+// `menu` comes from the Regulatory Approval collection: [{ title, slug }]
+export default function RegulatorySidebarSection({ menu = [], isOpen = false, onClose, title = "Recognition Menu" }) {
+    const pathname = usePathname();
 
-export default function RegulatorySidebarSection({ isOpen = false, onClose, title = "Recognition Menu" }) {
     return (
         <>
             {/* Mobile Backdrop Overlay */}
@@ -59,16 +42,19 @@ export default function RegulatorySidebarSection({ isOpen = false, onClose, titl
                     </div>
 
                     <ul>
-                        {sidebarMenu.map((item, idx) => (
-                            <li key={`${item.slug}-${idx}`} className="border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0">
+                        {menu.map((item) => {
+                            const isActive = pathname === `/regulatory-approval/${item.slug}`;
+
+                            return (
+                            <li key={item.slug} className="border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0">
                                 <Link
                                     href={`/regulatory-approval/${item.slug}`}
                                     onClick={onClose}
                                     className=" flex items-center justify-between"
                                 >                                  
 
-                                        <div className="text_1 font-semibold text-[#212121] transition-colors duration-300 group-hover:text-[#F97316] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px]">
-                                            {item.label}
+                                        <div className={`text_1 font-semibold ${isActive ? "text-[#F97316]" : "text-[#212121]"} transition-colors duration-300 group-hover:text-[#F97316] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px]`}>
+                                            {item.title}
                                         </div> 
 
                                     <div className="flex h-[8px] 3xl:h-[12px] w-[8px] 3xl:w-[10px] items-center justify-center  ">
@@ -87,7 +73,8 @@ export default function RegulatorySidebarSection({ isOpen = false, onClose, titl
                                     </div>
                                 </Link>
                             </li>
-                        ))}
+                            );
+                        })}
                     </ul>
                 </div>
             </div>

@@ -1,5 +1,8 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import Announcement from "@/components/sections/announcements/announcement";
+import { getAnnouncements } from "@/lib/api/index";
+
+export const revalidate = 60;
 
 const local_data = {
   hero: {
@@ -71,11 +74,18 @@ const local_data = {
   },
 };
 
-export default function page() {
+export default async function Page() {
+  const data = await getAnnouncements();
+
+  const hero = local_data.hero;
+  const announcement = Array.isArray(data) && data.length > 0
+    ? { title: "Announcements", announcements: data }
+    : local_data.announcement;
+
   return (
     <>
-      <InnerHero data={local_data?.hero} />
-      <Announcement data={local_data?.announcement} />
+      <InnerHero data={hero} />
+      {announcement && <Announcement data={announcement} />}
     </>
   );
 }

@@ -187,7 +187,7 @@
     @apply text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white;
   }
   .cmn_Txt{
-    @apply text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold
+    @apply text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold
   }
   .base-gradient{
     @apply bg-gradient-to-r from-[#DC2626] to-[#F97316]

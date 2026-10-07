@@ -3,6 +3,9 @@ import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 import AcademicOverview from "@/components/sections/academics/academic-overview";
 import AcademicContact from "@/components/sections/academics/academic-contact";
 
+export const revalidate = 60;
+
+
 const local_data = {
     id: 24,
     documentId: "a67zp5r21a35cb8qlzrjp54s",
@@ -184,7 +187,7 @@ const local_data = {
 
 }
 
-export default function page() {
+export default function Page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
