@@ -243,7 +243,7 @@ export async function getAnnouncements() {
 }
 
 // Paged announcement cards ("Load More"): { data: [card], pagination: { page, pageSize, pageCount, total } }
-export async function getAnnouncementsPaged(page, pageSize = 6) {
+export async function getAnnouncementsPaged(page, pageSize = 4) {
   return fetchAPI("/api/announcements", { page, pageSize }, { cache: "no-store" });
 }
 
@@ -348,6 +348,15 @@ export async function getAlumniLandingPage() {
 
 export async function getAlumniEventsPage() {
   return getAlumniTemplatePage("alumni-events");
+}
+
+// Paged Alumni event cards ("Load More"): { data: [card], pagination: { page, pageSize, pageCount, total } }
+export async function getAlumniEventsPaged(page, pageSize = 6) {
+  return fetchAPI(
+    "/api/news-events",
+    { type: "Alumni", page, pageSize },
+    { cache: "no-store" },
+  );
 }
 
 export async function getAlumniNewsletterPage() {
