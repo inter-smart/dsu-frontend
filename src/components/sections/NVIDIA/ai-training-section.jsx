@@ -345,7 +345,7 @@ export default function AiTrainingSection({ data }) {
 
 
                 <div className="text-center max-w-[900px] mx-auto mb-[30px] sm:mb-[40px] xl:mb-[50px]">
-                    <h2 className="text-[25px] sm:text-[30px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[50px] font-bold text-[#1E1E1E] dark:text-white tracking-tight leading-[1.2]">
+                    <h2 className="cmn_Title  dark:text-white tracking-tight leading-[1.2]">
                         {jetson.heading || "Jetson: AI in Your Hands"}
                     </h2>
 
