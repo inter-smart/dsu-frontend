@@ -2,6 +2,7 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import Alumni from "@/components/sections/alumni/alumni";
 import AlumniEvents from "@/components/sections/alumni/alumni-events";
 import AlumniNewsletter from "@/components/sections/alumni/alumni-newsletter";
+import AlumniContact from "@/components/sections/alumni/alumni-contact";
 
 const DEFAULT_HERO_MEDIA = {
   url: "/images/faculty-banner.jpg",
@@ -11,35 +12,29 @@ const DEFAULT_HERO_MEDIA = {
 
 // Alumni sub-pages that are not managed in Strapi yet
 const STATIC_SIDEBAR = [
-  { label: "Mission & Vision", slug: "/alumni/alumni#mission-vision" },
-  // { label: "Alumni Events", slug: "/alumni/events" },
-  { label: "Alumni Newsletter", slug: "/alumni/newsletter" },
-  { label: "Contact", slug: "/alumni/contact" },
+  { label: "Mission & Vision", slug: "/alumni#mission-vision" },
 ];
 
 /**
  * Renders an Alumni collection entry (GET /api/alumnis/:slug).
- * `landingSlug` is the entry shown on /alumni, so its sidebar link points there.
+ * Sidebar links come from Strapi (the "alumni" template entry links to /alumni).
  */
-export default function AlumniTemplate({ pageData, landingSlug }) {
+export default function AlumniTemplate({ pageData }) {
   // keep the local banner until one is uploaded in Strapi
   const hero = pageData?.hero && {
     ...pageData.hero,
     heroMedia: pageData.hero.heroMedia || DEFAULT_HERO_MEDIA,
   };
 
-  const sidebar = [
-    ...(pageData?.sidebar || []).map((item) => ({
-      ...item,
-      slug: item.slug === `/alumni/${landingSlug}` ? "/alumni" : item.slug,
-    })),
-  ];
-  // static links not already served by a Strapi entry (e.g. /alumni/events)
-  sidebar.push(
-    ...STATIC_SIDEBAR.filter(
-      (item) => !sidebar.some((s) => s.slug === item.slug),
-    ),
+  const strapiSidebar = pageData?.sidebar || [];
+  // "alumni" template entry (/alumni) first, Mission & Vision second, then the rest
+  const alumniLink = strapiSidebar.filter((s) => s.slug === "/alumni");
+  const otherLinks = strapiSidebar.filter((s) => s.slug !== "/alumni");
+  // static links not already served by a Strapi entry
+  const staticLinks = STATIC_SIDEBAR.filter(
+    (item) => !strapiSidebar.some((s) => s.slug === item.slug),
   );
+  const sidebar = [...alumniLink, ...staticLinks, ...otherLinks];
   return (
     <>
       {hero && <InnerHero data={hero} />}
@@ -53,6 +48,9 @@ export default function AlumniTemplate({ pageData, landingSlug }) {
         pageData?.alumniNewsletter && (
           <AlumniNewsletter data={{ ...pageData.alumniNewsletter, sidebar }} />
         )}
+      {pageData?.template === "alumni-contact" && pageData?.alumniContact && (
+        <AlumniContact data={{ ...pageData.alumniContact, sidebar }} />
+      )}
     </>
   );
 }

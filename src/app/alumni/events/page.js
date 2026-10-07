@@ -19,9 +19,9 @@ export async function generateMetadata() {
 }
 
 export default async function Page() {
-  const { landingSlug, pageData } = await getAlumniEventsPage();
+  const { pageData } = await getAlumniEventsPage();
 
   if (!pageData) notFound();
 
-  return <AlumniTemplate pageData={pageData} landingSlug={landingSlug} />;
+  return <AlumniTemplate pageData={pageData} />;
 }

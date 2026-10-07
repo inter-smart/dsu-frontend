@@ -327,7 +327,7 @@ export async function getAlumniBySlug(slug) {
   );
 }
 
-// Fixed-route Alumni pages (/alumni/events, /alumni/newsletter): the Alumni entry
+// Fixed-route Alumni pages (/alumni, /alumni/events, /alumni/newsletter, /alumni/contact): the Alumni entry
 // using the given template -> { pageData, landingSlug }
 // (pageData is null when no such entry is published)
 export async function getAlumniTemplatePage(template) {
@@ -341,10 +341,19 @@ export async function getAlumniTemplatePage(template) {
   };
 }
 
+// /alumni -> the Alumni entry using the "alumni" (Welcome Note) template
+export async function getAlumniLandingPage() {
+  return getAlumniTemplatePage("alumni");
+}
+
 export async function getAlumniEventsPage() {
   return getAlumniTemplatePage("alumni-events");
 }
 
 export async function getAlumniNewsletterPage() {
   return getAlumniTemplatePage("alumni-newsletter");
+}
+
+export async function getAlumniContactPage() {
+  return getAlumniTemplatePage("alumni-contact");
 }
