@@ -231,6 +231,13 @@ export async function getNewsEventBySlug(slug) {
   );
 }
 
+// ── Community Activities ──────────────────────────────────────────────────────
+// Page (single type): { seo, hero, activities: { title, description, items: [...] }, getInvolved }
+// `items` are the News & Events entries with type "Community Activities"
+export async function getCommunityActivitiesPage() {
+  return fetchAPI("/api/community-activities-page", {}, { next: { revalidate: 60 } });
+}
+
 // ── Announcements ─────────────────────────────────────────────────────────────
 // Listing page (single type): { seo, hero, announcement: { title, announcements: [...], pagination } }
 export async function getAnnouncementsPage() {
