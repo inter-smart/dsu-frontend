@@ -91,7 +91,6 @@ export default function page() {
             <InnerHero data={local_data.hero} />
             <AcademicMenubar className="md:!hidden block" /> 
             <AcademicContact data={local_data.contact} />
-            
         </>
     )
 }

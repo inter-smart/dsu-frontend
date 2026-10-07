@@ -319,3 +319,49 @@ export async function getRankingBySlug(slug, category, goal) {
     { next: { revalidate: 60 } },
   );
 }
+
+// ── Alumni (Welcome Note ...) ─────────────────────────────────────────────────
+// Sidebar menu: [{ id, documentId, title, slug, template }]
+export async function getAlumnis() {
+  return fetchAPI("/api/alumnis", {}, { next: { revalidate: 60 } });
+}
+
+// Full page: { title, slug, template, seo, hero, sidebar, alumni, alumniEvents, alumniNewsletter }
+export async function getAlumniBySlug(slug) {
+  return fetchAPI(
+    `/api/alumnis/${encodeURIComponent(slug)}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
+}
+
+// Fixed-route Alumni pages (/alumni, /alumni/events, /alumni/newsletter, /alumni/contact): the Alumni entry
+// using the given template -> { pageData, landingSlug }
+// (pageData is null when no such entry is published)
+export async function getAlumniTemplatePage(template) {
+  const entries = await getAlumnis();
+  const landingSlug = entries?.[0]?.slug || null;
+  const entry = (entries || []).find((e) => e.template === template);
+
+  return {
+    landingSlug,
+    pageData: entry?.slug ? await getAlumniBySlug(entry.slug) : null,
+  };
+}
+
+// /alumni -> the Alumni entry using the "alumni" (Welcome Note) template
+export async function getAlumniLandingPage() {
+  return getAlumniTemplatePage("alumni");
+}
+
+export async function getAlumniEventsPage() {
+  return getAlumniTemplatePage("alumni-events");
+}
+
+export async function getAlumniNewsletterPage() {
+  return getAlumniTemplatePage("alumni-newsletter");
+}
+
+export async function getAlumniContactPage() {
+  return getAlumniTemplatePage("alumni-contact");
+}
