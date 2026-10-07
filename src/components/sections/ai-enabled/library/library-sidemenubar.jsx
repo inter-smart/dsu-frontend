@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLenis } from "lenis/react";
 
 const sidebarMenu = [
   {
@@ -41,6 +42,24 @@ export default function LibrarySidebar({
   data = sidebarMenu,
 }) {
   const pathname = usePathname();
+  const lenis = useLenis();
+
+  // same-page hash links: scroll via Lenis instead of Next's native jump
+  const handleNavClick = (e, href) => {
+    if (!href.includes("#")) return;
+    const [targetPath, hash] = href.split("#");
+    if (targetPath !== pathname) return;
+
+    const target = document.getElementById(hash);
+    if (!target) return;
+    e.preventDefault();
+    if (lenis) {
+      lenis.scrollTo(target, { offset: -100 });
+    } else {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+    window.history.pushState(null, "", href);
+  };
 
   return (
     <>
@@ -97,6 +116,7 @@ export default function LibrarySidebar({
                 >
                   <Link
                     href={href}
+                    onClick={(e) => handleNavClick(e, href)}
                     aria-current={isActive ? "page" : undefined}
                     className="flex items-center justify-between"
                   >

@@ -311,3 +311,18 @@ export async function getRankingBySlug(slug, category, goal) {
     { next: { revalidate: 60 } },
   );
 }
+
+// ── Alumni (Welcome Note ...) ─────────────────────────────────────────────────
+// Sidebar menu: [{ id, documentId, title, slug }]
+export async function getAlumnis() {
+  return fetchAPI("/api/alumnis", {}, { next: { revalidate: 60 } });
+}
+
+// Full page: { title, slug, template, seo, hero, sidebar, alumni }
+export async function getAlumniBySlug(slug) {
+  return fetchAPI(
+    `/api/alumnis/${encodeURIComponent(slug)}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
+}

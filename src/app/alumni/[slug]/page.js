@@ -4,17 +4,16 @@ import { getAlumniBySlug, getAlumnis } from "@/lib/api/index";
 
 export const revalidate = 60;
 
-// /alumni shows the first published Alumni entry (oldest, e.g. Welcome Note)
-async function getLandingPage() {
+export async function generateStaticParams() {
   const entries = await getAlumnis();
-  const landingSlug = entries?.[0]?.slug;
-  if (!landingSlug) return { landingSlug: null, pageData: null };
-
-  return { landingSlug, pageData: await getAlumniBySlug(landingSlug) };
+  return (entries || [])
+    .filter((item) => item.slug)
+    .map((item) => ({ slug: item.slug }));
 }
 
-export async function generateMetadata() {
-  const { pageData } = await getLandingPage();
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const pageData = await getAlumniBySlug(slug);
 
   return {
     title: pageData?.seo?.metaTitle || "Alumni | Dayananda Sagar University",
@@ -25,10 +24,16 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Page() {
-  const { landingSlug, pageData } = await getLandingPage();
+export default async function Page({ params }) {
+  const { slug } = await params;
+  const [pageData, entries] = await Promise.all([
+    getAlumniBySlug(slug),
+    getAlumnis(),
+  ]);
 
   if (!pageData) notFound();
 
-  return <AlumniTemplate pageData={pageData} landingSlug={landingSlug} />;
+  return (
+    <AlumniTemplate pageData={pageData} landingSlug={entries?.[0]?.slug} />
+  );
 }
