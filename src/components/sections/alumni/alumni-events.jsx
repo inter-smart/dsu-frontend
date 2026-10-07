@@ -8,7 +8,6 @@ import LibrarySidebar from "../ai-enabled/library/library-sidemenubar";
 
 export default function AlumniEvents({ data }) {
 
-  console.log(data?.events)
 
   return (
     <section className="w-full h-auto py-[20px_40px] sm:py-[30px_50px] lg:py-[60px_80px] 2xl:py-[70px_100px] 3xl:py-[90px_30px] block relative z-0">

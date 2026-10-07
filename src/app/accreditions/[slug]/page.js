@@ -49,7 +49,6 @@ export default async function Page({ params }) {
     heroMedia: pageData.hero.heroMedia || DEFAULT_HERO_MEDIA,
   };
 
-  console.log("pageData", pageData.template);
 
   return (
     <>

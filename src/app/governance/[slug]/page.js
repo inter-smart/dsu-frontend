@@ -26,8 +26,6 @@ export default async function GovernancePage({ params }) {
     getGovernancePages(),
   ]);
 
-  console.log("pageData", pageData);
-  console.log("governancePages", governancePages);
 
   if (!pageData) return null;
 
