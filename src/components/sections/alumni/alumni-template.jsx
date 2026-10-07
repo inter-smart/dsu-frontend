@@ -1,5 +1,7 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import Alumni from "@/components/sections/alumni/alumni";
+import AlumniEvents from "@/components/sections/alumni/alumni-events";
+import AlumniNewsletter from "@/components/sections/alumni/alumni-newsletter";
 
 const DEFAULT_HERO_MEDIA = {
   url: "/images/faculty-banner.jpg",
@@ -9,8 +11,8 @@ const DEFAULT_HERO_MEDIA = {
 
 // Alumni sub-pages that are not managed in Strapi yet
 const STATIC_SIDEBAR = [
-  { label: "Mission & Vision", slug: "/alumni#mission-vision" },
-  { label: "Alumni Events", slug: "/alumni/events" },
+  { label: "Mission & Vision", slug: "/alumni/alumni#mission-vision" },
+  // { label: "Alumni Events", slug: "/alumni/events" },
   { label: "Alumni Newsletter", slug: "/alumni/newsletter" },
   { label: "Contact", slug: "/alumni/contact" },
 ];
@@ -31,15 +33,26 @@ export default function AlumniTemplate({ pageData, landingSlug }) {
       ...item,
       slug: item.slug === `/alumni/${landingSlug}` ? "/alumni" : item.slug,
     })),
-    ...STATIC_SIDEBAR,
   ];
-
+  // static links not already served by a Strapi entry (e.g. /alumni/events)
+  sidebar.push(
+    ...STATIC_SIDEBAR.filter(
+      (item) => !sidebar.some((s) => s.slug === item.slug),
+    ),
+  );
   return (
     <>
       {hero && <InnerHero data={hero} />}
       {pageData?.template === "alumni" && pageData?.alumni && (
         <Alumni data={{ ...pageData.alumni, sidebar }} />
       )}
-  </>
+      {pageData?.template === "alumni-events" && pageData?.alumniEvents && (
+        <AlumniEvents data={{ ...pageData.alumniEvents, sidebar }} />
+      )}
+      {pageData?.template === "alumni-newsletter" &&
+        pageData?.alumniNewsletter && (
+          <AlumniNewsletter data={{ ...pageData.alumniNewsletter, sidebar }} />
+        )}
+    </>
   );
 }

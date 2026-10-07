@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
 import NewsEventsDetail from "@/components/sections/news-events/news-events-detail";
 import { getNewsEventBySlug, getNewsEvents } from "@/lib/api/index";
@@ -30,6 +30,10 @@ export default async function Page({ params }) {
   const pageData = await getNewsEventBySlug(slug);
 
   if (!pageData) notFound();
+  // Alumni events live under the Alumni section
+  if (pageData.newsEventsDetail?.type === "Alumni") {
+    permanentRedirect(`/alumni/events/${encodeURIComponent(slug)}`);
+  }
 
   return (
     <>
