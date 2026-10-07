@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Text } from "@/components/ui/text";
@@ -5,10 +8,37 @@ import { Heading } from "@/components/ui/heading";
 import { buttonVariants } from "@/components/ui/button";
 import AiAcademicMenubar from "../ai-enabled/Ai-academicMenubar";
 import LibrarySidebar from "../ai-enabled/library/library-sidemenubar";
+import { getAlumniEventsPaged } from "@/lib/api/index";
 
 export default function AlumniEvents({ data }) {
+  const [items, setItems] = useState(data?.events ?? []);
+  const [pagination, setPagination] = useState(data?.pagination ?? null);
+  const [loading, setLoading] = useState(false);
 
-  console.log(data?.events)
+  const hasMore = pagination && pagination.page < pagination.pageCount;
+
+  const loadMore = async () => {
+    if (!hasMore || loading) return;
+    setLoading(true);
+    try {
+      const res = await getAlumniEventsPaged(
+        pagination.page + 1,
+        pagination.pageSize,
+      );
+      if (res?.data && res?.pagination) {
+        setItems((prev) => {
+          const seen = new Set(prev.map((item) => item?.documentId));
+          return [
+            ...prev,
+            ...res.data.filter((item) => !seen.has(item?.documentId)),
+          ];
+        });
+        setPagination(res.pagination);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="w-full h-auto py-[20px_40px] sm:py-[30px_50px] lg:py-[60px_80px] 2xl:py-[70px_100px] 3xl:py-[90px_30px] block relative z-0">
@@ -53,8 +83,11 @@ export default function AlumniEvents({ data }) {
               </div>
               <div className="w-full lg:max-w-[90%] h-auto block">
                 <div className="w-full h-auto gap-2.5 lg:gap-3.75 3xl:gap-5 grid grid-cols-1 sm:grid-cols-2">
-                  {data?.events?.map((item) => (
-                    <div key={item?.id} className="w-full h-auto block">
+                  {items.map((item) => (
+                    <div
+                      key={item?.documentId ?? item?.id}
+                      className="w-full h-auto block"
+                    >
                       <div className="group w-full h-full rounded-md 2xl:rounded-[10px] overflow-hidden block">
                         <div className="w-full h-auto aspect-570/220 overflow-hidden block">
                           {item?.media?.url && (
@@ -82,6 +115,29 @@ export default function AlumniEvents({ data }) {
                     </div>
                   ))}
                 </div>
+                {hasMore && (
+                  <div className="mt-7.5 sm:mt-10 2xl:mt-12.5 flex items-center justify-center">
+                    <button
+                      type="button"
+                      onClick={loadMore}
+                      disabled={loading}
+                      className={buttonVariants({
+                        variant: "default",
+                        size: "default",
+                      })}
+                    >
+                      {loading ? "Loading..." : "Load More"}
+                      <Image
+                        src="/images/icon-btn.svg"
+                        alt=""
+                        width={15}
+                        height={15}
+                        className="size-3.75"
+                        data-icon="inline-end"
+                      />
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

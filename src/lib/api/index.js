@@ -239,26 +239,42 @@ export async function getNewsEventBySlug(slug) {
   );
 }
 
+// ── Community Activities ──────────────────────────────────────────────────────
+// Page (single type): { seo, hero, activities: { title, description, items: [...] }, getInvolved }
+// `items` are the News & Events entries with type "Community Activities"
+export async function getCommunityActivitiesPage() {
+  return fetchAPI("/api/community-activities-page", {}, { next: { revalidate: 60 } });
+}
+
 // ── Announcements ─────────────────────────────────────────────────────────────
 // Listing page (single type): { seo, hero, announcement: { title, announcements: [...], pagination } }
 export async function getAnnouncementsPage() {
   return fetchAPI("/api/announcements-page", {}, { next: { revalidate: 60 } });
 }
 
+// Announcements are News & Event entries with type "Announcement"
 // Announcement cards: [{ id, slug, title, description, announcement_image, link, ... }]
 export async function getAnnouncements() {
-  return fetchAPI("/api/announcements", {}, { next: { revalidate: 60 } });
+  return fetchAPI(
+    "/api/news-events",
+    { type: "Announcement" },
+    { next: { revalidate: 60 } },
+  );
 }
 
 // Paged announcement cards ("Load More"): { data: [card], pagination: { page, pageSize, pageCount, total } }
-export async function getAnnouncementsPaged(page, pageSize = 6) {
-  return fetchAPI("/api/announcements", { page, pageSize }, { cache: "no-store" });
+export async function getAnnouncementsPaged(page, pageSize = 4) {
+  return fetchAPI(
+    "/api/news-events",
+    { type: "Announcement", page, pageSize },
+    { cache: "no-store" },
+  );
 }
 
-// Detail page: { seo, hero, newsEventsDetail } (same shape as News & Events)
+// Detail page: { seo, hero, newsEventsDetail } (same endpoint as News & Events)
 export async function getAnnouncementBySlug(slug) {
   return fetchAPI(
-    `/api/announcements/${encodeURIComponent(slug)}`,
+    `/api/news-events/${encodeURIComponent(slug)}`,
     {},
     { next: { revalidate: 60 } },
   );
@@ -356,6 +372,15 @@ export async function getAlumniLandingPage() {
 
 export async function getAlumniEventsPage() {
   return getAlumniTemplatePage("alumni-events");
+}
+
+// Paged Alumni event cards ("Load More"): { data: [card], pagination: { page, pageSize, pageCount, total } }
+export async function getAlumniEventsPaged(page, pageSize = 6) {
+  return fetchAPI(
+    "/api/news-events",
+    { type: "Alumni", page, pageSize },
+    { cache: "no-store" },
+  );
 }
 
 export async function getAlumniNewsletterPage() {

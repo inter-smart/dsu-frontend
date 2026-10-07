@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
 import NewsEventsDetail from "@/components/sections/news-events/news-events-detail";
 import { getAnnouncementBySlug, getAnnouncements } from "@/lib/api/index";
@@ -30,6 +30,12 @@ export default async function Page({ params }) {
   const pageData = await getAnnouncementBySlug(slug);
 
   if (!pageData) notFound();
+  // only News & Event entries with type "Announcement" belong here
+  if (pageData.newsEventsDetail?.type !== "Announcement") {
+    permanentRedirect(pageData.newsEventsDetail?.type === "Alumni"
+      ? `/alumni/events/${encodeURIComponent(slug)}`
+      : `/news-events/${encodeURIComponent(slug)}`);
+  }
 
   return (
     <>
