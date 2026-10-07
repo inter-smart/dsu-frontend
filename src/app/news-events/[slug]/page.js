@@ -34,6 +34,10 @@ export default async function Page({ params }) {
   if (pageData.newsEventsDetail?.type === "Alumni") {
     permanentRedirect(`/alumni/events/${encodeURIComponent(slug)}`);
   }
+  // Announcements live under /announcements
+  if (pageData.newsEventsDetail?.type === "Announcement") {
+    permanentRedirect(`/announcements/${encodeURIComponent(slug)}`);
+  }
 
   return (
     <>
