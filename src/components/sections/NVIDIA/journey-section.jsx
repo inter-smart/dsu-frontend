@@ -67,7 +67,7 @@ export default function JourneySection({ data }) {
     const stages = journeyData?.stages && journeyData.stages.length > 0 ? journeyData.stages : defaultData.stages;
 
     return (
-        <section className="relative py-[40px] md:py-[60px] xl:py-[80px] 2xl:py-[100px] bg-white dark:bg-[#0c0c0e] overflow-hidden">
+        <section className="relative py-[40px] md:py-[60px] xl:py-[80px] 2xl:py-[100px] bg-white dark:bg-black overflow-hidden">
             <div className="container">
                 {/* Heading & Subtitle */}
                 <div className="text-center max-w-[900px] mx-auto mb-[35px] sm:mb-[45px] xl:mb-[60px]">
@@ -170,7 +170,7 @@ export default function JourneySection({ data }) {
                                                         className="flex items-start gap-3 sm:gap-3.5"
                                                     >
                                                         {/* Checkmark Icon Circle */}
-                                                        <div className="w-[25px] h-[25px] sm:w-[28px] sm:h-[28px] lg:w-[35px] lg:h-[35px] rounded-full p-[6px] lg:p-[10px] bg-[#F5EBE4] dark:bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                                                        <div className="w-[25px] h-[25px] sm:w-[28px] sm:h-[28px] lg:w-[35px] lg:h-[35px] rounded-full p-[6px] lg:p-[10px] bg-[#F5EBE4] dark:bg-white/90 flex items-center justify-center shrink-0 mt-0.5">
                                                             <svg   viewBox="0 0 18 16" fill="none"  >
                                                                 <path d="M7.99949 15.4493C7.94644 15.4493 7.89396 15.4383 7.84536 15.417C7.79675 15.3958 7.75308 15.3647 7.71707 15.3257L0.102184 7.0886C0.0514209 7.03368 0.0177684 6.96516 0.00534479 6.89142C-0.0070788 6.81767 0.00226539 6.74191 0.0322339 6.67339C0.0622023 6.60487 0.111495 6.54658 0.174079 6.50564C0.236663 6.46471 0.309824 6.44291 0.384607 6.4429H4.04999C4.10502 6.44291 4.15942 6.45472 4.2095 6.47754C4.25958 6.50036 4.30418 6.53365 4.3403 6.57517L6.88522 9.50302C7.16026 8.9151 7.69268 7.93617 8.62699 6.74333C10.0082 4.97987 12.5774 2.38637 16.9729 0.0451344C17.0579 -0.000107137 17.1567 -0.0118491 17.2499 0.0122272C17.3431 0.0363035 17.4239 0.0944478 17.4763 0.175179C17.5287 0.25591 17.5489 0.353359 17.533 0.448285C17.5171 0.54321 17.4661 0.62871 17.3902 0.687904C17.3735 0.701019 15.6787 2.03563 13.7282 4.48021C11.9331 6.72983 9.54691 10.4083 8.37272 15.1571C8.3521 15.2406 8.30412 15.3147 8.23645 15.3677C8.16878 15.4206 8.08532 15.4494 7.99938 15.4494L7.99949 15.4493Z" fill="#212121" />
                                                             </svg>

@@ -4,6 +4,11 @@ import JourneySection from "@/components/sections/NVIDIA/journey-section"
 import StackSection from "@/components/sections/NVIDIA/stack-section"
 import TechnologySection from "@/components/sections/NVIDIA/technology-section"
 import AiTrainingSection from "@/components/sections/NVIDIA/ai-training-section"
+import AiTools from "@/components/sections/NVIDIA/ai-Tools"
+import BuildSection from "@/components/sections/NVIDIA/build-section"
+import WhysetupSection from "@/components/sections/NVIDIA/Whysetup-Section"
+import GatewaySection from "@/components/sections/NVIDIA/gateway-section"
+import MasterAi from "@/components/sections/NVIDIA/MasterAi"
 
 
 const local_data = {
@@ -603,9 +608,325 @@ const local_data = {
                 },
             ],
         },
-    }
+    },
+    build: {
+        heading: "What You'll Build Here",
+        description: [
+            {
+                type: "paragraph",
+                children: [
+                    {
+                        type: "text",
+                        text: "Real projects with real impact, using real technology",
+                    },
+                ],
+            },
+        ],
+        projects: [
+            {
+                id: 1,
+                title: "Autonomous Robots",
+                description: "Build robots that see, learn, and decide using edge AI",
+                icon: {
+                    alternativeText: "Robot icon",
+                    mime: "image/svg+xml",
+                    url: "/images/build_icon-1.svg",
+                },
+                media: {
+                    alternativeText: "Humanoid robot being examined by students in a lab",
+                    mime: "image/jpg",
+                    url: "/images/build-1.jpg",
+                },
+            },
+            {
+                id: 2,
+                title: "Medical AI",
+                description: "Analyze medical images and predict diagnoses",
+                icon: {
+                    alternativeText: "Medical cross icon",
+                    mime: "image/svg+xml",
+                    url: "/images/build_icon-2.svg",
+                },
+                media: {
+                    alternativeText: "Student working with medical imaging data",
+                    mime: "image/jpg",
+                    url: "/images/build-2.jpg",
+                },
+            },
+            {
+                id: 3,
+                title: "Natural Language",
+                description: "Train and deploy large language models",
+                icon: {
+                    alternativeText: "Chat bubble icon",
+                    mime: "image/svg+xml",
+                    url: "/images/build_icon-3.svg",
+                },
+                media: {
+                    alternativeText: "Students discussing natural language processing on screen",
+                    mime: "image/jpg",
+                    url: "/images/build-3.jpg",
+                },
+            },
+            {
+                id: 4,
+                title: "Computer Vision",
+                description: "Build systems that understand video & images",
+                icon: {
+                    alternativeText: "Eye/camera icon",
+                    mime: "image/svg+xml",
+                    url: "/images/build_icon-4.svg",
+                },
+                media: {
+                    alternativeText: "Students working on computer vision hardware and screens",
+                    mime: "image/jpg",
+                    url: "/images/build-4.jpg",
+                },
+            },
+            {
+                id: 5,
+                title: "Data Science",
+                description: "Process and analyze massive datasets instantly",
+                icon: {
+                    alternativeText: "Chart/graph icon",
+                    mime: "image/svg+xml",
+                    url: "/images/build_icon-5.svg",
+                },
+                media: {
+                    alternativeText: "Students analyzing data on a laptop",
+                    mime: "image/jpg",
+                    url: "/images/build-5.jpg",
+                },
+            },
+            {
+                id: 6,
+                title: "Industry Research",
+                description: "Partner with companies on real problems",
+                icon: {
+                    alternativeText: "Research/lab icon",
+                    mime: "image/svg+xml",
+                    url: "/images/build_icon-6.svg",
+                },
+                media: {
+                    alternativeText: "Student working on industry research with mentor",
+                    mime: "image/jpg",
+                    url: "/images/build-6.jpg",
+                },
+            },
+        ],
+    },
+    whySetup: {
+        heading: "Why This Setup Matters",
+        description: [
+            {
+                type: "paragraph",
+                children: [
+                    {
+                        type: "text",
+                        text: "This infrastructure bridges rigorous academic foundations with production-scale AI systems used in global research and industry.",
+                    },
+                ],
+            },
+        ],
+        media: {
+            alternativeText: "Dark circuit board background with glowing blue connections",
+            mime: "image/jpg",
+            url: "/images/why-nvidia.jpg",
+        },
+        cards: [
+            {
+                id: 1,
+                icon: {
+                    alternativeText: "Graduation cap icon",
+                    mime: "image/svg+xml",
+                    url: "/images/why_icon1.svg",
+                },
+                title: "For Your Learning",
+                list: [
+                    { id: 1, label: "You learn on the same tools used by AI researchers at leading universities and companies worldwide." },
+                    { id: 2, label: "When you graduate, you'll have hands-on experience with production-grade infrastructure." },
+                    { id: 3, label: "No 're-learning' new tools—you're already proficient in what matters most." },
+                ],
+            },
+            {
+                id: 2,
+                icon: {
+                    alternativeText: "Briefcase icon",
+                    mime: "image/svg+xml",
+                    url: "/images/why_icon2.svg",
+                },
+                title: "For Your Career",
+                list: [
+                    { id: 1, label: "Leading AI companies prioritize hiring engineers with hands-on NVIDIA experience." },
+                    { id: 2, label: "Build a portfolio of real AI projects on enterprise hardware." },
+                    { id: 3, label: "Network with industry professionals and researchers who collaborate with DSU." },
+                ],
+            },
+        ],
+    },
+    gateWay: {
+        heading: "Your Gateway to Top Placements",
+        description: [
+            {
+                type: "paragraph",
+                children: [
+                    {
+                        type: "text",
+                        text: "This infrastructure isn't just impressive—it directly transforms your career prospects and placement outcomes.",
+                    },
+                ],
+            },
+        ],
+        columns: [
+            {
+                id: 1,
+                heading: "What Employers Want",
+                points: [
+                    {
+                        id: 1,
+                        title: "Hands-on NVIDIA Experience",
+                        description: "Experience with CUDA, DGX systems, and GPU-accelerated workflows used across the AI industry",
+                    },
+                    {
+                        id: 2,
+                        title: "Production-Ready Skills",
+                        description: "Exposure to real training, inference, optimization, and deployment pipelines",
+                    },
+                    {
+                        id: 3,
+                        title: "Demonstrated Capability",
+                        description: "Portfolio projects trained and deployed on enterprise-grade NVIDIA infrastructure",
+                    },
+                ],
+            },
+            {
+                id: 2,
+                heading: "Your Competitive Advantage",
+                points: [
+                    {
+                        id: 1,
+                        title: "Immediate Job Readiness",
+                        description: "While peers are learning tools on the job, you're already proficient—hiring managers value candidates who can contribute from day one",
+                    },
+                    {
+                        id: 2,
+                        title: "Higher Compensation",
+                        description: "NVIDIA-certified and GPU-experienced engineers often command significantly higher compensation in the AI industry",
+                    },
+                    {
+                        id: 3,
+                        title: "Exclusive Opportunities",
+                        description: "Leading AI companies such as Google, Meta, Microsoft, and others actively recruit from universities with advanced GPU infrastructure",
+                    },
+                ],
+            },
+        ],
+        graduates: {
+            heading: "Why DSU Graduates Stand Out",
+            points: [
+                {
+                    id: 1,
+                    icon: {
+                        alternativeText: "Gear/target icon representing targeted skills",
+                        mime: "image/svg+xml",
+                        url: "/images/graduate-1.svg",
+                    },
+                    title: "Targeted Skills",
+                    description: "You learn exactly what industry needs, not what textbooks say",
+                },
+                {
+                    id: 2,
+                    icon: {
+                        alternativeText: "Server stack icon representing real scale",
+                        mime: "image/svg+xml",
+                        url: "/images/graduate-2.svg",
+                    },
+                    title: "Real Scale",
+                    description: "Experience with infrastructure that handles real AI workloads, not simulations",
+                },
+                {
+                    id: 3,
+                    icon: {
+                        alternativeText: "Shield/badge icon representing proven track record",
+                        mime: "image/svg+xml",
+                        url: "/images/graduate-3.svg",
+                    },
+                    title: "Proven Track Record",
+                    description: "Your projects are proof of capability—not just theory",
+                },
+                {
+                    id: 4,
+                    icon: {
+                        alternativeText: "Person with flag icon representing first-mover advantage",
+                        mime: "image/svg+xml",
+                        url: "/images/graduate-4.svg",
+                    },
+                    title: "First-Mover Advantage",
+                    description: "Few Indian universities have this. You're competing with elite peers globally",
+                },
+            ],
+        },
+        recruitment: {
+            heading: "The Recruitment Pipeline",
+            description: [
+                {
+                    type: "paragraph",
+                    children: [
+                        {
+                            type: "text",
+                            text: "DSU's NVIDIA-powered ecosystem creates a clear pathway from learning to recruitment.",
+                        },
+                    ],
+                },
+            ],
+            steps: [
+                {
+                    id: 1,
+                    number: "01",
+                    title: "Industry Partnerships",
+                    description: "DSU's NVIDIA partnership attracts direct recruitment from AI teams at major companies",
+                },
+                {
+                    id: 2,
+                    number: "02",
+                    title: "Research Opportunities",
+                    description: "Collaborate on real industry problems → Paper publications → Fast-track interviews",
+                },
+                {
+                    id: 3,
+                    number: "03",
+                    title: "Portfolio Projects",
+                    description: "Train models on DGX B200 → Deploy on Jetson → Showcase on your resume",
+                },
+                {
+                    id: 4,
+                    number: "04",
+                    title: "Expert Network",
+                    description: "Learn from visiting NVIDIA researchers and industry partners → Build professional relationships",
+                },
+            ],
+        },
+        note:
+        {
+            description: "Top AI companies recruit from universities with world-class infrastructure. Your degree from DSU isn't just a credential—it's proof that you've mastered the tools and infrastructure used by leading AI teams. That significantly strengthens your placement outcomes.",
+
+        },
+    },
+    readySection: {
+        title: "Ready to Master AI?",
+        description:
+            "This is the infrastructure. This is the opportunity. The question is: what will you build?",
+        image: {
+            url: "/images/masterAi.jpg",
+            alternativeText: "Ready to build your future with AI",
+        },
+        ctas: [
+            { label: "Explore AI First @DSU", href: "#", variant: "white" },
+            { label: "View All Programs", href: "#", variant: "gradient" },
+        ],
+    },
 }
-export default function page() {
+export default function page() {            
     return (
         <>
             <BannerSection data={local_data.heroBanner} />
@@ -614,7 +935,12 @@ export default function page() {
             <StackSection data={local_data.nvidiaAiStackSection} />
             <JourneySection data={local_data.JourneySection} />
             <AiTrainingSection data={local_data.AiTraining} />
-            
+            <AiTools data={local_data.aiTools} />
+            <BuildSection data={local_data.build} />
+            <WhysetupSection data={local_data.whySetup} />
+            <GatewaySection data={local_data.gateWay} />
+            <MasterAi data={local_data.readySection}/>
+
         </>
     )
 }
