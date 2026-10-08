@@ -915,18 +915,18 @@ const local_data = {
     readySection: {
         title: "Ready to Master AI?",
         description:
-            "The future is intelligent. And it is being built at DSU. Be part of India's AI revolution. Start your application today and take the first step towards a bright future.",
+            "This is the infrastructure. This is the opportunity. The question is: what will you build?",
         image: {
-            url: "/images/ai-first/ready-bg.jpg",
+            url: "/images/masterAi.jpg",
             alternativeText: "Ready to build your future with AI",
         },
         ctas: [
-            { label: "Apply For Admission", href: "#", variant: "white" },
-            { label: "Virtual Tour", href: "#", variant: "gradient" },
+            { label: "Explore AI First @DSU", href: "#", variant: "white" },
+            { label: "View All Programs", href: "#", variant: "gradient" },
         ],
     },
 }
-export default function page() {
+export default function page() {            
     return (
         <>
             <BannerSection data={local_data.heroBanner} />

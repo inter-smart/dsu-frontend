@@ -228,7 +228,7 @@ export default function AiTools({ data }) {
                             {/* Left Side: Orange CUDA Icon + Title & Description */}
                             <div className="flex flex-wrap items-start gap-[16px] sm:gap-[20px] xl:gap-[24px] w-full lg:w-[50%] xl:w-[48%]">
                                 {/* Orange Rounded Square with White </> Symbol */}
-                                <div className="w-[60px] h-[55px] sm:w-[90px] sm:h-[90px] xl:w-[98px] xl:h-[98px] 2xl:w-[104px] 2xl:h-full shrink-0 rounded-[8px] xl:rounded-[10px] bg-[#F97316] flex items-center justify-center   transition-transform duration-300 hover:scale-105">
+                                <div className="w-[60px] h-[55px] sm:w-[90px] sm:h-[90px] xl:w-[98px] xl:h-[98px] 2xl:w-[104px] 2xl:h-[100px] shrink-0 rounded-[8px] xl:rounded-[10px] bg-[#F97316] flex items-center justify-center   transition-transform duration-300 hover:scale-105">
                                     <Image
                                         src={cuda?.icon?.url || "/images/cuda.svg"}
                                         alt={cuda?.icon?.alternativeText || "CUDA"}

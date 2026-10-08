@@ -140,7 +140,7 @@ export default function BuildSection({ data }) {
     };
 
     return (
-        <section className="relative py-[40px] md:py-[70px] lg:py-[90px] xl:py-[100px] 2xl:py-[120px] bg-[#FFF9F2] dark:bg-[#0c0c0e] overflow-hidden">
+        <section className="relative py-[40px] md:py-[70px] lg:py-[90px] xl:py-[100px] 2xl:py-[120px] bg-[#FFF9F2] dark:bg-[#000] overflow-hidden">
             <div className="container">
                 {/* Header: Title & Subtitle with Header Nav Controls */}
                 <div className="relative text-center max-w-[850px] mx-auto mb-[25px] sm:mb-[35px] xl:mb-[45px] 3xl:mb-[65px]">

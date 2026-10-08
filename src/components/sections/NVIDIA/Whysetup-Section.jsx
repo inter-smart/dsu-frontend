@@ -47,7 +47,7 @@ export default function WhysetupSection({ data }) {
                                         content={data?.description}
                                         blocks={{
                                             paragraph: ({ children }) => (
-                                                <p className="!my-0   leading-relaxed !text-white">
+                                                <p className="!my-0 leading-relaxed !text-white">
                                                     {children}
                                                 </p>
                                             ),
@@ -123,7 +123,7 @@ export default function WhysetupSection({ data }) {
                                     pauseOnMouseEnter: true,
                                 }}
                                 breakpoints={{
-                                    1024: {
+                                    1200: {
                                         slidesPerView: 2,
                                         spaceBetween: 50,
                                     },
@@ -146,7 +146,7 @@ export default function WhysetupSection({ data }) {
                                         key={cards.id || idx}
                                         className="!h-auto select-none"
                                     >
-                                        <div className="w-full h-full p-[30px] rounded-[10px] bg-[linear-gradient(180deg,rgba(255,248,238,0.90)_0%,rgba(255,243,224,0.90)_100%)]">
+                                        <div className="w-full h-full p-[30px] rounded-[10px] bg-[linear-gradient(180deg,rgba(255,248,238,0.90)_0%,rgba(255,243,224,0.90)_100%)] dark:bg-[linear-gradient(180deg,rgba(24,25,27,0.92)_0%,rgba(16,16,16,0.92)_100%)] dark:border dark:border-white/10">
                                             {cards.icon && (
                                                 <div className="w-[36px] h-[36px] lg:w-[42px] lg:h-[42px] 2xl:w-[52px] 2xl:h-[52px] 3xl:w-[62px] 3xl:h-[62px] mb-[15px]">
                                                     <Image
@@ -159,7 +159,7 @@ export default function WhysetupSection({ data }) {
                                                 </div>
                                             )}
                                             {cards.title && (
-                                                <div className="cmn_Txt text-[#212121] font-semibold mb-[15px]">
+                                                <div className="cmn_Txt text-[#212121] dark:text-white font-semibold mb-[15px]">
                                                     {cards.title}
                                                 </div>
                                             )}
@@ -169,9 +169,9 @@ export default function WhysetupSection({ data }) {
 
                                                         <li key={point.id} className="flex items-center gap-[12px] xl:gap-[14px] group">
                                                             {/* Peach Circle Badge with Orange Checkmark */}
-                                                            <span className="w-[23px] h-[23px] xl:w-[25px] xl:h-[25px] rounded-full bg-[#FFEFE2] dark:bg-[#F97316]/20 p-[4px] border border-[#212121]/20 flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
+                                                            <span className="w-[23px] h-[23px] xl:w-[25px] xl:h-[25px] rounded-full bg-[#FFEFE2] dark:bg-[#F97316]/20 p-[4px] border border-[#212121]/20 dark:border-white/20 flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
                                                                 <svg className="w-full h-full object-contain" viewBox="0 0 16 16" fill="none"  >
-                                                                    <path d="M7.02525 13.4934C6.98486 13.4934 6.94492 13.485 6.90792 13.4688C6.87092 13.4526 6.83766 13.429 6.81025 13.3993L1.01334 7.1287C0.974692 7.08689 0.949073 7.03473 0.939616 6.97859C0.930158 6.92245 0.937271 6.86477 0.960085 6.81262C0.982899 6.76046 1.02042 6.71608 1.06807 6.68492C1.11571 6.65376 1.1714 6.63716 1.22833 6.63716H4.01865C4.06054 6.63716 4.10195 6.64615 4.14007 6.66352C4.1782 6.68089 4.21215 6.70624 4.23965 6.73785L6.177 8.9667C6.38638 8.51914 6.79169 7.77392 7.50294 6.86586C8.55442 5.5234 10.5102 3.54907 13.8564 1.76678C13.921 1.73234 13.9963 1.7234 14.0672 1.74173C14.1382 1.76006 14.1997 1.80432 14.2396 1.86578C14.2795 1.92724 14.2949 2.00142 14.2827 2.07368C14.2706 2.14595 14.2318 2.21103 14.1741 2.2561C14.1613 2.26608 12.8711 3.28207 11.3863 5.14303C10.0198 6.85558 8.20325 9.65585 7.30938 13.271C7.29368 13.3345 7.25715 13.3909 7.20564 13.4312C7.15413 13.4716 7.09059 13.4935 7.02516 13.4935L7.02525 13.4934Z" fill="#212121"     />
+                                                                    <path d="M7.02525 13.4934C6.98486 13.4934 6.94492 13.485 6.90792 13.4688C6.87092 13.4526 6.83766 13.429 6.81025 13.3993L1.01334 7.1287C0.974692 7.08689 0.949073 7.03473 0.939616 6.97859C0.930158 6.92245 0.937271 6.86477 0.960085 6.81262C0.982899 6.76046 1.02042 6.71608 1.06807 6.68492C1.11571 6.65376 1.1714 6.63716 1.22833 6.63716H4.01865C4.06054 6.63716 4.10195 6.64615 4.13007 6.66352C4.1782 6.68089 4.21215 6.70624 4.23965 6.73785L6.177 8.9667C6.38638 8.51914 6.79169 7.77392 7.50294 6.86586C8.55442 5.5234 10.5102 3.54907 13.8564 1.76678C13.921 1.73234 13.9963 1.7234 14.0672 1.74173C14.1382 1.76006 14.1997 1.80432 14.2396 1.86578C14.2795 1.92724 14.2949 2.00142 14.2827 2.07368C14.2706 2.14595 14.2318 2.21103 14.1741 2.2561C14.1613 2.26608 12.8711 3.28207 11.3863 5.14303C10.0198 6.85558 8.20325 9.65585 7.30938 13.271C7.29368 13.3345 7.25715 13.3909 7.20564 13.4312C7.15413 13.4716 7.09059 13.4935 7.02516 13.4935L7.02525 13.4934Z" className="fill-[#212121] dark:fill-white" />
                                                                 </svg>
                                                             </span>
 
