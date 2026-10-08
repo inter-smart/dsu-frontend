@@ -164,18 +164,29 @@ export async function getProgrammeBySlug(slug) {
 }
 
 // ── Faculty Members ───────────────────────────────────────────────────────────
-export async function getFacultyList(filters = {}) {
-  const params = new URLSearchParams(filters).toString();
+// Listing page (single type): { seo, hero, facultyListing: { filters, faculty, pagination } }
+export async function getFacultyDirectoryPage() {
   return fetchAPI(
-    `/api/faculty-members${params ? "?" + params : ""}`,
+    "/api/faculty-directory-page",
     {},
     { next: { revalidate: 60 } },
   );
 }
 
+// Paged faculty cards (search / filters / "Load More"):
+// { data: [card], pagination: { page, pageSize, pageCount, total, showing } }
+export async function getFacultyList(filters = {}) {
+  const params = Object.fromEntries(
+    Object.entries(filters).filter(
+      ([, value]) => value !== undefined && value !== null && value !== "",
+    ),
+  );
+  return fetchAPI("/api/faculties", params, { cache: "no-store" });
+}
+
 export async function getFacultyBySlug(slug) {
   return fetchAPI(
-    `/api/faculty-members/${slug}`,
+    `/api/faculties/${encodeURIComponent(slug)}`,
     {},
     { next: { revalidate: 60 } },
   );

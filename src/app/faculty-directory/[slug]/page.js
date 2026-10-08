@@ -1,40 +1,42 @@
+import { notFound } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
-import FacultyDetail from "@/components/sections/faculty/faculty-detail";
+import FacultyPublications from "@/components/sections/faculty/faculty-publications";
+import FacultyAchievements from "@/components/sections/faculty/faculty-achievements";
+import FacultyProfessorInfo from "@/components/sections/faculty/faculty-professor-info";
+import { getFacultyBySlug } from "@/lib/api/index";
 
-const local_data = {
-  hero: {
-    id: 25,
-    heroMedia: {
-      url: "/images/faculty-banner.jpg",
-      alternativeText: "Faculty Directory",
-      mime: "image/jpg",
-    },
-    title: "Faculty Directory",
-    breadcrumb: [
-      {
-        label: "Home",
-        href: "/",
-      },
-      {
-        label: "AI Enabled Academics",
-        href: "/",
-      },
-      {
-        label: "Faculty Directory",
-        href: "/",
-      },
-      {
-        label: "Detail",
-      },
-    ],
-  },
-};
+export const revalidate = 60;
 
-export default function page({ data }) {
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const pageData = await getFacultyBySlug(slug);
+
+  return {
+    title: pageData?.seo?.metaTitle || undefined,
+    description: pageData?.seo?.metaDescription || undefined,
+    alternates: pageData?.seo?.canonicalUrl
+      ? { canonical: pageData.seo.canonicalUrl }
+      : undefined,
+  };
+}
+
+export default async function Page({ params }) {
+  const { slug } = await params;
+  const pageData = await getFacultyBySlug(slug);
+
+  if (!pageData) notFound();
+
+  const publications = pageData.facultyPublications;
+  const achievements = pageData.facultyAchievements;
+
   return (
     <>
-      <InnerHero data={local_data?.hero} />
-      <FacultyDetail data={local_data?.facultyDetail} />
+      {pageData.hero && <InnerHero data={pageData.hero} />}
+      <FacultyProfessorInfo data={pageData.professorInfo} />
+      {(publications?.description || publications?.publications?.length > 0) && (
+        <FacultyPublications data={publications} />
+      )}
+      {achievements?.description && <FacultyAchievements data={achievements} />}
     </>
   );
 }

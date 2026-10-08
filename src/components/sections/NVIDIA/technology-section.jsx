@@ -6,24 +6,24 @@ export default function TechnologySection({ data }) {
     const [imageError, setImageError] = useState(false);
 
     return (
-        <section className="relative py-[40px] md:py-[70px] lg:py-[90px] xl:py-[100px] 2xl:py-[120px] bg-white overflow-hidden">
+        <section className="relative py-[40px] md:py-[70px] lg:py-[90px] xl:py-[100px] 2xl:py-[120px] bg-white dark:bg-[#101010] overflow-hidden">
             <div className="container mx-auto px-4 md:px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row   justify-between gap-[35px] md:gap-[50px] lg:gap-[60px] xl:gap-[80px]">
 
                     {/* Left Column - Tech Stack Diagram Card */}
                     <div className="w-full lg:w-1/2 xl:w-[54%]">
-                        <div className="relative w-full h-full overflow-hidden rounded-[8px]">
+                        <div className="relative w-full h-full overflow-hidden rounded-[8px] dark:ring-1 dark:ring-white/10">
                             <Image src={data?.media?.url} className="w-full h-full object-cover" width={680} height={350} alt={data?.media?.alternativeText}/>
                         </div>
                     </div>
 
                     {/* Right Column - Title, Subtitle, & Features List */}
                     <div className="w-full lg:w-1/2 xl:w-[46%]">
-                        <h2 className="cmn_Title mb-[15px] xl:mb-[20px] 2xl:mb-[30px] 3xl:mb-[35px] lg:max-w-[300px] xl:max-w-[380px] 2xl:max-w-[480px] 3xl:max-w-[580px]">
+                        <h2 className="cmn_Title dark:text-white mb-[15px] xl:mb-[20px] 2xl:mb-[30px] 3xl:mb-[35px] lg:max-w-[300px] xl:max-w-[380px] 2xl:max-w-[480px] 3xl:max-w-[580px]">
                             {data?.heading || "The Technology Behind Your AI Future"}
                         </h2>
 
-                        <p className="text_1 mb-[15px]">
+                        <p className="text_1 dark:text-[#9CA3AF] mb-[15px]">
                             {data?.subheading || "NVIDIA technology and DSU's world-class infrastructure empower every student to build, train, deploy and innovate."}
                         </p>
 
@@ -40,7 +40,7 @@ export default function TechnologySection({ data }) {
                                     </div>
 
                                     {/* Item Label */}
-                                    <span className="text-[13px] md:text-[14px] lg:text-[18px] xl:text-[20px] 3xl:text-[23px] font-bold text-[#1F2937] tracking-tight">
+                                    <span className="text-[13px] md:text-[14px] lg:text-[18px] xl:text-[20px] 3xl:text-[23px] font-bold text-[#1F2937] dark:text-white tracking-tight">
                                         {item.title}
                                     </span>
                                 </div>
