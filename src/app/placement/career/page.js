@@ -1,6 +1,7 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import CareerGoal from "@/components/sections/placements/Career-Goal";
 import CareerJourney from "@/components/sections/placements/Career-journey";
+import CareerPartners from "@/components/sections/placements/Career-Partners";
 import CareerPlacement from "@/components/sections/placements/Career-Placement";
 import IntershipSupport from "@/components/sections/placements/intership-support";
 import KeyFocus from "@/components/sections/placements/Key-Focus";
@@ -503,7 +504,94 @@ const local_data = {
                 description: "Specialised certifications aligned with individual programmes and career pathways.",
             },
         ],
-    }
+    },
+    partnersSection: {
+        label: "Certification Partners",
+        partners: [
+            {
+                id: 1,
+                name: "Infosys",
+                logo: {
+                    alternativeText: "Infosys logo",
+                    mime: "image/svg+xml",
+                    url: "/images/partner-1.png",
+                },
+            },
+            {
+                id: 2,
+                name: "Wipro",
+                logo: {
+                    alternativeText: "Wipro logo",
+                    mime: "image/svg+xml",
+                    url: "/images/partner-2.png",
+                },
+            },
+            {
+                id: 3,
+                name: "NVIDIA",
+                logo: {
+                    alternativeText: "NVIDIA logo",
+                    mime: "image/svg+xml",
+                    url: "/images/partner-3.png",
+                },
+            },
+            {
+                id: 4,
+                name: "Accenture",
+                logo: {
+                    alternativeText: "Accenture logo",
+                    mime: "image/svg+xml",
+                    url: "/images/partner-4.png",
+                },
+            },
+            {
+                id: 5,
+                name: "Zoho",
+                logo: {
+                    alternativeText: "Zoho logo",
+                    mime: "image/svg+xml",
+                    url: "/images/partner-5.png",
+                },
+            },
+            {
+                id: 6,
+                name: "TCS",
+                logo: {
+                    alternativeText: "Tata Consultancy Services logo",
+                    mime: "image/svg+xml",
+                    url: "/images/partner-6.png",
+                },
+            },
+            {
+                id: 7,
+                name: "TCS",
+                logo: {
+                    alternativeText: "Tata Consultancy Services logo",
+                    mime: "image/svg+xml",
+                    url: "/images/partner-7.png",
+                },
+            },
+            {
+                id: 8,
+                name: "TCS",
+                logo: {
+                    alternativeText: "Tata Consultancy Services logo",
+                    mime: "image/svg+xml",
+                    url: "/images/partner-8.png",
+                },
+            },
+            {
+                id: 9,
+                name: "TCS",
+                logo: {
+                    alternativeText: "Tata Consultancy Services logo",
+                    mime: "image/svg+xml",
+                    url: "/images/partner-9.png",
+                },
+            },
+
+        ],
+    },
 
 }
 
@@ -517,6 +605,7 @@ export default function page() {
             <CareerGoal data={local_data.careerGoal} />
             <CampusDrives data={local_data.campusDrive} />
             <ProfessionalCertification data={local_data.professional} />
+            <CareerPartners data={local_data.partnersSection} />
             <CareerJourney data={local_data.careerJorney} />
 
         </>
