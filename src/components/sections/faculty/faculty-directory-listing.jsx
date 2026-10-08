@@ -15,7 +15,7 @@ import { getFacultyList } from "@/lib/api/index";
 const PAGE_SIZE = 9;
 
 // Strapi data ({ filters, faculty, pagination }): search, filters and "Load More" run
-// in the backend via GET /api/faculties, filter values are ids.
+// in the backend via GET /api/faculties, filter values are slugs.
 // `local_data` fallback ({ facalties }): everything runs in the browser, values are labels.
 export default function FacultyDirectoryListing({ data }) {
   const isServer = Boolean(data?.pagination);
@@ -28,28 +28,27 @@ export default function FacultyDirectoryListing({ data }) {
           category: group.category,
         })),
       );
+  // chip counts are worked out below (`categoryChips`) from the current filters
   const categories = isServer
     ? [
-        { value: "", label: "All", count: data.filters?.total ?? 0 },
+        { value: "", label: "All" },
         ...(data.filters?.categories ?? []).map((category) => ({
-          value: category.id,
+          value: category.slug,
           label: category.label,
-          count: category.count,
         })),
       ]
     : [
-        { value: "", label: "All", count: facultyMembers.length },
+        { value: "", label: "All" },
         ...(data?.facalties ?? []).map((group) => ({
           value: group.category.label,
           label: group.category.label,
-          count: group.faculty.length,
         })),
       ];
   const departments = isServer
     ? (data.filters?.departments ?? []).map((school) => ({
         name: school.name,
         children: school.children.map((child) => ({
-          value: child.id,
+          value: child.slug,
           label: child.name,
         })),
       }))
@@ -71,7 +70,7 @@ export default function FacultyDirectoryListing({ data }) {
       );
   const expertiseAreas = isServer
     ? (data.filters?.expertiseAreas ?? []).map((area) => ({
-        value: area.id,
+        value: area.slug,
         label: area.title,
       }))
     : Array.from(
@@ -97,6 +96,17 @@ export default function FacultyDirectoryListing({ data }) {
   const [items, setItems] = useState(data?.faculty ?? []);
   const [pagination, setPagination] = useState(data?.pagination ?? null);
   const [loading, setLoading] = useState(false);
+  // chip counts for the current search / department / expertise ({ total, bySlug });
+  // starts from the page's full counts, replaced by each page-1 response's `counts`
+  const [categoryCounts, setCategoryCounts] = useState(() => ({
+    total: data?.filters?.total ?? 0,
+    bySlug: Object.fromEntries(
+      (data?.filters?.categories ?? []).map((category) => [
+        category.slug,
+        category.count,
+      ]),
+    ),
+  }));
   const requestId = useRef(0);
 
   const filterParams = {
@@ -131,6 +141,17 @@ export default function FacultyDirectoryListing({ data }) {
           ];
         });
         setPagination(res.pagination);
+        if (!append && res.counts) {
+          setCategoryCounts({
+            total: res.counts.total ?? 0,
+            bySlug: Object.fromEntries(
+              (res.counts.categories ?? []).map((category) => [
+                category.slug,
+                category.count,
+              ]),
+            ),
+          });
+        }
       }
     } finally {
       if (id === requestId.current) setLoading(false);
@@ -147,27 +168,34 @@ export default function FacultyDirectoryListing({ data }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isServer, searchQuery, activeCategory, activeDepartment, activeExpertise]);
 
+  // local mode: search / department / expertise checks (category is checked separately,
+  // so the chip counts can leave it out)
   const searchTerm = searchQuery.toLowerCase();
-  const filteredFaculty = isServer
+  const matchesOtherFilters = (member) =>
+    (!searchTerm || member.name.toLowerCase().includes(searchTerm)) &&
+    (!activeDepartment || member.department === activeDepartment) &&
+    (!activeExpertise ||
+      (member.expertiseAreas ?? []).includes(activeExpertise));
+  const otherFiltered = isServer
     ? []
-    : facultyMembers.filter((member) => {
-        const matchesQuery =
-          !searchTerm || member.name.toLowerCase().includes(searchTerm);
-        const matchesCategory =
-          !activeCategory || member.category.label === activeCategory;
-        const matchesDepartment =
-          !activeDepartment || member.department === activeDepartment;
-        const matchesExpertise =
-          !activeExpertise ||
-          (member.expertiseAreas ?? []).includes(activeExpertise);
+    : facultyMembers.filter(matchesOtherFilters);
+  const filteredFaculty = otherFiltered.filter(
+    (member) => !activeCategory || member.category.label === activeCategory,
+  );
 
-        return (
-          matchesQuery &&
-          matchesCategory &&
-          matchesDepartment &&
-          matchesExpertise
-        );
-      });
+  // chips: "All" = every match for the other filters, each category its share of them
+  const categoryChips = categories.map((category) => ({
+    ...category,
+    count: isServer
+      ? category.value
+        ? (categoryCounts.bySlug[category.value] ?? 0)
+        : categoryCounts.total
+      : category.value
+        ? otherFiltered.filter(
+            (member) => member.category.label === category.value,
+          ).length
+        : otherFiltered.length,
+  }));
 
   const visibleFaculty = isServer
     ? items
@@ -249,7 +277,7 @@ export default function FacultyDirectoryListing({ data }) {
           </div>
           <div className="w-full md:w-[65%] md:pl-(--gap) md:border-l border-black/10">
             <div className="w-full h-auto pb-1 md:pb-0 gap-1.5 lg:gap-2.5 3xl:gap-3.75 overflow-x-auto flex md:flex-wrap md:overflow-visible no-scrollbar flex-nowrap items-center">
-              {categories.map((category) => (
+              {categoryChips.map((category) => (
                 <button
                   key={category.label}
                   type="button"
