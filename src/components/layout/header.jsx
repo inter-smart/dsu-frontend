@@ -4,6 +4,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
 import { useEffect, useState, useRef } from "react";
+import { ChevronRight, ChevronDown, X } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,10 +24,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 
@@ -516,7 +513,6 @@ export default function Header({ data = local_data }) {
 
       window.requestAnimationFrame(() => {
         const currentScrollY = window.scrollY;
-
         setIsScrolled(currentScrollY > 10);
         if (currentScrollY <= 10) {
           setIsHeaderVisible(true);
@@ -768,34 +764,168 @@ export default function Header({ data = local_data }) {
                         <span className="w-1/2 h-0.5 bg-white block"></span>
                       </div>
                     </SheetTrigger>
-                    <SheetContent
-                      className={
-                        "!w-full !max-w-full bg-white dark:bg-[#0B0F14] pt-0"
-                      }
-                    >
-                      <div className="w-full h-auto flex items-center justify-between max-lg:py-4 max-lg:px-5 border-b border-black/10 dark:border-white/10">
-                        <span className="flex flex-col gap-0.5 leading-[1.1]">
-                          <span className="text-[17px] 2xl:text-[19px] 3xl:text-[24px] font-bold text-black dark:text-white uppercase">
-                            Dayananda Sagar University
-                          </span>
-                          <span className="text-[11px] 2xl:text-xs 3xl:text-sm font-semibold text-black/70 dark:text-white/60 tracking-[0.22em] uppercase">
-                            University
-                          </span>
-                        </span>
+                    <SheetContent className="!w-full !max-w-full h-full max-h-screen bg-[#fff7eb] dark:bg-[#18181b] p-0 border-0 flex flex-col overflow-hidden [&>button]:hidden z-[100]">
+                      {/* STICKY TOP HEADER SECTION */}
+                      <div className="w-full shrink-0 bg-[#fff7eb] dark:bg-[#18181b]">
+                        {/* Top Red-Orange Banner Bar */}
+                        <div className="w-full bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-3 py-2.5 flex items-center justify-between text-white shrink-0">
+                          <div className="flex items-center gap-2 min-w-0">
+                            <Link
+                              href="/"
+                              className="w-30 flex items-center gap-1.5 shrink-0"
+                            >
+                              <Image
+                                src="/images/dsu-logo.svg"
+                                alt="DSU Logo"
+                                width={32}
+                                height={32}
+                                className="size-full object-contain"
+                              />
+                            </Link>
+                            <div className="h-6 w-[1px] bg-white/30 shrink-0" />
+                            <div className="w-15 flex items-center shrink-0">
+                              <Image
+                                src="/images/header-logo-2.svg"
+                                alt="NAAC A+"
+                                width={32}
+                                height={22}
+                                className="size-full object-contain"
+                              />
+                            </div>
+                            <div className="h-6 w-[1px] bg-white/30 shrink-0" />
+                            <span className="text-[9.5px] leading-tight font-medium opacity-95 shrink-0">
+                              India's AI-First
+                              <br />
+                              University
+                            </span>
+                          </div>
+                          <SheetClose className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors text-white shrink-0 ml-1">
+                            <X size={18} />
+                          </SheetClose>
+                        </div>
+
+                        {/* Utility Bar */}
+                        <div className="w-full bg-[#FFF4E8] dark:bg-[#232427] border-b border-black/8 dark:border-white/0 px-3 py-2 flex items-center justify-between text-[11px] font-medium text-[#333] dark:text-white/90 overflow-x-auto">
+                          <div className="flex items-center gap-1.5 shrink-0 text-black dark:text-white">
+                            <Link
+                              href="#!"
+                              className="flex items-center gap-1 hover:text-(--basecolor)"
+                            >
+                              <span className="dark:text-white">Virtual Tour</span>
+                              <Image
+                                src="/images/header-360-icon-black.svg"
+                                alt="Tour"
+                                width={13}
+                                height={13}
+                                className="w-3.5 h-3.5 dark:invert"
+                              />
+                            </Link>
+                            <span className="text-black/20 dark:text-white/20">
+                              |
+                            </span>
+                            <Link
+                              href="#!"
+                              className="flex items-center gap-1 hover:text-(--basecolor)"
+                            >
+                              <span>E-Brochure</span>
+                              <Image
+                                src="/images/header-brochure-icon-black.svg"
+                                alt="Brochure"
+                                width={13}
+                                height={13}
+                                className="w-3.5 h-3.5 dark:invert"
+                              />
+                            </Link>
+                            <span className="text-black/20 dark:text-white/20">
+                              |
+                            </span>
+                            <Link
+                              href="#!"
+                              className="flex items-center gap-1 hover:text-(--basecolor)"
+                            >
+                              <span>Login</span>
+                              <Image
+                                src="/images/header-login-black.svg"
+                                alt="Login"
+                                width={13}
+                                height={13}
+                                className="w-3.5 h-3.5 dark:invert"
+                              />
+                            </Link>
+                          </div>
+                          <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                            <ThemeToggle iconClassName="max-lg:invert" />
+                          </div>
+                        </div>
+
+                        {/* Action Links Pills */}
+                        <div className="w-full bg-[#FFFBF7] dark:bg-[#18181b] px-3 pt-2.5 pb-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+                          {data?.actionLinks?.map((item, index) => (
+                            <Link
+                              key={index}
+                              href={item?.url || "#"}
+                              className="px-3 py-2 rounded-[3px] border border-[#ea580c] dark:border-[#ea580c] text-[11.5px] font-bold text-black dark:text-white shrink-0 hover:bg-(--basecolor)/10 transition-colors"
+                            >
+                              {item?.label}
+                            </Link>
+                          ))}
+                        </div>
+
+                        {/* Main Buttons (Apply Here, CDSIMER, DSU Online) */}
+                        <div className="w-full px-2.5 pb-3 pt-2 flex items-center justify-between gap-2">
+                          <div className="w-auto h-11.25 2xl:h-10 3xl:h-12.5 ml-1.25 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] overflow-x-clip flex items-center relative z-0 transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)">
+                            <div className="w-auto h-full">
+                              <Link
+                                href="/#"
+                                aria-label="Register"
+                                className="text-[15px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-white w-full h-full px-2.5 sm:px-2.5 lg:px-3.75 flex items-center justify-center relative z-0 before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:translate-y-0.75 2xl:before:translate-y-1.25 before:absolute before:z-1 before:inset-[0_0_0_auto]"
+                              >
+                                <span className="translate-y-0.75 2xl:translate-y-1.25">
+                                  NRI/Foreigners
+                                </span>
+                              </Link>
+                            </div>
+                            <div className="w-auto h-full">
+                              <Link
+                                href="/#"
+                                aria-label="Register"
+                                className="text-[15px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-medium text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center"
+                              >
+                                <span className="translate-y-0.75 2xl:translate-y-1.25">
+                                  Others
+                                </span>
+                              </Link>
+                            </div>
+                            <button className="text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold text-black dark:text-white w-fit h-auto p-[3px_5px] mx-auto bg-[#fff7eb] dark:bg-[#18181b] rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0]">
+                              Apply Here
+                            </button>
+                          </div>
+                          <div className="flex items-center gap-1.25">
+                            <Link
+                              href="/#"
+                              className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-[11px] font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
+                            >
+                              CDSIMER
+                            </Link>
+                            <Link
+                              href="/#"
+                              className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-[11px] font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
+                            >
+                              DSU Online
+                            </Link>
+                          </div>
+                        </div>
                       </div>
-                      {data?.navigationLinks?.map((item) => (
-                        <NavigationMenu
-                          key={item?.id}
-                          item={item}
-                          level={0}
-                          mobileOpenPath={mobileOpenPath}
-                          setMobileOpenPath={setMobileOpenPath}
-                          className={cn(
-                            "w-auto h-auto transition-opacity duration-400 relative z-0 hover:before:lg:w-[calc(100%-40px)] hover:before:2xl:w-[calc(100%-50px)] hover:before:3xl:w-[calc(100%-70px)] before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
-                            isSearchOpen && "opacity-0",
-                          )}
-                        />
-                      ))}
+                      {/* SCROLLABLE NAVIGATION MENU LIST */}
+                      <div className="w-full flex-1 overflow-y-auto bg-[#fff7eb] dark:bg-[#18181b] border-t border-black/8 dark:border-white/0 pb-12">
+                        {data?.navigationLinks?.map((item) => (
+                          <NavigationMenu
+                            key={item?.id}
+                            item={item}
+                            level={0}
+                          />
+                        ))}
+                      </div>
                     </SheetContent>
                   </Sheet>
                 </div>
@@ -971,67 +1101,77 @@ function MegaMenuPanel({
         alignRight ? "right-0" : "left-0",
       )}
     >
-      <div className="w-auto h-auto max-w-full animate-in fade-in-0 zoom-in-95 slide-in-from-top-1 duration-200 ease-out">
-        <div className="w-auto h-auto max-w-325 overflow-hidden shadow-[0_28px_60px_rgba(0,0,0,0.22)] rounded-b-[6px] 2xl:rounded-b-[10px]">
-          <div className="w-auto h-auto max-w-full min-h-60 2xl:min-h-72.5 3xl:min-h-87.5 flex items-stretch">
+      {/* Smooth slide-down + fade animation */}
+      <div
+        className="w-auto h-auto max-w-full"
+        style={{
+          animation: "megaMenuIn 0.18s cubic-bezier(0.16,1,0.3,1) both",
+        }}
+      >
+        <style>{`
+          @keyframes megaMenuIn {
+            from { opacity: 0; transform: translateY(-6px) scaleY(0.97); }
+            to   { opacity: 1; transform: translateY(0)   scaleY(1); }
+          }
+        `}</style>
+        <div className="w-auto h-auto max-w-[900px] 2xl:max-w-[1060px] 3xl:max-w-[1310px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.18)] rounded-b-[8px]">
+          <div className="w-auto h-auto max-w-full flex items-stretch">
             {/* ─── Red gradient sidebar ─── */}
-            <nav className="w-75 2xl:w-90 3xl:w-106.25 shrink-0 bg-linear-to-br from-(--basecolor) to-(--basecolor2) lg:py-7.5 2xl:py-9 3xl:py-11.25 lg:px-4 2xl:px-6.25 3xl:px-8.75 flex flex-col justify-start gap-3.75 2xl:gap-4.5 3xl:gap-6">
+            <nav className="w-[320px] 2xl:w-[380px] 3xl:w-[460px] shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-5 2xl:py-6 3xl:py-8 flex flex-col justify-start">
               {children.map((child) => {
                 const isActive = child?.id === activeChild?.id;
                 return (
-                  <Link
+                  <button
                     key={child?.id}
-                    href={child?.url || "#"}
-                    aria-label={child?.label}
+                    type="button"
                     onMouseEnter={() => setActiveChildId(child?.id)}
                     className={cn(
-                      "w-full h-auto flex items-center gap-2.5 rounded-[4px] transition-colors duration-300",
+                      "w-full h-auto text-left flex items-center relative px-4 2xl:px-5 py-[10px] 2xl:py-[12px] lg:px-7.5 2xl:px-10 3xl:px-12.5 transition-all duration-200",
+                      isActive ? "bg-white/10" : "hover:bg-white/5",
                     )}
                   >
+                    {/* Left active border bar */}
                     <span
                       className={cn(
-                        "w-1 h-1 shrink-0 rounded-full bg-white transition-opacity duration-300",
+                        "absolute left-0 top-0 w-[3px] h-full bg-yellow-300 rounded-r-full transition-all duration-200",
                         isActive ? "opacity-100" : "opacity-0",
                       )}
                     />
                     <span
                       className={cn(
-                        "text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.15] text-white transition-all duration-300",
-                        isActive
-                          ? "font-semibold opacity-100"
-                          : "font-normal opacity-75 hover:opacity-100",
+                        "text-[13px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.3] text-white transition-all duration-200",
+                        isActive ? "font-bold opacity-100" : "font-normal",
                       )}
                     >
                       {child?.label}
                     </span>
-                  </Link>
+                  </button>
                 );
               })}
             </nav>
 
-            {/* ─── Cream columns ─── */}
-            <div className="w-auto h-auto min-w-0 bg-linear-to-t from-[#FFF3E0] to-[#FFF7EC] lg:py-7.5 2xl:py-9 3xl:py-11.25 lg:px-5 2xl:px-7.5 3xl:px-10">
+            {/* ─── Cream right panel ─── */}
+            <div className="flex-1 min-w-0 bg-[#FFF7EC] py-5 2xl:py-6 3xl:py-8 px-6 2xl:px-8 3xl:px-17.5">
               {hasColumnGroups ? (
-                <div className="w-auto h-auto columns-3 gap-y-5 2xl:gap-y-6.25 3xl:gap-y-7.5">
+                <div className="w-full h-auto grid grid-cols-3 gap-x-6 2xl:gap-x-8 gap-y-6">
                   {grandGroups.map((group) => (
-                    <div
-                      key={group?.id}
-                      className="w-full h-auto min-w-0  w-full"
-                    >
+                    <div key={group?.id} className="w-full h-auto">
                       {group?.children?.length > 0 ? (
                         <>
-                          <span className="text-[11px] 2xl:text-[13px] 3xl:text-[15px] leading-[1.2] font-bold uppercase tracking-[0.08em] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent inline-block lg:mb-2.5 2xl:mb-3 3xl:mb-3.75">
+                          {/* Group header: uppercase orange */}
+                          <span className="text-[11px] 2xl:text-xs 3xl:text-lg leading-[1.2] font-bold uppercase tracking-[0.1em] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent inline-block mb-2.5 2xl:mb-3">
                             {group?.label}
                           </span>
-                          <ul className="w-full h-auto flex flex-col gap-1.75 2xl:gap-2 3xl:gap-2.5">
+                          <ul className="w-full h-auto flex flex-col gap-[3px]">
                             {group.children.map((leaf) => (
                               <li key={leaf?.id} className="w-full h-auto">
                                 <Link
                                   href={leaf?.url || "#"}
                                   aria-label={leaf?.label}
-                                  className="w-full h-auto inline-flex items-center gap-2 text-[12px] 2xl:text-[13.5px] 3xl:text-[17px] leading-[1.2] font-normal text-[#212121]/85 hover:text-(--basecolor2) transition-colors duration-300"
+                                  className="w-full inline-flex items-center gap-2 text-[12.5px] 2xl:text-[13px] 3xl:text-[15px] leading-[1.3] font-normal text-black rounded-full -mx-2 px-2 py-[5px] hover:bg-linear-to-r hover:from-(--basecolor)/10 hover:to-(--basecolor2)/10 transition-all duration-200"
                                 >
-                                  <span className="w-1.75 2xl:w-2 3xl:w-2.5 h-auto aspect-square shrink-0 rounded-full bg-linear-to-tr from-(--basecolor) to-(--basecolor2)" />
+                                  {/* Hollow circle bullet */}
+                                  <span className="w-[14px] h-[14px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
                                   <span>{leaf?.label}</span>
                                 </Link>
                               </li>
@@ -1042,9 +1182,9 @@ function MegaMenuPanel({
                         <Link
                           href={group?.url || "#"}
                           aria-label={group?.label}
-                          className="w-full h-auto inline-flex items-center gap-2 text-[12px] 2xl:text-[13.5px] 3xl:text-[17px] leading-[1.2] font-normal text-[#212121]/85 hover:text-(--basecolor2) transition-colors duration-300"
+                          className="w-full inline-flex items-center gap-2 text-[12.5px] 2xl:text-[13px] 3xl:text-[15px] leading-[1.3] font-normal text-[#333] hover:text-(--basecolor) rounded-full px-2 py-[5px] hover:bg-[#FFE4BC] transition-all duration-200"
                         >
-                          <span className="w-1.75 2xl:w-2 3xl:w-2.5 h-auto aspect-square shrink-0 rounded-full bg-linear-to-tr from-(--basecolor) to-(--basecolor2)" />
+                          <span className="w-[14px] h-[14px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
                           <span>{group?.label}</span>
                         </Link>
                       )}
@@ -1052,19 +1192,21 @@ function MegaMenuPanel({
                   ))}
                 </div>
               ) : activeChild?.children?.length > 0 ? (
-                <div className="w-full h-auto max-w-62.5 2xl:max-w-72.5 3xl:max-w-90">
-                  <span className="text-[11px] 2xl:text-[13px] 3xl:text-[15px] leading-[1.2] font-bold uppercase tracking-[0.08em] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent inline-block lg:mb-2.5 2xl:mb-3 3xl:mb-3.75">
+                <div className="w-full h-auto max-w-[220px] 2xl:max-w-[260px]">
+                  {/* Single-column list with group header */}
+                  <span className="text-[11px] 2xl:text-[12px] 3xl:text-lg leading-[1.2] font-bold uppercase tracking-[0.1em] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent inline-block mb-2.5 2xl:mb-3">
                     {activeChild?.label}
                   </span>
-                  <ul className="w-full h-auto flex flex-col gap-1.75 2xl:gap-2 3xl:gap-2.5">
+                  <ul className="w-full h-auto flex flex-col gap-[3px]">
                     {activeChild.children.map((leaf) => (
                       <li key={leaf?.id} className="w-full h-auto">
                         <Link
                           href={leaf?.url || "#"}
                           aria-label={leaf?.label}
-                          className="w-full h-auto inline-flex items-center gap-2 text-[12px] 2xl:text-[13.5px] 3xl:text-[17px] leading-[1.2] font-normal text-[#212121]/85 hover:text-(--basecolor2) transition-colors duration-300"
+                          className="w-full inline-flex items-center gap-2 text-[12.5px] 2xl:text-[13px] 3xl:text-[15px] leading-[1.3] font-normal text-[#333] hover:bg-linear-to-r hover:from-(--basecolor)/10 hover:to-(--basecolor2)/10 rounded-full -mx-2 px-2 py-[5px] transition-all duration-200"
                         >
-                          <span className="w-1.75 2xl:w-2 3xl:w-2.5 h-auto aspect-square shrink-0 rounded-full bg-linear-to-tr from-(--basecolor) to-(--basecolor2)" />
+                          {/* Hollow circle bullet */}
+                          <span className="w-[14px] h-[14px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
                           <span>{leaf?.label}</span>
                         </Link>
                       </li>
@@ -1121,6 +1263,191 @@ function NavigationMenu({
     }
   };
 
+  // ──────────────────────────────────────────
+  // MOBILE NAVIGATION MENU RENDERER
+  // ──────────────────────────────────────────
+  if (isMobile) {
+    // Level 3+ (Leaf item with hollow circle bullet)
+    if (level >= 3) {
+      const isHighlight = item?.label === "IQAC Committee";
+      return (
+        <Link
+          href={item?.url || "#"}
+          aria-label={item?.label}
+          className="w-full flex items-center gap-2.5 py-1.5 px-2 text-[13.5px] transition-colors duration-200"
+        >
+          <span className="w-[13px] h-[13px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
+          <span
+            className={cn(
+              isHighlight
+                ? "font-bold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit"
+                : "font-medium text-[#333] dark:text-white/90 hover:text-(--basecolor)",
+            )}
+          >
+            {item?.label}
+          </span>
+        </Link>
+      );
+    }
+
+    // Items WITHOUT submenus (Leaf items)
+    if (!hasSubmenu) {
+      if (level === 0) {
+        return (
+          <Link
+            href={item?.url || "#"}
+            aria-label={item?.label}
+            className={cn(
+              "w-full flex items-center justify-between px-5 py-4 border-b border-black/8 dark:border-white/10",
+              "text-sm sm:text-[16px] font-medium text-[#212121] dark:text-white hover:text-(--basecolor) transition-colors duration-200",
+              className,
+            )}
+          >
+            <span>{item?.label}</span>
+            <ChevronRight
+              size={16}
+              className="shrink-0 text-black dark:text-white"
+            />
+          </Link>
+        );
+      }
+
+      if (level === 1) {
+        return (
+          <Link
+            href={item?.url || "#"}
+            aria-label={item?.label}
+            className="w-full flex items-center justify-between px-7 py-2.5 text-[14px] font-semibold text-[#333] dark:text-white hover:text-(--basecolor) transition-colors duration-200"
+          >
+            <span>{item?.label}</span>
+            <ChevronRight
+              size={15}
+              className="shrink-0 text-black dark:text-white"
+            />
+          </Link>
+        );
+      }
+
+      // Level 2 leaf under group (e.g., AQAR, Feedback, Quality Process)
+      return (
+        <Link
+          href={item?.url || "#"}
+          aria-label={item?.label}
+          className="w-full flex items-center justify-between py-2 px-2 text-[14px] font-bold text-(--basecolor) hover:opacity-80 transition-opacity"
+        >
+          <span>{item?.label}</span>
+          <ChevronRight size={14} className="shrink-0 text-(--basecolor)" />
+        </Link>
+      );
+    }
+
+    // Items WITH submenus (Accordion toggles)
+    return (
+      <div
+        className={cn(
+          "w-full flex flex-col",
+          level === 0 && "border-b border-black/8 dark:border-white/10",
+          className,
+        )}
+      >
+        {/* Row Header / Toggle */}
+        <div
+          onClick={toggleSubmenu}
+          className={cn(
+            "w-full flex items-center justify-between cursor-pointer select-none transition-colors",
+            level === 0
+              ? "px-5 py-4"
+              : level === 1
+                ? "px-5 py-1"
+                : "py-0.5 px-2",
+          )}
+        >
+          <span
+            className={cn(
+              "text-[14px] transition-colors duration-200",
+              level === 0
+                ? cn(
+                  "text-sm sm:text-[16px] font-medium",
+                  isOpen
+                    ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit font-bold"
+                    : "text-[#212121] dark:text-white",
+                )
+                : level === 1
+                  ? cn(
+                    "font-medium",
+                    isOpen
+                      ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit font-bold"
+                      : "text-[#212121] dark:text-white hover:text-(--basecolor)",
+                  )
+                  : cn(
+                    "font-bold",
+                    isOpen
+                      ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit"
+                      : "text-(--basecolor) hover:opacity-80",
+                  ),
+            )}
+          >
+            {item?.label}
+          </span>
+          <button
+            type="button"
+            aria-label={`${isOpen ? "Close" : "Open"} ${item.label} submenu`}
+            aria-expanded={isOpen}
+            className="w-6 h-6 shrink-0 flex items-center justify-center"
+          >
+            {isOpen ? (
+              <ChevronDown
+                size={level === 0 ? 18 : level === 1 ? 15 : 14}
+                className="text-(--basecolor)"
+              />
+            ) : (
+              <ChevronRight
+                size={level === 0 ? 18 : level === 1 ? 15 : 14}
+                className={cn(
+                  level === 0
+                    ? "text-black dark:text-white"
+                    : level === 1
+                      ? "text-black dark:text-white hover:text-(--basecolor)"
+                      : "text-(--basecolor)",
+                )}
+              />
+            )}
+          </button>
+        </div>
+
+        {/* Collapsible Accordion Body */}
+        <div
+          className={cn(
+            "grid transition-[grid-template-rows] duration-300 ease-out",
+            isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+          )}
+        >
+          <div className="overflow-hidden">
+            <div
+              className={cn(
+                "transition-opacity duration-300",
+                isOpen ? "opacity-100" : "opacity-0",
+                level === 0
+                  ? "pb-3 pt-1 flex flex-col"
+                  : level === 1
+                    ? "ml-5 pl-2.5 border-l-3 border-(--basecolor)/30 py-1 my-1 flex flex-col"
+                    : "pl-0 py-1 flex flex-col",
+              )}
+            >
+              {item.children.map((child) => (
+                <NavigationMenu
+                  key={child?.id}
+                  item={child}
+                  level={level + 1}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (!isMobile) {
     if (level > 0) return null;
     if (!hasSubmenu) {
@@ -1163,7 +1490,7 @@ function NavigationMenu({
           )}
           <span
             className={cn(
-              "w-[15px] h-[15px] lg:w-2 lg:h-2 2xl:w-2.5 2xl:h-2.5 3xl:w-3 3xl:h-3 lg:border-r-1 2xl:border-r-2 lg:border-b-1 2xl:border-b-2 border-white transition-transform duration-300 ease-out",
+              "w-[15px] h-[15px] lg:w-2 lg:h-2 lg:border-r-1 2xl:border-r-2 lg:border-b-1 2xl:border-b-2 border-white transition-transform duration-300 ease-out",
               isMenuOpen
                 ? "lg:rotate-[225deg]"
                 : "lg:rotate-45 -translate-y-0.5",
@@ -1173,168 +1500,6 @@ function NavigationMenu({
       </div>
     );
   }
-
-  if (!hasSubmenu) {
-    return (
-      <Link
-        href={item?.url || "#"}
-        aria-label={item?.label}
-        className={cn(
-          "text-[14px] lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full max-lg:p-5 max-lg:border-b max-lg:border-black/10 gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent",
-          level > 0
-            ? "leading-[1.1] text-left text-black dark:text-white py-1.25 max-lg:p-[7px_20px] max-lg:border-0"
-            : "leading-[1.1] text-black lg:text-white max-lg:text-left",
-          className,
-        )}
-      >
-        {level > 1 && (
-          <span className="w-1.5 2xl:w-2 h-1.5 2xl:h-2 aspect-square rounded-full shrink-0 bg-linear-to-tr from-(--basecolor) to-(--basecolor2) inline-block" />
-        )}
-        <span>{item?.label}</span>
-      </Link>
-    );
-  }
-  return (
-    <div
-      className={cn("relative z-0", className)}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div
-        className={cn(
-          "w-full h-auto max-lg:p-5 max-lg:border-b max-lg:border-black/10 flex items-center justify-between",
-          level > 0 && "py-1.25 max-lg:p-[5px_20px] max-lg:border-0",
-          isOpen && "max-lg:border-0",
-        )}
-      >
-        {item?.url ? (
-          <Link
-            href={item.url}
-            aria-label={item.label}
-            className={cn(
-              "text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium transition-colors duration-400",
-              level > 0
-                ? cn(
-                    "text-[14px] leading-[1.1] py-1.25",
-                    isOpen
-                      ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
-                      : "text-black dark:text-white",
-                  )
-                : isOpen
-                  ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
-                  : "max-lg:text-[15px] max-lg:text-black text-white dark:max-lg:text-white",
-            )}
-          >
-            <span>{item.label}</span>
-          </Link>
-        ) : (
-          <button
-            type="button"
-            onClick={toggleSubmenu}
-            aria-expanded={isOpen}
-            className={cn(
-              "text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-left py-1.25 transition-colors duration-400",
-              level > 0
-                ? cn(
-                    "text-sm leading-[1.1]",
-                    isOpen
-                      ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
-                      : "text-black",
-                  )
-                : isOpen
-                  ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
-                  : "text-white",
-            )}
-          >
-            <span>{item.label}</span>
-          </button>
-        )}
-        <button
-          type="button"
-          aria-label={`${isOpen ? "Close" : "Open"} ${item.label} submenu`}
-          aria-expanded={isOpen}
-          onClick={toggleSubmenu}
-          className={cn(
-            "w-6.25 h-2.5 aspect-square ml-1 shrink-0 transition-colors duration-400 flex items-center justify-center",
-          )}
-        >
-          <span
-            className={cn(
-              "w-[15px] h-[15px] lg:w-1.75 lg:h-1.75 lg:border-r-1 2xl:border-r-2 lg:border-b-1 2xl:border-b-2 border-white transition-transform duration-300 ease-out",
-              isOpen && "border-(--basecolor2)",
-              level === 0
-                ? "rotate-90 lg:rotate-45 -translate-y-0.5"
-                : "w-[15px] h-[15px] lg:w-1.25 lg:h-1.25 lg:border-r-1 lg:border-b-1 lg:border-black rotate-90 lg:-rotate-45",
-              isOpen && level === 0 && "-rotate-90 lg:rotate-[225deg]",
-              isOpen && level > 0 && "max-lg:-rotate-90 border-(--basecolor)",
-            )}
-          >
-            <Image
-              src={"/images/header-arrow-icon.svg"}
-              width={10}
-              height={5}
-              alt="header-arrow-icon"
-              className="w-full h-full object-contain max-lg:block hidden"
-            />
-          </span>
-        </button>
-      </div>
-      {/* DESKTOP SUBMENU */}
-      {!isMobile && (
-        <div
-          className={cn(
-            "w-max h-auto transition-all duration-250 ease-out lg:absolute z-50",
-            level === 0 ? "left-auto top-full" : "left-full -top-2.5 pl-3",
-            isOpen
-              ? "visible opacity-100 translate-y-0 pointer-events-auto"
-              : "invisible opacity-0 -translate-y-2 pointer-events-none",
-            level > 0 && (isOpen ? "translate-x-0" : "-translate-x-2"),
-          )}
-        >
-          <div
-            className={cn(
-              "min-w-62.5 h-auto p-2.5 bg-white rounded-[5px] relative z-0",
-            )}
-          >
-            {item.children.map((child) => (
-              <NavigationMenu key={child?.id} item={child} level={level + 1} />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* ==============================
-          MOBILE ACCORDION
-      ============================== */}
-
-      {isMobile && (
-        <div
-          className={cn(
-            "grid transition-[grid-template-rows] lg:hidden duration-300 ease-out",
-            isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
-          )}
-        >
-          <div className="overflow-hidden">
-            <div
-              className={cn(
-                "ml-2 mb-1",
-                "transition-opacity duration-300",
-                isOpen ? "opacity-100" : "opacity-0",
-              )}
-            >
-              {item.children.map((child) => (
-                <NavigationMenu
-                  key={child?.id}
-                  item={child}
-                  level={level + 1}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
 }
 
 // "use client";
