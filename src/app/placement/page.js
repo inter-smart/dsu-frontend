@@ -8,6 +8,9 @@ import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar"
 import CILsection from "@/components/sections/placements/CILSection";
 import Recruiters from "@/components/sections/placements/recruiters";
 import PlacementContact from "@/components/sections/placements/placementcontact";
+import DirectorMessage from "@/components/sections/placements/directors-message";
+import AdmissionEntrance from "@/components/sections/admission/admission-entrance";
+import TeamSection from "@/components/sections/placements/Team-section";
 
 const local_data = {
     id: 24,
@@ -35,7 +38,7 @@ const local_data = {
                 label: "Home",
                 href: "/",
             },
-           
+
             {
                 label: "Placements",
                 href: "/",
@@ -503,7 +506,76 @@ const local_data = {
             label: "Load More >>",
             initialCount: 18,
         },
-    }
+    },
+    chairmanMessage: {
+        title: "Director’s Message",
+        name: "Vijay Kumar S.",
+        designation: "Director, Training & Corporate Relations",
+        image: {
+            url: "/images/dummy.jpg",
+            alternativeText: "Director’s Message",
+        },
+        description: [
+            {
+                type: "paragraph",
+                children: [
+                    {
+                        type: "text",
+                        text: "At Dayananda Sagar University, we prepare students for careers beyond academics. We create an environment for developing knowledge, skills, and confidence needed to thrive in a changing job market. "
+                    },
+
+                ],
+            },
+            {
+                type: "paragraph",
+                children: [
+                    {
+                        type: "text",
+                        text: "Our Training & Placement team offers training, internships, and industry interactions to enhance employability skills and provide meaningful industry engagement. Collaborating with leading organisations, we help students explore diverse career pathways and transition confidently into the professional world."
+                    },
+
+                ],
+            },
+        ],
+    },
+    placementTeam: {
+        title: "Placement Team",
+        description:
+            "The IQAC Committee includes representatives from the University's leadership, academic departments, administration, industry, alumni, students, and parents. Together, they contribute their expertise and perspectives to strengthen quality assurance practices and support the University's mission of continuous improvement.",
+        table: {
+            columns: ["Designation", "Name", "Area / Responsibility", "Contact/Email"],
+            rows: [
+                {
+                    id: 1,
+                    designation: "Senior Vice President",
+                    name: "M N Guruvenkatesh",
+                    area: "Placements & Skill Development",
+                    contact: ["+91 9844165956", "gm-cr@dayanandasagar.edu"],
+                },
+                {
+                    id: 2,
+                    designation: "Director",
+                    name: "Vijay Kumar S",
+                    area: "Training & Corporate Relations",
+                    contact: ["+91 9886394532", "vijaykumar@dsu.edu.in | placements@dsu.edu.in"],
+                },
+                {
+                    id: 3,
+                    designation: "Director",
+                    name: "Prof. Sanjay K",
+                    area: "Corporate Relations & Placement – Management Schools",
+                    contact: ["+91 9880283123", "sanjay.k@dsu.edu.in"],
+                },
+                {
+                    id: 4,
+                    designation: "Manager",
+                    name: "Prof. Darpana Singh",
+                    area: "Placement – Management Schools",
+                    contact: ["+91 9845108664", "darpana@dsu.edu.in"],
+                },
+            ],
+        },
+    },
 }
 
 export default function page() {
@@ -514,7 +586,8 @@ export default function page() {
             <PlacementOverview data={local_data.programOverviewSection} />
             <AiVisionMission data={local_data.missionVisionSection} />
             <Announcement data={local_data.announcemntSection} />
-            <PlacementProcess data={local_data.placementProcess} />
+            <DirectorMessage data={local_data.chairmanMessage} /> 
+            <TeamSection data={local_data.placementTeam} />
             <CILsection data={local_data.CILSection} />
             <PlacementContact data={local_data.placemntContact} />
             <Recruiters data={local_data.recruterSection} />

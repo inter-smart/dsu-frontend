@@ -11,7 +11,7 @@ import {
 
 export default function CILsection({ data }) {
     return (
-        <section className='relative py-[40px] xl:py-[50px] 2xl:py-[60px] 3xl:py-[80px]'>
+        <section className='relative py-[40px] xl:py-[50px] 2xl:py-[60px] 3xl:py-[80px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-[linear-gradient(135deg,#000_0%,#000_100%)] '>
             <div className="container">
                 <div className="cmn_Title">
                     {data.heading}

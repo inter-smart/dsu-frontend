@@ -42,7 +42,7 @@ export default function AdmissionAccomodation({ data }) {
     };
 
     return (
-        <div className="bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-[#101010]">         
+        <div className="bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-[linear-gradient(135deg,#000_0%,#000_100%)]">         
             <section className="relative py-[30px] sm:py-[25px] lg:py-[30px] xl:py-[45px] 2xl:py-[50px] 3xl:py-[70px]">
                 <div className="container">
                   
