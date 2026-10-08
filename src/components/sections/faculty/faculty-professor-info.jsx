@@ -6,7 +6,7 @@ export default function FacultyProfessorInfo({ data }) {
     <section className="w-full h-auto py-10 3xl:py-12.5 dark:bg-[#101010] block">
       <div className="container">
         <Link
-          href="/faculty"
+          href="/faculty-directory"
           className="group w-fit h-auto mb-3.75 sm:mb-5 2xl:mb-7.5 3xl:mb-8.75 flex items-center"
         >
           <div className="w-3 3xl:w-3.75 h-auto aspect-square overflow-hidden flex items-center justify-center">
@@ -48,7 +48,9 @@ export default function FacultyProfessorInfo({ data }) {
               </div>
               <div className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] dark:text-[#9CA3AF]">
                 Department :
-                <span className="font-semibold">{data?.department}</span>
+                <span className="font-semibold">
+                  {[data?.department, data?.school].filter(Boolean).join(", ")}
+                </span>
               </div>
             </div>
           </div>
