@@ -253,9 +253,9 @@ const local_data = {
 
 export default async function Page() {
   const page = await getFacultyDirectoryPage();
-  const hero = page.hero;
+  const hero = page?.hero;
   // `local_data` until Strapi is reachable and has published faculty
-  const facultyListing = page.facultyListing
+  const facultyListing = page?.facultyListing;
 
   return (
     <>
