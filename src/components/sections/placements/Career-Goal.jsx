@@ -25,7 +25,7 @@ export default function CareerGoal({ data }) {
     }, [activeVideoModal]);
 
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[70px] 3xl:py-[80px]">
+        <section className="relative py-[40px_25px] xl:py-[60px_25px] 2xl:py-[70px_30px] 3xl:py-[80px_40px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)]">
             <div className="container">
                 {/* Heading */}
                 <h2 className="cmn_Title">
@@ -91,7 +91,7 @@ export default function CareerGoal({ data }) {
                                                     {item.tags.map((tag) => (
                                                         <span
                                                             key={tag.id}
-                                                            className="inline-block px-[14px] xl:px-[18px] 2xl:px-[20px] py-[6px] xl:py-[8px] 2xl:py-[9px] text-[11px] xl:text-[12px] 2xl:text-[13px] 3xl:text-[15px] font-medium text-[#212121] dark:text-white bg-white dark:bg-white/10 border border-[#E5E9EE] dark:border-white/15 rounded-[6px]"
+                                                            className="inline-block px-[14px] xl:px-[18px] 2xl:px-[20px] py-[6px] xl:py-[8px] 2xl:py-[9px] text-[11px] xl:text-[12px] 2xl:text-[13px] 3xl:text-[15px] font-medium text-[#212121] dark:text-white bg-transparent dark:bg-white/10 border border-[#E5E9EE] dark:border-white/15 rounded-[6px]"
                                                         >
                                                             {tag.label}
                                                         </span>
@@ -101,7 +101,7 @@ export default function CareerGoal({ data }) {
 
                                             {/* Note */}
                                             {item.note && (
-                                                <p className="!text-[11px] xl:!text-[12px] 2xl:!text-[13px] 3xl:!text-[15px] !text-[#6B7280] dark:!text-[#9CA3AF] italic leading-[1.5] !mb-[15px] xl:!mb-[20px]">
+                                                <p className="!text-[11px] xl:!text-[12px] 2xl:!text-[13px] 3xl:!text-[15px] !text-[#6B7280] dark:!text-[#9CA3AF]  leading-[1.5] !mb-[15px] xl:!mb-[20px]">
                                                     {item.note}
                                                 </p>
                                             )}

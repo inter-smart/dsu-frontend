@@ -10,7 +10,7 @@ export default function LibraryServices({ data }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
-        <section className="relative py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
+        <section className="relative py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px] dark:bg-[#101010]">
             <div className="container">
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
@@ -20,11 +20,11 @@ export default function LibraryServices({ data }) {
                         />
                     </div>
                     <div className="rtBx"> 
-                        <div className="w-full lg:h-full rounded-[10px] border border-black/10 p-[15px] md:p-[15px] lg:p-[20px] xl:p-[35px_25px] 2xl:p-[40px_30px] 3xl:p-[40px]">
-                            <h2 className="cmn_Title mb-[25px]">
+                        <div className="w-full lg:h-full rounded-[10px] border border-black/10 dark:border-white/10 p-[15px] md:p-[15px] lg:p-[20px] xl:p-[35px_25px] 2xl:p-[40px_30px] 3xl:p-[40px]">
+                            <h2 className="cmn_Title dark:text-white mb-[25px]">
                                 {data.heading}
                             </h2>
-                            <div className="text_1 leading-[1.2] text-[#4A5565] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
+                            <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                                 <BlocksRenderer content={data.description} />
                             </div>
                             <div className="w-full aspect-[1260/350] overflow-hidden mb-[30px]">
@@ -33,14 +33,14 @@ export default function LibraryServices({ data }) {
                             {data?.sections.map((section) => (
                                 <div
                                     key={section.id}
-                                    className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
+                                    className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 dark:border-white/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] dark:bg-none dark:bg-[#18191B] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
                                 >
-                                    <h2 className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] text-black font-semibold mb-[25px]">
+                                    <h2 className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] text-black dark:text-white font-semibold mb-[25px]">
                                         {section.title}
                                     </h2>
 
                                     {(section.intro || section.description) && (
-                                        <div className="text_1 leading-[1.2] text-[#4A5565] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
+                                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                                             <BlocksRenderer content={section.intro || section.description} />
                                         </div>
                                     )}
@@ -59,7 +59,7 @@ export default function LibraryServices({ data }) {
                                     )}
 
                                     {section?.outro && (
-                                        <div className="text_1 leading-[1.2] text-[#4A5565] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
+                                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                                             <BlocksRenderer content={section.outro} />
                                         </div>
                                     )}
@@ -67,9 +67,9 @@ export default function LibraryServices({ data }) {
                             ))}
                             {data?.journalsSection && (
                                 <div
-                                    className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
+                                    className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 dark:border-white/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] dark:bg-none dark:bg-[#18191B] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
                                 >
-                                    <h2 className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] text-black font-semibold mb-[25px]">
+                                    <h2 className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] text-black dark:text-white font-semibold mb-[25px]">
                                         {data?.journalsSection.heading}
                                     </h2>
 
@@ -87,16 +87,16 @@ export default function LibraryServices({ data }) {
                                     )}
 
                                     {data?.outro && (
-                                        <div className="text_1 leading-[1.2] text-[#4A5565] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
+                                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                                             <BlocksRenderer content={section.outro} />
                                         </div>
                                     )}
                                     <div className="w-full lg:max-w-full mt-[15px]">
-                                        <div className="cmn_Txt text-[#212121] font-bold mb-[20px]">
+                                        <div className="cmn_Txt text-[#212121] dark:text-white font-bold mb-[20px]">
                                             {data?.journalsSection?.printJournals?.heading}
                                         </div>
                                         <div className="w-full overflow-x-auto mb-[30px]">
-                                            <div className="min-w-[700px] rounded-[8px] border border-[#707070] overflow-hidden">
+                                            <div className="min-w-[700px] rounded-[8px] border border-[#707070] dark:border-white/20 overflow-hidden">
                                                 <table className="w-full border-collapse">
                                                     <thead>
                                                         <tr className="bg-[#F97A22] text-white">
@@ -113,28 +113,28 @@ export default function LibraryServices({ data }) {
 
                                                     <tbody>
                                                         {data?.journalsSection?.printJournals?.rows?.map((row) => (
-                                                            <tr key={row.slNo} className="border-b border-[#707070] last:border-b-0">
-                                                                <td className="border-r border-[#707070] px-[15px] py-[13px] text-center text_1 text-[#212121] font-semibold last:border-r-0 lg:text-[15px]">
+                                                            <tr key={row.slNo} className="border-b border-[#707070] dark:border-white/20 last:border-b-0">
+                                                                <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-center text_1 text-[#212121] dark:text-white font-semibold last:border-r-0 lg:text-[15px]">
                                                                     {row.slNo}
                                                                 </td>
-                                                                <td className="border-r border-[#707070] w-[70%] px-[15px] py-[13px] text-center text_1 text-[#212121] font-medium last:border-r-0 lg:text-[15px]">
+                                                                <td className="border-r border-[#707070] dark:border-white/20 w-[70%] px-[15px] py-[13px] text-center text_1 text-[#212121] dark:text-white font-medium last:border-r-0 lg:text-[15px]">
                                                                     {row.subject}
                                                                 </td>
-                                                                <td className="border-r border-[#707070] px-[15px] py-[13px] text-center text_1 text-[#212121] font-medium last:border-r-0 lg:text-[15px]">
+                                                                <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-center text_1 text-[#212121] dark:text-white font-medium last:border-r-0 lg:text-[15px]">
                                                                     {row.count}
                                                                 </td>
                                                             </tr>
                                                         ))}
 
                                                         {data?.journalsSection?.printJournals?.total && (
-                                                            <tr className="bg-[#F4F8FD] font-semibold">
+                                                            <tr className="bg-[#F4F8FD] dark:bg-white/5 font-semibold">
                                                                 <td
                                                                     colSpan={2}
-                                                                    className="border-r border-[#707070] px-[15px] py-[13px] text-right text_1 text-[#212121] last:border-r-0 lg:text-[15px]"
+                                                                    className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-right text_1 text-[#212121] dark:text-white last:border-r-0 lg:text-[15px]"
                                                                 >
                                                                     {data.journalsSection.printJournals.total.label}
                                                                 </td>
-                                                                <td className="px-[15px] py-[13px] text-center text_1 text-[#212121] lg:text-[15px]">
+                                                                <td className="px-[15px] py-[13px] text-center text_1 text-[#212121] dark:text-white lg:text-[15px]">
                                                                     {data.journalsSection.printJournals.total.count}
                                                                 </td>
                                                             </tr>
@@ -149,16 +149,16 @@ export default function LibraryServices({ data }) {
                             )}
                             {data?.journalsSection && (
                                 <div
-                                    className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
+                                    className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 dark:border-white/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] dark:bg-none dark:bg-[#18191B] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
                                 >
                                     <div className="w-full lg:max-w-full mt-[15px]">
-                                        <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] text-[#212121] font-bold ">
+                                        <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] text-[#212121] dark:text-white font-bold ">
                                             {data?.dailiesSection?.heading}
                                         </div>
-                                        <p className="text_1 mb-[20px]">{data?.dailiesSection.description}</p>
+                                        <p className="text_1 dark:text-[#9CA3AF] mb-[20px]">{data?.dailiesSection.description}</p>
 
                                         <div className="w-full overflow-x-auto">
-                                            <div className="min-w-[700px] rounded-[8px] border border-[#707070] overflow-hidden">
+                                            <div className="min-w-[700px] rounded-[8px] border border-[#707070] dark:border-white/20 overflow-hidden">
                                                 <table className="w-full border-collapse">
                                                     <thead>
                                                         <tr className="bg-[#F97A22] text-white">
@@ -175,14 +175,14 @@ export default function LibraryServices({ data }) {
 
                                                     <tbody>
                                                         {data?.dailiesSection?.rows?.map((row) => (
-                                                            <tr key={row.slNo} className="border-b border-[#707070] last:border-b-0">
-                                                                <td className="border-r border-[#707070] px-[15px] py-[13px] text-center text_1 text-[#212121] font-semibold last:border-r-0 lg:text-[15px]">
+                                                            <tr key={row.slNo} className="border-b border-[#707070] dark:border-white/20 last:border-b-0">
+                                                                <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-center text_1 text-[#212121] dark:text-white font-semibold last:border-r-0 lg:text-[15px]">
                                                                     {row.slNo}
                                                                 </td>
-                                                                <td className="border-r border-[#707070] w-[70%] px-[15px] py-[13px] text-center text_1 text-[#212121] font-medium last:border-r-0 lg:text-[15px]">
+                                                                <td className="border-r border-[#707070] dark:border-white/20 w-[70%] px-[15px] py-[13px] text-center text_1 text-[#212121] dark:text-white font-medium last:border-r-0 lg:text-[15px]">
                                                                     {row.newspaper}
                                                                 </td>
-                                                                <td className="border-r border-[#707070] px-[15px] py-[13px] text-center text_1 text-[#212121] font-medium last:border-r-0 lg:text-[15px]">
+                                                                <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-center text_1 text-[#212121] dark:text-white font-medium last:border-r-0 lg:text-[15px]">
                                                                     {row.magazine}
                                                                 </td>
                                                             </tr>
@@ -199,14 +199,14 @@ export default function LibraryServices({ data }) {
                             )}
                             {data?.nursingUsefulLinks && (
                                 <div
-                                    className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
+                                    className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 dark:border-white/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] dark:bg-none dark:bg-[#18191B] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
                                 >
-                                    <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] font-semibold text-[#212121] mb-[15px] xl:mb-[25px]">{data?.nursingUsefulLinks.heading}</div>
+                                    <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] font-semibold text-[#212121] dark:text-white mb-[15px] xl:mb-[25px]">{data?.nursingUsefulLinks.heading}</div>
                                     {data?.nursingUsefulLinks.links && (
                                         <ul className="flex flex-wrap -mx-[8px]">
                                             {data?.nursingUsefulLinks.links.map((item, id) => (
                                                 <li className="w-full md:w-1/2 px-[8px] " key={id}>
-                                                    <Link href={item.url} className="flex text_1 text_1  text-[#4A5565] break-all dark:text-[#9CA3AF] py-[8px] border-b border-black/10 relative before:absolute before:content-[''] before:top-[18px] md:before:top-[15px] before:lg:top-[20px] before:left-0 before:w-[4px] before:h-[4px] before:rounded-full before:bg-[#4A5565] dark:before:bg-[#F97316] pl-[10px] lg:pl-[15px]" target="_blank" >
+                                                    <Link href={item.url} className="flex text_1 text_1  text-[#4A5565] break-all dark:text-[#9CA3AF] py-[8px] border-b border-black/10 dark:border-white/10 relative before:absolute before:content-[''] before:top-[18px] md:before:top-[15px] before:lg:top-[20px] before:left-0 before:w-[4px] before:h-[4px] before:rounded-full before:bg-[#4A5565] dark:before:bg-[#F97316] pl-[10px] lg:pl-[15px]" target="_blank" >
                                                         {item.url}
                                                     </Link>
                                                 </li>
@@ -217,12 +217,12 @@ export default function LibraryServices({ data }) {
                             )}
                             {data?.informationLiteracy && (
                                 <div
-                                    className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
+                                    className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 dark:border-white/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] dark:bg-none dark:bg-[#18191B] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
                                 >
-                                    <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] font-semibold text-[#212121] mb-[15px] xl:mb-[25px]">
+                                    <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] font-semibold text-[#212121] dark:text-white mb-[15px] xl:mb-[25px]">
                                         {data?.informationLiteracy.heading}
                                     </div>
-                                    <div className="text_1">
+                                    <div className="text_1 dark:text-[#9CA3AF]">
                                         {data?.informationLiteracy.description}
                                     </div>
 
@@ -230,12 +230,12 @@ export default function LibraryServices({ data }) {
                             )}
                             {data?.newArrivals && (
                                 <div className="flex items-center mt-[20px]">
-                                    <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] font-semibold text-[#212121]">
+                                    <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] font-semibold text-[#212121] dark:text-white">
                                         {data?.newArrivals.heading}
                                     </div>
                                     <Link
                                         href={data?.newArrivals?.cta?.link}
-                                        className="group relative inline-flex items-center gap-[8px] w-fit text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] font-semibold text-[#212121] transition-colors duration-300 hover:text-[#DC2626] after:absolute after:left-0 after:-bottom-[2px] after:h-[2px] after:w-0 after:bg-[#DC2626] after:transition-all after:duration-300 hover:after:w-full"
+                                        className="group relative inline-flex items-center gap-[8px] w-fit text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] font-semibold text-[#212121] dark:text-white transition-colors duration-300 hover:text-[#DC2626] after:absolute after:left-0 after:-bottom-[2px] after:h-[2px] after:w-0 after:bg-[#DC2626] after:transition-all after:duration-300 hover:after:w-full"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >

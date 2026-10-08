@@ -46,7 +46,7 @@ const menuItems = [
   },
   {
     label: "Library",
-    href: "/ai-enabled/library/overview",
+    href: "/ai-enabled/library",
     submenu: [
       { label: "Library Services", href: "/ai-enabled/library/services" },
       { label: "Library Collections", href: "/ai-enabled/library/collections" },

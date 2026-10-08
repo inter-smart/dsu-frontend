@@ -6,7 +6,9 @@ import IntershipSupport from "@/components/sections/placements/intership-support
 import KeyFocus from "@/components/sections/placements/Key-Focus";
 import PlacementOverview from "@/components/sections/placements/overview";
 import PlacementActivities from "@/components/sections/placements/Placement-Activities";
+import CampusDrives from "@/components/sections/placements/placement-campusdrive";
 import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
+import ProfessionalCertification from "@/components/sections/placements/profeesional-section";
 
 const local_data = {
     id: 24,
@@ -46,6 +48,7 @@ const local_data = {
         PlacementmenuBar: true
     },
     programOverviewSection: {
+        eyeBrow: "Career Readiness",
         heading: "Career Development Center",
         intro: [
             {
@@ -67,42 +70,34 @@ const local_data = {
                 ],
             },
         ],
-        media: [
-            {
-                id: 1,
-                alternativeText: "Students smiling and listening during a placement training session",
-                mime: "image/jpg",
-                url: "/images/placement-career.jpg",
-            },
-        ],
     },
     KeyFocus: {
         heading: "Key Focus Areas",
-        description: [
-            {
-                type: "paragraph",
-                children: [
-                    {
-                        type: "text",
-                        text: "The Career Development Center works to bridge the gap between academic learning and professional expectations, supporting students through focused career initiatives.",
-                    },
-                ],
-            },
-        ],
-        media: {
-            alternativeText: "Students collaborating and studying together in a library",
-            mime: "image/jpg",
-            url: "/images/keyfocus-img.jpg",
-        },
+        // description: [
+        //     {
+        //         type: "paragraph",
+        //         children: [
+        //             {
+        //                 type: "text",
+        //                 text: "The Career Development Center works to bridge the gap between academic learning and professional expectations, supporting students through focused career initiatives.",
+        //             },
+        //         ],
+        //     },
+        // ],
+        // media: {
+        //     alternativeText: "Students collaborating and studying together in a library",
+        //     mime: "image/jpg",
+        //     url: "/images/keyfocus-img.jpg",
+        // },
         accordion: [
             {
                 id: 1,
-                question: "School of Engineering",
+                question: "Career Panning and Guidance",
                 answer: [],
             },
             {
                 id: 2,
-                question: "Industry-oriented Skill Development",
+                question: "Industry-oriented skill development",
                 answer: [],
             },
             {
@@ -143,7 +138,7 @@ const local_data = {
         ],
     },
     careerGoal: {
-        heading: "Training Built Around Career Goals",
+        heading: "Employability Training",
         description: [
             {
                 type: "paragraph",
@@ -155,12 +150,7 @@ const local_data = {
                 ],
             },
         ],
-        highlight: {
-            title: "From preparation to performance.",
-            description: "Explore the key initiatives designed to help students become confident, skilled and career-ready.",
-            count: "06",
-            countLabel: "Training Initiatives",
-        },
+
         accordion: [
             {
                 id: 1,
@@ -396,6 +386,123 @@ const local_data = {
                 },
             },
         ],
+    },
+    campusDrive: {
+        heading: "Campus Drives",
+        tabs: [
+            {
+                id: 1,
+                label: "Videos",
+                active: true,
+                items: [
+                    {
+                        id: 1,
+                        type: "video",
+                        title: "Campus Drive 1",
+                        media: {
+                            alternativeText: "Group photo of students and placement team with a video play button",
+                            mime: "video/mp4",
+                            url: "/drive-1.mp4",
+                            thumbnail: "/images/drive-1.jpg",
+                        },
+                    },
+                    {
+                        id: 2,
+                        type: "video",
+                        title: "In Time Tec Campus Drive",
+                        media: {
+                            alternativeText: "In Time Tec campus drive at the DSU placement office with a video play button",
+                            mime: "video/mp4",
+                            url: "/videos/campus-drive-2.mp4",
+                            thumbnail: "/images/drive-2.jpg",
+                        },
+                    },
+                    {
+                        id: 3,
+                        type: "video",
+                        title: "Campus Drive 3",
+                        media: {
+                            alternativeText: "Recruiters and students posing at the DSU campus entrance with a video play button",
+                            mime: "video/mp4",
+                            url: "/videos/campus-drive-3.mp4",
+                            thumbnail: "/images/drive-3.jpg",
+                        },
+                    },
+                ],
+            },
+            {
+                id: 2,
+                label: "Images",
+                active: false,
+                items: [],
+            },
+        ],
+    },
+    professional: {
+        heading: "Professional Certification",
+        description: [
+            {
+                type: "paragraph",
+                children: [
+                    {
+                        type: "text",
+                        text: "The Career Development Center supports students in pursuing industry-relevant professional certifications that complement their academic learning, strengthen domain expertise, and enhance career readiness.",
+                    },
+                ],
+            },
+        ],
+        categories: [
+            {
+                id: 1,
+                icon: {
+                    alternativeText: "Laptop with gear icon representing technology and digital skills",
+                    mime: "image/svg+xml",
+                    url: "/images/profeesion_Icon1.svg",
+                },
+                title: "Technology & Digital Skills",
+                description: "AI & Machine Learning, Cloud Computing, Data Analytics, Cybersecurity",
+            },
+            {
+                id: 2,
+                icon: {
+                    alternativeText: "Gears icon representing engineering and technical skills",
+                    mime: "image/svg+xml",
+                    url: "/images/profeesion_Icon2.svg",
+                },
+                title: "Engineering & Technical",
+                description: "CAD, IoT, Automation, Embedded Systems, Industry 4.0",
+            },
+            {
+                id: 3,
+                icon: {
+                    alternativeText: "Report with chart and gear icon representing business and management",
+                    mime: "image/svg+xml",
+                    url: "/images/profeesion_Icon3.svg",
+                },
+                title: "Business & Management",
+                description: "Business Analytics, Digital Marketing, Finance, Project Management",
+            },
+            {
+                id: 4,
+                icon: {
+                    alternativeText: "Person with idea icons representing professional skills",
+                    mime: "image/svg+xml",
+                    url: "/images/profeesion_Icon4.svg",
+                },
+                title: "Professional Skills",
+                description: "Communication, Leadership, Design Thinking, Entrepreneurship",
+            },
+            {
+                id: 5,
+                icon: {
+                    alternativeText: "Checklist with certificate icon representing programme-specific certifications",
+                    mime: "image/svg+xml",
+                    url: "/images/profeesion_Icon5.svg",
+                },
+                title: "Programme-Specific Certifications",
+                description: "Specialised certifications aligned with individual programmes and career pathways.",
+            },
+        ],
     }
 
 }
@@ -408,9 +515,9 @@ export default function page() {
             <CareerPlacement data={local_data.programOverviewSection} />
             <KeyFocus data={local_data.KeyFocus} />
             <CareerGoal data={local_data.careerGoal} />
-            <IntershipSupport data={local_data.internshipSection} />
+            <CampusDrives data={local_data.campusDrive} />
+            <ProfessionalCertification data={local_data.professional} />
             <CareerJourney data={local_data.careerJorney} />
-            <PlacementActivities data={local_data.placementActivities} />
 
         </>
     )
