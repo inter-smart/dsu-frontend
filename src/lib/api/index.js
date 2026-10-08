@@ -246,6 +246,25 @@ export async function getCommunityActivitiesPage() {
   return fetchAPI("/api/community-activities-page", {}, { next: { revalidate: 60 } });
 }
 
+// Community Activities are News & Event entries with type "Community Activities"
+// Items: [{ id, documentId, slug, date, title, description, link, image, defaultOpen }]
+export async function getCommunityActivities() {
+  return fetchAPI(
+    "/api/news-events",
+    { type: "Community Activities" },
+    { next: { revalidate: 60 } },
+  );
+}
+
+// Detail page: { seo, hero, newsEventsDetail } (same endpoint as News & Events)
+export async function getCommunityActivityBySlug(slug) {
+  return fetchAPI(
+    `/api/news-events/${encodeURIComponent(slug)}`,
+    {},
+    { next: { revalidate: 60 } },
+  );
+}
+
 // ── Announcements ─────────────────────────────────────────────────────────────
 // Listing page (single type): { seo, hero, announcement: { title, announcements: [...], pagination } }
 export async function getAnnouncementsPage() {
