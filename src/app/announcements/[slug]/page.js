@@ -32,9 +32,12 @@ export default async function Page({ params }) {
   if (!pageData) notFound();
   // only News & Event entries with type "Announcement" belong here
   if (pageData.newsEventsDetail?.type !== "Announcement") {
-    permanentRedirect(pageData.newsEventsDetail?.type === "Alumni"
+    const type = pageData.newsEventsDetail?.type;
+    permanentRedirect(type === "Alumni"
       ? `/alumni/events/${encodeURIComponent(slug)}`
-      : `/news-events/${encodeURIComponent(slug)}`);
+      : type === "Community Activities"
+        ? `/community-activities/${encodeURIComponent(slug)}`
+        : `/news-events/${encodeURIComponent(slug)}`);
   }
 
   return (
