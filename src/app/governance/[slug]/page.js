@@ -1,6 +1,6 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import GovernanceFinancecommittte from "@/components/sections/governance/governance-financecommittte";
-import { getGovernancePageBySlug, getGovernancePages } from "@/lib/api/index";
+import { getGovernancePageBySlug, getGovernancePages } from "@/lib/api";
 
 export const revalidate = 60;
 

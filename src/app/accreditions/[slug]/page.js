@@ -5,7 +5,7 @@ import NAACJourney from "@/components/sections/NAAC/NAAC-journey";
 import NBAAccreditedProgram from "@/components/sections/NBA/NBA-accredited-program";
 import NBABoard from "@/components/sections/NBA/NBA-board";
 import ProfessionalAccredition from "@/components/sections/professional-accredition/professional-accredition";
-import { getAccreditationBySlug, getAccreditationPage } from "@/lib/api/index";
+import { getAccreditationBySlug, getAccreditationPage } from "@/lib/api";
 
 export const revalidate = 60;
 

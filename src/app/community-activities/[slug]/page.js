@@ -4,7 +4,7 @@ import NewsEventsDetail from "@/components/sections/news-events/news-events-deta
 import {
   getCommunityActivities,
   getCommunityActivityBySlug,
-} from "@/lib/api/index";
+} from "@/lib/api";
 
 export const revalidate = 60;
 

@@ -3,7 +3,7 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import FacultyPublications from "@/components/sections/faculty/faculty-publications";
 import FacultyAchievements from "@/components/sections/faculty/faculty-achievements";
 import FacultyProfessorInfo from "@/components/sections/faculty/faculty-professor-info";
-import { getFacultyBySlug } from "@/lib/api/index";
+import { getFacultyBySlug } from "@/lib/api";
 
 export const revalidate = 60;
 

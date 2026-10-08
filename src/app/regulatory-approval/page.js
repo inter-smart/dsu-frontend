@@ -1,6 +1,6 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import RegulatoryApprovalList from "@/components/sections/regulatory-approval/approval-list";
-import { getRegulatoryApprovalPage } from "@/lib/api/index";
+import { getRegulatoryApprovalPage } from "@/lib/api";
 
 export const revalidate = 60;
 

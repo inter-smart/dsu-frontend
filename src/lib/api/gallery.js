@@ -1,41 +1,38 @@
 import { fetchAPI, getStrapiMedia } from "./strapi";
 
+// Gallery uses Strapi's default core controllers, so populate + media URLs are handled here
+
+// Page (single type): { title, description, seo, hero: { ..., heroMedia: { url } } }
 export async function getGalleryPage() {
-  const response = await fetchAPI(
-    "/api/gallery-page",
-    {
-      "populate[seo]": "true",
-      "populate[hero][populate]": "*",
-    },
-    { next: { revalidate: 60 } }
-  );
+  const response = await fetchAPI("/api/gallery-page", {
+    "populate[seo]": "true",
+    "populate[hero][populate]": "*",
+  });
 
   const page = response?.data;
   if (!page) return null;
 
+  const { hero } = page;
   return {
     ...page,
-    hero: page.hero
+    hero: hero
       ? {
-          ...page.hero,
-          heroMedia: page.hero.heroMedia
-            ? { ...page.hero.heroMedia, url: getStrapiMedia(page.hero.heroMedia) }
+          ...hero,
+          heroMedia: hero.heroMedia
+            ? { ...hero.heroMedia, url: getStrapiMedia(hero.heroMedia) }
             : null,
         }
       : null,
   };
 }
 
+// Items: [{ id, title, category, isVideo, videoUrl, images: [url] }] (null when empty)
 export async function getGalleryItems() {
-  const response = await fetchAPI(
-    "/api/gallery-items",
-    {
-      populate: "*",
-      "pagination[pageSize]": "100",
-      sort: "createdAt:asc",
-    },
-    { next: { revalidate: 60 } }
-  );
+  const response = await fetchAPI("/api/gallery-items", {
+    populate: "*",
+    "pagination[pageSize]": "100",
+    sort: "createdAt:asc",
+  });
 
   const items = response?.data;
   if (!Array.isArray(items) || items.length === 0) return null;
@@ -46,6 +43,6 @@ export async function getGalleryItems() {
     category: item.category,
     isVideo: item.isVideo,
     videoUrl: item.videoUrl,
-    images: (item.images || []).map((img) => getStrapiMedia(img)).filter(Boolean),
+    images: (item.images || []).map(getStrapiMedia).filter(Boolean),
   }));
 }

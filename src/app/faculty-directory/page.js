@@ -1,6 +1,6 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import FacultyDirectoryListing from "@/components/sections/faculty/faculty-directory-listing";
-import { getFacultyDirectoryPage } from "@/lib/api/index";
+import { getFacultyDirectoryPage } from "@/lib/api";
 
 export const revalidate = 60;
 

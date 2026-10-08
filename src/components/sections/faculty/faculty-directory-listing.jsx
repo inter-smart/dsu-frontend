@@ -10,7 +10,7 @@ import {
   SlidersHorizontal,
 } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { getFacultyList } from "@/lib/api/index";
+import { getFacultyList } from "@/lib/api";
 
 const PAGE_SIZE = 9;
 

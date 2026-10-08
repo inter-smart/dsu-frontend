@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import AlumniTemplate from "@/components/sections/alumni/alumni-template";
-import { getAlumniLandingPage } from "@/lib/api/index";
+import { getAlumniLandingPage } from "@/lib/api";
 
 export const revalidate = 60;
 

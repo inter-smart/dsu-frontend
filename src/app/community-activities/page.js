@@ -2,7 +2,7 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import CommunityActivities from "@/components/sections/community-activities/community-activities";
 import GetInvolved from "@/components/sections/community-activities/get-involved";
 import FloatingContactRail from "@/components/layout/common/floating-contact-rail";
-import { getCommunityActivitiesPage } from "@/lib/api/index";
+import { getCommunityActivitiesPage } from "@/lib/api";
 
 export const revalidate = 60;
 

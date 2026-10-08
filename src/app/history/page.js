@@ -3,7 +3,7 @@ import HistoryDetails from "@/components/sections/history/history-Details";
 import HistoryNewpahse from "@/components/sections/history/history-newpahse";
 import HistoryPillers from "@/components/sections/history/history-pillers";
 import HistoryTimeline from "@/components/sections/history/history-Timeline";
-import { getHistoryPage } from "@/lib/api/index";
+import { getHistoryPage } from "@/lib/api";
 
 export const revalidate = 60;
 

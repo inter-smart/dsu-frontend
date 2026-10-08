@@ -1,7 +1,7 @@
 import { notFound, permanentRedirect } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
 import NewsEventsDetail from "@/components/sections/news-events/news-events-detail";
-import { getAnnouncementBySlug, getAnnouncements } from "@/lib/api/index";
+import { getAnnouncementBySlug, getAnnouncements } from "@/lib/api";
 
 export const revalidate = 60;
 

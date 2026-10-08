@@ -3,7 +3,7 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import NIRFRanking from "@/components/sections/NIRF/NIRF-ranking";
 import SdgIntroduction from "@/components/sections/SDG/SdgInroduction";
 import SDGInitativeDetails from "@/components/sections/SDG/SDG-initiativeDetails";
-import { getRankingBySlug, getRankings } from "@/lib/api/index";
+import { getRankingBySlug, getRankings } from "@/lib/api";
 
 export const revalidate = 60;
 

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Heading } from "@/components/ui/heading";
 import NewsCard from "@/components/layout/common/news-card";
-import { getNewsEventsPaged } from "@/lib/api/index";
+import { getNewsEventsPaged } from "@/lib/api";
 
 export default function NewsEvents({ data }) {
   const [items, setItems] = useState(data?.newsEvents ?? []);

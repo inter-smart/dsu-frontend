@@ -8,7 +8,7 @@ import { Heading } from "@/components/ui/heading";
 import { buttonVariants } from "@/components/ui/button";
 import AiAcademicMenubar from "../ai-enabled/Ai-academicMenubar";
 import LibrarySidebar from "../ai-enabled/library/library-sidemenubar";
-import { getAlumniEventsPaged } from "@/lib/api/index";
+import { getAlumniEventsPaged } from "@/lib/api";
 
 export default function AlumniEvents({ data }) {
   const [items, setItems] = useState(data?.events ?? []);
