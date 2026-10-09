@@ -25,26 +25,13 @@ function Select({ open: openProp, onOpenChange, ...props }) {
 
     const activeLenis = lenis;
     const html = document.documentElement;
-    const body = document.body;
     const prevOverflow = html.style.overflow;
-    const scrollY = window.scrollY;
 
     activeLenis?.stop();
     html.style.overflow = "hidden";
-    body.style.position = "fixed";
-    body.style.top = `-${scrollY}px`;
-    body.style.left = "0";
-    body.style.right = "0";
-    body.style.width = "100%";
 
     return () => {
       html.style.overflow = prevOverflow;
-      body.style.position = "";
-      body.style.top = "";
-      body.style.left = "";
-      body.style.right = "";
-      body.style.width = "";
-      window.scrollTo(0, scrollY);
       activeLenis?.start();
     };
   }, [open, lenis]);
