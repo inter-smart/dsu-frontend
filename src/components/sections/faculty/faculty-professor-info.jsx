@@ -61,9 +61,11 @@ export default function FacultyProfessorInfo({ data }) {
             __html: data?.bio || "",
           }}
         />
-        <span className="text-sm 2xl:text-lg 3xl:text-[22px] leading-[1.1] font-medium bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit">
-          BEST WISHES !
-        </span>
+        {data?.closingText && (
+          <span className="text-sm 2xl:text-lg 3xl:text-[22px] leading-[1.1] font-medium bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit">
+            {data.closingText}
+          </span>
+        )}
       </div>
     </section>
   );
