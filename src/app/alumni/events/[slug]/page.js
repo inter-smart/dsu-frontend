@@ -3,7 +3,7 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import NewsEventsDetail from "@/components/sections/news-events/news-events-detail";
 import { getAlumniEventsPage, getNewsEventBySlug } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 const DEFAULT_HERO_MEDIA = {
   url: "/images/faculty-banner.jpg",

@@ -5,7 +5,7 @@ import HistoryPillers from "@/components/sections/history/history-pillers";
 import HistoryTimeline from "@/components/sections/history/history-Timeline";
 import { getHistoryPage } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 export async function generateMetadata() {
     const pageData = await getHistoryPage();

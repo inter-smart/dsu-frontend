@@ -3,7 +3,7 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import NewsEventsDetail from "@/components/sections/news-events/news-events-detail";
 import { getAnnouncementBySlug, getAnnouncements } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 export async function generateStaticParams() {
   const items = (await getAnnouncements()) || [];

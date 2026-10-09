@@ -2,7 +2,7 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import ChancellorMessage from "@/components/sections/chancellor/chancellor-message";
 import { getLeadershipMemberBySlug } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 export default async function Page({ params }) {
   const { slug } = await params;

@@ -2,7 +2,7 @@
 import DSUAct from "@/components/sections/why-us/DSU-act"
 import DSUOmbudsman from "@/components/sections/why-us/DSU-Ombudsman"
 
-export const revalidate = 60;
+
 
 
 

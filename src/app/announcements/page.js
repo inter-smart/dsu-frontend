@@ -2,7 +2,7 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import Announcement from "@/components/sections/announcements/announcement";
 import { getAnnouncementsPage } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 export async function generateMetadata() {
   const pageData = await getAnnouncementsPage();

@@ -1,7 +1,7 @@
 ﻿import InnerHero from "@/components/layout/common/InnerHero" 
 import DSUCell from "@/components/sections/why-us/DSU-Cell"
 
-export const revalidate = 60;
+
 
 
 

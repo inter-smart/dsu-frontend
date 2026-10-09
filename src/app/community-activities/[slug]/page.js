@@ -6,7 +6,7 @@ import {
   getCommunityActivityBySlug,
 } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 const COMMUNITY_TYPE = "Community Activities";
 

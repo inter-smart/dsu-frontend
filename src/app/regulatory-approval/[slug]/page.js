@@ -7,7 +7,7 @@ import {
   getRegulatoryApprovals,
 } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 export async function generateStaticParams() {
   const menu = (await getRegulatoryApprovals()) || [];

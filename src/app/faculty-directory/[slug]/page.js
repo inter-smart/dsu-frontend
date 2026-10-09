@@ -5,7 +5,7 @@ import FacultyAchievements from "@/components/sections/faculty/faculty-achieveme
 import FacultyProfessorInfo from "@/components/sections/faculty/faculty-professor-info";
 import { getFacultyBySlug } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;

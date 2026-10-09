@@ -3,7 +3,7 @@ import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 import AcademicOverview from "@/components/sections/academics/academic-overview";
 import AcademicContact from "@/components/sections/academics/academic-contact";
 
-export const revalidate = 60;
+
 
 
 const local_data = {

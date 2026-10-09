@@ -1,7 +1,7 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import AcademicQualitySection from "@/components/sections/why-us/AcademicQualitySection";
 
-export const revalidate = 60;
+
 
 const local_data = {
     id: 24,

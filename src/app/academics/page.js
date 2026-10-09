@@ -12,7 +12,7 @@ import AcademicContact from "@/components/sections/academics/academic-contact";
 import AcademicNews from "@/components/sections/academics/academic-news";
 import AcademicInfrastructure from "@/components/sections/academics/academic-infrastructure";
 
-export const revalidate = 60;
+
 
 
 const local_data = {

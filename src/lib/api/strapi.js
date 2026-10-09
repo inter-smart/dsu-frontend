@@ -5,7 +5,7 @@ export const REVALIDATE_LONG = { next: { revalidate: 300 } };
 export const NO_STORE = { cache: "no-store" };
 
 
-export async function fetchAPI(path, params = {}, options = REVALIDATE) {
+export async function fetchAPI(path, params = {}, options = NO_STORE) {
   try {
     const mergedOptions = {
       headers: { "Content-Type": "application/json" },

@@ -2,7 +2,7 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import ProfessionalAccredition from "@/components/sections/professional-accredition/professional-accredition";
 import { getAccreditationPage } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 const DEFAULT_HERO = {
   heroMedia: {

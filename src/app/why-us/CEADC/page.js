@@ -1,7 +1,7 @@
 ﻿import InnerHero from "@/components/layout/common/InnerHero";
 import DSUDEADC from "@/components/sections/why-us/DSU-DEADC";
 
-export const revalidate = 60;
+
 
 
 const local_data = {

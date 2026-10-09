@@ -4,7 +4,7 @@ import GetInvolved from "@/components/sections/community-activities/get-involved
 import FloatingContactRail from "@/components/layout/common/floating-contact-rail";
 import { getCommunityActivitiesPage } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 // the Get Involved card background is static (not managed in the CMS)
 const GET_INVOLVED_BACKGROUND = "/images/community-contact-card-bg.png";

@@ -6,7 +6,7 @@ import {
   getInternationalRankings,
 } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 const BASE_PATH = "/international-Ranking";
 

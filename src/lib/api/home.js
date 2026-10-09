@@ -1,4 +1,4 @@
-import { fetchAPI, REVALIDATE_LONG } from "./strapi";
+import { fetchAPI } from "./strapi";
 
 // ── Home Page ─────────────────────────────────────────────────────────────────
 export async function getHomePage() {
@@ -7,7 +7,7 @@ export async function getHomePage() {
 
 // ── Navigation ────────────────────────────────────────────────────────────────
 export async function getNavigation() {
-  return fetchAPI("/api/navigation", {}, REVALIDATE_LONG);
+  return fetchAPI("/api/navigation", {});
 }
 
 // ── Contact Page ──────────────────────────────────────────────────────────────

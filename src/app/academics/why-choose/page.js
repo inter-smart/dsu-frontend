@@ -2,7 +2,7 @@
 import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 import WhyChoose from "@/components/sections/academics/why-choose";
 
-export const revalidate = 60;
+
 
 
 
