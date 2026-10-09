@@ -30,21 +30,22 @@ const menuItems = [
     },
     {
         label: "Recruiters & Industry",
-        href: "/placement/"
+        href: "/placement/recruiters-industry"
     },
     {
         label: "Student Success",
         href: "/placement/"
-    },  
+    },
     {
         label: "Recruit @ DSU",
         href: "/placement/recruit"
     },
+
     {
         label: "Placement Contact",
         href: "/placement/placement-contact"
-    }, 
-     
+    },
+
 ];
 
 export default function PlacementmenuBar({ title = "Placement Menu", className = "" }) {
@@ -176,7 +177,7 @@ export default function PlacementmenuBar({ title = "Placement Menu", className =
                 />
             )}
 
-            
+
             <div
                 className={`fixed top-0 left-0 h-full w-[300px] sm:w-[320px] z-50 shadow-2xl transition-all duration-300 lg:hidden overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] p-[1px]
                  ${isMobileSidebarOpen ? "translate-x-0 opacity-100 pointer-events-auto" : "-translate-x-full opacity-0 pointer-events-none"}
@@ -198,7 +199,7 @@ export default function PlacementmenuBar({ title = "Placement Menu", className =
                     </div>
 
                     <ul>
-                        
+
 
                         {/* Menu Items */}
                         {menuItems.map((item, idx) => {
@@ -320,7 +321,7 @@ export default function PlacementmenuBar({ title = "Placement Menu", className =
                     <div className="relative rounded-[12px] lg:rounded-[15px] xl:rounded-[20px] 2xl:rounded-[23px] 3xl:rounded-[30px] bg-white border border-[#F3DFD2] dark:bg-[#1a1a1a] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-hidden transition-colors duration-300">
                         {/* Menu content */}
                         <div className="flex flex-wrap items-center justify-center gap-[8px] xl:gap-[10px] 2xl:gap-[12px] 3xl:gap-[14px] p-[20px_15px] md:p-[20px] lg:p-[25px_20px] xl:p-[30px_50px] 2xl:p-[30px_60px] 3xl:p-[35px_70px]">
-                            
+
 
                             {/* Menu items */}
                             {menuItems.map((item) => {

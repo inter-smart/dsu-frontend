@@ -20,7 +20,7 @@ export default function InnerHero({ data }) {
   const hasMenubar = Boolean(data?.menuBar || data?.AimenuBar || data?.AiBscmenuBar || data?.PlacementmenuBar);
 
   return (
-    <section className="relative block h-[350px] w-full md:h-[450px] xl:h-[500px] 2xl:h-[600px] 3xl:h-[750px]">
+    <section className="relative z-0 block h-[350px] w-full md:h-[450px] xl:h-[500px] 2xl:h-[600px] 3xl:h-[750px]">
       {/* Background Media */}
       <div className="absolute inset-0 z-0 h-full w-full">
         <div className="absolute inset-0 z-10 bg-black/10" />
