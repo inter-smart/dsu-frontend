@@ -5,7 +5,7 @@ import AcademicFacultyAchievements from "@/components/sections/academics/academi
 import AcademicPartners from "@/components/sections/academics/academic-partners";
 import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 
-export const revalidate = 60;
+
 
 
 const local_data = {

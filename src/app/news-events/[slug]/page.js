@@ -1,9 +1,9 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
 import NewsEventsDetail from "@/components/sections/news-events/news-events-detail";
-import { getNewsEventBySlug, getNewsEvents } from "@/lib/api/index";
+import { getNewsEventBySlug, getNewsEvents } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 export async function generateStaticParams() {
   const items = (await getNewsEvents()) || [];
@@ -30,6 +30,18 @@ export default async function Page({ params }) {
   const pageData = await getNewsEventBySlug(slug);
 
   if (!pageData) notFound();
+  // Alumni events live under the Alumni section
+  if (pageData.newsEventsDetail?.type === "Alumni") {
+    permanentRedirect(`/alumni/events/${encodeURIComponent(slug)}`);
+  }
+  // Announcements live under /announcements
+  if (pageData.newsEventsDetail?.type === "Announcement") {
+    permanentRedirect(`/announcements/${encodeURIComponent(slug)}`);
+  }
+  // Community Activities live under /community-activities
+  if (pageData.newsEventsDetail?.type === "Community Activities") {
+    permanentRedirect(`/community-activities/${encodeURIComponent(slug)}`);
+  }
 
   return (
     <>

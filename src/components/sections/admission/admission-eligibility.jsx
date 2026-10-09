@@ -1,6 +1,6 @@
 "use client";
 import { Text } from "@/components/ui/text";
-import { Heading } from "@/components/ui/heading";
+import { Heading } from "@/components/ui/heading";                                                                                                                                                                                                                         
 import {
   Accordion,
   AccordionContent,

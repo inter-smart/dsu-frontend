@@ -2,7 +2,7 @@
 import AcademicMenubar from "@/components/sections/academics/academicMenubar"; 
 import AcademicFacilities from "@/components/sections/academics/academic-facilities";
 
-export const revalidate = 60;
+
 
 
 const local_data = {

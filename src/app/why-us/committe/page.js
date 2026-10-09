@@ -1,9 +1,9 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import DSUAct from "@/components/sections/why-us/DSU-act";
 import DSUCommitee from "@/components/sections/why-us/DSU-Commitee";
-import { getCommittees } from "@/lib/api/index";
+import { getCommittees } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 
 const local_data = {

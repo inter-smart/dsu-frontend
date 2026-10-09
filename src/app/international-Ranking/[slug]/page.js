@@ -4,9 +4,9 @@ import NIRFRanking from "@/components/sections/NIRF/NIRF-ranking";
 import {
   getInternationalRankingBySlug,
   getInternationalRankings,
-} from "@/lib/api/index";
+} from "@/lib/api";
 
-export const revalidate = 60;
+
 
 const BASE_PATH = "/international-Ranking";
 

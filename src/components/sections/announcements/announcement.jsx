@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Heading } from "@/components/ui/heading";
-import { getAnnouncementsPaged } from "@/lib/api/index";
+import { getAnnouncementsPaged } from "@/lib/api";
 
 export default function Announcement({ data }) {
   const [items, setItems] = useState(data?.announcements ?? []);

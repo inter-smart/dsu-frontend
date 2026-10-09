@@ -1,13 +1,12 @@
-import { fetchAPI } from './strapi';
+import { fetchAPI } from "./strapi";
 
-/**
- * Fetch About DSU page data from Strapi v5
- * (Populate & data formatting handled cleanly by the Strapi controller)
- */
+// ── About DSU ────────────────────────────────────────────────────────────────
+// Populate & data formatting handled by the Strapi controller
 export async function getAboutPage() {
-  const response = await fetchAPI('/api/about-page', {}, {
-    next: { revalidate: 60 },
-  });
+  return fetchAPI("/api/about-page");
+}
 
-  return response || null;
+// ── History Page ──────────────────────────────────────────────────────────────
+export async function getHistoryPage() {
+  return fetchAPI("/api/history-page");
 }

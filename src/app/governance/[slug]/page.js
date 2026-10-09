@@ -1,8 +1,8 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import GovernanceFinancecommittte from "@/components/sections/governance/governance-financecommittte";
-import { getGovernancePageBySlug, getGovernancePages } from "@/lib/api/index";
+import { getGovernancePageBySlug, getGovernancePages } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -26,8 +26,6 @@ export default async function GovernancePage({ params }) {
     getGovernancePages(),
   ]);
 
-  console.log("pageData", pageData);
-  console.log("governancePages", governancePages);
 
   if (!pageData) return null;
 

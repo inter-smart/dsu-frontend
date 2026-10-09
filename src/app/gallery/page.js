@@ -1,9 +1,9 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import Gallery from "@/components/sections/gallery/gallery";
 import FloatingContactRail from "@/components/layout/common/floating-contact-rail";
-import { getGalleryPage, getGalleryItems } from "@/lib/api/gallery";
+import { getGalleryPage, getGalleryItems } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 const local_data = {
   hero: {

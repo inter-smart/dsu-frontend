@@ -2,7 +2,7 @@
 import DSUCell from "@/components/sections/why-us/DSU-Cell"
 import DSUWomenRedressal from "@/components/sections/why-us/DSU-womenredressal"
 
-export const revalidate = 60;
+
 
 
 

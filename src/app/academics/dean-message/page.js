@@ -2,7 +2,7 @@
 import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 import DeanMessage from "@/components/sections/academics/dean-message";
 
-export const revalidate = 60;
+
 
 
 

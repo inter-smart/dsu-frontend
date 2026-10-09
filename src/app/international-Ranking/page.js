@@ -3,7 +3,7 @@ import NationalRanking from "@/components/sections/national-Ranking/national-Ran
 import NationalRankingStats from "@/components/sections/national-Ranking/national-Ranking-stats";
 import { getInternationalRankingPage } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 export async function generateMetadata() {
   const pageData = await getInternationalRankingPage();
@@ -23,7 +23,6 @@ export async function generateMetadata() {
 export default async function Page() {
   const pageData = await getInternationalRankingPage();
 
-  console.log("pageData", pageData);
 
   if (!pageData) return null;
 

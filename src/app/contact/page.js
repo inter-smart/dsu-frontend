@@ -1,9 +1,9 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import Journey from "@/components/layout/common/journey";
 import Contact from "@/components/sections/contact/contact";
-import { getContactPage } from "@/lib/api/index";
+import { getContactPage } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 // const local_data = {
 //   hero: {

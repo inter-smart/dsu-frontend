@@ -3,7 +3,7 @@ import NationalRanking from "@/components/sections/national-Ranking/national-Ran
 import NationalRankingStats from "@/components/sections/national-Ranking/national-Ranking-stats";
 import { getNationalRankingPage } from "@/lib/api";
 
-export const revalidate = 60;
+
 
 const local_data = {
   id: 24,
