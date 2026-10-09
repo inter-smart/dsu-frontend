@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { fetchAPI } from "./strapi";
 
 // ── About DSU ────────────────────────────────────────────────────────────────
@@ -327,3 +328,16 @@ export async function getRankingBySlug(slug, category, goal) {
     { next: { revalidate: 60 } },
   );
 }
+=======
+// Strapi API layer — import everything from "@/lib/api"
+export { fetchAPI, getStrapiMedia } from "./strapi";
+export * from "./about";
+export * from "./home";
+export * from "./governance";
+export * from "./academics";
+export * from "./faculty";
+export * from "./news-events";
+export * from "./rankings";
+export * from "./alumni";
+export * from "./gallery";
+>>>>>>> 5de2c1da50bd0364308907d71792ec6ead98d145

@@ -11,7 +11,7 @@ import {
     getComplianceDisclosures,
     getAqarPageBySlug,
     getIqacPageBySlug,
-} from "@/lib/api/index";
+} from "@/lib/api";
 
 export const revalidate = 60;
 

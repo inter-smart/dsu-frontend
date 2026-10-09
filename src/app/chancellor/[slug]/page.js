@@ -1,6 +1,6 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import ChancellorMessage from "@/components/sections/chancellor/chancellor-message";
-import { getLeadershipMemberBySlug } from "@/lib/api/index";
+import { getLeadershipMemberBySlug } from "@/lib/api";
 
 export const revalidate = 60;
 

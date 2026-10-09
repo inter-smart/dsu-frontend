@@ -23,7 +23,6 @@ export async function generateMetadata() {
 export default async function Page() {
   const pageData = await getInternationalRankingPage();
 
-  console.log("pageData", pageData);
 
   if (!pageData) return null;
 

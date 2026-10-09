@@ -5,7 +5,7 @@ import AboutLegacy from "@/components/sections/about/about-legacy";
 import AboutRecognition from "@/components/sections/about/about-recognition";
 import AboutVision from "@/components/sections/about/about-vision";
 import AboutWelcome from "@/components/sections/about/about-welcome";
-import { getAboutPage } from "@/lib/api/about";
+import { getAboutPage } from "@/lib/api";
 
 export default async function Page() {
   const data = await getAboutPage();

@@ -5,7 +5,7 @@ import UgcRegnition from "@/components/sections/regulatory-approval/ugc-recognit
 import {
   getRegulatoryApprovalBySlug,
   getRegulatoryApprovals,
-} from "@/lib/api/index";
+} from "@/lib/api";
 
 export const revalidate = 60;
 

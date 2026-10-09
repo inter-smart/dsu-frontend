@@ -30,7 +30,7 @@ export default function InnerHero({ data }) {
     <section className="relative block h-[350px] w-full md:h-[450px] xl:h-[500px] 2xl:h-[600px] 3xl:h-[750px]">
       {/* Background Media */}
       <div className="absolute inset-0 z-0 h-full w-full">
-        <div className="absolute inset-0 z-10 bg-black/40" />
+        <div className="absolute inset-0 z-10 bg-black/10" />
 
         {isVideo ? (
           <video autoPlay muted loop playsInline className="h-full w-full object-cover">

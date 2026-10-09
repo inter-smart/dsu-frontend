@@ -1,6 +1,6 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import NewsEvents from "@/components/sections/news-events/news-events";
-import { getNewsEventsPage } from "@/lib/api/index";
+import { getNewsEventsPage } from "@/lib/api";
 
 export const revalidate = 60;
 
