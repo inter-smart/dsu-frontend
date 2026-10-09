@@ -10,7 +10,7 @@ export default function CareerPlacement({ data }) {
     const primaryImage = data?.media?.[0];
 
     return (
-        <section id="overview" className="relative py-[0px_20px] sm:py-[20px_20px] xl:py-[55px_20px] 2xl:py-[70px_20px] 3xl:py-[90px_20px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
+        <section id="overview" className="relative py-[0px] sm:py-[20px_10px] xl:py-[55px_20px] 2xl:py-[70px_20px] 3xl:py-[90px_20px] bg-white dark:bg-[#0f1011] dark:!pb-[50px] transition-colors duration-300">
             <div className="container">
                 <div className="relative max-lg:flex max-lg:flex-col-reverse gap-[20px] after:content-[''] after:table after:clear-both ">
                     <div className="w-full lg:w-[55%] lg:float-right ml-0 lg:ml-[30px] xl:ml-[45px] 2xl:ml-[55px] mb-[25px] lg:mb-[20px]">

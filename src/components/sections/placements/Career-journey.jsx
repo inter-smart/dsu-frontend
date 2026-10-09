@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -14,22 +13,22 @@ import {
 
 export default function CareerJourney({ data }) {
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[90px] 3xl:py-[110px]">
+        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[90px] 3xl:py-[110px] dark:bg-[#000]">
             <div className="container">
-                <div className="cmn_Title">{data.heading}</div>
+                <div className="cmn_Title dark:text-white">{data.heading}</div>
                 <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px] mb-[10px]">
                     <BlocksRenderer content={data.description} />
                 </div>
                 <div className="flex max-lg:flex-wrap gap-[10px] lg:gap-[20px]">
                     <div className="w-full lg:w-1/2">
-                        <div className="text-[18px] xl:text-[22px] 2xl:text-[25px] 3xl:text-[30px] text-[#212121] font-semibold my-[20px]">
+                        <div className="text-[18px] xl:text-[22px] 2xl:text-[25px] 3xl:text-[30px] text-[#212121] dark:text-white font-semibold my-[20px]">
                             {data?.faqSection.heading}
                         </div>
-                        <Accordion type="single" collapsible defaultValue="item-2" className="w-full border border-black/10 rounded-[10px]">
+                        <Accordion type="single" collapsible defaultValue="item-2" className="w-full border border-black/10 dark:border-white/10 dark:bg-[#18191B] rounded-[10px]">
                             {data?.faqSection.accordion?.map((item) => (
-                                <AccordionItem key={item.id} value={`item-${item.id}`} className="p-[8px_10px] md:p-[15px] xl:p-[18px] 3xl:p-[20px_25px] border-b border-[#E5E9EE] rounded-[0px] mb-[10px] xl:mb-[20px] last-of-type:mb-0 last-of-type:border-none">
+                                <AccordionItem key={item.id} value={`item-${item.id}`} className="p-[8px_10px] md:p-[15px] xl:p-[18px] 3xl:p-[20px_25px] border-b border-[#E5E9EE] dark:border-white/10 rounded-[0px] mb-[10px] xl:mb-[20px] last-of-type:mb-0 last-of-type:border-none">
                                     <AccordionTrigger
-                                        className="relative p-0 font-medium !text-black text-[11px] hover:no-underline md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-semibold after:text-base2 dark:after:text-white data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden"
+                                        className="relative p-0 font-medium !text-black dark:!text-white text-[11px] hover:no-underline md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-semibold after:text-base2 dark:after:text-white data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden"
                                     >
                                         <div className="w-full">
                                             <div className="cmn_Txt text-[#212121] dark:text-white font-semibold">
@@ -38,7 +37,7 @@ export default function CareerJourney({ data }) {
                                         </div>
                                     </AccordionTrigger>
                                     {item?.answer?.length > 0 && (
-                                        <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] text-[#797979]">
+                                        <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] text-[#797979] dark:text-[#9CA3AF]">
                                             <div className="w-full">
                                                 <BlocksRenderer content={item.answer} />
                                             </div>
@@ -49,16 +48,16 @@ export default function CareerJourney({ data }) {
                         </Accordion>
                     </div>
                     <div className="w-full lg:w-1/2">
-                        <div className="text-[18px] xl:text-[22px] 2xl:text-[25px] 3xl:text-[30px] text-[#212121] font-semibold my-[20px]">
+                        <div className="text-[18px] xl:text-[22px] 2xl:text-[25px] 3xl:text-[30px] text-[#212121] dark:text-white font-semibold my-[20px]">
                             {data?.downloadsSection.heading}
                         </div>
-                        <div className="w-full  border border-black/10 rounded-[10px] p-[20px] sm:p-[25px_20px] lg:p-[30px_25px] xl:p-[35px_30px] 2xl:p-[45px_35px] 3xl:p-[55px_45px]">
+                        <div className="w-full  border border-black/10 dark:border-white/10 dark:bg-[#18191B] rounded-[10px] p-[20px] sm:p-[25px_20px] lg:p-[30px_25px] xl:p-[35px_30px] 2xl:p-[45px_35px] 3xl:p-[55px_45px]">
                             {data?.downloadsSection?.links.map((item) => (
                                 <div className="w-full">
                                     <Link
                                         href={item?.href}
                                         key={item.id}
-                                        className="group relative flex items-center !no-underline justify-between  py-[15px] 2xl:py-[18px] 3xl:py-[20px] border-b  dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
+                                        className="group relative flex items-center !no-underline justify-between  py-[15px] 2xl:py-[18px] 3xl:py-[20px] border-b border-black/10 dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
                                     >
                                         {/* Sliding background highlight on hover — scaleX instead of width */}
                                         <span className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 bg-gradient-to-r from-[#DC2626]/5 to-[#F97316]/5 !no-underline transition-transform duration-500 ease-out -z-10" />

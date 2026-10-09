@@ -11,7 +11,7 @@ import Image from "next/image";
 export default function KeyFocus({ data }) {
     const primaryImage = data?.media;
     return (
-        <section className="relative py-[25px_40px] xl:py-[25px_60px] 2xl:py-[20px_70px] 3xl:py-[30px_90px] ">
+        <section className="relative py-[5px_40px] xl:py-[5px_60px] 2xl:py-[20px_70px] 3xl:py-[30px_90px] ">
             <div className="container">
                 <div className="flex flex-wrap justify-between mb-[30px] 2xl:mb-[45px]">
                     {data.heading && (
@@ -43,7 +43,7 @@ export default function KeyFocus({ data }) {
                     <div className="w-full lg:w-[65%]  flex-1">
                         <Accordion type="single" collapsible defaultValue="item-2">
                             {data?.accordion?.map((item) => (
-                                <AccordionItem key={item.id} value={`item-${item.id}`} className="p-[8px_10px] md:p-[15px] xl:p-[18px] 3xl:p-[20px_25px] border border-[#E5E9EE] rounded-[6px] mb-[10px] xl:mb-[20px] last-of-type:mb-0">
+                                <AccordionItem key={item.id} value={`item-${item.id}`} className="p-[8px_10px] md:p-[15px] xl:p-[18px] 3xl:p-[20px_25px] border border-[#9fa2a76b] rounded-[6px] mb-[10px] xl:mb-[20px] last-of-type:mb-0">
                                     <AccordionTrigger
                                         className="relative p-0 font-medium !text-black text-[11px] hover:no-underline md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold after:text-base2 dark:after:text-white data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden"
                                     >

@@ -1,5 +1,6 @@
 "use client";
 
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,8 +10,8 @@ export default function StudentSuccessStories({ data }) {
     const videoSwiperRef = useRef(null);
     const otherSwiperRef = useRef(null);
 
-    const [videoPrevDisabled, setVideoPrevDisabled] = useState(true);
-    const [videoNextDisabled, setVideoNextDisabled] = useState(false);
+    // const [videoPrevDisabled, setVideoPrevDisabled] = useState(true);
+    // const [videoNextDisabled, setVideoNextDisabled] = useState(false);
 
     const [otherPrevDisabled, setOtherPrevDisabled] = useState(true);
     const [otherNextDisabled, setOtherNextDisabled] = useState(false);
@@ -30,10 +31,10 @@ export default function StudentSuccessStories({ data }) {
 
     // Fallback/default data matching the design in the image
     const heading = data?.heading || "Student Success Stories";
-    const videosHeading = data?.videosHeading || "Videos";
-    const otherHeading = data?.otherHeading || "Other";
+    // const videosHeading = data?.videosHeading || "Videos";
+    // const otherHeading = data?.otherHeading || "Other";
 
-    const videos = data?.videos
+    // const videos = data?.videos
 
     const stories = data?.stories
 
@@ -50,24 +51,16 @@ export default function StudentSuccessStories({ data }) {
     };
 
     return (
-        <section className="relative w-full py-[45px] sm:py-[60px] lg:py-[75px] xl:py-[90px] bg-white dark:bg-[#0c0d0e] transition-colors duration-300">
+        <section className="relative w-full py-[45px] sm:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0c0d0e] transition-colors duration-300">
             <div className="container">
-                {/* Main Heading */}
-                <div className="text-center mb-[32px] sm:mb-[42px] lg:mb-[52px]">
-                    <h2 className="text-[28px] sm:text-[36px] lg:text-[42px] xl:text-[46px] font-bold text-[#1F1F1F] dark:text-white tracking-tight">
-                        {heading}
-                    </h2>
-                </div>
+
 
                 {/* --- Section 1: Videos --- */}
-                <div className="mb-[36px] sm:mb-[46px] lg:mb-[56px]">
-                    {/* Header Row */}
+                {/* <div className="mb-[36px] sm:mb-[46px] lg:mb-[56px]"> 
                     <div className="flex items-center justify-between mb-[18px] sm:mb-[22px] lg:mb-[26px]">
                         <h3 className="text-[20px] sm:text-[22px] lg:text-[24px] font-bold text-[#1F1F1F] dark:text-white">
                             {videosHeading}
-                        </h3>
-
-                        {/* Orange Arrow Navigation Buttons */}
+                        </h3> 
                         <div className="flex items-center gap-2 2xl:gap-1">
                             <button
                                 type="button"
@@ -94,9 +87,7 @@ export default function StudentSuccessStories({ data }) {
 
                             </button>
                         </div>
-                    </div>
-
-                    {/* Videos Swiper Carousel */}
+                    </div> 
                     <div className="w-full">
                         <Swiper
                             onSwiper={(swiper) => {
@@ -141,11 +132,9 @@ export default function StudentSuccessStories({ data }) {
                                             fill
                                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                                         />
-
-                                        {/* Overlay gradient */}
+ 
                                         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300" />
-
-                                        {/* Frosted Circular Play Button */}
+ 
                                         <div className="absolute inset-0 flex items-center justify-center">
                                             <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full   flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                                 <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -158,15 +147,31 @@ export default function StudentSuccessStories({ data }) {
                             ))}
                         </Swiper>
                     </div>
-                </div>
+                </div> */}
 
                 {/* --- Section 2: Other (Testimonials) --- */}
                 <div>
                     {/* Header Row */}
                     <div className="flex items-center justify-between mb-[18px] sm:mb-[22px] lg:mb-[26px]">
-                        <h3 className="text-[20px] sm:text-[22px] lg:text-[24px] font-bold text-[#1F1F1F] dark:text-white">
+                        {/* <h3 className="text-[20px] sm:text-[22px] lg:text-[24px] font-bold text-[#1F1F1F] dark:text-white">
                             {otherHeading}
-                        </h3>
+                        </h3> */}
+                        {/* Main Heading */}
+                        <div className="">
+                            <h2 className="text-[28px] sm:text-[36px] lg:text-[42px] xl:text-[46px] font-bold text-[#1F1F1F] dark:text-white tracking-tight">
+                                {heading}
+                            </h2>
+
+                            {data?.description && (
+                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]">
+                                    {Array.isArray(data.description) ? (
+                                        <BlocksRenderer content={data.description} />
+                                    ) : (
+                                        <p>{data.description}</p>
+                                    )}
+                                </div>
+                            )}
+                        </div>
 
                         {/* Orange Arrow Navigation Buttons */}
                         <div className="flex items-center gap-2 2xl:gap-1">
@@ -268,7 +273,7 @@ export default function StudentSuccessStories({ data }) {
                                         </div>
 
                                         {/* Bottom Author Row */}
-                                        <div className="pt-6 border-t border-black/10 flex items-center justify-between">
+                                        <div className="pt-6 mt-8 border-t border-black/10 flex items-center justify-between">
                                             <div className="flex gap-3 min-w-0">
                                                 {/* Student Avatar */}
                                                 <div className="relative w-[65px] h-[65px] rounded-lg overflow-hidden shrink-0 bg-neutral-200 dark:bg-neutral-700">
@@ -292,7 +297,7 @@ export default function StudentSuccessStories({ data }) {
                                                         {story.degree}
                                                     </p>
                                                 </div>
-                                            </div> 
+                                            </div>
                                         </div>
                                     </div>
                                 </SwiperSlide>

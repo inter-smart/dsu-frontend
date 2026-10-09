@@ -122,7 +122,7 @@ export default function CampusDrives({ data }) {
     if (!data?.tabs?.length) return null;
 
     return (
-        <section className="relative  dark:bg-[#101010] bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)]">
+        <section className="relative bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-[linear-gradient(135deg,#000_100%,#000_100%)]">
             <div className="container py-[30px] xl:py-[45px] 2xl:py-[60px] 3xl:py-[75px] border-t border-black/10">
                 <Tabs defaultValue={String(data.tabs[0].id)} className="w-full">
                   

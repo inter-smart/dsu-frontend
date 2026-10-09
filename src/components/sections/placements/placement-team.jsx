@@ -25,16 +25,16 @@ export default function PlacementTeam({ data }) {
                 {/* Header: Heading and Subtitle */}
                 <div className="mb-[28px] sm:mb-[36px] xl:mb-[44px]">
                     {heading && (
-                        <h2 className="cmn_Title text-[#1F1F1F] dark:text-white font-bold tracking-tight mb-2 sm:mb-3">
+                        <h2 className="cmn_Title text-[#1F1F1F]  font-bold tracking-tight mb-2 sm:mb-3">
                             {heading}
                         </h2>
                     )}
                     {description && Array.isArray(description) ? (
-                        <div className="text_1 text-[#5A6472] dark:text-[#9CA3AF] max-w-[850px] leading-relaxed">
+                        <div className="text_1 text-[#5A6472] dark:!text-black max-w-[850px] leading-relaxed [&_p]:dark:!text-black">
                             <BlocksRenderer content={description} />
                         </div>
                     ) : (description || subheading) && (
-                        <p className="text_1 text-[#5A6472] dark:text-[#9CA3AF] max-w-[850px] leading-relaxed">
+                        <p className="text_1 text-[#5A6472] dark:!text-black max-w-[850px] leading-relaxed">
                             {description || subheading}
                         </p>
                     )}

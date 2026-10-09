@@ -17,21 +17,33 @@ const menuItems = [
         href: "/placement"
     },
     {
-        label: "Placement Statistics",
-        href: "/placement/Statistics"
-    },
-    {
         label: "Career Development Centre",
         href: "/placement/career"
     },
     {
-        label: "Corporate Connect",
-        href: "/placement/corporate-connect"
+        label: "Placement",
+        href: "/placement/placement"
+    },
+    {
+        label: "Internship",
+        href: "/placement/internship"
+    },
+    {
+        label: "Recruiters & Industry",
+        href: "/placement/"
+    },
+    {
+        label: "Student Success",
+        href: "/placement/"
+    },  
+    {
+        label: "Recruit @ DSU",
+        href: "/placement/recruit"
     },
     {
         label: "Placement Contact",
         href: "/placement/placement-contact"
-    },
+    }, 
      
 ];
 
