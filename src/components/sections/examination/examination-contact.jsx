@@ -1,13 +1,21 @@
+import Link from "next/link";
 import Image from "next/image";
 import { Heading } from "@/components/ui/heading";
-import ExaminationSidebar from "./examination-sidebar";
+import AiAcademicMenubar from "../ai-enabled/Ai-academicMenubar";
+import LibrarySidebar from "../ai-enabled/library/library-sidemenubar";
 
-export default function ExaminationContact({ data, sidebar }) {
+export default function ExaminationContact({ data }) {
   return (
     <section className="w-full h-auto py-[20px_40px] sm:py-[30px_50px] lg:py-[60px_80px] 2xl:py-[70px_100px] 3xl:py-[90px_130px] block relative z-0">
       <div className="container">
         <div className="[--width:100%] lg:[--width:210px] 2xl:[--width:270px] 3xl:[--width:330px] w-full h-auto flex flex-wrap">
-          <ExaminationSidebar data={sidebar} />
+          <div className="w-(--width)">
+            <LibrarySidebar data={data?.sidebar} />
+            <AiAcademicMenubar
+              className="[&>div]:px-0 block lg:hidden"
+              data={data?.sidebar}
+            />
+          </div>
           <div className="w-full lg:w-[calc(100%-var(--width))] lg:pl-3.75 2xl:pl-5 3xl:pl-7.5">
             <div className="w-full h-auto p-[20px_20px_30px_20px] sm:p-[30px_30px_40px_30px] 2xl:p-[40px_40px_50px_40px] 3xl:p-[50px_20px_60px_50px] border border-black/10 rounded-[10px] sm:rounded-[13px] 2xl:rounded-[20px] overflow-hidden">
               <div className="w-full h-auto mb-5 sm:mb-6.25 md:mb-2.5">
@@ -20,17 +28,22 @@ export default function ExaminationContact({ data, sidebar }) {
                     className="w-full md:w-1/2 h-auto max-md:py-(--gap) md:p-[10px_10px_10px_var(--gap)] 2xl:p-[20px_20px_20px_var(--gap)] first:max-md:pt-0 max-md:not-last:border-b md:odd:border-r border-black/10 block"
                   >
                     <div className="w-full h-full block">
-                      {item?.title && (
+                      {data?.title && (
                         <div className="text-base sm:text-lg lg:text-xl 2xl:text-[25px] 3xl:text-[32px] leading-[1.2] font-semibold text-[#212121] mb-2.5 sm:mb-3.75 lg:mb-5 2xl:mb-7.5 3xl:mb-10">
                           {item?.title}
                         </div>
                       )}
-                      {item?.address && (
+                      <div className="w-full h-auto mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-15">
+                        <div className="text-base lg:text-lg 2xl:text-[22px] 3xl:text-[28px] leading-[1.2] font-semibold text-[#4A5565] mb-1.25 3xl:mb-2.5">
+                          {item?.addressDetail?.title}
+                        </div>
                         <div
-                          className="w-full h-auto text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.8] font-normal text-[#4A5565] mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-15 [&_p]:m-0 [&_:is(h1,h2,h3,h4,h5,h6)]:block [&_:is(h1,h2,h3,h4,h5,h6)]:text-base lg:[&_:is(h1,h2,h3,h4,h5,h6)]:text-lg 2xl:[&_:is(h1,h2,h3,h4,h5,h6)]:text-[22px] 3xl:[&_:is(h1,h2,h3,h4,h5,h6)]:text-[28px] [&_:is(h1,h2,h3,h4,h5,h6)]:leading-[1.2] [&_:is(h1,h2,h3,h4,h5,h6)]:font-semibold [&_:is(h1,h2,h3,h4,h5,h6)]:text-[#4A5565] [&_:is(h1,h2,h3,h4,h5,h6)]:mb-1.25 3xl:[&_:is(h1,h2,h3,h4,h5,h6)]:mb-2.5"
-                          dangerouslySetInnerHTML={{ __html: item.address }}
+                          className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.8] font-normal text-[#4A5565]"
+                          dangerouslySetInnerHTML={{
+                            __html: item?.addressDetail?.address ?? "",
+                          }}
                         />
-                      )}
+                      </div>
                       <div className="w-full h-auto mb-5 2xl:mb-7.5 block">
                         {item?.contactDetail?.map((item) => (
                           <div
@@ -61,14 +74,32 @@ export default function ExaminationContact({ data, sidebar }) {
                                     {item?.title}
                                   </div>
                                 )}
-                                {item?.description && (
-                                  <div
-                                    className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.6] font-medium text-[#4A5565] [&_a]:transition-colors [&_a]:duration-300 [&_a:hover]:text-(--basecolor2)"
-                                    dangerouslySetInnerHTML={{
-                                      __html: item.description,
-                                    }}
-                                  />
-                                )}
+                                <div className="w-full h-auto block">
+                                  {item?.details?.map((detail) => (
+                                    <div
+                                      key={detail?.id}
+                                      className="w-full h-auto 2xl:not-last:mb-1.25 3xl:not-last:mb-2.5 block"
+                                    >
+                                      {detail?.label && (
+                                        <span className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-[#4A5565]">
+                                          {detail?.label} -{" "}
+                                        </span>
+                                      )}
+                                      <Link
+                                        href={
+                                          detail?.type === "call"
+                                            ? `tel:${detail?.value}`
+                                            : detail?.type === "email"
+                                              ? `mailto:${detail?.value}`
+                                              : "#"
+                                        }
+                                        className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-[#4A5565] transition-colors duration-300 hover:text-(--basecolor2)"
+                                      >
+                                        {detail?.value}
+                                      </Link>
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
                             </div>
                           </div>
