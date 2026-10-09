@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import ExaminationTemplate from "@/components/sections/examination/examination-template";
 import { getExaminationLandingPage } from "@/lib/api";
 
@@ -22,37 +21,38 @@ const local_data = {
       },
     ],
   },
+  template: "examination",
+  sidebar: [
+    {
+      label: "Examination Overview",
+      slug: "/examination",
+    },
+    {
+      label: "Exam Notifications",
+      slug: "/examination/schedule",
+    },
+    {
+      label: "Circulars",
+      slug: "/examination/results",
+    },
+    {
+      label: "Results",
+      slug: "/examination/notices",
+    },
+    {
+      label: "Exam Timetables ",
+      slug: "/examination/rules",
+    },
+    {
+      label: "Student Data Verification",
+      slug: "/examination/contact",
+    },
+    {
+      label: "Contact",
+      slug: "/examination/contact",
+    },
+  ],
   examination: {
-    sidebar: [
-      {
-        label: "Examination Overview",
-        slug: "/examination",
-      },
-      {
-        label: "Exam Notifications",
-        slug: "/examination/schedule",
-      },
-      {
-        label: "Circulars",
-        slug: "/examination/results",
-      },
-      {
-        label: "Results",
-        slug: "/examination/notices",
-      },
-      {
-        label: "Exam Timetables ",
-        slug: "/examination/rules",
-      },
-      {
-        label: "Student Data Verification",
-        slug: "/examination/contact",
-      },
-      {
-        label: "Contact",
-        slug: "/examination/contact",
-      },
-    ],
     title: "Examination",
     description:
       "The Examination Section has long realized the need for a credible, valid, effective and transparent evaluation system. In this pursuit, we have taken giant leaps in technology to ensure seamless processes for Question Paper setting, conduct of the examination, valuation & tabulation of results.",
@@ -92,8 +92,8 @@ export async function generateMetadata() {
 export default async function Page() {
   let pageData = await getExaminationLandingPage();
 
-  pageData = pageData || local_data;
-  if (!pageData) notFound();
+  pageData = pageData;
+  if (!pageData) return null;
 
   return <ExaminationTemplate pageData={pageData} />;
 }

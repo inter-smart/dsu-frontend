@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import ExaminationTemplate from "@/components/sections/examination/examination-template";
 import { getExaminationBySlug, getExaminations } from "@/lib/api";
 
@@ -27,7 +26,7 @@ export default async function Page({ params }) {
   const { slug } = await params;
   const pageData = await getExaminationBySlug(slug);
 
-  if (!pageData) notFound();
+  if (!pageData) return null;
 
   return <ExaminationTemplate pageData={pageData} />;
 }

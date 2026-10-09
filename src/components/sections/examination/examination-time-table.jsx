@@ -3,8 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
-import LibrarySidebar from "../ai-enabled/library/library-sidemenubar";
-import AiAcademicMenubar from "../ai-enabled/Ai-academicMenubar";
+import ExaminationSidebar from "./examination-sidebar";
 import { getExaminationTimetablePaged } from "@/lib/api";
 
 function TimetableSection({ slug, section }) {
@@ -76,18 +75,12 @@ function TimetableSection({ slug, section }) {
   );
 }
 
-export default function ExaminationTimeTable({ slug, data }) {
+export default function ExaminationTimeTable({ slug, data, sidebar }) {
   return (
     <section className="w-full h-auto py-[20px_40px] sm:py-[30px_50px] lg:py-[60px_70px] 2xl:py-[70px_90px] 3xl:py-[90px_130px] block relative z-0">
       <div className="container">
         <div className="[--width:100%] lg:[--width:210px] 2xl:[--width:270px] 3xl:[--width:330px] w-full h-auto flex flex-wrap">
-          <div className="w-(--width)">
-            <LibrarySidebar data={data?.sidebar} />
-            <AiAcademicMenubar
-              className="[&>div]:px-0 block lg:hidden"
-              data={data?.sidebar}
-            />
-          </div>
+          <ExaminationSidebar data={sidebar} />
           <div className="w-full lg:w-[calc(100%-var(--width))] lg:pl-3.75 2xl:pl-5 3xl:pl-7.5 space-y-5 2xl:space-y-7.5">
             {data?.sections?.map((section) => (
               <TimetableSection key={section?.id} slug={slug} section={section} />
