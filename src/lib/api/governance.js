@@ -69,3 +69,7 @@ export async function getIqacPageBySlug(slug) {
 export async function getAqarPageBySlug(slug) {
   return fetchAPI(slugPath("/api/aqars", slug));
 }
+
+export async function getAcademicQualityBySlug(slug) {
+  return fetchAPI(slugPath("/api/academic-qualities", slug));
+}
