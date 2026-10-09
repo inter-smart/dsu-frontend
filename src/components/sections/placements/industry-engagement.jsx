@@ -21,14 +21,14 @@ export default function IndustryEngagement({ data }) {
     if (!data) return null;
 
     return (
-        <section className="py-[40px] sm:py-[50px] xl:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
+        <section className="py-[40px] xl:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
             <div className="container">
-                <Heading as="h2" className="mb-[8px] 3xl:mb-[16px] dark:text-white">
+                <Heading as="h2" className="text-[25px] leading-[1.1] mb-[8px] 3xl:mb-[16px] dark:text-white">
                     {data?.title}
                 </Heading>
                 <Text>{data?.description}</Text>
 
-                <div className="flex gap-[10px] 3xl:gap-[16px] mt-[20px] 3xl:mt-[30px] mb-[25px] 3xl:mb-[55px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div className="flex gap-[10px] 3xl:gap-[16px] mt-[20px] 2xl:mt-[30px] 3xl:mt-[47px] mb-[25px] 3xl:mb-[55px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     {data?.categories?.map((c) => (
                         <FilterPill key={c?.value} active={category === c?.value} onClick={() => setCategory(c?.value)}>
                             {c?.label}
@@ -40,8 +40,8 @@ export default function IndustryEngagement({ data }) {
                     <p className="py-[40px] text-center">{data?.emptyText}</p>
                 ) : (
                     <div className="relative">
-                        <SliderArrow dir="prev" label="Previous engagement" onClick={() => emblaApi?.scrollPrev()} className="hidden xl:flex absolute z-1 top-1/2 -translate-y-1/2 -left-[45px] 3xl:-left-[56px]" />
-                        <SliderArrow dir="next" label="Next engagement" onClick={() => emblaApi?.scrollNext()} className="hidden xl:flex absolute z-1 top-1/2 -translate-y-1/2 -right-[45px] 3xl:-right-[56px]" />
+                        <SliderArrow dir="prev" label="Previous engagement" onClick={() => emblaApi?.scrollPrev()} className="max-xl:hidden absolute z-1 top-1/2 -translate-y-1/2 -left-[45px] 3xl:-left-[56px]" />
+                        <SliderArrow dir="next" label="Next engagement" onClick={() => emblaApi?.scrollNext()} className="max-xl:hidden absolute z-1 top-1/2 -translate-y-1/2 -right-[45px] 3xl:-right-[56px]" />
                         <div ref={emblaRef} className="overflow-hidden">
                             <div className="flex -ml-[20px] touch-pan-y touch-pinch-zoom">
                                 {items.map((item) => (
@@ -72,6 +72,10 @@ export default function IndustryEngagement({ data }) {
                                     </div>
                                 ))}
                             </div>
+                        </div>
+                        <div className="xl:hidden flex justify-end gap-[6px] mt-[15px]">
+                            <SliderArrow dir="prev" label="Previous engagement" onClick={() => emblaApi?.scrollPrev()} />
+                            <SliderArrow dir="next" label="Next engagement" onClick={() => emblaApi?.scrollNext()} />
                         </div>
                     </div>
                 )}

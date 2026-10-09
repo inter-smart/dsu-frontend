@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
-export default function Recruiters({ data }) {
+export default function Recruiters({ data, className }) {
     const [selectedSchool, setSelectedSchool] = useState("all");
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [visibleCount, setVisibleCount] = useState(data?.loadMore?.initialCount || 18);
@@ -33,11 +34,11 @@ export default function Recruiters({ data }) {
     };
 
     return (
-        <section id="recruiters" className="relative py-[40px] sm:py-[50px] xl:py-[60px] 2xl:py-[75px] bg-[#F4F8FC] dark:bg-[#0f1011] transition-colors duration-300">
+        <section id="recruiters" className={cn("relative py-[40px] sm:py-[50px] xl:py-[60px] 2xl:py-[75px] [--recruiters-bg:#F4F8FC] dark:[--recruiters-bg:#0f1011] bg-(--recruiters-bg) transition-colors duration-300", className)}>
             <div className="container">
                 {/* Header Row: Title & Filter */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-[28px] sm:mb-[36px] xl:mb-[44px]">
-                    <h2 className="text-[26px] sm:text-[32px] md:text-[36px] xl:text-[40px] 2xl:text-[44px] font-bold text-[#1A1F2C] dark:text-white tracking-tight leading-tight">
+                    <h2 className="cmn_Title mb-0 tracking-tight">
                         {data?.heading || "Esteemed Recruiters"}
                     </h2>
 
@@ -98,7 +99,7 @@ export default function Recruiters({ data }) {
                     </div>
                 </div>
  
-                <div className="w-full grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 relative after:absolute after:top-0 after:left-0 after:w-full after:h-full after:border-[#F4F8FC] after:border after:content-['']">
+                <div className="w-full grid grid-cols-3 md:grid-cols-6 relative after:absolute after:top-0 after:left-0 after:w-full after:h-full after:border-(--recruiters-bg) after:border after:content-['']">
                     {displayedRecruiters.map((recruiter, index) => (
                         <div
                             key={recruiter.id || index}

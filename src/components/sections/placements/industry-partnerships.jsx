@@ -23,7 +23,7 @@ export default function IndustryPartnerships({ data }) {
     if (!data) return null;
 
     return (
-        <section className="py-[40px] sm:py-[50px] xl:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-[#F1F5FC] dark:bg-[#0f1011] transition-colors duration-300">
+        <section className="py-[40px] xl:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-[#F1F5FC] dark:bg-[#0f1011] transition-colors duration-300">
             <div className="container">
                 <div className="grid lg:grid-cols-2 gap-[30px] xl:gap-[50px] 3xl:gap-[70px] items-start">
                     <div>
@@ -32,29 +32,29 @@ export default function IndustryPartnerships({ data }) {
                                 {data.eyebrow}
                             </div>
                         )}
-                        <Heading as="h2" className="mb-[12px] 3xl:mb-[16px] max-w-[560px] dark:text-white">
+                        <Heading as="h2" className="text-[25px] leading-[1.1] mb-[12px] 3xl:mb-[16px] max-w-[560px] dark:text-white">
                             {data?.title}
                         </Heading>
-                        <div className="typography text_1 space-y-[16px] 3xl:space-y-[28px]">
+                        <div className="typography text_1 [--text-color:#4A5565] dark:[--text-color:#f9fafb] space-y-[16px] 3xl:space-y-[28px]">
                             <BlocksRenderer content={data?.description || []} />
                         </div>
                     </div>
 
-                    <ul className="grid sm:grid-cols-2 gap-[15px] 3xl:gap-x-[56px] 3xl:gap-y-[25px]">
+                    <ul className="grid sm:grid-cols-2 auto-rows-fr gap-[15px] 3xl:gap-x-[56px] 3xl:gap-y-[24px]">
                         {data?.features?.map((item) => (
                             <li
                                 key={item?.id}
-                                className="flex items-start gap-[12px] 3xl:gap-[16px] p-[16px] 3xl:p-[18px_20px] bg-white dark:bg-[#1a1a1a] border border-[#FAD2BC] dark:border-white/10 rounded-[8px] 3xl:rounded-[10px]"
+                                className="flex items-start gap-[12px] 3xl:gap-[14px] p-[15px] 3xl:p-[24px_16px_20px] bg-white dark:bg-[#1a1a1a] border border-[#FAD2BC] dark:border-white/10 rounded-[8px] 3xl:rounded-[10px]"
                             >
                                 <Image
                                     src={item?.icon?.url}
                                     width={56}
                                     height={56}
                                     alt=""
-                                    className="w-[40px] 3xl:w-[56px] h-auto shrink-0"
+                                    className="w-[40px] 2xl:w-[46px] 3xl:w-[52px] h-auto shrink-0"
                                 />
                                 <div>
-                                    <h3 className="text-[16px] 2xl:text-[19px] 3xl:text-[25px] leading-tight font-bold text-[#212121] dark:text-white mb-[4px] 3xl:mb-[8px]">
+                                    <h3 className="text-[16px] 2xl:text-[19px] 3xl:text-[25px] leading-[1.1] font-bold text-[#212121] dark:text-white mb-[4px]">
                                         {item?.title}
                                     </h3>
                                     <p>{item?.description}</p>
@@ -80,8 +80,8 @@ export default function IndustryPartnerships({ data }) {
                     <p className="py-[40px] text-center">{data?.emptyText}</p>
                 ) : (
                     <div className="relative">
-                        <SliderArrow dir="prev" label="Previous partner" onClick={() => emblaApi?.scrollPrev()} className="hidden xl:flex absolute z-1 top-1/2 -translate-y-1/2 -left-[45px] 3xl:-left-[56px]" />
-                        <SliderArrow dir="next" label="Next partner" onClick={() => emblaApi?.scrollNext()} className="hidden xl:flex absolute z-1 top-1/2 -translate-y-1/2 -right-[45px] 3xl:-right-[56px]" />
+                        <SliderArrow dir="prev" label="Previous partner" onClick={() => emblaApi?.scrollPrev()} className="max-xl:hidden absolute z-1 top-1/2 -translate-y-1/2 -left-[45px] 3xl:-left-[56px]" />
+                        <SliderArrow dir="next" label="Next partner" onClick={() => emblaApi?.scrollNext()} className="max-xl:hidden absolute z-1 top-1/2 -translate-y-1/2 -right-[45px] 3xl:-right-[56px]" />
                         <div ref={emblaRef} className="overflow-hidden">
                             <div className="flex -ml-[20px] touch-pan-y touch-pinch-zoom">
                                 {partners.map((item) => (
@@ -95,7 +95,7 @@ export default function IndustryPartnerships({ data }) {
                                                     sizes="(min-width: 1024px) 33vw, 88vw"
                                                     className="object-cover"
                                                 />
-                                                <div className="absolute -bottom-[40px] 3xl:-bottom-[55px] left-[20px] 3xl:left-[55px] w-[100px] 3xl:w-[126px] aspect-126/125 bg-white flex items-center justify-center p-[10px]">
+                                                <div className="absolute -bottom-[30px] md:-bottom-[38px] 2xl:-bottom-[45px] 3xl:-bottom-[56px] left-[15px] md:left-[20px] 2xl:left-[35px] 3xl:left-[53px] w-[76px] md:w-[90px] 2xl:w-[106px] 3xl:w-[126px] aspect-square bg-white flex items-center justify-center p-[8px] 3xl:p-[14px]">
                                                     <Image
                                                         src={item?.logo?.url}
                                                         alt={item?.logo?.alternativeText || ""}
@@ -105,7 +105,7 @@ export default function IndustryPartnerships({ data }) {
                                                     />
                                                 </div>
                                             </div>
-                                            <div className="p-[55px_15px_25px] 3xl:p-[70px_15px_60px]">
+                                            <div className="p-[42px_15px_25px] md:pt-[52px] 2xl:pt-[60px] 3xl:p-[72px_15px_63px]">
                                                 <h3 className="text-[22px] 2xl:text-[26px] 3xl:text-[36px] leading-tight font-bold text-[#212121] dark:text-white">
                                                     {item?.name}
                                                 </h3>
@@ -128,6 +128,10 @@ export default function IndustryPartnerships({ data }) {
                                     </div>
                                 ))}
                             </div>
+                        </div>
+                        <div className="xl:hidden flex justify-end gap-[6px] mt-[15px]">
+                            <SliderArrow dir="prev" label="Previous partner" onClick={() => emblaApi?.scrollPrev()} />
+                            <SliderArrow dir="next" label="Next partner" onClick={() => emblaApi?.scrollNext()} />
                         </div>
                     </div>
                 )}

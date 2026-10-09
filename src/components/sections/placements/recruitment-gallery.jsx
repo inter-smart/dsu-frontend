@@ -21,9 +21,9 @@ export default function RecruitmentGallery({ data }) {
     if (!data) return null;
 
     return (
-        <section className="py-[40px] sm:py-[50px] xl:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] overflow-hidden transition-colors duration-300">
+        <section className="py-[40px] xl:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] overflow-hidden transition-colors duration-300">
             <div className="container mb-[25px] 3xl:mb-[40px]">
-                <Heading as="h2" className="mb-[8px] 3xl:mb-[16px] dark:text-white">
+                <Heading as="h2" className="text-[25px] leading-[1.1] mb-[8px] 3xl:mb-[16px] dark:text-white">
                     {data?.title}
                 </Heading>
                 <Text>{data?.description}</Text>
@@ -35,7 +35,7 @@ export default function RecruitmentGallery({ data }) {
                         {data?.images?.map((item, index) => {
                             const isActive = index === selected;
                             return (
-                                <div key={item?.id} className="min-w-0 flex-[0_0_85%] md:flex-[0_0_65%] aspect-1242/828 flex items-center">
+                                <div key={item?.id} className="min-w-0 flex-[0_0_85%] md:flex-[0_0_62%] aspect-1193/786 flex items-center">
                                     <div
                                         className={`relative w-full overflow-hidden transition-all duration-500 ${isActive ? "h-full rounded-[10px] z-1" : "h-[68%]"
                                             }`}
@@ -61,9 +61,9 @@ export default function RecruitmentGallery({ data }) {
                         })}
                     </div>
                 </div>
-                {/* Arrows sit on the edges of the centred slide (slide = 85% / 65% of the row) */}
-                <SliderArrow dir="prev" label="Previous image" onClick={() => emblaApi?.scrollPrev()} className="absolute z-2 top-1/2 -translate-y-1/2 left-[7.5%] md:left-[17.5%] -translate-x-1/2 sm:w-[36px] sm:h-[36px] 3xl:w-[68px] 3xl:h-[68px] bg-white/80 dark:bg-white/80 3xl:[&_img]:w-[18px]" />
-                <SliderArrow dir="next" label="Next image" onClick={() => emblaApi?.scrollNext()} className="absolute z-2 top-1/2 -translate-y-1/2 right-[7.5%] md:right-[17.5%] translate-x-1/2 sm:w-[36px] sm:h-[36px] 3xl:w-[68px] 3xl:h-[68px] bg-white/80 dark:bg-white/80 3xl:[&_img]:w-[18px]" />
+                {/* Arrows sit on the edges of the centred slide (slide = 85% / 62% of the row) */}
+                <SliderArrow dir="prev" label="Previous image" onClick={() => emblaApi?.scrollPrev()} className="absolute z-2 top-1/2 -translate-y-1/2 left-[7.5%] md:left-[19%] -translate-x-1/2 sm:w-[36px] sm:h-[36px] 3xl:w-[68px] 3xl:h-[68px] bg-white/80 dark:bg-white/80 3xl:[&_img]:w-[18px]" />
+                <SliderArrow dir="next" label="Next image" onClick={() => emblaApi?.scrollNext()} className="absolute z-2 top-1/2 -translate-y-1/2 right-[7.5%] md:right-[19%] translate-x-1/2 sm:w-[36px] sm:h-[36px] 3xl:w-[68px] 3xl:h-[68px] bg-white/80 dark:bg-white/80 3xl:[&_img]:w-[18px]" />
             </div>
         </section>
     );

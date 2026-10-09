@@ -202,7 +202,7 @@ export default function page() {
         <>
             <InnerHero data={local_data.hero} />
             <PlacementmenuBar className="lg:!hidden block" />
-            <Recruiters data={local_data.recruitersSection} />
+            <Recruiters data={local_data.recruitersSection} className="[--recruiters-bg:#fff]" />
             <IndustryPartnerships data={local_data.partnershipsSection} />
             <IndustryEngagement data={local_data.engagementSection} />
             <RecruiterTestimonials data={local_data.testimonialsSection} />
