@@ -35,11 +35,33 @@ const sidebarMenu = [
   },
 ];
 
+// right-pointing chevron; hover colour comes from the row's group via pathClassName
+function ChevronIcon({ active, className = "", pathClassName = "" }) {
+  return (
+    <svg
+      viewBox="0 0 7 11"
+      fill="none"
+      className={`transition-all w-full h-full object-contain duration-300 ${className}`}
+    >
+      <path
+        d="M0.568359 1.46289C0.449124 1.22017 0.4878 0.923845 0.680664 0.71875L0.734375 0.667969L0.841796 0.591797C1.1018 0.44291 1.43979 0.472188 1.66992 0.678711L1.6709 0.677734L6.00195 4.52344C6.30253 4.79061 6.30274 5.25141 6.00195 5.51855L1.6709 9.36426L1.66406 9.36914C1.40048 9.59519 1.0028 9.5951 0.739258 9.36914L0.685547 9.31836C0.451825 9.06971 0.442751 8.68635 0.669922 8.42773L0.72168 8.375L0.728516 8.36914L4.49902 5.02148L0.735351 1.67871C0.729474 1.67367 0.722548 1.66837 0.716796 1.66309L0.716796 1.66211L0.572265 1.53418L0.568359 1.46289Z"
+        fill={active ? "#F97316" : "#212121"}
+        stroke={active ? "#F97316" : "#212121"}
+        className={`transition-all duration-300 ${pathClassName}`}
+      />
+    </svg>
+  );
+}
+
 export default function LibrarySidebar({
   isOpen = false,
   onClose,
   title = "Library Menu",
   data = sidebarMenu,
+  // optional in-page sub-menu shown under the active item: [{ id, label }]
+  subItems = [],
+  activeSubId,
+  onSubItemClick,
 }) {
   const pathname = usePathname();
   const lenis = useLenis();
@@ -108,6 +130,8 @@ export default function LibrarySidebar({
             {data.map((item, idx) => {
               const href = item.slug;
               const isActive = pathname === href;
+              // active item with an in-page sub-menu: arrow points down
+              const isOpen = isActive && subItems.length > 0;
 
               return (
                 <li
@@ -129,20 +153,52 @@ export default function LibrarySidebar({
                     </div>
 
                     <div className="flex h-[8px] 3xl:h-[12px] w-[8px] 3xl:w-[10px] items-center justify-center">
-                      <svg
-                        viewBox="0 0 7 11"
-                        fill="none"
-                        className="transition-all w-full h-full object-contain duration-300 group-hover:translate-x-[2px]"
-                      >
-                        <path
-                          d="M0.568359 1.46289C0.449124 1.22017 0.4878 0.923845 0.680664 0.71875L0.734375 0.667969L0.841796 0.591797C1.1018 0.44291 1.43979 0.472188 1.66992 0.678711L1.6709 0.677734L6.00195 4.52344C6.30253 4.79061 6.30274 5.25141 6.00195 5.51855L1.6709 9.36426L1.66406 9.36914C1.40048 9.59519 1.0028 9.5951 0.739258 9.36914L0.685547 9.31836C0.451825 9.06971 0.442751 8.68635 0.669922 8.42773L0.72168 8.375L0.728516 8.36914L4.49902 5.02148L0.735351 1.67871C0.729474 1.67367 0.722548 1.66837 0.716796 1.66309L0.716796 1.66211L0.572265 1.53418L0.568359 1.46289Z"
-                          fill={isActive ? "#F97316" : "#212121"}
-                          stroke={isActive ? "#F97316" : "#212121"}
-                          className="transition-all duration-300 group-hover:fill-[#F97316] group-hover:stroke-[#F97316]"
-                        />
-                      </svg>
+                      <ChevronIcon
+                        active={isActive}
+                        className={
+                          isOpen ? "rotate-90" : "group-hover:translate-x-[2px]"
+                        }
+                        pathClassName="group-hover:fill-[#F97316] group-hover:stroke-[#F97316]"
+                      />
                     </div>
                   </Link>
+
+                  {isOpen && (
+                    <ul className="mt-2 2xl:mt-2.5 3xl:mt-3">
+                      {subItems.map((sub) => {
+                        const isSubActive = sub.id === activeSubId;
+
+                        return (
+                          <li key={sub.id}>
+                            <button
+                              type="button"
+                              onClick={() => onSubItemClick?.(sub.id)}
+                              aria-current={isSubActive ? "true" : undefined}
+                              className="w-full flex items-center justify-between gap-2 py-[6px] 2xl:py-[8px] pl-[15px] text-left cursor-pointer group/sub"
+                            >
+                              <span
+                                className={`text_1 text-[13px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px] transition-colors duration-300 group-hover/sub:text-[#F97316] ${
+                                  isSubActive
+                                    ? "text-[#F97316] font-semibold"
+                                    : "text-[#212121]/80"
+                                }`}
+                              >
+                                {sub.label}
+                              </span>
+
+                              <span className="flex h-[7px] 3xl:h-[10px] w-[7px] 3xl:w-[8px] shrink-0 items-center justify-center">
+                                <ChevronIcon
+                                  active={isSubActive}
+                                  className="group-hover/sub:translate-x-[2px]"
+                                  pathClassName="group-hover/sub:fill-[#F97316] group-hover/sub:stroke-[#F97316]"
+                                />
+                              </span>
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
                 </li>
               );
             })}

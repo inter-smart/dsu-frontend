@@ -1,5 +1,6 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import Examination from "@/components/sections/examination/examination";
+import ExaminationTemplate from "@/components/sections/examination/examination-template";
+import { getExaminationLandingPage } from "@/lib/api";
+
 
 const local_data = {
   hero: {
@@ -20,37 +21,38 @@ const local_data = {
       },
     ],
   },
+  template: "examination",
+  sidebar: [
+    {
+      label: "Examination Overview",
+      slug: "/examination",
+    },
+    {
+      label: "Exam Notifications",
+      slug: "/examination/schedule",
+    },
+    {
+      label: "Circulars",
+      slug: "/examination/results",
+    },
+    {
+      label: "Results",
+      slug: "/examination/notices",
+    },
+    {
+      label: "Exam Timetables ",
+      slug: "/examination/rules",
+    },
+    {
+      label: "Student Data Verification",
+      slug: "/examination/contact",
+    },
+    {
+      label: "Contact",
+      slug: "/examination/contact",
+    },
+  ],
   examination: {
-    sidebar: [
-      {
-        label: "Examination Overview",
-        slug: "/examination",
-      },
-      {
-        label: "Exam Notifications",
-        slug: "/examination/schedule",
-      },
-      {
-        label: "Circulars",
-        slug: "/examination/results",
-      },
-      {
-        label: "Results",
-        slug: "/examination/notices",
-      },
-      {
-        label: "Exam Timetables ",
-        slug: "/examination/rules",
-      },
-      {
-        label: "Student Data Verification",
-        slug: "/examination/contact",
-      },
-      {
-        label: "Contact",
-        slug: "/examination/contact",
-      },
-    ],
     title: "Examination",
     description:
       "The Examination Section has long realized the need for a credible, valid, effective and transparent evaluation system. In this pursuit, we have taken giant leaps in technology to ensure seamless processes for Question Paper setting, conduct of the examination, valuation & tabulation of results.",
@@ -74,11 +76,24 @@ const local_data = {
   },
 };
 
-export default function page() {
-  return (
-    <>
-      <InnerHero data={local_data?.hero} />
-      <Examination data={local_data?.examination} />
-    </>
-  );
+export async function generateMetadata() {
+  const pageData = await getExaminationLandingPage();
+
+  return {
+    title:
+      pageData?.seo?.metaTitle || "Examination | Dayananda Sagar University",
+    description: pageData?.seo?.metaDescription || undefined,
+    alternates: pageData?.seo?.canonicalUrl
+      ? { canonical: pageData.seo.canonicalUrl }
+      : undefined,
+  };
+}
+
+export default async function Page() {
+  let pageData = await getExaminationLandingPage();
+
+  pageData = pageData;
+  if (!pageData) return null;
+
+  return <ExaminationTemplate pageData={pageData} />;
 }

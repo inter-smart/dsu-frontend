@@ -8,4 +8,5 @@ export * from "./faculty";
 export * from "./news-events";
 export * from "./rankings";
 export * from "./alumni";
+export * from "./examination";
 export * from "./gallery";
