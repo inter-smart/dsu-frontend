@@ -1,5 +1,7 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import Examination from "@/components/sections/examination/examination";
+import { notFound } from "next/navigation";
+import ExaminationTemplate from "@/components/sections/examination/examination-template";
+import { getExaminationLandingPage } from "@/lib/api";
+
 
 const local_data = {
   hero: {
@@ -74,11 +76,24 @@ const local_data = {
   },
 };
 
-export default function page() {
-  return (
-    <>
-      <InnerHero data={local_data?.hero} />
-      <Examination data={local_data?.examination} />
-    </>
-  );
+export async function generateMetadata() {
+  const pageData = await getExaminationLandingPage();
+
+  return {
+    title:
+      pageData?.seo?.metaTitle || "Examination | Dayananda Sagar University",
+    description: pageData?.seo?.metaDescription || undefined,
+    alternates: pageData?.seo?.canonicalUrl
+      ? { canonical: pageData.seo.canonicalUrl }
+      : undefined,
+  };
+}
+
+export default async function Page() {
+  let pageData = await getExaminationLandingPage();
+
+  pageData = pageData || local_data;
+  if (!pageData) notFound();
+
+  return <ExaminationTemplate pageData={pageData} />;
 }

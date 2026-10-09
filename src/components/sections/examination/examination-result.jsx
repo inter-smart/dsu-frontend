@@ -30,6 +30,9 @@ export default function ExaminationResult({ data }) {
                   >
                     <Link
                       href={item?.url || "#"}
+                      {...(item?.isExternal
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
                       className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-[#212121] py-2.5 sm:py-3.75 2xl:py-5 gap-1.5 2xl:gap-2.5 transition-colors duration-300 hover:text-(--basecolor2) flex relative z-0 before:content-[''] before:size-2.75 2xl:before:size-3.75 before:shrink-0 before:border-[1.5px] before:border-transparent before:[background:linear-gradient(white,white)_padding-box,linear-gradient(to_right,#DC2626,#F97316)_border-box] before:rounded-full before:translate-y-[1.5px] 3xl:before:translate-y-0.5 before:inline-block"
                     >
                       {item?.label}

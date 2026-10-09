@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { Heading } from "@/components/ui/heading";
 import AiAcademicMenubar from "../ai-enabled/Ai-academicMenubar";
@@ -28,22 +27,17 @@ export default function ExaminationContact({ data }) {
                     className="w-full md:w-1/2 h-auto max-md:py-(--gap) md:p-[10px_10px_10px_var(--gap)] 2xl:p-[20px_20px_20px_var(--gap)] first:max-md:pt-0 max-md:not-last:border-b md:odd:border-r border-black/10 block"
                   >
                     <div className="w-full h-full block">
-                      {data?.title && (
+                      {item?.title && (
                         <div className="text-base sm:text-lg lg:text-xl 2xl:text-[25px] 3xl:text-[32px] leading-[1.2] font-semibold text-[#212121] mb-2.5 sm:mb-3.75 lg:mb-5 2xl:mb-7.5 3xl:mb-10">
                           {item?.title}
                         </div>
                       )}
-                      <div className="w-full h-auto mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-15">
-                        <div className="text-base lg:text-lg 2xl:text-[22px] 3xl:text-[28px] leading-[1.2] font-semibold text-[#4A5565] mb-1.25 3xl:mb-2.5">
-                          {item?.addressDetail?.title}
-                        </div>
+                      {item?.address && (
                         <div
-                          className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.8] font-normal text-[#4A5565]"
-                          dangerouslySetInnerHTML={{
-                            __html: item?.addressDetail?.address ?? "",
-                          }}
+                          className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.8] font-normal text-[#4A5565] mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-15"
+                          dangerouslySetInnerHTML={{ __html: item.address }}
                         />
-                      </div>
+                      )}
                       <div className="w-full h-auto mb-5 2xl:mb-7.5 block">
                         {item?.contactDetail?.map((item) => (
                           <div
@@ -74,32 +68,14 @@ export default function ExaminationContact({ data }) {
                                     {item?.title}
                                   </div>
                                 )}
-                                <div className="w-full h-auto block">
-                                  {item?.details?.map((detail) => (
-                                    <div
-                                      key={detail?.id}
-                                      className="w-full h-auto 2xl:not-last:mb-1.25 3xl:not-last:mb-2.5 block"
-                                    >
-                                      {detail?.label && (
-                                        <span className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-[#4A5565]">
-                                          {detail?.label} -{" "}
-                                        </span>
-                                      )}
-                                      <Link
-                                        href={
-                                          detail?.type === "call"
-                                            ? `tel:${detail?.value}`
-                                            : detail?.type === "email"
-                                              ? `mailto:${detail?.value}`
-                                              : "#"
-                                        }
-                                        className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-[#4A5565] transition-colors duration-300 hover:text-(--basecolor2)"
-                                      >
-                                        {detail?.value}
-                                      </Link>
-                                    </div>
-                                  ))}
-                                </div>
+                                {item?.description && (
+                                  <div
+                                    className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.6] font-medium text-[#4A5565] [&_a]:transition-colors [&_a]:duration-300 [&_a:hover]:text-(--basecolor2)"
+                                    dangerouslySetInnerHTML={{
+                                      __html: item.description,
+                                    }}
+                                  />
+                                )}
                               </div>
                             </div>
                           </div>

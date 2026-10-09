@@ -23,23 +23,28 @@ export default function Examination({ data }) {
               <div className="w-full h-auto mb-6.25 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5 space-y-3.75 lg:space-y-5 3xl:space-y-7.5">
                 <Heading>{data?.title}</Heading>
                 <Text>{data?.description}</Text>
-                <Link
-                  href={data?.button?.link || "#"}
-                  className={buttonVariants({
-                    variant: "default",
-                    size: "default",
-                  })}
-                >
-                  {data?.button?.label}
-                  <Image
-                    src="/images/icon-btn.svg"
-                    alt="home-btn"
-                    width={15}
-                    height={15}
-                    className="size-3.75"
-                    data-icon="inline-end"
-                  />
-                </Link>
+                {data?.button && (
+                  <Link
+                    href={data.button.link || "#"}
+                    {...(data.button.isExternal
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className={buttonVariants({
+                      variant: "default",
+                      size: "default",
+                    })}
+                  >
+                    {data.button.label}
+                    <Image
+                      src="/images/icon-btn.svg"
+                      alt="home-btn"
+                      width={15}
+                      height={15}
+                      className="size-3.75"
+                      data-icon="inline-end"
+                    />
+                  </Link>
+                )}
               </div>
               <div>
                 <div className="text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-bold text-[#212121] mb-3.75">
