@@ -10,3 +10,4 @@ export * from "./rankings";
 export * from "./alumni";
 export * from "./examination";
 export * from "./gallery";
+export * from "./admission";
