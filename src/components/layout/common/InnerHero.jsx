@@ -18,7 +18,15 @@ import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
 export default function InnerHero({ data }) {
   if (!data) return null;
   const isVideo = data?.heroMedia?.mime?.includes("video");
-  const hasMenubar = Boolean(data?.menuBar || data?.AimenuBar || data?.AiBscmenuBar || data?.PlacementmenuBar);
+  const hasMenubar = Boolean(
+    data?.hasMenubar ||
+    data?.menuBar ||
+    data?.AimenuBar ||
+    data?.AiBscmenuBar ||
+    data?.PlacementmenuBar ||
+    data?.admissionMenubar ||
+    (data?.isMenubar && Boolean(data?.menubar))
+  );
   const breadcrumb = Array.isArray(data.breadcrumb) && data.breadcrumb.length > 0
     ? data.breadcrumb
     : [
@@ -100,24 +108,23 @@ export default function InnerHero({ data }) {
           )}
         </div>
         <div className="max-lg:hidden">
-          {data?.menuBar && (
+          {(data?.menuBar || (data?.isMenubar && (data?.menubar === "menuBar" || data?.menubar === "academic"))) && (
             <AcademicMenubar />
           )}
-          {data?.AimenuBar && (
+          {(data?.AimenuBar || (data?.isMenubar && (data?.menubar === "AimenuBar" || data?.menubar === "ai-academic"))) && (
             <AiAcademicMenubar />
           )}
-          {data?.AiBscmenuBar && (
+          {(data?.AiBscmenuBar || (data?.isMenubar && (data?.menubar === "AiBscmenuBar" || data?.menubar === "ai-bsc"))) && (
             <AiBSCMenubar />
           )}
-          {data?.PlacementmenuBar && (
+          {(data?.PlacementmenuBar || (data?.isMenubar && (data?.menubar === "PlacementmenuBar" || data?.menubar === "placement"))) && (
             <PlacementmenuBar />
           )}
-          {data?.admissionMenubar && (
+          {(data?.admissionMenubar || (data?.isMenubar && (data?.menubar === "admissionMenubar" || data?.menubar === "admission"))) && (
             <AdmissionMenubar />
           )}
         </div>
       </div>
-
     </section>
   );
 }

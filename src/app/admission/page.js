@@ -4,7 +4,7 @@ import AdmissionSection from "@/components/sections/admission/admissionSection";
 import OverviewSection from "@/components/sections/admission/overviewSection";
 import SchoolCampus from "@/components/sections/admission/SchoolCampus";
 import WhySection from "@/components/sections/admission/WhySection";
-import { getAdmissionPage } from "@/lib/api";
+import { getAdmissionOverviewPage } from "@/lib/api";
 
 const local_data = {
   id: 24,
@@ -344,8 +344,10 @@ const local_data = {
   },
 };
 
+
+
 export async function generateMetadata() {
-  const pageData = await getAdmissionPage();
+  const pageData = await getAdmissionOverviewPage();
   const seo = pageData?.seo || local_data.seo;
 
   return {
@@ -356,22 +358,14 @@ export async function generateMetadata() {
 }
 
 export default async function Page() {
-  const data = await getAdmissionPage();
+  const data = await getAdmissionOverviewPage();
 
-  // Fallback to local_data if Strapi is unavailable or has no data
-  const pageData = data;
-
-  const hero = pageData?.hero;
+  const hero = data?.hero || local_data.hero;
   const programOverviewSection =
-    pageData?.programOverviewSection || pageData?.adminssionOverview;
-  // local_data.programOverviewSection;
-  const whyChoose = pageData?.whyChoose || pageData?.whyChooseSection;
-  // local_data.whyChoose;
-  const admission = pageData?.admission || pageData?.admissionCards;
-  // local_data.admission;
-
-
-  console.log(pageData)
+    data?.programOverviewSection || local_data.programOverviewSection;
+  const whyChoose = data?.whyChoose || local_data.whyChoose;
+  const schollCampus = data?.schollCampus || local_data.schollCampus;
+  const admission = data?.admission || local_data.admission;
 
   return (
     <>
@@ -381,8 +375,7 @@ export default async function Page() {
         <OverviewSection data={programOverviewSection} />
       )}
       {whyChoose && <WhySection data={whyChoose} />}
-      {/* School section is not integrated with CMS as requested */}
-      <SchoolCampus data={local_data.schollCampus} />
+      <SchoolCampus data={schollCampus} />
       {admission && <AdmissionSection data={admission} />}
     </>
   );
