@@ -1,6 +1,16 @@
-﻿import InnerHero from "@/components/layout/common/InnerHero"
-import DSUCell from "@/components/sections/why-us/DSU-Cell"
-import DSUWomenRedressal from "@/components/sections/why-us/DSU-womenredressal"
+﻿import InnerHero from "@/components/layout/common/InnerHero";
+import DSUWomenRedressal from "@/components/sections/why-us/DSU-womenredressal";
+import { getWomenRedressalPage } from "@/lib/api/women-redressal";
+
+export const revalidate = 60;
+
+export async function generateMetadata() {
+    const apiData = await getWomenRedressalPage();
+    return {
+        title: apiData?.seo?.metaTitle || "Women Redressal Cell | Dayananda Sagar University",
+        description: apiData?.seo?.metaDescription || undefined,
+    };
+}
 
 
 
@@ -362,11 +372,14 @@ const local_data = {
         }
     }
 }
-export default function Page() {
+export default async function Page() {
+    const apiData = await getWomenRedressalPage();
+    const data = apiData || local_data;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
-            <DSUWomenRedressal data={local_data.womenRedressalCell} />
+            <InnerHero data={data.hero} />
+            <DSUWomenRedressal data={data.womenRedressalCell} />
         </>
     )
 }
