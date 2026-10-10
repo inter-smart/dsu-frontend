@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import Link from "next/link";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer"; 
 import LibrarySidebar from "./library-sidemenubar";
 
 export default function LibraryOverview({ data }) {
