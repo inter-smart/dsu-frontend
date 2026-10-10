@@ -7,11 +7,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 export default function StudentSuccessStories({ data, variant }) {
-    const videoSwiperRef = useRef(null);
-    const otherSwiperRef = useRef(null);
-
-    // const [videoPrevDisabled, setVideoPrevDisabled] = useState(true);
-    // const [videoNextDisabled, setVideoNextDisabled] = useState(false);
+  
+    const otherSwiperRef = useRef(null); 
 
     const [otherPrevDisabled, setOtherPrevDisabled] = useState(true);
     const [otherNextDisabled, setOtherNextDisabled] = useState(false);
@@ -39,7 +36,7 @@ export default function StudentSuccessStories({ data, variant }) {
     const stories = data?.stories
 
     const syncVideoSwiper = (swiper) => {
-        if (!swiper || swiper.destroyed) return;
+        if (!swiper || swiper.destroyed) return;                
         setVideoPrevDisabled(swiper.isBeginning);
         setVideoNextDisabled(swiper.isEnd);
     };
