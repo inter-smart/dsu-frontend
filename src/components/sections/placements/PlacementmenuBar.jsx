@@ -349,7 +349,7 @@ export default function PlacementmenuBar({ title = "Placement Menu", className =
                                             px-[16px] xl:px-[18px] 2xl:px-[22px] 3xl:px-[28px]
                                             py-[8px] xl:py-[9px] 2xl:py-[10px] 3xl:py-[12px]
                                             rounded-[7px]
-                                            text_1 font-medium  whitespace-nowrap
+                                            text_1 font-medium whitespace-nowrap
                                             transition-all duration-300
                                             ${isActive
                                                     ? "bg-transparent text-white"

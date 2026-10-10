@@ -10,7 +10,7 @@ export default function LibraryOverview({ data }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
-        <section className="relative py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
+        <section className="relative py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px] dark:bg-[#101010]">
             <div className="container">
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
@@ -21,11 +21,11 @@ export default function LibraryOverview({ data }) {
                     </div>
                     <div className="rtBx">
                         
-                        <div className="w-full lg:h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_30px] 2xl:p-[40px_40px] 3xl:p-[50px]">
-                            <h2 className="cmn_Title mb-[25px]">
+                        <div className="w-full lg:h-full rounded-[10px] border border-black/10 dark:border-white/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_30px] 2xl:p-[40px_40px] 3xl:p-[50px]">
+                            <h2 className="cmn_Title dark:text-white mb-[25px]">
                                 {data.heading}
                             </h2>
-                            <div className="text_1 leading-[1.2] text-[#4A5565] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
+                            <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                                 <BlocksRenderer content={data.description} />
                             </div>
                             <div className="w-full aspect-[1260/350] overflow-hidden mb-[30px]">
@@ -34,10 +34,10 @@ export default function LibraryOverview({ data }) {
                             <div className="flex flex-wrap -m-[5px] md:-m-[10px] lg:-m-[15px] xl:-m-[15px] 2xl:-m-[30px] 3xl:-m-[35px] !mb-[15px] 2xl:!mb-[25px] 3xl:!mb-[35px]">
                                 {data?.infoCards.map((item, id) => (
                                     <div className="w-full md:w-1/2 p-[5px] md:p-[10px] lg:p-[15px] xl:p-[15px] 2xl:p-[30px] 3xl:p-[35px]">
-                                        <div className="w-full h-full border border-black/10 bg-[#F4F8FD] rounded-[10px] p-[20px_15px]  3xl:p-[30px_25px]">
-                                            <div className="cmn_Txt mb-[10px]">{item.title}</div>
+                                        <div className="w-full h-full border border-black/10 dark:border-white/10 bg-[#F4F8FD] dark:bg-[#18191B] rounded-[10px] p-[20px_15px]  3xl:p-[30px_25px]">
+                                            <div className="cmn_Txt dark:text-white mb-[10px]">{item.title}</div>
                                             {item?.items.map((card) => (
-                                                <div className="text_1 font-semibold text-[#4A5565]">
+                                                <div className="text_1 font-semibold text-[#4A5565] dark:text-[#9CA3AF]">
                                                     {card.label}
                                                 </div>
                                             ))}
@@ -45,22 +45,22 @@ export default function LibraryOverview({ data }) {
                                     </div>
                                 ))}
                             </div>
-                            <div className="w-full border border-black/10 bg-[#F4F8FD] rounded-[4px] xl:rounded-[8px] 2xl:rounded-[8px] 3xl:rounded-[10px] mb-[30px] 2xl:mb-[40px] 3xl:mb-[60px]">
-                                <div className="flex items-center flex-wrap justify-between border-b border-black/10 p-[12px] xl:p-[15px] 2xl:p-[20px] 3xl:p-[23px]">
-                                    <div className="cmn_Txt">
+                            <div className="w-full border border-black/10 dark:border-white/10 bg-[#F4F8FD] dark:bg-[#18191B] rounded-[4px] xl:rounded-[8px] 2xl:rounded-[8px] 3xl:rounded-[10px] mb-[30px] 2xl:mb-[40px] 3xl:mb-[60px]">
+                                <div className="flex items-center flex-wrap justify-between border-b border-black/10 dark:border-white/10 p-[12px] xl:p-[15px] 2xl:p-[20px] 3xl:p-[23px]">
+                                    <div className="cmn_Txt dark:text-white">
                                         {data?.libraryCollections.heading}
                                     </div>
-                                    <div className="text_1">
+                                    <div className="text_1 dark:text-[#9CA3AF]">
                                         {data?.libraryCollections.statisticsDate}
                                     </div>
                                 </div>
                                 <div className="p-[15px_12px] xl:p-[20px_15px] 2xl:p-[30px_20px] 3xl:p-[40px_23px] w-full">
                                     {data?.libraryCollections?.items.map((collection, id) => (
-                                        <div className="flex items-center flex-wrap justify-between border-b border-black/10 py-[10px]">
-                                            <div className="text_1">
+                                        <div className="flex items-center flex-wrap justify-between border-b border-black/10 dark:border-white/10 py-[10px]">
+                                            <div className="text_1 dark:text-[#9CA3AF]">
                                                 {collection.label}
                                             </div>
-                                            <div className="text_1">
+                                            <div className="text_1 dark:text-white">
                                                 {collection.value}
                                             </div>
                                         </div>
@@ -68,33 +68,33 @@ export default function LibraryOverview({ data }) {
                                 </div>
                             </div>
                             <div className="w-full">
-                                <div className="cmn_Title">{data?.membershipSection.heading}</div>
-                                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
+                                <div className="cmn_Title dark:text-white">{data?.membershipSection.heading}</div>
+                                <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                                     <BlocksRenderer content={data.description} />
                                 </div>
-                                <div className="w-full border border-black/10 bg-[#F4F8FD] rounded-[4px] xl:rounded-[8px] 2xl:rounded-[8px] 3xl:rounded-[10px] mb-[30px] 2xl:mb-[40px] 3xl:mb-[60px]">
-                                    <div className="flex items-center flex-wrap justify-between border-b border-black/10 p-[12px] xl:p-[15px] 2xl:p-[20px] 3xl:p-[23px]">
-                                        <div className="cmn_Txt">
+                                <div className="w-full border border-black/10 dark:border-white/10 bg-[#F4F8FD] dark:bg-[#18191B] rounded-[4px] xl:rounded-[8px] 2xl:rounded-[8px] 3xl:rounded-[10px] mb-[30px] 2xl:mb-[40px] 3xl:mb-[60px]">
+                                    <div className="flex items-center flex-wrap justify-between border-b border-black/10 dark:border-white/10 p-[12px] xl:p-[15px] 2xl:p-[20px] 3xl:p-[23px]">
+                                        <div className="cmn_Txt dark:text-white">
                                             {data?.membershipSection?.membershipTable.heading}
                                         </div>
-                                        <div className="text_1">
+                                        <div className="text_1 dark:text-[#9CA3AF]">
                                             {data?.membershipSection?.membershipTable.note}
                                         </div>
                                     </div>
                                     <div className="p-[15px_12px] xl:p-[20px_15px] 2xl:p-[30px_20px] 3xl:p-[40px_23px] w-full">
                                         {data?.membershipSection?.membershipTable?.items.map((collection, id) => (
-                                            <div className="flex items-center flex-wrap justify-between border-b border-black/10 py-[10px]">
-                                                <div className="text_1">
+                                            <div className="flex items-center flex-wrap justify-between border-b border-black/10 dark:border-white/10 py-[10px]">
+                                                <div className="text_1 dark:text-[#9CA3AF]">
                                                     {collection.label}
                                                 </div>
-                                                <div className="text_1">
+                                                <div className="text_1 dark:text-white">
                                                     {collection.value}
                                                 </div>
                                             </div>
                                         ))}
                                     </div>
                                 </div>
-                                <div className="text_1 mb-[20px]">
+                                <div className="text_1 dark:text-[#9CA3AF] mb-[20px]">
                                     {data?.membershipSection?.documentsRequired.description}
                                 </div>
                                 <ul>

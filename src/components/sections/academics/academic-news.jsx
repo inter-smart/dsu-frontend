@@ -21,7 +21,7 @@ export default function AcademicNews({ data }) {
 
     return (
         <section className="relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]
-                bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)] dark:bg-none dark:bg-[#101010]">
+                bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)] dark:bg-none dark:bg-[#000]">
             <div className="container">
                 <div className="flex flex-wrap items-center justify-between gap-[20px] mb-[20px] xl:mb-[35px] 2xl:mb-[45px] 3xl:mb-[55px]">
                     <div className="cmn_Title mb-0">

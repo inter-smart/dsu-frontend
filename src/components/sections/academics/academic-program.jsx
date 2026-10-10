@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function AcademicProgram({ data, variant }) {
     return (
         <section className="relative py-[20px_40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] 
-                bg-gradient-to-b from-[rgba(255,248,238,0.3)] to-[rgba(255,243,224,0.5)] dark:from-[#131416] dark:to-[#0f1011] transition-colors duration-300">
+                bg-gradient-to-b from-[rgba(255,248,238,0.3)] to-[rgba(255,243,224,0.5)] dark:from-[#000] dark:to-[#000] transition-colors duration-300">
             <div className="container">
                 <div className="mb-[15px] lg:mb-[25px] 2xl:mb-[40px] 3xl:mb-[45px] flex max-lg:flex-wrap">
                     <div className="w-auto lg:flex-grow-1">
