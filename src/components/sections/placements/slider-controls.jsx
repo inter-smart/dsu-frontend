@@ -7,7 +7,7 @@ export function SliderArrow({ dir, onClick, label, className = "" }) {
             type="button"
             onClick={onClick}
             aria-label={label}
-            className={cn("w-[30px] h-[38px] shrink-0 border border-[#D9D9D9] dark:border-white/10 bg-white dark:bg-[#1a1a1a] flex items-center justify-center transition-opacity duration-500 hover:opacity-50 cursor-pointer", className)}
+            className={cn("w-[30px] h-[38px] shrink-0 border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center transition-opacity duration-500 hover:opacity-50 cursor-pointer", className)}
         >
             <Image
                 src={dir === "prev" ? "/images/left-arrow-button.svg" : "/images/right-arrow-button.svg"}

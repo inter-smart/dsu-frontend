@@ -29,6 +29,10 @@ const menuItems = [
         href: "/placement/internship"
     },
     {
+        label: "Student Success",
+        href: "/placement/student-success"
+    },
+    {
         label: "Recruiters & Industry",
         href: "/placement/recruiters-industry"
     },

@@ -11,6 +11,7 @@ import PlacementContact from "@/components/sections/placements/placementcontact"
 import DirectorMessage from "@/components/sections/placements/directors-message";
 import AdmissionEntrance from "@/components/sections/admission/admission-entrance";
 import TeamSection from "@/components/sections/placements/Team-section";
+import PlacementExcellence from "@/components/sections/placements/placement-excellence";
 
 const local_data = {
     id: 24,
@@ -591,6 +592,7 @@ export default function page() {
             <CILsection data={local_data.CILSection} />
             <PlacementContact data={local_data.placemntContact} />
             <Recruiters data={local_data.recruterSection} />
+            <PlacementExcellence />
 
         </>
     )
