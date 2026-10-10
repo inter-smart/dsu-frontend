@@ -1,6 +1,16 @@
-﻿import InnerHero from "@/components/layout/common/InnerHero"
-import DSUAct from "@/components/sections/why-us/DSU-act"
-import DSUOmbudsman from "@/components/sections/why-us/DSU-Ombudsman"
+﻿import InnerHero from "@/components/layout/common/InnerHero";
+import DSUOmbudsman from "@/components/sections/why-us/DSU-Ombudsman";
+import { getOmbudsmanPage } from "@/lib/api/ombudsman";
+
+export const revalidate = 60;
+
+export async function generateMetadata() {
+    const apiData = await getOmbudsmanPage();
+    return {
+        title: apiData?.seo?.metaTitle || "Ombudsman | Dayananda Sagar University",
+        description: apiData?.seo?.metaDescription || undefined,
+    };
+}
 
 
 
@@ -103,11 +113,14 @@ const local_data = {
     }
    
 }
-export default function Page() {
+export default async function Page() {
+    const apiData = await getOmbudsmanPage();
+    const data = apiData || local_data;
+
     return (
         <>
-            <InnerHero data={local_data.hero} /> 
-            <DSUOmbudsman data={local_data.ombudsmanMessage} />
+            <InnerHero data={data.hero} />
+            <DSUOmbudsman data={data.ombudsmanMessage} />
         </>
     )
 }
