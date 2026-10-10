@@ -1,130 +1,187 @@
-import { Heading } from "@/components/ui/heading";
-import { Text } from "@/components/ui/text";
+"use client";
+
+import React, { useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
 
-const local_data = {
-  label: "Awards & Achievements",
-  title: "Recognising Excellence",
-  description:
-    "Celebrate student achievements across academic excellence, innovation, competitions, research, leadership and other areas of accomplishment.",
-  cards: [
-    {
-      id: 1,
-      title: "Warriors Boxing Tournament - Silver",
-      recipient: "Asif Saleem, BCA",
-      image: "/images/gallery-1.png",
-      alt: "Students celebrating an achievement on campus",
-      href: "/placement/student-success",
-    },
-    {
-      id: 2,
-      title: "Republic Debate Competition - Runners",
-      recipient: "Team from School of Engineering",
-      image: "/images/news-event-6.jpg",
-      alt: "A team gathered at a university event",
-      href: "/placement/student-success",
-    },
-    {
-      id: 3,
-      title: "Women's Table Tennis - 1st Prize",
-      recipient: "Upasana M S, MBA",
-      image: "/images/gallery-4.png",
-      alt: "Women's sports team representing Karnataka",
-      href: "/placement/student-success",
-    },
-    {
-      id: 4,
-      title: "National Volleyball Championship - 1st Place",
-      recipient: "Nupur, BBA LLB",
-      image: "/images/gallery-8.png",
-      alt: "A university team celebrating with trophies",
-      href: "/placement/student-success",
-    },
-    {
-      id: 5,
-      title: "Winners - Smart India Hackathon 2024",
-      recipient: "Team from School of Engineering",
-      image: "/images/gallery-5.png",
-      alt: "Students and faculty at a university event",
-      href: "/placement/student-success",
-    },
-    {
-      id: 6,
-      title: "Solo Dance - 1st Prize",
-      recipient: "Sneha Pathra, CSE (AI & ML)",
-      image: "/images/gallery-6.png",
-      alt: "Students at a university celebration",
-      href: "/placement/student-success",
-    },
-    {
-      id: 7,
-      title: "RAP Competition, 2nd Prize",
-      recipient: "Tej Sundara, BCA",
-      image: "/images/gallery-2.png",
-      alt: "Students participating in a university activity",
-      href: "/placement/student-success",
-    },
-  ],
-};
+/* Desktop layout by card position (24-column grid):
+   0-2 = top row, 3 = tall, 4 = wide, 5-6 = right stack */
+const layout = [
+  { col: 5, row: 1 },
+  { col: 5, row: 1 },
+  { col: 6, row: 1 },
+  { col: 8, row: 2 },
+  { col: 10, row: 2 },
+  { col: 6, row: 1 },
+  { col: 6, row: 1 },
+];
 
-export default function PlacementExcellence({ data = local_data }) {
+const arrowBtn =
+  "w-[32px] h-[32px] rounded-full bg-white dark:bg-[#18191B] border border-[#F97316]/40 text-[#F97316] flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#DC2626] hover:to-[#F97316] hover:text-white hover:border-transparent disabled:opacity-30 disabled:cursor-not-allowed";
+
+function Card({ item }) {
   return (
-    <section className="block w-full bg-white py-12 sm:py-16 xl:py-[70px] 2xl:py-[80px]">
+    <div className="group relative w-full h-full overflow-hidden rounded-[6px] xl:rounded-[8px] bg-neutral-200 dark:bg-neutral-800">
+      <Image
+        src={item.media.url}
+        alt={item.media.alternativeText || item.title}
+        fill
+        sizes="(max-width: 768px) 100vw, 33vw"
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full p-[10px] xl:p-[14px] 2xl:p-[15px] 3xl:p-[18px] text-white text-left">
+        <div className="text_1 font-medium  text-white leading-[1.3]">
+          {item.title}
+        </div>
+        <div className="text_1 text-white font-medium mt-[3px]  ">
+          {item.subtitle}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+
+export default function Achievements({ data }) {
+  const swiperRef = useRef(null);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
+
+  if (!data) return null;
+  const items = data.achievements || [];
+
+  const syncState = (s) => {
+    if (!s || s.destroyed) return;
+    setIsBeginning(s.isBeginning);
+    setIsEnd(s.isEnd);
+  };
+
+  return (
+    <section className="relative py-[30px] xl:py-[45px] 2xl:py-[60px] 3xl:py-[75px] dark:bg-[#101010]">
       <div className="container">
-        <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 xl:grid-cols-[1.5fr_1fr_1fr_1fr] xl:grid-rows-[repeat(3,minmax(168px,1fr))] xl:gap-[18px]">
-          <div className="mb-2.5 lg:mb-3.75 2xl:mb-5 3xl:mb-6.25">
-            <div className="[--before-size:20px] 2xl:[--before-size:25px] text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit h-auto pl-[calc(var(--before-size)+5px)] 2xl:pl-[calc(var(--before-size)+10px)] mb-2.5 relative z-0 before:content-[''] before:w-(--before-size) before:h-0.5 2xl:before:h-0.75 before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:absolute before:z-1 before:inset-[0_auto_0_0]">
-              {data?.label}
-            </div>
-            <Heading className="mb-2.5 lg:mb-3.75 2xl:mb-5 3xl:mb-6.25">
-              {data?.title}
-            </Heading>
-            <Text>{data?.description}</Text>
+        {/* Desktop bento grid */}
+        <div className="hidden lg:grid grid-cols-[repeat(24,minmax(0,1fr))] grid-rows-[auto_repeat(2,minmax(0,1fr))] gap-[10px] xl:gap-[12px] 2xl:gap-[20px]">
+          <div style={{ gridColumn: "span 8 / span 8" }} className="pr-[10px] self-start">
+            {data.eyebrow && (
+              <div className="flex items-center gap-[8px] mb-[10px]">
+                <span className="w-[18px] xl:w-[22px] h-[2px] bg-[#DC2626]" />
+                <span className="text-[12px] xl:text-[14px] 2xl:text-[15px] uppercase bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
+                  {data.eyebrow}
+                </span>
+              </div>
+            )}
+            <h2 className="cmn_Title dark:text-white mb-[10px]">{data.heading}</h2>
+            {data.description?.length > 0 && (
+              <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6]">
+                <BlocksRenderer content={data.description} />
+              </div>
+            )}
           </div>
-          {data?.cards?.map((item, index) => {
+
+          {items.map((item, i) => {
+            const pos = layout[i] || { col: 6, row: 1 };
             return (
-              <Link
-                key={item?.id ?? index}
-                href={item?.href || "/placement/student-success"}
-                className={`group relative block min-h-[190px] overflow-hidden rounded-[7px] bg-[#212121] sm:min-h-[210px] xl:min-h-0 ${
-                  [
-                    "xl:col-start-2 xl:row-start-1",
-                    "xl:col-start-3 xl:row-start-1",
-                    "xl:col-start-4 xl:row-start-1",
-                    "xl:col-start-1 xl:row-start-2 xl:row-span-2",
-                    "xl:col-start-2 xl:col-span-2 xl:row-start-2 xl:row-span-2",
-                    "xl:col-start-4 xl:row-start-2",
-                    "xl:col-start-4 xl:row-start-3",
-                  ][index] ?? ""
-                }`}
+              <div
+                key={item.id}
+                style={{
+                  gridColumn: `span ${pos.col} / span ${pos.col}`,
+                  gridRow: `span ${pos.row} / span ${pos.row}`,
+                }}
+                className={
+                  pos.row === 2
+                    ? "min-h-[230px] xl:min-h-[262px] 2xl:min-h-[312px] 3xl:min-h-[392px]"
+                    : "min-h-[110px] xl:min-h-[125px] 2xl:min-h-[150px] 3xl:min-h-[190px]"
+                }
               >
-                {item?.image && (
-                  <Image
-                    src={item.image}
-                    alt={item?.alt || item?.title || "Student achievement"}
-                    width={760}
-                    height={460}
-                    sizes="(min-width: 1169px) 30vw, (min-width: 640px) 50vw, 100vw"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                )}
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/10 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-3 text-white sm:p-4 xl:p-[12px] 2xl:p-[16px]">
-                  {item?.title && (
-                    <h3 className="text-[13px] leading-[1.35] font-medium sm:text-[14px] xl:text-[13px] 2xl:text-[14px]">
-                      {item.title}
-                    </h3>
-                  )}
-                  {item?.recipient && (
-                    <p className="mt-1 text-[12px] leading-[1.35] sm:text-[13px] xl:text-[12px] 2xl:text-[13px]">
-                      {item.recipient}
-                    </p>
-                  )}
-                </div>
-              </Link>
+                <Card item={item} />
+              </div>
             );
           })}
+        </div>
+
+        {/* Mobile / tablet: Swiper slider */}
+        <div className="lg:hidden">
+          <div className="mb-[20px]">
+            {data.eyebrow && (
+              <div className="flex items-center gap-[8px] mb-[10px]">
+                <span className="w-[18px] xl:w-[22px] h-[2px] bg-[#DC2626]" />
+                <span className="text-[12px] xl:text-[14px] 2xl:text-[15px] uppercase bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
+                  {data.eyebrow}
+                </span>
+              </div>
+            )}
+            <h2 className="cmn_Title dark:text-white mb-[10px]">{data.heading}</h2>
+            {data.description?.length > 0 && (
+              <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6]">
+                <BlocksRenderer content={data.description} />
+              </div>
+            )}
+          </div>
+
+          <Swiper
+            modules={[Autoplay]}
+            slidesPerView={1.15}
+            spaceBetween={12}
+            speed={500}
+            grabCursor
+            watchOverflow
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            breakpoints={{
+              480: { slidesPerView: 1.5, spaceBetween: 12 },
+              640: { slidesPerView: 2.2, spaceBetween: 14 },
+            }}
+            onSwiper={(s) => {
+              swiperRef.current = s;
+              syncState(s);
+            }}
+            onSlideChange={syncState}
+            onReachBeginning={syncState}
+            onReachEnd={syncState}
+            className="w-full"
+          >
+            {items.map((item) => (
+              <SwiperSlide key={item.id} className="!h-auto">
+                <div className="h-[240px] sm:h-[260px]">
+                  <Card item={item} />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Arrows */}
+          <div className="flex items-center justify-end gap-[8px] mt-[12px]">
+            <button
+              type="button"
+              aria-label="Previous"
+              onClick={() => swiperRef.current?.slidePrev()}
+              disabled={isBeginning}
+              className={arrowBtn}
+            >
+              <svg className="w-[13px] h-[13px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Next"
+              onClick={() => swiperRef.current?.slideNext()}
+              disabled={isEnd}
+              className={arrowBtn}
+            >
+              <svg className="w-[13px] h-[13px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </section>

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-export default function StudentSuccessStories({ data }) {
+export default function StudentSuccessStories({ data, variant }) {
     const videoSwiperRef = useRef(null);
     const otherSwiperRef = useRef(null);
 
@@ -51,7 +51,7 @@ export default function StudentSuccessStories({ data }) {
     };
 
     return (
-        <section className="relative w-full py-[45px] sm:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0c0d0e] transition-colors duration-300">
+        <section className={`relative w-full py-[45px] sm:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0c0d0e] transition-colors duration-300 ${variant=== "bg-gradient" ? "bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-none dark:bg-[#0c0d0e]": " bg-white"}`}>
             <div className="container">
 
 
@@ -239,7 +239,7 @@ export default function StudentSuccessStories({ data }) {
                         >
                             {stories.map((story, idx) => (
                                 <SwiperSlide key={story.id || idx} className="!h-auto flex">
-                                    <div className="w-full h-full bg-[#F8FAFC] dark:bg-[#151618] rounded-[4px] p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-md">
+                                    <div className={`w-full h-full ${variant === "bg-gradient" ? "bg-white": "bg-[#F8FAFC]"}  dark:bg-[#151618] rounded-[4px] p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-md`}>
                                         {/* Top Content */}
                                         <div>
                                             {/* Double Orange Quotation Marks */}
@@ -273,7 +273,7 @@ export default function StudentSuccessStories({ data }) {
                                         </div>
 
                                         {/* Bottom Author Row */}
-                                        <div className="pt-6 mt-8 border-t border-black/10 flex items-center justify-between">
+                                        <div className="pt-6 mt-8 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
                                             <div className="flex gap-3 min-w-0">
                                                 {/* Student Avatar */}
                                                 <div className="relative w-[65px] h-[65px] rounded-lg overflow-hidden shrink-0 bg-neutral-200 dark:bg-neutral-700">
@@ -293,7 +293,7 @@ export default function StudentSuccessStories({ data }) {
                                                     <p className="text-[11.5px] sm:text-[12px] 2xl:text-[14px] text-[#212121] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate">
                                                         {story.role}
                                                     </p>
-                                                    <p className="text-[11px] sm:text-[11.5px] 2xl:text-[14px] text-[#212121] leading-tight mt-0.5 truncate">
+                                                    <p className="text-[11px] sm:text-[11.5px] 2xl:text-[14px] text-[#212121] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate">
                                                         {story.degree}
                                                     </p>
                                                 </div>

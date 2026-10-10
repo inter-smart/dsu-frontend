@@ -47,14 +47,14 @@ export default function AlumniWorld({ data }) {
     emblaApi.on("select", onSelect);
   }, [emblaApi, onSelect]);
   return (
-    <section className="w-full h-auto py-10 sm:py-[50px_70px] lg:py-[60px_90px] 2xl:py-[80px_120px] 3xlpy-[100px_150px] bg-linear-to-t from-[#FFF3E0] to-[#FFF8EE] block">
+    <section className="w-full h-auto py-10 sm:py-[50px_70px] lg:py-[60px_90px] 2xl:py-[80px_120px] 3xlpy-[100px_150px] bg-linear-to-t from-[#FFF3E0] to-[#FFF8EE] dark:bg-none dark:bg-black  block">
       <div className="container">
         <div className="w-full h-auto mb-7.5 lg:mb-10 2xl:mb-12.5 3xl:mb-15 flex flex-wrap items-end">
           <div className="w-full sm:w-[60%] sm:pr-5 max-sm:mb-3.75">
             <div className="[--before-size:20px] 2xl:[--before-size:25px] text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit h-auto pl-[calc(var(--before-size)+5px)] 2xl:pl-[calc(var(--before-size)+10px)] mb-2.5 relative z-0 before:content-[''] before:w-(--before-size) before:h-0.5 2xl:before:h-0.75 before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:absolute before:z-1 before:inset-[0_auto_0_0]">
               {data?.label}
             </div>
-            <Heading dangerouslySetInnerHTML={{ __html: data?.title || "" }} />
+            <Heading className="dark:!text-white" dangerouslySetInnerHTML={{ __html: data?.title || "" }} />
           </div>
           <div className="w-full sm:w-[40%]">
             <Text>{data?.description}</Text>
@@ -102,7 +102,7 @@ export default function AlumniWorld({ data }) {
                     key={item?.id}
                     className="min-w-0 flex-[0_0_calc(100%/1.4)] sm:flex-[0_0_calc(100%/3)] lg:flex-[0_0_calc(100%/4)] xl:flex-[0_0_calc(100%/5)] pl-(--slide-gap)"
                   >
-                    <div className="w-full h-full bg-linear-to-br from-[#EFF6FF] to-[#F9FAFB] rounded-md 2xl:rounded-[10px] overflow-hidden block">
+                    <div className="w-full h-full bg-linear-to-br from-[#EFF6FF] to-[#F9FAFB] dark:bg-none rounded-md 2xl:rounded-[10px] overflow-hidden block dark:border dark:border-white/20">
                       <div className="w-full h-auto aspect-340/250 overflow-hidden block relative z-0">
                         <Image
                           src={item?.media?.url}
@@ -121,12 +121,12 @@ export default function AlumniWorld({ data }) {
                           />
                         </div>
                       </div>
-                      <div className="w-full h-auto p-[15px_20px] 2xl:p-[30px_20px] 3xl:p-[35px_20px] space-y-1.25 2xl:space-y-2.5">
-                        <div className="text-base 2xl:text-lg 3xl:text-xl leading-[1.2] font-medium text-[#212121]">
+                      <div className="w-full h-auto p-[15px_20px] 2xl:p-[30px_20px] 3xl:p-[35px_20px] space-y-1.25 2xl:space-y-2.5 dark:bg-[#212121]">
+                        <div className="text-base 2xl:text-lg 3xl:text-xl leading-[1.2] font-medium text-[#212121] dark:text-white">
                           {item?.title}
                         </div>
                         <div
-                          className="text-xs 2xl:text-[13px] 3xl:text-sm leading-[1.6] font-normal text-[#4A5565]"
+                          className="text-xs 2xl:text-[13px] 3xl:text-sm leading-[1.6] font-normal text-[#4A5565] dark:text-white"
                           dangerouslySetInnerHTML={{
                             __html: item?.description || "",
                           }}

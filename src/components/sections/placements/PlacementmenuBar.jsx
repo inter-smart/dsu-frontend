@@ -35,11 +35,7 @@ const menuItems = [
     {
         label: "Recruiters & Industry",
         href: "/placement/recruiters-industry"
-    },
-    {
-        label: "Student Success",
-        href: "/placement/"
-    },
+    }, 
     {
         label: "Recruit @ DSU",
         href: "/placement/recruit"
