@@ -29,6 +29,10 @@ const menuItems = [
         href: "/placement/corporate-connect"
     },
     {
+        label: "Student Success",
+        href: "/placement/student-success"
+    },
+    {
         label: "Recruiters & Industry",
         href: "/placement/recruiters-industry"
     },
