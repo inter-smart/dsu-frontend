@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { useEffect } from "react";
+import { useEffect, useCallback, useState } from "react";
 import ClientCountUp from "@/components/ui/client-count-up";
 import { Fancybox } from "@fancyapps/ui";
 import Autoplay from "embla-carousel-autoplay";
@@ -11,9 +11,46 @@ import { buttonVariants } from "@/components/ui/button";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 export default function HomeCampusLife({ data }) {
-  const [emblaRef] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ delay: 2000, stopOnInteraction: false }),
-  ]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: false,
+      align: "start",
+    },
+    [
+      Autoplay({
+        delay: 3500,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+      }),
+    ],
+  );
+
+  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const onSelect = useCallback((api) => {
+    setPrevBtnDisabled(!api.canScrollPrev());
+    setNextBtnDisabled(!api.canScrollNext());
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect(emblaApi);
+    emblaApi.on("reInit", onSelect);
+    emblaApi.on("select", onSelect);
+    return () => {
+      emblaApi.off("reInit", onSelect);
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi, onSelect]);
 
   useEffect(() => {
     Fancybox.bind("[data-fancybox='campus']", {
@@ -37,7 +74,7 @@ export default function HomeCampusLife({ data }) {
                   <FeatureCard item={data?.featureCards?.[0]} />
                 </div>
                 <div className="w-(--width) lg:w-[calc(100%-var(--width))] lg:pl-6.25 2xl:pl-7.5 3xl:pl-10">
-                  <div className="[--before-size:20px] 2xl:[--before-size:25px] text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal text-[#F57F2A] w-fit h-auto pl-[calc(var(--before-size)+5px)] 2xl:pl-[calc(var(--before-size)+10px)] mb-2.5 relative z-0 before:content-[''] before:w-(--before-size) before:h-0.5 2xl:before:h-1.25 before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:absolute before:z-1 before:inset-[0_auto_0_0]">
+                  <div className="[--before-size:20px] 2xl:[--before-size:25px] text-sm 2xl:text-base 3xl:text-xl leading-[1.1] tracking-widest font-normal text-[#F57F2A] w-fit h-auto pl-[calc(var(--before-size)+5px)] 2xl:pl-[calc(var(--before-size)+10px)] mb-2.5 relative z-0 before:content-[''] before:w-(--before-size) before:h-0.5 2xl:before:h-1.25 before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:absolute before:z-1 before:inset-[0_auto_0_0]">
                     {data?.campusInfo?.title}
                   </div>
                   <div className="text-3xl sm:text-[34px] lg:text-[40px] xl:text-[54px] 2xl:text-[64px] 3xl:text-[80px] leading-[1.1] font-bold text-[#212121] dark:text-white lg:mb-3.75 2xl:mb-7.5 3xl:mb-10">
@@ -193,19 +230,53 @@ export default function HomeCampusLife({ data }) {
             </div>
           </div>
         </div>
-        <div
-          ref={emblaRef}
-          className="[--slide-spacing:10px] w-full h-auto overflow-hidden"
-        >
-          <div className="w-full h-auto ml-[calc(var(--slide-spacing)*-1)] backface-hidden touch-pan-y touch-pinch-zoom flex">
-            {data?.featureCards?.map((item) => (
-              <div
-                key={item?.id}
-                className="min-w-0 pl-(--slide-spacing) flex-[0_0_calc(100%/2)]"
-              >
-                <FeatureCard item={item} />
-              </div>
-            ))}
+        <div className="[--navigation-btn-size:33px] w-full h-auto block relative z-0">
+          {!prevBtnDisabled && (
+            <button
+              onClick={scrollPrev}
+              type="button"
+              aria-label="Previous slide"
+              className="w-(--navigation-btn-size) h-(--navigation-btn-size) my-auto rounded-full overflow-hidden backdrop-blur-[5px] bg-black/20 left-2.5 flex items-center justify-center absolute z-10 inset-y-0 transition-opacity duration-300 hover:opacity-75"
+            >
+              <Image
+                src={"/images/testimonial-slider-btn-mobile.svg"}
+                alt="left-btn"
+                width={33}
+                height={33}
+                className="w-full h-full object-contain"
+              />
+            </button>
+          )}
+          {!nextBtnDisabled && (
+            <button
+              onClick={scrollNext}
+              type="button"
+              aria-label="Next slide"
+              className="w-(--navigation-btn-size) h-(--navigation-btn-size) my-auto rounded-full overflow-hidden backdrop-blur-[5px] bg-black/20 right-2.5 flex items-center justify-center absolute z-10 inset-y-0 transition-opacity duration-300 hover:opacity-75"
+            >
+              <Image
+                src={"/images/testimonial-slider-btn-mobile.svg"}
+                alt="right-btn"
+                width={33}
+                height={33}
+                className="w-full h-full object-contain scale-x-[-1]"
+              />
+            </button>
+          )}
+          <div
+            ref={emblaRef}
+            className="[--slide-spacing:10px] w-full h-auto overflow-hidden"
+          >
+            <div className="w-full h-auto ml-[calc(var(--slide-spacing)*-1)] backface-hidden touch-pan-y touch-pinch-zoom flex">
+              {data?.featureCards?.map((item) => (
+                <div
+                  key={item?.id}
+                  className="min-w-0 pl-(--slide-spacing) flex-[0_0_calc(100%/2.2)]"
+                >
+                  <FeatureCard item={item} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -281,7 +281,7 @@ export default function HomeAbout({ data }) {
                   />
                 </div>
                 <div
-                  className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal text-[#050505] dark:text-white pl-2.5 transition-colors duration-500 group-hover:text-white"
+                  className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal text-[#050505] dark:text-white pl-2.5 transition-colors duration-500 group-hover:text-white max-sm:[&_br]:hidden"
                   dangerouslySetInnerHTML={{
                     __html: data?.aboutInfo?.statistics?.label || "",
                   }}
