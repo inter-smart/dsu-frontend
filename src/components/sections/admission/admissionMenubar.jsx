@@ -11,20 +11,31 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { getAdmissions } from "@/lib/api/admission";
 
-const menuItems = [
+// Overview & Admission Process tabs come from the CMS (Admission entries);
+// these are shown until it responds, or if it fails
+const FALLBACK_DYNAMIC_ITEMS = [
   {
     label: "Overview",
     href: "/admission",
-  },
-  {
-    label: "Programme",
-    href: "/admission/admission-programme",
+    template: "overview",
   },
   {
     label: "Admission Process",
     href: "/admission/process",
+    template: "process",
   },
+];
+
+const STATIC_ITEMS_BEFORE = [
+  {
+    label: "Programme",
+    href: "/admission/admission-programme",
+  },
+];
+
+const STATIC_ITEMS_AFTER = [
   {
     label: "Eligibility & Selection",
     href: "/placement/career",
@@ -37,7 +48,7 @@ const menuItems = [
     label: "Hostel & Campus Life",
     href: "/admission/hostel",
   },
-  {       
+  {
     label: "Important Dates",
     href: "/admission/ImportantDates",
   },
@@ -55,6 +66,30 @@ const menuItems = [
   },
 ];
 
+// shared by every menubar instance on the page (desktop + mobile)
+let admissionsPromise = null;
+
+const loadDynamicItems = () => {
+  if (!admissionsPromise) {
+    admissionsPromise = getAdmissions().then((entries) =>
+      (entries || [])
+        .filter((e) => e.slug)
+        .map((e) => ({
+          label: e.title,
+          href: e.template === "overview" ? "/admission" : `/admission/${e.slug}`,
+          template: e.template,
+        })),
+    );
+  }
+  return admissionsPromise;
+};
+
+const buildMenuItems = (dynamicItems) => {
+  const overview = dynamicItems.filter((item) => item.template === "overview");
+  const others = dynamicItems.filter((item) => item.template !== "overview");
+  return [...overview, ...STATIC_ITEMS_BEFORE, ...others, ...STATIC_ITEMS_AFTER];
+};
+
 export default function AdmissionMenubar({
   title = "Placement Menu",
   className = "",
@@ -63,6 +98,18 @@ export default function AdmissionMenubar({
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [currentHash, setCurrentHash] = useState("");
   const lenis = useLenis();
+  const [dynamicItems, setDynamicItems] = useState(FALLBACK_DYNAMIC_ITEMS);
+  const menuItems = buildMenuItems(dynamicItems);
+
+  useEffect(() => {
+    let active = true;
+    loadDynamicItems().then((items) => {
+      if (active && items.length > 0) setDynamicItems(items);
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {

@@ -39,14 +39,16 @@ export default function SchoolCampus({ data }) {
                             {data?.campusesSection.heading}
                         </div>
                         <div className="flex flex-wrap -m-[5px] 3xl:-m-[10px]">
-                            {data?.campusesSection.items.map((item, id) => (
+                            {data?.campusesSection.items?.map((item, id) => (
                                 <div className="w-full sm:w-1/2" key={id}>
                                     <div className="p-[5px] 3xl:p-[10px] w-full h-full">
                                         <div className="w-full h-full bg-white border border-black/10 dark:bg-[#242424] rounded-[8px] p-[15px] xl:p-[20px_25px] 2xl:p-[30px_35px] 3xl:p-[40px_45px]">
                                             <div className="flex items-center gap-[10px] xl:gap-[20px] mb-[12px]">
-                                                <div className="w-[25px] lg:w-[35px] xl:w-[42px] 2xl:w-[50px] 3xl:w-[56px] flex items-center">
-                                                    <Image src={item?.icon.url} className="w-full h-full object-contain" width={56} height={65} alt={item?.icon.alternativeText} />
-                                                </div>
+                                                {item?.icon?.url && (
+                                                    <div className="w-[25px] lg:w-[35px] xl:w-[42px] 2xl:w-[50px] 3xl:w-[56px] flex items-center">
+                                                        <Image src={item.icon.url} className="w-full h-full object-contain" width={56} height={65} alt={item.icon.alternativeText || item.name || "Campus icon"} />
+                                                    </div>
+                                                )}
                                                 <div className="text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[35px] 3xl:text-[40px] text-[#212121] dark:text-white font-semibold">
                                                     {item.name}
                                                 </div>
@@ -55,10 +57,11 @@ export default function SchoolCampus({ data }) {
                                                 {item.subtitle}
                                             </div>
                                             <p>{item.address}</p>
+                                            {item?.directions && (
                                             <Link
-                                                href={item?.directions.href}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
+                                                href={item.directions.href || "#"}
+                                                target={item.directions.isExternal ? "_blank" : undefined}
+                                                rel={item.directions.isExternal ? "noopener noreferrer" : undefined}
                                                 className="inline-flex items-center mt-[15px] gap-2 hover:text-[#DC2626] font-bold text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] underline underline-offset-4 transition-colors 
                                         bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent  mb-[10px] 3xl:mb-[20px]"
                                             >
@@ -102,6 +105,7 @@ export default function SchoolCampus({ data }) {
                                                 </span>
                                                 <span>Get Directions</span>
                                             </Link>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
