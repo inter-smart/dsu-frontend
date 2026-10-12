@@ -1,123 +1,29 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import AdmissionMenubar from "./admissionMenubar";
-import OverviewSection from "./overviewSection";
-import WhySection from "./WhySection";
-import SchoolCampus from "./SchoolCampus";
-import AdmissionSection from "./admissionSection";
-import AdmissionProcess from "./AdmissionProcess";
-import AdmissionThrough from "./AdmissionThrough";
-import AdmissionDocument from "./AdmissionDocument";
-import AdmissionSeatcapacity from "./AdmissionSeatcapacity";
-import AdmissionPolicies from "./AdmissionPolicies";
+import OverviewTemplate from "./templates/overview-template";
+import ProcessTemplate from "./templates/process-template";
+import FeeTemplate from "./templates/fee-template";
 
-// Schools (heading, description, school list) are not managed in the CMS yet;
-// campuses come from overview.campusesSection
-const SCHOOL_CAMPUS = {
-    heading: "Schools & Campuses",
-    description: [
-        {
-            type: "paragraph",
-            children: [
-                {
-                    type: "text",
-                    text: "Discover the schools shaping learning at DSU, then explore the complete programme list and admission requirements.",
-                },
-            ],
-        },
-    ],
-    schoolsSection: {
-        heading: "Schools",
-        items: [
-            {
-                id: 1,
-                title: "School of Engineering",
-                programCount: "19 Programs",
-                href: "#",
-            },
-            {
-                id: 2,
-                title: "School of Computer Applications",
-                programCount: "07 Programs",
-                href: "#",
-            },
-            {
-                id: 3,
-                title: "School of Law",
-                programCount: "04 Programs",
-                href: "#",
-            },
-            {
-                id: 4,
-                title: "School of Basic & Applied Sciences",
-                programCount: "07 Programs",
-                href: "#",
-            },
-            {
-                id: 5,
-                title: "School of Commerce & Management",
-                programCount: "5 Programs",
-                href: "#",
-            },
-            {
-                id: 6,
-                title: "School of Health Sciences",
-                programCount: "17 Programs",
-                href: "#",
-            },
-            {
-                id: 7,
-                title: "School of Arts, Design & Humanities",
-                programCount: "01 Programs",
-                href: "#",
-            },
-            {
-                id: 8,
-                title: "School of Design & Digital Trans Media",
-                programCount: "04 Programs",
-                href: "#",
-            },
-        ],
-    },
+// One component per Admission `template` value
+const TEMPLATES = {
+  overview: OverviewTemplate,
+  process: ProcessTemplate,
+  "admission-fee": FeeTemplate,
 };
 
-// Renders an Admission entry by its `template` (inactive templates are null)
+// Renders an Admission entry by its `template`
 export default function AdmissionTemplate({ pageData }) {
-  const { hero, overview, process } = pageData || {};
-
-  // Any enabled menubar on an admission page is the admission menubar
-  const showMenubar = Boolean(
-    hero?.admissionMenubar || hero?.isMenubar || hero?.menuBar || hero?.hasMenubar
-  );
-  const heroData = hero && {
-    ...hero,
-    menuBar: false,
-    isMenubar: false,
-    admissionMenubar: showMenubar,
-  };
+  const { hero, template } = pageData || {};
+  const Template = TEMPLATES[template];
+  const templateData = pageData?.[template];
 
   return (
     <>
-      {heroData && <InnerHero data={heroData} />}
-      {showMenubar && <AdmissionMenubar className="lg:!hidden block" />}
-      {overview?.programOverviewSection && (
-        <OverviewSection data={overview.programOverviewSection} />
+      {hero && <InnerHero data={hero} />}
+      {hero?.admissionMenubar && (
+        <AdmissionMenubar className="lg:!hidden block" />
       )}
-      {overview?.whyChoose && <WhySection data={overview.whyChoose} />}
-      {overview && (
-        <SchoolCampus
-          data={{ ...SCHOOL_CAMPUS, campusesSection: overview.campusesSection }}
-        />
-      )}
-      {overview?.admission && <AdmissionSection data={overview.admission} />}
-      {process?.Process && <AdmissionProcess data={process.Process} />}
-      {process?.admissionThrough && (
-        <AdmissionThrough data={process.admissionThrough} />
-      )}
-      {process?.document && <AdmissionDocument data={process.document} />}
-      {process?.seatCapacity && (
-        <AdmissionSeatcapacity data={process.seatCapacity} />
-      )}
-      {process?.policies && <AdmissionPolicies data={process.policies} />}
+      {Template && templateData && <Template data={templateData} />}
     </>
   );
 }
