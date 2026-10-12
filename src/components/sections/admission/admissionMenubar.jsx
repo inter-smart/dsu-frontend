@@ -18,12 +18,14 @@ import { getAdmissions } from "@/lib/api/admission";
 const FALLBACK_DYNAMIC_ITEMS = [
   {
     label: "Overview",
-    href: "/admission",
+    href: "/admission/overview",
+    slug: "overview",
     template: "overview",
   },
   {
     label: "Admission Process",
-    href: "/admission/process",
+    href: "/admission/admission-process",
+    slug: "admission-process",
     template: "process",
   },
 ];
@@ -76,7 +78,8 @@ const loadDynamicItems = () => {
         .filter((e) => e.slug)
         .map((e) => ({
           label: e.title,
-          href: e.template === "overview" ? "/admission" : `/admission/${e.slug}`,
+          href: `/admission/${e.slug}`,
+          slug: e.slug,
           template: e.template,
         })),
     );
@@ -84,10 +87,19 @@ const loadDynamicItems = () => {
   return admissionsPromise;
 };
 
+// Overview tab goes first (before Programme); the rest keep CMS order.
+// Prefer the "overview" slug, since more than one entry may use the overview template.
 const buildMenuItems = (dynamicItems) => {
-  const overview = dynamicItems.filter((item) => item.template === "overview");
-  const others = dynamicItems.filter((item) => item.template !== "overview");
-  return [...overview, ...STATIC_ITEMS_BEFORE, ...others, ...STATIC_ITEMS_AFTER];
+  const overview =
+    dynamicItems.find((item) => item.slug === "overview") ||
+    dynamicItems.find((item) => item.template === "overview");
+  const others = dynamicItems.filter((item) => item !== overview);
+  return [
+    ...(overview ? [overview] : []),
+    ...STATIC_ITEMS_BEFORE,
+    ...others,
+    ...STATIC_ITEMS_AFTER,
+  ];
 };
 
 export default function AdmissionMenubar({
@@ -419,16 +431,15 @@ export default function AdmissionMenubar({
         </div>
       </div>
 
-            {/* Desktop Horizontal Menubar   */}
-            <nav className="w-full z-0 relative mt-[30px] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[50%] after:bg-white dark:after:bg-[#0f1011] after:content-[''] after:-z-1 hidden lg:block transition-colors duration-300">
-                <div className="container">
-                    <div className="relative rounded-[12px] lg:rounded-[15px] xl:rounded-[20px] 2xl:rounded-[23px] 3xl:rounded-[30px] bg-white border border-[#F3DFD2] dark:bg-[#1a1a1a] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-hidden transition-colors duration-300">
-                        {/* Menu content */}
-                        <div className="flex flex-wrap items-center justify-center gap-[8px] xl:gap-[10px] 2xl:gap-[12px] 3xl:gap-[14px] p-[20px_15px] md:p-[20px] lg:p-[25px_20px] xl:p-[30px_70px] 2xl:p-[30px_80px] 3xl:p-[45px_90px]">
-                           
-                            {/* Menu items */}
-                            {menuItems.map((item) => {
-                                const isActive = isCurrentItemActive(item.href);
+      {/* Desktop Horizontal Menubar   */}
+      <nav className="w-full z-0 relative mt-[30px] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[50%] after:bg-white dark:after:bg-[#0f1011] after:content-[''] after:-z-1 hidden lg:block transition-colors duration-300">
+        <div className="container">
+          <div className="relative rounded-[12px] lg:rounded-[15px] xl:rounded-[20px] 2xl:rounded-[23px] 3xl:rounded-[30px] bg-white border border-[#F3DFD2] dark:bg-[#1a1a1a] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-hidden transition-colors duration-300">
+            {/* Menu content */}
+            <div className="flex flex-wrap items-center justify-center gap-[8px] xl:gap-[10px] 2xl:gap-[12px] 3xl:gap-[14px] p-[20px_15px] md:p-[20px] lg:p-[25px_20px] xl:p-[30px_70px] 2xl:p-[30px_80px] 3xl:p-[45px_90px]">
+              {/* Menu items */}
+              {menuItems.map((item) => {
+                const isActive = isCurrentItemActive(item.href);
 
                 return (
                   <Link

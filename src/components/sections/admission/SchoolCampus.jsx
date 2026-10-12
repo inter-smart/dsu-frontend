@@ -5,41 +5,55 @@ import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function SchoolCampus({ data }) {
+    if (!data) return null;
+
     return (
         <section className="relative py-[30px] sm:py-[40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010]">
             <div className="container">
-                <div className="cmn_Title">
-                    {data?.heading}
-                </div>
-                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  mb-[30px]">
-                    <BlocksRenderer content={data.description} />
-                </div>
-                {data?.schoolsSection && (
+                {data?.heading && (
+                    <div className="cmn_Title">
+                        {data.heading}
+                    </div>
+                )}
+                {data?.description?.length > 0 && (
+                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  mb-[30px]">
+                        <BlocksRenderer content={data.description} />
+                    </div>
+                )}
+                {data?.schoolsSection?.items?.length > 0 && (
                     <div className="w-full">
-                        <div className="lg:text-[24px] xl:text-[32px] 2xl:text-[40px] 3xl:text-[45px] text-[#212121] dark:text-white font-semibold mb-[20px] 3xl:mb-[30px]">
-                            {data?.schoolsSection.heading}
-                        </div>
+                        {data.schoolsSection.heading && (
+                            <div className="lg:text-[24px] xl:text-[32px] 2xl:text-[40px] 3xl:text-[45px] text-[#212121] dark:text-white font-semibold mb-[20px] 3xl:mb-[30px]">
+                                {data.schoolsSection.heading}
+                            </div>
+                        )}
                         <div className="flex flex-wrap -m-[5px] md:-m-[10px_5px] xl:-m-[15px_5px] 3xl:-m-[20px_10px]">
-                            {data?.schoolsSection?.items.map((item, id) => (
+                            {data.schoolsSection.items.map((item, id) => (
                                 <div className="w-1/2 sm:w-1/3 md:w-1/4 p-[5px] md:p-[10px_5px] xl:p-[15px_5px] 3xl:p-[20px_10px]" key={id}>
                                     <div className="w-full h-full border border-black/10 rounded-[10px] p-[20px_10px] dark:bg-[#242424]  text-center">
-                                        <div className="text-[12px] xl:text-[14px] 2xl:text-[17px] 3xl:text-[22px] text-[#212121] dark:text-white font-semibold">
-                                            {item.title}
-                                        </div>
-                                        <div className="text_1 dark:text-[#d35700]">{item.programCount}</div>
+                                        {item?.title && (
+                                            <div className="text-[12px] xl:text-[14px] 2xl:text-[17px] 3xl:text-[22px] text-[#212121] dark:text-white font-semibold">
+                                                {item.title}
+                                            </div>
+                                        )}
+                                        {item?.programCount && (
+                                            <div className="text_1 dark:text-[#d35700]">{item.programCount}</div>
+                                        )}
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 )}
-                {data?.campusesSection && (
+                {data?.campusesSection?.items?.length > 0 && (
                     <div className="w-full mt-[30px] lg:mt-[40px] xl:mt-[50px] 2xl:mt-[60px] 3xl:mt-[80px] pt-[30px] xl:pt-[40px] 2xl:pt-[50px] 3xl:pt-[60px] border-t border-[#212121]">
-                        <div className="lg:text-[24px] xl:text-[32px] 2xl:text-[40px] 3xl:text-[45px] text-[#212121] dark:text-white font-semibold mb-[20px] 3xl:mb-[30px]">
-                            {data?.campusesSection.heading}
-                        </div>
+                        {data.campusesSection.heading && (
+                            <div className="lg:text-[24px] xl:text-[32px] 2xl:text-[40px] 3xl:text-[45px] text-[#212121] dark:text-white font-semibold mb-[20px] 3xl:mb-[30px]">
+                                {data.campusesSection.heading}
+                            </div>
+                        )}
                         <div className="flex flex-wrap -m-[5px] 3xl:-m-[10px]">
-                            {data?.campusesSection.items?.map((item, id) => (
+                            {data.campusesSection.items.map((item, id) => (
                                 <div className="w-full sm:w-1/2" key={id}>
                                     <div className="p-[5px] 3xl:p-[10px] w-full h-full">
                                         <div className="w-full h-full bg-white border border-black/10 dark:bg-[#242424] rounded-[8px] p-[15px] xl:p-[20px_25px] 2xl:p-[30px_35px] 3xl:p-[40px_45px]">
@@ -49,15 +63,19 @@ export default function SchoolCampus({ data }) {
                                                         <Image src={item.icon.url} className="w-full h-full object-contain" width={56} height={65} alt={item.icon.alternativeText || item.name || "Campus icon"} />
                                                     </div>
                                                 )}
-                                                <div className="text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[35px] 3xl:text-[40px] text-[#212121] dark:text-white font-semibold">
-                                                    {item.name}
+                                                {item?.name && (
+                                                    <div className="text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[35px] 3xl:text-[40px] text-[#212121] dark:text-white font-semibold">
+                                                        {item.name}
+                                                    </div>
+                                                )}
+                                            </div>
+                                            {item?.subtitle && (
+                                                <div className="text-[12px] lg:text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[31px] font-semibold text-[#212121] dark:text-white mb-[8px]">
+                                                    {item.subtitle}
                                                 </div>
-                                            </div>
-                                            <div className="text-[12px] lg:text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[31px] font-semibold text-[#212121] dark:text-white mb-[8px]">
-                                                {item.subtitle}
-                                            </div>
-                                            <p>{item.address}</p>
-                                            {item?.directions && (
+                                            )}
+                                            {item?.address && <p>{item.address}</p>}
+                                            {item?.directions?.href && (
                                             <Link
                                                 href={item.directions.href || "#"}
                                                 target={item.directions.isExternal ? "_blank" : undefined}

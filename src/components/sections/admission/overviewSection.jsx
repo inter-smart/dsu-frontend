@@ -39,12 +39,16 @@ export default function OverviewSection({ data }) {
                                             key={stat.id || idx}
                                             className="bg-white dark:bg-[#18191B] border border-[rgba(249,115,22,0.3)] dark:border-white/10 rounded-[8px] p-[10px] sm:p-[12px] xl:p-[16px]  flex flex-col justify-center shadow-[0_2px_8px_rgba(0,0,0,0.03)]"
                                         >
-                                            <div className="text-[18px] sm:text-[20px] xl:text-[24px] 2xl:text-[28px] font-bold text-[#DC2626] leading-none mb-[4px] xl:mb-[6px]">
-                                                {stat.value}
-                                            </div>
-                                            <div className="text_1">
-                                                {stat.label}
-                                            </div>
+                                            {stat?.value && (
+                                                <div className="text-[18px] sm:text-[20px] xl:text-[24px] 2xl:text-[28px] font-bold text-[#DC2626] leading-none mb-[4px] xl:mb-[6px]">
+                                                    {stat.value}
+                                                </div>
+                                            )}
+                                            {stat?.label && (
+                                                <div className="text_1">
+                                                    {stat.label}
+                                                </div>
+                                            )}
                                         </div>
                                     ))}
                                 </div>
@@ -69,15 +73,15 @@ export default function OverviewSection({ data }) {
                             </h2>
                         )}
 
-                        {data?.intro && (
+                        {data?.intro?.length > 0 && (
                             <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
                                 <BlocksRenderer content={data.intro} />
                             </div>
                         )}
 
-                        {data?.buttons && (
+                        {data?.buttons?.length > 0 && (
                             <div className="flex flex-wrap items-center gap-[12px] xl:gap-[15px] mt-[25px] 2xl:mt-[30px] 3xl:mt-[50px]">
-                                {data.buttons.map((btn) => (
+                                {data.buttons.filter((btn) => btn?.label).map((btn) => (
                                     <Link
                                         key={btn.id}
                                         href={btn.href || "#"}

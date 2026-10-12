@@ -84,29 +84,40 @@ const SCHOOL_CAMPUS = {
 export default function AdmissionTemplate({ pageData }) {
   const { hero, overview, process } = pageData || {};
 
+  // Any enabled menubar on an admission page is the admission menubar
+  const showMenubar = Boolean(
+    hero?.admissionMenubar || hero?.isMenubar || hero?.menuBar || hero?.hasMenubar
+  );
+  const heroData = hero && {
+    ...hero,
+    menuBar: false,
+    isMenubar: false,
+    admissionMenubar: showMenubar,
+  };
+
   return (
     <>
-      {hero && <InnerHero data={hero} />}
-      <AdmissionMenubar className="lg:!hidden block" />
+      {heroData && <InnerHero data={heroData} />}
+      {showMenubar && <AdmissionMenubar className="lg:!hidden block" />}
+      {overview?.programOverviewSection && (
+        <OverviewSection data={overview.programOverviewSection} />
+      )}
+      {overview?.whyChoose && <WhySection data={overview.whyChoose} />}
       {overview && (
-        <>
-          <OverviewSection data={overview.programOverviewSection} />
-          <WhySection data={overview.whyChoose} />
-          <SchoolCampus
-            data={{ ...SCHOOL_CAMPUS, campusesSection: overview.campusesSection }}
-          />
-          <AdmissionSection data={overview.admission} />
-        </>
+        <SchoolCampus
+          data={{ ...SCHOOL_CAMPUS, campusesSection: overview.campusesSection }}
+        />
       )}
-      {process && (
-        <>
-          <AdmissionProcess data={process.Process} />
-          <AdmissionThrough data={process.admissionThrough} />
-          <AdmissionDocument data={process.document} />
-          <AdmissionSeatcapacity data={process.seatCapacity} />
-          <AdmissionPolicies data={process.policies} />
-        </>
+      {overview?.admission && <AdmissionSection data={overview.admission} />}
+      {process?.Process && <AdmissionProcess data={process.Process} />}
+      {process?.admissionThrough && (
+        <AdmissionThrough data={process.admissionThrough} />
       )}
+      {process?.document && <AdmissionDocument data={process.document} />}
+      {process?.seatCapacity && (
+        <AdmissionSeatcapacity data={process.seatCapacity} />
+      )}
+      {process?.policies && <AdmissionPolicies data={process.policies} />}
     </>
   );
 }

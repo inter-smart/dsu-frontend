@@ -5,22 +5,28 @@ import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function AdmissionSection({data}) {
+    if (!data?.cards?.length) return null;
+
     return (
         <section className='relative bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-[linear-gradient(135deg,#000,#000)] py-[40px] xl:py-[50px] 2xl:py-[60px] 3xl:py-[80px]'>
             <div className="container">
                 <div className="flex flex-wrap -m-[5px] 3xl:-m-[10px]">
-                    {data?.cards.map((item, id) => (
+                    {data.cards.map((item, id) => (
                         <div className="w-full sm:w-1/2" key={id}>
                             <div className="p-[5px] 3xl:p-[10px]">
                                 <div className="w-full h-full bg-[linear-gradient(180deg,#FFF8EE_0%,#FFF3E0_100%)] border border-black/10 rounded-[8px] p-[15px] xl:p-[20px_25px] 2xl:p-[30px_35px] 3xl:p-[40px_45px]">
-                                     
-                                    <div className="text-[12px] lg:text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[31px] font-semibold text-[#212121] dark:text-black mb-[8px]">
-                                        {item.heading}
-                                    </div>
-                                    <p className="dark:text-black">{item.description}</p>
+
+                                    {item?.heading && (
+                                        <div className="text-[12px] lg:text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[31px] font-semibold text-[#212121] dark:text-black mb-[8px]">
+                                            {item.heading}
+                                        </div>
+                                    )}
+                                    {item?.description && (
+                                        <p className="dark:text-black">{item.description}</p>
+                                    )}
+                                    {item?.button?.label && (
                                      <Link
-                                        key={item?.button.id}
-                                        href={item?.button?.href || "#"}
+                                        href={item.button.href || "#"}
                                         target={item?.button?.isExternal ? "_blank" : undefined}
                                         rel={item?.button?.isExternal ? "noopener noreferrer" : undefined}
                                         className= "group relative mt-[20px] flex h-[30px] w-fit items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[20px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
@@ -48,7 +54,7 @@ export default function AdmissionSection({data}) {
                                             </div>
                                          
                                     </Link>
-                                   
+                                    )}
                                 </div>
                             </div>
                         </div>
