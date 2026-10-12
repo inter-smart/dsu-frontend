@@ -41,7 +41,7 @@ export default function HistoryTimeline({ data }) {
     };
 
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[70px] 3xl:py-[100px] bg-[#FFF8F6] dark:bg-[#101010] overflow-hidden select-none">
+        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[70px] 3xl:py-[100px] bg-[#FFFFFF] dark:bg-[#101010] overflow-hidden select-none">
 
 
             <div className="container relative z-10">
@@ -160,7 +160,7 @@ export default function HistoryTimeline({ data }) {
                 </div>
 
                 {/* Vertical Main Timeline Swiper */}
-                <div className="relative lg:max-w-[75%] mx-auto h-[340px] sm:h-[400px] md:h-[560px]">
+                <div className="relative lg:max-w-[75%] mx-auto h-[340px] sm:h-[400px] md:h-[900px]">
                     <Swiper
                         direction="vertical"
                         slidesPerView={1}
@@ -186,7 +186,7 @@ export default function HistoryTimeline({ data }) {
                                             return (
                                                 <div
                                                     key={event.id || index}
-                                                    className="relative flex flex-col md:flex-row items-center w-full min-h-[70px] lg:min-h-[100px] pb-5 lg:pb-10 last:pb-0"
+                                                    className="relative flex flex-col md:flex-row items-center w-full min-h-[70px] lg:min-h-[90px] pb-5 lg:pb-10 last:pb-0"
                                                 >
                                                     {/* Continuous Segmented Vertical Timeline Center Axis */}
                                                     <div className={`absolute left-6 md:left-1/2 -translate-x-1/2 w-[2px] bg-[#CBD5E1] z-0 ${lineClass}`} />
@@ -198,8 +198,8 @@ export default function HistoryTimeline({ data }) {
                                                             : "md:order-1 md:pr-12 md:text-left"
                                                             }`}
                                                     >
-                                                        <div className="bg-[#FFF9F8] dark:bg-[#18191B] border border-[#FDE6E0] dark:border-white/10 rounded-2xl p-6 sm:p-7 shadow-[0_8px_25px_-5px_rgba(234,88,12,0.06)] hover:shadow-[0_12px_32px_-5px_rgba(234,88,12,0.12)] transition-all duration-300 transform hover:-translate-y-1">
-                                                            <h3 className="text-[15px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] font-medium text-[#212121] dark:text-white mb-2 leading-snug">
+                                                        <div className="bg-[#fff] dark:bg-[#18191B] border border-[#EFD8CA] dark:border-white/10 rounded-md p-3 sm:p-5 shadow-[0_8px_25px_-5px_rgba(234,88,12,0.06)] hover:shadow-[0_12px_32px_-5px_rgba(234,88,12,0.12)] transition-all duration-300 transform hover:-translate-y-1">
+                                                            <h3 className="text-[15px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] font-semibold text-[#212121] dark:text-white mb-2 leading-snug">
                                                                 {event.title}
                                                             </h3>
                                                             <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF]">

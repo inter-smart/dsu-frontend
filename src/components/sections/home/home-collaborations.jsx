@@ -119,7 +119,7 @@ export default function HomeCollaborations({ data }) {
                   </button>
                 ))}
               </div>
-              <div className="w-full h-auto mt-1.25 sm:mt-5 2xl:mt-6.25 3xl:mt-7.5 flex lg:justify-between">
+              <div className="w-full h-auto mt-1.25 sm:mt-5 2xl:mt-6.25 3xl:mt-7.5 flex max-sm:flex-wrap max-sm:gap-Y-[10px] max-sm:justify-center lg:justify-between">
                 {data?.statistics?.map((item) => (
                   <div
                     key={item?.id}
@@ -143,7 +143,7 @@ export default function HomeCollaborations({ data }) {
                           {item?.title}
                         </div>
                       )}
-                      <div className="text-[7px] sm:text-[8px] xl:text-[10px] 2xl:text-[13px] 3xl:text-base leading-[1.1] font-normal text-white">
+                      <div className="text-[7.37px] sm:text-[8px] xl:text-[10px] 2xl:text-[13px] 3xl:text-base leading-[1.1] font-normal text-white">
                         {item?.label}
                       </div>
                     </div>

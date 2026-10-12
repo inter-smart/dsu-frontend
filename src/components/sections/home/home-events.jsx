@@ -57,12 +57,11 @@ export default function Events({ data }) {
     <section className="w-full h-auto bg-white dark:bg-[#101010] block">
       <div className="container">
         <div className="w-full h-full py-[30px_50px] sm:py-[40px_50px] lg:py-[50px_60px] 2xl:py-[60px_70px] 3xl:py-[70px_90px] border-b border-[#0B214833] dark:border-white/20 block">
-          <div className="w-full h-auto mb-5 sm:mb-10 lg:mb-12.5 2xl:mb-15 3xl:mb-20 sm:text-center">
+          <div className="w-full h-auto mb-5 sm:mb-10 lg:mb-12.5 2xl:mb-15 3xl:mb-20  ">
             <Heading
               aurora
-              speed={2}
-              align="center"
-              className="mb-1.25 xl:mb-2.5 3xl:mb-3.75"
+              speed={2} 
+              className="mb-1.25 xl:mb-2.5 3xl:mb-3.75 dark:!bg-none dark:!text-white [&_span]:dark:!bg-none [&_span]:dark:text-white"
             >
               {data?.title}
             </Heading>
@@ -74,7 +73,7 @@ export default function Events({ data }) {
                 <div className="flex items-center">
                   <Heading
                     size="h2"
-                    className="pr-2.5 2xl:pr-3.75 3xl:pr-5 dark:text-white"
+                    className="pr-2.5 2xl:pr-3.75 3xl:pr-5 dark:bg-none dark:text-white"
                   >
                     Latest Happenings
                   </Heading>

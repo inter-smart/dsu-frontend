@@ -50,7 +50,7 @@ export default function NIRFRanking({ data }) {
                             <div className="flex flex-wrap max-lg:gap-[15px] mb-[30px]">
                                 <div className="w-full lg:w-[350px] xl:w-[380px] 2xl:w-[440px] 3xl:w-[550px] ">
                                     <div className="w-full h-full rounded-[10px] overflow-hidden border border-[rgba(249,115,22,0.3)] ">
-                                        <div className="w-full bg-linear-to-b from-[#FFF8EE] to-[#FFF3E0] p-[37px_15px_25px] text-center">
+                                        <div className="w-full bg-linear-to-b from-[#FFF8EE] to-[#FFF3E0] p-[15px_15px_25px] 3xl:p-[37px_15px_25px] text-center">
                                             <div className="text-[38px] xl:text-[47px] 2xl:text-[57px] 3xl:text-[72px] leading-[72px] font-bold flex items-center justify-center bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
                                                 <span className="text-[17px] xl:text-[21px] 2xl:text-[26px] 3xl:text-[32px] mb-0 leading-1">#</span> {data?.ranking.rank}
                                             </div>
@@ -144,11 +144,11 @@ export default function NIRFRanking({ data }) {
                                                     {data?.historicalPerformance?.columns?.map((column) => (
                                                         <th
                                                             key={column.key}
-                                                            className="border-r border-white/40 px-[15px] py-[12px] text-center text_1 font-medium last:border-r-0 text-white"
+                                                            className="border-r border-white/40 px-[15px] py-[10px] text-center !text_1 font-medium last:border-r-0 text-white"
                                                         >
                                                             {column.label}
                                                         </th>
-                                                    ))}
+                                                    ))} 
                                                 </tr>
                                             </thead>
 
@@ -158,7 +158,7 @@ export default function NIRFRanking({ data }) {
                                                         {data?.historicalPerformance?.columns?.map((column, colIdx) => (
                                                             <td 
                                                                 key={column.key}
-                                                                className={`border-r border-[#707070] px-[15px] py-[13px] text-center text_1 text-[#212121] first-of-type:min-w-[150px]  first-of-type:xl:min-w-[250px] first-of-type:2xl:min-w-[350px] first-of-type:3xl:min-w-[450px] last:border-r-0 lg:text-[15px] ${colIdx === 0 ? "font-semibold" : "font-normal"}`}
+                                                                className={`border-r border-[#707070] px-[15px] py-[10px] text-center !text_1 text-[#212121] first-of-type:min-w-[150px] first-of-type:xl:min-w-[250px] first-of-type:2xl:min-w-[350px] first-of-type:3xl:min-w-[450px] last:border-r-0 ${colIdx === 0 ? "font-semibold" : "font-normal"}`}
                                                             >
                                                                 {item[column.key]}
                                                             </td>

@@ -40,7 +40,7 @@ const local_data = {
                 href: "/",
             },
             {
-                label: "Accreditation  ",
+                label: "Accreditations",
                 href: "/",
             },
             {

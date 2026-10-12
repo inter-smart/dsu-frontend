@@ -14,8 +14,8 @@ export default function AboutHistory({ data }) {
     return (
         <section className='relative py-[40px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[75px] dark:bg-[#101010] transition-colors duration-300'>
             <div className="container">
-                <div className="flex max-sm:gap-[20px] lg:gap-[25px] 2xl:gap-[35px] 3xl:gap-[45px] max-lg:flex-wrap">
-                    <div className="w-full lg:w-[260px] xl:w-[330px] 2xl:w-[400px] 3xl:w-[500px]">
+                <div className="flex max-sm:gap-[20px] lg:gap-[25px] 2xl:gap-[35px] 3xl:gap-[45px] max-lg:flex-wrap max-lg:mb-[30px]">
+                    <div className="w-full lg:w-[260px] xl:w-[330px] 2xl:w-[400px] 3xl:w-[500px] mb-[30px] max-lg:border-[#f4f4f4] max-lg:border-b">
 
                         <div className="w-full">
                             <Swiper

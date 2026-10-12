@@ -41,22 +41,20 @@ const nirfSidebarData = {
             label: "IIRF",
             slug: "iirf",
             subItems: []
-        },
-        {
-            id: 5,
-            label: "NIRFFF",
-            slug: "nirfff",
-            subItems: []
-        }
+        }, 
     ]
 };
 
 export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognition Menu" }) {
-    const pathname = usePathname();
+    // FIX: guard against null and strip trailing slash (trailingSlash: true configs)
+    const rawPathname = usePathname() || "";
+    const pathname = rawPathname.toLowerCase().replace(/\/+$/, "");
 
-    const activeParentSlug = nirfSidebarData.menuItems.find((item) =>
-        pathname.includes(`/regulatory-approval/${item.slug}`)
-    )?.slug;
+    const activeParentSlug = nirfSidebarData.menuItems.find((item) => {
+        const itemSlug = item.slug.toLowerCase().replace(/^\/+/, "");
+        const itemHref = `/${itemSlug}`;
+        return pathname === itemHref || pathname.startsWith(`${itemHref}/`);
+    })?.slug;
 
     return (
         <>
@@ -91,10 +89,12 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
                         </button>
                     </div>
 
-                    <Accordion type="single" collapsible  >
+                    <Accordion type="single" collapsible defaultValue={activeParentSlug}>
                         <ul>
                             {nirfSidebarData.menuItems.map((item, idx) => {
-                                const isActive = pathname === `/regulatory-approval/${item.slug}`;
+                                const itemSlug = item.slug.toLowerCase().replace(/^\/+/, "");
+                                const itemHref = `/${itemSlug}`;
+                                const isActive = pathname === itemHref || pathname.startsWith(`${itemHref}/`);
 
                                 return item.subItems?.length > 0 ? (
                                     // ============ ITEM WITH SUB-ITEMS ============
@@ -104,17 +104,19 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
                                     >
                                         <AccordionItem value={item.slug} className="border-0">
                                             <AccordionTrigger
-                                                className="p-[8px_15px] 2xl:p-[10px_20px] 3xl:p-[12px_25px] font-semibold text-[#F97316] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px]  hover:no-underline
-                                                    [&>svg]:!hidden [&>svg]:w-[14px] [&>svg]:h-[14px] flex items-center w-full justify-between hover:bg-gradient-to-r  hover:from-[rgba(220,38,38,0.8)]  hover:to-[rgba(249,115,22,0.8)]  hover:!text-white  data-open:bg-gradient-to-r data-open:from-[rgba(220,38,38,0.8)] data-open:to-[rgba(249,115,22,0.8)] data-open:text-white rounded-none"
+                                                className="group p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] font-semibold xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] hover:no-underline [&>svg]:!hidden flex items-center w-full justify-between transition-colors duration-300 rounded-none cursor-pointer"
                                             >
                                                 <div
-                                                    className={`text_1 font-semibold xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] ${isActive ? "text-white" : "text-[#212121] group-hover:!text-white"
-                                                        }`}
+                                                    className={`text_1 !font-semibold transition-colors duration-300 xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] ${
+                                                        isActive
+                                                            ? "!text-[#F97316]"
+                                                            : "!text-[#212121] group-hover:!text-[#F97316]"
+                                                    }`}
                                                 >
                                                     {item.label}
                                                 </div>
 
-                                                <div className="flex h-[8px] 3xl:h-[12px] w-[8px] 3xl:w-[10px] items-center justify-center group-data-[state=open]:rotate-90 ">
+                                                <div className="flex h-[8px] 3xl:h-[12px] w-[8px] 3xl:w-[10px] items-center justify-center transition-transform duration-300 group-data-[state=open]:rotate-90">
                                                     <svg
                                                         viewBox="0 0 7 11"
                                                         fill="none"
@@ -122,10 +124,11 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
                                                     >
                                                         <path
                                                             d="M0.568359 1.46289C0.449124 1.22017 0.4878 0.923845 0.680664 0.71875L0.734375 0.667969L0.841796 0.591797C1.1018 0.44291 1.43979 0.472188 1.66992 0.678711L1.6709 0.677734L6.00195 4.52344C6.30253 4.79061 6.30274 5.25141 6.00195 5.51855L1.6709 9.36426L1.66406 9.36914C1.40048 9.59519 1.0028 9.5951 0.739258 9.36914L0.685547 9.31836C0.451825 9.06971 0.442751 8.68635 0.669922 8.42773L0.72168 8.375L0.728516 8.36914L4.49902 5.02148L0.735351 1.67871C0.729474 1.67367 0.722548 1.66837 0.716796 1.66309L0.716796 1.66211L0.572265 1.53418L0.568359 1.46289Z"
-                                                            fill={isActive ? "#FFFFFF" : "#212121"}
-                                                            stroke={isActive ? "#FFFFFF" : "#212121"}
-                                                            className={`transition-all duration-300 ${!isActive ? "group-hover:fill-[#F97316] group-hover:stroke-[#F97316]" : ""
-                                                                }`}
+                                                            fill={isActive ? "#F97316" : "#212121"}
+                                                            stroke={isActive ? "#F97316" : "#212121"}
+                                                            className={`transition-all duration-300 ${
+                                                                !isActive ? "group-hover:fill-[#F97316] group-hover:stroke-[#F97316]" : ""
+                                                            }`}
                                                         />
                                                     </svg>
                                                 </div>
@@ -133,23 +136,35 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
 
                                             <AccordionContent className="pb-0">
                                                 <ul>
-                                                    {item.subItems.map((sub, subIdx) => (
-                                                        <li
-                                                            key={`${sub.slug}-${subIdx}`}
-                                                            className="group"
-                                                        >
-                                                            <Link
-                                                                href={`/regulatory-approval/${item.slug}/${sub.slug}`}
-                                                                onClick={onClose}
-                                                                className="flex items-center justify-between p-[6px_15px] 2xl:p-[7px_20px] 3xl:p-[8px_25px] !no-underline
-                                                                "
+                                                    {item.subItems.map((sub, subIdx) => {
+                                                        const subSlug = sub.slug.toLowerCase().replace(/^\/+/, "");
+                                                        const isSubActive =
+                                                            pathname === `/${itemSlug}/${subSlug}` ||
+                                                            pathname.startsWith(`/${itemSlug}/${subSlug}/`);
+
+                                                        return (
+                                                            <li
+                                                                key={`${sub.slug}-${subIdx}`}
+                                                                className={`group transition-colors duration-300 ${isSubActive ? "bg-[rgba(249,115,22,0.15)] border-l-4 border-[#F97316]" : ""}`}
                                                             >
-                                                                <div className="text_1 font-medium text-[#212121] transition-colors duration-300 !no-underline group-hover:text-[#F97316] xl:text-[13px] 2xl:text-[15px] 3xl:text-[16px]">
-                                                                    {sub.label}
-                                                                </div>
-                                                            </Link>
-                                                        </li>
-                                                    ))}
+                                                                <Link
+                                                                    href={`/${itemSlug}/${subSlug}`}
+                                                                    onClick={onClose}
+                                                                    className="flex items-center justify-between p-[6px_15px] 2xl:p-[7px_20px] 3xl:p-[8px_25px] !no-underline"
+                                                                >
+                                                                    <div
+                                                                        className={`text_1 transition-colors duration-300 !no-underline xl:text-[13px] 2xl:text-[15px] 3xl:text-[18px] ${
+                                                                            isSubActive
+                                                                                ? "!text-[#F97316] font-semibold"
+                                                                                : "!text-[#212121] font-medium group-hover:!text-[#F97316]"
+                                                                        }`}
+                                                                    >
+                                                                        {sub.label}
+                                                                    </div>
+                                                                </Link>
+                                                            </li>
+                                                        );
+                                                    })}
                                                 </ul>
                                             </AccordionContent>
                                         </AccordionItem>
@@ -158,29 +173,45 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
                                     // ============ PLAIN LINK ITEM ============
                                     <li
                                         key={`${item.slug}-${idx}`}
-                                        className={`border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group hover:bg-gradient-to-r hover:from-[rgba(220,38,38,0.8)]  hover:to-[rgba(249,115,22,0.8)]  hover:text-white last:border-b-0 ${isActive ? "bg-gradient-to-r from-[#DC2626] to-[#F97316]" : ""
-                                            }`}
+                                        className="border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0 transition-colors duration-300"
                                     >
                                         <Link
-                                            href={`/regulatory-approval/${item.slug}`}
+                                            href={`/${itemSlug}`}
                                             onClick={onClose}
-                                            className="flex items-center justify-between
-                                            "
+                                            className="flex items-center justify-between !no-underline"
                                         >
                                             <div
-                                                className={`text_1 font-semibold transition-colors xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] ${isActive ? "text-white" : "text-[#212121] group-hover:text-white"
-                                                    }`}
+                                                className={`text_1 font-semibold transition-colors duration-300 xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] ${
+                                                    isActive
+                                                        ? "!text-[#F97316]"
+                                                        : "!text-[#212121] group-hover:!text-[#F97316]"
+                                                }`}
                                             >
                                                 {item.label}
                                             </div>
 
-
+                                            <div className="flex h-[8px] 3xl:h-[12px] w-[8px] 3xl:w-[10px] items-center justify-center">
+                                                <svg
+                                                    viewBox="0 0 7 11"
+                                                    fill="none"
+                                                    className="transition-all w-full h-full object-contain duration-300 group-hover:translate-x-[2px]"
+                                                >
+                                                    <path
+                                                        d="M0.568359 1.46289C0.449124 1.22017 0.4878 0.923845 0.680664 0.71875L0.734375 0.667969L0.841796 0.591797C1.1018 0.44291 1.43979 0.472188 1.66992 0.678711L1.6709 0.677734L6.00195 4.52344C6.30253 4.79061 6.30274 5.25141 6.00195 5.51855L1.6709 9.36426L1.66406 9.36914C1.40048 9.59519 1.0028 9.5951 0.739258 9.36914L0.685547 9.31836C0.451825 9.06971 0.442751 8.68635 0.669922 8.42773L0.72168 8.375L0.728516 8.36914L4.49902 5.02148L0.735351 1.67871C0.729474 1.67367 0.722548 1.66837 0.716796 1.66309L0.716796 1.66211L0.572265 1.53418L0.568359 1.46289Z"
+                                                        fill={isActive ? "#F97316" : "#212121"}
+                                                        stroke={isActive ? "#F97316" : "#212121"}
+                                                        className={`transition-all duration-300 ${
+                                                            !isActive ? "group-hover:fill-[#F97316] group-hover:stroke-[#F97316]" : ""
+                                                        }`}
+                                                    />
+                                                </svg>
+                                            </div>
                                         </Link>
                                     </li>
                                 );
                             })}
                         </ul>
-                    </Accordion>
+                    </Accordion>  
                 </div>
             </div>
         </>

@@ -35,7 +35,7 @@ const local_data = {
             },
             {
                 label: "About DSU",
-                href: "/why-dsu/about-dsu",
+                href: "/why-dsu/Leadership",
             },
             {
                 label: "History",

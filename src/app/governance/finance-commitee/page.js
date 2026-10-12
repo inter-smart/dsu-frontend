@@ -61,7 +61,8 @@ const local_data = {
         id: 2,
         name: "Dr. D Premachandra Sagar",
         note: "",
-        designation: "Pro Chancellor,\n DSU Nominee of Sponsoring Body",
+        designation: "Pro Chancellor,",
+        post: "DSU Nominee of Sponsoring Body" ,
         status: "Member",
         image: "/images/governance/leader-2.jpg"
       },
@@ -69,7 +70,8 @@ const local_data = {
         id: 3,
         name: "Dr. B S Satyanarayana",
         note: "",
-        designation: "Vice Chancellor,\nDSU",
+        designation: "Vice Chancellor,",
+        post: "DSU" ,
         status: "Member",
        image: "/images/governance/leader-3.jpg"
       },
@@ -85,7 +87,8 @@ const local_data = {
         id: 5,
         name: "Mr. D. Ramanathan",
         note: "",
-        designation: "Chief Finance\nOfficer, DSU",
+        designation: "Chief Finance",
+        post: "Officer, DSU",
         status: "Member",
         image: "/images/governance/leader-5.jpg"
       }
