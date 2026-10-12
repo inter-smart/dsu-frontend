@@ -3,13 +3,11 @@ import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
 import AdmissionProcess from "@/components/sections/admission/AdmissionProcess";
 import AdmissionThrough from "@/components/sections/admission/AdmissionThrough";
 import AdmissionDocument from "@/components/sections/admission/AdmissionDocument";
-import AdmissionSection from "@/components/sections/admission/admissionSection";
-import OverviewSection from "@/components/sections/admission/overviewSection";
-import SchoolCampus from "@/components/sections/admission/SchoolCampus";
-import WhySection from "@/components/sections/admission/WhySection";
 import AdmissionSeatcapacity from "@/components/sections/admission/AdmissionSeatcapacity";
 import AdmissionPolicies from "@/components/sections/admission/AdmissionPolicies";
+import { getAdmissionProcessPage } from "@/lib/api";
 
+// Fallback local data (used when CMS has no published process entry)
 const local_data = {
     id: 24,
     documentId: "a67zp5r21a35cb8qlzrjp54s",
@@ -18,8 +16,8 @@ const local_data = {
     publishedAt: "2026-06-11T06:26:08.337Z",
     seo: {
         id: 21,
-        metaTitle: "Admission page title",
-        metaDescription: "Admission page description ",
+        metaTitle: "Admission Process | Dayananda Sagar University",
+        metaDescription: "Admission process at Dayananda Sagar University.",
         canonicalUrl: null,
     },
     hero: {
@@ -27,26 +25,15 @@ const local_data = {
         heroMedia: {
             alternativeText: "Admission page title",
             mime: "image/jpg",
-            // if video - mime: "video/mp4",
             url: "/images/academic-banner.jpg",
         },
         title: "Admission",
         breadcrumb: [
-            {
-                label: "Home",
-                href: "/",
-            },
-
-            {
-                label: "Admission @ DSU",
-                href: "/",
-            },
-            {
-                label: "Admission Process",
-                href: "/",
-            },
+            { label: "Home", href: "/" },
+            { label: "Admission @ DSU", href: "/admission" },
+            { label: "Admission Process", href: "/" },
         ],
-        admissionMenubar: true
+        admissionMenubar: true,
     },
     Process: {
         heading: "Your Journey to DSU Starts Here",
@@ -112,42 +99,12 @@ const local_data = {
             },
         ],
         exams: [
-            {
-                id: 1,
-                title: "DSAT",
-                subtitle: "Dayananda Sagar Admission Test",
-                code: "",
-            },
-            {
-                id: 2,
-                title: "COMEDK",
-                subtitle: "",
-                code: "E182",
-            },
-            {
-                id: 3,
-                title: "Uni-GAUGE",
-                subtitle: "",
-                code: "UNI-010",
-            },
-            {
-                id: 4,
-                title: "CET",
-                subtitle: "",
-                code: "DSU-E240",
-            },
-            {
-                id: 5,
-                title: "PGCET – M.Tech",
-                subtitle: "",
-                code: "DSU-E240",
-            },
-            {
-                id: 6,
-                title: "PGCET – MBA",
-                subtitle: "",
-                code: "B365MB",
-            },
+            { id: 1, title: "DSAT", subtitle: "Dayananda Sagar Admission Test", code: "" },
+            { id: 2, title: "COMEDK", subtitle: "", code: "E182" },
+            { id: 3, title: "Uni-GAUGE", subtitle: "", code: "UNI-010" },
+            { id: 4, title: "CET", subtitle: "", code: "DSU-E240" },
+            { id: 5, title: "PGCET – M.Tech", subtitle: "", code: "DSU-E240" },
+            { id: 6, title: "PGCET – MBA", subtitle: "", code: "B365MB" },
         ],
     },
     document: {
@@ -205,21 +162,9 @@ const local_data = {
             },
         ],
         steps: [
-            {
-                id: 1,
-                number: "01",
-                title: "Seat Selection",
-            },
-            {
-                id: 2,
-                number: "02",
-                title: "Fee Payment",
-            },
-            {
-                id: 3,
-                number: "03",
-                title: "Seat Confirmation",
-            },
+            { id: 1, number: "01", title: "Seat Selection" },
+            { id: 2, number: "02", title: "Fee Payment" },
+            { id: 3, number: "03", title: "Seat Confirmation" },
         ],
     },
     policies: {
@@ -236,11 +181,7 @@ const local_data = {
             },
         ],
         accordion: [
-            {
-                id: 1,
-                question: "Eligibility & Fees",
-                answer: [],
-            },
+            { id: 1, question: "Eligibility & Fees", answer: [] },
             {
                 id: 2,
                 question: "Admission Routes",
@@ -256,42 +197,46 @@ const local_data = {
                     },
                 ],
             },
-            {
-                id: 3,
-                question: "Document Verification",
-                answer: [],
-            },
-            {
-                id: 4,
-                question: "Fee Payment",
-                answer: [],
-            },
-            {
-                id: 5,
-                question: "International Applicants",
-                answer: [],
-            },
-            {
-                id: 6,
-                question: "Check Current Information",
-                answer: [],
-            },
+            { id: 3, question: "Document Verification", answer: [] },
+            { id: 4, question: "Fee Payment", answer: [] },
+            { id: 5, question: "International Applicants", answer: [] },
+            { id: 6, question: "Check Current Information", answer: [] },
         ],
     },
+};
 
+export async function generateMetadata() {
+    const pageData = await getAdmissionProcessPage();
+    const seo = pageData?.seo || local_data.seo;
 
+    return {
+        title: seo?.metaTitle || "Admission Process | Dayananda Sagar University",
+        description: seo?.metaDescription || undefined,
+        alternates: seo?.canonicalUrl ? { canonical: seo.canonicalUrl } : undefined,
+    };
 }
 
-export default function page() {
+export default async function Page() {
+    // Try new collection first, fallback to local_data
+    const data = await getAdmissionProcessPage();
+
+    const hero = data?.hero || local_data.hero;
+    const Process = data?.Process || local_data.Process;
+    const admissionThrough = data?.admissionThrough || local_data.admissionThrough;
+    const document = data?.document || local_data.document;
+    // seatCapacity and policies currently still from local_data
+    const seatCapacity = local_data.seatCapacity;
+    const policies = local_data.policies;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
-            <AdmissionMenubar className="lg:!hidden block" />
-            <AdmissionProcess data={local_data.Process} />
-            <AdmissionThrough data={local_data.admissionThrough} />
-            <AdmissionDocument data={local_data.document} />
-            <AdmissionSeatcapacity data={local_data.seatCapacity} />
-            <AdmissionPolicies data={local_data.policies} />
+            <InnerHero data={hero} />
+            {/* <AdmissionMenubar className="lg:!hidden block" /> */}
+            <AdmissionProcess data={Process} />
+            <AdmissionThrough data={admissionThrough} />
+            <AdmissionDocument data={document} />
+            <AdmissionSeatcapacity data={seatCapacity} />
+            <AdmissionPolicies data={policies} />
         </>
-    )
+    );
 }

@@ -81,6 +81,8 @@ export default function OverviewSection({ data }) {
                                     <Link
                                         key={btn.id}
                                         href={btn.href || "#"}
+                                        target={btn?.isExternal ? "_blank" : undefined}
+                                        rel={btn?.isExternal ? "noopener noreferrer" : undefined}
                                         className={
                                             btn.variant === "secondary"
                                                 ? "group relative flex h-[30px] w-fit items-center justify-center gap-[10px] overflow-hidden rounded-[6px] border border-[#212121]/20 dark:border-white/20 text_1 font-bold capitalize text-[#212121] dark:text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_4px_15px_rgba(0,0,0,0.1)] xl:h-[35px] 2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px]"
@@ -139,9 +141,20 @@ export default function OverviewSection({ data }) {
                         >
                             {data.marquee.map((item, index) => (
                                 <div key={item?.id || index} className="flex items-center">
-                                    <span className="text_1 font-normal text-[#374151] dark:text-[#E5E7EB] tracking-[-0.01em] whitespace-nowrap">
-                                        {item?.label || item?.title || item}
-                                    </span>
+                                    {item?.link && item.link !== "#" ? (
+                                        <Link
+                                            href={item.link}
+                                            target={item?.isExternal ? "_blank" : undefined}
+                                            rel={item?.isExternal ? "noopener noreferrer" : undefined}
+                                            className="text_1 font-normal text-[#374151] dark:text-[#E5E7EB] tracking-[-0.01em] whitespace-nowrap transition-colors duration-300 hover:text-[#F97316]"
+                                        >
+                                            {item?.label || item?.title}
+                                        </Link>
+                                    ) : (
+                                        <span className="text_1 font-normal text-[#374151] dark:text-[#E5E7EB] tracking-[-0.01em] whitespace-nowrap">
+                                            {item?.label || item?.title || item}
+                                        </span>
+                                    )}
                                     <span className="mx-4 md:mx-6 flex items-center justify-center shrink-0">
                                         <svg
                                             width="12"

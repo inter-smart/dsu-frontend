@@ -20,7 +20,9 @@ export default function AdmissionSection({data}) {
                                     <p className="dark:text-black">{item.description}</p>
                                      <Link
                                         key={item?.button.id}
-                                        href={item?.button.href}
+                                        href={item?.button?.href || "#"}
+                                        target={item?.button?.isExternal ? "_blank" : undefined}
+                                        rel={item?.button?.isExternal ? "noopener noreferrer" : undefined}
                                         className= "group relative mt-[20px] flex h-[30px] w-fit items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[20px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                                         
                                     >

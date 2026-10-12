@@ -124,6 +124,8 @@ export default function AdmissionProcess({ data }) {
                     <div className="mt-8 sm:mt-10 xl:mt-12">
                         <Link
                             href={button.href || "#"}
+                            target={button?.isExternal ? "_blank" : undefined}
+                            rel={button?.isExternal ? "noopener noreferrer" : undefined}
                             className="group relative inline-flex h-[36px] sm:h-[40px] xl:h-[44px] 3xl:h-[50px] items-center justify-center gap-[10px] overflow-hidden rounded-[5px] bg-gradient-to-r from-[#DC2626] to-[#F97316] px-[20px] sm:px-[24px] text-[13px] sm:text-[14px] xl:text-[15px] font-bold capitalize text-white transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.35)] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                         >
                             <span className="relative z-[1] transition-transform duration-300">
