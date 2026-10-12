@@ -1,8 +1,7 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
-import AdmissionCriteria from "@/components/sections/admission/admission-criteria";
-import AdmissionEntrance from "@/components/sections/admission/admission-entrance";
-import AdmissionEligibility from "@/components/sections/admission/admission-eligibility";
+import AdmissionEligibility from "../admission-eligibility";
+import AdmissionCriteria from "../admission-criteria";
+import AdmissionEntrance from "../admission-entrance";
+
 
 const local_data = {
   id: 24,
@@ -424,15 +423,17 @@ const local_data = {
   },
 };
 
-export default function page() {
+export default function EligibilityTemplate({ data }) {
   return (
     <>
-      <InnerHero data={local_data.hero} />
-      <AdmissionMenubar className="lg:hidden! block" />
-      <AdmissionEligibility data={local_data?.admissionEligibility} />
-      <AdmissionCriteria data={local_data?.criteria} />
-      <AdmissionEntrance data={local_data?.entrance} />
-      <AdmissionCriteria data={local_data?.lateral} variant="lateral" />
+      {data.admissionEligibility && (
+        <AdmissionEligibility data={data.admissionEligibility} />
+      )}
+      {data.criteria && <AdmissionCriteria data={data.criteria} />}
+      {data.entrance && <AdmissionEntrance data={data.entrance} />}
+      {data.lateral && (
+        <AdmissionCriteria data={data.lateral} variant="lateral" />
+      )}
     </>
   );
 }

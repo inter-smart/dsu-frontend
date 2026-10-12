@@ -19,9 +19,9 @@ export default function AdmissionEligibility({ data }) {
           </Heading>
           <Text>{data?.description}</Text>
         </div>
-        <Tabs defaultValue={data?.categories[0]?.id} className="w-full">
+        <Tabs defaultValue={data?.categories?.[0]?.id} className="w-full">
           <TabsList className="w-full h-auto! mb-5 2xl:mb-7.5 3xl:mb-8.75 gap-2.5 2xl:gap-3.75 p-0 bg-transparent rounded-none flex flex-wrap justify-start">
-            {data?.categories.map((items) => (
+            {data?.categories?.map((items) => (
               <TabsTrigger
                 key={items?.id}
                 value={items?.id}
@@ -31,13 +31,13 @@ export default function AdmissionEligibility({ data }) {
               </TabsTrigger>
             ))}
           </TabsList>
-          {data?.categories.map((items) => (
+          {data?.categories?.map((items) => (
             <TabsContent key={items?.id} value={items?.id}>
               <Accordion
-                defaultValue={[items?.courses[0]?.id]}
+                defaultValue={[items?.courses?.[0]?.id]}
                 className="w-full h-auto gap-1.25 2xl:gap-2.5"
               >
-                {items?.courses.map((item) => (
+                {items?.courses?.map((item) => (
                   <AccordionItem
                     key={item?.id}
                     value={item?.id}
@@ -48,10 +48,10 @@ export default function AdmissionEligibility({ data }) {
                     </AccordionTrigger>
                     <AccordionContent>
                       <Accordion
-                        defaultValue={[item?.items[0]?.title]}
+                        defaultValue={[item?.items?.[0]?.title]}
                         className="w-full h-auto  p-(--gap) pt-0 gap-1.25"
                       >
-                        {item?.items.map((item) => (
+                        {item?.items?.map((item) => (
                           <AccordionItem
                             key={item?.title}
                             value={item?.title}

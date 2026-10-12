@@ -3,12 +3,14 @@ import AdmissionMenubar from "./admissionMenubar";
 import OverviewTemplate from "./templates/overview-template";
 import ProcessTemplate from "./templates/process-template";
 import FeeTemplate from "./templates/fee-template";
+import EligibilityTemplate from "./templates/eligibility-template";
 
 // One component per Admission `template` value
 const TEMPLATES = {
   overview: OverviewTemplate,
   process: ProcessTemplate,
   "admission-fee": FeeTemplate,
+  eligibility: EligibilityTemplate,
 };
 
 // Renders an Admission entry by its `template`

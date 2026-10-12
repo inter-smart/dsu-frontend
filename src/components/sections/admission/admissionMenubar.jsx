@@ -13,8 +13,8 @@ import {
 } from "@/components/ui/accordion";
 import { getAdmissions } from "@/lib/api/admission";
 
-// Overview & Admission Process tabs come from the CMS (Admission entries);
-// these are shown until it responds, or if it fails
+// Overview, Admission Process, Eligibility and Fees tabs come from the CMS
+// (Admission entries); these are shown until it responds, or if it fails
 const FALLBACK_DYNAMIC_ITEMS = [
   {
     label: "Overview",
@@ -28,7 +28,22 @@ const FALLBACK_DYNAMIC_ITEMS = [
     slug: "admission-process",
     template: "process",
   },
+  {
+    label: "Eligibility & Selection",
+    href: "/admission/admission-eligibility",
+    slug: "admission-eligibility",
+    template: "eligibility",
+  },
+  {
+    label: "Fees & Scholarships",
+    href: "/admission/admission-fee",
+    slug: "admission-fee",
+    template: "admission-fee",
+  },
 ];
+
+// Menu order of the CMS entries by template; unknown templates follow in CMS order
+const TEMPLATE_ORDER = ["overview", "process", "eligibility", "admission-fee"];
 
 const STATIC_ITEMS_BEFORE = [
   {
@@ -38,14 +53,6 @@ const STATIC_ITEMS_BEFORE = [
 ];
 
 const STATIC_ITEMS_AFTER = [
-  {
-    label: "Eligibility & Selection",
-    href: "/placement/career",
-  },
-  {
-    label: "Fees & Scholarships",
-    href: "/placement/corporate-connect",
-  },
   {
     label: "Hostel & Campus Life",
     href: "/admission/hostel",
@@ -77,7 +84,7 @@ const loadDynamicItems = () => {
       (entries || [])
         .filter((e) => e.slug)
         .map((e) => ({
-          label: e.title,
+          label: e.menuLabel || e.title,
           href: `/admission/${e.slug}`,
           slug: e.slug,
           template: e.template,
@@ -87,13 +94,21 @@ const loadDynamicItems = () => {
   return admissionsPromise;
 };
 
-// Overview tab goes first (before Programme); the rest keep CMS order.
+const templateRank = (item) => {
+  const rank = TEMPLATE_ORDER.indexOf(item.template);
+  return rank === -1 ? TEMPLATE_ORDER.length : rank;
+};
+
+// Overview tab goes first (before Programme); the rest follow TEMPLATE_ORDER
+// (stable sort, so entries sharing a template keep CMS order).
 // Prefer the "overview" slug, since more than one entry may use the overview template.
 const buildMenuItems = (dynamicItems) => {
   const overview =
     dynamicItems.find((item) => item.slug === "overview") ||
     dynamicItems.find((item) => item.template === "overview");
-  const others = dynamicItems.filter((item) => item !== overview);
+  const others = dynamicItems
+    .filter((item) => item !== overview)
+    .sort((a, b) => templateRank(a) - templateRank(b));
   return [
     ...(overview ? [overview] : []),
     ...STATIC_ITEMS_BEFORE,
