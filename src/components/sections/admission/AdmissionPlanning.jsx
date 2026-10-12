@@ -3,7 +3,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
 export default function AdmissionPlanning({ data }) {
     return (
-        <section className='relative py-[40px] xl:py-[50px] 2xl:py-[70px]   bg-white '>
+        <section className='relative py-[40px] xl:py-[50px] 2xl:py-[70px]   bg-white dark:bg-black '>
             <div className="container">
                 <div className="lg:max-w-[50%] m-auto text-center">
                     <h2 className='cmn_Title mb-[25px] lg:mb-[45px]'>

@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function AdmissionDining({ data }) {
     return (
-        <section className='relative py-[40px] xl:py-[50px] 2xl:py-[70px] 3xl:py-[90px] bg-[linear-gradient(180deg,#FFF8EE_0%,#FFF3E0_100%)]'>
+        <section className='relative py-[40px] xl:py-[50px] 2xl:py-[70px] 3xl:py-[90px] bg-[linear-gradient(180deg,#FFF8EE_0%,#FFF3E0_100%)] dark:bg-gradient-to-r from-[#181717] to-[#1a1919]'>
             <div className="container">
                 <div className="flex items-center gap-2 mb-2.5">
                     <span className="w-[20px] sm:w-[24px] 2xl:w-[28px] 3xl:w-[32px] h-[3px] bg-gradient-to-r from-[#DC2626] to-[#F97316] rounded-full" />

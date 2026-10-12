@@ -8,7 +8,6 @@ export default function PoPsoSection({ data }) {
     return (
         <section className="relative py-[40px] lg:py-[50px] xl:py-[60px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010]">
             <div className="container">
-
                 {/* Program Outcomes (POs) */}
                 {data.po && (
                     <div className="mb-[50px] lg:mb-[70px]">

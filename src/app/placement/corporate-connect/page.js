@@ -1,10 +1,11 @@
-import InnerHero from "@/components/layout/common/InnerHero"; 
+import InnerHero from "@/components/layout/common/InnerHero";
 import PlacementProcess from "@/components/sections/placements/placement-process";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar"; 
+import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
 import CorporateConnect from "@/components/sections/placements/corporate-connect";
 import CampusFacility from "@/components/sections/placements/campus-facility";
 import PlacementTeam from "@/components/sections/placements/placement-team";
 import RecruiteDsu from "@/components/sections/placements/recruteDsu";
+import PlacementDocuments from "@/components/sections/placements/PlacementDocuments";
 
 const local_data = {
     id: 24,
@@ -218,7 +219,7 @@ const local_data = {
                 id: 2,
                 name: "Vijay Kumar S",
                 designation: "Director - ",
-                post: "Training & Corporate Relations" ,
+                post: "Training & Corporate Relations",
                 details: [
                     {
                         id: 1,
@@ -262,7 +263,7 @@ const local_data = {
                 id: 4,
                 name: "Prof. Darpana Singh",
                 designation: "Manager - ",
-                post: "Placement" ,
+                post: "Placement",
                 details: [
                     {
                         id: 1,
@@ -298,6 +299,36 @@ const local_data = {
             buttonText: "SUBMIT RECRUITMENT ENQUIRY",
         },
     },
+    documentSection: {
+        cards: [
+            {
+                id: 1,
+                title: "Placement Brochure",
+                description: "Access the Placement Policy and guidelines governing the campus recruitment process at DSU.",
+                cta: {
+                    label: "View/Download",
+                    file: {
+                        alternativeText: "Placement Policy PDF",
+                        mime: "application/pdf",
+                        url: "/documents/placement-policy.pdf",
+                    },
+                },
+            },
+            {
+                id: 2,
+                title: "Recruiter Handbook",
+                description: "Recruiter Handbook",
+                cta: {
+                    label: "View/Download",
+                    file: {
+                        alternativeText: "Placement Calendar PDF",
+                        mime: "application/pdf",
+                        url: "/documents/placement-calendar.pdf",
+                    },
+                },
+            },
+        ],
+    },
 }
 
 export default function page() {
@@ -308,6 +339,7 @@ export default function page() {
             <CorporateConnect data={local_data.programOverviewSection} />
             <PlacementProcess data={local_data.placementProcess} variant="corporate" />
             <CampusFacility data={local_data.campusSection} />
+            <PlacementDocuments data={local_data.documentSection} />
             <PlacementTeam data={local_data.placementTeam} />
             <RecruiteDsu data={local_data.recruiteSection} />
         </>

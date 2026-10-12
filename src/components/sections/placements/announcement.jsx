@@ -8,7 +8,7 @@ import Marquee from "react-fast-marquee";
 import "swiper/css";
 export default function Announcement({ data }) {
     return (
-        <section className='relative py-[40px] xl:py-[45px_60px] 2xl:py-[60px_80px] 3xl:py-[70px_120px]'>
+        <section className='relative py-[30px] xl:py-[35px] 2xl:py-[40px] 3xl:py-[50px]'>
             <div className="container">
                 <div className="cmn_Title mb-[20px]">{data?.heading}</div>
 
@@ -46,7 +46,7 @@ export default function Announcement({ data }) {
                     </div>
                 )}
 
-                <div className={`w-full relative `}>
+                {/* <div className={`w-full relative `}>
 
                     <Swiper
                         modules={[Autoplay]}
@@ -97,7 +97,7 @@ export default function Announcement({ data }) {
                             </SwiperSlide>
                         ))}
                     </Swiper>
-                </div>
+                </div> */}
             </div>
         </section>
     )
