@@ -4,6 +4,17 @@ import { Label } from "@/components/ui/label";
 export default function StepAddressResume({ formData, setFormData }) {
   const update = (field, value) => setFormData((prev) => ({ ...prev, [field]: value }));
 
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0] || null;
+    if (file && file.size > 10 * 1024 * 1024) {
+      alert("Resume must be 10MB or smaller.");
+      e.target.value = "";
+      update("resume", null);
+      return;
+    }
+    update("resume", file);
+  };
+
   return (
     <div>
       <h3 className="text-xl xl:text-2xl font-bold text-[#212121] dark:text-white mb-6.25 xl:mb-7.5">
@@ -34,12 +45,17 @@ export default function StepAddressResume({ formData, setFormData }) {
         <div className="h-10 xl:h-11 2xl:h-12 w-full max-w-[420px] border border-[#E5E7EB] dark:border-[#333] rounded-[3px] 2xl:rounded-[4px] bg-white dark:bg-[#1f1f1f] overflow-hidden">
           <input
             type="file"
-            required
+            required={!formData.resume}
             accept=".pdf,.doc,.docx"
             className="w-full h-full text-xs xl:text-sm text-[#212121] dark:text-[#F9FAFB] file:h-full file:mr-3 file:px-3.75 file:border-0 file:border-r file:border-[#E5E7EB] dark:file:border-[#333] file:bg-[#F9FAFB] dark:file:bg-[#2a2a2a] file:text-xs xl:file:text-sm file:font-medium file:text-[#212121] dark:file:text-white"
-            onChange={(e) => update("resume", e.target.files?.[0]?.name || "")}
+            onChange={handleFileChange}
           />
         </div>
+        {formData.resume && (
+          <p className="text-xs xl:text-sm text-[#4A5565] dark:text-gray-300 mt-2">
+            Selected: {formData.resume.name}
+          </p>
+        )}
       </div>
     </div>
   );

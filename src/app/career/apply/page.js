@@ -4,6 +4,10 @@ import ApplyForm from "@/components/sections/career/apply-form/apply-form";
 import FloatingContactRail from "@/components/layout/common/floating-contact-rail";
 import { jobs } from "@/components/sections/career/jobs-data";
 
+import { getCareersPage, getJobOpenings } from "@/lib/api/career";
+
+export const revalidate = 60;
+
 const local_data = {
   hero: {
     id: 1,
@@ -21,12 +25,18 @@ const local_data = {
   },
 };
 
-export default function page() {
+export default async function page() {
+  const apiPage = await getCareersPage();
+  const apiJobs = await getJobOpenings();
+
+  const hero = apiPage?.applyHero || local_data.hero;
+  const jobList = apiJobs || jobs;
+
   return (
     <>
-      <InnerHero data={local_data?.hero} />
+      <InnerHero data={hero} />
       <Suspense fallback={null}>
-        <ApplyForm jobs={jobs} />
+        <ApplyForm jobs={jobList} />
       </Suspense>
       <FloatingContactRail />
     </>
