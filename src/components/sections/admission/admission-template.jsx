@@ -8,6 +8,7 @@ import HostelTemplate from "./templates/hostel-template";
 import DatesTemplate from "./templates/dates-template";
 import DownloadTemplate from "./templates/download-template";
 import FaqTemplate from "./templates/faq-template";
+import ContactTemplate from "./templates/contact-template";
 
 // One component per Admission `template` value
 const TEMPLATES = {
@@ -19,6 +20,7 @@ const TEMPLATES = {
   dates: DatesTemplate,
   download: DownloadTemplate,
   faqs: FaqTemplate,
+  contact: ContactTemplate,
 };
 
 // Renders an Admission entry by its `template`

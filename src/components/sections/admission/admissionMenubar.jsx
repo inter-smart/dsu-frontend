@@ -78,13 +78,6 @@ const STATIC_ITEMS_BEFORE = [
   },
 ];
 
-const STATIC_ITEMS_AFTER = [
-  {
-    label: "Contact Admissions",
-    href: "/admission/contact",
-  },
-];
-
 // shared by every menubar instance on the page (desktop + mobile)
 let admissionsPromise = null;
 
@@ -123,7 +116,6 @@ const buildMenuItems = (dynamicItems) => {
     ...(overview ? [overview] : []),
     ...STATIC_ITEMS_BEFORE,
     ...others,
-    ...STATIC_ITEMS_AFTER,
   ];
 };
 

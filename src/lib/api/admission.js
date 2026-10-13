@@ -46,3 +46,10 @@ export async function getAdmissionFaqPage() {
   const entry = (entries || []).find((e) => e.template === "faqs");
   return entry?.slug ? getAdmissionBySlug(entry.slug) : null;
 }
+
+// contact
+export async function getAdmissionContactPage() {
+  const entries = await getAdmissions();
+  const entry = (entries || []).find((e) => e.template === "contact");
+  return entry?.slug ? getAdmissionBySlug(entry.slug) : null;
+}
