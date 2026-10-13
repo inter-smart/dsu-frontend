@@ -52,6 +52,12 @@ const FALLBACK_DYNAMIC_ITEMS = [
     slug: "important-dates",
     template: "dates",
   },
+  {
+    label: "Downloads",
+    href: "/admission/download",
+    slug: "download",
+    template: "download",
+  },
 ];
 
 // Menu order of the CMS entries by template; unknown templates follow in CMS order
@@ -62,6 +68,7 @@ const TEMPLATE_ORDER = [
   "admission-fee",
   "hostel",
   "dates",
+  "download",
 ];
 
 const STATIC_ITEMS_BEFORE = [
@@ -72,10 +79,6 @@ const STATIC_ITEMS_BEFORE = [
 ];
 
 const STATIC_ITEMS_AFTER = [
-  {
-    label: "Downloads",
-    href: "/admission/download",
-  },
   {
     label: "FAQs",
     href: "/admission/faq",
