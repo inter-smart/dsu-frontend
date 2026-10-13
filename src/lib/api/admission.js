@@ -24,3 +24,10 @@ export async function getAdmissionProcessPage() {
   const entry = (entries || []).find((e) => e.template === "process");
   return entry?.slug ? getAdmissionBySlug(entry.slug) : null;
 }
+
+// Get the "hostel" template entry (/admission/hostel)
+export async function getAdmissionHostelPage() {
+  const entries = await getAdmissions();
+  const entry = (entries || []).find((e) => e.template === "hostel");
+  return entry?.slug ? getAdmissionBySlug(entry.slug) : null;
+}

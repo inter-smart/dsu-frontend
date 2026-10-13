@@ -1,7 +1,6 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import AcademicAchievements from "@/components/sections/academics/academic-achievements";
 import AdmissionAccomodation from "@/components/sections/admission/AdmissionAccomodation";
-import AdmissionDates from "@/components/sections/admission/AdmissionDates";
 import AdmissionDining from "@/components/sections/admission/AdmissionDining";
 import AdmissionHostelFacility from "@/components/sections/admission/admissionHostelFacility";
 import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";

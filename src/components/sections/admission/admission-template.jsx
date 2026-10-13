@@ -4,6 +4,7 @@ import OverviewTemplate from "./templates/overview-template";
 import ProcessTemplate from "./templates/process-template";
 import FeeTemplate from "./templates/fee-template";
 import EligibilityTemplate from "./templates/eligibility-template";
+import HostelTemplate from "./templates/hostel-template";
 
 // One component per Admission `template` value
 const TEMPLATES = {
@@ -11,6 +12,7 @@ const TEMPLATES = {
   process: ProcessTemplate,
   "admission-fee": FeeTemplate,
   eligibility: EligibilityTemplate,
+  hostel: HostelTemplate,
 };
 
 // Renders an Admission entry by its `template`
