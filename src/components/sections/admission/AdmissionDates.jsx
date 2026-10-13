@@ -60,11 +60,13 @@ export default function AdmissionDates({ data }) {
                                         className="relative flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0 overflow-hidden border border-[#F0F0F0] dark:border-white/8 rounded-[4px] sm:rounded-[6px] dark:bg-[#141414] p-[15px] xl:p-[20px] 2xl:p-[25px] 3xl:p-[30px]"
                                     >
                                         {/* Date Label - Gradient Text */}
-                                        <div className="shrink-0 sm:w-[130px] md:w-[150px] lg:w-[170px] xl:w-[190px] 2xl:w-[210px] 3xl:w-[240px]">
-                                            <span className="text-[11px] sm:text-[12px] 2xl:text-[16px] 3xl:text-[20px] font-semibold uppercase tracking-[0.05em] bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
-                                                {item.date}
-                                            </span>
-                                        </div>
+                                        {item.date && (
+                                            <div className="shrink-0 sm:w-[130px] md:w-[150px] lg:w-[170px] xl:w-[190px] 2xl:w-[210px] 3xl:w-[240px]">
+                                                <span className="text-[11px] sm:text-[12px] 2xl:text-[16px] 3xl:text-[20px] font-semibold uppercase tracking-[0.05em] bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
+                                                    {item.date}
+                                                </span>
+                                            </div>
+                                        )}
 
                                         {/* Title & Description */}
                                         <div className="flex-1 min-w-0">

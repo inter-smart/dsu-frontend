@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/accordion";
 import { getAdmissions } from "@/lib/api/admission";
 
-// Overview, Admission Process, Eligibility and Fees tabs come from the CMS
+// Overview, Admission Process, Eligibility, Fees, Hostel and Important Dates tabs come from the CMS
 // (Admission entries); these are shown until it responds, or if it fails
 const FALLBACK_DYNAMIC_ITEMS = [
   {
@@ -40,10 +40,36 @@ const FALLBACK_DYNAMIC_ITEMS = [
     slug: "admission-fee",
     template: "admission-fee",
   },
+  {
+    label: "Hostel & Campus Life",
+    href: "/admission/hostel",
+    slug: "hostel",
+    template: "hostel",
+  },
+  {
+    label: "Important Dates",
+    href: "/admission/important-dates",
+    slug: "important-dates",
+    template: "dates",
+  },
+  {
+    label: "Downloads",
+    href: "/admission/download",
+    slug: "download",
+    template: "download",
+  },
 ];
 
 // Menu order of the CMS entries by template; unknown templates follow in CMS order
-const TEMPLATE_ORDER = ["overview", "process", "eligibility", "admission-fee"];
+const TEMPLATE_ORDER = [
+  "overview",
+  "process",
+  "eligibility",
+  "admission-fee",
+  "hostel",
+  "dates",
+  "download",
+];
 
 const STATIC_ITEMS_BEFORE = [
   {
@@ -53,18 +79,6 @@ const STATIC_ITEMS_BEFORE = [
 ];
 
 const STATIC_ITEMS_AFTER = [
-  {
-    label: "Hostel & Campus Life",
-    href: "/admission/hostel",
-  },
-  {
-    label: "Important Dates",
-    href: "/admission/ImportantDates",
-  },
-  {
-    label: "Downloads",
-    href: "/admission/download",
-  },
   {
     label: "FAQs",
     href: "/admission/faq",
