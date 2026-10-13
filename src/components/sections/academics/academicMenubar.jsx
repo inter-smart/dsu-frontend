@@ -193,7 +193,7 @@ export default function AcademicMenubar({ title = "Academic Menu", className = "
             </div>
 
             {/* Desktop Horizontal Menubar   */}
-            <nav className="w-full z-0 relative mt-[30px] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[50%] after:bg-white dark:after:bg-[#101010] after:content-[''] after:-z-1 hidden md:block transition-colors duration-300">
+            <nav className="w-full z-0 relative mt-[30px] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[50%] after:bg-[#FDFDFA] dark:after:bg-[#101010] after:content-[''] after:-z-1 hidden md:block transition-colors duration-300">
                 <div className="container">
                     <div className="relative rounded-[12px] lg:rounded-[15px] xl:rounded-[20px] 2xl:rounded-[23px] 3xl:rounded-[30px] bg-white border border-[#F3DFD2] dark:border-white/10 dark:bg-[#1a1a1a] shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)] overflow-hidden">
                         {/* Menu content */}

@@ -66,6 +66,7 @@ export default function HomeAcademic({ data }) {
       <div className="container">
         <div className="w-full h-auto mb-6.25 lg:mb-7.5 3xl:mb-10 text-center">
           <Heading
+            as="h2"
             aurora
             speed={2}
             align="center"
@@ -189,9 +190,9 @@ function AcademicCard({ item }) {
           className="w-full h-full object-contain"
         />
       </div>
-      <div className="text-base lg:text-sm 2xl:text-base 3xl:text-xl leading-[1.2] font-bold text-white w-full h-auto m-(--gap) max-w-[85%] absolute z-1 inset-[auto_0_0_0]">
+      <h3 className="text-base lg:text-sm 2xl:text-base 3xl:text-xl leading-[1.2] font-bold text-white w-full h-auto m-(--gap) max-w-[85%] absolute z-1 inset-[auto_0_0_0]">
         {item?.title}
-      </div>
+      </h3>
       <div className="w-full h-full sm:p-[20px_10px] 2xl:p-[35px_15px] bg-[#CDBF8D] opacity-0 pointer-events-none transition-opacity duration-500 block absolute z-1 inset-0 group-hover:opacity-100 group-hover:pointer-events-auto">
         <div className="w-full h-full block">
           {item?.courses_list?.map((item) => (

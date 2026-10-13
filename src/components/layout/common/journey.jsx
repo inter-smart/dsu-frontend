@@ -13,9 +13,9 @@ export default function Journey({ data }) {
       />
       <div className="w-full h-full bg-black/70 dark:bg-linear-to-r dark:from-(--basecolor)/60 dark:to-(--basecolor2)/60 pointer-events-none absolute -z-1 inset-0" />
       <div className="container xl:max-w-290 2xl:max-w-431.25 mx-auto">
-        <div className="text-[22px] sm:text-[26px] lg:text-3xl xl:text-[37px] 2xl:text-[55px] leading-normal font-bold text-center text-white mb-2.5 2xl:mb-3.75">
+        <h2 className="text-[22px] sm:text-[26px] lg:text-3xl xl:text-[37px] 2xl:text-[55px] leading-normal font-bold text-center text-white mb-2.5 2xl:mb-3.75">
           {data?.title}
-        </div>
+        </h2>
         <div
           className="text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-normal text-center [&>*]:text-[#FFF2F2] mb-3.75 2xl:mb-6.25 [&_br]:max-md:hidden"
           dangerouslySetInnerHTML={{

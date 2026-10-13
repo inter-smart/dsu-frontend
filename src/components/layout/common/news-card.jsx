@@ -26,9 +26,9 @@ export default function NewsCard({ item }) {
         </div>
       </div>
       <div className="w-full h-full p-[15px_25px] 2xl:p-[15px_25px] 3xl:p-[20px_30px] flex flex-col justify-between">
-        <div className="text-base 2xl:text-lg 3xl:text-[23px] leading-normal font-bold line-clamp-3 text-[#212121] dark:text-white w-[90%] mb-5 3xl:mb-7.5">
+        <h3 className="text-base 2xl:text-lg 3xl:text-[23px] leading-normal font-bold line-clamp-3 text-[#212121] dark:text-white w-[90%] mb-5 3xl:mb-7.5">
           {item?.title}
-        </div>
+        </h3>
         <Link
           href={item?.link}
           target="_blank"

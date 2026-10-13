@@ -505,7 +505,6 @@ export default function Header({ data = local_data }) {
     };
   }, [isHeaderVisible]);
   useEffect(() => {
-    let lastScrollY = window.scrollY;
     let ticking = false;
 
     const handleScroll = () => {
@@ -514,18 +513,12 @@ export default function Header({ data = local_data }) {
       window.requestAnimationFrame(() => {
         const currentScrollY = window.scrollY;
         setIsScrolled(currentScrollY > 10);
-        if (currentScrollY <= 10) {
-          setIsHeaderVisible(true);
-        } else if (currentScrollY > lastScrollY) {
-          setIsHeaderVisible(false);
-        } else if (currentScrollY < lastScrollY) {
-          setIsHeaderVisible(true);
-        }
-        lastScrollY = currentScrollY;
+        setIsHeaderVisible(true);
         ticking = false;
       });
       ticking = true;
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
@@ -635,7 +628,7 @@ export default function Header({ data = local_data }) {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-            <div className="w-auto h-auto px-1.25 sm:px-2.5 2xl:px-2.5 border-r border-white/20">
+            {/* <div className="w-auto h-auto px-1.25 sm:px-2.5 2xl:px-2.5 border-r border-white/20">
               <Select className="w-full h-auto">
                 <SelectTrigger
                   className={cn(
@@ -658,7 +651,7 @@ export default function Header({ data = local_data }) {
                   </SelectGroup>
                 </SelectContent>
               </Select>
-            </div>
+            </div> */}
             <div className="w-auto h-auto flex">
               <ThemeToggle />
             </div>

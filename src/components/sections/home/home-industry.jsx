@@ -71,7 +71,7 @@ export default function HomeIndustry({ data }) {
       />
       <div className="container">
         <div className="w-full h-auto mb-7.5 3xl:mb-8.75 text-center">
-          <Heading align="center" className="mb-1.25 3xl:mb-2.5 text-white">
+          <Heading as="h2" align="center" className="mb-1.25 3xl:mb-2.5 text-white">
             {data?.title}
           </Heading>
           <Text className={"text-white"}>{data?.description}</Text>
@@ -104,9 +104,9 @@ export default function HomeIndustry({ data }) {
                     <div className="text-[9px] sm:text-[10px] 2xl:text-[13px] 3xl:text-base leading-[1.1] font-normal text-white w-auto h-auto p-[5px_10px] mb-[2.5px] sm:mb-1.25 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[100px] overflow-hidden inline-block">
                       {item?.tag}
                     </div>
-                    <div className="text-base sm:text-lg lg:text-xl xl:text-[22px] 2xl:text-[26px] 3xl:text-[32px] leading-[1.1] font-bold text-white line-clamp-2 max-w-[80%] xl:max-w-[60%]">
+                    <h3 className="text-base sm:text-lg lg:text-xl xl:text-[22px] 2xl:text-[26px] 3xl:text-[32px] leading-[1.1] font-bold text-white line-clamp-2 max-w-[80%] xl:max-w-[60%]">
                       {item?.title}
-                    </div>
+                    </h3>
                   </div>
                 </Link>
               </div>

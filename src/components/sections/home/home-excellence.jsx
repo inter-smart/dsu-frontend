@@ -66,6 +66,7 @@ export default function HomeExcellence({ data }) {
       <div className="container">
         <div className="w-full h-auto mb-12.5 sm:mb-17.5 lg:mb-20 2xl:mb-25 3xl:mb-30">
           <Heading
+            as="h2"
             aurora
             speed={2}
             align="center"
