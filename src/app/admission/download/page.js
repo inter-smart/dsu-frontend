@@ -1,45 +1,23 @@
+import { getAdmissionDownloadPage } from "@/lib/api";
 import InnerHero from "@/components/layout/common/InnerHero";
-import AdmissionDownload from "@/components/sections/admission/AdmissionDownload";
 import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
+import AdmissionDownload from "@/components/sections/admission/AdmissionDownload";
 
-
-const local_data = {
-    id: 24,
-    documentId: "a67zp5r21a35cb8qlzrjp54s",
-    createdAt: "2026-06-05T05:56:45.609Z",
-    updatedAt: "2026-06-11T06:26:08.249Z",
-    publishedAt: "2026-06-11T06:26:08.337Z",
-    seo: {
-        id: 21,
-        metaTitle: "Downloads page title",
-        metaDescription: "Downloads page description ",
-        canonicalUrl: null,
-    },
+// Fallback data used when the CMS entry is not yet available
+const FALLBACK = {
     hero: {
-        id: 25,
         heroMedia: {
-            alternativeText: "Downloads page title",
+            alternativeText: "Downloads",
             mime: "image/jpg",
-            // if video - mime: "video/mp4",
             url: "/images/academic-banner.jpg",
         },
         title: "Admission",
         breadcrumb: [
-            {
-                label: "Home",
-                href: "/",
-            },
-
-            {
-                label: "Admission @ DSU",
-                href: "/",
-            },
-            {
-                label: "Downloads",
-                href: "/",
-            },
+            { label: "Home", href: "/" },
+            { label: "Admission @ DSU", href: "/" },
+            { label: "Downloads", href: "/" },
         ],
-        admissionMenubar: true
+        admissionMenubar: true,
     },
     download: {
         heading: "Downloads",
@@ -50,53 +28,42 @@ const local_data = {
                 active: true,
                 documents: [
                     { id: 1, label: "Document 1", href: "#" },
-                    { id: 2, label: "Document 1", href: "#" },
-                    { id: 3, label: "Document 1", href: "#" },
-                    { id: 4, label: "Document 1", href: "#" },
+                    { id: 2, label: "Document 2", href: "#" },
+                    { id: 3, label: "Document 3", href: "#" },
+                    { id: 4, label: "Document 4", href: "#" },
                 ],
             },
-            {
-                id: 2,
-                label: "Admission Brochure",
-                active: false,
-                documents: [],
-            },
-            {
-                id: 3,
-                label: "Fee Structure",
-                active: false,
-                documents: [],
-            },
-            {
-                id: 4,
-                label: "Hostel Handbook",
-                active: false,
-                documents: [],
-            },
-            {
-                id: 5,
-                label: "Forms",
-                active: false,
-                documents: [],
-            },
-            {
-                id: 6,
-                label: "Information Bulletins",
-                active: false,
-                documents: [],
-            },
+            { id: 2, label: "Admission Brochure", active: false, documents: [] },
+            { id: 3, label: "Fee Structure", active: false, documents: [] },
+            { id: 4, label: "Hostel Handbook", active: false, documents: [] },
+            { id: 5, label: "Forms", active: false, documents: [] },
+            { id: 6, label: "Information Bulletins", active: false, documents: [] },
         ],
-    }
+    },
+};
 
-
+export async function generateMetadata() {
+    const pageData = await getAdmissionDownloadPage();
+    return {
+        title: pageData?.seo?.metaTitle || "Downloads | Dayananda Sagar University",
+        description: pageData?.seo?.metaDescription || undefined,
+        alternates: pageData?.seo?.canonicalUrl
+            ? { canonical: pageData.seo.canonicalUrl }
+            : undefined,
+    };
 }
 
-export default function page() {
+export default async function page() {
+    const pageData = await getAdmissionDownloadPage();
+
+    const hero = pageData?.hero ?? FALLBACK.hero;
+    const download = pageData?.download ?? FALLBACK.download;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
+            <InnerHero data={hero} />
             <AdmissionMenubar className="lg:!hidden block" />
-            <AdmissionDownload data={local_data.download} />
+            <AdmissionDownload data={download} />
         </>
-    )
+    );
 }

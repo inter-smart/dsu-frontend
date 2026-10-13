@@ -6,6 +6,7 @@ import FeeTemplate from "./templates/fee-template";
 import EligibilityTemplate from "./templates/eligibility-template";
 import HostelTemplate from "./templates/hostel-template";
 import DatesTemplate from "./templates/dates-template";
+import DownloadTemplate from "./templates/download-template";
 
 // One component per Admission `template` value
 const TEMPLATES = {
@@ -15,6 +16,7 @@ const TEMPLATES = {
   eligibility: EligibilityTemplate,
   hostel: HostelTemplate,
   dates: DatesTemplate,
+  download: DownloadTemplate,
 };
 
 // Renders an Admission entry by its `template`

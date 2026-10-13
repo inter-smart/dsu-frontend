@@ -31,3 +31,10 @@ export async function getAdmissionHostelPage() {
   const entry = (entries || []).find((e) => e.template === "hostel");
   return entry?.slug ? getAdmissionBySlug(entry.slug) : null;
 }
+
+// Get the "download" template entry (/admission/download)
+export async function getAdmissionDownloadPage() {
+  const entries = await getAdmissions();
+  const entry = (entries || []).find((e) => e.template === "download");
+  return entry?.slug ? getAdmissionBySlug(entry.slug) : null;
+}
