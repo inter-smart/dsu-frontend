@@ -3,6 +3,17 @@ import CareerIntro from "@/components/sections/career/career-intro";
 import CareerOpenings from "@/components/sections/career/career-openings";
 import FloatingContactRail from "@/components/layout/common/floating-contact-rail";
 import { jobs } from "@/components/sections/career/jobs-data";
+import { getCareersPage, getJobOpenings } from "@/lib/api/career";
+
+export const revalidate = 60;
+
+export async function generateMetadata() {
+  const apiData = await getCareersPage();
+  return {
+    title: apiData?.seo?.metaTitle || "Career | Dayananda Sagar University",
+    description: apiData?.seo?.metaDescription || undefined,
+  };
+}
 
 const local_data = {
   hero: {
@@ -31,12 +42,22 @@ const local_data = {
   },
 };
 
-export default function page() {
+export default async function page() {
+  const apiPage = await getCareersPage();
+  const apiJobs = await getJobOpenings();
+
+  const hero = apiPage?.hero || local_data.hero;
+  const intro = apiPage?.intro || local_data.intro;
+  const openingsTitle = apiPage?.openings?.title || local_data.openings.title;
+  const jobList = apiJobs || jobs;
+
   return (
     <>
-      <InnerHero data={local_data?.hero} />
-      <CareerIntro data={local_data?.intro} />
-      <CareerOpenings data={local_data?.openings} />
+      <InnerHero data={hero} />
+      {intro?.title && <CareerIntro data={intro} />}
+      {jobList.length > 0 && (
+        <CareerOpenings data={{ title: openingsTitle, jobs: jobList }} />
+      )}
       <FloatingContactRail />
     </>
   );

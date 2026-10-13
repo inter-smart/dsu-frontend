@@ -11,7 +11,12 @@ import {
 } from "@/components/ui/select";
 import { inputStyle, DEPARTMENTS, POSITIONS, DESIGNATIONS } from "./form-constants";
 
-export default function StepPersonal({ formData, setFormData }) {
+export default function StepPersonal({
+  formData,
+  setFormData,
+  departments = DEPARTMENTS,
+  positions = POSITIONS,
+}) {
   const update = (field, value) => setFormData((prev) => ({ ...prev, [field]: value }));
 
   return (
@@ -89,7 +94,7 @@ export default function StepPersonal({ formData, setFormData }) {
                 <SelectValue placeholder="Select" />
               </SelectTrigger>
               <SelectContent>
-                {DEPARTMENTS.map((dept) => (
+                {departments.map((dept) => (
                   <SelectItem key={dept} value={dept}>
                     {dept}
                   </SelectItem>
@@ -106,7 +111,7 @@ export default function StepPersonal({ formData, setFormData }) {
                 <SelectValue placeholder="Select" />
               </SelectTrigger>
               <SelectContent>
-                {POSITIONS.map((position) => (
+                {positions.map((position) => (
                   <SelectItem key={position} value={position}>
                     {position}
                   </SelectItem>
