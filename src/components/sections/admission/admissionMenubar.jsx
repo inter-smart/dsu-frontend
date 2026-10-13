@@ -80,10 +80,6 @@ const STATIC_ITEMS_BEFORE = [
 
 const STATIC_ITEMS_AFTER = [
   {
-    label: "FAQs",
-    href: "/admission/faq",
-  },
-  {
     label: "Contact Admissions",
     href: "/admission/contact",
   },

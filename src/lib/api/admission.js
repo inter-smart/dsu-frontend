@@ -38,3 +38,11 @@ export async function getAdmissionDownloadPage() {
   const entry = (entries || []).find((e) => e.template === "download");
   return entry?.slug ? getAdmissionBySlug(entry.slug) : null;
 }
+
+
+// faqs
+export async function getAdmissionFaqPage() {
+  const entries = await getAdmissions();
+  const entry = (entries || []).find((e) => e.template === "faqs");
+  return entry?.slug ? getAdmissionBySlug(entry.slug) : null;
+}

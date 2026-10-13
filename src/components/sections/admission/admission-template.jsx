@@ -7,6 +7,7 @@ import EligibilityTemplate from "./templates/eligibility-template";
 import HostelTemplate from "./templates/hostel-template";
 import DatesTemplate from "./templates/dates-template";
 import DownloadTemplate from "./templates/download-template";
+import FaqTemplate from "./templates/faq-template";
 
 // One component per Admission `template` value
 const TEMPLATES = {
@@ -17,6 +18,7 @@ const TEMPLATES = {
   hostel: HostelTemplate,
   dates: DatesTemplate,
   download: DownloadTemplate,
+  faqs: FaqTemplate,
 };
 
 // Renders an Admission entry by its `template`
