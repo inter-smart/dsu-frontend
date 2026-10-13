@@ -15,7 +15,7 @@ export default function AdmissionContact({ data }) {
     contactData.campuses.length > 0 &&
     contactData.campuses;
 
-  const visitCampus = contactData?.visitCampus || contactData?.visitus;
+  const visitCampus = contactData?.visitCampus;
   const visitCampuses = visitCampus?.campuses || [];
 
   const addressCol =
@@ -323,6 +323,7 @@ export default function AdmissionContact({ data }) {
                       <Link
                         href={item?.directions?.href || "/"}
                         aria-label="Get Directions"
+                        target="_blank"
                         className="group w-full h-auto flex items-center"
                       >
                         <div className="w-6.25 2xl:w-7.5 3xl:w-8.75 h-auto aspect-35/25 overflow-hidden flex items-center justify-center">
@@ -467,6 +468,7 @@ export default function AdmissionContact({ data }) {
                   <Link
                     key={visitItem.id || vIdx}
                     href={visitItem.href || visitItem.directions?.href || "/"}
+                    target="_blank"
                     className="group flex items-center justify-between bg-white dark:bg-[#18191B] border border-[#FED7AA]/60 dark:border-white/10 hover:border-[#EA580C]/40 rounded-[6px] sm:rounded-[8px] px-4 sm:px-5 py-3 sm:py-3.5 transition-all duration-200 shadow-2xs hover:shadow-xs"
                   >
                     <span className="text-[13px] sm:text-[14px] 2xl:text-[15px] font-semibold text-[#1E1E1E] dark:text-white leading-tight">
