@@ -42,6 +42,10 @@ export default function AdmissionCriteria({ data, variant }) {
             {data?.button && data?.button?.link && data?.button?.label && (
               <Link
                 href={data?.button?.link || "#"}
+                target={data?.button?.isExternal ? "_blank" : undefined}
+                rel={
+                  data?.button?.isExternal ? "noopener noreferrer" : undefined
+                }
                 className={buttonVariants({
                   variant: "default",
                   size: "default",
