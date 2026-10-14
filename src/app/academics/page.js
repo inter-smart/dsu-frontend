@@ -442,7 +442,7 @@ const local_data = {
         heading: "Industry Collaborations & Programmes",
         description: "The School of Computer Applications at Dayananda Sagar University collaborates with leading technology companies and industry pioneers to bridge the gap between academics and real-world innovation. Through internships, live industry projects, expert mentoring, certifications, research initiatives, and campus recruitment, students gain practical exposure that prepares them for successful careers in the rapidly evolving digital world.",
         cta: {
-            label: "View All",
+            label: "Read More  ",
             url: "/infrastructure-and-facilities",
         },
         stats: [
@@ -665,7 +665,7 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <AcademicMenubar className="md:!hidden block" />
+            <AcademicMenubar className="lg:!hidden block" />
             <AcademicHomeOverview data={local_data.programOverviewSection} />
             <AcademicVisionMission data={local_data.visionMissionSection} />
             <DeanMessage data={local_data.messageFromDean} varient="home" />

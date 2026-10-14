@@ -14,7 +14,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"; 
 
-const inputStyle = `h-[40px] 2xl:h-[45px] 3xl:h-[60px] w-full border border-black/10 rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px] border-[#E5E7EB] dark:border-[#333] bg-white dark:bg-[#1f1f1f]  text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px]  font-normal placeholder:text-[#4A5565] text-[#212121] dark:text-[#F9FAFB]`
+const inputStyle = `h-[40px] 2xl:h-[45px] 3xl:h-[60px] w-full border border-black/10 rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px] border-[#E5E7EB] dark:border-[#333] bg-white dark:bg-[#1f1f1f]  text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px]  font-normal placeholder:text-[#4A5565]/50 text-[#212121] dark:text-[#F9FAFB]`
 
 export default function AcademicContact({ data }) {
     const [formData, setFormData] = useState({
@@ -76,7 +76,7 @@ export default function AcademicContact({ data }) {
     ];
 
     return (
-        <section className="relative py-[20px_40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
+        <section className="relative py-[0px_40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
             <div className="container">
                 {/* Section Title */}
                 <h1 className="cmn_Title mb-[25px] xl:mb-[35px] text-black dark:text-white">
@@ -369,7 +369,7 @@ export default function AcademicContact({ data }) {
                                                 Admissions Helpline:
                                             </div>
                                             <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">
-                                                {contactInfo.helpline}
+                                               <a href={contactInfo.helpline} className="w-fit block hover:text-[#DC2626] transition-colors"> {contactInfo.helpline}</a>
                                             </div>
                                         </div>
                                     </div>

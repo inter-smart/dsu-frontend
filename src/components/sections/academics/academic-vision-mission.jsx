@@ -11,7 +11,7 @@ export default function AcademicVisionMission({ data }) {
     const bgImageUrl = media?.url || "/images/academic-banner.jpg";
 
     return (
-        <section className="relative max-lg:pb-[40px]  text-white overflow-hidden after:absolute after:content-[''] after:bottom-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-b after:from-[rgba(0,0,0,0)] after:to-[#000000]  after:z-10">
+        <section className="relative max-lg:py-[40px]  text-white overflow-hidden after:absolute after:content-[''] after:bottom-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-b after:from-[rgba(0,0,0,0)] after:to-[#000000]  after:z-10">
             {/* Campus Background Image */}
             <div className="absolute top-0 right-0 w-full h-full z-0">
                 <Image
@@ -24,10 +24,12 @@ export default function AcademicVisionMission({ data }) {
                 />
             </div>
             <div className="container relative z-20">
-                <div className="relative  overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 min-h-[520px]">
+                <div className="relative  overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 min-h-[520px] max-lg:gap-[10px]">
 
                     {/* LEFT COLUMN: Eyebrow, Heading & Mission */}
-                    <div className="lg:col-span-5 flex flex-col justify-between relative z-10 py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]">
+                    <div className="lg:col-span-5 flex flex-col justify-between relative z-10 py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]
+                     max-lg:py-[30px]  max-lg:px-[15px] relative
+                    after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-full after:max-lg:bg-[rgba(0,0,0,0.3)]  ">
                         <div className="lg:max-w-[85%] w-full">
                             <div>
                                 {/* Eyebrow */}

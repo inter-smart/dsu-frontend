@@ -135,7 +135,7 @@ export default function DSUOmbudsman({ data }) {
                                         {data.name}
                                     </div>
                                     <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#DC2626] font-semibold relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px]
-                                     after:w-[30px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316] ">
+                                       after:w-[40px] after:xl:w-[40px] after:2xl:w-[50px] after:3xl:w-[60px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316] ">
                                         {data.designation}
                                     </div>
                                     <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]

@@ -73,7 +73,7 @@ export default function DSUDEADC({ data }) {
                                                             <p>{item.content}</p>
                                                         )}
                                                         {item.document && (
-                                                            <Link href={item?.document.file.url} className="flex items-center justify-between  py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 px-0  lg:max-w-[220px] xl:max-[260px] 2xl:max-w-[360px] 3xl:max-w-[460px]"  >
+                                                            <Link href={item?.document.file.url} className="flex items-center justify-between  py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 px-0 w-fit lg:w-full gap-[20px] !no-underline  lg:max-w-[220px] xl:max-[260px] 2xl:max-w-[360px] 3xl:max-w-[460px]"  >
                                                                 <div className="flex items-center justify-between gap-[15px]">
                                                                     <div className="w-[18px] xl:w-[20px] 2xl:w-[25px] 3xl:w-[33px] h-[15px] xl:h-[18px] 2xl:h-[20px] 3xl:h-[23px] flex items-center justify-center">
                                                                         <svg width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">

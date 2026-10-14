@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLenis } from "lenis/react";
 
 const menuItems = [
     {
@@ -58,6 +59,21 @@ const menuItems = [
 export default function AcademicMenubar({ title = "Academic Menu", className = "" }) {
     const pathname = usePathname();
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+    const lenis = useLenis();
+
+    useEffect(() => {
+        if (isMobileSidebarOpen) {
+            document.documentElement.style.overflow = "hidden";
+            if (lenis) lenis.stop();
+        } else {
+            document.documentElement.style.overflow = "";
+            if (lenis) lenis.start();
+        }
+        return () => {
+            document.documentElement.style.overflow = "";
+            if (lenis) lenis.start();
+        };
+    }, [isMobileSidebarOpen, lenis]);
 
     return (
         <div className={className}>
@@ -92,11 +108,11 @@ export default function AcademicMenubar({ title = "Academic Menu", className = "
 
             
             <div
-                className={`fixed top-0 left-0 h-full w-[300px] sm:w-[320px] z-50 shadow-2xl transition-all duration-300 md:hidden overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] p-[1px]
+                className={`fixed top-0 left-0 h-dvh w-[300px] sm:w-[320px] z-50 shadow-2xl transition-all duration-300 lg:hidden overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] p-[1px]
                  ${isMobileSidebarOpen ? "translate-x-0 opacity-100 pointer-events-auto" : "-translate-x-full opacity-0 pointer-events-none"}
                 `}
             >
-                <div className="overflow-y-auto bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] dark:from-[#1a1a1a] dark:to-[#111111] w-full h-full flex flex-col">
+                <div className="overflow-y-auto overscroll-contain bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] dark:from-[#1a1a1a] dark:to-[#111111] w-full h-full flex flex-col">
                     {/* Mobile Header with Close Button */}
                     <div className="flex items-center justify-between p-3 border-b border-black/10 bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white">
                         <span className="font-semibold text-sm">{title}</span>

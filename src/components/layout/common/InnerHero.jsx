@@ -46,7 +46,7 @@ export default function InnerHero({ data }) {
       {/* Content */}
       <div className=" relative z-20 flex w-full flex-col justify-end h-full">
         <div
-          className={`flex container w-full flex-col justify-end overflow-hidden pt-[40px] xl:pt-[55px] 2xl:pt-[65px] 3xl:pt-[80px] ${hasMenubar ? "pb-[40px] md:pb-0" : "pb-[40px] xl:pb-[55px] 2xl:pb-[65px] 3xl:pb-[80px]"
+          className={`flex container w-full flex-col justify-end overflow-hidden pt-[40px] xl:pt-[55px] 2xl:pt-[65px] 3xl:pt-[80px] ${hasMenubar ? "pb-[40px] lg:pb-0" : "pb-[40px] xl:pb-[55px] 2xl:pb-[65px] 3xl:pb-[80px]"
             }`}
         >
           {/* Breadcrumb */}

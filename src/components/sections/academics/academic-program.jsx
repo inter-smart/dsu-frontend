@@ -5,10 +5,10 @@ import Link from "next/link";
 
 export default function AcademicProgram({ data, variant }) {
     return (
-        <section className="relative py-[20px_40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] 
+        <section className="relative py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] 
                 bg-gradient-to-b from-[rgba(255,248,238,0.3)] to-[rgba(255,243,224,0.5)] dark:from-[#000] dark:to-[#000] transition-colors duration-300">
             <div className="container">
-                <div className="mb-[15px] lg:mb-[25px] 2xl:mb-[40px] 3xl:mb-[45px] flex max-lg:flex-wrap">
+                <div className="mb-[15px] lg:mb-[25px] 2xl:mb-[40px] 3xl:mb-[45px] flex max-lg:flex-wrap max-lg:gap-[20px]">
                     <div className="w-auto lg:flex-grow-1">
                         <div className="cmn_Title mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] text-black dark:text-white">{data.heading}</div>
                         <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] lg:max-w-[90%]">
@@ -41,7 +41,7 @@ export default function AcademicProgram({ data, variant }) {
                         </Link>
                     )}
                 </div>
-                <div className={`flex gap-[30px] lg:gap-[40px] xl:gap-[60px] ${variant === "aiprogram" ? "w-full flex-wrap" : "max-sm:flex-wrap gap-[15px] lg:max-w-[90%] w-full sm:w-1/2"}`}>
+                <div className={`flex gap-[30px] lg:gap-[40px] mt-[30px] xl:gap-[60px] ${variant === "aiprogram" ? "w-full flex-wrap  " : "max-sm:flex-wrap gap-[15px] lg:max-w-[95%] w-full lg:w-1/2"}`}>
                     {data.categories.map((item, id) => (
                         <div
                             key={id}
@@ -60,10 +60,10 @@ export default function AcademicProgram({ data, variant }) {
                             )}
                             <div className="flex flex-wrap mt-[30px]">
                                 {item.programs.map((program, idx) => (
-                                    <div key={idx} className={`${variant === "aiprogram" ? "w-full md:w-1/2" : "w-full"}`}>
+                                    <div key={idx} className={`${variant === "aiprogram" ? "w-full lg:w-1/2" : "w-full"}`}>
                                         <Link
                                             href={program?.url}
-                                            className="group flex items-center justify-between font-medium py-[15px] 2xl:py-[18px] 3xl:py-[22px] lg:max-w-[80%] border-b border-black/20 dark:border-white/10 px-0 transition-colors duration-300"
+                                            className="group flex items-center justify-between font-medium py-[15px] 2xl:py-[18px] 3xl:py-[22px] max-lg:w-full max-lg:gap-[20px] lg:max-w-[90%] border-b border-black/20 dark:border-white/10 px-0 transition-colors duration-300"
                                         >
                                             <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black dark:text-[#F3F4F6] transition-colors duration-300 group-hover:text-[#F97316] dark:group-hover:text-[#F97316]">
                                                 {program.title}

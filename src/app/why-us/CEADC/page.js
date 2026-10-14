@@ -9,19 +9,19 @@ const local_data = {
   publishedAt: "2026-06-11T06:26:08.337Z",
   seo: {
     id: 21,
-    metaTitle: "Women Redressal Cell page title",
-    metaDescription: "Women Redressal Cell page description ",
+    metaTitle: "Capability Enhancement & Development Cells / Centres page title",
+    metaDescription: "Capability Enhancement & Development Cells / Centres page description ",
     canonicalUrl: null,
   },
   hero: {
     id: 25,
     heroMedia: {
-      alternativeText: "Women Redressal Cell",
+      alternativeText: "Capability Enhancement & Development Cells / Centres",
       mime: "image/jpg",
       // if video - mime: "video/mp4",
       url: "/images/ugc/ugc-banner.jpg",
     },
-    title: "Women Redressal Cell",
+    title: "Capability Enhancement & Development Cells / Centres",
     breadcrumb: [
       {
         label: "Home",
@@ -36,7 +36,7 @@ const local_data = {
         href: "/",
       },
       {
-        label: "Women Redressal Cell",
+        label: "CEDCC",
         href: "/",
       },
     ],

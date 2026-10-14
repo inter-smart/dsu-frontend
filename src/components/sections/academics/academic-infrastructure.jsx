@@ -78,7 +78,7 @@ export default function AcademicInfrastructure({ data }) {
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                                         <div className="absolute bottom-0 left-0 p-[8px] sm:p-[10px] w-full">
-                                            <div className="text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[25px] text-white font-bold">
+                                            <div className="text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[25px] leading-snug text-white font-bold max-w-[50%]">
                                                 {facility.title}
                                             </div>
                                         </div>

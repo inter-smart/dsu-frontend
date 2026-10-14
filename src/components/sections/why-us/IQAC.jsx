@@ -38,7 +38,7 @@ export default function IQAC({ data }) {
                                 hover:text-[#111827] dark:hover:text-white
                                 data-active:text-[#111827] dark:data-active:text-white data-active:font-semibold
                                 data-[state=active]:text-[#111827] dark:data-[state=active]:text-white data-[state=active]:font-semibold
-                                after:content-[''] after:absolute after:!bottom-0 after:!left-0 after:!right-0 after:!h-[3.5px] after:!bg-[#F97316] after:w-[75%] after:m-auto after:opacity-0 after:transition-opacity after:duration-150
+                                after:content-[''] after:absolute after:!bottom-0 after:!left-0 after:!right-0 after:!h-[3.5px] after:!bg-[#F97316] after:w-[100%] after:m-auto after:opacity-0 after:transition-opacity after:duration-150
                                 data-active:after:!opacity-100 data-[state=active]:after:!opacity-100
                                 ${idx !== data?.tabs.length - 1 ? "before:absolute before:content-[''] before:right-0 before:w-[1px] before:h-[70%] before:bg-[rgba(33,33,33,0.1)] dark:before:bg-white/10 before:top-0 before:bottom-0 before:m-auto" : ""}`}
                             >
@@ -59,7 +59,7 @@ export default function IQAC({ data }) {
                 </TabsContent>
 
                 {/* IQAC Activities Tab Content */}
-                <TabsContent value="iqac-activities" className="mt-[10px]">
+                <TabsContent value="iqac-activities" className="mt-[10px] pb-[50px]">
                     <div className="container">
                         {/* Heading */}
                         <h2 className="cmn_Title mb-[12px] xl:mb-[16px] 2xl:mb-[20px] dark:text-white">
@@ -78,7 +78,7 @@ export default function IQAC({ data }) {
                             {activities.map((item, idx) => (
                                 <div
                                     key={item.id || idx}
-                                    className="flex flex-col md:flex-row md:items-center max-md:gap-[20px] pb-[30px] xl:pb-[40px] 2xl:pb-[50px] mb-[30px] xl:mb-[40px] 2xl:mb-[50px] border-b border-[rgba(33,33,33,0.1)] dark:border-white/10 last:border-b-0 last:pb-0 last:mb-0"
+                                    className="flex flex-col md:flex-row md:items-center max-md:gap-[20px] pb-[30px] xl:pb-[40px] 2xl:pb-[50px] mb-[30px] xl:mb-[40px] 2xl:mb-[50px] border-b border-[rgba(33,33,33,0.1)] dark:border-white/10  "
                                 >
                                     {/* Left Column: Poster Image */}
                                     <div className="w-full md:w-[240px] lg:w-[270px] xl:w-[310px] 2xl:w-[340px] 3xl:w-[420px] shrink-0 rounded-[8px] lg:rounded-[10px] overflow-hidden border border-[rgba(33,33,33,0.08)] dark:border-white/10 shadow-[0_2px_10px_rgba(0,0,0,0.04)] bg-white dark:bg-[#1F1F1F] relative">

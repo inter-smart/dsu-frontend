@@ -10,7 +10,7 @@ export default function AcademicOverview({ data }) {
     const primaryImage = data?.media?.[0];
 
     return (
-        <section id="overview" className="relative py-[10px_30px] sm:py-[20px_40px] xl:py-[55px_40px] 2xl:py-[70px_40px] 3xl:py-[90px_40px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
+        <section id="overview" className="relative py-[0px_30px] sm:py-[20px_40px] xl:py-[55px_40px] 2xl:py-[70px_40px] 3xl:py-[90px_40px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
             <div className="container">
                 {/* TOP SECTION: Float Right for Image + Stats */}
                 <div className="relative max-lg:flex max-lg:flex-col-reverse gap-[20px] after:content-[''] after:table after:clear-both ">

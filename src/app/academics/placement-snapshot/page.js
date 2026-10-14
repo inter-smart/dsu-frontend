@@ -260,7 +260,7 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <AcademicMenubar className="md:!hidden block" />
+            <AcademicMenubar className="lg:!hidden block" />
             <AcademicCollaboration data={local_data.industryCollaborationsSection} />
             <AcademicPartners data={local_data.partnersSection} />
             <AcademicPlacementReport data={local_data.placementReportsSection} />

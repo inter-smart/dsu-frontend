@@ -9,8 +9,8 @@ import "swiper/css/navigation";
 
 export default function AcademicFacilities({ data }) {
     return (
-        <section className="relative py-[20px_40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] 
-                bg-gradient-to-b from-[rgba(255,248,238,0.3)] to-[rgba(255,243,224,0.5)] dark:bg-none dark:bg-[#101010]">
+        <section className="relative py-[0px_40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] 
+                bg-white dark:bg-none dark:bg-[#101010]">
             <div className="container">
                 <div className="flex flex-wrap [&>div]:lg:w-1/2  mb-[15px] lg:mb-[25px] 2xl:mb-[40px] 3xl:mb-[45px]">
                     <div className="cmn_Title mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] ">{data.heading}</div>
@@ -56,12 +56,9 @@ export default function AcademicFacilities({ data }) {
                                         <button
                                             aria-label="Previous image"
                                             className={`facility-prev-${id} absolute left-[10px] top-1/2 -translate-y-1/2 z-10 w-[32px] h-[32px] xl:w-[36px] xl:h-[36px] 2xl:w-[40px] 2xl:h-[40px] 3xl:w-[46px] 3xl:h-[46px]
-                                                   rounded-full bg-white/80 backdrop-blur-sm border border-white/50 shadow-[0_2px_10px_rgba(0,0,0,0.1)]
-                                                   flex items-center justify-center text-[#212121]
-                                                   hover:bg-white hover:shadow-[0_4px_15px_rgba(0,0,0,0.15)] transition-all duration-300
-                                                   opacity-0 group-hover:opacity-100 cursor-pointer`}
+                                                flex items-center justify-center text-[#212121]  cursor-pointer`}
                                         >
-                                            <svg className="w-[14px] h-[14px] xl:w-[16px] xl:h-[16px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                                            <svg className="w-full h-full" fill="none" stroke="#ffff" strokeWidth="1" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                                             </svg>
                                         </button>
@@ -70,12 +67,9 @@ export default function AcademicFacilities({ data }) {
                                         <button
                                             aria-label="Next image"
                                             className={`facility-next-${id} absolute right-[10px] top-1/2 -translate-y-1/2 z-10 w-[32px] h-[32px] xl:w-[36px] xl:h-[36px] 2xl:w-[40px] 2xl:h-[40px] 3xl:w-[46px] 3xl:h-[46px]
-                                                   rounded-full bg-white/80 backdrop-blur-sm border border-white/50 shadow-[0_2px_10px_rgba(0,0,0,0.1)]
-                                                   flex items-center justify-center text-[#212121]
-                                                   hover:bg-white hover:shadow-[0_4px_15px_rgba(0,0,0,0.15)] transition-all duration-300
-                                                   opacity-0 group-hover:opacity-100 cursor-pointer`}
+                                                   flex items-center justify-center text-[#212121]  cursor-pointer`}
                                         >
-                                            <svg className="w-[14px] h-[14px] xl:w-[16px] xl:h-[16px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                                            <svg className="w-full h-full" fill="none" stroke="#ffff" strokeWidth="1" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                                             </svg>
                                         </button>

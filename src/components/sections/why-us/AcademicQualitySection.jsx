@@ -26,19 +26,24 @@ export default function AcademicQualitySection({ data }) {
     const defaultTabIndex = tabs.findIndex((t) => (t.active ? true : t.value === defaultTab));
     const initialIndex = defaultTabIndex !== -1 ? defaultTabIndex : 0;
 
+    const updateCanSlide = (swiper) => {
+        if (!swiper || swiper.destroyed) return;
+        const shouldSlide = !swiper.isLocked;
+        setCanSlide((prev) => (prev !== shouldSlide ? shouldSlide : prev));
+    };
+
     return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[120px]">
             <div className="container">
                 <Tabs defaultValue={defaultTab} className="w-full">
                     {/* Tab Navigation Swiper with Nav Buttons */}
-                    <div className={`self-start flex items-center gap-[8px] sm:gap-[12px] mb-[25px] xl:mb-[35px] 2xl:mb-[45px] max-w-full ${
-                        canSlide ? "w-full" : "w-fit"
-                    }`}>
+                    <div className="self-start flex items-center gap-[8px] sm:gap-[12px] mb-[25px] xl:mb-[35px] 2xl:mb-[45px] w-fit max-w-full">
                         {/* Prev Arrow Button - only visible if items exceed slider limit */}
                         <button
                             ref={prevRef}
                             type="button"
                             aria-label="Previous tab"
+                            onClick={() => swiperRef.current?.slidePrev()}
                             className={`academic-tab-prev w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] xl:w-[42px] xl:h-[42px] rounded-full bg-white border border-[#2121211a] shadow-[0_2px_10px_rgba(0,0,0,0.06)] items-center justify-center text-[#212121] hover:bg-[#F97316] hover:text-white hover:border-[#F97316] transition-all cursor-pointer shrink-0 z-10 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-[#212121] disabled:hover:border-[#2121211a] [&.swiper-button-lock]:!hidden ${
                                 !canSlide ? "!hidden" : "flex"
                             }`}
@@ -59,26 +64,28 @@ export default function AcademicQualitySection({ data }) {
                                     slidesPerView="auto"
                                     spaceBetween={0}
                                     speed={400}
-                                    initialSlide={initialIndex}
                                     watchOverflow={true}
                                     watchSlidesProgress={true}
                                     snapToSlideEdge={true}
-                                    slidesOffsetAfter={16}
+                                    slideToClickedSlide={false}
                                     onSwiper={(swiper) => {
                                         swiperRef.current = swiper;
-                                        setCanSlide(!swiper.isLocked);
+                                        updateCanSlide(swiper);
                                     }}
                                     onInit={(swiper) => {
-                                        setCanSlide(!swiper.isLocked);
+                                        updateCanSlide(swiper);
+                                        if (!swiper.isLocked && initialIndex > 0) {
+                                            swiper.slideTo(initialIndex, 0);
+                                        }
                                     }}
                                     onResize={(swiper) => {
-                                        setCanSlide(!swiper.isLocked);
+                                        updateCanSlide(swiper);
                                     }}
                                     onLock={() => {
-                                        setCanSlide(false);
+                                        setCanSlide((prev) => (prev ? false : prev));
                                     }}
                                     onUnlock={() => {
-                                        setCanSlide(true);
+                                        setCanSlide((prev) => (!prev ? true : prev));
                                     }}
                                     onBeforeInit={(swiper) => {
                                         swiper.params.navigation.prevEl = prevRef.current;
@@ -95,18 +102,13 @@ export default function AcademicQualitySection({ data }) {
                                             <TabsTrigger
                                                 key={tab.id}
                                                 value={tab.value}
-                                                onClick={() => {
-                                                    if (swiperRef.current && !swiperRef.current.destroyed) {
-                                                        swiperRef.current.slideTo(idx);
-                                                    }
-                                                }}
                                                 className={`relative h-[44px] md:h-[48px] xl:h-[54px] px-[16px] sm:px-[22px] xl:px-[28px] 2xl:px-[32px]
                                                 rounded-none border-0 overflow-visible !no-underline flex items-center justify-center whitespace-nowrap !bg-transparent
-                                                text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] font-medium text-[#374151] shrink-0
+                                                text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] font-semibold text-[#212121] shrink-0
                                                 transition-colors duration-150 bg-transparent
                                                 hover:text-[#111827]
-                                                data-active:text-[#111827] data-active:font-semibold
-                                                data-[state=active]:text-[#111827] data-[state=active]:font-semibold
+                                                data-active:text-[#212121]
+                                                data-[state=active]:text-[#212121]
                                                 after:content-[''] after:absolute after:!bottom-0 after:!left-0 after:!right-0 after:!h-[3.5px] after:!bg-[#F97316] after:w-[75%] after:m-auto after:opacity-0 after:transition-opacity after:duration-150
                                                 data-active:after:!opacity-100 data-[state=active]:after:!opacity-100
                                                 ${idx !== tabs.length - 1 ? "before:absolute before:content-[''] before:right-0 before:w-[1px] before:h-[75%] before:bg-[rgba(33,33,33,0.1)] before:top-0 before:bottom-0 before:m-auto" : ""}`}
@@ -124,6 +126,7 @@ export default function AcademicQualitySection({ data }) {
                             ref={nextRef}
                             type="button"
                             aria-label="Next tab"
+                            onClick={() => swiperRef.current?.slideNext()}
                             className={`academic-tab-next w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] xl:w-[42px] xl:h-[42px] rounded-full bg-white border border-[#2121211a] shadow-[0_2px_10px_rgba(0,0,0,0.06)] items-center justify-center text-[#212121] hover:bg-[#F97316] hover:text-white hover:border-[#F97316] transition-all cursor-pointer shrink-0 z-10 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-[#212121] disabled:hover:border-[#2121211a] [&.swiper-button-lock]:!hidden ${
                                 !canSlide ? "!hidden" : "flex"
                             }`}
@@ -148,7 +151,7 @@ export default function AcademicQualitySection({ data }) {
                             (tabData?.bestPractices?.[1]?.value || tabData?.bestPractices?.[0]?.value);
 
                         return (
-                            <TabsContent key={tab.id} value={tab.value} className="mt-[10px]">
+                            <TabsContent key={tab.id} value={tab.value} className="mt-[10px] min-h-[300px]">
                                 {/* Section Heading */}
                                 {tabData?.heading && (
                                     <h2 className="cmn_Title">{tabData.heading}</h2>

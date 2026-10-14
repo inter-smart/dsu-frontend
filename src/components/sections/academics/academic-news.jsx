@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import NewsCard from "@/components/layout/common/news-card";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,8 +10,7 @@ import "swiper/css/navigation";
 
 
 export default function AcademicNews({ data }) {
-    const prevRef = useRef(null);
-    const nextRef = useRef(null);
+    const [swiperInstance, setSwiperInstance] = useState(null);
 
     if (!data) return null;
 
@@ -68,14 +67,7 @@ export default function AcademicNews({ data }) {
                         }}
                         spaceBetween={16}
                         speed={500}
-                        onBeforeInit={(swiper) => {
-                            swiper.params.navigation.prevEl = prevRef.current;
-                            swiper.params.navigation.nextEl = nextRef.current;
-                        }}
-                        navigation={{
-                            prevEl: prevRef.current,
-                            nextEl: nextRef.current,
-                        }}
+                        onSwiper={setSwiperInstance}
                         className="w-full h-full !py-2"
                     >
                         {newsList.map((news, id) => (
@@ -89,7 +81,7 @@ export default function AcademicNews({ data }) {
 
                     {/* Prev Arrow */}
                     <button
-                        ref={prevRef}
+                        onClick={() => swiperInstance?.slidePrev()}
                         aria-label="Previous news item"
                         className="academic-news-prev absolute left-[-15px] sm:left-[-16px] top-1/2 -translate-y-1/2 z-20 w-[36px] h-[36px] xl:w-[40px] xl:h-[40px] 2xl:w-[44px] 2xl:h-[44px]
                         rounded-full bg-white/95 dark:bg-[#18191B] backdrop-blur-md border border-gray-200/80 dark:border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.12)]
@@ -104,7 +96,7 @@ export default function AcademicNews({ data }) {
 
                     {/* Next Arrow */}
                     <button
-                        ref={nextRef}
+                        onClick={() => swiperInstance?.slideNext()}
                         aria-label="Next news item"
                         className="academic-news-next absolute right-[-15px] sm:right-[-16px] top-1/2 -translate-y-1/2 z-20 w-[36px] h-[36px] xl:w-[40px] xl:h-[40px] 2xl:w-[44px] 2xl:h-[44px]
                         rounded-full bg-white/95 dark:bg-[#18191B] backdrop-blur-md border border-gray-200/80 dark:border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.12)]

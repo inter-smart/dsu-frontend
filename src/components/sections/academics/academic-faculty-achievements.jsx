@@ -171,7 +171,7 @@ export default function AcademicFacultyAchievements({ data }) {
                                                 onClick={() => setSelectedFilterId(filter.id)}
                                                 className={`px-5 py-2 rounded-full text_1 font-medium whitespace-nowrap transition-all duration-300 ${isCurrent
                                                         ? "bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white shadow-sm cursor-pointer"
-                                                        : "bg-white/90 dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 text-[#374151] dark:text-gray-200 hover:border-gray-400 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
+                                                        : "bg-transparent dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 text-[#374151] dark:text-gray-200 hover:border-gray-400 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
                                                     }`}
                                             >
                                                 {filter.label}

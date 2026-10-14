@@ -141,7 +141,7 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <AcademicMenubar className="md:!hidden block" />
+            <AcademicMenubar className="lg:!hidden block" />
             <DeanMessage data={local_data.messageFromDean} />
         </>
     )

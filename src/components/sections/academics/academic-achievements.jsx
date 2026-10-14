@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function AcademicAchievements({ data, variant }) {
     return (
-        <section className="relative py-[20px_40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010] transition-colors duration-300">
+        <section className="relative py-[0px_40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010] transition-colors duration-300">
             <div className="container">
                 <div className="relative max-lg:flex max-lg:flex-col-reverse  after:content-[''] after:table after:clear-both ">
                     <div className={`w-full ${variant === "AiChapter" || "hostel" ? "lg:w-[50%] lg:pl-[100px] 2xl:pl-[150px]" : "lg:w-[380px] xl:w-[450px] 2xl:w-[550px] 3xl:w-[650px] lg:pl-[40px]"}  lg:float-right   `}>

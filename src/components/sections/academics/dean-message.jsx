@@ -77,7 +77,7 @@ export default function DeanMessage({ data, varient }) {
                         <h2 className={`text-[25px] sm:text-[28px] md:text-[32px] xl:text-[40px] 2xl:text-[46px] 3xl:text-[55px] font-bold leading-tight text-[#212121] dark:text-[#F9FAFB] 
                          mb-[12px] xl:mb-[16px] 2xl:mb-[20px] 
                          ${varient === "home"
-                        ? "pt-0 xl:pt-[10px]"
+                        ? "pt-0 xl:pt-[10px] max-w-[85%]"
                         : "xl:pt-[30px] 2xl:pt-[40px] 3xl::pt-[60px]"} `}>
                             {heading}
                         </h2>
@@ -85,7 +85,7 @@ export default function DeanMessage({ data, varient }) {
 
                     {/* Quote */}
                     {quote?.text && (
-                        <div className="text-[13px] xl:text-[14.5px] 2xl:text-[16px] 3xl:text-[19px] font-bold text-[#212121] dark:text-[#F9FAFB] leading-snug mb-[16px] xl:mb-[20px] 2xl:mb-[24px]">
+                        <div className="text-[13px] xl:text-[14.5px] 2xl:text-[16px] 3xl:text-[19px] font-bold text-[#4A5565] dark:text-[#F9FAFB] leading-snug mb-[16px] xl:mb-[20px] 2xl:mb-[24px]">
                             &ldquo;{quote.text}&rdquo;{quote.author ? ` – ${quote.author}` : ""}
                         </div>
                     )}

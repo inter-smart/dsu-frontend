@@ -156,8 +156,8 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <AcademicMenubar className="md:!hidden block" />
-            <AcademicProgram data={local_data.computerApplicationsPrograms} />
+            <AcademicMenubar className="lg:!hidden block" />
+            <AcademicProgram data={local_data.computerApplicationsPrograms}  />
             <AcademicContact data={local_data.contact} />
         </>
     )
