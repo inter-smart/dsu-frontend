@@ -465,29 +465,39 @@ export default function Footer({ data = local_data }) {
         <div className="[--width:100%] lg:[--width:250px] 2xl:[--width:280px] 3xl:[--width:350px] w-full h-auto sm:p-5 lg:p-7.5 2xl:p-10 3xl:p-12.5 bg-[#FFEACC] dark:bg-[#343434] rounded-[10px] lg:rounded-[7px] 2xl:rounded-[10px] dark:border dark:border-white/10 overflow-hidden flex flex-wrap">
           <div className="w-(--width) h-auto max-lg:mb-10 max-sm:mb-0 max-sm:p-5">
             <div className="w-72.5 lg:w-47.5 2xl:w-57.5 3xl:w-72.5 h-auto aspect-290/95 mb-3.75 lg:mb-5 2xl:mb-7.5 3xl:mb-10 overflow-hidden block">
-              <Image
-                src={data?.logo?.light?.url}
-                alt={data?.logo?.light?.alternativeText || "DSU Logo"}
-                width={290}
-                height={95}
-                className="w-full h-full object-contain dark:hidden"
-              />
-              <Image
-                src={data?.logo?.dark?.url}
-                alt={data?.logo?.dark?.alternativeText || "DSU Logo"}
-                width={290}
-                height={95}
-                className="w-full h-full object-contain hidden dark:block"
-              />
+              {data?.logo?.light?.url && (
+                <Image
+                  src={data?.logo?.light?.url}
+                  alt={data?.logo?.light?.alternativeText || "DSU Logo"}
+                  width={290}
+                  height={95}
+                  className="w-full h-full object-contain dark:hidden"
+                />
+              )}
+
+              {data?.logo?.dark?.url && (
+                <Image
+                  src={data?.logo?.dark?.url}
+                  alt={data?.logo?.dark?.alternativeText || "DSU Logo"}
+                  width={290}
+                  height={95}
+                  className="w-full h-full object-contain hidden dark:block"
+                />
+              )}
             </div>
+
+            {
+              data?.description && (
+
             <Text
               size="p1"
               className="text-sm lg:text-[11px] 2xl:text-xs 3xl:text-base mb-3.75 2xl:mb-5"
             >
               {data?.description}
             </Text>
+            )}
             <div className="w-full h-auto mb-7.5 sm:mb-12.5 lg:mb-15 2xl:mb-17.5 3xl:mb-22.5 gap-2.5 lg:gap-1.75 2xl:gap-2.5 flex flex-wrap">
-              {data?.socialLinks?.map((item) => (
+              { data?.socialLinks.length > 0 && data?.socialLinks?.map((item) => (
                 <div key={item?.id} className="w-auto h-auto">
                   <Link
                     href={item?.link}
@@ -547,12 +557,12 @@ export default function Footer({ data = local_data }) {
           </div>
           <div className="w-(--width) lg:w-[calc(100%-var(--width))] max-sm:p-[10px_10px_25px_10px] lg:pl-10 xl:pl-15 2xl:pl-17.5 3xl:pl-22.5">
             <div className="w-full h-auto pb-3.75 lg:pb-8.75 2xl:pb-10 3xl:pb-12.5 mb-3.75 lg:mb-7.5 3xl:mb-10 border-b border-[#D4D4D4] grid grid-cols-2 lg:grid-cols-3 gap-[25px_5px] sm:gap-5 lg:gap-7.5 2xl:gap-10 3xl:gap-17.5">
-              {data?.topRow?.map((item, index) => (
+              {data?.topRow.length>0 && data?.topRow?.map((item, index) => (
                 <LinkCard key={`top-${index}`} items={item} />
               ))}
             </div>
             <div className="w-full h-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px_5px] sm:gap-5 lg:gap-7.5 2xl:gap-10 3xl:gap-17.5">
-              {data?.bottomRow?.map((item, index) => (
+              { data?.bottomRow.length>0 && data?.bottomRow?.map((item, index) => (
                 <LinkCard key={`bottom-${index}`} items={item} />
               ))}
             </div>
@@ -560,7 +570,7 @@ export default function Footer({ data = local_data }) {
         </div>
         <div className="w-full h-auto my-[40px_30px] lg:my-[20px_30px] 2xl:my-[20px_40px] 3xl:my-[30px_50px] lg:border border-[#D4D4D4] lg:rounded-[7px] 2xl:rounded-[10px] overflow-hidden">
           <div className="w-full h-full grid grid-cols-1 lg:grid-cols-5 gap-2.5 lg:gap-7.5 2xl:gap-12.5 3xl:gap-15">
-            {data?.bottomLinks?.map((item, index) => (
+            {data?.bottomLinks.length>0 && data?.bottomLinks?.map((item, index) => (
               <div
                 key={index}
                 className="lg:[--gap:25px] 2xl:[--gap:30px] 3xl:[--gap:40px] w-full h-full p-[10px_15px] lg:py-(--gap) lg:first:pl-(--gap) max-lg:border max-lg:border-(--basecolor)/10 md:border-r lg:border-[#D4D4D4] lg:last:border-0 block"
