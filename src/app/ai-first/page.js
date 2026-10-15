@@ -7,6 +7,7 @@ import AiLeadership from "@/components/sections/ai-first/ai-first-leadership";
 import BePartOfFuture from "@/components/sections/ai-first/ai-first-be-part-of-future";
 import ShapeFuture from "@/components/sections/ai-first/ai-first-shape-future";
 import ReadyCta from "@/components/sections/ai-first/ai-first-ready-cta";
+import { getAiFirstPage } from "@/lib/api";
 
 const local_data = {
   hero: {
@@ -368,18 +369,40 @@ const local_data = {
   },
 };
 
-export default function Page() {
+function mergeData(cms) {
+  const merged = { ...local_data };
+  if (!cms || typeof cms !== "object") return merged;
+  Object.keys(local_data).forEach((key) => {
+    const value = cms[key];
+    if (value !== null && value !== undefined) merged[key] = value;
+  });
+  return merged;
+}
+
+export async function generateMetadata() {
+  const seo = (await getAiFirstPage())?.seo;
+
+  return {
+    title: seo?.metaTitle || "AI First @ DSU",
+    description: seo?.metaDescription || undefined,
+    alternates: seo?.canonicalUrl ? { canonical: seo.canonicalUrl } : undefined,
+  };
+}
+
+export default async function Page() {
+  const data = mergeData(await getAiFirstPage());
+
   return (
     <>
-      <AiFirstHero data={local_data.hero} />
-      <AboutInitiative data={local_data.aboutSection} />
-      <EducationAmplified data={local_data.educationSection} />
-      <ResearchDomains data={local_data.domainsSection} />
-      <ResearchEngagement data={local_data.engagementSection} />
-      <AiLeadership data={local_data.leadershipSection} />
-      <BePartOfFuture data={local_data.futureSection} />
-      <ShapeFuture data={local_data.shapeSection} />
-      <ReadyCta data={local_data.readySection} />
+      <AiFirstHero data={data.hero} />
+      <AboutInitiative data={data.aboutSection} />
+      <EducationAmplified data={data.educationSection} />
+      <ResearchDomains data={data.domainsSection} />
+      <ResearchEngagement data={data.engagementSection} />
+      <AiLeadership data={data.leadershipSection} />
+      <BePartOfFuture data={data.futureSection} />
+      <ShapeFuture data={data.shapeSection} />
+      <ReadyCta data={data.readySection} />
     </>
   );
 }

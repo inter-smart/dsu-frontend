@@ -19,3 +19,8 @@ export async function getContactPage() {
 export async function getNvidiaPage() {
   return fetchAPI("/api/nvidia-page");
 }
+
+// ── AI First Page ─────────────────────────────────────────────────────────────
+export async function getAiFirstPage() {
+  return fetchAPI("/api/ai-first-page");
+}
