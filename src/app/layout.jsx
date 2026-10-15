@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import SmoothScrollProvider from "@/components/providers/smooth-scroll-provider";
+import SidebarWidget from "@/components/layout/common/sidebar-widget";
 
 const roboto = Roboto({
   variable: "--font-sans",
@@ -39,6 +40,7 @@ export default function RootLayout({ children }) {
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
+            <SidebarWidget />
           </SmoothScrollProvider>
         </ThemeProvider>
       </body>
