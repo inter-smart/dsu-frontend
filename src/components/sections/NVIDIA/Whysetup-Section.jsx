@@ -33,12 +33,12 @@ export default function WhysetupSection({ data }) {
 
     return (
         <section className='relative py-[40px] xl:py-[50px] 2xl:py-[70px] 3xl:py-[80px] z-0'>
-            <Image src={data?.media?.url} fill className="absolute top-0 left-0 w-full h-full object-cover -z-1" alt={data?.media?.alternativeText} />
+            {data?.media?.url && <Image src={data.media.url} fill className="absolute top-0 left-0 w-full h-full object-cover -z-1" alt={data.media.alternativeText || ""} />}
             <div className="container relative z-10">
                 <div className="flex flex-wrap items-center">
                     <div className="w-full lg:w-3/12">
                         <div className="cmn_Title text-white mb-[20px]">
-                            {data.heading}
+                            {data?.heading}
                         </div>
                         {data?.description && (
                             <div className="text_1 ">
@@ -141,7 +141,7 @@ export default function WhysetupSection({ data }) {
                                 }}
                                 className="w-full !px-1 !py-3 overflow-visible"
                             >
-                                {data?.cards.map((cards, idx) => (
+                                {data?.cards?.map((cards, idx) => (
                                     <SwiperSlide
                                         key={cards.id || idx}
                                         className="!h-auto select-none"
@@ -165,7 +165,7 @@ export default function WhysetupSection({ data }) {
                                             )}
                                             {cards?.list?.length > 0 && (
                                                 <ul className="space-y-[12px]">
-                                                    {cards.list.map((point) => (
+                                                    {cards.list?.map((point) => (
 
                                                         <li key={point.id} className="flex items-center gap-[12px] xl:gap-[14px] group">
                                                             {/* Peach Circle Badge with Orange Checkmark */}

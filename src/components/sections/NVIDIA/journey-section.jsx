@@ -164,7 +164,7 @@ export default function JourneySection({ data }) {
  
                                         {stage.points && stage.points.length > 0 && (
                                             <ul className="flex flex-col gap-3.5 sm:gap-4 xl:gap-4.5">
-                                                {stage.points.map((point) => (
+                                                {stage.points?.map((point) => (
                                                     <li
                                                         key={point.id}
                                                         className="flex items-start gap-3 sm:gap-3.5"

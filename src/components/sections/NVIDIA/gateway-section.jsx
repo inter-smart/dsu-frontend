@@ -41,7 +41,7 @@ export default function GatewaySection({ data }) {
                         )}
                     </div>
                     <div className="flex flex-wrap gap-[20px] mt-[40px] xl:mt-[50px]">
-                        {data?.columns.map((item) => (
+                        {data?.columns?.map((item) => (
                             <div className="w-full lg:w-[calc(50%-10px)]" key={item.id}>
                                 <div className="w-full h-full border shadow-[0px_20px_60px_0px_rgba(61,35,122,0.09)] dark:shadow-[0px_20px_60px_0px_rgba(0,0,0,0.5)] border-black/10 dark:border-white/10 rounded-[8px] xl:rounded-[15px] 2xl:rounded-[25px] 3xl:rounded-[30px] bg-white dark:bg-[#18191B] p-[20px] xl:p-[25px] 2xl:p-[30px_30px] 3xl:p-[40px_35px] xl:p-[50px_40px]">
                                     <div className="text-[20px] xl:text-[24px] 2xl:text-[30px] 3xl:text-[35px] text-black dark:text-white font-bold mb-[25px] xl:mb-[30px]">
@@ -49,7 +49,7 @@ export default function GatewaySection({ data }) {
                                     </div>
                                     {item?.points?.length > 0 && (
                                         <div className="space-y-[20px] xl:space-y-[25px]">
-                                            {item.points.map((point) => (
+                                            {item.points?.map((point) => (
                                                 <div key={point.id} className="flex items-start gap-[12px]">
                                                     <span className="w-[23px] h-[23px] xl:w-[25px] xl:h-[25px] rounded-full bg-[#FFEFE2] dark:bg-[#F97316]/20 p-[3px] border border-[#FED7AA]/70 dark:border-[#F97316]/30 flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
                                                         <svg className="w-full h-full object-contain" viewBox="0 0 16 16" fill="none"  >
@@ -124,9 +124,9 @@ export default function GatewaySection({ data }) {
                                     }}
                                     className="w-full !px-1 !py-3 overflow-visible"
                                 >
-                                    {graduates?.points.map((graduate) => {
+                                    {graduates?.points?.map((graduate) => {
                                         return (
-                                            <SwiperSlide className="!h-auto sm:border-r border-black/10 dark:border-white/10 last-of-type:border-none" >
+                                            <SwiperSlide key={graduate.id} className="!h-auto sm:border-r border-black/10 dark:border-white/10 last-of-type:border-none" >
                                                 <div className="w-full h-full  flex flex-col gap-[15px]">
                                                     <div className="w-[35px] 2xl:w-[45px] 3xl:w-[55px] h-[35px] 2xl:h-[45px] 3xl:h-[55px] overflow-hidden">
                                                         <Image src={graduate.icon.url} className="w-full h-full object-contain" width={55} height={55} alt={graduate.icon.alternativeText} />
@@ -212,9 +212,9 @@ export default function GatewaySection({ data }) {
                             }}
                             className="w-full !px-1 !py-3 overflow-visible relative after:absolute after:top-[35px] after:content-[''] after:left-0 after:w-full after:h-[1px] after:bg-amber-100 after:-z-1 dark:after:bg-white/5 "
                         >
-                            {recruitements?.steps.map((recruit) => {
+                            {recruitements?.steps?.map((recruit) => {
                                 return (
-                                    <SwiperSlide className="!h-auto relative z-1" >
+                                    <SwiperSlide key={recruit.id} className="!h-auto relative z-1" >
                                         <div className="w-full h-full px-3 flex flex-col gap-[10px] xl:gap-[15px]">
                                             <div className="w-[35px] 2xl:w-[45px] 3xl:w-[55px] h-[35px] 2xl:h-[45px] 3xl:h-[55px] overflow-hidden flex items-center justify-center rounded-full bg-gradient-to-r from-[#FFF8EE] to-[#FFF3E0] dark:from-[#F97316]/20 dark:to-[#F97316]/10">
                                                 <div className="text-[17px] xl:text-[22px] 2xl:text-[25px] 3xl:text-[30px] text-[#F97316] font-bold">
