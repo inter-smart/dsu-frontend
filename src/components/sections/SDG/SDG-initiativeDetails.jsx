@@ -17,9 +17,9 @@ export default function SDGInitativeDetails({ data }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     // Default open items (e.g. metrics with indicators)
-    const defaultOpenItems = data?.metrics
-        ?.filter((m) => m.indicators && m.indicators.length > 0)
-        ?.map((m) => `metric-${m.id}`) || ["metric-1", "metric-3"];
+    // const defaultOpenItems = data?.metrics
+    //     ?.filter((m) => m.indicators && m.indicators.length > 0)
+    //     ?.map((m) => `metric-${m.id}`) || ["metric-1"];
 
     return (
         <section className="relative py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
@@ -49,7 +49,7 @@ export default function SDGInitativeDetails({ data }) {
                             <span>Menu</span>
                         </button>
 
-                        <div className="w-full">
+                        <div className="w-full lg:h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[20px] xl:p-[35px_30px] 2xl:p-[40px_35px] 3xl:p-[50px_45px]">
                             {/* Heading */}
                             {data?.heading && (
                                 <h1 className="cmn_Title leading-tight mb-2">
@@ -74,7 +74,7 @@ export default function SDGInitativeDetails({ data }) {
                             {data?.metrics && data.metrics.length > 0 && (
                                 <Accordion
                                     type="multiple"
-                                    defaultValue={defaultOpenItems}
+                                   defaultValue={["metric-1"]}
                                     className="w-full flex flex-col gap-3 sm:gap-4"
                                 >
                                     {data.metrics.map((metric) => {
@@ -83,7 +83,7 @@ export default function SDGInitativeDetails({ data }) {
                                             <AccordionItem
                                                 key={metric.id}
                                                 value={itemId}
-                                                className="border border-[#FDE5DC] bg-[#FFF9F6] rounded-[6px] overflow-hidden transition-all duration-200 shadow-xs"
+                                                className="border border-[#FDE5DC] bg-gradient-to-b from-[#FFF8EE]/20 to-[#FFF3E0]/20 rounded-[6px] overflow-hidden transition-all duration-200 shadow-xs"
                                             >
                                                 <AccordionTrigger
                                                     className="w-full p-3 lg:p-4  flex items-center justify-between font-bold text-[14px] sm:text-[15px] lg:text-[16px] xl:text-[17px] 3xl:text-[20px] text-[#212121] hover:no-underline [&>svg]:!hidden after:content-['+'] after:text-[14px] after:sm:text-[15px] after:lg:text-[16px] after:xl:text-[17px] after:2xl:text-[20px] after:font-bold after:text-[#212121] after:ml-2 aria-expanded:after:!content-['-'] group-aria-expanded/accordion-trigger:after:!content-['-'] data-[panel-open]:after:!content-['-'] data-[state=open]:after:!content-['-'] data-open:after:!content-['-']"
@@ -137,7 +137,7 @@ export default function SDGInitativeDetails({ data }) {
                                                                                 rel="noopener noreferrer"
                                                                                 className="group min-w-[115px] xl:min-w-[135px] 2xl:min-w-[165px] 3xl:min-w-[204px] h-[35px] 2xl:h-[40px] 3xl:h-[50px] mt-[20px] xl:mt-[30px] flex items-center justify-between p-[1px] rounded-[5px] w-fit overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] transition-all duration-200 ease-in-out hover:shadow-[0_6px_20px_rgba(220,38,38,0.18)] !no-underline"
                                                                             >
-                                                                                <div className="text_1 text-[#4A5565] font-medium bg-white w-full h-full flex items-center justify-center !no-underline gap-[15px] rounded-[5px] px-[15px] transition-all duration-100 ease-in-out group-hover:bg-transparent group-hover:text-white">
+                                                                                <div className="text_1 text-[#4A5565] font-medium bg-[#fffdf9] w-full h-full flex items-center justify-center !no-underline gap-[15px] rounded-[5px] px-[15px] transition-all duration-100 ease-in-out group-hover:bg-transparent group-hover:text-white">
                                                                                     <span className="!no-underline transition-transform duration-100 ease-in-out group-hover:translate-x-[3px]">
                                                                                         {indicator.evidenceLink.label || "View Evidence"}
                                                                                     </span>

@@ -76,7 +76,7 @@ const local_data = {
                     icon: {
                         alternativeText: "Vision eye icon",
                         mime: "image/svg+xml",
-                        url: "/icons/vision.svg",
+                        url: "/images/vision-eye.svg",
                     },
                     title: "Vision",
                     description: "To be a catalyst for continuous quality enhancement by promoting excellence in teaching, learning, research, innovation, governance, and institutional development.",
@@ -86,7 +86,7 @@ const local_data = {
                     icon: {
                         alternativeText: "Mission target icon",
                         mime: "image/svg+xml",
-                        url: "/icons/mission.svg",
+                        url: "/images/mission-iqac.svg",
                     },
                     title: "Mission",
                     description: "Cultivate a culture of quality and improvement by enhancing academic and administrative processes, encouraging innovation, and ensuring excellence in teaching, learning, and research.",

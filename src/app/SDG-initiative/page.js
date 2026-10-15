@@ -42,7 +42,7 @@ const local_data = {
         ],
     },
     sdgIntroductionSection: {
-        heading: "SDG Introduction",
+        heading: "SDG <br> Introduction",
         description: [
             {
                 type: "paragraph",
