@@ -11,10 +11,10 @@ export default function ArchitectureSection({ data }) {
             className=" text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] text-center mb-[10px]
                                 xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white  "
           >
-            {data.heading}
+            {data?.heading}
           </h2>
           <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] text-center mb-[30px] 3xl:mb-[50px]">
-            <BlocksRenderer content={data.subheading} />
+            <BlocksRenderer content={data?.subheading || []} />
           </div>
         </div>
         <div className="flex flex-wrap max-lg:gap-[20px]">
@@ -23,31 +23,33 @@ export default function ArchitectureSection({ data }) {
               className=" text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] mb-[10px]
                                 xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white  "
             >
-              {data?.contentBlock.heading}
+              {data?.contentBlock?.heading}
             </h2>
             <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]  mb-[30px] 3xl:mb-[50px]">
-              <BlocksRenderer content={data?.contentBlock.description} />
+              <BlocksRenderer content={data?.contentBlock?.description || []} />
             </div>
             <div className="w-full border border-[rgb(0,0,0,0.1)] dark:border-white/10 rounded-[8px] xl:rounded-[14px] 2xl:rounded-[15px] 3xl:rounded-[17px] overflow-hidden p-[10px] xl:p-[15px] 2xl:p-[20px] bg-gradient-to-r from-[rgb(230,81,0,0.1)] via-[rgb(255,109,0,0.1)] to-[rgb(255,143,0,0.1)] dark:from-[rgb(230,81,0,0.2)] dark:via-[rgb(255,109,0,0.2)] dark:to-[rgb(255,143,0,0.2)]">
               <div className="text-[12px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[20px] text-black dark:text-white font-bold mb-[5px] xl:mb-[8px] 2xl:mb-[12px] 3xl:mb-[15px]">
-                {data?.contentBlock?.highlightBox.title}
+                {data?.contentBlock?.highlightBox?.title}
               </div>
               <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]">
                 <BlocksRenderer
-                  content={data?.contentBlock?.highlightBox.description}
+                  content={data?.contentBlock?.highlightBox?.description || []}
                 />
               </div>
             </div>
           </div>
           <div className="w-full lg:w-1/2">
             <div className="relative w-full h-full overflow-hidden rounded-[8px] lg:max-w-[80%] lg:ml-auto dark:ring-1 dark:ring-white/10">
-              <Image
-                src={data?.media?.url}
-                className="w-full h-full object-cover"
-                width={680}
-                height={350}
-                alt={data?.media?.alternativeText}
-              />
+              {data?.media?.url && (
+                <Image
+                  src={data.media.url}
+                  className="w-full h-full object-cover"
+                  width={680}
+                  height={350}
+                  alt={data.media.alternativeText || ""}
+                />
+              )}
             </div>
           </div>
         </div>
