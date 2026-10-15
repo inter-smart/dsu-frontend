@@ -512,7 +512,7 @@ export default function Header({ data = local_data }) {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-            <div className="w-auto h-auto px-1.25 sm:px-2.5 2xl:px-2.5 border-r border-white/20">
+            {/* <div className="w-auto h-auto px-1.25 sm:px-2.5 2xl:px-2.5 border-r border-white/20">
               <Select className="w-full h-auto">
                 <SelectTrigger
                   className={cn(
@@ -535,7 +535,7 @@ export default function Header({ data = local_data }) {
                   </SelectGroup>
                 </SelectContent>
               </Select>
-            </div>
+            </div> */}
             <div className="w-auto h-auto flex">
               <ThemeToggle />
             </div>
