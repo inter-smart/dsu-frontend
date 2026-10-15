@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import PhoneNumbers from "@/components/ui/phone-numbers";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function AdmissionContact({ data }) {
@@ -139,15 +140,12 @@ export default function AdmissionContact({ data }) {
                   </div>
                   <div className="text-[13px] 2xl:text-[15px] 3xl:text-[18px] leading-snug font-normal text-[#4A5565] dark:text-gray-200 flex flex-col gap-1">
                     {helplineCol.values?.map((item, idx) => (
-                      <Link
+                      <PhoneNumbers
                         key={idx}
-                        href={
-                          item.href || `tel:${item.value?.replace(/\s+/g, "")}`
-                        }
-                        className="hover:text-(--basecolor) transition-colors hover:underline w-fit"
-                      >
-                        {item.value}
-                      </Link>
+                        value={item.value}
+                        className="w-fit"
+                        linkClassName="hover:text-(--basecolor) transition-colors hover:underline"
+                      />
                     ))}
                   </div>
                 </div>
@@ -415,15 +413,10 @@ export default function AdmissionContact({ data }) {
                                   key={vIdx}
                                   className="inline-flex items-center"
                                 >
-                                  <Link
-                                    href={
-                                      phoneVal.href ||
-                                      `tel:${phoneVal.value?.replace(/\s+/g, "")}`
-                                    }
-                                    className="transition-colors hover:underline hover:text-(--basecolor)"
-                                  >
-                                    {phoneVal.value}
-                                  </Link>
+                                  <PhoneNumbers
+                                    value={phoneVal.value}
+                                    linkClassName="transition-colors hover:underline hover:text-(--basecolor)"
+                                  />
                                   {vIdx < contact.values.length - 1 && (
                                     <span className="mx-1 text-[#4A5565]">
                                       /

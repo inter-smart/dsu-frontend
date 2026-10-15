@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Text } from "../ui/text";
+import PhoneNumbers from "../ui/phone-numbers";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import {
@@ -663,7 +664,12 @@ function LinkCard({ items }) {
                   key={index}
                   className={`leading-[1.6] pr-1.25 inline-block ${item?.bold ? "font-medium" : "font-normal"}`}
                 >
-                  {item.href ? (
+                  {item.href?.startsWith("tel:") && item.text?.includes("/") ? (
+                    <PhoneNumbers
+                      value={item.text}
+                      linkClassName="py-0.5 inline-block hover:text-(--basecolor) transition-colors"
+                    />
+                  ) : item.href ? (
                     <Link
                       href={item?.href}
                       className="py-0.5 inline-block hover:text-(--basecolor) transition-colors"
