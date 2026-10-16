@@ -7,7 +7,9 @@ export default function AiVisionMission({ data }) {
             <span id="vision" className="sr-only" />
             <div className="container">
                 <div className="flex flex-wrap max-sm:gap-[25px]">
-                    {data?.cards.map((item, id) => (
+                    {data?.cards?.filter((item) =>
+                        item?.title?.trim() || item?.description?.trim() || item?.icon?.url
+                    ).map((item, id) => (
                         <div
                             key={id}
                             className={`w-full sm:w-1/2 ${id % 2 ? "sm:pl-[30px] lg:pl-[50px]" : "p-0"}`}

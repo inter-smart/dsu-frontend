@@ -1,13 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function PlacementOverview({ data }) {
     if (!data) return null;
 
-    const primaryImage = data?.media?.[0];
+    const primaryImage = data?.media?.find((media) => media?.url);
 
     return (
         <section id="overview" className="relative py-[10px_30px] sm:py-[20px_40px] xl:py-[55px_40px] 2xl:py-[70px_40px] 3xl:py-[90px_40px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
@@ -42,7 +41,7 @@ export default function PlacementOverview({ data }) {
                             </h2>
                         )}
 
-                        {data?.intro && (
+                        {data?.intro?.length > 0 && (
                             <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
                                 <BlocksRenderer content={data.intro} />
                             </div>
@@ -52,9 +51,9 @@ export default function PlacementOverview({ data }) {
                                 {data.listHeading}
                             </div>
                         )}
-                        {data?.list && (
+                        {data?.list?.some((item) => item?.label?.trim()) && (
                             <ul className="space-y-4">
-                                {data?.list.map((item, id) => (
+                                {data.list.filter((item) => item?.label?.trim()).map((item, id) => (
                                     <li className="text_1 text-[#4A5565] dark:text-[#9CA3AF] relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]" key={id}>
                                         {item.label}
                                     </li>
