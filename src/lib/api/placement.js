@@ -16,3 +16,19 @@ export async function getPlacementAboutPage() {
   const entry = (entries || []).find((e) => e.template === "about-placement-cell");
   return entry?.slug ? getPlacementBySlug(entry.slug) : null;
 }
+
+// The "career-development" entry (the /placement/career page)
+export async function getPlacementCareerPage() {
+  const entries = await getPlacements();
+  const entry = (entries || []).find((e) => e.template === "career-development");
+  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+}
+
+
+// The "placement-page" entry (the /placement/placement page). Its slug differs
+// from the route, so it is found by template.
+export async function getPlacementResultsPage() {
+  const entries = await getPlacements();
+  const entry = (entries || []).find((e) => e.template === "placement-page");
+  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+}

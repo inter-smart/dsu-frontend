@@ -1,12 +1,11 @@
 import InnerHero from "@/components/layout/common/InnerHero";
-import AcademicAchievements from "@/components/sections/academics/academic-achievements";
 import PlacementSections from "@/components/sections/academics/PlacementDashboard";
-import PlacementDashboard from "@/components/sections/academics/PlacementDashboard";
 import PlacementProcess from "@/components/sections/placements/placement-process";
 import PlacementReport from "@/components/sections/placements/Placement-report";
 import PlacementDocuments from "@/components/sections/placements/PlacementDocuments";
 import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import SchoolPlacement from "@/components/sections/placements/School-placement";
+import { getPlacementResultsPage } from "@/lib/api/placement";
+import { hasContent } from "@/lib/has-content";
 
 const local_data = {
     id: 24,
@@ -386,15 +385,33 @@ const local_data = {
 
 }
 
-export default function page() {
+export async function generateMetadata() {
+    const apiData = await getPlacementResultsPage();
+    return {
+        title: apiData?.seo?.metaTitle || local_data.seo.metaTitle,
+        description: apiData?.seo?.metaDescription || local_data.seo.metaDescription,
+    };
+}
+
+export default async function page() {
+    const apiData = await getPlacementResultsPage();
+    const results = apiData?.placementPage || {};
+
+    // API data when the entry exists, otherwise the static local_data
+    const hero = apiData ? apiData.hero : local_data.hero;
+    const process = apiData ? results.placementProcess : local_data.placementProcess;
+    const documents = apiData ? results.documentSection : local_data.documentSection;
+    const dashboard = apiData ? results.PlacementSection : local_data.PlacementSection;
+    const report = apiData ? results.PlacementReport : local_data.PlacementReport;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
+            {hasContent(hero) && <InnerHero data={hero} />}
             <PlacementmenuBar className="lg:!hidden block" />
-            <PlacementProcess data={local_data.placementProcess} variant="whiteBg" />
-            <PlacementDocuments data={local_data.documentSection} />
-            <PlacementSections data={local_data.PlacementSection} />
-            <PlacementReport data={local_data.PlacementReport} /> 
+            {hasContent(process) && <PlacementProcess data={process} variant="whiteBg" />}
+            {hasContent(documents) && <PlacementDocuments data={documents} />}
+            {hasContent(dashboard) && <PlacementSections data={dashboard} />}
+            {hasContent(report) && <PlacementReport data={report} />}
         </>
     )
 }

@@ -10,6 +10,8 @@ import PlacementActivities from "@/components/sections/placements/Placement-Acti
 import CampusDrives from "@/components/sections/placements/placement-campusdrive";
 import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
 import ProfessionalCertification from "@/components/sections/placements/profeesional-section";
+import { getPlacementCareerPage } from "@/lib/api/placement";
+import { hasContent } from "@/lib/has-content";
 
 const local_data = {
     id: 24,
@@ -595,19 +597,39 @@ const local_data = {
 
 }
 
-export default function page() {
+export async function generateMetadata() {
+    const apiData = await getPlacementCareerPage();
+    return {
+        title: apiData?.seo?.metaTitle || local_data.seo.metaTitle,
+        description: apiData?.seo?.metaDescription || local_data.seo.metaDescription,
+    };
+}
+
+export default async function page() {
+    const apiData = await getPlacementCareerPage();
+    const career = apiData?.careerDevelopment || {};
+
+    // API data when the entry exists, otherwise the static local_data
+    const hero = apiData ? apiData.hero : local_data.hero;
+    const overview = apiData ? career.programOverviewSection : local_data.programOverviewSection;
+    const keyFocus = apiData ? career.KeyFocus : local_data.KeyFocus;
+    const careerGoal = apiData ? career.careerGoal : local_data.careerGoal;
+    const campusDrive = apiData ? career.campusDrive : local_data.campusDrive;
+    const professional = apiData ? career.professional : local_data.professional;
+    const partners = apiData ? career.partnersSection : local_data.partnersSection;
+    const journey = apiData ? career.careerJorney : local_data.careerJorney;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
+            {hasContent(hero) && <InnerHero data={hero} />}
             <PlacementmenuBar className="lg:!hidden block" />
-            <CareerPlacement data={local_data.programOverviewSection} />
-            <KeyFocus data={local_data.KeyFocus} />
-            <CareerGoal data={local_data.careerGoal} />
-            <CampusDrives data={local_data.campusDrive} />
-            <ProfessionalCertification data={local_data.professional} />
-            <CareerPartners data={local_data.partnersSection} />
-            <CareerJourney data={local_data.careerJorney} />
-
+            {hasContent(overview) && <CareerPlacement data={overview} />}
+            {hasContent(keyFocus) && <KeyFocus data={keyFocus} />}
+            {hasContent(careerGoal) && <CareerGoal data={careerGoal} />}
+            {hasContent(campusDrive) && <CampusDrives data={campusDrive} />}
+            {hasContent(professional) && <ProfessionalCertification data={professional} />}
+            {hasContent(partners) && <CareerPartners data={partners} />}
+            {hasContent(journey) && <CareerJourney data={journey} />}
         </>
     )
 }
