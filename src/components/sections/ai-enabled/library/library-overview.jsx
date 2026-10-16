@@ -76,7 +76,7 @@ export default function LibraryOverview({ data }) {
                                         <div className="cmn_Txt dark:text-white">
                                             {data?.membershipSection?.membershipTable.heading}
                                         </div>
-                                        <div className="text_1 dark:text-[#9CA3AF]">
+                                        <div className="text_1 font-medium text-[#212121] dark:text-[#9CA3AF]">
                                             {data?.membershipSection?.membershipTable.note}
                                         </div>
                                     </div>

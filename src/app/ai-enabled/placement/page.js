@@ -24,7 +24,7 @@ const local_data = {
             // if video - mime: "video/mp4",
             url: "/images/academic-banner.jpg",
         },
-        title: "School of Computer Applications",
+        title: "Placements",
         breadcrumb: [
             {
                 label: "Home",
@@ -35,15 +35,15 @@ const local_data = {
                 href: "/",
             },
             {
-                label: "Schools",
+                label: "School of Health Sciences",
                 href: "/",
             },
             {
-                label: "Computer Applications",
+                label: "College of Nursing Sciences",
                 href: "/",
             },
             {
-                label: "Placements Snapshot",
+                label: "Placements",
                 href: "/",
             },
         ],

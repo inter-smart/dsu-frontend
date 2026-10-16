@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import LibrarySidebar from "./library-sidemenubar"; 
-import Image from "next/image"; 
+import LibrarySidebar from "./library-sidemenubar";
+import Image from "next/image";
 
 export default function LibraryGallery({ data }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-      const isVideo = data?.gallery?.image?.mime?.includes("video");
+    const isVideo = data?.gallery?.image?.mime?.includes("video");
     return (
         <section className="relative py-[20px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
             <div className="container">
@@ -45,6 +45,14 @@ export default function LibraryGallery({ data }) {
                                         </div>
                                     </div>
                                 ))}
+                            </div>
+                            <div className="mt-3 sm:mt-4 lg:mt-4.5 2xl:mt-6.5 3xl:mt-7.5 flex items-center justify-center">
+                                <a
+                                    href={data?.loadMoreLink || "#!"}
+                                    className="text-base 2xl:text-lg 3xl:text-[18px] leading-normal font-medium text-[#F97316] transition-opacity duration-300 hover:opacity-70"
+                                >
+                                    Load More {" >>"}
+                                </a>
                             </div>
                         </div>
                     </div>

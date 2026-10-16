@@ -50,7 +50,7 @@ const local_data = {
     },
     OverviewSection: {
         eyebrow: "OVERVIEW",
-        heading: "About Basic B. Sc Nursing",
+        heading: "About <br /> Basic B. Sc Nursing",
         intro: [
             {
                 type: "paragraph",

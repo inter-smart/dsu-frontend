@@ -203,10 +203,10 @@ export default function LibraryServices({ data }) {
                                 >
                                     <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] font-semibold text-[#212121] dark:text-white mb-[15px] xl:mb-[25px]">{data?.nursingUsefulLinks.heading}</div>
                                     {data?.nursingUsefulLinks.links && (
-                                        <ul className="flex flex-wrap -mx-[8px]">
+                                        <ul className="flex flex-wrap -mx-[12px]">
                                             {data?.nursingUsefulLinks.links.map((item, id) => (
-                                                <li className="w-full md:w-1/2 px-[8px] " key={id}>
-                                                    <Link href={item.url} className="flex text_1 text_1  text-[#4A5565] break-all dark:text-[#9CA3AF] py-[8px] border-b border-black/10 dark:border-white/10 relative before:absolute before:content-[''] before:top-[18px] md:before:top-[15px] before:lg:top-[20px] before:left-0 before:w-[4px] before:h-[4px] before:rounded-full before:bg-[#4A5565] dark:before:bg-[#F97316] pl-[10px] lg:pl-[15px]" target="_blank" >
+                                                <li className="w-full md:w-1/2 px-[12px] " key={id}>
+                                                    <Link href={item.url} className="flex text_1 text-[#4A5565] break-all dark:text-[#9CA3AF] py-[8px] border-b border-black/10 dark:border-white/10 relative before:absolute before:content-[''] before:top-[18px] md:before:top-[15px] before:lg:top-[20px] before:left-0 before:w-[4px] before:h-[4px] before:rounded-full before:bg-[#4A5565] dark:before:bg-[#F97316] pl-[10px] lg:pl-[15px]" target="_blank" >
                                                         {item.url}
                                                     </Link>
                                                 </li>

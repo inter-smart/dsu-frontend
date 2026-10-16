@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 
-export default function BscDownloads({ data }) {
+export default function BscDownloads({ data, varient }) {
 
     return (
         <section className="relative py-[20px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
@@ -13,7 +13,7 @@ export default function BscDownloads({ data }) {
                     <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                         {data.description}
                     </div>
-                    <div className="flex flex-wrap">
+                    <div className={`flex flex-wrap ${varient==="Bsc-nursing" ? "lg:w-[85%]": "w-full"} `}>
                         {data?.files.map((item, id) => (
                             <div className="w-full lg:w-1/2">
                                 <Link

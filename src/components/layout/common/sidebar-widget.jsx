@@ -69,7 +69,7 @@ export default function SidebarWidget({
       label: "360° Virtual Tour",
       href: virtualTourLink,
       icon: "/images/icon-float-360.svg",
-      bgColor: "bg-[#007DC5]",
+      bgColor: "bg-[#007DC5]", 
       isExternal: true,
     },
   ];
@@ -77,7 +77,7 @@ export default function SidebarWidget({
   return (
     <aside
       aria-label="Floating Quick Actions"
-      className={`fixed right-2.5 sm:right-3.5 2xl:right-4 bottom-[12%] z-[999] flex flex-col items-end gap-2 xl:gap-2.5 3xl:gap-3.5 ${className}`}
+      className={`fixed right-2 bottom-[5%] lg:bottom-[10%] z-[999] flex flex-col items-center max-lg:justify-center gap-2 xl:gap-2.5 3xl:gap-3.5 ${className}`}
     >
       {/* 1. Apply Now + Brochure / Application Document */}
       <div className="relative flex items-center group">
@@ -92,7 +92,7 @@ export default function SidebarWidget({
         <Link
           href={applyLink}
           aria-label="Apply Now"
-          className="size-9 xl:size-10 3xl:size-12 rounded-full flex items-center justify-center bg-[#EA3829] shadow-[0px_4px_10px_rgba(0,0,0,0.2)] transition-all duration-300 hover:scale-110 active:scale-95 shrink-0"
+          className="size-9 xl:size-10 3xl:size-12 rounded-full flex items-center justify-center bg-gradient-to-r from-[#DC2626] to-[#F97316] shadow-[0px_4px_10px_rgba(0,0,0,0.2)] transition-all duration-300 hover:scale-110 active:scale-95 shrink-0"
         >
           <Image
             src="/images/icon-float-brochure.svg"
