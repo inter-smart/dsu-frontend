@@ -28,70 +28,64 @@ import {
 } from "@/components/ui/sheet";
 
 const local_data = {
-  topBar: {
-    topBarButtons: [
-      {
-        id: 1,
-        url: "#!",
-        label: "CDSIMER",
-      },
-      {
-        id: 2,
-        url: "#!",
-        label: "DSU Online",
-      },
-    ],
-    topBarLinkIcons: [
-      {
-        id: 1,
-        url: "#!",
-        label: "Virtual Tour",
-        icon: {
-          url: "/images/header-360-icon.svg",
-          alternativeText: "virtual Tour",
-        },
-      },
-      {
-        id: 2,
-        url: "#!",
-        label: "E-Brochure",
-        icon: {
-          url: "/images/header-brochure-icon.svg",
-          alternativeText: "E-Brochure",
-        },
-      },
-    ],
-  },
-  logo: {
-    mainlogo: {
-      link: "/",
-      url: "/images/dsu-logo.svg",
-      alt: "DSU Logo",
-    },
-    alternativelogo: {
-      link: "/",
-      url: "/images/header-logo-2.svg",
-      alt: "DSU Logo",
-    },
-    logoText: "India's AI-First <br> University",
-  },
-  actionLinks: [
-    {
-      id: 1,
-      url: "#!",
-      label: "NVIDIA's AI Architecture",
-    },
-    {
-      id: 2,
-      url: "#!",
-      label: "AI-First @ DSU",
-    },
-    {
-      id: 3,
-      url: "#!",
-      label: "Centres of Excellence",
-    },
-  ],
+  // topBar: {
+  //   topBarButtons: [
+  //     {
+  //       id: 1,
+  //       url: "#!",
+  //       label: "CDSIMER",
+  //     },
+  //     {
+  //       id: 2,
+  //       url: "#!",
+  //       label: "DSU Online",
+  //     },
+  //   ],
+  //   topBarLinkIcons: [
+  //     {
+  //       id: 1,
+  //       url: "#!",
+  //       label: "Virtual Tour",
+  //       isExternal: false,
+  //     },
+  //     {
+  //       id: 2,
+  //       url: "#!",
+  //       label: "E-Brochure",
+  //       isExternal: false,
+  //     },
+  //   ],
+  // },
+  // logo: {
+  //   mainlogo: {
+  //     link: "/",
+  //     url: "/images/dsu-logo.svg",
+  //     alt: "DSU Logo",
+  //   },
+  //   alternativelogo: {
+  //     link: "/",
+  //     url: "/images/header-logo-2.svg",
+  //     alt: "DSU Logo",
+  //   },
+  //   logoText: "India's AI-First <br> University",
+  // },
+  // actionLinks: [
+  //   {
+  //     id: 1,
+  //     url: "#!",
+  //     label: "NVIDIA's AI Architecture",
+  //   },
+  //   {
+  //     id: 2,
+  //     url: "#!",
+  //     label: "AI-First @ DSU",
+  //   },
+  //   {
+  //     id: 3,
+  //     url: "#!",
+  //     label: "Centres of Excellence",
+  //   },
+  // ],
   navigationLinks: [
     {
       id: 1,
@@ -220,132 +214,6 @@ const local_data = {
           id: 5,
           url: "#!",
           label: "Excellence & Quality Assurance",
-          children: [
-            {
-              id: 1,
-              label: "IQAC",
-              children: [
-                {
-                  id: 1,
-                  url: "#!",
-                  label: "IQAC",
-                },
-                {
-                  id: 2,
-                  url: "#!",
-                  label: "IQAC Committee",
-                },
-                {
-                  id: 3,
-                  url: "#!",
-                  label: "IQAC Activities",
-                },
-                {
-                  id: 4,
-                  url: "#!",
-                  label: "IQAC Composition",
-                },
-                {
-                  id: 5,
-                  url: "#!",
-                  label: "AQAR",
-                },
-                {
-                  id: 6,
-                  url: "#!",
-                  label: "AQAR Reports",
-                },
-                {
-                  id: 7,
-                  url: "#!",
-                  label: "Quality Initiatives",
-                },
-              ],
-            },
-            {
-              id: 2,
-              label: "Feedback",
-              children: [
-                {
-                  id: 1,
-                  url: "#!",
-                  label: "Student Feedback",
-                },
-                {
-                  id: 2,
-                  url: "#!",
-                  label: "Faculty Feedback",
-                },
-                {
-                  id: 3,
-                  url: "#!",
-                  label: "Alumni Feedback",
-                },
-                {
-                  id: 4,
-                  url: "#!",
-                  label: "Employer Feedback",
-                },
-                {
-                  id: 5,
-                  url: "#!",
-                  label: "Stakeholder Feedback",
-                },
-                {
-                  id: 6,
-                  url: "#!",
-                  label: "Feedback Analysis",
-                },
-                {
-                  id: 7,
-                  url: "#!",
-                  label: "Action Taken Reports",
-                },
-              ],
-            },
-            {
-              id: 3,
-              label: "Quality Process",
-              children: [
-                {
-                  id: 1,
-                  url: "#!",
-                  label: "Academic Audit",
-                },
-                {
-                  id: 2,
-                  url: "#!",
-                  label: "Administrative Audit",
-                },
-                {
-                  id: 3,
-                  url: "#!",
-                  label: "Best Practices",
-                },
-                {
-                  id: 4,
-                  url: "#!",
-                  label: "Institutional Distinctiveness",
-                },
-              ],
-            },
-            {
-              id: 4,
-              label: "AQAR",
-              children: [
-                {
-                  id: 1,
-                  url: "#!",
-                  label: "AQAR Reports",
-                },
-                {
-                  id: 2,
-                  url: "#!",
-                  label: "Quality",
-                },
-              ],
-            },
-          ],
         },
       ],
     },
@@ -476,6 +344,11 @@ const local_data = {
   ],
 };
 
+const TOP_BAR_ICONS = [
+  { src: "/images/header-360-icon.svg", alt: "Virtual Tour" },
+  { src: "/images/header-brochure-icon.svg", alt: "E-Brochure" },
+];
+
 export default function Header({ data = local_data }) {
   const [mobileOpenPath, setMobileOpenPath] = useState([]);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -569,7 +442,7 @@ export default function Header({ data = local_data }) {
             {data?.topBar?.topBarButtons?.map((item) => (
               <div key={item?.id} className="w-auto h-auto">
                 <Link
-                  href={item?.url}
+                  href={item?.url || "#"}
                   aria-label={item?.label}
                   className="text-[8px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full lg:h-auto p-2.5 sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
                 >
@@ -579,11 +452,15 @@ export default function Header({ data = local_data }) {
             ))}
           </div>
           <div className="w-auto h-auto lg:gap-2.5 3xl:gap-2.5 flex items-center">
-            {data?.topBar?.topBarLinkIcons?.map((item) => (
+            {data?.topBar?.topBarLinkIcons?.map((item, index) => (
               <div key={item?.id} className="w-auto h-auto">
                 <Link
-                  href={item?.url}
+                  href={item?.url || "#"}
                   aria-label={item?.label}
+                  {...(item?.isExternal && {
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })}
                   className={cn(
                     "transition-opacity duration-300 hover:opacity-70",
                     TopHeaderTextStyle,
@@ -592,11 +469,11 @@ export default function Header({ data = local_data }) {
                   <span className="w-[calc(100%-10px)] sm:w-[calc(100%-15px)]">
                     {item?.label}
                   </span>
-                  {item?.icon && (
+                  {TOP_BAR_ICONS[index] && (
                     <span className="w-2.5 sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center">
                       <Image
-                        src={item?.icon?.url}
-                        alt={item?.icon?.alternativeTxt || "Icon"}
+                        src={TOP_BAR_ICONS[index].src}
+                        alt={TOP_BAR_ICONS[index].alt}
                         width={20}
                         height={20}
                         className="w-full h-full object-contain"
@@ -635,7 +512,7 @@ export default function Header({ data = local_data }) {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-            <div className="w-auto h-auto px-1.25 sm:px-2.5 2xl:px-2.5 border-r border-white/20">
+            {/* <div className="w-auto h-auto px-1.25 sm:px-2.5 2xl:px-2.5 border-r border-white/20">
               <Select className="w-full h-auto">
                 <SelectTrigger
                   className={cn(
@@ -658,7 +535,7 @@ export default function Header({ data = local_data }) {
                   </SelectGroup>
                 </SelectContent>
               </Select>
-            </div>
+            </div> */}
             <div className="w-auto h-auto flex">
               <ThemeToggle />
             </div>
@@ -670,38 +547,57 @@ export default function Header({ data = local_data }) {
           <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex flex-wrap items-center">
             <div className="w-full lg:w-[45%] max-lg:mb-6.25">
               <div className="w-full h-auto -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 flex items-center">
-                <div className="w-auto h-auto">
-                  <Link
-                    href={data?.logo?.mainlogo?.link}
-                    aria-label={data?.logo?.mainlogo?.alternativeTxt}
-                    className="w-40 2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-105"
-                  >
-                    <Image
-                      src={data?.logo?.mainlogo?.url}
-                      alt={data?.logo?.mainlogo?.alternativeTxt || "Logo"}
-                      width={110}
-                      height={80}
-                      className="w-full h-full object-contain"
-                    />
-                  </Link>
-                </div>
-                <div className="w-auto h-auto">
-                  <Link
-                    href={data?.logo?.alternativelogo?.link}
-                    aria-label={data?.logo?.alternativelogo?.alternativeTxt}
-                    className="w-18.75 2xl:w-22.5 3xl:w-27.5 h-auto aspect-110/50 overflow-hidden flex items-center justify-center"
-                  >
-                    <Image
-                      src={data?.logo?.alternativelogo?.url}
-                      alt={
-                        data?.logo?.alternativelogo?.alternativeTxt || "Logo"
-                      }
-                      width={110}
-                      height={80}
-                      className="w-full h-full object-contain"
-                    />
-                  </Link>
-                </div>
+                {data?.logo?.mainlogo?.url && (
+                  <div className="w-auto h-auto">
+                    <Link
+                      href={data?.logo?.mainlogo?.link || "/"}
+                      {...(data?.logo?.mainlogo?.isExternal && {
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                      })}
+                      aria-label={data?.logo?.mainlogo?.alternativeTxt}
+                      className="w-40 2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-105"
+                    >
+                     {data?.logo?.mainlogo?.url &&
+                      <Image
+                        src={data?.logo?.mainlogo?.url}
+                        alt={
+                          data?.logo?.mainlogo?.alternativeTxt ||
+                          data?.logo?.mainlogo?.alt ||
+                          "Logo"
+                        }
+                        width={110}
+                        height={80}
+                        className="w-full h-full object-contain"
+                      />
+                     }
+                      </Link>
+                  </div>
+                )}
+
+                {data?.logo?.alternativelogo?.url && (
+                  <div className="w-auto h-auto">
+                    <Link
+                      href={data?.logo?.alternativelogo?.link || "/"}
+                      {...(data?.logo?.alternativelogo?.isExternal && {
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                      })}
+                      aria-label={data?.logo?.alternativelogo?.alternativeTxt}
+                      className="w-18.75 2xl:w-22.5 3xl:w-27.5 h-auto aspect-110/50 overflow-hidden flex items-center justify-center"
+                    >
+                      <Image
+                        src={data?.logo?.alternativelogo?.url}
+                        alt={
+                          data?.logo?.alternativelogo?.alternativeTxt || "Logo"
+                        }
+                        width={110}
+                        height={80}
+                        className="w-full h-full object-contain"
+                      />
+                    </Link>
+                  </div>
+                )}
                 <div className="w-auto h-auto">
                   <div
                     className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white"
@@ -720,7 +616,7 @@ export default function Header({ data = local_data }) {
                     className="w-auto h-auto px-[2.5px] max-lg:flex-1"
                   >
                     <Link
-                      href={item?.url}
+                      href={item?.url || "#"}
                       aria-label={item?.label}
                       className="text-[10px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-5 border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
                     >
@@ -811,7 +707,9 @@ export default function Header({ data = local_data }) {
                               href="#!"
                               className="flex items-center gap-1 hover:text-(--basecolor)"
                             >
-                              <span className="dark:text-white">Virtual Tour</span>
+                              <span className="dark:text-white">
+                                Virtual Tour
+                              </span>
                               <Image
                                 src="/images/header-360-icon-black.svg"
                                 alt="Tour"
@@ -1151,6 +1049,8 @@ function MegaMenuPanel({
             </nav>
 
             {/* ─── Cream right panel ─── */}
+            {activeChild?.children?.length > 0 && (
+
             <div className="flex-1 min-w-0 bg-[#FFF7EC] py-5 2xl:py-6 3xl:py-8 px-6 2xl:px-8 3xl:px-17.5">
               {hasColumnGroups ? (
                 <div className="w-full h-auto grid grid-cols-3 gap-x-6 2xl:gap-x-8 gap-y-6">
@@ -1223,6 +1123,7 @@ function MegaMenuPanel({
                 </Link>
               )}
             </div>
+            )}
           </div>
         </div>
       </div>
@@ -1367,24 +1268,24 @@ function NavigationMenu({
               "text-[14px] transition-colors duration-200",
               level === 0
                 ? cn(
-                  "text-sm sm:text-[16px] font-medium",
-                  isOpen
-                    ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit font-bold"
-                    : "text-[#212121] dark:text-white",
-                )
-                : level === 1
-                  ? cn(
-                    "font-medium",
+                    "text-sm sm:text-[16px] font-medium",
                     isOpen
                       ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit font-bold"
-                      : "text-[#212121] dark:text-white hover:text-(--basecolor)",
+                      : "text-[#212121] dark:text-white",
                   )
+                : level === 1
+                  ? cn(
+                      "font-medium",
+                      isOpen
+                        ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit font-bold"
+                        : "text-[#212121] dark:text-white hover:text-(--basecolor)",
+                    )
                   : cn(
-                    "font-bold",
-                    isOpen
-                      ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit"
-                      : "text-(--basecolor) hover:opacity-80",
-                  ),
+                      "font-bold",
+                      isOpen
+                        ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit"
+                        : "text-(--basecolor) hover:opacity-80",
+                    ),
             )}
           >
             {item?.label}
@@ -1473,7 +1374,7 @@ function NavigationMenu({
         <div className="w-full h-auto flex items-center justify-center gap-1.25">
           {item?.url ? (
             <Link
-              href={item.url}
+              href={item?.url || "#"}
               aria-label={item.label}
               className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium text-white transition-colors duration-400"
             >
@@ -1950,7 +1851,7 @@ function NavigationMenu({
 //                   >
 //                     <Image
 //                       src={data?.logo?.mainlogo?.url}
-//                       alt={data?.logo?.mainlogo?.alternativeTxt || "Logo"}
+//                       alt={data?.logo?.mainlogo?.alternativeTxt || data?.logo?.mainlogo?.alt || "Logo"}
 //                       width={110}
 //                       height={80}
 //                       className="w-full h-full object-contain"

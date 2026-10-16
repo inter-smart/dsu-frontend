@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import SmoothScrollProvider from "@/components/providers/smooth-scroll-provider";
+import { getHeader, getFooter } from "@/lib/api/layout";
 
 const roboto = Roboto({
   variable: "--font-sans",
@@ -21,7 +22,9 @@ export const metadata = {
   description: "Dayananda Sagar University description.",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const [header, footer] = await Promise.all([getHeader(), getFooter()]);
+
   return (
     <html
       lang="en"
@@ -36,9 +39,9 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange
         >
           <SmoothScrollProvider>
-            <Header />
+            <Header data={header ?? undefined} />
             <main className="flex-1">{children}</main>
-            <Footer />
+            <Footer data={footer ?? undefined} />
           </SmoothScrollProvider>
         </ThemeProvider>
       </body>

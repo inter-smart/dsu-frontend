@@ -11,6 +11,8 @@ import AcademicProgram from "@/components/sections/academics/academic-program";
 import AcademicContact from "@/components/sections/academics/academic-contact";
 import AcademicNews from "@/components/sections/academics/academic-news";
 import AcademicInfrastructure from "@/components/sections/academics/academic-infrastructure";
+import { mergeData } from "@/lib/utils";
+import { getSchoolBySlug } from "@/lib/api";
 
 
 
@@ -664,21 +666,27 @@ const local_data = {
 
 }
 
-export default function Page() {
+export default async function Page({params}) {
+    const { slug } = await params;
+    const pageData = await getSchoolBySlug(slug);
+    const data = mergeData(pageData, local_data);
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
-            <AcademicMenubar className="md:!hidden block" />
-            <AcademicHomeOverview data={local_data.programOverviewSection} />
-            <AcademicVisionMission data={local_data.visionMissionSection} />
-            <DeanMessage data={local_data.messageFromDean} varient="home" />
-            <AcademicWhychoose data={local_data.whyChooseThisSchool} />
-            <AcademicProgram data={local_data.computerApplicationsPrograms} />
-            <AcademicCollaboration data={local_data.industryCollaborationsSection} varient="home" />
-            <AcademicPartners data={local_data.partnersSection} varient="home" />
-            <AcademicInfrastructure data={local_data.modernSpacesSection} />
-            <AcademicNews data={local_data.newsEvents} />
-            <AcademicContact data={local_data.contact} />
+            <InnerHero data={{ ...data.hero, slug, hasDepartments: pageData?.hasDepartments, menuBar: true }} />
+            <AcademicMenubar className="md:!hidden block" slug={slug} hasDepartments={pageData?.hasDepartments} />
+            <AcademicHomeOverview data={data.programOverviewSection} />
+            <div id="vision-mission" className="scroll-mt-[100px]">
+                <AcademicVisionMission data={data.visionMissionSection} />
+            </div>
+            {/* <DeanMessage data={data.messageFromDean} varient="home" /> */}
+        {/* <AcademicWhychoose data={data.whyChooseThisSchool} /> */}
+            {/* <AcademicProgram data={local_data.computerApplicationsPrograms} /> */}
+            {/* <AcademicCollaboration data={local_data.industryCollaborationsSection} varient="home" /> */}
+            {/* <AcademicPartners data={local_data.partnersSection} varient="home" /> */}
+            {/* <AcademicInfrastructure data={local_data.modernSpacesSection} /> */}
+            {/* <AcademicNews data={local_data.newsEvents} /> */}
+            {/* <AcademicContact data={local_data.contact} />  */}
         </>
     )
 }

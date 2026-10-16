@@ -2,28 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   async redirects() {
-    return [
-      {
-        source: "/regulatory-approval/academic-council",
-        destination: "/regulatory-approval/ugc-2f",
-        permanent: true,
-      },
-      {
-        source: "/regulatory-approval/board-of-studies",
-        destination: "/regulatory-approval/aicte-approval",
-        permanent: true,
-      },
-      {
-        source: "/professional-accredition",
-        destination: "/accreditions/accredition",
-        permanent: true,
-      },
-      {
-        source: "/NAAC",
-        destination: "/accreditions/naac",
-        permanent: true,
-      },
-    ];
+    return [];
   },
   async rewrites() {
     const defaultStrapiUrl =

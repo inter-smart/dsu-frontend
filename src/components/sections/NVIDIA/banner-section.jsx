@@ -31,7 +31,7 @@ export default function BannerSection({ data }) {
                     <div className="w-auto lg:max-w-[420px] xl:max-w-[515px] 2xl:max-w-[605px] 3xl:max-w-[780px]">
                         <div className="flex items-center gap-[10px] mb-[5px]">
                             <span className="text-[16px] text-white font-bold ">Powered by :</span>
-                            <Image src={data?.poweredBy?.logo?.url} width={95} height={75} alt={data?.powerBy?.logo?.alternativeText} />
+                            {data?.poweredBy?.logo?.url && <Image src={data.poweredBy.logo.url} width={95} height={75} alt={data.poweredBy.logo.alternativeText || "logo"} />}
                         </div>
                         <div className="text-[20px] md:text-[26px] lg:text-[32px] xl:text-[41px] 2xl:text-[48px] 3xl:text-[60px] text-white font-bold mb-[8px] leading-tight">
                             {data?.heading}
@@ -42,8 +42,8 @@ export default function BannerSection({ data }) {
                     </div>
                     <div className="w-auto">
                         <div className="flex items-center gap-[10px] 2xl:gap-[15px] 3xl:gap-[20px] mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]">
-                            {data?.stats.map((item) => (
-                                <div className="w-auto h-full ">
+                            {data?.stats?.map((item, i) => (
+                                <div key={i} className="w-auto h-full ">
                                     <div className="w-full h-full text-center min-w-[75px] xl:min-w-[75px] 2xl:min-w-[85px] 3xl:min-w-[95px] bg-transparent backdrop-blur-lg border border-[rgba(255,255,255,0.2)] rounded-[10px] p-[12px] xl:p-[14px] 2xl:p-[15px] 3xl:p-[15px_20px]">
                                         <div className="text-[13px] lg:text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[25px] text-white font-bold">
                                             {item.value}
@@ -55,11 +55,11 @@ export default function BannerSection({ data }) {
                         </div>
 
                         <Link
-                            href={data?.cta.url}
+                            href={data?.cta?.url || "#"}
                             className="group relative lg:ml-auto flex h-[30px] w-fit min-w-[160px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px] xl:min-w-[155px] 2xl:h-[40px] 2xl:min-w-[185px] 2xl:gap-[20px] 2xl:rounded-[4px] 3xl:h-[50px] 3xl:min-w-[230px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                         >
                             <span className="relative z-[1] transition-transform duration-300 group-hover:translate-x-[-2px]">
-                                {data?.cta.text}
+                                {data?.cta?.text}
                             </span>
 
                             <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
