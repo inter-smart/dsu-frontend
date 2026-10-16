@@ -12,6 +12,7 @@ import DirectorMessage from "@/components/sections/placements/directors-message"
 import AdmissionEntrance from "@/components/sections/admission/admission-entrance";
 import TeamSection from "@/components/sections/placements/Team-section";
 import PlacementExcellence from "@/components/sections/placements/placement-excellence";
+import { getPlacementAboutPage } from "@/lib/api/placement";
 
 const local_data = {
     id: 24,
@@ -579,21 +580,42 @@ const local_data = {
     },
 }
 
-export default function page() {
+export async function generateMetadata() {
+    const apiData = await getPlacementAboutPage();
+    return {
+        title: apiData?.seo?.metaTitle || local_data.seo.metaTitle,
+        description: apiData?.seo?.metaDescription || local_data.seo.metaDescription,
+    };
+}
+
+export default async function page() {
+    const apiData = await getPlacementAboutPage();
+    const about = apiData?.aboutPlacementCell || {};
+
+    // API data when the entry exists, otherwise the static local_data
+    const hero = apiData ? apiData.hero : local_data.hero;
+    const overview = apiData ? about.programOverviewSection : local_data.programOverviewSection;
+    const missionVision = apiData ? about.missionVisionSection : local_data.missionVisionSection;
+    const announcements = apiData ? about.announcemntSection : local_data.announcemntSection;
+    const director = apiData ? about.chairmanMessage : local_data.chairmanMessage;
+    const team = apiData ? about.placementTeam : local_data.placementTeam;
+    const cil = apiData ? about.CILSection : local_data.CILSection;
+    const contact = apiData ? about.placemntContact : local_data.placemntContact;
+    const recruiters = apiData ? about.recruterSection : local_data.recruterSection;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
+            {hero && <InnerHero data={hero} />}
             <PlacementmenuBar className="lg:!hidden block" />
-            <PlacementOverview data={local_data.programOverviewSection} />
-            <AiVisionMission data={local_data.missionVisionSection} />
-            <Announcement data={local_data.announcemntSection} />
-            <DirectorMessage data={local_data.chairmanMessage} /> 
-            <TeamSection data={local_data.placementTeam} />
-            <CILsection data={local_data.CILSection} />
-            <PlacementContact data={local_data.placemntContact} />
-            <Recruiters data={local_data.recruterSection} />
+            {overview && <PlacementOverview data={overview} />}
+            {missionVision && <AiVisionMission data={missionVision} />}
+            {announcements && <Announcement data={announcements} />}
+            {director && <DirectorMessage data={director} />}
+            {team && <TeamSection data={team} />}
+            {cil && <CILsection data={cil} />}
+            {contact && <PlacementContact data={contact} />}
+            {recruiters && <Recruiters data={recruiters} />}
             <PlacementExcellence />
-
         </>
     )
 }
