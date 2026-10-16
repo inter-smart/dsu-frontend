@@ -10,6 +10,7 @@ import WhysetupSection from "@/components/sections/NVIDIA/Whysetup-Section"
 import GatewaySection from "@/components/sections/NVIDIA/gateway-section"
 import MasterAi from "@/components/sections/NVIDIA/MasterAi"
 import { getNvidiaPage } from "@/lib/api"
+import { mergeData } from "@/lib/utils"
 
 
 const local_data = {
@@ -929,16 +930,6 @@ const local_data = {
 }
 const DEFAULT_TITLE = "NVIDIA AI Centre of Excellence | Dayananda Sagar University";
 
-// CMS data wins; any section the CMS returns as empty/null falls back to local_data
-function mergeData(cms) {
-    const merged = { ...local_data };
-    if (!cms || typeof cms !== "object") return merged;
-    Object.keys(local_data).forEach((key) => {
-        const value = cms[key];
-        if (value !== null && value !== undefined) merged[key] = value;
-    });
-    return merged;
-}
 
 export async function generateMetadata() {
     const pageData = await getNvidiaPage();
@@ -953,7 +944,7 @@ export async function generateMetadata() {
 
 export default async function Page() {
     const pageData = await getNvidiaPage();
-    const data = mergeData(pageData);
+    const data = mergeData(pageData, local_data);
 
     return (
         <>

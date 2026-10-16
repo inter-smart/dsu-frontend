@@ -36,17 +36,18 @@ export default function AcademicFacultyAchievements({ data }) {
     const filteredAchievements = useMemo(() => {
         if (!data?.achievements) return [];
 
-        // If Student Achievements tab is active and data belongs to Faculty, return empty array
-        if (activeTab && activeTab.label.toLowerCase().includes("student")) {
-            return [];
-        }
+        // Student tab shows items marked category "student", the other tab everything else
+        const studentTab = activeTab && activeTab.label.toLowerCase().includes("student");
+        const pool = data.achievements.filter((item) =>
+            studentTab ? item.category === "student" : item.category !== "student"
+        );
 
-        if (!selectedFilter) return data.achievements;
+        if (!selectedFilter) return pool;
 
         const filterLabel = selectedFilter.label.toLowerCase();
         const tokens = filterLabel.split(" ");
 
-        return data.achievements.filter((item) => {
+        return pool.filter((item) => {
             if (!item.date) return false;
             const dateStr = item.date.toLowerCase();
             return tokens.every((token) => {

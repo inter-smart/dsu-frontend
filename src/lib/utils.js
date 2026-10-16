@@ -77,3 +77,13 @@ export const renderHTML = (html) => {
 };
 
 
+
+export function mergeData(cms, local_data) {
+    const merged = { ...local_data };
+    if (!cms || typeof cms !== "object") return merged;
+    Object.keys(local_data).forEach((key) => {
+        const value = cms[key];
+        if (value !== null && value !== undefined) merged[key] = value;
+    });
+    return merged;
+}
