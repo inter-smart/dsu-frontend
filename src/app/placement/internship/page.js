@@ -1,17 +1,12 @@
 import InnerHero from "@/components/layout/common/InnerHero";
-import AcademicAchievements from "@/components/sections/academics/academic-achievements";
-import PlacementSections from "@/components/sections/academics/PlacementDashboard";
-import PlacementDashboard from "@/components/sections/academics/PlacementDashboard";
 import CorporateConnect from "@/components/sections/placements/corporate-connect";
 import IndustryProjects from "@/components/sections/placements/IndustryProjects";
 import InternshipOpportunities from "@/components/sections/placements/Intership-Opertunities";
 import InternshipPartners from "@/components/sections/placements/Placement-Partners";
-import PlacementProcess from "@/components/sections/placements/placement-process";
-import PlacementReport from "@/components/sections/placements/Placement-report";
-import PlacementDocuments from "@/components/sections/placements/PlacementDocuments";
 import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import SchoolPlacement from "@/components/sections/placements/School-placement";
 import StudentSuccessStories from "@/components/sections/placements/student-success-stories";
+import { getPlacementInternshipPage } from "@/lib/api/placement";
+import { hasContent } from "@/lib/has-content";
 
 const local_data = {
     id: 24,
@@ -303,16 +298,36 @@ const local_data = {
         ],
     }
 }
-export default function page() {
+
+export async function generateMetadata() {
+    const apiData = await getPlacementInternshipPage();
+    return {
+        title: apiData?.seo?.metaTitle || local_data.seo.metaTitle,
+        description: apiData?.seo?.metaDescription || local_data.seo.metaDescription,
+    };
+}
+
+export default async function page() {
+    const apiData = await getPlacementInternshipPage();
+    const internship = apiData?.internshipPage || {};
+
+    // API data when the entry exists, otherwise the static local_data
+    const hero = apiData ? apiData.hero : local_data.hero;
+    const overview = apiData ? internship.programOverviewSection : local_data.programOverviewSection;
+    const opportunities = apiData ? internship.intershipOpertunities : local_data.intershipOpertunities;
+    const partners = apiData ? internship.internshipPartners : local_data.internshipPartners;
+    const projects = apiData ? internship.industryProjects : local_data.industryProjects;
+    const stories = apiData ? internship.successStoriesSection : local_data.successStoriesSection;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
+            {hasContent(hero) && <InnerHero data={hero} />}
             <PlacementmenuBar className="lg:!hidden block" />
-            <CorporateConnect data={local_data.programOverviewSection} />
-            <InternshipOpportunities data={local_data.intershipOpertunities} />
-            <InternshipPartners data={local_data.internshipPartners} />
-            <IndustryProjects data={local_data.industryProjects} />
-            <StudentSuccessStories data={local_data.successStoriesSection} />
+            {hasContent(overview) && <CorporateConnect data={overview} />}
+            {hasContent(opportunities) && <InternshipOpportunities data={opportunities} />}
+            {hasContent(partners) && <InternshipPartners data={partners} />}
+            {hasContent(projects) && <IndustryProjects data={projects} />}
+            {hasContent(stories) && <StudentSuccessStories data={stories} />}
         </>
     )
 }
