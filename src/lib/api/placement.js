@@ -32,3 +32,10 @@ export async function getPlacementResultsPage() {
   const entry = (entries || []).find((e) => e.template === "placement-page");
   return entry?.slug ? getPlacementBySlug(entry.slug) : null;
 }
+
+// The "internship" entry (the /placement/internship page)
+export async function getPlacementInternshipPage() {
+  const entries = await getPlacements();
+  const entry = (entries || []).find((e) => e.template === "internship");
+  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+}
