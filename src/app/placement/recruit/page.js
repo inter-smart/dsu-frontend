@@ -6,6 +6,8 @@ import CampusFacility from "@/components/sections/placements/campus-facility";
 import PlacementTeam from "@/components/sections/placements/placement-team";
 import RecruiteDsu from "@/components/sections/placements/recruteDsu";
 import PlacementDocuments from "@/components/sections/placements/PlacementDocuments";
+import { getPlacementRecruitPage } from "@/lib/api/placement";
+import { hasContent } from "@/lib/has-content";
 
 const local_data = {
     id: 24,
@@ -331,17 +333,29 @@ const local_data = {
     },
 }
 
-export default function page() {
+export default async function page() {
+    const apiData = await getPlacementRecruitPage();
+    const recruit = apiData?.recruitPage || {};
+
+    // API data when the entry exists, otherwise the static local_data
+    const hero = apiData ? apiData.hero : local_data.hero;
+    const overview = apiData ? recruit.programOverviewSection : local_data.programOverviewSection;
+    const process = apiData ? recruit.placementProcess : local_data.placementProcess;
+    const campus = apiData ? recruit.campusSection : local_data.campusSection;
+    const documents = apiData ? recruit.documentSection : local_data.documentSection;
+    const team = apiData ? recruit.placementTeam : local_data.placementTeam;
+    const enquiry = apiData ? recruit.recruiteSection : local_data.recruiteSection;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
+            {hasContent(hero) && <InnerHero data={hero} />}
             <PlacementmenuBar className="lg:!hidden block" />
-            <CorporateConnect data={local_data.programOverviewSection} />
-            <PlacementProcess data={local_data.placementProcess} variant="corporate" />
-            <CampusFacility data={local_data.campusSection} />
-            <PlacementDocuments data={local_data.documentSection} />
-            <PlacementTeam data={local_data.placementTeam} />
-            <RecruiteDsu data={local_data.recruiteSection} />
+            {hasContent(overview) && <CorporateConnect data={overview} />}
+            {hasContent(process) && <PlacementProcess data={process} variant="corporate" />}
+            {hasContent(campus) && <CampusFacility data={campus} />}
+            {hasContent(documents) && <PlacementDocuments data={documents} />}
+            {hasContent(team) && <PlacementTeam data={team} />}
+            {hasContent(enquiry) && <RecruiteDsu data={enquiry} />}
         </>
     )
 }
