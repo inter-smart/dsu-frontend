@@ -4,6 +4,8 @@ import PlacementExcellence from "@/components/sections/placements/placement-exce
 import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
 import StudentSuccess from "@/components/sections/placements/student-success";
 import StudentSuccessStories from "@/components/sections/placements/student-success-stories";
+import { getPlacementStudentSuccessPage } from "@/lib/api/placement";
+import { hasContent } from "@/lib/has-content";
 
 const local_data = {
   seo: {
@@ -395,20 +397,33 @@ const local_data = {
   },
 };
 
-export const metadata = {
-  title: local_data.seo.metaTitle,
-  description: local_data.seo.metaDescription,
-};
+export async function generateMetadata() {
+  const apiData = await getPlacementStudentSuccessPage();
+  return {
+    title: apiData?.seo?.metaTitle || local_data.seo.metaTitle,
+    description: apiData?.seo?.metaDescription || local_data.seo.metaDescription,
+  };
+}
 
-export default function page() {
+export default async function page() {
+  const apiData = await getPlacementStudentSuccessPage();
+  const success = apiData?.studentSuccessPage || {};
+
+  // API data when the entry exists, otherwise the static local_data
+  const hero = apiData ? apiData.hero : local_data.hero;
+  const studentSuccess = apiData ? success.studentSuccess : local_data.studentSuccess;
+  const alumniWorld = apiData ? success.alumniWorld : local_data.alumniWorld;
+  const excellence = apiData ? success.excellence : local_data.excellence;
+  const stories = apiData ? success.successStoriesSection : local_data.successStoriesSection;
+
   return (
     <>
-      <InnerHero data={local_data.hero} />
+      {hasContent(hero) && <InnerHero data={hero} />}
       <PlacementmenuBar className="lg:hidden! block" />
-      <StudentSuccess data={local_data?.studentSuccess} />
-      <AlumniWorld data={local_data?.alumniWorld} />
-      <PlacementExcellence data={local_data.excellence} />
-      <StudentSuccessStories data={local_data.successStoriesSection} variant="bg-gradient"/>
+      {hasContent(studentSuccess) && <StudentSuccess data={studentSuccess} />}
+      {hasContent(alumniWorld) && <AlumniWorld data={alumniWorld} />}
+      {hasContent(excellence) && <PlacementExcellence data={excellence} />}
+      {hasContent(stories) && <StudentSuccessStories data={stories} variant="bg-gradient" />}
     </>
   );
 }

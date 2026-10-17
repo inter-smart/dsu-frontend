@@ -5,6 +5,8 @@ import IndustryPartnerships from "@/components/sections/placements/industry-part
 import IndustryEngagement from "@/components/sections/placements/industry-engagement";
 import RecruiterTestimonials from "@/components/sections/placements/recruiter-testimonials";
 import RecruitmentGallery from "@/components/sections/placements/recruitment-gallery";
+import { getPlacementRecruitersIndustryPage } from "@/lib/api/placement";
+import { hasContent } from "@/lib/has-content";
 
 const IMG = "/images/recruiters-industry";
 
@@ -312,24 +314,38 @@ const local_data = {
   },
 };
 
-export const metadata = {
-  title: local_data.seo.metaTitle,
-  description: local_data.seo.metaDescription,
-};
+export async function generateMetadata() {
+  const apiData = await getPlacementRecruitersIndustryPage();
+  return {
+    title: apiData?.seo?.metaTitle || local_data.seo.metaTitle,
+    description:
+      apiData?.seo?.metaDescription || local_data.seo.metaDescription,
+  };
+}
 
-export default function page() {
+export default async function page() {
+  const apiData = await getPlacementRecruitersIndustryPage();
+  const ri = apiData?.recruitersIndustryPage || {};
+
+  // API data when the entry exists, otherwise the static local_data
+  const hero = apiData ? apiData.hero : local_data.hero;
+  const recruiters = apiData ? ri.recruitersSection : local_data.recruitersSection;
+  const partnerships = apiData ? ri.partnershipsSection : local_data.partnershipsSection;
+  const engagement = apiData ? ri.engagementSection : local_data.engagementSection;
+  const testimonials = apiData ? ri.testimonialsSection : local_data.testimonialsSection;
+  const gallery = apiData ? ri.gallerySection : local_data.gallerySection;
+
   return (
     <>
-      <InnerHero data={local_data.hero} />
+      {hasContent(hero) && <InnerHero data={hero} />}
       <PlacementmenuBar className="lg:!hidden block" />
-      <Recruiters
-        data={local_data.recruitersSection}
-        className="[--recruiters-bg:#fff]"
-      />
-      <IndustryPartnerships data={local_data.partnershipsSection} />
-      <IndustryEngagement data={local_data.engagementSection} />
-      <RecruiterTestimonials data={local_data.testimonialsSection} />
-      <RecruitmentGallery data={local_data.gallerySection} />
+      {hasContent(recruiters) && (
+        <Recruiters data={recruiters} className="[--recruiters-bg:#fff]" />
+      )}
+      {hasContent(partnerships) && <IndustryPartnerships data={partnerships} />}
+      {hasContent(engagement) && <IndustryEngagement data={engagement} />}
+      {hasContent(testimonials) && <RecruiterTestimonials data={testimonials} />}
+      {hasContent(gallery) && <RecruitmentGallery data={gallery} />}
     </>
   );
 }

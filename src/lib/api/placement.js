@@ -39,3 +39,31 @@ export async function getPlacementInternshipPage() {
   const entry = (entries || []).find((e) => e.template === "internship");
   return entry?.slug ? getPlacementBySlug(entry.slug) : null;
 }
+
+// The "student-success" entry (the /placement/student-success page)
+export async function getPlacementStudentSuccessPage() {
+  const entries = await getPlacements();
+  const entry = (entries || []).find((e) => e.template === "student-success");
+  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+}
+
+// The "recruiters-industry" entry (the /placement/recruiters-industry page)
+export async function getPlacementRecruitersIndustryPage() {
+  const entries = await getPlacements();
+  const entry = (entries || []).find((e) => e.template === "recruiters-industry");
+  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+}
+
+// The "recruit" entry (the /placement/recruit page)
+export async function getPlacementRecruitPage() {
+  const entries = await getPlacements();
+  const entry = (entries || []).find((e) => e.template === "recruit");
+  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+}
+
+// The "placement-contact" entry (the /placement/placement-contact page)
+export async function getPlacementContactPage() {
+  const entries = await getPlacements();
+  const entry = (entries || []).find((e) => e.template === "placement-contact");
+  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+}
