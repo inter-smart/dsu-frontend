@@ -62,6 +62,7 @@ export default function AcademicContact({ data, schoolSlug }) {
                         state: formData.state,
                         message: formData.message,
                         schoolSlug: schoolSlug || data?.schoolSlug || "",
+                        websiteUrl: window.location.href,
                         website: honeypot,
                     },
                 }),

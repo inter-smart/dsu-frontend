@@ -15,7 +15,7 @@ import AcademicPlacementReport from "@/components/sections/academics/academic-pl
 import AcademicAchievements from "@/components/sections/academics/academic-achievements";
 import AcademicFacultyAchievements from "@/components/sections/academics/academic-faculty-achievements";
 import { SchoolDepartments } from "@/components/sections/academics/school-directory";
-import { getSchoolBySlug } from "@/lib/api";
+import { getSchoolTab } from "@/lib/api";
 import { getSchoolTabs } from "@/lib/schools/tabs";
 
 // tab key -> sections rendered for it (same components the old static pages used)
@@ -23,7 +23,7 @@ const TAB_SECTIONS = {
   overview: (d) => (
     <>
       <AcademicOverview data={d.programOverviewSection} />
-      <AcademicContact data={d.overviewContact ?? d.contact} schoolSlug={d.slug} />
+      <AcademicContact data={d.contact} schoolSlug={d.slug} />
     </>
   ),
   "dean-message": (d) => <DeanMessage data={d.messageFromDean} />,
@@ -71,20 +71,20 @@ const TAB_SECTIONS = {
   contact: (d) => <AcademicContact data={d.contact} schoolSlug={d.slug} />,
 };
 
-async function loadSchool(slug) {
-  const school = await getSchoolBySlug(slug);
+async function loadSchool(slug, tab) {
+  const school = await getSchoolTab(slug, tab);
   return school?.slug ? school : null;
 }
 
 export async function generateMetadata({ params }) {
-  const { slug } = await params;
-  const school = await loadSchool(slug);
+  const { slug, tab } = await params;
+  const school = await loadSchool(slug, tab);
   return school?.seo ? { title: school.seo.metaTitle, description: school.seo.metaDescription } : {};
 }
 
 export default async function Page({ params }) {
   const { slug, tab } = await params;
-  const school = await loadSchool(slug);
+  const school = await loadSchool(slug, tab);
   if (!school) notFound();
 
   const tabs = getSchoolTabs(school.hasDepartments);
@@ -101,7 +101,7 @@ export default async function Page({ params }) {
         slug={slug}
         hasDepartments={school.hasDepartments}
       />
-      {render(school)}
+      {render({ ...school.tab, slug: school.slug })}
     </>
   );
 }

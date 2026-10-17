@@ -3,7 +3,7 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import AcademicMenubar from "@/components/sections/academics/academicMenubar"; 
 import AcademicOverview from "@/components/sections/academics/academic-overview";
 import AcademicContact from "@/components/sections/academics/academic-contact";
-import { getSchoolBySlug } from "@/lib/api";
+import { getSchoolTab } from "@/lib/api";
 import { mergeData } from "@/lib/utils";
 
 
@@ -170,22 +170,21 @@ const local_data = {
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
-    const school = await getSchoolBySlug(slug);
+    const school = await getSchoolTab(slug, "overview");
     return school?.seo ? { title: school.seo.metaTitle, description: school.seo.metaDescription } : {};
 }
 
 export default async function Page({ params }) {
     const { slug } = await params;
-    const pageData = await getSchoolBySlug(slug);
-    if (!pageData?.slug) notFound();
+    const school = await getSchoolTab(slug, "overview");
+    if (!school?.slug) notFound();
+    const pageData = { ...school, ...school.tab };
 
-    console.log("pageData", pageData);
-    
     // hero/seo/contact come from the school and its tabs; local_data fills anything missing
     const data = mergeData(pageData, local_data);
     // sections merge field by field so a partly filled Strapi section keeps its local_data fallback
     data.programOverviewSection = mergeData(pageData.programOverviewSection, local_data.programOverviewSection);
-    data.contact = mergeData(pageData.overviewContact ?? pageData.contact, local_data.contact);
+    data.contact = mergeData(pageData.contact, local_data.contact);
 
     return (
         <>

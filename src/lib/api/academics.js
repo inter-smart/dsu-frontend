@@ -9,6 +9,11 @@ export async function getSchoolBySlug(slug) {
   return fetchAPI(slugPath("/api/schools", slug));
 }
 
+// One tab page: school shell + only that tab's data under `tab`.
+export async function getSchoolTab(slug, tab) {
+  return fetchAPI(`${slugPath("/api/schools", slug)}/${encodeURIComponent(tab)}`);
+}
+
 // ── Departments ───────────────────────────────────────────────────────────────
 export async function getDepartments() {
   return fetchAPI("/api/departments");
