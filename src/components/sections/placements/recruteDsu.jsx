@@ -47,14 +47,61 @@ export default function RecruiteDsu({ data }) {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrorMessage("");
+
+        const honeypotField = e.target.elements.website;
+        const payload = {
+            orgName: formData.orgName,
+            contactPerson: formData.contactPerson,
+            workEmail: formData.workEmail,
+            phone: `${formData.country?.dialCode || ""} ${formData.phone}`.trim(),
+            hiringType: formData.hiringType,
+            talentArea: formData.talentArea,
+            requirements: formData.requirements,
+            website: honeypotField ? honeypotField.value : "",
+        };
+
         setIsSubmitting(true);
-        setTimeout(() => {
-            setIsSubmitting(false);
-            setSubmitted(true);
-        }, 800);
+        try {
+            const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+            const response = await fetch(`${baseUrl}/api/recruit-enquiries`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ data: payload }),
+            });
+
+            if (!response.ok) {
+                let message = "Something went wrong. Please try again.";
+                try {
+                    const result = await response.json();
+                    if (result?.error?.message) {
+                        message = result.error.message;
+                    }
+                } catch {
+                    // keep the default message
+                }
+                setErrorMessage(message);
+            } else {
+                setSubmitted(true);
+                setFormData({
+                    orgName: "",
+                    contactPerson: "",
+                    workEmail: "",
+                    phone: "",
+                    country: COUNTRIES[0],
+                    hiringType: "Campus Recruitment",
+                    talentArea: "Engineering & Technology",
+                    requirements: "",
+                });
+            }
+        } catch {
+            setErrorMessage("Could not reach the server. Please try again.");
+        }
+        setIsSubmitting(false);
     };
 
     const hiringTypeOptions = [
@@ -149,6 +196,15 @@ export default function RecruiteDsu({ data }) {
                         </div>
 
                         <form onSubmit={handleSubmit} className="space-y-4 xl:space-y-4.5">
+                            <input
+                                type="text"
+                                name="website"
+                                tabIndex={-1}
+                                autoComplete="off"
+                                aria-hidden="true"
+                                defaultValue=""
+                                className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                            />
                             {/* Row 1: Organisation Name & Contact Person */}
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 xl:gap-4.5">
                                 <div>
@@ -310,6 +366,12 @@ export default function RecruiteDsu({ data }) {
                             >
                                 {isSubmitting ? "Submitting..." : formCard.buttonText}
                             </button>
+
+                            {errorMessage && (
+                                <p className="text-sm font-medium text-red-600 text-center mt-2">
+                                    {errorMessage}
+                                </p>
+                            )}
 
                             {submitted && (
                                 <p className="text-sm font-medium text-green-600 text-center mt-2">
