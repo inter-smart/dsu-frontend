@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 
 export default function AcademicFacilities({ data }) {
     return (
-        <section className="relative py-[0px_40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] 
+        <section className="relative py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] 
                 bg-white dark:bg-none dark:bg-[#101010]">
             <div className="container">
                 <div className="flex flex-wrap [&>div]:lg:w-1/2  mb-[15px] lg:mb-[25px] 2xl:mb-[40px] 3xl:mb-[45px]">

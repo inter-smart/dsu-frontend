@@ -385,7 +385,7 @@ export default function AcademicContact({ data }) {
                                     <span className="text-[#FDC72F]">★</span>
                                 ))}
                             </div>
-                            <span className="ml-1">{contactInfo.accreditations}</span>
+                            <span className="ml-1 text-[#212121]">{contactInfo.accreditations}</span>
                         </div>
                     </div>
                 </div>

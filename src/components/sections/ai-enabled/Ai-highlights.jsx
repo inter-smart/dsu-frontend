@@ -11,7 +11,7 @@ export default function AiHighlights({ data }) {
                     {data?.items && (
                         <ul className='columns-1 md:columns-2 gap-x-[40px] xl:gap-x-[48px]'>
                             {data.items.map((item, id) => (
-                                <li className="text_1 text-[#4A5565] dark:text-[#9CA3AF] relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]" key={id}>
+                                <li className="text_1 text-[#4A5565] dark:text-[#9CA3AF] relative before:absolute before:content-[''] before:top-[9px] lg:top-[11px] before:3xl:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[10px] lg:pl-[15px] 2xl:pl-[20px]" key={id}>
                                     {item.label}
                                 </li>
                             ))}

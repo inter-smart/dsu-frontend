@@ -297,7 +297,7 @@ export default function page() {
         <>
             <InnerHero data={local_data.hero} />
             <AiAcademicMenubar className="lg:!hidden block" />
-            <AcademicAchievements data={local_data.achievementSection} variant="AiChapter" />
+            <AcademicAchievements data={local_data.achievementSection} variant="Ai-achievements" />
             <AcademicPartners data={local_data.partnersSection} varient="AiChapter" />
             <AiAcademicCollaboration data={local_data.keyCollaborationsSection} />
             <AiIndustryEngagement data={local_data.industryEngagementSection} />

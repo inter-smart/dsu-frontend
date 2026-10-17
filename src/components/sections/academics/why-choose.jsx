@@ -4,7 +4,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function WhyChoose({ data }) {
     return (
-        <section className='relative py-[0px_35px] xl:py-[50px] 2xl:py-[70px] 3xl:py-[95px] dark:bg-[#101010] transition-colors duration-300'>
+        <section className='relative py-[35px] xl:py-[50px] 2xl:py-[70px] 3xl:py-[95px] dark:bg-[#101010] transition-colors duration-300'>
             <div className="container">
                 <div className="flex items-end justify-between max-lg:flex-col max-lg:items-start max-lg:gap-[20px]">
                     <div className="lg:max-w-[250px] xl:max-w-[360px] 2xl:amx-w-[360px] 3xl:max-w-[450px]">
