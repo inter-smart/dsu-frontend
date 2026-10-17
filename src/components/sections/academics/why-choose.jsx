@@ -3,6 +3,8 @@
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function WhyChoose({ data }) {
+    if (!data) return null;
+
     return (
         <section className='relative py-[20px_35px] xl:py-[50px] 2xl:py-[70px] 3xl:py-[95px] dark:bg-[#101010] transition-colors duration-300'>
             <div className="container">

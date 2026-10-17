@@ -4,9 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import { Heading } from "@/components/ui/heading";
 import NewsCard from "@/components/layout/common/news-card";
-import { getNewsEventsPaged } from "@/lib/api";
+import { getNewsEventsPaged, getSchoolNewsPaged } from "@/lib/api";
 
-export default function NewsEvents({ data }) {
+export default function NewsEvents({ data, schoolSlug }) {
   const [items, setItems] = useState(data?.newsEvents ?? []);
   const [pagination, setPagination] = useState(data?.pagination ?? null);
   const [loading, setLoading] = useState(false);
@@ -17,10 +17,10 @@ export default function NewsEvents({ data }) {
     if (!hasMore || loading) return;
     setLoading(true);
     try {
-      const res = await getNewsEventsPaged(
-        pagination.page + 1,
-        pagination.pageSize,
-      );
+      const fetchPage = schoolSlug
+        ? (page, size) => getSchoolNewsPaged(schoolSlug, page, size)
+        : getNewsEventsPaged;
+      const res = await fetchPage(pagination.page + 1, pagination.pageSize);
       if (res?.data && res?.pagination) {
         setItems((prev) => {
           const seen = new Set(prev.map((item) => item?.documentId));

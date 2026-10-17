@@ -15,9 +15,9 @@ export default function AcademicPlacementReport({ data }) {
                             </div>
                             <p>{data?.description}</p>
                         </div>
-                        {data?.documents.map((item, id) => (
+                        {data?.documents?.map((item, id) => (
                             <Link
-                                href={item?.file.url}
+                                href={item?.file?.url || "#"}
                                 key={id}
                                 className="group relative flex items-center justify-between py-[15px] 2xl:py-[18px] 3xl:py-[22px] border-b border-black/20 dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
                             >
@@ -46,7 +46,9 @@ export default function AcademicPlacementReport({ data }) {
                     </div>
                     <div className="w-full lg:w-8/12">
                         <div className="w-full h-full rounded-[10px] overflow-hidden lg:max-w-[90%] ml-auto">
-                            <Image src={data?.media.url} width="1068" height="430" className="w-full h-full object-cover" alt={data?.media.alternativeText} />
+                            {data?.media?.url && (
+                                <Image src={data.media.url} width="1068" height="430" className="w-full h-full object-cover" alt={data.media.alternativeText || data?.heading || ""} />
+                            )}
                         </div>
                     </div>
                 </div>

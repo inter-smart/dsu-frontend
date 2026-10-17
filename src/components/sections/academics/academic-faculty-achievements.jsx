@@ -12,8 +12,8 @@ import "swiper/css/navigation";
 export default function AcademicFacultyAchievements({ data }) {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
-
-    if (!data) return null;
+    // true while all month pills fit, so there is nothing to scroll and no arrows are needed
+    const [pillsFit, setPillsFit] = useState(true);
 
     // Active Toggle Tab (Faculty Achievements / Student Achievements)
     const [activeTabId, setActiveTabId] = useState(
@@ -21,7 +21,7 @@ export default function AcademicFacultyAchievements({ data }) {
     );
 
     // Active Month Filter Pill
-    const defaultFilterId = data?.monthFilters?.find((m) => m.isActive)?.id || 6;
+    const defaultFilterId = (data?.monthFilters?.find((m) => m.isActive) ?? data?.monthFilters?.[0])?.id;
     const [selectedFilterId, setSelectedFilterId] = useState(defaultFilterId);
 
     const activeTab = useMemo(() => {
@@ -68,6 +68,8 @@ export default function AcademicFacultyAchievements({ data }) {
         });
     }, [data, selectedFilter, activeTab]);
 
+    if (!data) return null;
+
     return (
         <section className="relative py-[40px] sm:py-[50px] lg:py-[70px] xl:py-[85px] bg-[linear-gradient(135deg,_#EFF6FF_0%,_#F2F7FE_28.22%,_#F9FAFB_100%)] dark:bg-none dark:bg-[#101010] overflow-hidden transition-colors duration-300">
             <div className="container relative ">
@@ -106,7 +108,7 @@ export default function AcademicFacultyAchievements({ data }) {
                         <button
                             ref={prevRef}
                             aria-label="Previous month filter"
-                            className="faculty-filter-prev shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 shadow-xs flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10"
+                            className={`faculty-filter-prev shrink-0 ${pillsFit ? "hidden" : ""} w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 shadow-xs flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10`}
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -119,6 +121,9 @@ export default function AcademicFacultyAchievements({ data }) {
                                 modules={[FreeMode, Navigation]}
                                 slidesPerView="auto"
                                 spaceBetween={10} 
+                                onInit={(swiper) => setPillsFit(swiper.isLocked)}
+                                onLock={() => setPillsFit(true)}
+                                onUnlock={() => setPillsFit(false)}
                                 onBeforeInit={(swiper) => {
                                     swiper.params.navigation.prevEl = prevRef.current;
                                     swiper.params.navigation.nextEl = nextRef.current;
@@ -152,7 +157,7 @@ export default function AcademicFacultyAchievements({ data }) {
                         <button
                             ref={nextRef}
                             aria-label="Next month filter"
-                            className="faculty-filter-next shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 shadow-xs flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10"
+                            className={`faculty-filter-next shrink-0 ${pillsFit ? "hidden" : ""} w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 shadow-xs flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10`}
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

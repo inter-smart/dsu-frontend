@@ -71,14 +71,6 @@ const local_data = {
                 ],
             },
         ],
-        cta: {
-            label: "Admissions Open 2026–27",
-            file: {
-                alternativeText: "Placement Report PDF",
-                mime: "application/pdf",
-                url: "/ ",
-            },
-        },
         media: [
             {
                 alternativeText: "Students collaborating in a modern computer lab with laptops",
@@ -185,14 +177,6 @@ const local_data = {
             text: "The best way to predict the future is to create it.",
             author: "Peter Drucker",
         },
-        cta: {
-            label: "Read More  ",
-            file: {
-                alternativeText: "Placement Report PDF",
-                mime: "application/pdf",
-                url: "/ ",
-            },
-        },
         message: [
             {
                 type: "paragraph",
@@ -218,10 +202,6 @@ const local_data = {
     whyChooseThisSchool: {
         heading: "Why Choose this School",
         description: "Our comprehensive curriculum, designed to stay at the forefront of technological advancements, blends traditional and contemporary teaching methods, including lectures, hands-on labs, workshops, and industry collaborations.",
-        cta: {
-            label: "Read More",
-            url: "/why-choose-this-school",
-        },
         points: [
             {
                 id: 1,
@@ -288,10 +268,6 @@ const local_data = {
                 ],
             }
         ],
-        cta: {
-            label: "Read More",
-            url: "/why-choose-this-school",
-        },
         categories: [
             {
                 id: 1,
@@ -360,10 +336,6 @@ const local_data = {
     },
     newsEvents: {
         title: "News & Events",
-        cta: {
-            label: "Read More",
-            url: "/why-choose-this-school",
-        },
         newsEvents: [
             {
                 id: 1,
@@ -423,10 +395,6 @@ const local_data = {
     industryCollaborationsSection: {
         heading: "Industry Collaborations & Programmes",
         description: "The School of Computer Applications at Dayananda Sagar University collaborates with leading technology companies and industry pioneers to bridge the gap between academics and real-world innovation. Through internships, live industry projects, expert mentoring, certifications, research initiatives, and campus recruitment, students gain practical exposure that prepares them for successful careers in the rapidly evolving digital world.",
-        cta: {
-            label: "View All",
-            url: "/infrastructure-and-facilities",
-        },
         stats: [
             {
                 id: 1,
@@ -460,7 +428,6 @@ const local_data = {
         partners: [
             {
                 id: 1,
-                name: "Infosys",
                 logo: {
                     alternativeText: "Infosys logo",
                     mime: "image/svg+xml",
@@ -469,7 +436,6 @@ const local_data = {
             },
             {
                 id: 2,
-                name: "Wipro",
                 logo: {
                     alternativeText: "Wipro logo",
                     mime: "image/svg+xml",
@@ -478,7 +444,6 @@ const local_data = {
             },
             {
                 id: 3,
-                name: "NVIDIA",
                 logo: {
                     alternativeText: "NVIDIA logo",
                     mime: "image/svg+xml",
@@ -487,7 +452,6 @@ const local_data = {
             },
             {
                 id: 4,
-                name: "Accenture",
                 logo: {
                     alternativeText: "Accenture logo",
                     mime: "image/svg+xml",
@@ -496,7 +460,6 @@ const local_data = {
             },
             {
                 id: 5,
-                name: "Zoho",
                 logo: {
                     alternativeText: "Zoho logo",
                     mime: "image/svg+xml",
@@ -505,7 +468,6 @@ const local_data = {
             },
             {
                 id: 6,
-                name: "TCS",
                 logo: {
                     alternativeText: "Tata Consultancy Services logo",
                     mime: "image/svg+xml",
@@ -514,7 +476,6 @@ const local_data = {
             },
             {
                 id: 7,
-                name: "EY",
                 logo: {
                     alternativeText: "EY logo",
                     mime: "image/svg+xml",
@@ -523,7 +484,6 @@ const local_data = {
             },
             {
                 id: 8,
-                name: "NatWest Group",
                 logo: {
                     alternativeText: "NatWest Group logo",
                     mime: "image/svg+xml",
@@ -532,7 +492,6 @@ const local_data = {
             },
             {
                 id: 9,
-                name: "KPMG",
                 logo: {
                     alternativeText: "KPMG logo",
                     mime: "image/svg+xml",
@@ -541,7 +500,6 @@ const local_data = {
             },
             {
                 id: 10,
-                name: "Amazon",
                 logo: {
                     alternativeText: "Amazon logo",
                     mime: "image/svg+xml",
@@ -550,7 +508,6 @@ const local_data = {
             },
             {
                 id: 11,
-                name: "UST",
                 logo: {
                     alternativeText: "UST logo",
                     mime: "image/svg+xml",
@@ -559,7 +516,6 @@ const local_data = {
             },
             {
                 id: 12,
-                name: "TVS",
                 logo: {
                     alternativeText: "TVS logo",
                     mime: "image/svg+xml",
@@ -582,60 +538,56 @@ const local_data = {
                 ],
             }
         ],
-        cta: {
-            label: "View All",
-            url: "/infrastructure-and-facilities",
-        },
-        facilities: [
+        points: [
             {
                 id: 1,
                 title: "Smart Classrooms",
-                media: {
+                media: [{
                     alternativeText: "Students in a smart classroom with modern infrastructure",
                     mime: "image/jpg",
                     // if video - mime: "video/mp4",
                     url: "/images/infra-1.jpg",
-                },
+                }],
             },
             {
                 id: 2,
                 title: "Library",
-                media: {
+                media: [{
                     alternativeText: "Student browsing books at the library",
                     mime: "image/jpg",
                     // if video - mime: "video/mp4",
                     url: "/images/infra-2.jpg",
-                },
+                }],
             },
             {
                 id: 3,
                 title: "Student Clubs",
-                media: {
+                media: [{
                     alternativeText: "Students collaborating at student club activities",
                     mime: "image/jpg",
                     // if video - mime: "video/mp4",
                     url: "/images/infra-3.jpg",
-                },
+                }],
             },
             {
                 id: 4,
                 title: "Computer Labs",
-                media: {
+                media: [{
                     alternativeText: "Students working in a computer lab",
                     mime: "image/jpg",
                     // if video - mime: "video/mp4",
                     url: "/images/infra-4.jpg",
-                },
+                }],
             },
             {
                 id: 5,
                 title: "Research Centers",
-                media: {
+                media: [{
                     alternativeText: "Student working at a research center computer station",
                     mime: "image/jpg",
                     // if video - mime: "video/mp4",
                     url: "/images/infra-5.jpg",
-                },
+                }],
             },
         ],
     }

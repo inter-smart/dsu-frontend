@@ -10,8 +10,16 @@ export async function getSchoolBySlug(slug) {
 }
 
 // One tab page: school shell + only that tab's data under `tab`.
-export async function getSchoolTab(slug, tab) {
-  return fetchAPI(`${slugPath("/api/schools", slug)}/${encodeURIComponent(tab)}`);
+export async function getSchoolTab(slug, tab, params) {
+  return fetchAPI(`${slugPath("/api/schools", slug)}/${encodeURIComponent(tab)}`, params);
+}
+
+// Paged news cards for a school's News & Events tab ("Load More"): { data: [card], pagination }
+export async function getSchoolNewsPaged(slug, page, pageSize = 6) {
+  const res = await getSchoolTab(slug, "news-events", { page, pageSize });
+  const section = res?.tab?.newsEvents;
+  if (!section?.newsEvents || !section?.pagination) return null;
+  return { data: section.newsEvents, pagination: section.pagination };
 }
 
 // ── Departments ───────────────────────────────────────────────────────────────

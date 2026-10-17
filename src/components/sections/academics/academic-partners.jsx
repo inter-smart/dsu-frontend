@@ -21,7 +21,6 @@ export default function AcademicPartners({ data, varient }) {
                         <p className="text-center mb-[30px] dark:text-[#9CA3AF]">{data.description}</p>
                     )}
                     <div className={`w-full relative ${varient === "home" ? "hidden" : ""} `}>
-
                         <Swiper
                             modules={[Grid, Autoplay]}
                             grid={{
@@ -43,7 +42,7 @@ export default function AcademicPartners({ data, varient }) {
                             }}
                             className="w-full relative after:absolute after:content-[''] after:top-0 after:left-[0px] after:z-10 after:w-full after:h-full after:border-[#EFF6FF] dark:after:border-[#101010] after:border "
                         >
-                            {data?.partners?.map((partner, id) => (
+                            {data?.partners?.filter((p) => p?.logo?.url).map((partner, id) => (
                                 <SwiperSlide
                                     key={id}
                                     className="!h-[80px] lg:!h-[110px] xl:!h-[130px] border-r border-b border-black/10 dark:border-white/10 last-of-type:border-0"
@@ -51,7 +50,7 @@ export default function AcademicPartners({ data, varient }) {
                                     <div className="w-full h-full flex items-center justify-center p-[15px]">
                                         <Image
                                             src={partner.logo?.url}
-                                            alt={partner.logo?.alternativeText || partner.name}
+                                            alt={partner.logo?.alternativeText || "Partner logo"}
                                             width={110}
                                             height={40}
                                             className="object-contain max-h-[35px] xl:max-h-[36px] min-w-[150px] w-auto flex items-center justify-center dark:bg-white/90 dark:rounded-[4px] dark:p-[4px]"
@@ -80,7 +79,7 @@ export default function AcademicPartners({ data, varient }) {
                             }}
                             className="w-full relative   after:absolute after:content-[''] after:top-0 after:left-[0px] after:z-10 after:w-full after:h-full after:border-[#EFF6FF] dark:after:border-[#101010] after:border "
                         >
-                            {data?.partners?.map((partner, id) => (
+                            {data?.partners?.filter((p) => p?.logo?.url).map((partner, id) => (
                                 <SwiperSlide
                                     key={id}
                                     className="!h-[50px] lg:!h-[70px] xl:!h-[1-0px] border-r border-b border-black/10 dark:border-white/10 last-of-type:border-0"
@@ -88,7 +87,7 @@ export default function AcademicPartners({ data, varient }) {
                                     <div className="w-full h-full flex items-center justify-center p-[15px]">
                                         <Image
                                             src={partner.logo?.url}
-                                            alt={partner.logo?.alternativeText || partner.name}
+                                            alt={partner.logo?.alternativeText || "Partner logo"}
                                             width={110}
                                             height={40}
                                             className="object-contain max-h-[30px] xl:max-h-[36px] w-auto flex items-center justify-center dark:bg-white/90 dark:rounded-[4px] dark:p-[4px]"
