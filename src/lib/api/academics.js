@@ -23,8 +23,21 @@ export async function getSchoolNewsPaged(slug, page, pageSize = 6) {
 }
 
 // ── Departments ───────────────────────────────────────────────────────────────
-export async function getDepartments() {
-  return fetchAPI("/api/departments");
+export async function getDepartments(params) {
+  return fetchAPI("/api/departments", params);
+}
+
+// One department page: shell (school, hero, seo, `availableTabs`) + only that tab's data under `tab`.
+export async function getDepartmentTab(slug, tab, params) {
+  return fetchAPI(`${slugPath("/api/departments", slug)}/${encodeURIComponent(tab)}`, params);
+}
+
+// Paged news cards for a department's News & Events tab ("Load More"): { data: [card], pagination }
+export async function getDepartmentNewsPaged(slug, page, pageSize = 6) {
+  const res = await getDepartmentTab(slug, "news-events", { page, pageSize });
+  const section = res?.tab?.newsEvents;
+  if (!section?.newsEvents || !section?.pagination) return null;
+  return { data: section.newsEvents, pagination: section.pagination };
 }
 
 export async function getDepartmentBySlug(slug) {
@@ -38,6 +51,19 @@ export async function getProgrammes(filters = {}) {
 
 export async function getProgrammeBySlug(slug) {
   return fetchAPI(slugPath("/api/programmes", slug));
+}
+
+// ── Hierarchy lookups (School → Department → Programme) ───────────────────────
+// Departments of one school (`?school=` filter; each item carries its `school` and `programmes`).
+export async function getSchoolDepartments(schoolSlug) {
+  const list = await getDepartments({ school: schoolSlug });
+  return Array.isArray(list) ? list.filter((d) => d?.school?.slug === schoolSlug) : [];
+}
+
+// Programmes owned directly by the school (no department), via the filtered programme list.
+export async function getSchoolDirectProgrammes(schoolSlug) {
+  const list = await getProgrammes({ school: schoolSlug });
+  return Array.isArray(list) ? list.filter((p) => !p?.department) : [];
 }
 
 // ── Research Centres ──────────────────────────────────────────────────────────

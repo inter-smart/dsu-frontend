@@ -11,7 +11,7 @@ import AcademicContact from "@/components/sections/academics/academic-contact";
 import AcademicNews from "@/components/sections/academics/academic-news";
 import AcademicInfrastructure from "@/components/sections/academics/academic-infrastructure";
 import { notFound } from "next/navigation";
-import { hasContent } from "@/lib/schools/tab-page";
+import { hasContent, schoolHasPrograms } from "@/lib/schools/tab-page";
 import { getSchoolBySlug } from "@/lib/api";
 
 
@@ -23,11 +23,12 @@ export default async function Page({params}) {
     // hero/seo come from the school, the home sections from its Main Page tab (`home`)
     if (!pageData?.slug) notFound();
     const data = { ...pageData, ...pageData.home };
+    const hasPrograms = await schoolHasPrograms(slug, pageData.hasDepartments);
 
     return (
         <>
-            <InnerHero data={{ ...data.hero, slug, hasDepartments: pageData?.hasDepartments, menuBar: true }} />
-            <AcademicMenubar className="md:!hidden block" slug={slug} hasDepartments={pageData?.hasDepartments} />
+            <InnerHero data={{ ...data.hero, slug, hasDepartments: pageData?.hasDepartments, hasPrograms, menuBar: true }} />
+            <AcademicMenubar className="md:!hidden block" slug={slug} hasDepartments={pageData?.hasDepartments} hasPrograms={hasPrograms} />
             {hasContent(data.programOverviewSection) && <AcademicHomeOverview data={data.programOverviewSection} />}
             {hasContent(data.visionMissionSection) && (
                 <div id="vision-mission" className="scroll-mt-[100px]">

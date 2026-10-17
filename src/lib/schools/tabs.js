@@ -17,10 +17,14 @@ export const SCHOOL_TABS = [
   { key: "contact", label: "Contact" },
 ];
 
-export function getSchoolTabs(hasDepartments = false) {
-  return SCHOOL_TABS.filter(
-    (t) => t.departments === undefined || t.departments === Boolean(hasDepartments),
-  ).map((t) => ({
+// `hasPrograms` is true when the school also owns programmes directly. A school with departments
+// then shows both tabs; when it is not known (undefined) the original either/or rule applies.
+export function getSchoolTabs(hasDepartments = false, hasPrograms) {
+  return SCHOOL_TABS.filter((t) => {
+    if (t.departments === undefined) return true;
+    if (t.departments) return Boolean(hasDepartments);
+    return !hasDepartments || Boolean(hasPrograms);
+  }).map((t) => ({
     key: t.key,
     anchor: t.anchor,
     label: hasDepartments && t.deptLabel ? t.deptLabel : t.label,
