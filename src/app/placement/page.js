@@ -1,18 +1,45 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import PlacementOverview from "@/components/sections/placements/overview";
-import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenubar";
 import AiVisionMission from "@/components/sections/ai-enabled/Ai-vision-mission";
 import Announcement from "@/components/sections/placements/announcement";
-import PlacementProcess from "@/components/sections/placements/placement-process";
 import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
 import CILsection from "@/components/sections/placements/CILSection";
 import Recruiters from "@/components/sections/placements/recruiters";
 import PlacementContact from "@/components/sections/placements/placementcontact";
 import DirectorMessage from "@/components/sections/placements/directors-message";
-import AdmissionEntrance from "@/components/sections/admission/admission-entrance";
 import TeamSection from "@/components/sections/placements/Team-section";
-import PlacementExcellence from "@/components/sections/placements/placement-excellence";
 import { getPlacementAboutPage } from "@/lib/api/placement";
+
+const contentMetadata = new Set([
+    "id",
+    "documentId",
+    "createdAt",
+    "updatedAt",
+    "publishedAt",
+    "locale",
+    "__component",
+    "type",
+    "mime",
+    "provider",
+    "hash",
+    "ext",
+    "size",
+    "width",
+    "height",
+    "formats",
+    "alternativeText",
+]);
+
+function hasContent(value) {
+    if (typeof value === "string") return value.trim().length > 0;
+    if (typeof value === "number") return Number.isFinite(value);
+    if (Array.isArray(value)) return value.some(hasContent);
+    if (!value || typeof value !== "object") return false;
+
+    return Object.entries(value).some(
+        ([key, nestedValue]) => !contentMetadata.has(key) && hasContent(nestedValue),
+    );
+}
 
 const local_data = {
     id: 24,
@@ -605,17 +632,16 @@ export default async function page() {
 
     return (
         <>
-            {hero && <InnerHero data={hero} />}
+            {hasContent(hero) && <InnerHero data={hero} />}
             <PlacementmenuBar className="lg:!hidden block" />
-            {overview && <PlacementOverview data={overview} />}
-            {missionVision && <AiVisionMission data={missionVision} />}
-            {announcements && <Announcement data={announcements} />}
-            {director && <DirectorMessage data={director} />}
-            {team && <TeamSection data={team} />}
-            {cil && <CILsection data={cil} />}
-            {contact && <PlacementContact data={contact} />}
-            {recruiters && <Recruiters data={recruiters} />}
-            <PlacementExcellence />
+            {hasContent(overview) && <PlacementOverview data={overview} />}
+            {hasContent(missionVision) && <AiVisionMission data={missionVision} />}
+            {hasContent(announcements) && <Announcement data={announcements} />}
+            {hasContent(director) && <DirectorMessage data={director} />}
+            {hasContent(team) && <TeamSection data={team} />}
+            {hasContent(cil) && <CILsection data={cil} />}
+            {hasContent(contact) && <PlacementContact data={contact} />}
+            {hasContent(recruiters) && <Recruiters data={recruiters} />}
         </>
     )
 }
