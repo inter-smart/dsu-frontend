@@ -1,5 +1,5 @@
 import SchoolTabShell from "@/components/sections/academics/school-tab-shell";
-import { SchoolDepartments } from "@/components/sections/academics/school-directory";
+import { SchoolItemList } from "@/components/sections/academics/school-directory";
 import { hasContent, loadSchoolTabData, schoolTabMetadata } from "@/lib/schools/tab-page";
 
 const TAB = "departments";
@@ -16,7 +16,7 @@ export default async function Page({ params }) {
 
     return (
         <SchoolTabShell hero={hero} slug={slug} hasDepartments={hasDepartments}>
-            <SchoolDepartments slug={slug} departments={data.departments} />
+            <SchoolItemList title="Departments" items={data.departments} />
         </SchoolTabShell>
     );
 }

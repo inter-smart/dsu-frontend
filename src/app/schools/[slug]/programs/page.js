@@ -1,6 +1,6 @@
 import SchoolTabShell from "@/components/sections/academics/school-tab-shell";
 import AcademicProgram from "@/components/sections/academics/academic-program";
-import AcademicContact from "@/components/sections/academics/academic-contact";
+import { SchoolItemList } from "@/components/sections/academics/school-directory";
 import { hasContent, loadSchoolTabData, schoolTabMetadata } from "@/lib/schools/tab-page";
 
 const TAB = "programs";
@@ -16,8 +16,8 @@ export default async function Page({ params }) {
 
     return (
         <SchoolTabShell hero={hero} slug={slug} hasDepartments={hasDepartments}>
-            {hasContent(data.computerApplicationsPrograms) && <AcademicProgram data={data.computerApplicationsPrograms} />}
-            {hasContent(data.contact) && <AcademicContact data={data.contact} schoolSlug={slug} />}
+            <SchoolItemList title="Programmes" items={data.programmes} groupByLevel />
+            {!hasDepartments && hasContent(data.computerApplicationsPrograms) && <AcademicProgram data={data.computerApplicationsPrograms} />}
         </SchoolTabShell>
     );
 }
