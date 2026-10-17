@@ -5,7 +5,6 @@ import AcademicPartners from "@/components/sections/academics/academic-partners"
 import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 import AcademicVisionMission from "@/components/sections/academics/academic-vision-mission";
 import DeanMessage from "@/components/sections/academics/dean-message";
-import NewsEvents from "@/components/sections/news-events/news-events";
 import AcademicWhychoose from "@/components/sections/academics/academic-whychoose";
 import AcademicProgram from "@/components/sections/academics/academic-program";
 import AcademicContact from "@/components/sections/academics/academic-contact";
@@ -669,7 +668,8 @@ const local_data = {
 export default async function Page({params}) {
     const { slug } = await params;
     const pageData = await getSchoolBySlug(slug);
-    const data = mergeData(pageData, local_data);
+    // hero/seo come from the school, the home sections from its Main Page tab (`home`)
+    const data = mergeData(pageData?.home, mergeData(pageData, local_data));
 
     return (
         <>
@@ -679,15 +679,14 @@ export default async function Page({params}) {
             <div id="vision-mission" className="scroll-mt-[100px]">
                 <AcademicVisionMission data={data.visionMissionSection} />
             </div>
-            {/* <DeanMessage data={data.messageFromDean} varient="home" /> */}
-        {/* <AcademicWhychoose data={data.whyChooseThisSchool} /> */}
-            {/* <AcademicProgram data={local_data.computerApplicationsPrograms} /> */}
-            {/* <AcademicCollaboration data={local_data.industryCollaborationsSection} varient="home" /> */}
-            {/* <AcademicPartners data={local_data.partnersSection} varient="home" /> */}
-            {/* <AcademicInfrastructure data={local_data.modernSpacesSection} /> */}
-            {/* <AcademicNews data={local_data.newsEvents} /> */}
-            {/* <AcademicContact data={local_data.contact} />  */}
+            {/* <DeanMessage data={data.messageFromDean} varient="home" />
+            <AcademicWhychoose data={data.whyChooseThisSchool} />
+            <AcademicProgram data={data.computerApplicationsPrograms} />
+            <AcademicCollaboration data={data.industryCollaborationsSection} varient="home" />
+            <AcademicPartners data={data.partnersSection} varient="home" />
+            <AcademicInfrastructure data={data.modernSpacesSection} />
+            <AcademicNews data={data.newsEvents} />
+            <AcademicContact data={data.contact} /> */}
         </>
     )
 }
-

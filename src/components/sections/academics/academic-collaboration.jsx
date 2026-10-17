@@ -1,4 +1,6 @@
 "use client";
+
+import { getCtaHref } from "@/lib/utils";
  
 import Link from "next/link";
 
@@ -9,7 +11,7 @@ export default function AcademicCollaboration({ data, varient }) {
                 <div className="relative max-lg:flex max-lg:flex-col-reverse  after:content-[''] after:table after:clear-both ">
                     <div className="w-full lg:w-[580px] xl:w-[650px] 2xl:w-[750px] 3xl:w-[950px]  lg:float-right lg:pl-[40px]  ">
                         <div className="flex flex-wrap justify-center -m-[4px] lg:-m-[5px] xl:-m-[8px] 3xl:-m-[10px]">
-                            {data?.stats.map((stat, idx) => (
+                            {data?.stats?.map((stat, idx) => (
                                 <div className="p-[4px] lg:p-[5px] xl:p-[8px] 3xl:p-[10px] max-sm:flex-grow-1 w-1/3 sm:w-1/6 lg:w-1/3 lg:mb-[15px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[35px]" key={idx}>
                                     <div
                                         className="bg-white dark:bg-[#18191B] border border-[rgba(249,115,22,0.3)] dark:border-[#F97316]/40 text-center rounded-[8px] w-full h-full
@@ -31,7 +33,7 @@ export default function AcademicCollaboration({ data, varient }) {
                         <div className="cmn_Title mb-[25px]">{data.heading}</div>
                         <p className="dark:text-[#9CA3AF]">{data.description}</p>
                         {data.cta && (
-                            <Link href={data.cta.url}
+                            <Link href={getCtaHref(data.cta)}
                                 className="group relative flex h-[30px] mt-[15px] xl:mt-[30px] w-fit min-w-[130px] items-center justify-center gap-[10px] overflow-hidden rounded-[4px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                             >
                                 <span className="relative z-[1] transition-transform duration-300  ">

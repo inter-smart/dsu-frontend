@@ -1,5 +1,7 @@
 "use client";
 
+import { getCtaHref } from "@/lib/utils";
+
 import Image from "next/image";
 import Link from "next/link";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
@@ -32,7 +34,7 @@ export default function AcademicInfrastructure({ data }) {
                                 </div>
                             )}
                             {data.cta && (
-                                <Link href={data.cta.url}
+                                <Link href={getCtaHref(data.cta)}
                                     className="group relative  flex h-[30px] w-fit mt-[15px] xl:mt-[40px] min-w-[130px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                                 >
                                     <span className="relative z-[1] transition-transform duration-300  ">
@@ -65,14 +67,14 @@ export default function AcademicInfrastructure({ data }) {
                                 <div className="relative rounded-[10px] overflow-hidden aspect-[4/3]" />
                             </div>
 
-                            {data.facilities.map((facility) => (
+                            {data.facilities?.map((facility) => (
                                     <div className="w-1/2 sm:w-1/3 px-[5px] py-[5px] sm:px-[12px] sm:py-[10px] xl:px-[15px] xl:py-[12px] 3xl:px-[23px] 3xl:py-[15px] max-lg:flex-grow-1"
                                     key={facility.id}
                                 >
                                     <div className="relative rounded-[4px] xl:rounded-[6px] 2xl:rounded-[8px] 3xl:rounded-[10px] overflow-hidden aspect-[4/3]">
                                         <Image
-                                            src={facility.media.url}
-                                            alt={facility.media.alternativeText}
+                                            src={facility.media?.url}
+                                            alt={facility.media?.alternativeText || facility.title}
                                             fill
                                             className="object-cover "
                                         />
