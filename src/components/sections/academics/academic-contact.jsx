@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { PhoneInput, COUNTRIES } from "@/components/ui/phone-input";
+import { COURSES, STATES } from "@/lib/schools/constants";
 import {
     Select,
     SelectContent,
@@ -16,7 +17,7 @@ import {
 
 const inputStyle = `h-[40px] 2xl:h-[45px] 3xl:h-[60px] w-full border border-black/10 rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px] border-[#E5E7EB] dark:border-[#333] bg-white dark:bg-[#1f1f1f]  text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px]  font-normal placeholder:text-[#4A5565] text-[#212121] dark:text-[#F9FAFB]`
 
-export default function AcademicContact({ data }) {
+export default function AcademicContact({ data, schoolSlug }) {
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
@@ -30,50 +31,83 @@ export default function AcademicContact({ data }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (e) => {
+    const emptyForm = {
+        name: "",
+        phone: "",
+        country: COUNTRIES[0],
+        email: "",
+        course: "",
+        state: "",
+        message: "",
+    };
+    const [errorMessage, setErrorMessage] = useState("");
+    const [honeypot, setHoneypot] = useState("");
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrorMessage("");
+        setSubmitted(false);
         setIsSubmitting(true);
-        setTimeout(() => {
-            setIsSubmitting(false);
-            setSubmitted(true);
-        }, 800);
+        try {
+            const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+            const response = await fetch(`${baseUrl}/api/school-enquiries`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    data: {
+                        name: formData.name,
+                        phone: `${formData.country?.dialCode || ""} ${formData.phone}`.trim(),
+                        email: formData.email,
+                        course: formData.course,
+                        state: formData.state,
+                        message: formData.message,
+                        schoolSlug: schoolSlug || data?.schoolSlug || "",
+                        website: honeypot,
+                    },
+                }),
+            });
+
+            if (!response.ok) {
+                let message = "Something went wrong. Please try again.";
+                try {
+                    const result = await response.json();
+                    if (result?.error?.message) message = result.error.message;
+                } catch {
+                    // keep the default message
+                }
+                setErrorMessage(message);
+            } else {
+                setSubmitted(true);
+                setFormData(emptyForm);
+            }
+        } catch {
+            setErrorMessage("Could not reach the server. Please try again.");
+        }
+        setIsSubmitting(false);
     };
 
-    const contactInfo = data?.info || {
+    const defaultInfo = {
         title: "Start Your Journey With Us",
         description:
             "Take the next step toward a future-ready education supported by innovation, research, and industry collaboration.",
         address:
             "Gate 2, 6th Floor, University Building, Dental Block, Kumaraswamy Layout, Bengaluru - 560 111",
         mapUrl: "https://maps.google.com/?q=Dayananda+Sagar+University+Kumaraswamy+Layout+Bengaluru",
-        email: "admissions@dsu.edu.in",
-        helpline: "080 46461800 / 080 49092800",
+        details: [
+            { type: "email", values: ["admissions@dsu.edu.in"] },
+            { type: "phone", values: ["080 46461800", "080 49092800"] },
+        ],
         accreditations: "NAAC A+ Accredited  |  UGC Recognized",
     };
+    const contactInfo = { ...defaultInfo, ...data?.info };
 
-    const courseOptions = data?.courses || [
-        "Bachelor of Computer Applications (BCA)",
-        "Master of Computer Applications (MCA)",
-        "B.Tech in Computer Science & Engineering",
-        "B.Tech in AI & Machine Learning",
-        "B.Tech in Data Science",
-        "M.Tech in Computer Science",
-        "Ph.D in Computer Applications",
-    ];
-
-    const stateOptions = data?.states || [
-        "Karnataka",
-        "Andhra Pradesh",
-        "Delhi",
-        "Gujarat",
-        "Kerala",
-        "Maharashtra",
-        "Tamil Nadu",
-        "Telangana",
-        "Uttar Pradesh",
-        "West Bengal",
-        "Other",
-    ];
+    // email / phone entries come from the reusable contact-detail component (type email | phone)
+    const valuesOf = (type) =>
+        (contactInfo.details || []).filter((d) => d.type === type).flatMap((d) => d.values || []);
+    const emails = valuesOf("email");
+    const phones = valuesOf("phone");
+    if (!emails.length && contactInfo.email) emails.push(contactInfo.email);
+    if (!phones.length && contactInfo.helpline) phones.push(contactInfo.helpline);
 
     return (
         <section className="relative py-[20px_40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
@@ -162,13 +196,13 @@ export default function AcademicContact({ data }) {
                                                 <SelectValue placeholder="Select Course" />
                                             </SelectTrigger>
                                             <SelectContent className="max-h-[260px] bg-white dark:bg-[#1f1f1f] border border-[#E5E7EB] dark:border-[#333] rounded-[8px] shadow-lg z-50">
-                                                {courseOptions.map((course, idx) => (
+                                                {COURSES.map((course) => (
                                                     <SelectItem
-                                                        key={idx}
-                                                        value={course}
+                                                        key={course.slug}
+                                                        value={course.slug}
                                                         className="text-[13px] py-2 px-3 text-[#374151] dark:text-[#D1D5DB] hover:bg-[#FFF8F0] dark:hover:bg-[#2a2a2a] cursor-pointer"
                                                     >
-                                                        {course}
+                                                        {course.title}
                                                     </SelectItem>
                                                 ))}
                                             </SelectContent>
@@ -188,13 +222,13 @@ export default function AcademicContact({ data }) {
                                                 <SelectValue placeholder="Select State" />
                                             </SelectTrigger>
                                             <SelectContent className="max-h-[260px] bg-white dark:bg-[#1f1f1f] border border-[#E5E7EB] dark:border-[#333] rounded-[8px] shadow-lg z-50">
-                                                {stateOptions.map((state, idx) => (
+                                                {STATES.map((state) => (
                                                     <SelectItem
-                                                        key={idx}
-                                                        value={state}
+                                                        key={state.slug}
+                                                        value={state.slug}
                                                         className="text-[13px] py-2 px-3 text-[#374151] dark:text-[#D1D5DB] hover:bg-[#FFF8F0] dark:hover:bg-[#2a2a2a] cursor-pointer"
                                                     >
-                                                        {state}
+                                                        {state.title}
                                                     </SelectItem>
                                                 ))}
                                             </SelectContent>
@@ -215,6 +249,18 @@ export default function AcademicContact({ data }) {
                                         }
                                     />
                                 </div>
+
+                                {/* Honeypot: hidden from visitors, filled only by bots */}
+                                <input
+                                    type="text"
+                                    name="website"
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                    aria-hidden="true"
+                                    className="hidden"
+                                    value={honeypot}
+                                    onChange={(e) => setHoneypot(e.target.value)}
+                                />
 
                                 {/* Submit Button */}
                                 <div className="pt-1">
@@ -245,6 +291,12 @@ export default function AcademicContact({ data }) {
 
 
                                     </button>
+
+                                    {errorMessage && (
+                                        <p role="alert" className="text-[12px] text-red-600 font-medium mt-2">
+                                            {errorMessage}
+                                        </p>
+                                    )}
 
                                     {submitted && (
                                         <p className="text-[12px] text-green-600 font-medium mt-2">
@@ -342,12 +394,15 @@ export default function AcademicContact({ data }) {
                                             <div className="text_1 text-[#212121] font-medium dark:text-white leading-tight mb-[4px]">
                                                  E-Mail:
                                             </div>
-                                            <a
-                                                href={`mailto:${contactInfo.email}`}
-                                                className="text_1 text-[#4A5565] dark:text-[#D1D5DB] dark:text-[#D1D5DB] hover:text-[#DC2626] transition-colors"
-                                            >
-                                                {contactInfo.email}
-                                            </a>
+                                            {emails.map((email) => (
+                                                <a
+                                                    key={email}
+                                                    href={`mailto:${email}`}
+                                                    className="block text_1 text-[#4A5565] dark:text-[#D1D5DB] hover:text-[#DC2626] transition-colors"
+                                                >
+                                                    {email}
+                                                </a>
+                                            ))}
                                         </div>
                                     </div>
 
@@ -369,7 +424,7 @@ export default function AcademicContact({ data }) {
                                                 Admissions Helpline:
                                             </div>
                                             <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">
-                                                {contactInfo.helpline}
+                                                {phones.join(" / ")}
                                             </div>
                                         </div>
                                     </div>

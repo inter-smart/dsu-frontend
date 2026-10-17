@@ -1,7 +1,10 @@
+import { notFound } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
 import AcademicMenubar from "@/components/sections/academics/academicMenubar"; 
 import AcademicOverview from "@/components/sections/academics/academic-overview";
 import AcademicContact from "@/components/sections/academics/academic-contact";
+import { getSchoolBySlug } from "@/lib/api";
+import { mergeData } from "@/lib/utils";
 
 
 
@@ -160,42 +163,36 @@ const local_data = {
             helpline: "080 46461800 / 080 49092800",
             accreditations: "NAAC A+ Accredited  |  UGC Recognized",
         },
-        courses: [
-            "Bachelor of Computer Applications (BCA)",
-            "Master of Computer Applications (MCA)",
-            "B.Tech in Computer Science & Engineering",
-            "B.Tech in AI & Machine Learning",
-            "B.Tech in Data Science",
-            "M.Tech in Computer Science",
-            "Ph.D in Computer Applications",
-        ],
-        states: [
-            "Karnataka",
-            "Andhra Pradesh",
-            "Delhi",
-            "Gujarat",
-            "Kerala",
-            "Maharashtra",
-            "Tamil Nadu",
-            "Telangana",
-            "Uttar Pradesh",
-            "West Bengal",
-            "Other",
-        ],
     },
 
 
 }
 
-export default function Page() {
+export async function generateMetadata({ params }) {
+    const { slug } = await params;
+    const school = await getSchoolBySlug(slug);
+    return school?.seo ? { title: school.seo.metaTitle, description: school.seo.metaDescription } : {};
+}
+
+export default async function Page({ params }) {
+    const { slug } = await params;
+    const pageData = await getSchoolBySlug(slug);
+    if (!pageData?.slug) notFound();
+
+    console.log("pageData", pageData);
+    
+    // hero/seo/contact come from the school and its tabs; local_data fills anything missing
+    const data = mergeData(pageData, local_data);
+    // sections merge field by field so a partly filled Strapi section keeps its local_data fallback
+    data.programOverviewSection = mergeData(pageData.programOverviewSection, local_data.programOverviewSection);
+    data.contact = mergeData(pageData.overviewContact ?? pageData.contact, local_data.contact);
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
-            <AcademicMenubar className="md:!hidden block" />
-            <AcademicOverview data={local_data.programOverviewSection} />
-            <AcademicContact data={local_data.contact} />
-
+            <InnerHero data={{ ...data.hero, slug, hasDepartments: pageData.hasDepartments, menuBar: true }} />
+            <AcademicMenubar className="md:!hidden block" slug={slug} hasDepartments={pageData.hasDepartments} />
+            <AcademicOverview data={data.programOverviewSection} />
+            <AcademicContact data={data.contact} schoolSlug={slug} />
         </>
     )
 }
-

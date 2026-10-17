@@ -23,7 +23,7 @@ const TAB_SECTIONS = {
   overview: (d) => (
     <>
       <AcademicOverview data={d.programOverviewSection} />
-      <AcademicContact data={d.contact} />
+      <AcademicContact data={d.overviewContact ?? d.contact} schoolSlug={d.slug} />
     </>
   ),
   "dean-message": (d) => <DeanMessage data={d.messageFromDean} />,
@@ -31,7 +31,7 @@ const TAB_SECTIONS = {
   programs: (d) => (
     <>
       <AcademicProgram data={d.computerApplicationsPrograms} />
-      <AcademicContact data={d.contact} />
+      <AcademicContact data={d.contact} schoolSlug={d.slug} />
     </>
   ),
   departments: (d) => <SchoolDepartments slug={d.slug} departments={d.departments} />,
@@ -68,7 +68,7 @@ const TAB_SECTIONS = {
     </>
   ),
   "news-events": (d) => <NewsEvents data={d.newsEvents} />,
-  contact: (d) => <AcademicContact data={d.contact} />,
+  contact: (d) => <AcademicContact data={d.contact} schoolSlug={d.slug} />,
 };
 
 async function loadSchool(slug) {

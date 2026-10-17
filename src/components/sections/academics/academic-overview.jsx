@@ -93,7 +93,7 @@ export default function AcademicOverview({ data }) {
                 </div>
 
                 {/* Floated Left Block (Secondary Media from JSON) */}
-                {data?.secondaryMedia && (
+                {(data?.secondaryMedia?.length > 0 || data?.outro?.length > 0) && (
                     <div className="relative after:content-[''] after:table after:clear-both mt-[0px] lg:mt-[50px] xl:mt-[65px]">
                         {data?.secondaryMedia?.length > 0 && (
                             <div className="w-full lg:w-[50%] lg:float-left mr-0 lg:mr-[30px] xl:mr-[45px] 2xl:mr-[55px] mb-[25px] lg:mb-[20px]">
