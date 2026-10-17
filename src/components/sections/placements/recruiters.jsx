@@ -54,7 +54,7 @@ export default function Recruiters({ data, className }) {
                     </h2>
 
                     {/* School Filter Dropdown */}
-                    {recruiters.length > 0 && filterOptions.length > 1 && <div className="relative shrink-0 w-full sm:w-[220px] 2xl:w-[240px]">
+                    {recruiters.length > 0 && filterOptions.length > 0 && <div className="relative shrink-0 w-full sm:w-[220px] 2xl:w-[240px]">
                         <button
                             type="button"
                             onClick={() => setIsDropdownOpen((prev) => !prev)}
