@@ -7,22 +7,21 @@ export default function AcademicVisionMission({ data }) {
 
     const { eyebrow, heading, media, mission, vision } = data;
 
-    // Use provided bg image URL or fallback to high quality existing background
-    const bgImageUrl = media?.url || "/images/academic-banner.jpg";
-
     return (
         <section className="relative max-lg:pb-[40px]  text-white overflow-hidden after:absolute after:content-[''] after:bottom-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-b after:from-[rgba(0,0,0,0)] after:to-[#000000]  after:z-10">
             {/* Campus Background Image */}
-            <div className="absolute top-0 right-0 w-full h-full z-0">
-                <Image
-                    src={bgImageUrl}
-                    alt={media?.alternativeText || "Vision background"}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 60vw"
-                    className="object-cover  object-right mix-blend-luminosity"
-                    priority
-                />
-            </div>
+            {media?.url && (
+                <div className="absolute top-0 right-0 w-full h-full z-0">
+                    <Image
+                        src={media.url}
+                        alt={media.alternativeText || ""}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 60vw"
+                        className="object-cover  object-right mix-blend-luminosity"
+                        priority
+                    />
+                </div>
+            )}
             <div className="container relative z-20">
                 <div className="relative  overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 min-h-[520px]">
 

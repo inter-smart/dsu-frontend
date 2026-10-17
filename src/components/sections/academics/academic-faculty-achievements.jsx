@@ -75,9 +75,9 @@ export default function AcademicFacultyAchievements({ data }) {
             <div className="container relative ">
                 {/* Header Row: Title on Left, Tab Toggle Buttons on Right */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 xl:mb-10">
-                    <h2 className="cmn_Title mb-[15px]">
-                        {data.heading || "Faculty Achievements"}
-                    </h2>
+                    {data.heading && (
+                        <h2 className="cmn_Title mb-[15px]">{data.heading}</h2>
+                    )}
 
                     {/* Toggle Buttons (Faculty Achievements / Student Achievements) */}
                     {data?.tabToggle?.options?.length > 0 && (
@@ -219,7 +219,7 @@ export default function AcademicFacultyAchievements({ data }) {
                 ) : (
                     <div className="py-16 px-4 text-center bg-white/70 dark:bg-[#18191B]/70 rounded-[12px] border border-dashed border-gray-300 dark:border-white/10">
                         <p className="text-[15px] sm:text-[16px] font-medium text-gray-500 dark:text-gray-400">
-                            No {activeTab?.label || "achievements"} recorded for {selectedFilter?.label || "this period"}.
+                            Nothing to show here yet.
                         </p>
                     </div>
                 )}

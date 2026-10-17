@@ -2,42 +2,26 @@ import { notFound } from "next/navigation";
 import { getSchoolTab } from "@/lib/api";
 import { getSchoolTabs } from "@/lib/schools/tabs";
 
-const isEmpty = (v) =>
-    v === null || v === undefined || v === "" || (Array.isArray(v) && v.length === 0);
-
-const isPlainObject = (v) => v && typeof v === "object" && !Array.isArray(v);
-
-// Field-by-field merge: a CMS value wins unless it is null/empty, then `fallback` is kept.
-export function mergeSection(cms, fallback) {
-    if (!isPlainObject(fallback)) return isEmpty(cms) ? fallback : cms;
-    const merged = { ...fallback };
-    if (!isPlainObject(cms)) return merged;
-    Object.keys(fallback).forEach((key) => {
-        if (!isEmpty(cms[key])) merged[key] = cms[key];
-    });
-    return merged;
+// True when a CMS section has something to show (not null/empty, and not an object of only empty values).
+export function hasContent(v) {
+    if (v === null || v === undefined || v === "") return false;
+    if (Array.isArray(v)) return v.some(hasContent);
+    if (typeof v === "object") return Object.values(v).some(hasContent);
+    return true;
 }
 
-// Loads one school tab (404s for a missing school or a tab this school type does not have)
-// and merges every section over the page's `local_data` fallback.
-export async function loadSchoolTabData(slug, tab, local_data) {
+// Loads one school tab (404s for a missing school or a tab this school type does not have).
+// Returns the CMS data as-is; sections the CMS leaves empty are simply not rendered.
+export async function loadSchoolTabData(slug, tab) {
     const school = await getSchoolTab(slug, tab);
     if (!school?.slug) notFound();
 
     const entry = getSchoolTabs(school.hasDepartments).find((t) => t.key === tab && !t.anchor);
     if (!entry) notFound();
 
-    const cms = school.tab ?? {};
-    const data = {};
-    Object.keys(local_data).forEach((key) => {
-        data[key] = mergeSection(cms[key], local_data[key]);
-    });
-    // sections that only exist in the CMS response (e.g. departments)
-    Object.keys(cms).forEach((key) => {
-        if (!(key in data)) data[key] = cms[key];
-    });
+    const data = school.tab ?? {};
 
-    const hero = mergeSection(school.hero, local_data.hero ?? {});
+    const hero = { ...(school.hero ?? {}) };
     const cmsCrumbs = school.hero?.breadcrumb;
     if (cmsCrumbs?.length) {
         const href = `/schools/${slug}/${tab}`;
