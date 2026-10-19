@@ -49,5 +49,6 @@ export async function schoolTabMetadata(slug, tab) {
     return {
         title: label ? `${label} | ${base}` : base,
         description: school.seo?.metaDescription ?? undefined,
+        alternates: school.seo?.canonicalUrl ? { canonical: school.seo.canonicalUrl } : undefined,
     };
 }

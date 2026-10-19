@@ -4,6 +4,7 @@
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
 
+import AcademicCta from "./academic-cta";
 export default function AcademicWhychoose({ data }) {
     return (
         <section className="relative py-[40px] lg:py-[40px_50px] xl:py-[40px_60px] 2xl:py-[50px_80px] 3xl:py-[60px_100px] bg-[#FFF8ED] dark:bg-[#101010]">
@@ -20,6 +21,7 @@ export default function AcademicWhychoose({ data }) {
                         </div>
                     </div>
                     <div className="lg:col-span-2">
+                        <AcademicCta cta={data.cta} />
 
                         
                     </div>

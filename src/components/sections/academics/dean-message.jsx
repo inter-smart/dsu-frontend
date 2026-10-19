@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
+import AcademicCta from "./academic-cta";
 export default function DeanMessage({ data, varient }) {
     if (!data) return null;
 
@@ -107,6 +108,8 @@ export default function DeanMessage({ data, varient }) {
                             {closing}
                         </div>
                     )}
+
+                    <AcademicCta cta={data.cta} className="mb-[20px] xl:mb-[25px]" />
 
                     {/* Bottom Signature / Featured Person Block */}
                     {featuredPerson && (

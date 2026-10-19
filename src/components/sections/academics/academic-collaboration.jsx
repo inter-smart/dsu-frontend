@@ -1,11 +1,13 @@
 "use client";
 
-import { externalLinkProps } from "@/lib/schools/link-props";
+import { ctaLinkProps } from "@/lib/schools/link-props";
 
  
 
 export default function AcademicCollaboration({ data, varient }) {
     if (!data) return null;
+
+    const cta = data.cta ?? data.file;
 
     return (
         <section className={`relative py-[40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010] transition-colors duration-300 ${varient === "home" ? "!pb-0  bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)] dark:bg-none dark:bg-[#101010]" : ""}`}>
@@ -34,14 +36,14 @@ export default function AcademicCollaboration({ data, varient }) {
                     <div className="w-full max-lg:mb-[20px]">
                         {data.heading && <div className="cmn_Title mb-[25px]">{data.heading}</div>}
                         {data.description && <p className="dark:text-[#9CA3AF]">{data.description}</p>}
-                        {data?.file?.url && (
+                        {cta?.url && (
                             <a
-                                href={data.file.url}
-                                {...externalLinkProps(data.file.isExternal)}
+                                href={cta.url}
+                                {...ctaLinkProps(cta)}
                                 className="group relative flex h-[30px] mt-[15px] xl:mt-[30px] w-fit min-w-[140px] 2xl:min-w-[162px] items-center justify-center gap-[10px] overflow-hidden rounded-[4px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                             >
                                 <span className="relative z-[1] transition-transform duration-300  ">
-                                    {data.file.label}
+                                    {cta.label}
                                 </span>
 
                                 <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">

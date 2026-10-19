@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
+import AcademicCta from "./academic-cta";
 export default function AcademicProgram({ data, variant }) {
     if (!data) return null;
 
@@ -17,6 +18,7 @@ export default function AcademicProgram({ data, variant }) {
                         <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] lg:max-w-[90%]">
                             {data?.description && <BlocksRenderer content={data.description} />}
                         </div>
+                        <AcademicCta cta={data?.cta} className="mt-[15px] xl:mt-[20px]" />
                     </div>
                     
                 </div>

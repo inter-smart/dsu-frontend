@@ -4,6 +4,7 @@
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
+import AcademicCta from "./academic-cta";
 export default function AcademicInfrastructure({ data }) {
     return (
         <section className="relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010]">
@@ -31,7 +32,8 @@ export default function AcademicInfrastructure({ data }) {
                                     <BlocksRenderer content={data.description} />
                                 </div>
                             )}
-                            
+
+                            <AcademicCta cta={data?.cta} className="mt-[15px] xl:mt-[25px]" />
                         </div>
                     </div>
                     <div className="w-full lg:w-1/2">

@@ -43,23 +43,8 @@ const menuFor = (tabs, base) => tabs.map((t) => ({ label: t.label, href: tabHref
 // An API HTML field is only usable as a non-empty string (an empty field arrives as []).
 export const htmlOrNull = (v) => (typeof v === "string" && v.trim() ? v : null);
 
-const hasItems = (group) => Boolean(group?.items?.length);
-
-// Programme tabs that have content (overview always); mirrors what each tab renders.
-function programmeTabKeys(p) {
-  const has = {
-    overview: true,
-    eligibility: htmlOrNull(p.eligibility),
-    curriculum: p.curriculum?.some((c) => c?.courses?.length),
-    peo: hasItems(p.peoData?.peo),
-    "po-pso": hasItems(p.poPsoData?.po) || hasItems(p.poPsoData?.pso),
-    faculty: p.facultiesCollegeNursing?.facultiesSection?.categories?.length,
-    "career-opportunities": htmlOrNull(p.careerOpportunities),
-    admissions: p.admissionsSection?.files?.length || p.admissionsSection?.description,
-    downloads: p.downloadsSection?.files?.length,
-  };
-  return PROGRAM_TABS.filter((t) => has[t.key]).map((t) => t.key);
-}
+// Every programme tab is listed (and clickable), even when its content is empty.
+const programmeTabKeys = () => PROGRAM_TABS.map((t) => t.key);
 
 // Hero for an entity page: the API hero (its own banner or the school's), full breadcrumb.
 function buildHero(apiHero, trail, title) {
@@ -107,7 +92,7 @@ export async function loadProgramPage(schoolSlug, programmeSlug, tab, department
   if (!programme?.slug || programme.school?.slug !== schoolSlug) notFound();
   if (departmentSlug && programme.department?.slug !== departmentSlug) notFound();
 
-  const available = new Set(programmeTabKeys(programme));
+  const available = new Set(programmeTabKeys());
   if (!available.has(tab)) notFound();
 
   const owner = programme.department;

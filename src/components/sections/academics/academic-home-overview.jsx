@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
+import AcademicCta from "./academic-cta";
 export default function AcademicHomeOverview({ data }) {
     if (!data) return null;
 
@@ -72,7 +73,8 @@ export default function AcademicHomeOverview({ data }) {
                                 <BlocksRenderer content={data.intro} />
                             </div>
                         )}
-                        
+
+                        <AcademicCta cta={data?.cta} className="mt-[15px] xl:mt-[25px]" />
                     </div>
                 </div>
 

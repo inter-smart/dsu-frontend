@@ -74,7 +74,7 @@ function Sections({ tab, data, schoolSlug, department }) {
             );
         }
         case "research-areas":
-            return <DepartmentResearchAreas data={data.researchAreasSection} />;
+            return show(data.researchAreasSection) && <DepartmentResearchAreas data={data.researchAreasSection} />;
         case "industry-connect": {
             const recent = adapt.recentEngagementSection(data.recentEngagementSection);
             const partner = adapt.partnerWithUsSection(data.partnerWithUsSection);
