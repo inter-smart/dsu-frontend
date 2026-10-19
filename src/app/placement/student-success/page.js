@@ -1,11 +1,5 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import AlumniWorld from "@/components/sections/placements/alumni-world";
-import PlacementExcellence from "@/components/sections/placements/placement-excellence";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import StudentSuccess from "@/components/sections/placements/student-success";
-import StudentSuccessStories from "@/components/sections/placements/student-success-stories";
+import StudentSuccessTemplate from "@/components/sections/placements/templates/StudentSuccessTemplate";
 import { getPlacementStudentSuccessPage } from "@/lib/api/placement";
-import { hasContent } from "@/lib/has-content";
 
 const local_data = {
   seo: {
@@ -405,25 +399,19 @@ export async function generateMetadata() {
   };
 }
 
+const fallback = {
+    hero: local_data.hero,
+    studentSuccessPage: {
+        studentSuccess: local_data.studentSuccess,
+        alumniWorld: local_data.alumniWorld,
+        excellence: local_data.excellence,
+        successStoriesSection: local_data.successStoriesSection,
+    },
+};
+
 export default async function page() {
-  const apiData = await getPlacementStudentSuccessPage();
-  const success = apiData?.studentSuccessPage || {};
+    const apiData = await getPlacementStudentSuccessPage();
 
-  // API data when the entry exists, otherwise the static local_data
-  const hero = apiData ? apiData.hero : local_data.hero;
-  const studentSuccess = apiData ? success.studentSuccess : local_data.studentSuccess;
-  const alumniWorld = apiData ? success.alumniWorld : local_data.alumniWorld;
-  const excellence = apiData ? success.excellence : local_data.excellence;
-  const stories = apiData ? success.successStoriesSection : local_data.successStoriesSection;
-
-  return (
-    <>
-      {hasContent(hero) && <InnerHero data={hero} />}
-      <PlacementmenuBar className="lg:hidden! block" />
-      {hasContent(studentSuccess) && <StudentSuccess data={studentSuccess} />}
-      {hasContent(alumniWorld) && <AlumniWorld data={alumniWorld} />}
-      {hasContent(excellence) && <PlacementExcellence data={excellence} />}
-      {hasContent(stories) && <StudentSuccessStories data={stories} variant="bg-gradient" />}
-    </>
-  );
+    // API data when the entry exists, otherwise the static local_data
+    return <StudentSuccessTemplate data={apiData || fallback} />;
 }

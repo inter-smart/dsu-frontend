@@ -5,6 +5,10 @@ import IQAC from "@/components/sections/why-us/IQAC";
 import IQACReport from "@/components/sections/why-us/IQAC-reports";
 import WhyusAQAR from "@/components/sections/why-us/Whyus-AQAR";
 import AcademicQualitySection from "@/components/sections/why-us/AcademicQualitySection";
+import DSUWomenRedressal from "@/components/sections/why-us/DSU-womenredressal";
+import DSUOmbudsman from "@/components/sections/why-us/DSU-Ombudsman";
+import { getStudentSupportMenu, getStudentSupportPageBySlug } from "@/lib/api/women-redressal";
+import { hasContent } from "@/lib/has-content";
 import {
     getAcademicQualityBySlug,
     getComplianceDisclosureBySlug,
@@ -15,6 +19,15 @@ import {
 
 
 
+// Student Support & Welfare templates shown on this route: template -> component and the response key holding its data.
+// Add one line here for every new template that has no fixed route.
+// Entries with slug "women-redressal" / "ombudsman" are also served by their fixed routes.
+const studentSupportTemplates = {
+    squad: { Component: DSUWomenRedressal, dataKey: "squad" },
+    "women-redressal": { Component: DSUWomenRedressal, dataKey: "womenRedressalCell" },
+    ombudsman: { Component: DSUOmbudsman, dataKey: "ombudsmanMessage" },
+};
+
 export async function generateStaticParams() {
     const menu = (await getComplianceDisclosures()) || [];
     return menu
@@ -24,13 +37,14 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
-    const [academicQualityPage, aqarPage, iqacPage, disclosurePage] = await Promise.all([
+    const [academicQualityPage, aqarPage, iqacPage, disclosurePage, studentSupportPage] = await Promise.all([
         getAcademicQualityBySlug(slug),
         getAqarPageBySlug(slug),
         getIqacPageBySlug(slug),
         getComplianceDisclosureBySlug(slug),
+        getStudentSupportPageBySlug(slug),
     ]);
-    const pageData = academicQualityPage || aqarPage || iqacPage || disclosurePage;
+    const pageData = academicQualityPage || aqarPage || iqacPage || disclosurePage || studentSupportPage;
 
     return {
         title: pageData?.seo?.metaTitle || "Compliance & Disclosures | Dayananda Sagar University",
@@ -98,7 +112,21 @@ export default async function Page({ params }) {
         getComplianceDisclosures(),
     ]);
 
-    if (!pageData) notFound();
+    if (!pageData) {
+        const studentSupportPage = await getStudentSupportPageBySlug(slug);
+        const template = studentSupportTemplates[studentSupportPage?.template];
+        if (!template) notFound();
+
+        const studentSupportMenu = await getStudentSupportMenu();
+        const content = studentSupportPage[template.dataKey];
+
+        return (
+            <>
+                {hasContent(studentSupportPage.hero) && <InnerHero data={studentSupportPage.hero} />}
+                {hasContent(content) && <template.Component data={content} menu={studentSupportMenu} />}
+            </>
+        );
+    }
 
     return (
         <>

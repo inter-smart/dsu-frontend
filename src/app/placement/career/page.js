@@ -1,17 +1,5 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import CareerGoal from "@/components/sections/placements/Career-Goal";
-import CareerJourney from "@/components/sections/placements/Career-journey";
-import CareerPartners from "@/components/sections/placements/Career-Partners";
-import CareerPlacement from "@/components/sections/placements/Career-Placement";
-import IntershipSupport from "@/components/sections/placements/intership-support";
-import KeyFocus from "@/components/sections/placements/Key-Focus";
-import PlacementOverview from "@/components/sections/placements/overview";
-import PlacementActivities from "@/components/sections/placements/Placement-Activities";
-import CampusDrives from "@/components/sections/placements/placement-campusdrive";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import ProfessionalCertification from "@/components/sections/placements/profeesional-section";
+import CareerDevelopmentTemplate from "@/components/sections/placements/templates/CareerDevelopmentTemplate";
 import { getPlacementCareerPage } from "@/lib/api/placement";
-import { hasContent } from "@/lib/has-content";
 
 const local_data = {
     id: 24,
@@ -605,31 +593,22 @@ export async function generateMetadata() {
     };
 }
 
+const fallback = {
+    hero: local_data.hero,
+    careerDevelopment: {
+        programOverviewSection: local_data.programOverviewSection,
+        KeyFocus: local_data.KeyFocus,
+        careerGoal: local_data.careerGoal,
+        campusDrive: local_data.campusDrive,
+        professional: local_data.professional,
+        partnersSection: local_data.partnersSection,
+        careerJorney: local_data.careerJorney,
+    },
+};
+
 export default async function page() {
     const apiData = await getPlacementCareerPage();
-    const career = apiData?.careerDevelopment || {};
 
     // API data when the entry exists, otherwise the static local_data
-    const hero = apiData ? apiData.hero : local_data.hero;
-    const overview = apiData ? career.programOverviewSection : local_data.programOverviewSection;
-    const keyFocus = apiData ? career.KeyFocus : local_data.KeyFocus;
-    const careerGoal = apiData ? career.careerGoal : local_data.careerGoal;
-    const campusDrive = apiData ? career.campusDrive : local_data.campusDrive;
-    const professional = apiData ? career.professional : local_data.professional;
-    const partners = apiData ? career.partnersSection : local_data.partnersSection;
-    const journey = apiData ? career.careerJorney : local_data.careerJorney;
-
-    return (
-        <>
-            {hasContent(hero) && <InnerHero data={hero} />}
-            <PlacementmenuBar className="lg:!hidden block" />
-            {hasContent(overview) && <CareerPlacement data={overview} />}
-            {hasContent(keyFocus) && <KeyFocus data={keyFocus} />}
-            {hasContent(careerGoal) && <CareerGoal data={careerGoal} />}
-            {hasContent(campusDrive) && <CampusDrives data={campusDrive} />}
-            {hasContent(professional) && <ProfessionalCertification data={professional} />}
-            {hasContent(partners) && <CareerPartners data={partners} />}
-            {hasContent(journey) && <CareerJourney data={journey} />}
-        </>
-    )
+    return <CareerDevelopmentTemplate data={apiData || fallback} />;
 }

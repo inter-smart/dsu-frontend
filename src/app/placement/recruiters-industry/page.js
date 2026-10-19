@@ -1,12 +1,5 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import Recruiters from "@/components/sections/placements/recruiters";
-import IndustryPartnerships from "@/components/sections/placements/industry-partnerships";
-import IndustryEngagement from "@/components/sections/placements/industry-engagement";
-import RecruiterTestimonials from "@/components/sections/placements/recruiter-testimonials";
-import RecruitmentGallery from "@/components/sections/placements/recruitment-gallery";
+import RecruitersIndustryTemplate from "@/components/sections/placements/templates/RecruitersIndustryTemplate";
 import { getPlacementRecruitersIndustryPage } from "@/lib/api/placement";
-import { hasContent } from "@/lib/has-content";
 
 const IMG = "/images/recruiters-industry";
 
@@ -323,29 +316,20 @@ export async function generateMetadata() {
   };
 }
 
+const fallback = {
+    hero: local_data.hero,
+    recruitersIndustryPage: {
+        recruitersSection: local_data.recruitersSection,
+        partnershipsSection: local_data.partnershipsSection,
+        engagementSection: local_data.engagementSection,
+        testimonialsSection: local_data.testimonialsSection,
+        gallerySection: local_data.gallerySection,
+    },
+};
+
 export default async function page() {
-  const apiData = await getPlacementRecruitersIndustryPage();
-  const ri = apiData?.recruitersIndustryPage || {};
+    const apiData = await getPlacementRecruitersIndustryPage();
 
-  // API data when the entry exists, otherwise the static local_data
-  const hero = apiData ? apiData.hero : local_data.hero;
-  const recruiters = apiData ? ri.recruitersSection : local_data.recruitersSection;
-  const partnerships = apiData ? ri.partnershipsSection : local_data.partnershipsSection;
-  const engagement = apiData ? ri.engagementSection : local_data.engagementSection;
-  const testimonials = apiData ? ri.testimonialsSection : local_data.testimonialsSection;
-  const gallery = apiData ? ri.gallerySection : local_data.gallerySection;
-
-  return (
-    <>
-      {hasContent(hero) && <InnerHero data={hero} />}
-      <PlacementmenuBar className="lg:!hidden block" />
-      {hasContent(recruiters) && (
-        <Recruiters data={recruiters} className="[--recruiters-bg:#fff]" />
-      )}
-      {hasContent(partnerships) && <IndustryPartnerships data={partnerships} />}
-      {hasContent(engagement) && <IndustryEngagement data={engagement} />}
-      {hasContent(testimonials) && <RecruiterTestimonials data={testimonials} />}
-      {hasContent(gallery) && <RecruitmentGallery data={gallery} />}
-    </>
-  );
+    // API data when the entry exists, otherwise the static local_data
+    return <RecruitersIndustryTemplate data={apiData || fallback} />;
 }

@@ -1,45 +1,6 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import PlacementOverview from "@/components/sections/placements/overview";
-import AiVisionMission from "@/components/sections/ai-enabled/Ai-vision-mission";
-import Announcement from "@/components/sections/placements/announcement";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import CILsection from "@/components/sections/placements/CILSection";
-import Recruiters from "@/components/sections/placements/recruiters";
-import PlacementContact from "@/components/sections/placements/placementcontact";
-import DirectorMessage from "@/components/sections/placements/directors-message";
-import TeamSection from "@/components/sections/placements/Team-section";
+import AboutPlacementTemplate from "@/components/sections/placements/templates/AboutPlacementTemplate";
 import { getPlacementAboutPage } from "@/lib/api/placement";
 
-const contentMetadata = new Set([
-    "id",
-    "documentId",
-    "createdAt",
-    "updatedAt",
-    "publishedAt",
-    "locale",
-    "__component",
-    "type",
-    "mime",
-    "provider",
-    "hash",
-    "ext",
-    "size",
-    "width",
-    "height",
-    "formats",
-    "alternativeText",
-]);
-
-function hasContent(value) {
-    if (typeof value === "string") return value.trim().length > 0;
-    if (typeof value === "number") return Number.isFinite(value);
-    if (Array.isArray(value)) return value.some(hasContent);
-    if (!value || typeof value !== "object") return false;
-
-    return Object.entries(value).some(
-        ([key, nestedValue]) => !contentMetadata.has(key) && hasContent(nestedValue),
-    );
-}
 
 const local_data = {
     id: 24,
@@ -615,33 +576,23 @@ export async function generateMetadata() {
     };
 }
 
+const fallback = {
+    hero: local_data.hero,
+    aboutPlacementCell: {
+        programOverviewSection: local_data.programOverviewSection,
+        missionVisionSection: local_data.missionVisionSection,
+        announcemntSection: local_data.announcemntSection,
+        chairmanMessage: local_data.chairmanMessage,
+        placementTeam: local_data.placementTeam,
+        CILSection: local_data.CILSection,
+        placemntContact: local_data.placemntContact,
+        recruterSection: local_data.recruterSection,
+    },
+};
+
 export default async function page() {
     const apiData = await getPlacementAboutPage();
-    const about = apiData?.aboutPlacementCell || {};
 
     // API data when the entry exists, otherwise the static local_data
-    const hero = apiData ? apiData.hero : local_data.hero;
-    const overview = apiData ? about.programOverviewSection : local_data.programOverviewSection;
-    const missionVision = apiData ? about.missionVisionSection : local_data.missionVisionSection;
-    const announcements = apiData ? about.announcemntSection : local_data.announcemntSection;
-    const director = apiData ? about.chairmanMessage : local_data.chairmanMessage;
-    const team = apiData ? about.placementTeam : local_data.placementTeam;
-    const cil = apiData ? about.CILSection : local_data.CILSection;
-    const contact = apiData ? about.placemntContact : local_data.placemntContact;
-    const recruiters = apiData ? about.recruterSection : local_data.recruterSection;
-
-    return (
-        <>
-            {hasContent(hero) && <InnerHero data={hero} />}
-            <PlacementmenuBar className="lg:!hidden block" />
-            {hasContent(overview) && <PlacementOverview data={overview} />}
-            {hasContent(missionVision) && <AiVisionMission data={missionVision} />}
-            {hasContent(announcements) && <Announcement data={announcements} />}
-            {hasContent(director) && <DirectorMessage data={director} />}
-            {hasContent(team) && <TeamSection data={team} />}
-            {hasContent(cil) && <CILsection data={cil} />}
-            {hasContent(contact) && <PlacementContact data={contact} />}
-            {hasContent(recruiters) && <Recruiters data={recruiters} />}
-        </>
-    )
+    return <AboutPlacementTemplate data={apiData || fallback} />;
 }
