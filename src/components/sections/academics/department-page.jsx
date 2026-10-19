@@ -1,7 +1,7 @@
 import SchoolTabShell from "@/components/sections/academics/school-tab-shell";
 import AcademicProgram from "@/components/sections/academics/academic-program";
 import AcademicOverview from "@/components/sections/academics/academic-overview";
-import AcademicVisionMission from "@/components/sections/academics/academic-vision-mission";
+import AiVisionMission from "@/components/sections/ai-enabled/Ai-vision-mission";
 import AcademicContact from "@/components/sections/academics/academic-contact";
 import AcademicAchievements from "@/components/sections/academics/academic-achievements";
 import AcademicFacultyAchievements from "@/components/sections/academics/academic-faculty-achievements";
@@ -41,12 +41,11 @@ function Sections({ tab, data, schoolSlug, department }) {
     const show = hasContent;
     switch (tab) {
         case "overview": {
-            const highlights = adapt.highlightsSection(data.highlightsSection);
             return (
                 <>
                     {show(data.programOverviewSection) && <AcademicOverview data={data.programOverviewSection} />}
-                    {show(data.visionMissionSection) && <AcademicVisionMission data={data.visionMissionSection} />}
-                    {highlights && <AiHighlights data={highlights} />}
+                    {show(data.missionVisionSection?.cards) && <AiVisionMission data={data.missionVisionSection} />}
+                    {show(data.departmentHighlightsSection?.items) && <AiHighlights data={data.departmentHighlightsSection} />}
                     {show(data.contact) && <AcademicContact data={data.contact} schoolSlug={schoolSlug} />}
                 </>
             );
