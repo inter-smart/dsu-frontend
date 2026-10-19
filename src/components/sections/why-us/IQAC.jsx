@@ -24,7 +24,16 @@ export default function IQAC({ data }) {
                             <TabsTrigger
                                 key={tab.id || tab.value}
                                 value={tab.value}
-                                className={`relative h-[44px] md:h-[48px] xl:h-[54px] px-[20px] sm:px-[28px] xl:px-[36px] 2xl:px-[42px] rounded-none border-0 overflow-visible !no-underline flex items-center justify-center whitespace-nowrap !bg-transparent text-[13px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] font-medium text-[#374151] dark:text-[#D1D5DB] shrink-0 transition-colors duration-150 hover:text-[#111827] dark:hover:text-white data-active:text-[#111827] dark:data-active:text-white data-active:font-semibold after:content-[''] after:absolute after:!bottom-0 after:!left-0 after:!right-0 after:!h-[3.5px] after:!bg-[#F97316] after:w-[75%] after:m-auto after:opacity-0 after:transition-opacity after:duration-150 data-active:after:!opacity-100 ${index !== tabs.length - 1 ? "before:absolute before:content-[''] before:right-0 before:w-[1px] before:h-[70%] before:bg-[rgba(33,33,33,0.1)] dark:before:bg-white/10 before:top-0 before:bottom-0 before:m-auto" : ""}`}
+                                className={`relative h-[44px] md:h-[48px] xl:h-[54px] px-[20px] sm:px-[28px] xl:px-[36px] 2xl:px-[42px]
+                                rounded-none border-0 overflow-visible !no-underline flex items-center justify-center whitespace-nowrap !bg-transparent
+                                text-[13px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] font-medium text-[#374151] dark:text-[#D1D5DB] shrink-0
+                                transition-colors duration-150 bg-transparent
+                                hover:text-[#111827] dark:hover:text-white
+                                data-active:text-[#111827] dark:data-active:text-white data-active:font-semibold
+                                data-[state=active]:text-[#111827] dark:data-[state=active]:text-white data-[state=active]:font-semibold
+                                after:content-[''] after:absolute after:!bottom-0 after:!left-0 after:!right-0 after:!h-[3.5px] after:!bg-[#F97316] after:w-[100%] after:m-auto after:opacity-0 after:transition-opacity after:duration-150
+                                data-active:after:!opacity-100 data-[state=active]:after:!opacity-100
+                                ${idx !== data?.tabs.length - 1 ? "before:absolute before:content-[''] before:right-0 before:w-[1px] before:h-[70%] before:bg-[rgba(33,33,33,0.1)] dark:before:bg-white/10 before:top-0 before:bottom-0 before:m-auto" : ""}`}
                             >
                                 {tab.label}
                             </TabsTrigger>
@@ -40,7 +49,7 @@ export default function IQAC({ data }) {
                     <IQACContact data={data.contactData} />
                 </TabsContent>
 
-                <TabsContent value="iqac-activities" className="mt-[10px]">
+                <TabsContent value="iqac-activities" className="mt-[10px] pb-[50px]">
                     <IQACActivities data={data.activities} />
                 </TabsContent>
             </Tabs>

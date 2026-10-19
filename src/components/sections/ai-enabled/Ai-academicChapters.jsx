@@ -30,7 +30,7 @@ export default function AiAcademicChapters({ data }) {
                                         />
                                     )}
                                 </div>
-                                <div className="p-[15px] xl:p-[25px] 3xl:p-[30px] relative">
+                                <div className="p-[15px] xl:p-[20px] 3xl:p-[30px] relative">
                                     <div
                                         className="text-[15px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] text-white font-semibold
                                         flex items-center justify-center w-[50px] xl:w-[55px] 2xl:w-[70px] 3xl:w-[82px] h-[50px] xl:h-[55px] 2xl:h-[70px] 3xl:h-[82px] rounded-[8px] bg-gradient-to-r from-[#DC2626] to-[#F97316]
@@ -45,7 +45,7 @@ export default function AiAcademicChapters({ data }) {
                                             {[item.stats?.members, item.stats?.events, item.stats?.established]
                                                 .filter(Boolean)
                                                 .map((stat, idx, arr) => (
-                                                    <span key={idx} className="text-[10px] 2xl:text-[12px] 3xl:text-[14px] text-[#212121] dark:text-white">
+                                                    <span key={idx} className="text-[9px] 2xl:text-[11px] 3xl:text-[14px] text-[#212121] dark:text-white">
                                                         {stat}
                                                         {idx < arr.length - 1 && <span className="mx-[3px] text-[#212121]">|</span>}
                                                     </span>
@@ -53,7 +53,7 @@ export default function AiAcademicChapters({ data }) {
                                         </div>
                                         <Link
                                             href={item.link || "#!"}
-                                            className="group/link flex items-center gap-[4px] text-[10px] 2xl:text-[12px] 3xl:text-[14px] font-semibold  bg-gradient-to-r from-[#DC2626] from-[80%] to-[#F97316] tracking-tighter bg-clip-text text-transparent transition-colors shrink-0"
+                                            className="group/link inline-flex items-center gap-[4px] text-[9px] 2xl:text-[11px] 3xl:text-[14px] font-semibold  bg-gradient-to-r from-[#DC2626] from-[80%] to-[#F97316] tracking-tighter bg-clip-text text-transparent transition-colors shrink-0"
                                         >
                                             <span className="relative pr-[16px] after:absolute after:content-['>>'] after:top-0 after:bottom-0 after:right-0 after:text-[#F97316] after:transition-transform after:duration-300 group-hover/link:after:translate-x-[4px] group-hover/link:opacity-80">VIEW CHAPTER </span>
 

@@ -38,14 +38,14 @@ export default function DSUCommitee({ data }) {
                             <span>Menu</span>
                         </button>
                         <div className="w-full lg:h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_40px] 2xl:p-[40px_45px] 3xl:p-[50px_55px]">
-                            <h2 className="cmn_Title">
-                                {data.heading}
-                            </h2>
-                            <div className="text_1 leading-[1.2] text-[#4A5565] mb-[15px] xl:mb-[20px] 2xl:mb-[30px] 3xl:mb-[40px]">
-                                <BlocksRenderer content={data.description} />
-                            </div>
 
                             <div className="w-full lg:max-w-[95%]">
+                                <h2 className="cmn_Title">
+                                    {data.heading}
+                                </h2>
+                                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[15px] xl:mb-[20px] 2xl:mb-[30px] 3xl:mb-[40px]">
+                                    <BlocksRenderer content={data.description} />
+                                </div>
 
                                 <div className="w-full overflow-x-auto">
                                     <div className="min-w-[500px] rounded-[0px] border border-[#707070] overflow-hidden">
@@ -65,18 +65,18 @@ export default function DSUCommitee({ data }) {
                                             <tbody>
                                                 {data?.committeeMembers?.rows?.map((item, index) => (
                                                     <tr key={index} className="border-b border-[#707070] last:border-b-0">
-                                                        
-                                                        <td 
+
+                                                        <td
                                                             className={`border-r border-[#707070] px-[10px] py-[13px] text-center text_1 text-[#212121] font-medium last:border-r-0 lg:text-[15px] `}
                                                         >
                                                             {item.name}
                                                         </td>
-                                                        <td 
+                                                        <td
                                                             className={`border-r border-[#707070] px-[10px] py-[13px] text-center text_1 text-[#212121] font-medium  last:border-r-0 lg:text-[15px] `}
                                                         >
                                                             {item.designation}
                                                         </td>
-                                                        <td 
+                                                        <td
                                                             className={`border-r border-[#707070] px-[10px] py-[13px] text-center text_1 text-[#212121] font-medium last:border-r-0 lg:text-[15px] `}
                                                         >
                                                             {item.email}

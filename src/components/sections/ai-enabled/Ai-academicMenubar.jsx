@@ -48,10 +48,34 @@ const menuItems = [
     label: "Library",
     href: "/ai-enabled/library",
     submenu: [
-      { label: "Library Services", href: "/ai-enabled/library/services" },
-      { label: "Library Collections", href: "/ai-enabled/library/collections" },
-      { label: "Membership", href: "/ai-enabled/library#membership" },
-      { label: "Downloads", href: "/ai-enabled/library#downloads" },
+      {
+        label: "Overview",
+        href: "/ai-enabled/library",
+      },
+      {
+        label: "Library Services",
+        href: "/ai-enabled/library/services",
+      },
+      {
+        label: "Library Downloads",
+        href: "/ai-enabled/library/downloads",
+      },
+      {
+        label: "Quick Abbreviations",
+        href: "/ai-enabled/library/abbreviations",
+      },
+      {
+        label: "Library Automation",
+        href: "/ai-enabled/library/automation",
+      },
+      {
+        label: "FAQ's",
+        href: "/ai-enabled/library/faqs",
+      },
+      {
+        label: "Gallery",
+        href: "/ai-enabled/library/gallery",
+      },
     ],
   },
   {
@@ -85,6 +109,20 @@ export default function AiAcademicMenubar({
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [currentHash, setCurrentHash] = useState("");
   const lenis = useLenis();
+
+  useEffect(() => {
+    if (isMobileSidebarOpen) {
+      document.documentElement.style.overflow = "hidden";
+      if (lenis) lenis.stop();
+    } else {
+      document.documentElement.style.overflow = "";
+      if (lenis) lenis.start();
+    }
+    return () => {
+      document.documentElement.style.overflow = "";
+      if (lenis) lenis.start();
+    };
+  }, [isMobileSidebarOpen, lenis]);
   const navigationItems =
     data?.length > 0
       ? data.map(({ label, slug }) => ({ label, href: slug }))
@@ -196,11 +234,11 @@ export default function AiAcademicMenubar({
       )}
 
       <div
-        className={`fixed top-0 left-0 h-full w-[300px] sm:w-[320px] z-50 shadow-2xl transition-all duration-300 lg:hidden overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] p-[1px]
+        className={`fixed top-0 left-0 h-dvh w-[300px] sm:w-[320px] z-50 shadow-2xl transition-all duration-300 lg:hidden overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] p-[1px]
                  ${isMobileSidebarOpen ? "translate-x-0 opacity-100 pointer-events-auto" : "-translate-x-full opacity-0 pointer-events-none"}
                 `}
       >
-        <div className="overflow-y-auto bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] dark:from-[#1a1a1a] dark:to-[#111111] w-full h-full flex flex-col">
+        <div className="overflow-y-auto overscroll-contain bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] dark:from-[#1a1a1a] dark:to-[#111111] w-full h-full flex flex-col">
           {/* Mobile Header with Close Button */}
           <div className="flex items-center justify-between p-3 border-b border-black/10 bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white">
             <span className="font-semibold text-sm">{title}</span>
@@ -254,11 +292,10 @@ export default function AiAcademicMenubar({
                             className="flex-1"
                           >
                             <div
-                              className={`text_1 font-semibold transition-colors duration-300 group-hover:text-[#F97316] text-[13px] ${
-                                isActive
+                              className={`text_1 font-semibold transition-colors duration-300 group-hover:text-[#F97316] text-[13px] ${isActive
                                   ? "text-[#F97316]"
                                   : "text-[#212121] dark:text-[#F9FAFB]"
-                              }`}
+                                }`}
                             >
                               {item.label}
                             </div>
@@ -284,21 +321,19 @@ export default function AiAcademicMenubar({
                                     aria-current={
                                       isSubActive ? "page" : undefined
                                     }
-                                    className="flex items-center gap-[8px] py-[8px] pl-[15px]"
+                                    className="flex items-center gap-[8px] py-[8px]   w-full border-b !no-underline"
                                   >
                                     <span
-                                      className={`w-[4px] h-[4px] rounded-full shrink-0 ${
-                                        isSubActive
+                                      className={`w-[4px] h-[4px] rounded-full shrink-0 ${isSubActive
                                           ? "bg-[#F97316]"
-                                          : "bg-[#212121]/40 dark:bg-white/40"
-                                      }`}
+                                          : "bg-[#212121]/70 dark:bg-white/40"
+                                        }`}
                                     />
                                     <span
-                                      className={`text_1 text-[12px] transition-colors duration-300 hover:text-[#F97316] ${
-                                        isSubActive
+                                      className={`text_1 text-[12px] transition-colors duration-300 hover:text-[#F97316] ${isSubActive
                                           ? "text-[#F97316] font-semibold"
                                           : "text-[#212121]/80 dark:text-[#F9FAFB]/80"
-                                      }`}
+                                        }`}
                                     >
                                       {subItem.label}
                                     </span>
@@ -329,11 +364,10 @@ export default function AiAcademicMenubar({
                     className="flex items-center justify-between"
                   >
                     <div
-                      className={`text_1 font-semibold transition-colors duration-300 group-hover:text-[#F97316] text-[13px] ${
-                        isActive
+                      className={`text_1 font-semibold transition-colors duration-300 group-hover:text-[#F97316] text-[13px] ${isActive
                           ? "text-[#F97316]"
                           : "text-[#212121] dark:text-[#F9FAFB]"
-                      }`}
+                        }`}
                     >
                       {item.label}
                     </div>
@@ -380,11 +414,10 @@ export default function AiAcademicMenubar({
                                         text_1 font-medium p-[2px] rounded-[10px]  whitespace-nowrap
                                         transition-all duration-300
                                          h-[35px] 2xl:h-[40px] 3xl:h-[45px]
-                                        ${
-                                          isActive
-                                            ? "bg-gradient-to-r from-[#DC2626] to-[#F97316]"
-                                            : "bg-gradient-to-r from-[rgba(220,38,38,0.2)] to-[rgba(249,115,22,0.2)] hover:from-[#DC2626] hover:to-[#F97316]"
-                                        }
+                                        ${isActive
+                        ? "bg-gradient-to-r from-[#DC2626] to-[#F97316]"
+                        : "bg-gradient-to-r from-[rgba(220,38,38,0.2)] to-[rgba(249,115,22,0.2)] hover:from-[#DC2626] hover:to-[#F97316]"
+                      }
                                             `}
                   >
                     <span
@@ -395,11 +428,10 @@ export default function AiAcademicMenubar({
                                             rounded-[7px]
                                             text_1 font-medium  whitespace-nowrap
                                             transition-all duration-300
-                                            ${
-                                              isActive
-                                                ? "bg-transparent text-white"
-                                                : "bg-white dark:bg-[#1f1f1f] text-black dark:text-white group-hover:text-[#DC2626] dark:group-hover:text-[#F97316]"
-                                            }
+                                            ${isActive
+                          ? "bg-transparent text-white"
+                          : "bg-white dark:bg-[#1f1f1f] text-black dark:text-white group-hover:text-[#DC2626] dark:group-hover:text-[#F97316]"
+                        }
                                             `}
                     >
                       {item.label}

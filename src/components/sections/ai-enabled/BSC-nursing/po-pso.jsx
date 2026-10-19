@@ -61,7 +61,7 @@ export default function PoPsoSection({ data }) {
                 {/* Program Specific Outcomes (PSOs) */}
                 {data.pso && (
                     <div>
-                        <h2 className="cmn_Title mb-[10px] xl:mb-[15px]">{data.pso.heading}</h2>
+                        <h2 className="cmn_Title mb-[8px] xl:mb-[10px]">{data.pso.heading}</h2>
                         <p className="text_1 text-[#4A5565] dark:text-white  mb-[30px] lg:mb-[40px]">{data.pso.subtitle}</p>
 
                         <div className="flex flex-col gap-[20px] lg:gap-[25px]">

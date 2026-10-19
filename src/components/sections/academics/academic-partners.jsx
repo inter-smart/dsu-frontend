@@ -31,16 +31,33 @@ export default function AcademicPartners({ data, varient }) {
                             }}
                             slidesPerView={3}
                             spaceBetween={0}
-                            loop={true}
+                            loop={false}
+                            rewind={true}
+                            allowTouchMove={true}
+                            simulateTouch={true}
+                            grabCursor={true}
+                            touchEventsTarget="container"
                             autoplay={{
-                                delay: 2000,
+                                delay: 1000,
                                 disableOnInteraction: false,
                             }}
                             breakpoints={{
-                                480: { slidesPerView: 4 },
-                                768: { slidesPerView: 6 },
-                                1024: { slidesPerView: 6 },
-                                1280: { slidesPerView: 6 },
+                                480: {
+                                    slidesPerView: 4,
+                                    grid: { rows: 2, fill: "row" },
+                                },
+                                768: {
+                                    slidesPerView: 6,
+                                    grid: { rows: 2, fill: "row" },
+                                },
+                                1024: {
+                                    slidesPerView: 6,
+                                    grid: { rows: 2, fill: "row" },
+                                },
+                                1280: {
+                                    slidesPerView: 6,
+                                    grid: { rows: 2, fill: "row" },
+                                },
                             }}
                             className="w-full relative after:absolute after:content-[''] after:top-0 after:left-[0px] after:z-10 after:w-full after:h-full after:border-[#EFF6FF] dark:after:border-[#101010] after:border "
                         >
@@ -55,7 +72,7 @@ export default function AcademicPartners({ data, varient }) {
                                             alt={partner.logo?.alternativeText || "Partner logo"}
                                             width={110}
                                             height={40}
-                                            className="object-contain max-h-[35px] xl:max-h-[36px] min-w-[150px] w-auto flex items-center justify-center dark:bg-white/90 dark:rounded-[4px] dark:p-[4px]"
+                                            className="object-contain max-h-[35px] xl:max-h-[36px] lg:min-w-[150px] w-full h-full object-contain flex items-center justify-center dark:bg-white/90 dark:rounded-[4px] dark:p-[4px]"
                                         />
                                     </div>
                                 </SwiperSlide>
@@ -65,7 +82,7 @@ export default function AcademicPartners({ data, varient }) {
                     <div className={`w-full relative ${varient === "home" ? "" : "hidden"} `}>
 
                         <Swiper
-                            modules={[Grid, Autoplay]}                             
+                            modules={[Grid, Autoplay]}
                             slidesPerView={4}
                             spaceBetween={0}
                             loop={true}

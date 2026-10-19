@@ -24,7 +24,7 @@ const local_data = {
             // if video - mime: "video/mp4",
             url: "/images/academic-banner.jpg",
         },
-        title: "School of Computer Applications",
+        title: "Placements",
         breadcrumb: [
             {
                 label: "Home",
@@ -35,15 +35,15 @@ const local_data = {
                 href: "/",
             },
             {
-                label: "Schools",
+                label: "School of Health Sciences",
                 href: "/",
             },
             {
-                label: "Computer Applications",
+                label: "College of Nursing Sciences",
                 href: "/",
             },
             {
-                label: "Placements Snapshot",
+                label: "Placements",
                 href: "/",
             },
         ],
@@ -197,7 +197,7 @@ const local_data = {
         media: {
             alternativeText: "Placement Reports ",
             mime: "image/jpg",
-            // if video - mime: "video/mp4",
+            // if video - mime: "video/mp4",                    
             url: "/images/placement-img.jpg",
         },
     }
@@ -209,10 +209,10 @@ export default function page() {
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <AcademicMenubar className="md:!hidden block" />
+            <AcademicMenubar className="lg:!hidden block" />
             <AcademicCollaboration data={local_data.industryCollaborationsSection} />
             <AcademicPartners data={local_data.partnersSection} />
-            <AcademicPlacementReport data={local_data.placementReportsSection} />
+            <AcademicPlacementReport data={local_data.placementReportsSection} />   
         </>
     )
 }

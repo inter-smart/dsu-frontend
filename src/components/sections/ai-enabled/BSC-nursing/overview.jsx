@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image"; 
+import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function BscOverview({ data }) {
@@ -26,9 +26,10 @@ export default function BscOverview({ data }) {
                             )}
 
                             {data?.heading && (
-                                <h2 className="cmn_Title mb-[15px] xl:mb-[20px] 2xl:mb-[25px] text-black dark:text-white">
-                                    {data.heading}
-                                </h2>
+                                <h2
+                                    className="cmn_Title mb-[25px] 2xl:mb-[40px]"
+                                    dangerouslySetInnerHTML={{ __html: data?.heading || "" }}
+                                />
                             )}
 
                             {data?.intro && (

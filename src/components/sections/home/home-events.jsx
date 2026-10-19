@@ -5,6 +5,8 @@ import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
+import { buttonVariants } from "@/components/ui/button"; 
+
 
 
 export default function Events({ data }) {
@@ -57,12 +59,12 @@ export default function Events({ data }) {
     <section className="w-full h-auto bg-white dark:bg-[#101010] block">
       <div className="container">
         <div className="w-full h-full py-[30px_50px] sm:py-[40px_50px] lg:py-[50px_60px] 2xl:py-[60px_70px] 3xl:py-[70px_90px] border-b border-[#0B214833] dark:border-white/20 block">
-          <div className="w-full h-auto mb-5 sm:mb-10 lg:mb-12.5 2xl:mb-15 3xl:mb-20 sm:text-center">
+          <div className="w-full h-auto mb-5 sm:mb-10 lg:mb-12.5 2xl:mb-15 3xl:mb-20 sm:text-center ">
             <Heading
+              as="h2"
               aurora
-              speed={2}
-              align="center"
-              className="mb-1.25 xl:mb-2.5 3xl:mb-3.75"
+              speed={2} 
+              className="mb-1.25 xl:mb-2.5 3xl:mb-3.75 dark:!bg-none dark:!text-white [&_span]:dark:!bg-none [&_span]:dark:text-white"
             >
               {data?.title}
             </Heading>
@@ -73,8 +75,9 @@ export default function Events({ data }) {
               <div className="w-full h-auto mb-2.5 2xl:mb-3.75 3xl:mb-5 hidden sm:flex items-center flex-wrap justify-between">
                 <div className="flex items-center">
                   <Heading
+                    as="h3"
                     size="h2"
-                    className="pr-2.5 2xl:pr-3.75 3xl:pr-5 dark:text-white"
+                    className="pr-2.5 2xl:pr-3.75 3xl:pr-5 dark:bg-none dark:text-white"
                   >
                     Latest Happenings
                   </Heading>
@@ -123,7 +126,7 @@ export default function Events({ data }) {
                   {data?.latest_list?.map((item) => (
                     <div key={item?.id} className="min-w-0 flex-[0_0_100%] pl-2.5">
                       <div className="group w-full h-full block relative z-0">
-                        <div className="w-full h-auto lg:min-h-92.5 2xl:min-h-92.5 3xl:min-h-107.5 aspect-765/430 rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] overflow-hidden">
+                        <div className="w-full h-auto lg:min-h-90.5 2xl:min-h-92.5 3xl:min-h-107.5 aspect-765/430 rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] overflow-hidden">
                           <Image
                             src={
                               item?.featured_image?.url ||
@@ -162,6 +165,7 @@ export default function Events({ data }) {
               <div className="w-full h-auto mb-2.5 2xl:mb-3.75 3xl:mb-5 flex items-center flex-wrap justify-between">
                 <div className="flex items-center">
                   <Heading
+                    as="h3"
                     size="h2"
                     className="dark:text-white pr-2.5 2xl:pr-3.75 3xl:pr-5"
                   >
@@ -237,9 +241,9 @@ export default function Events({ data }) {
                         </div>
                         <div className="w-[calc(100%-var(--image-size))] h-auto pl-2.5 2xl:pl-3.75 flex flex-col justify-between py-1">
                           <div>
-                            <div className="lg:text-lg 2xl:text-xl 3xl:text-3xl leading-tight font-bold text-[#212121] dark:text-white mb-1 line-clamp-1 transition-colors duration-500 group-hover:!text-(--basecolor2)">
+                            <h4 className="lg:text-lg 2xl:text-xl 3xl:text-3xl leading-tight font-bold text-[#212121] dark:text-white mb-1 line-clamp-1 transition-colors duration-500 group-hover:!text-(--basecolor2)">
                               {item?.title}
-                            </div>
+                            </h4>
                             <div className="text-sm 3xl:text-base leading-normal font-normal text-[#4A5565] dark:text-white sm:max-w-[95%] mb-2 line-clamp-2 transition-colors duration-500 group-hover:!text-(--basecolor2)">
                               {item?.description}
                             </div>
@@ -255,6 +259,25 @@ export default function Events({ data }) {
                     </div>
                   ))}
                 </div>
+                 <div className="w-full h-auto mt-3.75 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center">
+                          <Link
+                            href="/centres-of-excellence"
+                            className={buttonVariants({
+                              variant: "default",
+                              size: "default",
+                            })}
+                          >
+                            View All Programs
+                            <Image
+                              src="/images/icon-btn.svg"
+                              alt="home-btn"
+                              width={15}
+                              height={15}
+                              className="size-3.75"
+                              data-icon="inline-end"
+                            />
+                          </Link>
+                        </div>
               </div>
             </div>
           </div>

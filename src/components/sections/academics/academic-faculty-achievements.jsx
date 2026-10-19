@@ -1,19 +1,51 @@
 "use client";
 
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation } from "swiper/modules";
+import { FreeMode } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/free-mode";
-import "swiper/css/navigation";
 
 export default function AcademicFacultyAchievements({ data }) {
-    const prevRef = useRef(null);
-    const nextRef = useRef(null);
-    // true while all month pills fit, so there is nothing to scroll and no arrows are needed
-    const [pillsFit, setPillsFit] = useState(true);
+    const [swiper, setSwiper] = useState(null);
+    const [showNav, setShowNav] = useState(false);
+    const [isBeginning, setIsBeginning] = useState(true);
+    const [isEnd, setIsEnd] = useState(false);
+
+    // CHANGED: measure real overflow instead of trusting swiper.isLocked
+    const syncNav = (s) => {
+        if (!s || s.destroyed) return;
+        setShowNav(s.virtualSize > s.size + 1);
+        setIsBeginning(s.isBeginning);
+        setIsEnd(s.isEnd);
+    };
+
+    // ADDED: re-measure on container resize and after fonts load
+    useEffect(() => {
+        if (!swiper || swiper.destroyed) return;
+
+        const remeasure = () => {
+            swiper.update();
+            syncNav(swiper);
+        };
+
+        remeasure();
+
+        const ro = new ResizeObserver(remeasure);
+        ro.observe(swiper.el);
+
+        if (document.fonts?.ready) {
+            document.fonts.ready.then(remeasure);
+        }
+        window.addEventListener("load", remeasure);
+
+        return () => {
+            ro.disconnect();
+            window.removeEventListener("load", remeasure);
+        };
+    }, [swiper]);
 
     // Active Toggle Tab (Faculty Achievements / Student Achievements)
     const [activeTabId, setActiveTabId] = useState(
@@ -68,6 +100,7 @@ export default function AcademicFacultyAchievements({ data }) {
         });
     }, [data, selectedFilter, activeTab]);
 
+    // Early return sits after all hooks (hooks must not be called conditionally)
     if (!data) return null;
 
     return (
@@ -88,7 +121,7 @@ export default function AcademicFacultyAchievements({ data }) {
                                     <button
                                         key={tab.id}
                                         onClick={() => setActiveTabId(tab.id)}
-                                        className={`px-3 py-2.5 rounded-[4px] text_1 h-[38px] 2xl:h-[40px] 3xl:h-[46px] font-semibold transition-all duration-300 ${isCurrent
+                                        className={`px-3 py-2.5 rounded-[4px] text_1 h-[38px] 2xl:h-[40px] 3xl:h-[46px] xl:min-w-[190px] 2xl:min-w-[210px] 3xl:min-w-[245px] font-semibold transition-all duration-300 ${isCurrent
                                                 ? "bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white shadow-sm cursor-pointer"
                                                 : "bg-white dark:bg-[#18191B] border border-gray-200/90 dark:border-white/10 text-[#374151] dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
                                             }`}
@@ -106,9 +139,11 @@ export default function AcademicFacultyAchievements({ data }) {
                     <div className="relative mb-10 xl:mb-14 flex items-center gap-2 sm:gap-3">
                         {/* Prev Arrow Navigation Button */}
                         <button
-                            ref={prevRef}
+                            type="button"
+                            onClick={() => swiper?.slidePrev()}
+                            disabled={isBeginning}
                             aria-label="Previous month filter"
-                            className={`faculty-filter-prev shrink-0 ${pillsFit ? "hidden" : ""} w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 shadow-xs flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10`}
+                            className={`faculty-filter-prev shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white dark:bg-[#18191B] xl:min-w-[125px] 2xl:min-w-[145px] 3xl:min-w-[155px] border border-gray-300/80 dark:border-white/10 shadow-xs flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10 ${showNav ? "" : "!hidden"}`}
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -116,22 +151,17 @@ export default function AcademicFacultyAchievements({ data }) {
                         </button>
 
                         {/* Swiper Slider */}
-                        <div className="flex-1 overflow-hidden">
+                        <div className="flex-1 min-w-0 overflow-hidden">
                             <Swiper
-                                modules={[FreeMode, Navigation]}
+                                modules={[FreeMode]}
                                 slidesPerView="auto"
-                                spaceBetween={10} 
-                                onInit={(swiper) => setPillsFit(swiper.isLocked)}
-                                onLock={() => setPillsFit(true)}
-                                onUnlock={() => setPillsFit(false)}
-                                onBeforeInit={(swiper) => {
-                                    swiper.params.navigation.prevEl = prevRef.current;
-                                    swiper.params.navigation.nextEl = nextRef.current;
-                                }}
-                                navigation={{
-                                    prevEl: prevRef.current,
-                                    nextEl: nextRef.current,
-                                }}
+                                spaceBetween={10}
+                                onSwiper={setSwiper}
+                                onSlideChange={syncNav}
+                                onReachBeginning={syncNav}
+                                onReachEnd={syncNav}
+                                onFromEdge={syncNav}
+                                onTransitionEnd={syncNav}
                                 className="w-full !py-1"
                             >
                                 {data.monthFilters.map((filter) => {
@@ -142,7 +172,7 @@ export default function AcademicFacultyAchievements({ data }) {
                                                 onClick={() => setSelectedFilterId(filter.id)}
                                                 className={`px-5 py-2 rounded-full text_1 font-medium whitespace-nowrap transition-all duration-300 ${isCurrent
                                                         ? "bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white shadow-sm cursor-pointer"
-                                                        : "bg-white/90 dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 text-[#374151] dark:text-gray-200 hover:border-gray-400 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
+                                                        : "bg-transparent dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 text-[#374151] dark:text-gray-200 hover:border-gray-400 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
                                                     }`}
                                             >
                                                 {filter.label}
@@ -155,9 +185,11 @@ export default function AcademicFacultyAchievements({ data }) {
 
                         {/* Next Arrow Navigation Button */}
                         <button
-                            ref={nextRef}
+                            type="button"
+                            onClick={() => swiper?.slideNext()}
+                            disabled={isEnd}
                             aria-label="Next month filter"
-                            className={`faculty-filter-next shrink-0 ${pillsFit ? "hidden" : ""} w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 shadow-xs flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10`}
+                            className={`faculty-filter-next shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 shadow-xs flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed z-10 ${showNav ? "" : "!hidden"}`}
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

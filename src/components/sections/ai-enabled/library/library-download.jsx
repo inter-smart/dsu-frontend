@@ -31,7 +31,7 @@ export default function LibraryDownloads({ data }) {
                                 <Link
                                     href={item?.file.url}
                                     key={id}
-                                    className="group relative flex items-center justify-between lg:max-w-[45%] py-[15px] 2xl:py-[18px] 3xl:py-[22px]   dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
+                                    className="group relative flex items-center justify-between lg:max-w-[35%] py-[15px] 2xl:py-[18px] 3xl:py-[22px]   dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
                                 >
                                     {/* Sliding background highlight on hover — scaleX instead of width */}
                                     <span className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 bg-gradient-to-r from-[#DC2626]/5 to-[#F97316]/5 transition-transform duration-500 ease-out -z-10" />

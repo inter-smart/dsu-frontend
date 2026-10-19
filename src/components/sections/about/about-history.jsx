@@ -22,8 +22,8 @@ export default function AboutHistory({ data }) {
     return (
         <section className='relative py-[40px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[75px] dark:bg-[#101010] transition-colors duration-300'>
             <div className="container">
-                <div className="flex max-sm:gap-[20px] lg:gap-[25px] 2xl:gap-[35px] 3xl:gap-[45px] max-lg:flex-wrap">
-                    <div className="w-full lg:w-[260px] xl:w-[330px] 2xl:w-[400px] 3xl:w-[500px]">
+                <div className="flex max-sm:gap-[20px] lg:gap-[25px] 2xl:gap-[35px] 3xl:gap-[45px] max-lg:flex-wrap max-lg:mb-[30px]">
+                    <div className="w-full lg:w-[260px] xl:w-[330px] 2xl:w-[400px] 3xl:w-[500px] mb-[30px] max-lg:border-[#f4f4f4] max-lg:border-b">
 
                         <div className="w-full">
                             <Swiper
@@ -32,15 +32,16 @@ export default function AboutHistory({ data }) {
                                 slidesPerView={3}
                                 spaceBetween={0}
                                 speed={500}
+                                loop={true}
                                 autoplay={{
-                                    delay: 3000,
+                                    delay: 2000,
                                     disableOnInteraction: false,
                                     pauseOnMouseEnter: true,
                                 }}
                                 className="h-[400px] lg:h-[360px] xl:h-[400px] 2xl:h-[484px] 3xl:h-[610px] w-full "
                             >
                                 {timeline.map((itemList, idx) => (
-                                    <SwiperSlide key={idx} className="!h-auto relative before:absolute before:content-[''] before:left-[22px] before:xl:left-[27px] before:2xl:left-[32px] before:3xl:left-[40px] before:top-0 before:h-[calc(100%-40px)] before:bottom-0 before:m-auto before:-z-1 before:w-[1px] before:bg-black/20 dark:before:bg-white/20">
+                                    <SwiperSlide key={idx} className="relative before:absolute before:content-[''] before:left-[22px] before:xl:left-[27px] before:2xl:left-[32px] before:3xl:left-[40px] before:top-0 before:h-[calc(100%-40px)] before:bottom-0 before:m-auto before:-z-1 before:w-[1px] before:bg-black/20 dark:before:bg-white/20">
                                         <div className="w-full flex pb-[30px] xl:pb-[40px] 2xl:pb-[60px] 3xl:pb-[80px]">
                                             <div className="w-[45px] xl:w-[55px] 2xl:w-[65px] 3xl:w-[83px] h-[45px] xl:h-[55px] 2xl:h-[65px] 3xl:h-[85px] mt-[10px] bg-[#FFF8EE] dark:bg-[#18191B] rounded-full border border-[#FF6D00] dark:border-[#F97316]/50 p-[10px] lg:p-[15px] 2xl:p-[20px] 3xl:p-[25px]
                                              flex items-center justify-center relative after:absolute after:content-[''] before:left-[22px] before:xl:left-[27px] before:2xl:left-[32px] before:3xl:left-[39px] after:top-0 after:bottom-0 after:m-auto after:bg-white dark:after:bg-[#101010] after:h-[calc(100%+20px)] after:lg:h-[calc(100%+30px)] after:w-[1px] after:-z-1">

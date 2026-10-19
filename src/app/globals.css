@@ -405,3 +405,15 @@ body {
   
   top: 260px !important;
 }
+.swiper::after {
+    pointer-events: none;
+}
+
+/* Select box arrow upward rotation on dropdown open */
+[data-slot="select-trigger"] svg:last-child {
+  transition: transform 0.2s ease-in-out;
+}
+[data-slot="select-trigger"][data-popup-open] svg:last-child,
+[data-slot="select-trigger"][aria-expanded="true"] svg:last-child {
+  transform: rotate(0deg);
+}

@@ -73,7 +73,7 @@ export default function UgcRegnition({ data, menu = [] }) {
                                             <div className="text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] text-black font-bold mb-[3px]">
                                                 {item.label}
                                             </div>
-                                            <div className="text_1 text-[#4A5565] font-bold">
+                                            <div className={`text_1 text-[#4A5565] ${id === 0 ? "!font-bold text-[#248B4A]" : "font-normal"}`}>
                                                 {item.value}
                                             </div>
                                         </div>
@@ -145,7 +145,7 @@ export default function UgcRegnition({ data, menu = [] }) {
                                     {data?.faq?.items?.map((item) => (
                                         <AccordionItem key={item.id} value={`item-${item.id}`} className="border border-[#E5E9EE] rounded-[8px] lg:rounded-[10px] xl:rounded-[12px] 2xl:rounded-[15px] 3xl:rounded-[19px] mb-[10px] xl:mb-[20px]">
                                             <AccordionTrigger
-                                                className="relative p-[8px_10px] font-medium !text-black text-[11px] hover:no-underline md:p-[10px_15px] md:text-[12px] lg:text-[13px] xl:p-[15px_25px] xl:text-[14px] 2xl:text-[15px] 3xl:p-[20px_30px] 3xl:text-[20px] after:absolute after:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold after:text-base2 data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden"
+                                                className="relative p-[8px_10px] !font-semibold !text-black text-[11px] hover:no-underline md:p-[10px_15px] md:text-[12px] lg:text-[13px] xl:p-[15px_25px] xl:text-[14px] 2xl:text-[15px] 3xl:p-[20px_30px] 3xl:text-[20px] after:absolute after:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold after:text-base2 data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden"
                                             >
                                                 {item.question}
                                             </AccordionTrigger>

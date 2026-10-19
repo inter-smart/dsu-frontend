@@ -61,12 +61,12 @@ export default function InnerHero({ data }) {
       {/* Content */}
       <div className=" relative z-20 flex w-full flex-col justify-end h-full">
         <div
-          className={`flex container w-full flex-col justify-end overflow-hidden pt-[40px] xl:pt-[55px] 2xl:pt-[65px] 3xl:pt-[80px] ${hasMenubar ? "pb-[40px] md:pb-0" : "pb-[40px] xl:pb-[55px] 2xl:pb-[65px] 3xl:pb-[80px]"
+          className={`flex container w-full flex-col justify-end overflow-hidden pt-[40px] xl:pt-[55px] 2xl:pt-[65px] 3xl:pt-[80px] ${hasMenubar ? "pb-[40px] lg:pb-0" : "pb-[40px] xl:pb-[55px] 2xl:pb-[65px] 3xl:pb-[80px]"
             }`}
         >
           {/* Breadcrumb */}
           {breadcrumb.length > 0 && (
-            <Breadcrumb className="mb-3 md:mb-5">
+            <Breadcrumb className="mb-0">
               <BreadcrumbList className="gap-2">
                 {breadcrumb.map((item, index) => {
                   const isLast = index === breadcrumb.length - 1;
@@ -102,7 +102,7 @@ export default function InnerHero({ data }) {
 
           {/* Title */}
           {data?.title && (
-            <h1 className="w-full text-[18px] font-bold leading-normal text-white sm:text-[22px] md:text-[26px] lg:text-[32px]  xl:text-[40px] 3xl:text-[60px]">
+            <h1 className="w-full text-[18px] font-bold leading-tight text-white sm:text-[22px] md:text-[26px] lg:text-[32px]  xl:text-[40px] 3xl:text-[60px]">
               {data.title}
             </h1>
           )}

@@ -196,7 +196,7 @@ const local_data = {
         {
           id: 4,
           url: "#!",
-          label: "Recognition & Rankings",
+          label: "Recognition and Rankings",
           children: [
             {
               id: 1,
@@ -214,6 +214,117 @@ const local_data = {
           id: 5,
           url: "#!",
           label: "Excellence & Quality Assurance",
+          children: [
+            {
+              id: 1,
+              label: "IQAC",
+              children: [
+                {
+                  id: 1,
+                  url: "#!",
+                  label: "IQAC",
+                },
+                {
+                  id: 2,
+                  url: "#!",
+                  label: "IQAC Committee",
+                },
+                {
+                  id: 3,
+                  url: "#!",
+                  label: "IQAC Activities",
+                },
+                {
+                  id: 4,
+                  url: "#!",
+                  label: "IQAC Composition",
+                },
+              ],
+            },
+            {
+              id: 2,
+              label: "Feedback",
+              children: [
+                {
+                  id: 1,
+                  url: "#!",
+                  label: "Student Feedback",
+                },
+                {
+                  id: 2,
+                  url: "#!",
+                  label: "Faculty Feedback",
+                },
+                {
+                  id: 3,
+                  url: "#!",
+                  label: "Alumni Feedback",
+                },
+                {
+                  id: 4,
+                  url: "#!",
+                  label: "Employer Feedback",
+                },
+                {
+                  id: 5,
+                  url: "#!",
+                  label: "Stakeholder Feedback",
+                },
+                {
+                  id: 6,
+                  url: "#!",
+                  label: "Feedback Analysis",
+                },
+                {
+                  id: 7,
+                  url: "#!",
+                  label: "Action Taken Reports",
+                },
+              ],
+            },
+            {
+              id: 3,
+              label: "Quality Process",
+              children: [
+                {
+                  id: 1,
+                  url: "#!",
+                  label: "Academic Audit",
+                },
+                {
+                  id: 2,
+                  url: "#!",
+                  label: "Administrative Audit",
+                },
+                {
+                  id: 3,
+                  url: "#!",
+                  label: "Best Practices",
+                },
+                {
+                  id: 4,
+                  url: "#!",
+                  label: "Institutional Distinctiveness",
+                },
+              ],
+            },
+            {
+              id: 4,
+              label: "AQAR",
+              children: [
+                {
+                  id: 1,
+                  url: "#!",
+                  label: "AQAR Reports",
+                },
+                {
+                  id: 2,
+                  url: "#!",
+                  label: "Quality Initiatives",
+                },
+              ],
+            },
+          ],
         },
       ],
     },
@@ -378,7 +489,6 @@ export default function Header({ data = local_data }) {
     };
   }, [isHeaderVisible]);
   useEffect(() => {
-    let lastScrollY = window.scrollY;
     let ticking = false;
 
     const handleScroll = () => {
@@ -387,18 +497,12 @@ export default function Header({ data = local_data }) {
       window.requestAnimationFrame(() => {
         const currentScrollY = window.scrollY;
         setIsScrolled(currentScrollY > 10);
-        if (currentScrollY <= 10) {
-          setIsHeaderVisible(true);
-        } else if (currentScrollY > lastScrollY) {
-          setIsHeaderVisible(false);
-        } else if (currentScrollY < lastScrollY) {
-          setIsHeaderVisible(true);
-        }
-        lastScrollY = currentScrollY;
+        setIsHeaderVisible(true);
         ticking = false;
       });
       ticking = true;
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
@@ -425,11 +529,11 @@ export default function Header({ data = local_data }) {
   }, [isSearchOpen]);
   const isMobile = useIsMobile();
   const TopHeaderTextStyle =
-    "text-[9px] sm:text-[12px] 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] lg:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] lg:gap-2.5 flex items-center";
+    "text-[9px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] lg:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] lg:gap-2.5 flex items-center";
   return (
     <header
       className={cn(
-        "w-full h-auto block transition-all duration-800 fixed z-20 lg:z-[999] inset-[0_0_auto_0]",
+        "w-full h-auto block transition-all duration-800 fixed z-20 lg:z-[9999] inset-[0_0_auto_0]",
         isHeaderVisible ? "translate-y-0" : "-translate-y-full",
         isScrolled
           ? ["bg-black/40 backdrop-blur-xl transition-all duration-800"]
@@ -651,7 +755,7 @@ export default function Header({ data = local_data }) {
                     Apply Here
                   </button>
                 </div>
-                <div className="w-auto h-auto pl-3.75 max-lg:flex hidden">
+                <div className="w-auto h-auto pl-0.75 max-lg:flex hidden">
                   <Sheet>
                     <SheetTrigger className="w-7.5 h-full aspect-square bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] border border-[#D1D5DC80]/50 overflow-hidden flex items-center justify-center">
                       <div className="w-full h-3 flex flex-col items-center justify-between">
@@ -690,7 +794,7 @@ export default function Header({ data = local_data }) {
                             </div>
                             <div className="h-6 w-[1px] bg-white/30 shrink-0" />
                             <span className="text-[9.5px] leading-tight font-medium opacity-95 shrink-0">
-                              India's AI-First
+                              India&apos;s AI-First
                               <br />
                               University
                             </span>
@@ -865,6 +969,7 @@ export default function Header({ data = local_data }) {
                 isMenuOpen={openMenuId === item?.id}
                 className={cn(
                   "w-auto h-auto lg:p-[20px_10px] xl:p-[20px_20px] 2xl:p-5 3xl:p-7.5 first:pl-0 last:pr-0 transition-opacity duration-400 relative z-0 hover:before:lg:w-[calc(100%-40px)] hover:before:2xl:w-[calc(100%-50px)] hover:before:3xl:w-[calc(100%-70px)] before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
+                  openMenuId === item?.id && "before:lg:w-[calc(100%-40px)] before:2xl:w-[calc(100%-50px)] before:3xl:w-[calc(100%-70px)]",
                   isSearchOpen && "opacity-0",
                 )}
               />
@@ -969,7 +1074,7 @@ function MegaMenuPanel({
 }) {
   const item = items?.find((i) => i?.id === itemId);
   const children = item?.children || [];
-  const hasChildMenu = item?.children?.length > 0;
+  const hasChildMenu = children.length > 0;
   const itemIndex = items?.findIndex((i) => i?.id === itemId) ?? -1;
   const alignRight = itemIndex >= 0 && itemIndex >= (items?.length || 0) / 2;
 
@@ -990,16 +1095,62 @@ function MegaMenuPanel({
   const grandGroups = activeChild?.children || [];
   const hasColumnGroups = grandGroups.some((g) => g?.children?.length > 0);
 
+  // Group columns for multi-column layouts like Excellence & Quality Assurance
+  let columns = [];
+  if (hasColumnGroups) {
+    if (grandGroups.length === 4) {
+      // Column 1: IQAC + AQAR stacked vertically (exactly like reference image)
+      columns = [
+        [grandGroups[0], grandGroups[3]],
+        [grandGroups[1]],
+        [grandGroups[2]],
+      ];
+    } else if (grandGroups.length === 3) {
+      columns = [[grandGroups[0]], [grandGroups[1]], [grandGroups[2]]];
+    } else {
+      const colsCount = Math.min(grandGroups.length, 3);
+      columns = Array.from({ length: colsCount }, () => []);
+      grandGroups.forEach((group, idx) => {
+        columns[idx % colsCount].push(group);
+      });
+    }
+  }
+
+  const renderLeafItem = (leaf) => {
+    // Pro Chancellor or IQAC Committee are highlighted in the reference design
+    const isHighlight =
+      leaf?.label === "IQAC Committee" || leaf?.label === "Pro Chancellor";
+
+    return (
+      <li key={leaf?.id || leaf?.label} className="w-full list-none">
+        <Link
+          href={leaf?.url || "#!"}
+          aria-label={leaf?.label}
+          className={cn(
+            "w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 group",
+            isHighlight
+              ? "bg-[#FFE8D6] font-medium"
+              : "hover:bg-[#FFE8D6] hover:font-medium",
+          )}
+        >
+          {/* Delicate hollow circle bullet */}
+          <span className="w-[8px] h-[8px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
+          <span className="truncate">{leaf?.label}</span>
+        </Link>
+      </li>
+    );
+  };
+
   return (
     <div
       onMouseEnter={onKeepOpen}
       onMouseLeave={onLeave}
       className={cn(
-        "h-auto absolute top-full z-50 max-w-full",
+        "h-auto absolute top-full z-50 pt-1",
         alignRight ? "right-0" : "left-0",
       )}
     >
-      {/* Smooth slide-down + fade animation */}
+      {/* Smooth entrance animation */}
       <div
         className="w-auto h-auto max-w-full"
         style={{
@@ -1008,14 +1159,14 @@ function MegaMenuPanel({
       >
         <style>{`
           @keyframes megaMenuIn {
-            from { opacity: 0; transform: translateY(-6px) scaleY(0.97); }
-            to   { opacity: 1; transform: translateY(0)   scaleY(1); }
+            from { opacity: 0; transform: translateY(-4px) scale(0.99); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
           }
         `}</style>
-        <div className="w-auto h-auto max-w-[900px] 2xl:max-w-[1060px] 3xl:max-w-[1310px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.18)] rounded-b-[8px]">
-          <div className="w-auto h-auto max-w-full flex items-stretch">
-            {/* ─── Red gradient sidebar ─── */}
-            <nav className="w-[320px] 2xl:w-[380px] 3xl:w-[460px] shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-5 2xl:py-6 3xl:py-8 flex flex-col justify-start">
+        <div className="w-fit max-w-full overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.22)] rounded-b-[8px]">
+          <div className="w-fit max-w-full flex items-stretch">
+            {/* ─── Vibrant Orange/Red Gradient Sidebar ─── */}
+            <nav className="w-[260px] 2xl:w-[280px] 3xl:w-[320px] shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-5 flex flex-col justify-start">
               {children.map((child) => {
                 const isActive = child?.id === activeChild?.id;
                 return (
@@ -1023,22 +1174,16 @@ function MegaMenuPanel({
                     key={child?.id}
                     type="button"
                     onMouseEnter={() => setActiveChildId(child?.id)}
+                    onClick={() => setActiveChildId(child?.id)}
                     className={cn(
-                      "w-full h-auto text-left flex items-center relative px-4 2xl:px-5 py-[10px] 2xl:py-[12px] lg:px-7.5 2xl:px-10 3xl:px-12.5 transition-all duration-200",
-                      isActive ? "bg-white/10" : "hover:bg-white/5",
+                      "w-full text-left flex items-center px-6 2xl:px-7 py-3 2xl:py-3.5 transition-colors duration-150 cursor-pointer select-none",
+                      isActive ? "bg-white/20" : "hover:bg-white/10",
                     )}
                   >
-                    {/* Left active border bar */}
                     <span
                       className={cn(
-                        "absolute left-0 top-0 w-[3px] h-full bg-yellow-300 rounded-r-full transition-all duration-200",
-                        isActive ? "opacity-100" : "opacity-0",
-                      )}
-                    />
-                    <span
-                      className={cn(
-                        "text-[13px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.3] text-white transition-all duration-200",
-                        isActive ? "font-bold opacity-100" : "font-normal",
+                        "text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-tight text-white whitespace-nowrap",
+                        isActive ? "font-semibold" : "font-normal opacity-95",
                       )}
                     >
                       {child?.label}
@@ -1048,76 +1193,51 @@ function MegaMenuPanel({
               })}
             </nav>
 
-            {/* ─── Cream right panel ─── */}
+            {/* ─── Warm Cream / Ivory Right Panel ─── */}
             {activeChild?.children?.length > 0 && (
 
-            <div className="flex-1 min-w-0 bg-[#FFF7EC] py-5 2xl:py-6 3xl:py-8 px-6 2xl:px-8 3xl:px-17.5">
+            <div className="bg-[#FFF8EE] py-7 px-8 2xl:px-10 flex-1 min-w-0 text-[#262626]">
               {hasColumnGroups ? (
-                <div className="w-full h-auto grid grid-cols-3 gap-x-6 2xl:gap-x-8 gap-y-6">
-                  {grandGroups.map((group) => (
-                    <div key={group?.id} className="w-full h-auto">
-                      {group?.children?.length > 0 ? (
-                        <>
-                          {/* Group header: uppercase orange */}
-                          <span className="text-[11px] 2xl:text-xs 3xl:text-lg leading-[1.2] font-bold uppercase tracking-[0.1em] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent inline-block mb-2.5 2xl:mb-3">
-                            {group?.label}
-                          </span>
-                          <ul className="w-full h-auto flex flex-col gap-[3px]">
-                            {group.children.map((leaf) => (
-                              <li key={leaf?.id} className="w-full h-auto">
-                                <Link
-                                  href={leaf?.url || "#"}
-                                  aria-label={leaf?.label}
-                                  className="w-full inline-flex items-center gap-2 text-[12.5px] 2xl:text-[13px] 3xl:text-[15px] leading-[1.3] font-normal text-black rounded-full -mx-2 px-2 py-[5px] hover:bg-linear-to-r hover:from-(--basecolor)/10 hover:to-(--basecolor2)/10 transition-all duration-200"
-                                >
-                                  {/* Hollow circle bullet */}
-                                  <span className="w-[14px] h-[14px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
-                                  <span>{leaf?.label}</span>
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </>
-                      ) : (
-                        <Link
-                          href={group?.url || "#"}
-                          aria-label={group?.label}
-                          className="w-full inline-flex items-center gap-2 text-[12.5px] 2xl:text-[13px] 3xl:text-[15px] leading-[1.3] font-normal text-[#333] hover:text-(--basecolor) rounded-full px-2 py-[5px] hover:bg-[#FFE4BC] transition-all duration-200"
+                <div className="flex items-start gap-x-8 2xl:gap-x-10 3xl:gap-x-12">
+                  {columns.map((colGroups, colIdx) => (
+                    <div
+                      key={colIdx}
+                      className="w-[190px] 2xl:w-[210px] 3xl:w-[240px] shrink-0 flex flex-col gap-5"
+                    >
+                      {colGroups.map((group) => (
+                        <div
+                          key={group?.id || group?.label}
+                          className="w-full"
                         >
-                          <span className="w-[14px] h-[14px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
-                          <span>{group?.label}</span>
-                        </Link>
-                      )}
+                          {group?.label && (
+                            <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
+                              {group?.label}
+                            </span>
+                          )}
+                          <ul className="flex flex-col gap-[3px] p-0 m-0">
+                            {group?.children?.map((leaf) =>
+                              renderLeafItem(leaf),
+                            )}
+                          </ul>
+                        </div>
+                      ))}
                     </div>
                   ))}
                 </div>
               ) : activeChild?.children?.length > 0 ? (
-                <div className="w-full h-auto max-w-[220px] 2xl:max-w-[260px]">
-                  {/* Single-column list with group header */}
-                  <span className="text-[11px] 2xl:text-[12px] 3xl:text-lg leading-[1.2] font-bold uppercase tracking-[0.1em] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent inline-block mb-2.5 2xl:mb-3">
+                <div className="w-[220px] 2xl:w-[250px] 3xl:w-[280px] shrink-0">
+                  <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
                     {activeChild?.label}
                   </span>
-                  <ul className="w-full h-auto flex flex-col gap-[3px]">
-                    {activeChild.children.map((leaf) => (
-                      <li key={leaf?.id} className="w-full h-auto">
-                        <Link
-                          href={leaf?.url || "#"}
-                          aria-label={leaf?.label}
-                          className="w-full inline-flex items-center gap-2 text-[12.5px] 2xl:text-[13px] 3xl:text-[15px] leading-[1.3] font-normal text-[#333] hover:bg-linear-to-r hover:from-(--basecolor)/10 hover:to-(--basecolor2)/10 rounded-full -mx-2 px-2 py-[5px] transition-all duration-200"
-                        >
-                          {/* Hollow circle bullet */}
-                          <span className="w-[14px] h-[14px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
-                          <span>{leaf?.label}</span>
-                        </Link>
-                      </li>
-                    ))}
+                  <ul className="flex flex-col gap-[3px] p-0 m-0">
+                    {activeChild.children.map((leaf) => renderLeafItem(leaf))}
                   </ul>
                 </div>
               ) : (
                 <Link
-                  href={activeChild?.url || "#"}
+                  href={activeChild?.url || "#!"}
                   aria-label={activeChild?.label}
-                  className="inline-flex items-center gap-2 text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent"
+                  className="inline-flex items-center gap-2 text-[13px] 2xl:text-[15px] font-bold text-[#ea580c] hover:underline"
                 >
                   {activeChild?.label}
                 </Link>
@@ -1143,22 +1263,9 @@ function NavigationMenu({
   const isMobile = useIsMobile();
   const hasSubmenu = item?.children?.length > 0;
 
-  const handleMouseEnter = () => {
-    if (!isMobile && hasSubmenu) {
-      setIsOpen(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (!isMobile && hasSubmenu) {
-      setIsOpen(false);
-    }
-  };
-
   const toggleSubmenu = (event) => {
     event.preventDefault();
     event.stopPropagation();
-
     if (hasSubmenu) {
       setIsOpen((prev) => !prev);
     }
@@ -1168,76 +1275,44 @@ function NavigationMenu({
   // MOBILE NAVIGATION MENU RENDERER
   // ──────────────────────────────────────────
   if (isMobile) {
-    // Level 3+ (Leaf item with hollow circle bullet)
-    if (level >= 3) {
-      const isHighlight = item?.label === "IQAC Committee";
-      return (
-        <Link
-          href={item?.url || "#"}
-          aria-label={item?.label}
-          className="w-full flex items-center gap-2.5 py-1.5 px-2 text-[13.5px] transition-colors duration-200"
-        >
-          <span className="w-[13px] h-[13px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
-          <span
-            className={cn(
-              isHighlight
-                ? "font-bold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit"
-                : "font-medium text-[#333] dark:text-white/90 hover:text-(--basecolor)",
-            )}
-          >
-            {item?.label}
-          </span>
-        </Link>
-      );
-    }
-
-    // Items WITHOUT submenus (Leaf items)
+    // Leaf item (no submenus)
     if (!hasSubmenu) {
       if (level === 0) {
         return (
           <Link
-            href={item?.url || "#"}
+            href={item?.url || "#!"}
             aria-label={item?.label}
             className={cn(
-              "w-full flex items-center justify-between px-5 py-4 border-b border-black/8 dark:border-white/10",
-              "text-sm sm:text-[16px] font-medium text-[#212121] dark:text-white hover:text-(--basecolor) transition-colors duration-200",
+              "w-full flex items-center justify-between px-5 py-3.5 border-b border-black/8 dark:border-white/10",
+              "text-sm font-medium text-[#212121] dark:text-white hover:text-(--basecolor) transition-colors duration-200",
               className,
             )}
           >
             <span>{item?.label}</span>
             <ChevronRight
               size={16}
-              className="shrink-0 text-black dark:text-white"
+              className="shrink-0 text-black/60 dark:text-white/60"
             />
           </Link>
         );
       }
 
-      if (level === 1) {
-        return (
-          <Link
-            href={item?.url || "#"}
-            aria-label={item?.label}
-            className="w-full flex items-center justify-between px-7 py-2.5 text-[14px] font-semibold text-[#333] dark:text-white hover:text-(--basecolor) transition-colors duration-200"
-          >
-            <span>{item?.label}</span>
-            <ChevronRight
-              size={15}
-              className="shrink-0 text-black dark:text-white"
-            />
-          </Link>
-        );
-      }
+      const isHighlight =
+        item?.label === "IQAC Committee" || item?.label === "Pro Chancellor";
 
-      // Level 2 leaf under group (e.g., AQAR, Feedback, Quality Process)
       return (
         <Link
-          href={item?.url || "#"}
+          href={item?.url || "#!"}
           aria-label={item?.label}
-          className="w-full flex items-center justify-between py-2 px-2 text-[14px] font-bold text-(--basecolor) hover:opacity-80 transition-opacity"
+          className={cn(
+            "w-full flex items-center gap-2 py-1.5 px-3 text-[13px] rounded-md transition-colors duration-200",
+            isHighlight
+              ? "bg-[#FFE8D6] dark:bg-white/10 font-medium text-black dark:text-white"
+              : "text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5",
+          )}
         >
-          <span>{item?.label}</span>
-          <ChevronRight size={14} className="shrink-0 text-(--basecolor)" />
+          <span className="w-[7px] h-[7px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
+          <span className="truncate">{item?.label}</span>
         </Link>
       );
     }
@@ -1251,41 +1326,34 @@ function NavigationMenu({
           className,
         )}
       >
-        {/* Row Header / Toggle */}
         <div
           onClick={toggleSubmenu}
           className={cn(
             "w-full flex items-center justify-between cursor-pointer select-none transition-colors",
             level === 0
-              ? "px-5 py-4"
+              ? "px-5 py-3.5"
               : level === 1
-                ? "px-5 py-1"
-                : "py-0.5 px-2",
+                ? "px-5 py-2.5 hover:bg-black/5 dark:hover:bg-white/5"
+                : "py-2 px-3",
           )}
         >
           <span
             className={cn(
-              "text-[14px] transition-colors duration-200",
               level === 0
                 ? cn(
-                    "text-sm sm:text-[16px] font-medium",
-                    isOpen
-                      ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit font-bold"
-                      : "text-[#212121] dark:text-white",
-                  )
+                      "text-sm font-medium transition-colors",
+                      isOpen
+                        ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent font-bold"
+                        : "text-[#212121] dark:text-white",
+                    )
                 : level === 1
                   ? cn(
-                      "font-medium",
+                      "text-[13.5px] font-semibold transition-colors",
                       isOpen
-                        ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit font-bold"
-                        : "text-[#212121] dark:text-white hover:text-(--basecolor)",
+                        ? "text-(--basecolor)"
+                        : "text-[#212121] dark:text-white",
                     )
-                  : cn(
-                      "font-bold",
-                      isOpen
-                        ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit"
-                        : "text-(--basecolor) hover:opacity-80",
-                    ),
+                  : "text-xs font-bold uppercase tracking-wider text-[#ea580c]",
             )}
           >
             {item?.label}
@@ -1294,23 +1362,16 @@ function NavigationMenu({
             type="button"
             aria-label={`${isOpen ? "Close" : "Open"} ${item.label} submenu`}
             aria-expanded={isOpen}
-            className="w-6 h-6 shrink-0 flex items-center justify-center"
+            className="w-6 h-6 shrink-0 flex items-center justify-center text-black/60 dark:text-white/60"
           >
             {isOpen ? (
               <ChevronDown
-                size={level === 0 ? 18 : level === 1 ? 15 : 14}
+                size={level === 0 ? 18 : 15}
                 className="text-(--basecolor)"
               />
             ) : (
               <ChevronRight
-                size={level === 0 ? 18 : level === 1 ? 15 : 14}
-                className={cn(
-                  level === 0
-                    ? "text-black dark:text-white"
-                    : level === 1
-                      ? "text-black dark:text-white hover:text-(--basecolor)"
-                      : "text-(--basecolor)",
-                )}
+                size={level === 0 ? 18 : 15}
               />
             )}
           </button>
@@ -1329,10 +1390,10 @@ function NavigationMenu({
                 "transition-opacity duration-300",
                 isOpen ? "opacity-100" : "opacity-0",
                 level === 0
-                  ? "pb-3 pt-1 flex flex-col"
+                  ? "pb-3 pt-1 flex flex-col bg-black/[0.02] dark:bg-white/[0.02]"
                   : level === 1
-                    ? "ml-5 pl-2.5 border-l-3 border-(--basecolor)/30 py-1 my-1 flex flex-col"
-                    : "pl-0 py-1 flex flex-col",
+                    ? "ml-4 pl-2 border-l-2 border-(--basecolor)/30 py-1 my-1 flex flex-col"
+                    : "pl-2 py-1 flex flex-col gap-0.5",
               )}
             >
               {item.children.map((child) => (

@@ -35,7 +35,7 @@ export default function AiClinicalFacility({ data }) {
                                     </ul>
                                 )}
                                 {data?.specializedAreas.note && (
-                                    <div className="text_1 text-[#4A5565] dark:text-white font-bold mb-[12px] 2xl:mb-[20px]">{data?.specializedAreas.note}</div>
+                                    <div className="text_1 text-[#4A5565] dark:text-white font-regular mb-[12px] 2xl:mb-[20px]">{data?.specializedAreas.note}</div>
                                 )}
                             </div>
                         )}

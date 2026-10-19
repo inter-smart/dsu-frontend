@@ -148,7 +148,7 @@ export const PhoneInput = React.forwardRef(
                     aria-expanded={isOpen}
                 >
                     <FlagImage code={selectedCountry.code} alt={selectedCountry.name} className="w-[18px] h-[13px] 2xl:w-[20px] 2xl:h-[14px]" />
-                    <ChevronDown className="w-3 h-3 text-[#6B7280] transition-transform duration-200" />
+                    <ChevronDown className={cn("w-3 h-3 text-[#6B7280] transition-transform duration-200", isOpen && "rotate-180")} />
                     <span className="font-semibold text-[#111827] dark:text-[#F3F4F6]">
                         {selectedCountry.dialCode}
                     </span>

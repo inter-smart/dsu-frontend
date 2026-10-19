@@ -147,7 +147,7 @@ export default function HomeAbout({ data }) {
                   >
                     {data?.leadership?.subTitle}
                   </Text>
-                  <Heading aurora speed={2}>
+                  <Heading as="h2" aurora speed={2}>
                     {data?.leadership?.title}
                   </Heading>
                 </div>
@@ -260,6 +260,7 @@ export default function HomeAbout({ data }) {
                 {data?.aboutInfo?.subTitle}
               </Text>
               <Heading
+                as="h2"
                 aurora
                 speed={2}
                 className="mb-2.5 sm:mb-3.75 xl:mb-5 2xl:mb-6.25"
@@ -281,7 +282,7 @@ export default function HomeAbout({ data }) {
                   />
                 </div>
                 <div
-                  className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal text-[#050505] dark:text-white pl-2.5 transition-colors duration-500 group-hover:text-white"
+                  className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal text-[#050505] dark:text-white pl-2.5 transition-colors duration-500 group-hover:text-white max-sm:[&_br]:hidden"
                   dangerouslySetInnerHTML={{
                     __html: data?.aboutInfo?.statistics?.label || "",
                   }}

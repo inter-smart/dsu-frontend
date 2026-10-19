@@ -85,6 +85,7 @@ export default function HomeTestimonials({ data }) {
         </div>
         <div className="w-full h-auto mb-3.75 sm:mb-5 lg:mb-7.5 3xl:mb-10 text-center">
           <Heading
+            as="h2"
             aurora
             speed={2}
             align="center"
@@ -219,9 +220,9 @@ export default function HomeTestimonials({ data }) {
                             />
                           </div>
                           <div className="w-[calc(100%-(var(--avatar-size))] pl-2.5">
-                            <div className="text-sm 2xl:text-base 3xl:text-xl leading-[1] font-medium text-white mb-1.25">
+                            <h3 className="text-sm 2xl:text-base 3xl:text-xl leading-[1] font-medium text-white mb-1.25">
                               {item?.name}
-                            </div>
+                            </h3>
                             <div className="text-[10px] 2xl:text-xs 3xl:text-sm leading-[1] font-normal text-white mb-1.25 3xl:mb-2.5">
                               {item?.designation}
                             </div>

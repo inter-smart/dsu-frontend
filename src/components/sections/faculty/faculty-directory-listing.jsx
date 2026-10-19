@@ -240,7 +240,7 @@ export default function FacultyDirectoryListing({ data }) {
   return (
     <section className="w-full h-auto sm:py-[0_50px] 2xl:py-[0_60px] 3xl:py-[0_80px] bg-linear-to-t from-[#FFF3E0]/50 to-[#FFF8EE]/50 block">
       <div className="container">
-        <div className="sm:[--gap:15px] lg:[--gap:20px] 2xl:[--gap:30px] 3xl:[--gap:35px] [--rounded:10px] sm:[--rounded:15px] lg:[--rounded:20px] 2xl:[--rounded:25px] 3xl:[--rounded:30px] w-full h-auto p-[15px_20px] sm:p-[20px_25px] lg:p-[25px_30px] 2xl:p-[30px_40px] 3xl:p-[35px_50px] mb-3.75 sm:mb-5 lg:mb-5 2xl:mb-10 3xl:mb-12.5 rounded-(--rounded) translate-y-[-15%] xl:-translate-y-1/2 flex flex-wrap items-center relative z-20 before:size-full before:rounded-(--rounded) before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:-translate-y-0.75 2xl:before:-translate-y-1.25 before:absolute before:-z-2 before:inset-0 after:size-full after:bg-white after:rounded-(--rounded) after:absolute after:-z-1 after:inset-0">
+        <div className="sm:[--gap:15px] lg:[--gap:20px] 2xl:[--gap:30px] 3xl:[--gap:35px] [--rounded:10px] sm:[--rounded:15px] lg:[--rounded:20px] 2xl:[--rounded:25px] 3xl:[--rounded:30px] w-full h-auto p-[15px_20px] sm:p-[20px_25px] lg:p-[25px_30px] 2xl:p-[30px_40px] 3xl:p-[35px_50px] mb-3.75 sm:mb-5 lg:mb-5 2xl:mb-10 3xl:mb-12.5 rounded-(--rounded) translate-y-[-15%] xl:-translate-y-1/2 flex flex-wrap items-center relative  before:size-full before:rounded-(--rounded) before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:-translate-y-0.75 2xl:before:-translate-y-1.25 before:absolute before:-z-2 before:inset-0 after:size-full after:bg-white after:rounded-(--rounded) after:absolute after:-z-1 z-0  after:inset-0">
           <div className="w-full md:w-[35%] md:pr-(--gap) max-md:mb-5">
             <form
               role="search"
@@ -345,7 +345,7 @@ export default function FacultyDirectoryListing({ data }) {
                               isExpanded ? "" : department.name,
                             )
                           }
-                          className="text-[13px] 2xl:text-sm 3xl:text-base leading-[1.4] font-medium text-left text-[#212121] w-full gap-2 p-[10px_var(--spacing)] 2xl:p-[15px_var(--spacing)] 3xl:p-[20px_var(--spacing)] flex items-center justify-between"
+                          className="text-[13px] 2xl:text-sm 3xl:text-base leading-[1.4] font-medium text-left text-[#212121] w-full flex-grow-1 gap-2 p-[10px] 2xl:p-[15px_var(--spacing)] 3xl:p-[20px_var(--spacing)] flex items-center justify-between"
                         >
                           <span>{department.name}</span>
                           {isExpanded ? (
@@ -400,7 +400,7 @@ export default function FacultyDirectoryListing({ data }) {
                 <div className="text-base 2xl:text-lg 3xl:text-[22px] leading-[1.1] font-medium text-[#212121] mb-3.75 lg:mb-6.25">
                   Popular Expertise Areas
                 </div>
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-wrap gap-1.5 lg:gap-2.5">
                   {expertiseAreas.map((area) => (
                     <button
                       key={area.value}
@@ -411,7 +411,7 @@ export default function FacultyDirectoryListing({ data }) {
                         );
                         setVisibleCount(initialVisibleCount);
                       }}
-                      className={`text-[10px] 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-[#4A5565] w-auto h-auto p-[10px_20px] border border-[#F97316]/10 rounded-full transition ${
+                      className={`text-[10px] 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-[#4A5565] flex-grow-1 w-auto h-auto p-[10px] xl:p-[10px_20px] border border-[#F97316]/10 rounded-full transition ${
                         activeExpertise === area.value
                           ? "bg-[#ee452b] text-white"
                           : "bg-[#fff0e9] text-[#655e5c] hover:bg-[#ffe2d4]"

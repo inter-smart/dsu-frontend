@@ -51,9 +51,9 @@ export default function HomeCollaborations({ data }) {
           <div className="w-full lg:w-1/2 h-auto">
             <div className="w-full h-full p-[20px_10px] sm:p-[40px_20px_30px_20px] 2xl:p-[50px_20px_40px_20px] 3xl:p-[70px_30px_50px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) overflow-hidden block">
               <div className="w-full h-auto mb-1.25 sm:mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5">
-                <div className="text-[31px] lg:text-[38px] 2xl:text-[45px] 3xl:text-[58px] leading-[1.2] font-bold text-white sm:max-w-[85%] mb-2.5 sm:mb-3.75 2xl:mb-5 3xl:mb-7.5">
+                <h2 className="text-[31px] lg:text-[38px] 2xl:text-[45px] 3xl:text-[58px] leading-[1.2] font-bold text-white sm:max-w-[85%] mb-2.5 sm:mb-3.75 2xl:mb-5 3xl:mb-7.5">
                   {data?.title}
-                </div>
+                </h2>
                 <div className="text-sm lg:text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-white">
                   {data?.description}
                 </div>
@@ -119,7 +119,7 @@ export default function HomeCollaborations({ data }) {
                   </button>
                 ))}
               </div>
-              <div className="w-full h-auto mt-1.25 sm:mt-5 2xl:mt-6.25 3xl:mt-7.5 flex lg:justify-between">
+              <div className="w-full h-auto mt-1.25 sm:mt-5 2xl:mt-6.25 3xl:mt-7.5 flex max-sm:flex-wrap max-sm:gap-Y-[10px] max-sm:justify-center lg:justify-between">
                 {data?.statistics?.map((item) => (
                   <div
                     key={item?.id}
@@ -143,7 +143,7 @@ export default function HomeCollaborations({ data }) {
                           {item?.title}
                         </div>
                       )}
-                      <div className="text-[7px] sm:text-[8px] xl:text-[10px] 2xl:text-[13px] 3xl:text-base leading-[1.1] font-normal text-white">
+                      <div className="text-[7.37px] sm:text-[8px] xl:text-[10px] 2xl:text-[13px] 3xl:text-base leading-[1.1] font-normal text-white">
                         {item?.label}
                       </div>
                     </div>
@@ -188,15 +188,15 @@ export default function HomeCollaborations({ data }) {
                               className="w-full h-full object-cover"
                             />
                           </div>
-                          <div className="text-[21px] lg:text-2xl 2xl:text-[28px] 3xl:text-[35px] leading-[1.1] font-bold text-white w-[clac(100%-var(--flag-icon-size))] pl-1.75 sm:pl-2.5 2xl:pl-3.75">
+                          <h3 className="text-[21px] lg:text-2xl 2xl:text-[28px] 3xl:text-[35px] leading-[1.1] font-bold text-white w-[clac(100%-var(--flag-icon-size))] pl-1.75 sm:pl-2.5 2xl:pl-3.75">
                             {item?.title}
-                          </div>
+                          </h3>
                         </div>
                         <div className="text-sm lg:text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-normal text-white">
                           {item?.description}
                         </div>
                       </div>
-                      <div className="w-full h-auto p-3.75 sm:p-5 lg:p-7.5 3xl:p-10 bg-black/20 sm:rounded-[10px] overflow-hidden block relative z-0">
+                      <div className="w-full h-auto p-3.75 sm:p-5 lg:p-4                    .5 3xl:p-10 bg-black/20 sm:rounded-[10px] overflow-hidden block relative z-0">
                         <ShineBorder
                           borderWidth={1.5}
                           shineColor={["#909191"]}

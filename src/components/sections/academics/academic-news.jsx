@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useState } from "react";
+import Link from "next/link";
 import NewsCard from "@/components/layout/common/news-card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -9,8 +10,7 @@ import "swiper/css/navigation";
 
 
 export default function AcademicNews({ data }) {
-    const prevRef = useRef(null);
-    const nextRef = useRef(null);
+    const [swiperInstance, setSwiperInstance] = useState(null);
 
     if (!data) return null;
 
@@ -25,7 +25,33 @@ export default function AcademicNews({ data }) {
                         {data?.title || "News & Events"}
                     </div>
 
-                    
+                    {data?.cta && (
+                        <Link
+                            href={ctaUrl}
+                            className="group relative flex h-[30px] w-fit lg:ml-auto min-w-[130px] items-center justify-center min-w-[140px] gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px] 2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
+                        >
+                            <span className="relative z-[1] transition-transform duration-300">
+                                {ctaLabel}
+                            </span>
+
+                            <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
+                                <svg
+                                    width="11"
+                                    height="9"
+                                    viewBox="0 0 11 9"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="transition-transform duration-300 group-hover:rotate-180"
+                                >
+                                    <circle cx="5.12232" cy="0.919192" r="0.919192" fill="white" />
+                                    <circle cx="5.12232" cy="4.33325" r="0.919192" fill="white" />
+                                    <circle cx="5.12232" cy="7.74732" r="0.919192" fill="white" />
+                                    <circle cx="9.32349" cy="4.33325" r="0.919192" fill="white" />
+                                    <circle cx="0.919192" cy="4.33325" r="0.919192" fill="white" />
+                                </svg>
+                            </div>
+                        </Link>
+                    )}
                 </div>
 
                 <div className="w-full relative group">
@@ -39,14 +65,7 @@ export default function AcademicNews({ data }) {
                         }}
                         spaceBetween={16}
                         speed={500}
-                        onBeforeInit={(swiper) => {
-                            swiper.params.navigation.prevEl = prevRef.current;
-                            swiper.params.navigation.nextEl = nextRef.current;
-                        }}
-                        navigation={{
-                            prevEl: prevRef.current,
-                            nextEl: nextRef.current,
-                        }}
+                        onSwiper={setSwiperInstance}
                         className="w-full h-full !py-2"
                     >
                         {newsList.map((news, id) => (
@@ -60,7 +79,7 @@ export default function AcademicNews({ data }) {
 
                     {/* Prev Arrow */}
                     <button
-                        ref={prevRef}
+                        onClick={() => swiperInstance?.slidePrev()}
                         aria-label="Previous news item"
                         className="academic-news-prev absolute left-[-15px] sm:left-[-16px] top-1/2 -translate-y-1/2 z-20 w-[36px] h-[36px] xl:w-[40px] xl:h-[40px] 2xl:w-[44px] 2xl:h-[44px]
                         rounded-full bg-white/95 dark:bg-[#18191B] backdrop-blur-md border border-gray-200/80 dark:border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.12)]
@@ -75,7 +94,7 @@ export default function AcademicNews({ data }) {
 
                     {/* Next Arrow */}
                     <button
-                        ref={nextRef}
+                        onClick={() => swiperInstance?.slideNext()}
                         aria-label="Next news item"
                         className="academic-news-next absolute right-[-15px] sm:right-[-16px] top-1/2 -translate-y-1/2 z-20 w-[36px] h-[36px] xl:w-[40px] xl:h-[40px] 2xl:w-[44px] 2xl:h-[44px]
                         rounded-full bg-white/95 dark:bg-[#18191B] backdrop-blur-md border border-gray-200/80 dark:border-white/10 shadow-[0_4px_15px_rgba(0,0,0,0.12)]

@@ -24,22 +24,12 @@ export default function StudentSuccessStories({ data, variant }) {
             window.addEventListener("keydown", handleKeyDown);
         }
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [activeVideoModal]);
+    }, [activeVideoModal]); 
 
-    // Fallback/default data matching the design in the image
-    const heading = data?.heading || "Student Success Stories";
-    // const videosHeading = data?.videosHeading || "Videos";
-    // const otherHeading = data?.otherHeading || "Other";
-
-    // const videos = data?.videos
-
+    const heading = data?.heading || "Student Success Stories"; 
+ 
     const stories = data?.stories
-
-    const syncVideoSwiper = (swiper) => {
-        if (!swiper || swiper.destroyed) return;                
-        setVideoPrevDisabled(swiper.isBeginning);
-        setVideoNextDisabled(swiper.isEnd);
-    };
+ 
 
     const syncOtherSwiper = (swiper) => {
         if (!swiper || swiper.destroyed) return;
@@ -51,108 +41,12 @@ export default function StudentSuccessStories({ data, variant }) {
         <section className={`relative w-full py-[45px] sm:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0c0d0e] transition-colors duration-300 ${variant=== "bg-gradient" ? "bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-none dark:bg-[#0c0d0e]": " bg-white"}`}>
             <div className="container">
 
-
-                {/* --- Section 1: Videos --- */}
-                {/* <div className="mb-[36px] sm:mb-[46px] lg:mb-[56px]"> 
-                    <div className="flex items-center justify-between mb-[18px] sm:mb-[22px] lg:mb-[26px]">
-                        <h3 className="text-[20px] sm:text-[22px] lg:text-[24px] font-bold text-[#1F1F1F] dark:text-white">
-                            {videosHeading}
-                        </h3> 
-                        <div className="flex items-center gap-2 2xl:gap-1">
-                            <button
-                                type="button"
-                                aria-label="Previous video"
-                                onClick={() => videoSwiperRef.current?.slidePrev()}
-                                disabled={videoPrevDisabled}
-                                className="w-3 h-3 2xl:w-9 2xl:h-9 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
-                            >
-                                <svg width="16" height="29" viewBox="0 0 16 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15.1855 2.32715C15.6012 1.91269 15.6054 1.23886 15.1943 0.819336C14.7809 0.39766 14.1041 0.392766 13.6846 0.808594L13.6826 0.811523L0.832032 13.7363L0.833008 13.7373C0.62052 13.9389 0.50025 14.2184 0.500977 14.5117L0.500001 14.5107L0.500977 14.5127L0.500001 14.5137L0.500977 14.5137C0.501149 14.7939 0.610929 15.0631 0.808594 15.2627L0.808594 15.2637L13.6592 28.1885L13.6611 28.1914L14.0137 27.8359L13.6621 28.1914C14.0817 28.6071 14.7577 28.6021 15.1709 28.1807C15.5828 27.7604 15.5781 27.0842 15.1602 26.6699L15.1592 26.6709L3.07227 14.5127L15.1855 2.32715Z" fill="#F97316" stroke="#F97316" />
-                                </svg>
-
-                            </button>
-                            <button
-                                type="button"
-                                aria-label="Next video"
-                                onClick={() => videoSwiperRef.current?.slideNext()}
-                                disabled={videoNextDisabled}
-                                className="w-3 h-3 2xl:w-9 2xl:h-9 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
-                            >
-                                <svg width="16" height="29" viewBox="0 0 16 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0.814452 2.32715C0.398848 1.91269 0.394622 1.23886 0.805663 0.819336C1.21905 0.39766 1.89592 0.392766 2.31543 0.808594L2.31738 0.811523L15.168 13.7363L15.167 13.7373C15.3795 13.9389 15.4998 14.2184 15.499 14.5117L15.5 14.5107L15.499 14.5127L15.5 14.5137L15.499 14.5137C15.4989 14.7939 15.3891 15.0631 15.1914 15.2627L15.1914 15.2637L2.34082 28.1885L2.33887 28.1914L1.98633 27.8359L2.33789 28.1914C1.91834 28.6071 1.24231 28.6021 0.829102 28.1807C0.417212 27.7604 0.421942 27.0842 0.839844 26.6699L0.84082 26.6709L12.9277 14.5127L0.814452 2.32715Z" fill="#F97316" stroke="#F97316" />
-                                </svg>
-
-                            </button>
-                        </div>
-                    </div> 
-                    <div className="w-full">
-                        <Swiper
-                            onSwiper={(swiper) => {
-                                videoSwiperRef.current = swiper;
-                                syncVideoSwiper(swiper);
-                            }}
-                            onSlideChange={(swiper) => syncVideoSwiper(swiper)}
-                            onResize={(swiper) => syncVideoSwiper(swiper)}
-                            slidesPerView={1.5}
-                            spaceBetween={14}
-                            breakpoints={{
-                                480: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 16,
-                                },
-                                578: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 18,
-                                },
-                                1024: {
-                                    slidesPerView: 3.4,
-                                    spaceBetween: 20,
-                                },
-                                1280: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 20,
-                                },
-                            }}
-                            className="w-full "
-                        >
-                            {videos.map((item, idx) => (
-                                <SwiperSlide key={item.id || idx} className="!h-auto">
-                                    <div
-                                        onClick={() => {
-                                            if (item.videoUrl) setActiveVideoModal(item);
-                                        }}
-                                        className="group relative w-full aspect-[16/10.5] rounded-[14px] sm:rounded-[16px] overflow-hidden bg-neutral-100 dark:bg-neutral-800 cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
-                                    >
-                                        <Image
-                                            src={item.poster || "/images/home-about-1.jpg"}
-                                            alt={item.title || "Success Video"}
-                                            fill
-                                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                        />
  
-                                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300" />
- 
-                                        <div className="absolute inset-0 flex items-center justify-center">
-                                            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full   flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                                <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M21.5 0C9.62588 0 0 9.62588 0 21.5C0 33.3741 9.62588 43 21.5 43C33.3741 43 43 33.3741 43 21.5C42.9874 9.63119 33.3689 0.0126877 21.5 0ZM30.5545 22.185C30.4057 22.4836 30.1637 22.7257 29.865 22.8745V22.8821L17.5793 29.025C16.8206 29.4041 15.8983 29.0965 15.5191 28.3377C15.4113 28.1221 15.3558 27.884 15.3571 27.6429V15.3572C15.3567 14.509 16.0439 13.8212 16.8921 13.8207C17.1307 13.8206 17.366 13.8761 17.5793 13.9827L29.865 20.1256C30.6241 20.5039 30.9329 21.4259 30.5545 22.185Z" fill="white" fill-opacity="0.8" />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
-                    </div>
-                </div> */}
-
                 {/* --- Section 2: Other (Testimonials) --- */}
                 <div>
                     {/* Header Row */}
                     <div className="flex items-center justify-between mb-[18px] sm:mb-[22px] lg:mb-[26px]">
-                        {/* <h3 className="text-[20px] sm:text-[22px] lg:text-[24px] font-bold text-[#1F1F1F] dark:text-white">
-                            {otherHeading}
-                        </h3> */}
+                        
                         {/* Main Heading */}
                         <div className="">
                             <h2 className="text-[28px] sm:text-[36px] lg:text-[42px] xl:text-[46px] font-bold text-[#1F1F1F] dark:text-white tracking-tight">

@@ -65,10 +65,8 @@ export default function AboutLeadership({ data }) {
                   ) : (
                     <p>{item.description}</p>
                   )}
-                  <div className="w-[28px] h-[20px] max-sm:m-auto !mt-[30px]">
-                    <svg
-                      width="28"
-                      height="20"
+                  <div className="w-[20px] 2xl:w-[25px] 3xl:w-[28px] h-[15px] 2xl:h-[18px] 3xl:h-[20px] max-sm:m-auto !mt-[30px]">
+                    <svg 
                       viewBox="0 0 28 20"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"

@@ -1354,7 +1354,7 @@ const homePageData = {
   },
   campusLife: {
     campusInfo: {
-      title: "Campus Life",
+      title: "DSU CAMPUS",
       heading: {
         text: "Campus",
         highlight: "Life",

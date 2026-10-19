@@ -1,8 +1,10 @@
 "use client";
+import Link from "next/link";
 import Image from "next/image";
 import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import NewsCard from "@/components/layout/common/news-card";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function News({ data }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -21,9 +23,9 @@ export default function News({ data }) {
     <section className="w-full h-auto py-10 sm:py-12.5 2xl:py-15 3xl:py-20 bg-white dark:bg-[#101010] block">
       <div className="container">
         <div className="w-full h-auto mb-7.5 sm:mb-5 2xl:mb-6.25 3xl:mb-7.5 flex items-center flex-wrap justify-between">
-          <div className="text-3xl 3xl:text-[40px] leading-normal font-bold text-[#212121] dark:text-white">
+          <h2 className="text-3xl 3xl:text-[40px] leading-normal font-bold text-[#212121] dark:text-white">
             {data?.title}
-          </div>
+          </h2>
           <div className="[--size:30px] gap-1.25 flex justify-end">
             <button
               type="button"
@@ -66,6 +68,25 @@ export default function News({ data }) {
               </div>
             ))}
           </div>
+        </div>
+        <div className="w-full h-auto mt-6 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center">
+          <Link
+            href={data?.view_all_link || data?.link || "/news-events"}
+            className={buttonVariants({
+              variant: "default",
+              size: "default",
+            })}
+          >
+            View All
+            <Image
+              src="/images/icon-btn.svg"
+              alt="View All"
+              width={15}
+              height={15}
+              className="size-3.75"
+              data-icon="inline-end"
+            />
+          </Link>
         </div>
       </div>
     </section>

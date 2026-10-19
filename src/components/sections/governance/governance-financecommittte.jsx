@@ -95,6 +95,11 @@ export default function GovernanceFinancecommittte({ data, title, governancePage
                                                 <div className="max-w-[320px] m-auto text-center">
                                                     {item.designation}
                                                 </div>
+                                                {item.post && (
+                                                    <div className="max-w-[320px] m-auto text-center">
+                                                        {item.post}
+                                                    </div>
+                                                )}
                                             </td>
                                             <td className="rounded-r-[10px] p-[15px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px] text-center relative  after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last-of-type:after:hidden">
                                                 <div

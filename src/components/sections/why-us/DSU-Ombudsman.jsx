@@ -148,7 +148,7 @@ export default function DSUOmbudsman({ data }) {
                                     )}
                                     {data?.designation && (
                                         <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#DC2626] font-semibold relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px]
-                                        after:w-[30px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316] ">
+                                          after:w-[40px] after:xl:w-[40px] after:2xl:w-[50px] after:3xl:w-[60px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316] ">
                                             {data.designation}
                                         </div>
                                     )}
