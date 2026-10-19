@@ -112,7 +112,7 @@ export default function InnerHero({ data }) {
             <AcademicMenubar slug={data?.slug} hasDepartments={data?.hasDepartments} items={data?.menuItems} homeHref={data?.menuHome} />
           )}
           {(data?.AimenuBar || (data?.isMenubar && (data?.menubar === "AimenuBar" || data?.menubar === "ai-academic"))) && (
-            <AiAcademicMenubar />
+            <AiAcademicMenubar data={data?.menuItems} />
           )}
           {(data?.AiBscmenuBar || (data?.isMenubar && (data?.menubar === "AiBscmenuBar" || data?.menubar === "ai-bsc"))) && (
             <AiBSCMenubar />

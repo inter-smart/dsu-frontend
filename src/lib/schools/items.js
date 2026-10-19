@@ -4,7 +4,7 @@
 const LEVEL_CODES = { Undergraduate: "UG", Postgraduate: "PG" };
 
 export const departmentHref = (schoolSlug, departmentSlug) =>
-  `/schools/${schoolSlug}/departments/${departmentSlug}`;
+  `/ai-enabled/${schoolSlug}/${departmentSlug}`;
 
 // Canonical programme URL: under its department when it has one, otherwise under the school.
 export const programmeHref = (schoolSlug, programmeSlug, departmentSlug) =>

@@ -125,7 +125,7 @@ export default function AiAcademicMenubar({
   }, [isMobileSidebarOpen, lenis]);
   const navigationItems =
     data?.length > 0
-      ? data.map(({ label, slug }) => ({ label, href: slug }))
+      ? data.map(({ label, slug, href }) => ({ label, href: href ?? slug }))
       : menuItems;
 
   useEffect(() => {

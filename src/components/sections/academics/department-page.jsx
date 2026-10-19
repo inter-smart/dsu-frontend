@@ -126,7 +126,7 @@ export default async function DepartmentPage({ schoolSlug, departmentSlug, tab =
     const { school, department, data, hero, menuItems, menuHome } = await loadDepartmentPage(schoolSlug, departmentSlug, tab);
 
     return (
-        <SchoolTabShell hero={hero} slug={schoolSlug} hasDepartments={school.template === "department"} menuItems={menuItems} menuHome={menuHome}>
+        <SchoolTabShell hero={hero} slug={schoolSlug} hasDepartments={school.template === "department"} menuItems={menuItems} menuHome={menuHome} aiMenu>
             <Sections tab={tab} data={data} schoolSlug={schoolSlug} department={department} />
         </SchoolTabShell>
     );

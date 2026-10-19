@@ -3,8 +3,8 @@ import { getDepartmentTab, getProgrammeBySlug } from "@/lib/api";
 import { departmentHref, programmeHref } from "@/lib/schools/items";
 
 // Department and programme pages, resolved from the real hierarchy:
-//   /schools/[school]/departments/[department]/[tab]
-//   /schools/[school]/departments/[department]/programs/[programme]/[tab]
+//   /ai-enabled/[school]/[department]/[tab]
+//   /ai-enabled/[school]/[department]/programs/[programme]/[tab]
 //   /schools/[school]/programs/[programme]/[tab]            (programme owned by the school or, as an
 //                                                            alias, by one of its departments)
 // A tab is listed in the menu (and reachable) only when the API has something for it.
