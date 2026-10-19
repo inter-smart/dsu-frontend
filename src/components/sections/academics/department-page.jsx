@@ -32,6 +32,7 @@ export async function departmentMetadata(schoolSlug, departmentSlug, tab = "over
     return {
         title: `${tab === "overview" ? base : `${label} | ${base}`} | ${school.name}`,
         description: department.seo?.metaDescription ?? undefined,
+        alternates: department.seo?.canonicalUrl ? { canonical: department.seo.canonicalUrl } : undefined,
     };
 }
 

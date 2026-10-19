@@ -79,7 +79,11 @@ export async function loadDepartmentPage(schoolSlug, departmentSlug, tab) {
     department: res,
     data: res.tab ?? {},
     label: entry.label,
-    hero: buildHero(res.hero, trail, res.name),
+    hero: {
+      ...buildHero(res.hero, trail, res.hero?.title || res.name),
+      // a breadcrumb set on the tab's own Hero wins over the generated trail
+      ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
+    },
     menuItems: menuFor(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base),
     menuHome: base,
   };

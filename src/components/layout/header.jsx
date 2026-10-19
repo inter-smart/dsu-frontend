@@ -1095,25 +1095,20 @@ function MegaMenuPanel({
   const grandGroups = activeChild?.children || [];
   const hasColumnGroups = grandGroups.some((g) => g?.children?.length > 0);
 
-  // Group columns for multi-column layouts like Excellence & Quality Assurance
+  // Group columns for multi-column layouts like Excellence & Quality Assurance:
+  // each group (CMS order) goes into the currently shortest of up to 3 columns,
+  // so IQAC + AQAR stack in column 1, Feedback and Quality Process fill the rest.
   let columns = [];
   if (hasColumnGroups) {
-    if (grandGroups.length === 4) {
-      // Column 1: IQAC + AQAR stacked vertically (exactly like reference image)
-      columns = [
-        [grandGroups[0], grandGroups[3]],
-        [grandGroups[1]],
-        [grandGroups[2]],
-      ];
-    } else if (grandGroups.length === 3) {
-      columns = [[grandGroups[0]], [grandGroups[1]], [grandGroups[2]]];
-    } else {
-      const colsCount = Math.min(grandGroups.length, 3);
-      columns = Array.from({ length: colsCount }, () => []);
-      grandGroups.forEach((group, idx) => {
-        columns[idx % colsCount].push(group);
-      });
-    }
+    const filled = grandGroups.filter((g) => g?.children?.length > 0);
+    const colsCount = Math.min(filled.length, 3);
+    columns = Array.from({ length: colsCount }, () => []);
+    const heights = Array(colsCount).fill(0);
+    filled.forEach((group) => {
+      const target = heights.indexOf(Math.min(...heights));
+      columns[target].push(group);
+      heights[target] += 1 + group.children.length;
+    });
   }
 
   const renderLeafItem = (leaf) => {
