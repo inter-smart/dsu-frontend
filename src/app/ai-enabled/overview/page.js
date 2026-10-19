@@ -118,28 +118,6 @@ const local_data = {
             helpline: "080 46461800 / 080 49092800",
             accreditations: "NAAC A+ Accredited  |  UGC Recognized",
         },
-        courses: [
-            "Bachelor of Computer Applications (BCA)",
-            "Master of Computer Applications (MCA)",
-            "B.Tech in Computer Science & Engineering",
-            "B.Tech in AI & Machine Learning",
-            "B.Tech in Data Science",
-            "M.Tech in Computer Science",
-            "Ph.D in Computer Applications",
-        ],
-        states: [
-            "Karnataka",
-            "Andhra Pradesh",
-            "Delhi",
-            "Gujarat",
-            "Kerala",
-            "Maharashtra",
-            "Tamil Nadu",
-            "Telangana",
-            "Uttar Pradesh",
-            "West Bengal",
-            "Other",
-        ],
     },
     missionVisionSection: {
         cards: [

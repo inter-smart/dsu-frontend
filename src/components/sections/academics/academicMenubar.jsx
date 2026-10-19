@@ -61,12 +61,18 @@ export default function AcademicMenubar({
   className = "",
   slug,
   hasDepartments = false,
+  hasPrograms,
+  items: itemsProp,
+  homeHref: homeHrefProp,
 }) {
 
   const pathname = usePathname();
   // slug-driven tabs when a school is known, otherwise the legacy static list
-  const items = slug
-    ? getSchoolTabs(hasDepartments).map((t) => ({
+  // (department / programme pages pass their own `items` and `homeHref`)
+  const items = itemsProp
+    ? itemsProp
+    : slug
+    ? getSchoolTabs(hasDepartments, hasPrograms).map((t) => ({
         label: t.label,
         href: t.anchor ? `/schools/${slug}#${t.anchor}` : `/schools/${slug}/${t.key}`,
       }))
@@ -146,7 +152,7 @@ export default function AcademicMenubar({
           <ul>
             {/* Home Item */}
             {(() => {
-              const homeHref = slug ? `/schools/${slug}` : "/schools";
+              const homeHref = homeHrefProp ?? (slug ? `/schools/${slug}` : "/schools");
               const isHomeActive = pathname === homeHref;
               return (
                 <li className="border-b border-black/10 p-[11px_15px] group transition-colors duration-300">
@@ -239,7 +245,7 @@ export default function AcademicMenubar({
             <div className="flex flex-wrap items-center justify-center gap-[8px] xl:gap-[10px] 2xl:gap-[12px] 3xl:gap-[14px] p-[20px_15px] md:p-[20px] lg:p-[25px_20px] xl:p-[30px_50px] 2xl:p-[30px_60px] 3xl:p-[35px_70px]">
               {/* Home icon */}
               {(() => {
-                const homeHref = slug ? `/schools/${slug}` : "/schools";
+                const homeHref = homeHrefProp ?? (slug ? `/schools/${slug}` : "/schools");
                 const isHomeActive = pathname === homeHref;
                 return (
                   <Link

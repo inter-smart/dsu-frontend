@@ -4,9 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import { Heading } from "@/components/ui/heading";
 import NewsCard from "@/components/layout/common/news-card";
-import { getNewsEventsPaged } from "@/lib/api";
+import { getDepartmentNewsPaged, getNewsEventsPaged, getSchoolNewsPaged } from "@/lib/api";
 
-export default function NewsEvents({ data }) {
+export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
   const [items, setItems] = useState(data?.newsEvents ?? []);
   const [pagination, setPagination] = useState(data?.pagination ?? null);
   const [loading, setLoading] = useState(false);
@@ -17,10 +17,12 @@ export default function NewsEvents({ data }) {
     if (!hasMore || loading) return;
     setLoading(true);
     try {
-      const res = await getNewsEventsPaged(
-        pagination.page + 1,
-        pagination.pageSize,
-      );
+      const fetchPage = departmentSlug
+        ? (page, size) => getDepartmentNewsPaged(departmentSlug, page, size)
+        : schoolSlug
+          ? (page, size) => getSchoolNewsPaged(schoolSlug, page, size)
+          : getNewsEventsPaged;
+      const res = await fetchPage(pagination.page + 1, pagination.pageSize);
       if (res?.data && res?.pagination) {
         setItems((prev) => {
           const seen = new Set(prev.map((item) => item?.documentId));
@@ -40,7 +42,7 @@ export default function NewsEvents({ data }) {
     <section className="w-full h-auto py-10 sm:py-15 lg:py-20 2xl:py-25 3xl:py-30 block">
       <div className="container">
         <div className="w-full h-auto mb-6.25 lg:mb-7.5 2xl:mb-10">
-          <Heading className="mb-0 dark:text-white">{data?.title}</Heading>
+          {data?.title && <Heading className="mb-0 dark:text-white">{data.title}</Heading>}
         </div>
         <div className="w-full h-auto gap-3.75 sm:gap-[15px_10px] lg:gap-[20px_15px] 2xl:gap-[25px_15px] 3xl:gap-[30px_20px] grid sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (

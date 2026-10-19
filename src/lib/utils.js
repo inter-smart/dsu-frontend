@@ -87,3 +87,8 @@ export function mergeData(cms, local_data) {
     });
     return merged;
 }
+
+// Button/CTA link: Strapi button (`url`) or file CTA (`file.url`).
+export function getCtaHref(cta) {
+    return cta?.url || cta?.file?.url?.trim() || "#";
+}

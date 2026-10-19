@@ -12,7 +12,7 @@ export default function AiAcademicChapters({ data }) {
                 <div className="text-center md:max-w-[65%] m-auto mb-[30px]">
                     <div className="cmn_Title mb-[25px]">{data.heading}</div>
                     <div className="text_1 leading-[1.2] text-[#4A5565]">
-                        <BlocksRenderer content={data.description} />
+                        {data.description && <BlocksRenderer content={data.description} />}
                     </div>
                 </div>
                 <div className="flex flex-wrap  -m-[5px] 2xl:-m-[10px]">
@@ -20,13 +20,15 @@ export default function AiAcademicChapters({ data }) {
                         <div className="w-full sm:w-1/2 md:w-1/3  p-[5px] 2xl:p-[10px]" key={id}>
                             <div className="block w-full h-full rounded-[10px] overflow-hidden bg-gradient-to-b from-[#FFF8EE] to-[#FFFFFF] dark:bg-gradient-to-r dark:from-[#383838b5] dark:to-[#383838b5]">
                                 <div className="relative w-full aspect-[530/220] overflow-hidden">
-                                    <Image
-                                        src={item?.image.url}
-                                        fill
-                                        sizes="(max-width: 1024px) 100vw, 33vw"
-                                        className="object-cover"
-                                        alt={item?.image.alternativeText}
-                                    />
+                                    {item?.image?.url && (
+                                        <Image
+                                            src={item.image.url}
+                                            fill
+                                            sizes="(max-width: 1024px) 100vw, 33vw"
+                                            className="object-cover"
+                                            alt={item.image.alternativeText || ""}
+                                        />
+                                    )}
                                 </div>
                                 <div className="p-[15px] xl:p-[25px] 3xl:p-[30px] relative">
                                     <div

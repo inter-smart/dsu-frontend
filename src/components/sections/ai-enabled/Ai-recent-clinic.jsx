@@ -56,13 +56,15 @@ export default function AiRecentClinic({ data }) {
                                     <ShineBorder shineColor={["#909191"]} className="hidden dark:block" />
                                     <div className="w-full h-auto block relative z-0">
                                         <div className="w-full h-auto aspect-560/220 mb-7.5 2xl:mb-10 3xl:mb-12.5 border-b border-[#909191] overflow-hidden block">
-                                            <Image
-                                                src={engage?.path}
-                                                width={560}
-                                                height={220}
-                                                alt={engage?.title || "News"}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-                                            />
+                                            {engage?.path && (
+                                                <Image
+                                                    src={engage.path}
+                                                    width={560}
+                                                    height={220}
+                                                    alt={engage?.title || "News"}
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
+                                                />
+                                            )}
                                         </div>
                                         <div className="w-auto h-auto p-[12px_15px] 2xl:p-[15px_15px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) mx-4 2xl:mx-6.25 3xl:mx-7.5 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col items-center justify-center absolute z-1 inset-[auto_auto_0_0]">
                                             <span className="text-xl 2xl:text-2xl 3xl:text-[28px] leading-normal font-semibold text-white">

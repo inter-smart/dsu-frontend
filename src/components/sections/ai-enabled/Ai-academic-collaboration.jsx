@@ -51,13 +51,15 @@ export default function AiAcademicCollaboration({ data }) {
                             >
                                 <div className="w-full h-full flex-col">
                                     <div className="w-full relative aspect-[560/440] overflow-hidden rounded-[10px] mb-[15px] xl:mb-[25px]">
-                                        <Image
-                                            src={collab.image.url}
-                                            alt={collab.image.alternativeText}
-                                            width={110}
-                                            height={40}
-                                            className="w-full object-cover h-full transition-all duration-150"
-                                        />
+                                        {collab.image?.url && (
+                                            <Image
+                                                src={collab.image.url}
+                                                alt={collab.image.alternativeText || ""}
+                                                width={110}
+                                                height={40}
+                                                className="w-full object-cover h-full transition-all duration-150"
+                                            />
+                                        )}
                                         <div className="text_1 text-white absolute top-[20px] left-[20px] base-gradient p-[8px] rounded-[8px]">
                                             {collab.badge}
                                         </div>

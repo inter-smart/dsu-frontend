@@ -19,7 +19,7 @@ export default function AiLaboratory({data}) {
                 <div className="w-full">
                     <div className="cmn_Title mb-[25px]">{data.heading}</div>
                         <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:mb-[15px] [&_p]:3xl:mb-[20px]">
-                            <BlocksRenderer content={data.description} />
+                            {data.description && <BlocksRenderer content={data.description} />}
                         </div>
                 </div>
             </div>

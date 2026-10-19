@@ -8,18 +8,20 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 export default function AcademicFacilities({ data }) {
+    if (!data) return null;
+
     return (
         <section className="relative py-[20px_40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] 
                 bg-gradient-to-b from-[rgba(255,248,238,0.3)] to-[rgba(255,243,224,0.5)] dark:bg-none dark:bg-[#101010]">
             <div className="container">
                 <div className="flex flex-wrap [&>div]:lg:w-1/2  mb-[15px] lg:mb-[25px] 2xl:mb-[40px] 3xl:mb-[45px]">
-                    <div className="cmn_Title mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] ">{data.heading}</div>
+                    {data.heading && <div className="cmn_Title mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] ">{data.heading}</div>}
                     <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]">
-                        <BlocksRenderer content={data.description} />
+                        {data?.description && <BlocksRenderer content={data.description} />}
                     </div>
                 </div>
                 <div className="flex flex-wrap">
-                    {data?.points.map((item, id) => (
+                    {data?.points?.map((item, id) => (
                         <div key={id} className="w-full sm:w-1/2 lg:w-full bg-gradient-to-r from-[#EFF6FF] to-[#F9FAFB] dark:bg-none dark:bg-[#18191B] rounded-[12px] xl:rounded-[16px] p-[15px] lg:p-[20px] xl:p-[25px] 2xl:p-[28px] 3xl:p-[30px] mb-[15px] lg:mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[35px]">
                             <div className={`flex flex-wrap lg:flex-nowrap items-stretch ${id % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}>
 
@@ -37,14 +39,14 @@ export default function AcademicFacilities({ data }) {
                                             }}
                                             className="w-full h-full"
                                         >
-                                            {item?.media?.map((facImg, id) => (
+                                            {item?.media?.filter((facImg) => facImg?.url).map((facImg, id) => (
                                                 <SwiperSlide key={id}>
                                                     <div className="w-full aspect-[830/430]">
                                                         <Image
                                                             src={facImg.url}
                                                             width={830}
                                                             height={430}
-                                                            alt={facImg.alternativeText}
+                                                            alt={facImg.alternativeText || ""}
                                                             className="w-full h-full object-cover"
                                                         />
                                                     </div>
