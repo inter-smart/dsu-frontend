@@ -1,5 +1,4 @@
 import SchoolTabShell from "@/components/sections/academics/school-tab-shell";
-import EntityHtmlSection from "@/components/sections/academics/entity-html-section";
 import AcademicProgram from "@/components/sections/academics/academic-program";
 import AcademicOverview from "@/components/sections/academics/academic-overview";
 import AcademicVisionMission from "@/components/sections/academics/academic-vision-mission";
@@ -23,7 +22,7 @@ import AiRecentClinic from "@/components/sections/ai-enabled/Ai-recent-clinic";
 import AiPartnerwithus from "@/components/sections/ai-enabled/Ai-partnerwithus";
 import AiAcademicChapters from "@/components/sections/ai-enabled/Ai-academicChapters";
 import LibraryOverview from "@/components/sections/ai-enabled/library/library-overview";
-import { departmentProgramsSection, htmlOrNull, loadDepartmentPage } from "@/lib/schools/entity";
+import { departmentProgramsSection, loadDepartmentPage } from "@/lib/schools/entity";
 import { hasContent } from "@/lib/schools/tab-page";
 import * as adapt from "@/lib/schools/department-adapters";
 
@@ -44,11 +43,7 @@ function Sections({ tab, data, schoolSlug, department }) {
             const highlights = adapt.highlightsSection(data.highlightsSection);
             return (
                 <>
-                    {show(data.programOverviewSection) ? (
-                        <AcademicOverview data={data.programOverviewSection} />
-                    ) : (
-                        <EntityHtmlSection eyebrow="Overview" heading={`About ${department.name}`} html={htmlOrNull(department.description)} />
-                    )}
+                    {show(data.programOverviewSection) && <AcademicOverview data={data.programOverviewSection} />}
                     {show(data.visionMissionSection) && <AcademicVisionMission data={data.visionMissionSection} />}
                     {highlights && <AiHighlights data={highlights} />}
                     {show(data.contact) && <AcademicContact data={data.contact} schoolSlug={schoolSlug} />}
@@ -131,7 +126,7 @@ export default async function DepartmentPage({ schoolSlug, departmentSlug, tab =
     const { school, department, data, hero, menuItems, menuHome } = await loadDepartmentPage(schoolSlug, departmentSlug, tab);
 
     return (
-        <SchoolTabShell hero={hero} slug={schoolSlug} hasDepartments={school.hasDepartments} menuItems={menuItems} menuHome={menuHome}>
+        <SchoolTabShell hero={hero} slug={schoolSlug} hasDepartments={school.template === "department"} menuItems={menuItems} menuHome={menuHome}>
             <Sections tab={tab} data={data} schoolSlug={schoolSlug} department={department} />
         </SchoolTabShell>
     );

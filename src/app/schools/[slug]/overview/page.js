@@ -4,7 +4,7 @@ import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 import AcademicOverview from "@/components/sections/academics/academic-overview";
 import AcademicContact from "@/components/sections/academics/academic-contact";
 import { getSchoolTab } from "@/lib/api";
-import { hasContent, schoolHasPrograms } from "@/lib/schools/tab-page";
+import { hasContent, usesDepartments } from "@/lib/schools/tab-page";
 
 
 
@@ -22,12 +22,12 @@ export default async function Page({ params }) {
     const pageData = { ...school, ...school.tab };
 
     const data = pageData;
-    const hasPrograms = await schoolHasPrograms(slug, pageData.hasDepartments);
+    const hasDepartments = usesDepartments(pageData);
 
     return (
         <>
-            <InnerHero data={{ ...data.hero, slug, hasDepartments: pageData.hasDepartments, hasPrograms, menuBar: true }} />
-            <AcademicMenubar className="md:!hidden block" slug={slug} hasDepartments={pageData.hasDepartments} hasPrograms={hasPrograms} />
+            <InnerHero data={{ ...data.hero, slug, hasDepartments, menuBar: true }} />
+            <AcademicMenubar className="md:!hidden block" slug={slug} hasDepartments={hasDepartments} />
             {hasContent(data.programOverviewSection) && <AcademicOverview data={data.programOverviewSection} />}
             {hasContent(data.contact) && <AcademicContact data={data.contact} schoolSlug={slug} />}
         </>

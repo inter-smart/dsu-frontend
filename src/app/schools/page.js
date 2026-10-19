@@ -21,7 +21,7 @@ export default async function Page() {
               className="rounded-[15px] border border-[#F3DFD2] bg-white p-[20px] transition-shadow hover:shadow-lg dark:border-white/10 dark:bg-[#1a1a1a]"
             >
               <div className="font-bold">{school.name}</div>
-              {school.hasDepartments && school.departments?.length > 0 && (
+              {school.template === "department" && school.departments?.length > 0 && (
                 <p className="mt-[8px] text-[#4A5565] dark:text-white/80">
                   {school.departments.length} departments
                 </p>

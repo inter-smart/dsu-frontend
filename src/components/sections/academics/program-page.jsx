@@ -32,7 +32,7 @@ export default async function ProgramPage({ schoolSlug, programmeSlug, tab = "ov
     const downloads = programme.downloadsSection;
 
     return (
-        <SchoolTabShell hero={hero} slug={schoolSlug} hasDepartments={school.hasDepartments} menuItems={menuItems} menuHome={menuHome}>
+        <SchoolTabShell hero={hero} slug={schoolSlug} hasDepartments={school.template === "department"} menuItems={menuItems} menuHome={menuHome}>
             {tab === "overview" && (
                 <EntityHtmlSection eyebrow="Overview" heading={`About ${programme.title}`} html={htmlOrNull(programme.overview)} facts={facts} />
             )}

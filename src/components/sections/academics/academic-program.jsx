@@ -28,18 +28,20 @@ export default function AcademicProgram({ data, variant }) {
                             key={id}
                             className={`${variant === "aiprogram" ? "w-full pb-[35px] lg:pb-[45px] xl:pb-[65px] last-of-type:pb-0 not-last-of-type:border-b border-black/10 dark:border-white/10" : "w-full sm:w-1/2"}`}
                         >
-                            <div className="flex items-center gap-[10px] mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[40px]">
-                                <div className="flex items-center justify-center text-[14px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-center font-bold text-[#212121] dark:text-white
-                               w-[40px] 2xl:w-[50px] 3xl:w-[60px] h-[40px] 2xl:h-[50px] 3xl:h-[60px] overflow-hidden rounded-full border border-[rgba(249,115,22,0.2)] dark:border-white/10
-                                 bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] dark:from-[#232428] dark:to-[#18191B]">
-                                    {item.badge}
+                            {(item.badge || item.label) && (
+                                <div className="flex items-center gap-[10px] mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[40px]">
+                                    <div className="flex items-center justify-center text-[14px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-center font-bold text-[#212121] dark:text-white
+                                   w-[40px] 2xl:w-[50px] 3xl:w-[60px] h-[40px] 2xl:h-[50px] 3xl:h-[60px] overflow-hidden rounded-full border border-[rgba(249,115,22,0.2)] dark:border-white/10
+                                     bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] dark:from-[#232428] dark:to-[#18191B]">
+                                        {item.badge}
+                                    </div>
+                                    <div className="text-[14px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] 3xl:text-[28px] font-bold bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent ">{item.label}</div>
                                 </div>
-                                <div className="text-[14px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] 3xl:text-[28px] font-bold bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent ">{item.label}</div>
-                            </div>
+                            )}
                             {item.description && (
                                 <p className="lg:max-w-[98%] text-[#4A5565] dark:text-[#9CA3AF]">{item.description}</p>
                             )}
-                            <div className="flex flex-wrap mt-[30px]">
+                            <div className={`flex flex-wrap ${item.badge || item.label || item.description ? "mt-[30px]" : ""}`}>
                                 {item.programs?.map((program, idx) => (
                                     <div key={idx} className={`${variant === "aiprogram" ? "w-full lg:w-1/2" : "w-full"}`}>
                                         <Link

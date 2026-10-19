@@ -109,7 +109,7 @@ export default function InnerHero({ data }) {
         </div>
         <div className="max-lg:hidden">
           {(data?.menuBar || (data?.isMenubar && (data?.menubar === "menuBar" || data?.menubar === "academic"))) && (
-            <AcademicMenubar slug={data?.slug} hasDepartments={data?.hasDepartments} hasPrograms={data?.hasPrograms} items={data?.menuItems} homeHref={data?.menuHome} />
+            <AcademicMenubar slug={data?.slug} hasDepartments={data?.hasDepartments} items={data?.menuItems} homeHref={data?.menuHome} />
           )}
           {(data?.AimenuBar || (data?.isMenubar && (data?.menubar === "AimenuBar" || data?.menubar === "ai-academic"))) && (
             <AiAcademicMenubar />

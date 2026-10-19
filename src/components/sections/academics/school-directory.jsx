@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 // Shared list for the school Programs and Departments tabs: departments (each with its
 // programmes), or programmes grouped UG / PG / other. Items with an `href` link to their page.
@@ -50,13 +51,21 @@ function ItemGrid({ items }) {
     );
 }
 
-export function SchoolItemList({ title, items = [], groupByLevel = false }) {
-    if (!items.length) return null;
+// `groups` ([{ key, label, items }], e.g. the CMS Programs template) replaces the automatic grouping;
+// `description` is optional rich text (Strapi blocks) shown under the title.
+export function SchoolItemList({ title, items = [], groupByLevel = false, groups, description }) {
+    const list = groups ? groups.filter((g) => g.items?.length) : items.length ? groupItems(items, groupByLevel) : [];
+    if (!list.length) return null;
 
     return (
         <section className="container py-[40px] md:py-[60px]">
             <div className="cmn_Title mb-[25px]">{title}</div>
-            {groupItems(items, groupByLevel).map((g) => (
+            {Array.isArray(description) && description.length > 0 && (
+                <div className="mb-[25px] text-[#4A5565] dark:text-white/80">
+                    <BlocksRenderer content={description} />
+                </div>
+            )}
+            {list.map((g) => (
                 <div key={g.key} className="mb-[30px]">
                     {g.label && <h3 className="mb-[15px] font-bold">{g.label}</h3>}
                     <ItemGrid items={g.items} />

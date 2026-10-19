@@ -17,13 +17,13 @@ export const SCHOOL_TABS = [
   { key: "contact", label: "Contact" },
 ];
 
-// `hasPrograms` is true when the school also owns programmes directly. A school with departments
-// then shows both tabs; when it is not known (undefined) the original either/or rule applies.
-export function getSchoolTabs(hasDepartments = false, hasPrograms) {
+// `hasDepartments` is true when the Programs tab of the school uses the Department template
+// (the API's `template: "department"`); that school lists Departments instead of Programs.
+export function getSchoolTabs(hasDepartments = false) {
   return SCHOOL_TABS.filter((t) => {
     if (t.departments === undefined) return true;
     if (t.departments) return Boolean(hasDepartments);
-    return !hasDepartments || Boolean(hasPrograms);
+    return !hasDepartments;
   }).map((t) => ({
     key: t.key,
     anchor: t.anchor,

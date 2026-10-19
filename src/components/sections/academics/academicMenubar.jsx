@@ -62,7 +62,6 @@ export default function AcademicMenubar({
   className = "",
   slug,
   hasDepartments = false,
-  hasPrograms,
   items: itemsProp,
   homeHref: homeHrefProp,
 }) {
@@ -73,7 +72,7 @@ export default function AcademicMenubar({
   const items = itemsProp
     ? itemsProp
     : slug
-    ? getSchoolTabs(hasDepartments, hasPrograms).map((t) => ({
+    ? getSchoolTabs(hasDepartments).map((t) => ({
         label: t.label,
         href: t.anchor ? `/schools/${slug}#${t.anchor}` : `/schools/${slug}/${t.key}`,
       }))
