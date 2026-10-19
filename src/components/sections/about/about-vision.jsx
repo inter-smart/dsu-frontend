@@ -6,7 +6,7 @@ export default function AboutVision({ data }) {
     const values = data?.values;
     const items = data?.items || [];
     return (
-        <section className="relative py-[40px] lg:py-[40px_50px] xl:py-[40px_60px] 2xl:py-[50px_80px] 3xl:py-[60px_100px] before:absolute before:content-[''] before:top-0 before:left-0 before:w-full before:h-full before:bg-black/40 before:z-10 before:pointer-events-none">
+        <section id="vision-mission" className="relative py-[40px] lg:py-[40px_50px] xl:py-[40px_60px] 2xl:py-[50px_80px] 3xl:py-[60px_100px] before:absolute before:content-[''] before:top-0 before:left-0 before:w-full before:h-full before:bg-black/40 before:z-10 before:pointer-events-none">
             {media?.url && (
                 <Image
                     src={media.url}

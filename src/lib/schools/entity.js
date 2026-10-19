@@ -37,8 +37,10 @@ export const PROGRAM_TABS = [
 ];
 
 const tabHref = (base, tab) => (tab === "overview" ? base : `${base}/${tab}`);
+// Menu links use /overview explicitly: the bare base path is a prefix of every tab URL, which would keep Overview active.
+const menuHref = (base, tab) => `${base}/${tab}`;
 
-const menuFor = (tabs, base) => tabs.map((t) => ({ label: t.label, href: tabHref(base, t.key) }));
+const menuFor = (tabs, base) => tabs.map((t) => ({ label: t.label, href: menuHref(base, t.key) }));
 
 // An API HTML field is only usable as a non-empty string (an empty field arrives as []).
 export const htmlOrNull = (v) => (typeof v === "string" && v.trim() ? v : null);
