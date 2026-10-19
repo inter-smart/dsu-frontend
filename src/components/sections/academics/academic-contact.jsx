@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { PhoneInput, COUNTRIES } from "@/components/ui/phone-input";
+import PhoneNumbers from "@/components/ui/phone-numbers";
 import { COURSES, STATES } from "@/lib/schools/constants";
 import {
     Select,
@@ -191,7 +192,7 @@ export default function AcademicContact({ data, schoolSlug }) {
                                                 {COURSES.map((course) => (
                                                     <SelectItem
                                                         key={course.slug}
-                                                        value={course.slug}
+                                                        value={course.title}
                                                         className="text-[13px] py-2 px-3 text-[#374151] dark:text-[#D1D5DB] hover:bg-[#FFF8F0] dark:hover:bg-[#2a2a2a] cursor-pointer"
                                                     >
                                                         {course.title}
@@ -427,9 +428,11 @@ export default function AcademicContact({ data, schoolSlug }) {
                                             <div className="text_1 text-[#212121] font-medium dark:text-white leading-tight mb-[4px]">
                                                 Admissions Helpline:
                                             </div>
-                                            <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">
-                                                {phones.join(" / ")}
-                                            </div>
+                                            <PhoneNumbers
+                                                value={phones.join(" / ")}
+                                                className="text_1 text-[#4A5565] dark:text-[#D1D5DB]"
+                                                linkClassName="hover:text-[#DC2626] transition-colors"
+                                            />
                                         </div>
                                     </div>
                                     )}

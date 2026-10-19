@@ -1,4 +1,4 @@
-// Options for the school enquiry form. The slug is what gets stored with the enquiry.
+// Options for the school enquiry form. The course title is what gets stored with the enquiry.
 export const COURSES = [
   { title: "Bachelor of Computer Applications (BCA)", slug: "bca" },
   { title: "Master of Computer Applications (MCA)", slug: "mca" },
