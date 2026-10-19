@@ -2,6 +2,7 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import DSUAct from "@/components/sections/why-us/DSU-act";
 import DSUCommitee from "@/components/sections/why-us/DSU-Commitee";
 import { getCommittees } from "@/lib/api";
+import { getStudentSupportMenu } from "@/lib/api/women-redressal";
 
 
 
@@ -113,6 +114,7 @@ const local_data = {
 }
 export default async function Page() {
     const committees = await getCommittees();
+    const menu = await getStudentSupportMenu();
     const hero = local_data.hero;
 
     // Use first matching Strapi committee or fallback to local_data
@@ -127,7 +129,7 @@ export default async function Page() {
     return (
         <>
             <InnerHero data={hero} />
-            {committee && <DSUCommitee data={committee} />}
+            {committee && <DSUCommitee data={committee} menu={menu} />}
         </>
     );
 }

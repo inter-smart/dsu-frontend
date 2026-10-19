@@ -7,7 +7,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";  
 import StudentSupportSidebar from "./StudentSupportSidebar";
 
-export default function DSUCell({ data }) {
+export default function DSUCell({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
@@ -16,6 +16,7 @@ export default function DSUCell({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <StudentSupportSidebar
+                            menu={menu}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />

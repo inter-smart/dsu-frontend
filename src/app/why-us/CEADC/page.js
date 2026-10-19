@@ -1,5 +1,6 @@
 ﻿import InnerHero from "@/components/layout/common/InnerHero";
 import DSUDEADC from "@/components/sections/why-us/DSU-DEADC";
+import { getStudentSupportMenu } from "@/lib/api/women-redressal";
 
 
 
@@ -179,11 +180,13 @@ const local_data = {
     ],
   },
 };
-export default function Page() {
+export default async function Page() {
+  const menu = await getStudentSupportMenu();
+
   return (
     <>
       <InnerHero data={local_data.hero} />
-      <DSUDEADC data={local_data.capabilityEnhancementCells} />
+      <DSUDEADC data={local_data.capabilityEnhancementCells} menu={menu} />
     </>
   );
 }

@@ -1,12 +1,5 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import CorporateConnect from "@/components/sections/placements/corporate-connect";
-import IndustryProjects from "@/components/sections/placements/IndustryProjects";
-import InternshipOpportunities from "@/components/sections/placements/Intership-Opertunities";
-import InternshipPartners from "@/components/sections/placements/Placement-Partners";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import StudentSuccessStories from "@/components/sections/placements/student-success-stories";
+import InternshipTemplate from "@/components/sections/placements/templates/InternshipTemplate";
 import { getPlacementInternshipPage } from "@/lib/api/placement";
-import { hasContent } from "@/lib/has-content";
 
 const local_data = {
     id: 24,
@@ -307,27 +300,20 @@ export async function generateMetadata() {
     };
 }
 
+const fallback = {
+    hero: local_data.hero,
+    internshipPage: {
+        programOverviewSection: local_data.programOverviewSection,
+        intershipOpertunities: local_data.intershipOpertunities,
+        internshipPartners: local_data.internshipPartners,
+        industryProjects: local_data.industryProjects,
+        successStoriesSection: local_data.successStoriesSection,
+    },
+};
+
 export default async function page() {
     const apiData = await getPlacementInternshipPage();
-    const internship = apiData?.internshipPage || {};
 
     // API data when the entry exists, otherwise the static local_data
-    const hero = apiData ? apiData.hero : local_data.hero;
-    const overview = apiData ? internship.programOverviewSection : local_data.programOverviewSection;
-    const opportunities = apiData ? internship.intershipOpertunities : local_data.intershipOpertunities;
-    const partners = apiData ? internship.internshipPartners : local_data.internshipPartners;
-    const projects = apiData ? internship.industryProjects : local_data.industryProjects;
-    const stories = apiData ? internship.successStoriesSection : local_data.successStoriesSection;
-
-    return (
-        <>
-            {hasContent(hero) && <InnerHero data={hero} />}
-            <PlacementmenuBar className="lg:!hidden block" />
-            {hasContent(overview) && <CorporateConnect data={overview} />}
-            {hasContent(opportunities) && <InternshipOpportunities data={opportunities} />}
-            {hasContent(partners) && <InternshipPartners data={partners} />}
-            {hasContent(projects) && <IndustryProjects data={projects} />}
-            {hasContent(stories) && <StudentSuccessStories data={stories} />}
-        </>
-    )
+    return <InternshipTemplate data={apiData || fallback} />;
 }

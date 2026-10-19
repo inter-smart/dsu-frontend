@@ -1,13 +1,5 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import PlacementProcess from "@/components/sections/placements/placement-process";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import CorporateConnect from "@/components/sections/placements/corporate-connect";
-import CampusFacility from "@/components/sections/placements/campus-facility";
-import PlacementTeam from "@/components/sections/placements/placement-team";
-import RecruiteDsu from "@/components/sections/placements/recruteDsu";
-import PlacementDocuments from "@/components/sections/placements/PlacementDocuments";
+import RecruitTemplate from "@/components/sections/placements/templates/RecruitTemplate";
 import { getPlacementRecruitPage } from "@/lib/api/placement";
-import { hasContent } from "@/lib/has-content";
 
 const local_data = {
     id: 24,
@@ -333,29 +325,21 @@ const local_data = {
     },
 }
 
+const fallback = {
+    hero: local_data.hero,
+    recruitPage: {
+        programOverviewSection: local_data.programOverviewSection,
+        placementProcess: local_data.placementProcess,
+        campusSection: local_data.campusSection,
+        documentSection: local_data.documentSection,
+        placementTeam: local_data.placementTeam,
+        recruiteSection: local_data.recruiteSection,
+    },
+};
+
 export default async function page() {
     const apiData = await getPlacementRecruitPage();
-    const recruit = apiData?.recruitPage || {};
 
     // API data when the entry exists, otherwise the static local_data
-    const hero = apiData ? apiData.hero : local_data.hero;
-    const overview = apiData ? recruit.programOverviewSection : local_data.programOverviewSection;
-    const process = apiData ? recruit.placementProcess : local_data.placementProcess;
-    const campus = apiData ? recruit.campusSection : local_data.campusSection;
-    const documents = apiData ? recruit.documentSection : local_data.documentSection;
-    const team = apiData ? recruit.placementTeam : local_data.placementTeam;
-    const enquiry = apiData ? recruit.recruiteSection : local_data.recruiteSection;
-
-    return (
-        <>
-            {hasContent(hero) && <InnerHero data={hero} />}
-            <PlacementmenuBar className="lg:!hidden block" />
-            {hasContent(overview) && <CorporateConnect data={overview} />}
-            {hasContent(process) && <PlacementProcess data={process} variant="corporate" />}
-            {hasContent(campus) && <CampusFacility data={campus} />}
-            {hasContent(documents) && <PlacementDocuments data={documents} />}
-            {hasContent(team) && <PlacementTeam data={team} />}
-            {hasContent(enquiry) && <RecruiteDsu data={enquiry} />}
-        </>
-    )
+    return <RecruitTemplate data={apiData || fallback} />;
 }

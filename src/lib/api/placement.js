@@ -1,8 +1,18 @@
 import { fetchAPI, slugPath } from "./strapi";
 
-// Menu list: [{ id, documentId, title, slug, template }]
+// Menu list: [{ id, documentId, title, slug, template, menuLabel, menuOrder, href }]
 export async function getPlacements() {
   return fetchAPI("/api/placements");
+}
+
+// Pill menu items [{ label, href }] in menu order. null when the request failed.
+export async function getPlacementMenuItems() {
+  const entries = await getPlacements();
+  if (!Array.isArray(entries)) return null;
+
+  return entries
+    .filter((entry) => entry.href)
+    .map((entry) => ({ label: entry.menuLabel || entry.title, href: entry.href }));
 }
 
 // Full page by slug
@@ -10,60 +20,59 @@ export async function getPlacementBySlug(slug) {
   return fetchAPI(slugPath("/api/placements", slug));
 }
 
-// The "about-placement-cell" entry (the /placement page)
+// The /placement page: the entry with slug "placement" (when it uses the about template),
+// otherwise the first entry that uses the template.
 export async function getPlacementAboutPage() {
+  const bySlug = await getPlacementBySlug("placement");
+  if (bySlug && bySlug.template === "about-placement-cell") return bySlug;
+
   const entries = await getPlacements();
   const entry = (entries || []).find((e) => e.template === "about-placement-cell");
   return entry?.slug ? getPlacementBySlug(entry.slug) : null;
 }
 
-// The "career-development" entry (the /placement/career page)
+// Fixed pages: the entry with the page's own slug first (when it uses the page's template),
+// otherwise the first entry that uses the template.
+async function getFixedPlacementPage(slug, template) {
+  const bySlug = await getPlacementBySlug(slug);
+  if (bySlug && bySlug.template === template) return bySlug;
+
+  const entries = await getPlacements();
+  const entry = (entries || []).find((e) => e.template === template);
+  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+}
+
+// /placement/career
 export async function getPlacementCareerPage() {
-  const entries = await getPlacements();
-  const entry = (entries || []).find((e) => e.template === "career-development");
-  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+  return getFixedPlacementPage("career", "career-development");
 }
 
-
-// The "placement-page" entry (the /placement/placement page). Its slug differs
-// from the route, so it is found by template.
+// /placement/placement (its entry slug is "placement-results")
 export async function getPlacementResultsPage() {
-  const entries = await getPlacements();
-  const entry = (entries || []).find((e) => e.template === "placement-page");
-  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+  return getFixedPlacementPage("placement-results", "placement-page");
 }
 
-// The "internship" entry (the /placement/internship page)
+// /placement/internship
 export async function getPlacementInternshipPage() {
-  const entries = await getPlacements();
-  const entry = (entries || []).find((e) => e.template === "internship");
-  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+  return getFixedPlacementPage("internship", "internship");
 }
 
-// The "student-success" entry (the /placement/student-success page)
+// /placement/student-success
 export async function getPlacementStudentSuccessPage() {
-  const entries = await getPlacements();
-  const entry = (entries || []).find((e) => e.template === "student-success");
-  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+  return getFixedPlacementPage("student-success", "student-success");
 }
 
-// The "recruiters-industry" entry (the /placement/recruiters-industry page)
+// /placement/recruiters-industry
 export async function getPlacementRecruitersIndustryPage() {
-  const entries = await getPlacements();
-  const entry = (entries || []).find((e) => e.template === "recruiters-industry");
-  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+  return getFixedPlacementPage("recruiters-industry", "recruiters-industry");
 }
 
-// The "recruit" entry (the /placement/recruit page)
+// /placement/recruit
 export async function getPlacementRecruitPage() {
-  const entries = await getPlacements();
-  const entry = (entries || []).find((e) => e.template === "recruit");
-  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+  return getFixedPlacementPage("recruit", "recruit");
 }
 
-// The "placement-contact" entry (the /placement/placement-contact page)
+// /placement/placement-contact
 export async function getPlacementContactPage() {
-  const entries = await getPlacements();
-  const entry = (entries || []).find((e) => e.template === "placement-contact");
-  return entry?.slug ? getPlacementBySlug(entry.slug) : null;
+  return getFixedPlacementPage("placement-contact", "placement-contact");
 }

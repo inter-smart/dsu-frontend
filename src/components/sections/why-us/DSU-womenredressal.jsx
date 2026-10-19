@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
 import StudentSupportSidebar from "./StudentSupportSidebar";
@@ -13,7 +12,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export default function DSUWomenRedressal({ data }) {
+export default function DSUWomenRedressal({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
     const committee = data?.coreCommitteeMembers;
     const activities = data?.activitiesAndAchievements;
@@ -26,6 +25,7 @@ export default function DSUWomenRedressal({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <StudentSupportSidebar
+                            menu={menu}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
@@ -49,7 +49,7 @@ export default function DSUWomenRedressal({ data }) {
                         </button>
                         <div className="w-full lg:h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_40px] 2xl:p-[40px_45px] 3xl:p-[50px_55px]">
                             <h2 className="cmn_Title">
-                                {data.heading}
+                                {data?.heading}
                             </h2>
                             {data?.intro?.length > 0 && (
                                 <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
@@ -63,17 +63,17 @@ export default function DSUWomenRedressal({ data }) {
                                                 bg-gradient-to-r from-[rgba(220,38,38,0.06)] to-[rgb(255,255,255)] p-[18px_20px] 2xl:p-[20px_25px] 3xl:p-[25px_30px] mb-[20px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[70px]">
                                     <div className="text-[13px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[23px] font-semibold text-[#212121] mb-[0px]">
                                         <i>
-                                            {data?.quote.text}
+                                            {data?.quote?.text}
                                         </i>
                                     </div>
                                     {data?.quote?.author && (
                                         <div className="text_1 font-medium text-[#4A5565] relative before:absolute before:content-[''] before:left-0 before:bottom-0 before:top-0 before:w-[20px] before:h-[2px] before:bg-[#4A5565] before:m-auto pl-[25px]">
-                                            <i>{data?.quote.author}</i>
+                                            <i>{data?.quote?.author}</i>
                                         </div>
                                     )}
                                 </div>
                             )}
-                            {data?.sections.map((item, id) => (
+                            {data?.sections?.map((item, id) => (
                                 <div className="w-full relative mb-[25px] xl:mb-[30px] 2xl:mb-[50px] 3xl:mb-[75px] border-b border-black/10 last-of-type:mb-0 last-of-type:pb-0 last-of-type:border-none" key={id}>
                                     <h2 className="cmn_Title">
                                         {item.heading}
@@ -86,7 +86,7 @@ export default function DSUWomenRedressal({ data }) {
                                     )}
                                     {item.points?.length > 0 && (
                                         <ul className="mb-[30px] 3xl:mb-[50px]">
-                                            {item?.points.map((item, id) => (
+                                            {item?.points?.map((item, id) => (
                                                 <li className="text_1 relative before:absolute before:content-[''] before:top-[8px]  before:lg:top-[12px] before:left-0 before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] pl-[15px] lg:pl-[20px]" key={id}>
                                                     {item.text}
                                                 </li>
@@ -98,12 +98,12 @@ export default function DSUWomenRedressal({ data }) {
                             {committee?.rows?.length > 0 && (
                                 <div className="w-full mb-[25px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[70px]">
                                     <h2 className="cmn_Title">
-                                        {data?.coreCommitteeMembers.heading}
+                                        {committee?.heading}
                                     </h2>
 
                                     <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
                                             w-full ">
-                                        <BlocksRenderer content={data?.coreCommitteeMembers.description} />
+                                        {committee?.description?.length > 0 && <BlocksRenderer content={committee.description} />}
                                     </div>
                                     <div className="w-full overflow-x-auto">
                                         <div className="min-w-[500px] rounded-[0px] border border-[#707070] overflow-hidden">
@@ -156,15 +156,15 @@ export default function DSUWomenRedressal({ data }) {
                             {activities?.items?.length > 0 && (
                                 <div className="w-full  mb-[25px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]">
                                     <h2 className="cmn_Title">
-                                        {data?.activitiesAndAchievements.heading}
+                                        {activities?.heading}
                                     </h2>
 
                                     <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
                                             w-full ">
-                                        <BlocksRenderer content={data?.activitiesAndAchievements.description} />
+                                        {activities?.description?.length > 0 && <BlocksRenderer content={activities.description} />}
                                     </div>
                                     <Accordion type="single" collapsible defaultValue="item-2" className="mt-[30px] w-full xl:mt-[40px]">
-                                        {data?.activitiesAndAchievements?.items?.map((item) => (
+                                        {activities?.items?.map((item) => (
                                             <AccordionItem key={item.id} value={`item-${item.id}`} className="p-[8px_10px] md:p-[10px] xl:p-[15px_12px] 3xl:p-[20px_12px] border border-[#E5E9EE] rounded-[6px] mb-[10px] xl:mb-[20px]">
                                                 <AccordionTrigger
                                                     className="relative p-0  font-medium !text-black text-[11px] hover:no-underline  md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]  3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold after:text-base2 data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden"
@@ -198,17 +198,17 @@ export default function DSUWomenRedressal({ data }) {
                             {documentsSection?.documents?.length > 0 && (
                                 <div className="w-full mb-[25px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[70px]">
                                     <h2 className="cmn_Title">
-                                        {data?.documentsAndReachOut?.documentsSection.heading}
+                                        {documentsSection?.heading}
                                     </h2>
 
                                     <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
                                             w-full ">
-                                        <BlocksRenderer content={data?.documentsAndReachOut?.documentsSection.description} />
+                                        {documentsSection?.description?.length > 0 && <BlocksRenderer content={documentsSection.description} />}
                                     </div>
                                     <div className="flex flex-wrap -m-[5px] md:-m-[8px] xl:-m-[10px]">
-                                        {data?.documentsAndReachOut?.documentsSection?.documents.map((item,idx) =>
+                                        {documentsSection?.documents?.filter((doc) => doc?.file?.url).map((item,idx) =>
                                             <div className="w-full sm:w-1/2 p-[5px] md:p-[8px] xl:p-[10px]" key={idx}>
-                                                <Link href={item?.file.url} className="flex items-center justify-between  py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 px-0 lg:max-w-[80%]  "  >
+                                                <Link href={item.file.url} className="flex items-center justify-between  py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 px-0 lg:max-w-[80%]  "  >
                                                     <div className="flex items-center justify-between gap-[15px]">
                                                         <div className="w-[18px] xl:w-[20px] 2xl:w-[25px] 3xl:w-[33px] h-[15px] xl:h-[18px] 2xl:h-[20px] 3xl:h-[23px] flex items-center justify-center">
                                                             <svg width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -235,12 +235,12 @@ export default function DSUWomenRedressal({ data }) {
                             {(reachOut?.contact?.name || reachOut?.contact?.phone || reachOut?.contact?.email || reachOut?.note) && (
                                 <div className="w-full ">
                                     <h2 className="cmn_Title">
-                                        {data?.documentsAndReachOut?.reachOutSection.heading}
+                                        {reachOut?.heading}
                                     </h2>
 
                                     <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
                                             w-full ">
-                                        <BlocksRenderer content={data?.documentsAndReachOut?.reachOutSection.description} />
+                                        {reachOut?.description?.length > 0 && <BlocksRenderer content={reachOut.description} />}
                                     </div>
                                     <div className="w-full relative rounded-[4px] border border-[#ECE3DA] bg-gradient-to-r from-[rgba(220,38,38,0.06)] to-[rgb(255,255,255)] p-[15px] 2xl:p-[15px_20px] 3xl:p-[20px_30px] ">
                                         <div className="flex flex-wrap items-center max-sm:gap-[10px]">
@@ -265,14 +265,14 @@ export default function DSUWomenRedressal({ data }) {
 
                                                                     </div>
                                                                     <div className="text_1 font-normal text-[#212121] w-[calc(100%-25px)] 2xl:w-[calc(100%-30px)] 3xl:w-[calc(100%-35px)] transition-all group-hover:text-[#DC2626]">
-                                                                        {data?.documentsAndReachOut?.reachOutSection?.contact.name}
+                                                                        {reachOut?.contact?.name}
                                                                     </div>
                                                                 </div>
                                                             </li>
                                                         )}
                                                         {reachOut?.contact?.phone && (
                                                             <li className="py-[5px] lg:py-[8px]">
-                                                                <Link href={`tel:${data?.documentsAndReachOut?.reachOutSection?.contact.phone}`} className="flex gap-[10px] group">
+                                                                <Link href={`tel:${reachOut?.contact?.phone}`} className="flex gap-[10px] group">
                                                                     <div className="w-[25px] xl:w-[30px] 3xl:w-[35px] h-[25px] xl:h-[30px] 3xl:h-[35px] bg-black rounded-full overflow-hidden p-[8px] xl:p-[10px]  flex">
                                                                         <svg className="w-full h-full " viewBox="0 0 16 16" fill="none"  >
                                                                             <path d="M14.5994 11.1267V13.2234C14.6002 13.4181 14.5603 13.6108 14.4823 13.7891C14.4044 13.9675 14.29 14.1275 14.1466 14.2591C14.0031 14.3907 13.8338 14.4909 13.6494 14.5533C13.465 14.6156 13.2696 14.6388 13.0758 14.6213C10.9251 14.3876 8.85918 13.6527 7.04409 12.4756C5.35538 11.4025 3.92365 9.97078 2.85057 8.28207C1.66939 6.45874 0.934307 4.3828 0.704892 2.22244C0.687426 2.02917 0.710396 1.83437 0.772338 1.65046C0.83428 1.46655 0.933837 1.29755 1.06467 1.15423C1.19551 1.0109 1.35475 0.896389 1.53227 0.817979C1.70978 0.739569 1.90168 0.698981 2.09574 0.698798H4.1925C4.53169 0.69546 4.86052 0.815573 5.1177 1.03675C5.37488 1.25792 5.54287 1.56507 5.59034 1.90094C5.67884 2.57195 5.84296 3.23079 6.07958 3.8649C6.17362 4.11506 6.19397 4.38694 6.13823 4.64831C6.08248 4.90968 5.95298 5.14959 5.76507 5.33962L4.87744 6.22725C5.87239 7.97703 7.32118 9.42582 9.07096 10.4208L9.95858 9.53314C10.1486 9.34523 10.3885 9.21572 10.6499 9.15998C10.9113 9.10424 11.1831 9.12459 11.4333 9.21863C12.0674 9.45524 12.7263 9.61937 13.3973 9.70787C13.7368 9.75577 14.0468 9.92677 14.2685 10.1884C14.4901 10.45 14.6079 10.7839 14.5994 11.1267Z" stroke="white" stroke-width="1.39784" stroke-linecap="round" stroke-linejoin="round" />
@@ -280,14 +280,14 @@ export default function DSUWomenRedressal({ data }) {
 
                                                                     </div>
                                                                     <div className="text_1 font-normal text-[#212121] w-[calc(100%-25px)] 2xl:w-[calc(100%-30px)] 3xl:w-[calc(100%-35px)] transition-all group-hover:text-[#DC2626]">
-                                                                        {data?.documentsAndReachOut?.reachOutSection?.contact.phone}
+                                                                        {reachOut?.contact?.phone}
                                                                     </div>
                                                                 </Link>
                                                             </li>
                                                         )}
                                                         {reachOut?.contact?.email && (
                                                             <li className="py-[5px] lg:py-[8px]">
-                                                                <Link href={`mailto:${data?.documentsAndReachOut?.reachOutSection?.contact.email}`} className="flex gap-[10px] group">
+                                                                <Link href={`mailto:${reachOut?.contact?.email}`} className="flex gap-[10px] group">
                                                                     <div className="w-[25px] xl:w-[30px] 3xl:w-[35px] h-[25px] xl:h-[30px] 3xl:h-[35px] bg-black rounded-full overflow-hidden p-[8px] xl:p-[10px]  flex">
                                                                         <svg className="w-full h-full" viewBox="0 0 18 11" fill="none"  >
                                                                             <path d="M16.4 0H4C3.12 0 2.4 0.72 2.4 1.6V2.2C2.4 2.42 2.58 2.6 2.8 2.6C3.02 2.6 3.2 2.42 3.2 2.2V1.6C3.2 1.52 3.22 1.44 3.24 1.36L7.72 5.2L3.24 9.04C3.22 8.96 3.2 8.88 3.2 8.8V8.2C3.2 7.98 3.02 7.8 2.8 7.8C2.58 7.8 2.4 7.98 2.4 8.2V8.8C2.4 9.68 3.12 10.4 4 10.4H16.4C17.28 10.4 18 9.68 18 8.8V1.6C18 0.72 17.28 0 16.4 0ZM3.84 0.82C3.88 0.8 3.94 0.8 4 0.8H16.4C16.46 0.8 16.52 0.8 16.56 0.82L10.46 6.04C10.3 6.16 10.1 6.16 9.94 6.04L3.84 0.82ZM16.4 9.6H4C3.94 9.6 3.88 9.6 3.84 9.58L8.34 5.72L9.42 6.66C9.64 6.86 9.92 6.96 10.2 6.96C10.48 6.96 10.76 6.86 10.98 6.66L12.06 5.72L16.56 9.58C16.52 9.6 16.46 9.6 16.4 9.6ZM17.2 8.8C17.2 8.88 17.18 8.96 17.16 9.04L12.68 5.2L17.16 1.36C17.18 1.44 17.2 1.52 17.2 1.6V8.8ZM1.2 4.2C1.2 3.98 1.38 3.8 1.6 3.8H4C4.22 3.8 4.4 3.98 4.4 4.2C4.4 4.42 4.22 4.6 4 4.6H1.6C1.38 4.6 1.2 4.42 1.2 4.2ZM4 6.6H0.4C0.18 6.6 0 6.42 0 6.2C0 5.98 0.18 5.8 0.4 5.8H4C4.22 5.8 4.4 5.98 4.4 6.2C4.4 6.42 4.22 6.6 4 6.6Z" fill="white" />
@@ -296,7 +296,7 @@ export default function DSUWomenRedressal({ data }) {
 
                                                                     </div>
                                                                     <div className="text_1 font-normal text-[#212121] w-[calc(100%-25px)] 2xl:w-[calc(100%-30px)] 3xl:w-[calc(100%-35px)] transition-all group-hover:text-[#DC2626]">
-                                                                        {data?.documentsAndReachOut?.reachOutSection?.contact.email}
+                                                                        {reachOut?.contact?.email}
                                                                     </div>
                                                                 </Link>
                                                             </li>
@@ -306,7 +306,7 @@ export default function DSUWomenRedressal({ data }) {
                                             </div>
                                             <div className="w-full sm:w-2/3">
                                                 <div className="text_1 text-[#212121]">
-                                                    {data?.documentsAndReachOut?.reachOutSection?.note}
+                                                    {reachOut?.note}
                                                 </div>
                                             </div>
                                         </div>

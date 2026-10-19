@@ -15,7 +15,8 @@ import AiBSCMenubar from "@/components/sections/ai-enabled/BSC-nursing/bsc-Menub
 import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
 import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
 
-export default function InnerHero({ data }) {
+// placementMenuItems: optional [{ label, href }] for the Placement pill menu (otherwise it loads its own)
+export default function InnerHero({ data, placementMenuItems }) {
   if (!data) return null;
   const isVideo = data?.heroMedia?.mime?.includes("video");
   const hasMenubar = Boolean(
@@ -118,7 +119,7 @@ export default function InnerHero({ data }) {
             <AiBSCMenubar />
           )}
           {(data?.PlacementmenuBar || (data?.isMenubar && (data?.menubar === "PlacementmenuBar" || data?.menubar === "placement"))) && (
-            <PlacementmenuBar />
+            <PlacementmenuBar items={placementMenuItems} />
           )}
           {(data?.admissionMenubar || (data?.isMenubar && (data?.menubar === "admissionMenubar" || data?.menubar === "admission"))) && (
             <AdmissionMenubar />
