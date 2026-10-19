@@ -8,13 +8,32 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function NIRFSidebar({ menu = [], basePath = "/national-Ranking", activeSlug, isOpen = false, onClose, title = "Rankings Menu" }) {
-    const pathname = usePathname();
+const clean = (v = "") => String(v).toLowerCase().replace(/^\/+|\/+$/g, "");
 
-    const activeParentSlug = activeSlug || menu.find((item) => {
-        const href = `${basePath}/${item.slug}`;
-        return pathname === href || pathname.startsWith(`${href}/`);
-    })?.slug;
+// `menu`: [{ label, slug, subItems: [{ label, slug }] }] - links are `${basePath}/${slug}[/${sub.slug}]`
+export default function NIRFSidebar({
+    menu = [],
+    basePath = "/national-Ranking",
+    activeSlug,
+    isOpen = false,
+    onClose,
+    title = "Recognition Menu",
+}) {
+    // guard against null and strip trailing slash (trailingSlash: true configs)
+    const pathname = (usePathname() || "").toLowerCase().replace(/\/+$/, "");
+    const base = `/${String(basePath).replace(/^\/+|\/+$/g, "")}`;
+    const menuItems = (menu || []).filter((item) => item?.slug);
+
+    const isItemActive = (item) => {
+        const href = `${base.toLowerCase()}/${clean(item.slug)}`;
+        return (
+            (activeSlug && clean(activeSlug) === clean(item.slug)) ||
+            pathname === href ||
+            pathname.startsWith(`${href}/`)
+        );
+    };
+
+    const activeParentSlug = menuItems.find(isItemActive)?.slug;
 
     return (
         <>
@@ -51,8 +70,10 @@ export default function NIRFSidebar({ menu = [], basePath = "/national-Ranking",
 
                     <Accordion type="single" collapsible defaultValue={activeParentSlug}>
                         <ul>
-                            {menu.map((item, idx) => {
-                                const isActive = activeParentSlug === item.slug;
+                            {menuItems.map((item, idx) => {
+                                const itemSlug = clean(item.slug);
+                                const itemHref = `${base}/${itemSlug}`;
+                                const isActive = isItemActive(item);
 
                                 return item.subItems?.length > 0 ? (
                                     // ============ ITEM WITH SUB-ITEMS ============
@@ -95,25 +116,33 @@ export default function NIRFSidebar({ menu = [], basePath = "/national-Ranking",
                                             <AccordionContent className="pb-0">
                                                 <ul>
                                                     {item.subItems.map((sub, subIdx) => {
-                                                        const subHref = `${basePath}/${item.slug}/${sub.slug}`;
-                                                        const isSubActive = pathname === subHref;
+                                                        const subSlug = clean(sub.slug);
+                                                        const subHref = `${itemHref}/${subSlug}`;
+                                                        const isSubActive =
+                                                            pathname === subHref.toLowerCase() ||
+                                                            pathname.startsWith(`${subHref.toLowerCase()}/`);
 
                                                         return (
-                                                        <li
-                                                            key={`${sub.slug}-${subIdx}`}
-                                                            className="group"
-                                                        >
-                                                            <Link
-                                                                href={subHref}
-                                                                onClick={onClose}
-                                                                className="flex items-center justify-between p-[6px_15px] 2xl:p-[7px_20px] 3xl:p-[8px_25px] !no-underline
-                                                                "
+                                                            <li
+                                                                key={`${sub.slug}-${subIdx}`}
+                                                                className={`group transition-colors duration-300 ${isSubActive ? "bg-[rgba(249,115,22,0.15)] border-l-4 border-[#F97316]" : ""}`}
                                                             >
-                                                                <div className={`text_1 font-medium text-[#212121] transition-colors duration-300 !no-underline group-hover:text-[#F97316] xl:text-[13px] 2xl:text-[15px] 3xl:text-[16px] ${isSubActive ? "!text-[#F97316]" : ""}`}>
-                                                                    {sub.label}
-                                                                </div>
-                                                            </Link>
-                                                        </li>
+                                                                <Link
+                                                                    href={subHref}
+                                                                    onClick={onClose}
+                                                                    className="flex items-center justify-between p-[6px_15px] 2xl:p-[7px_20px] 3xl:p-[8px_25px] !no-underline"
+                                                                >
+                                                                    <div
+                                                                        className={`text_1 transition-colors duration-300 !no-underline xl:text-[13px] 2xl:text-[15px] 3xl:text-[18px] ${
+                                                                            isSubActive
+                                                                                ? "!text-[#F97316] font-semibold"
+                                                                                : "!text-[#212121] font-medium group-hover:!text-[#F97316]"
+                                                                        }`}
+                                                                    >
+                                                                        {sub.label}
+                                                                    </div>
+                                                                </Link>
+                                                            </li>
                                                         );
                                                     })}
                                                 </ul>
@@ -127,7 +156,7 @@ export default function NIRFSidebar({ menu = [], basePath = "/national-Ranking",
                                         className="border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0 transition-colors duration-300"
                                     >
                                         <Link
-                                            href={`${basePath}/${item.slug}`}
+                                            href={itemHref}
                                             onClick={onClose}
                                             className="flex items-center justify-between !no-underline"
                                         >
