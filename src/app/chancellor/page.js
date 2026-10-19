@@ -1,5 +1,6 @@
 import InnerHero from "@/components/layout/common/InnerHero"
 import ChancellorMessage from "@/components/sections/chancellor/chancellor-message"
+import { redirect } from "next/navigation";
 
 
 
