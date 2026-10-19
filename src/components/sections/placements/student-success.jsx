@@ -105,7 +105,9 @@ function StoriesCarousel({ item, index }) {
                   <div className="w-full h-auto aspect-340/250 overflow-hidden block">
                     <Image
                       src={item?.media?.url}
-                      alt={item?.media?.alternativeText || item?.media?.alt || ""}
+                      alt={
+                        item?.media?.alternativeText || item?.media?.alt || ""
+                      }
                       width={340}
                       height={250}
                       className="w-full h-full object-cover"
@@ -121,7 +123,9 @@ function StoriesCarousel({ item, index }) {
                     <div className="w-20 2xl:w-25 3xl:w-30 h-auto p-2.5 2xl:p-3.75 aspect-120/65 bg-white rounded-md 2xl:rounded-[10px] overflow-hidden">
                       <Image
                         src={item?.logo?.url}
-                        alt={item?.logo?.alternativeText || item?.logo?.alt || ""}
+                        alt={
+                          item?.logo?.alternativeText || item?.logo?.alt || ""
+                        }
                         width={120}
                         height={65}
                         className="w-full h-full object-contain"
