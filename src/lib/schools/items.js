@@ -30,7 +30,7 @@ export function departmentItems(schoolSlug, departments = []) {
     .map((d) => ({
       id: d.documentId ?? d.id ?? d.slug,
       title: d.name ?? d.title,
-      href: departmentHref(schoolSlug, d.slug),
+      href: `${departmentHref(schoolSlug, d.slug)}/overview`,
       children: programmeItems(schoolSlug, d.programmes, d.slug),
     }));
 }

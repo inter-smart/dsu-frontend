@@ -53,7 +53,7 @@ function Sections({ tab, data, schoolSlug, department }) {
         case "hod-message":
             return show(data.messageFromDean) && <DeanMessage data={data.messageFromDean} />;
         case "programs": {
-            const programs = departmentProgramsSection(schoolSlug, department, data.programmes);
+            const programs = departmentProgramsSection(schoolSlug, department, data.programmes, data.programsSection);
             return programs && <AcademicProgram data={programs} variant="aiprogram" />;
         }
         case "faculty":

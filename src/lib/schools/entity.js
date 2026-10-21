@@ -42,6 +42,19 @@ const menuHref = (base, tab) => `${base}/${tab}`;
 
 const menuFor = (tabs, base) => tabs.map((t) => ({ label: t.label, href: menuHref(base, t.key) }));
 
+// Vision & Mission has no page of its own: it is the #vision-mission section of the department Overview.
+const VISION_MISSION_ITEM = { label: "Vision & Mission", anchor: "vision-mission" };
+
+// Department menu: the tabs the API has content for, with Vision & Mission right after Overview.
+function departmentMenu(tabs, base) {
+  return tabs.flatMap((t) => {
+    const item = { label: t.label, href: menuHref(base, t.key) };
+    return t.key === "overview"
+      ? [item, { label: VISION_MISSION_ITEM.label, href: `${menuHref(base, "overview")}#${VISION_MISSION_ITEM.anchor}` }]
+      : [item];
+  });
+}
+
 // An API HTML field is only usable as a non-empty string (an empty field arrives as []).
 export const htmlOrNull = (v) => (typeof v === "string" && v.trim() ? v : null);
 
@@ -84,7 +97,7 @@ export async function loadDepartmentPage(schoolSlug, departmentSlug, tab) {
       // a breadcrumb set on the tab's own Hero wins over the generated trail
       ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
     },
-    menuItems: menuFor(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base),
+    menuItems: departmentMenu(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base),
     menuHome: base,
   };
 }
@@ -125,20 +138,39 @@ export async function loadProgramPage(schoolSlug, programmeSlug, tab, department
 
 const LEVEL_CODES = { Undergraduate: "UG", Postgraduate: "PG" };
 
-// Department programmes → AcademicProgram `categories` (one per level), as /ai-enabled/program-offered.
-export function departmentProgramsSection(schoolSlug, department, programmes = department.programmes) {
+// Department programmes → AcademicProgram `categories`, as /ai-enabled/program-offered. The Programs
+// Offered entry (`section`: title, description, offers → linked programmes) wins when it has offers;
+// otherwise the department's programmes are grouped by level.
+export function departmentProgramsSection(schoolSlug, department, programmes = department.programmes, section) {
+  const programItem = (p) => ({
+    id: p.slug,
+    title: p.title,
+    url: programmeHref(schoolSlug, p.slug, department.slug),
+    degree: p.level,
+    duration: p.duration,
+  });
+
+  const offers = (section?.offers ?? []).filter((o) => o?.programmes?.some((p) => p?.slug) || o?.label || o?.description);
+  if (offers.length) {
+    return {
+      heading: section.title || "Programs Offered",
+      ...(section.description ? { description: section.description } : {}),
+      categories: offers.map((o, i) => ({
+        id: o.id ?? i,
+        badge: o.badge,
+        label: o.label,
+        description: o.description,
+        programs: (o.programmes ?? []).filter((p) => p?.slug).map(programItem),
+      })),
+    };
+  }
+
   const byLevel = new Map();
   for (const p of programmes ?? []) {
     if (!p?.slug) continue;
     const level = p.level || "Programmes";
     if (!byLevel.has(level)) byLevel.set(level, []);
-    byLevel.get(level).push({
-      id: p.slug,
-      title: p.title,
-      url: programmeHref(schoolSlug, p.slug, department.slug),
-      degree: p.level,
-      duration: p.duration,
-    });
+    byLevel.get(level).push(programItem(p));
   }
   const categories = [...byLevel].map(([level, programs]) => ({
     id: level,
