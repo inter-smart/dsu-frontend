@@ -33,8 +33,16 @@ export async function getDepartmentTab(slug, tab, params) {
 }
 
 // One Library sub-page: department shell + `page` (title, slug, template, seo, content) + the library `sidebar`.
-export async function getDepartmentLibraryPage(slug, page) {
-  return fetchAPI(`${slugPath("/api/departments", slug)}/library/${encodeURIComponent(page)}`);
+export async function getDepartmentLibraryPage(slug, page, params) {
+  return fetchAPI(`${slugPath("/api/departments", slug)}/library/${encodeURIComponent(page)}`, params);
+}
+
+// Paged images of a Library gallery sub-page ("Load More"): { data: [image], pagination }
+export async function getDepartmentLibraryGalleryPaged(slug, page, pageNumber, pageSize) {
+  const res = await getDepartmentLibraryPage(slug, page, { page: pageNumber, pageSize });
+  const content = res?.page?.content;
+  if (!content?.images || !content?.pagination) return null;
+  return { data: content.images, pagination: content.pagination };
 }
 
 // Paged news cards for a department's News & Events tab ("Load More"): { data: [card], pagination }

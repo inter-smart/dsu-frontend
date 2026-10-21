@@ -148,9 +148,14 @@ export const libraryAutomationContent = (c) =>
 export const libraryFaqsContent = (c) =>
   c && { heading: c.heading, faq: (c.faq ?? []).map((f, i) => ({ id: f.id ?? i, question: f.question, answer: f.answer })) };
 
+// `c.images` is one page of the gallery (the API paginates); ids are offset by the page so later pages never collide.
 export const libraryGalleryContent = (c) =>
   c && {
     heading: c.heading,
     loadMoreLink: c.loadMoreLink,
-    gallery: (c.images ?? []).map((image, id) => ({ id, image })),
+    gallery: toGalleryItems(c.images, c.pagination),
+    pagination: c.pagination,
   };
+
+export const toGalleryItems = (images, pagination) =>
+  (images ?? []).map((image, i) => ({ id: ((pagination?.page ?? 1) - 1) * (pagination?.pageSize ?? 0) + i, image }));

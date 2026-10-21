@@ -19,7 +19,7 @@ export async function libraryPageMetadata(schoolSlug, departmentSlug, pageSlug) 
 }
 
 // The template picked for the sub-page in the CMS decides the component; each takes the side menu as `menu`.
-function Template({ page, menu }) {
+function Template({ page, menu, departmentSlug }) {
     const content = page.content ?? {};
     switch (page.template) {
         case "services":
@@ -32,7 +32,7 @@ function Template({ page, menu }) {
         case "faqs":
             return <LibraryFaq data={adapt.libraryFaqsContent(content)} menu={menu} />;
         case "gallery":
-            return <LibraryGallery data={adapt.libraryGalleryContent(content)} menu={menu} />;
+            return <LibraryGallery data={adapt.libraryGalleryContent(content)} menu={menu} departmentSlug={departmentSlug} pageSlug={page.slug} />;
         default:
             return null;
     }
@@ -44,7 +44,7 @@ export default async function DepartmentLibraryPage({ schoolSlug, departmentSlug
 
     return (
         <SchoolTabShell hero={hero} slug={schoolSlug} hasDepartments={school.template === "department"} menuItems={menuItems} menuHome={menuHome} aiMenu>
-            <Template page={page} menu={sidebar} />
+            <Template page={page} menu={sidebar} departmentSlug={departmentSlug} />
         </SchoolTabShell>
     );
 }

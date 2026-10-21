@@ -44,10 +44,14 @@ const menuFor = (tabs, base) => tabs.map((t) => ({ label: t.label, href: menuHre
 // Vision & Mission has no page of its own: it is the #vision-mission section of the department Overview.
 const VISION_MISSION_ITEM = { label: "Vision & Mission", anchor: "vision-mission" };
 
-// Department menu: the tabs the API has content for, with Vision & Mission right after Overview.
-function departmentMenu(tabs, base) {
+// Department menu: the tabs the API has content for, with Vision & Mission right after Overview and the
+// Library's sub-pages (Overview + each published sub-page) as the Library item's sub-menu.
+function departmentMenu(tabs, base, schoolSlug, departmentSlug, librarySubpages = []) {
   return tabs.flatMap((t) => {
     const item = { label: t.label, href: menuHref(base, t.key) };
+    if (t.key === "library" && librarySubpages.length) {
+      item.submenu = librarySidebarItems(schoolSlug, departmentSlug, librarySubpages).map(({ label, slug }) => ({ label, href: slug }));
+    }
     return t.key === "overview"
       ? [item, { label: VISION_MISSION_ITEM.label, href: `${menuHref(base, "overview")}#${VISION_MISSION_ITEM.anchor}` }]
       : [item];
@@ -96,7 +100,7 @@ export async function loadDepartmentPage(schoolSlug, departmentSlug, tab) {
       // a breadcrumb set on the tab's own Hero wins over the generated trail
       ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
     },
-    menuItems: departmentMenu(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base),
+    menuItems: departmentMenu(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base, schoolSlug, departmentSlug, res.librarySubpages),
     menuHome: base,
   };
 }
@@ -127,7 +131,7 @@ export async function loadDepartmentLibraryPage(schoolSlug, departmentSlug, page
       ...buildHero(res.hero, trail, res.hero?.title || res.page.title),
       ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
     },
-    menuItems: departmentMenu(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base),
+    menuItems: departmentMenu(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base, schoolSlug, departmentSlug, res.librarySubpages),
     menuHome: base,
   };
 }
