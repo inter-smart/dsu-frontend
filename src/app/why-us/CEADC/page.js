@@ -1,9 +1,16 @@
-﻿import InnerHero from "@/components/layout/common/InnerHero";
-import DSUDEADC from "@/components/sections/why-us/DSU-DEADC";
+import CeadcTemplate from "@/components/sections/why-us/templates/ceadc-template";
+import { getCeadcPage } from "@/lib/api/ceadc";
 import { getStudentSupportMenu } from "@/lib/api/women-redressal";
 
+export const revalidate = 60;
 
-
+export async function generateMetadata() {
+  const apiData = await getCeadcPage();
+  return {
+    title: apiData?.seo?.metaTitle || "CEADC | Dayananda Sagar University",
+    description: apiData?.seo?.metaDescription || undefined,
+  };
+}
 
 const local_data = {
   id: 24,
@@ -180,13 +187,11 @@ const local_data = {
     ],
   },
 };
+
 export default async function Page() {
+  const apiData = await getCeadcPage();
   const menu = await getStudentSupportMenu();
 
-  return (
-    <>
-      <InnerHero data={local_data.hero} />
-      <DSUDEADC data={local_data.capabilityEnhancementCells} menu={menu} />
-    </>
-  );
+  // API data when the entry exists, otherwise the static local_data
+  return <CeadcTemplate page={apiData || local_data} menu={menu} />;
 }

@@ -2,11 +2,8 @@ import { Suspense } from "react";
 import InnerHero from "@/components/layout/common/InnerHero";
 import ApplyForm from "@/components/sections/career/apply-form/apply-form";
 import FloatingContactRail from "@/components/layout/common/floating-contact-rail";
-import { jobs } from "@/components/sections/career/jobs-data";
 
-import { getCareersPage, getJobOpenings } from "@/lib/api/career";
-
-export const revalidate = 60;
+import { getCareersPage, getJobOpening } from "@/lib/api/career";
 
 const local_data = {
   hero: {
@@ -25,18 +22,19 @@ const local_data = {
   },
 };
 
-export default async function page() {
-  const apiPage = await getCareersPage();
-  const apiJobs = await getJobOpenings();
+export default async function page({ searchParams }) {
+  const { job: jobSlug } = await searchParams;
+  const slug = Array.isArray(jobSlug) ? jobSlug[0] : jobSlug;
+
+  const [apiPage, job] = await Promise.all([getCareersPage(), getJobOpening(slug)]);
 
   const hero = apiPage?.applyHero || local_data.hero;
-  const jobList = apiJobs || jobs;
 
   return (
     <>
       <InnerHero data={hero} />
       <Suspense fallback={null}>
-        <ApplyForm jobs={jobList} />
+        <ApplyForm job={job} />
       </Suspense>
       <FloatingContactRail />
     </>

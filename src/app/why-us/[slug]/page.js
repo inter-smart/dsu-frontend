@@ -7,6 +7,7 @@ import WhyusAQAR from "@/components/sections/why-us/Whyus-AQAR";
 import AcademicQualitySection from "@/components/sections/why-us/AcademicQualitySection";
 import DSUWomenRedressal from "@/components/sections/why-us/DSU-womenredressal";
 import DSUOmbudsman from "@/components/sections/why-us/DSU-Ombudsman";
+import DSUDEADC from "@/components/sections/why-us/DSU-DEADC";
 import { getStudentSupportMenu, getStudentSupportPageBySlug } from "@/lib/api/women-redressal";
 import { hasContent } from "@/lib/has-content";
 import {
@@ -26,6 +27,7 @@ const studentSupportTemplates = {
     squad: { Component: DSUWomenRedressal, dataKey: "squad" },
     "women-redressal": { Component: DSUWomenRedressal, dataKey: "womenRedressalCell" },
     ombudsman: { Component: DSUOmbudsman, dataKey: "ombudsmanMessage" },
+    ceadc: { Component: DSUDEADC, dataKey: "capabilityEnhancementCells" },
 };
 
 export async function generateStaticParams() {

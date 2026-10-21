@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import StepPersonal from "./step-personal";
 import StepEducation from "./step-education";
 import StepExperience from "./step-experience";
 import StepAddressResume from "./step-address-resume";
-import { DEPARTMENTS, POSITIONS } from "./form-constants";
 
 const STEPS = [
   { id: 1, label: "Personal" },
@@ -17,24 +16,10 @@ const STEPS = [
 
 
 
-export default function ApplyForm({ jobs }) {
-  const searchParams = useSearchParams();
-  const jobSlug = searchParams.get("job");
-  const matchedJob = jobs?.find((job) => job.slug === jobSlug);
-
-  // dropdown options: the fixed lists plus any department/position that exists in the jobs
-  const departmentOptions = DEPARTMENTS.slice();
-  const positionOptions = POSITIONS.slice();
-  if (jobs) {
-    for (let i = 0; i < jobs.length; i++) {
-      if (jobs[i].department && !departmentOptions.includes(jobs[i].department)) {
-        departmentOptions.push(jobs[i].department);
-      }
-      if (jobs[i].title && !positionOptions.includes(jobs[i].title)) {
-        positionOptions.push(jobs[i].title);
-      }
-    }
-  }
+// `job` is the published job-opening fetched on the server for ?job={slug}, or null
+export default function ApplyForm({ job }) {
+  const matchedJob = job;
+  const jobSlug = job?.slug || "";
 
   const [currentStep, setCurrentStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
@@ -97,7 +82,7 @@ export default function ApplyForm({ jobs }) {
       position: formData.position,
       designation: formData.designation,
       advertisement: formData.advertisement,
-      jobSlug: matchedJob ? matchedJob.slug : jobSlug || "",
+      jobSlug: jobSlug,
       education: formData.education,
       currentDesignation: formData.currentDesignation,
       currentSalary: formData.currentSalary,
@@ -148,8 +133,8 @@ export default function ApplyForm({ jobs }) {
       phone: "",
       email: "",
       dob: "",
-      department: "",
-      position: "",
+      department: matchedJob ? matchedJob.department || "" : "",
+      position: matchedJob ? matchedJob.title || "" : "",
       designation: "",
       advertisement: "",
       education: {},
@@ -164,6 +149,29 @@ export default function ApplyForm({ jobs }) {
     setErrorMessage("");
     setCurrentStep(1);
   };
+
+  if (!matchedJob) {
+    return (
+      <section className="w-full h-auto py-10 sm:py-15 lg:py-20 2xl:py-25 3xl:py-30 block">
+        <div className="container">
+          <div className="w-full h-auto max-w-[720px] mx-auto text-center border border-black/10 rounded-md 2xl:rounded-[10px] p-7.5 xl:p-10">
+            <h2 className="title_1 !text-2xl xl:!text-3xl mb-3.75">
+              This job opening is not available
+            </h2>
+            <p className="text_1 mb-6.25">
+              The position you are looking for may have been closed or the link is incorrect.
+            </p>
+            <Link
+              href="/career"
+              className="inline-flex h-10 xl:h-11 items-center px-5 xl:px-6.25 rounded-[4px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-xs xl:text-sm font-bold uppercase text-white transition-opacity duration-300 hover:opacity-90"
+            >
+              Back to Career
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (submitted) {
     return (
@@ -227,12 +235,7 @@ export default function ApplyForm({ jobs }) {
           />
 
           {currentStep === 1 && (
-            <StepPersonal
-              formData={formData}
-              setFormData={setFormData}
-              departments={departmentOptions}
-              positions={positionOptions}
-            />
+            <StepPersonal formData={formData} setFormData={setFormData} />
           )}
           {currentStep === 2 && <StepEducation formData={formData} setFormData={setFormData} />}
           {currentStep === 3 && <StepExperience formData={formData} setFormData={setFormData} />}
