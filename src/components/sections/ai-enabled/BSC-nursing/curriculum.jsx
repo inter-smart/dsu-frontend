@@ -122,6 +122,7 @@ export default function BscCurriculum({ data }) {
                                 {item.documentLink && (
                                     <Link
                                         href={item.documentLink.url || "#"}
+                                        {...(item.documentLink.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                                         className="group relative flex items-center gap-[20px] justify-between w-fit py-[15px] hover:text-[#DC2626] cursor-pointer transition-all duration-300 overflow-hidden"
                                     >
                                         <span className="absolute inset-0 origin-left scale-x-0 bg-gradient-to-r from-[#DC2626]/5 to-[#F97316]/5 transition-transform duration-500 ease-out -z-10" />

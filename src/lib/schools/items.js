@@ -18,19 +18,20 @@ export const librarySidebarItems = (schoolSlug, departmentSlug, sidebar = []) =>
     .map((p) => ({ label: p.title, slug: libraryHref(schoolSlug, departmentSlug, p.slug) })),
 ];
 
-// Canonical programme URL: under its department when it has one, otherwise under the school.
-export const programmeHref = (schoolSlug, programmeSlug, departmentSlug) =>
-  departmentSlug
-    ? `${departmentHref(schoolSlug, departmentSlug)}/programs/${programmeSlug}`
-    : `/schools/${schoolSlug}/programs/${programmeSlug}`;
+// Canonical programme URL: every programme (school-direct or department-owned) lives under its school.
+// Tabs are `${programmeBase}/<tab>`; the bare base serves the Overview tab.
+export const programmeBase = (schoolSlug, programmeSlug) => `/ai-enabled/${schoolSlug}/programs/${programmeSlug}`;
 
-export function programmeItems(schoolSlug, programmes = [], departmentSlug) {
+// Where a programme link (school Programs / Departments tab, department Programs tab) lands: its Overview tab.
+export const programmeHref = (schoolSlug, programmeSlug) => `${programmeBase(schoolSlug, programmeSlug)}/overview`;
+
+export function programmeItems(schoolSlug, programmes = []) {
   return programmes
     .filter((p) => p?.slug)
     .map((p) => ({
       id: p.documentId ?? p.id ?? p.slug,
       title: p.title,
-      href: programmeHref(schoolSlug, p.slug, departmentSlug),
+      href: programmeHref(schoolSlug, p.slug),
       academicLevel: p.academicLevel ?? LEVEL_CODES[p.level] ?? p.level ?? "",
       meta: p.duration || undefined,
     }));
@@ -43,6 +44,6 @@ export function departmentItems(schoolSlug, departments = []) {
       id: d.documentId ?? d.id ?? d.slug,
       title: d.name ?? d.title,
       href: `${departmentHref(schoolSlug, d.slug)}/overview`,
-      children: programmeItems(schoolSlug, d.programmes, d.slug),
+      children: programmeItems(schoolSlug, d.programmes),
     }));
 }

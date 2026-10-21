@@ -19,15 +19,15 @@ export default async function Page({ params }) {
 
     // The Programs template (CMS-defined groups) wins when filled; otherwise the school's own programmes by level.
     const tpl = data.programsTemplate;
-    const toRows = (programmes, departmentSlug) =>
-        programmeItems(slug, programmes, departmentSlug).map((i) => ({ title: i.title, url: i.href, academicLevel: i.academicLevel }));
+    const toRows = (programmes) =>
+        programmeItems(slug, programmes).map((i) => ({ title: i.title, url: i.href, academicLevel: i.academicLevel }));
 
     let categories = (tpl?.groups ?? [])
         .map((g) => ({
             id: g.id,
             badge: g.shortForm || (g.title ?? "").slice(0, 2).toUpperCase(),
             label: g.title,
-            programs: (g.programmes ?? []).flatMap((p) => toRows([p], p.departmentSlug)),
+            programs: (g.programmes ?? []).flatMap((p) => toRows([p])),
         }))
         .filter((c) => c.programs.length);
 

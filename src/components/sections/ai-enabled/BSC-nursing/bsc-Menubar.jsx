@@ -11,7 +11,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const menuItems = [
+const defaultMenuItems = [
     {
         label: "Overview",
         href: "/ai-enabled/BSC-nursing/overview"
@@ -51,7 +51,10 @@ const menuItems = [
    
 ];
 
-export default function AiBSCMenubar({ title = "BSC Menu", className = "" }) {
+// `items` ([{ label, href, submenu? }]) lets dynamic programme pages supply their own tab links;
+// without it the static BSC-nursing links are used.
+export default function AiBSCMenubar({ title = "BSC Menu", className = "", items }) {
+    const menuItems = items?.length ? items : defaultMenuItems;
     const pathname = usePathname();
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
     const [currentHash, setCurrentHash] = useState("");

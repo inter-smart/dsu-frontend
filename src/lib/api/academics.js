@@ -66,6 +66,12 @@ export async function getProgrammeBySlug(slug) {
   return fetchAPI(slugPath("/api/programmes", slug));
 }
 
+// One programme page: shell (school, department, hero, seo, `availableTabs`) + only that tab's data under `tab`,
+// shaped like the `local_data` of ai-enabled/BSC-nursing/<tab>.
+export async function getProgrammeTab(slug, tab, params) {
+  return fetchAPI(`${slugPath("/api/programmes", slug)}/${encodeURIComponent(tab)}`, params);
+}
+
 // ── Hierarchy lookups (School → Department → Programme) ───────────────────────
 // Departments of one school (`?school=` filter; each item carries its `school` and `programmes`).
 export async function getSchoolDepartments(schoolSlug) {

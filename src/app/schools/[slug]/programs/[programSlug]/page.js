@@ -1,11 +1,7 @@
-import ProgramPage, { programMetadata } from "@/components/sections/academics/program-page";
+import { redirectToProgramPage } from "@/components/sections/academics/program-page";
 
-export async function generateMetadata({ params }) {
-    const { slug, programSlug } = await params;
-    return programMetadata(slug, programSlug);
-}
-
+// Moved to /ai-enabled/[school]/programs/[programme]
 export default async function Page({ params }) {
     const { slug, programSlug } = await params;
-    return <ProgramPage schoolSlug={slug} programmeSlug={programSlug} />;
+    await redirectToProgramPage(slug, programSlug);
 }
