@@ -1,3 +1,6 @@
+import { getAdmissionProgrammePage } from "@/lib/api";
+import { hasContent } from "@/lib/has-content";
+import { toProgrammeListing } from "@/lib/schools/admission-programmes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
 import AdmissionProgramme from "@/components/sections/admission/admission-programme";
@@ -237,12 +240,31 @@ const local_data = {
   },
 };
 
-export default function page() {
+export async function generateMetadata() {
+  const pageData = await getAdmissionProgrammePage();
+  return {
+    title: pageData?.seo?.metaTitle || "Programme | Dayananda Sagar University",
+    description: pageData?.seo?.metaDescription || undefined,
+    alternates: pageData?.seo?.canonicalUrl
+      ? { canonical: pageData.seo.canonicalUrl }
+      : undefined,
+  };
+}
+
+// CMS data (Admission "programme" entry); the local_data above is the fallback while it is missing or empty
+export default async function page() {
+  const pageData = await getAdmissionProgrammePage();
+
+  const hero = pageData?.hero ?? local_data.hero;
+  const admissionProgramme = hasContent(pageData?.admissionProgramme?.categories)
+    ? toProgrammeListing(pageData.admissionProgramme)
+    : local_data.admissionProgramme;
+
   return (
     <>
-      <InnerHero data={local_data.hero} />
+      <InnerHero data={hero} />
       <AdmissionMenubar className="lg:!hidden block" />
-      <AdmissionProgramme data={local_data?.admissionProgramme} />
+      <AdmissionProgramme data={admissionProgramme} />
     </>
   );
 }

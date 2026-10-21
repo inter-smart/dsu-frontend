@@ -1,3 +1,6 @@
+import { cache } from "react";
+import { getHomePage, getNewsEvents, getAnnouncements } from "@/lib/api";
+// import { hasContent } from "@/lib/has-content"; // only used by the commented-out fallback version below
 import News from "@/components/sections/home/home-news";
 import Events from "@/components/sections/home/home-events";
 import Journey from "@/components/layout/common/journey";
@@ -31,6 +34,10 @@ const homePageData = {
           highlightText:
             " AI Factory and Multidisciplinary Centers of Excellence",
         },
+        buttons: [
+          { label: "Explore Centres of Excellence", url: "#", isExternal: false },
+          { label: "Apply Now", url: "#", isExternal: false },
+        ],
         featuredItems: [
           {
             id: 1,
@@ -78,6 +85,10 @@ const homePageData = {
           highlightText:
             " AI Factory and Multidisciplinary Centers of Excellence 2",
         },
+        buttons: [
+          { label: "Explore Centres of Excellence", url: "#", isExternal: false },
+          { label: "Apply Now", url: "#", isExternal: false },
+        ],
         featuredItems: [
           {
             id: 1,
@@ -1181,7 +1192,7 @@ const homePageData = {
             "Our founding father, late Sri R Dayananda Sagar, was a graduate in Arts & Commerce from India & a barrister-at-law from England.",
           avatarImage: {
             url: "/images/home-about-avatar-1.jpg",
-            alt: "leadership-1",
+            alternativeText: "leadership-1",
           },
         },
         {
@@ -1192,13 +1203,13 @@ const homePageData = {
             "Our founding father, late Sri R Dayananda Sagar, was a graduate in Arts & Commerce from India & a barrister-at-law from England.",
           avatarImage: {
             url: "/images/home-leadership.jpg",
-            alt: "leadership-1",
+            alternativeText: "leadership-1",
           },
         },
       ],
       leaderShipImage: {
         url: "/images/home-leadership.jpg",
-        alt: "leadership",
+        alternativeText: "leadership",
       },
     },
     aboutInfo: {
@@ -1211,13 +1222,6 @@ const homePageData = {
         suffix: "+",
         label: "Years of <br> Educational Excellence",
       },
-    },
-  },
-  leadership: {
-    data: {
-      id: 1,
-      documentId: "leadership-1",
-      attributes: { title: "leadership" },
     },
   },
   studentSuccess: {
@@ -1255,11 +1259,9 @@ const homePageData = {
         media: {
           type: "video",
           url: "/videos/home-testimonial-1.mp4",
-          alternativeText: "Success Story",
         },
         avatar: {
           url: "/images/home-testimonial-avatar-1.jpg",
-          alternativeText: "Avatar",
         },
         badge: {
           url: "/images/home-badge-1.png",
@@ -1275,11 +1277,9 @@ const homePageData = {
         media: {
           type: "video",
           url: "/videos/home-testimonial-2.mp4",
-          alternativeText: "Success Story",
         },
         avatar: {
           url: "/images/home-testimonial-avatar-2.png",
-          alternativeText: "Avatar",
         },
         badge: {
           url: "/images/home-badge-2.png",
@@ -1295,11 +1295,9 @@ const homePageData = {
         media: {
           type: "video",
           url: "/videos/home-testimonial-3.mp4",
-          alternativeText: "Success Story",
         },
         avatar: {
           url: "/images/home-testimonial-avatar-3.png",
-          alternativeText: "Avatar",
         },
         badge: {
           url: "/images/home-badge-1.png",
@@ -1315,11 +1313,9 @@ const homePageData = {
         media: {
           type: "video",
           url: "/videos/home-testimonial-4.mp4",
-          alternativeText: "Success Story",
         },
         avatar: {
           url: "/images/home-testimonial-avatar-4.jpg",
-          alternativeText: "Avatar",
         },
         badge: {
           url: "/images/home-badge-1.png",
@@ -1335,11 +1331,9 @@ const homePageData = {
         media: {
           type: "video",
           url: "/videos/home-testimonial-2.mp4",
-          alternativeText: "Success Story",
         },
         avatar: {
           url: "/images/home-testimonial-avatar-2.png",
-          alternativeText: "Avatar",
         },
         badge: {
           url: "/images/home-badge-2.png",
@@ -1843,21 +1837,107 @@ const homePageData = {
   },
 };
 
-export default function Home() {
+/*
+// Use the CMS section when its list has content, otherwise the local_data section.
+const pick = (cms, local, listKey) => (hasContent(cms?.[listKey]) ? cms : local);
+const pickList = (cms, local) => (hasContent(cms) ? cms : local);
+*/
+
+// Shared by the metadata and the page so Strapi is queried once per request.
+const loadHome = cache(getHomePage);
+
+export async function generateMetadata() {
+  const seo = (await loadHome())?.seo;
+  return {
+    ...(seo?.metaTitle && { title: seo.metaTitle }),
+    ...(seo?.metaDescription && { description: seo.metaDescription }),
+  };
+}
+
+// Previous version: each section falls back to `homePageData` when the CMS has no content for it.
+/*
+export default async function Home() {
+  const cms = await loadHome();
+  const local = homePageData;
+
+  const heroSlides = {
+    hero: pickList(cms?.heroSlides?.hero, local.heroSlides.hero),
+    heroMarquee: pickList(cms?.heroSlides?.heroMarquee, local.heroSlides.heroMarquee),
+  };
+  // The CMS fills the text, tour and about info with defaults; its two lists fall back on their own.
+  const aboutCms = cms?.homeAbout ?? local.homeAbout;
+  const homeAbout = {
+    ...aboutCms,
+    statistics: pickList(cms?.homeAbout?.statistics, local.homeAbout.statistics),
+    leadership: {
+      ...aboutCms.leadership,
+      leaders: pickList(
+        cms?.homeAbout?.leadership?.leaders,
+        local.homeAbout.leadership.leaders,
+      ),
+    },
+  };
+  const events = {
+    ...pick(cms?.events, local.events, "announcements_list"),
+    latest_list: local.events.latest_list,
+  };
+
   return (
     <main className="flex flex-col min-h-screen">
-      <HomeHero data={homePageData?.heroSlides} />
-      {/* <HomeExcellence data={homePageData?.centresOfExcellence} /> */}
-      <HomeAcademic data={homePageData?.academicPrograms} />
-      <HomeResearch data={homePageData?.researchInnovation} />
-      <HomeIndustry data={homePageData?.industryCollaboration} />
-      <HomeAbout data={homePageData?.homeAbout} />
-      <HomeTestimonials data={homePageData?.studentSuccess} />
-      <HomeCampusLife data={homePageData?.campusLife} />
-      <HomeCollaborations data={homePageData?.internationalCollaboration} />
-      <Events data={homePageData?.events} />
-      <News data={homePageData.latestNews} />
-      <Journey data={homePageData?.journey} />
+      <HomeHero data={heroSlides} />
+      <HomeExcellence data={local.centresOfExcellence} />
+      <HomeAcademic data={pick(cms?.academicPrograms, local.academicPrograms, "academics")} />
+      <HomeResearch data={local.researchInnovation} />
+      <HomeIndustry data={local.industryCollaboration} />
+      <HomeAbout data={homeAbout} />
+      <HomeTestimonials data={pick(cms?.studentSuccess, local.studentSuccess, "successStories")} />
+      <HomeCampusLife data={pick(cms?.campusLife, local.campusLife, "featureCards")} />
+      <HomeCollaborations data={pick(cms?.internationalCollaboration, local.internationalCollaboration, "countries")} />
+      <Events data={events} />
+      <News data={pick(cms?.latestNews, local.latestNews, "news_list")} />
+      <Journey data={pick(cms?.journey, local.journey, "ctaLinks")} />
+    </main>
+  );
+}
+*/
+
+// Same page without fallbacks: every section renders what Strapi returns, and nothing when it returns nothing.
+export default async function Home() {
+  const [cms, newsList, announcementList] = await Promise.all([
+    loadHome(),
+    getNewsEvents(),
+    getAnnouncements(),
+  ]);
+  // Research & Innovation, Industry Collaboration and the Latest Happenings list still render local_data.
+  const local = homePageData;
+  // Announcements come from the announcement entries.
+  const events = {
+    ...cms?.events,
+    latest_list: local.events.latest_list,
+    announcements_list: Array.isArray(announcementList)
+      ? announcementList
+      : cms?.events?.announcements_list,
+  };
+  // The News & Events section lists every News & Events entry (cards: path, title, date, year, link).
+  const news = {
+    title: cms?.latestNews?.title,
+    news_list: Array.isArray(newsList) ? newsList : [],
+  };
+
+  return (
+    <main className="flex flex-col min-h-screen">
+      <HomeHero data={cms?.heroSlides} />
+      <HomeExcellence data={cms?.centresOfExcellence} />
+      <HomeAcademic data={cms?.academicPrograms} />
+      <HomeResearch data={local?.researchInnovation} />
+      <HomeIndustry data={local?.industryCollaboration} />
+      <HomeAbout data={cms?.homeAbout} />
+      <HomeTestimonials data={cms?.studentSuccess} />
+      <HomeCampusLife data={cms?.campusLife} />
+      <HomeCollaborations data={cms?.internationalCollaboration} />
+      <Events data={events} />
+      <News data={news} />
+      <Journey data={cms?.journey} />
     </main>
   );
 }
