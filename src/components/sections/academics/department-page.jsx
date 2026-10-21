@@ -22,14 +22,17 @@ import AiPartnerwithus from "@/components/sections/ai-enabled/Ai-partnerwithus";
 import AiAcademicChapters from "@/components/sections/ai-enabled/Ai-academicChapters";
 import LibraryOverview from "@/components/sections/ai-enabled/library/library-overview";
 import { departmentProgramsSection, loadDepartmentPage } from "@/lib/schools/entity";
+import { librarySidebarItems } from "@/lib/schools/items";
 import { hasContent } from "@/lib/schools/tab-page";
 import * as adapt from "@/lib/schools/department-adapters";
 
 export async function departmentMetadata(schoolSlug, departmentSlug, tab = "overview") {
     const { school, department, label } = await loadDepartmentPage(schoolSlug, departmentSlug, tab);
     const base = department.seo?.metaTitle || department.name;
+    // the API fills an unset Meta Title with the department name, so anything else was typed in Strapi: use it as is
+    const custom = department.seo?.metaTitle && department.seo.metaTitle !== department.name;
     return {
-        title: `${tab === "overview" ? base : `${label} | ${base}`} | ${school.name}`,
+        title: custom ? department.seo.metaTitle : `${tab === "overview" ? base : `${label} | ${base}`} | ${school.name}`,
         description: department.seo?.metaDescription ?? undefined,
         alternates: department.seo?.canonicalUrl ? { canonical: department.seo.canonicalUrl } : undefined,
     };
@@ -83,7 +86,7 @@ function Sections({ tab, data, schoolSlug, department }) {
         }
         case "library": {
             const library = adapt.librarySection(data.librarySection);
-            return library && <LibraryOverview data={library} />;
+            return library && <LibraryOverview data={library} menu={librarySidebarItems(schoolSlug, department.slug, data.sidebar)} />;
         }
         case "student-chapters": {
             const chapters = adapt.chaptersSection(data.chaptersSection);

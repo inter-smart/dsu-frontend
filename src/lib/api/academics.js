@@ -32,6 +32,11 @@ export async function getDepartmentTab(slug, tab, params) {
   return fetchAPI(`${slugPath("/api/departments", slug)}/${encodeURIComponent(tab)}`, params);
 }
 
+// One Library sub-page: department shell + `page` (title, slug, template, seo, content) + the library `sidebar`.
+export async function getDepartmentLibraryPage(slug, page) {
+  return fetchAPI(`${slugPath("/api/departments", slug)}/library/${encodeURIComponent(page)}`);
+}
+
 // Paged news cards for a department's News & Events tab ("Load More"): { data: [card], pagination }
 export async function getDepartmentNewsPaged(slug, page, pageSize = 6) {
   const res = await getDepartmentTab(slug, "news-events", { page, pageSize });

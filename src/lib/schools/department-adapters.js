@@ -84,3 +84,73 @@ export function librarySection(s) {
     },
   };
 }
+
+// ── Library sub-pages: each template's API content → the props its existing component takes ──────────
+
+const texts = (items) => (items ?? []).map((i) => i.text).filter(Boolean);
+
+export function libraryServicesContent(c) {
+  if (!c) return null;
+  const { journals: j, dailies: d } = c;
+  return {
+    heading: c.heading,
+    description: c.description,
+    image: c.image,
+    sections: (c.sections ?? []).map((s, i) => ({
+      id: i,
+      title: s.title,
+      content: s.content,
+    })),
+    journalsSection: j && {
+      heading: j.heading,
+      items: label(j.items),
+      printJournals: {
+        heading: j.printHeading,
+        columns: texts(j.printColumns),
+        rows: j.rows ?? [],
+        total: j.totalLabel || j.totalCount ? { label: j.totalLabel, count: j.totalCount } : undefined,
+      },
+    },
+    dailiesSection: d && {
+      heading: d.heading,
+      description: d.description,
+      columns: texts(d.columns),
+      rows: d.rows ?? [],
+    },
+    nursingUsefulLinks: c.usefulLinks?.length ? { heading: c.usefulLinksHeading, links: c.usefulLinks } : undefined,
+    informationLiteracy:
+      c.literacyHeading || c.literacyDescription
+        ? { heading: c.literacyHeading, description: c.literacyDescription }
+        : undefined,
+    newArrivals:
+      c.newArrivalsHeading || c.newArrivalsLink
+        ? { heading: c.newArrivalsHeading, cta: { label: c.newArrivalsLabel, link: c.newArrivalsLink } }
+        : undefined,
+  };
+}
+
+// Downloads and Quick Abbreviations share one component: `files[].file.url` is the file or the external link.
+export const libraryFilesContent = (c) =>
+  c && {
+    heading: c.heading,
+    description: c.description,
+    files: (c.files ?? []).filter((f) => f.url).map((f, i) => ({ id: i, label: f.label, file: { url: f.url, isExternal: f.isExternal } })),
+  };
+
+export const libraryAutomationContent = (c) =>
+  c && {
+    heading: c.heading,
+    subheading: c.subheading,
+    description: c.description,
+    webOpac: c.webOpacItems?.length || c.webOpacHeading ? { heading: c.webOpacHeading, items: label(c.webOpacItems) } : undefined,
+  };
+
+export const libraryFaqsContent = (c) =>
+  c && { heading: c.heading, faq: (c.faq ?? []).map((f, i) => ({ id: f.id ?? i, question: f.question, answer: f.answer })) };
+
+export const libraryGalleryContent = (c) =>
+  c && {
+    heading: c.heading,
+    loadMoreLink: c.loadMoreLink,
+    gallery: (c.images ?? []).map((image, id) => ({ id, image })),
+  };

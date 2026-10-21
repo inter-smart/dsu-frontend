@@ -6,6 +6,18 @@ const LEVEL_CODES = { Undergraduate: "UG", Postgraduate: "PG" };
 export const departmentHref = (schoolSlug, departmentSlug) =>
   `/ai-enabled/${schoolSlug}/${departmentSlug}`;
 
+// A department's Library landing page, or one of its sub-pages.
+export const libraryHref = (schoolSlug, departmentSlug, pageSlug) =>
+  `${departmentHref(schoolSlug, departmentSlug)}/library${pageSlug ? `/${pageSlug}` : ""}`;
+
+// Library side menu: the landing page, then the department's sub-pages in the order set in the CMS.
+export const librarySidebarItems = (schoolSlug, departmentSlug, sidebar = []) => [
+  { label: "Overview", slug: libraryHref(schoolSlug, departmentSlug) },
+  ...sidebar
+    .filter((p) => p?.slug)
+    .map((p) => ({ label: p.title, slug: libraryHref(schoolSlug, departmentSlug, p.slug) })),
+];
+
 // Canonical programme URL: under its department when it has one, otherwise under the school.
 export const programmeHref = (schoolSlug, programmeSlug, departmentSlug) =>
   departmentSlug

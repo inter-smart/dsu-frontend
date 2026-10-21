@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { getDepartmentTab, getProgrammeBySlug } from "@/lib/api";
-import { departmentHref, programmeHref } from "@/lib/schools/items";
+import { getDepartmentLibraryPage, getDepartmentTab, getProgrammeBySlug } from "@/lib/api";
+import { departmentHref, libraryHref, librarySidebarItems, programmeHref } from "@/lib/schools/items";
 
 // Department and programme pages, resolved from the real hierarchy:
 //   /ai-enabled/[school]/[department]/[tab]
@@ -94,6 +94,37 @@ export async function loadDepartmentPage(schoolSlug, departmentSlug, tab) {
     hero: {
       ...buildHero(res.hero, trail, res.hero?.title || res.name),
       // a breadcrumb set on the tab's own Hero wins over the generated trail
+      ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
+    },
+    menuItems: departmentMenu(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base),
+    menuHome: base,
+  };
+}
+
+// One Library sub-page of a department (/ai-enabled/[school]/[department]/library/[page]); 404s for an
+// unknown department, a department of another school, or a page the Library entry does not list.
+export async function loadDepartmentLibraryPage(schoolSlug, departmentSlug, pageSlug) {
+  const res = await getDepartmentLibraryPage(departmentSlug, pageSlug);
+  if (!res?.slug || res.school?.slug !== schoolSlug || !res.page?.slug) notFound();
+
+  const available = new Set(["overview", ...(res.availableTabs ?? [])]);
+  if (!available.has("library")) notFound();
+
+  const base = departmentHref(schoolSlug, departmentSlug);
+  const trail = [
+    { label: res.school.name, href: `/schools/${schoolSlug}` },
+    { label: res.name, href: base },
+    { label: "Library", href: libraryHref(schoolSlug, departmentSlug) },
+    { label: res.page.title, href: libraryHref(schoolSlug, departmentSlug, pageSlug) },
+  ];
+
+  return {
+    school: res.school,
+    department: res,
+    page: res.page,
+    sidebar: librarySidebarItems(schoolSlug, departmentSlug, res.sidebar),
+    hero: {
+      ...buildHero(res.hero, trail, res.hero?.title || res.page.title),
       ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
     },
     menuItems: departmentMenu(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base),

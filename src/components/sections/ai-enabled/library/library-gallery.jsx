@@ -4,7 +4,7 @@ import { useState } from "react";
 import LibrarySidebar from "./library-sidemenubar";
 import Image from "next/image";
 
-export default function LibraryGallery({ data }) {
+export default function LibraryGallery({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
     const isVideo = data?.gallery?.image?.mime?.includes("video");
     return (
@@ -13,6 +13,7 @@ export default function LibraryGallery({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <LibrarySidebar
+                            data={menu}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
@@ -23,8 +24,8 @@ export default function LibraryGallery({ data }) {
                                 {data.heading}
                             </h2>
                             <div className="flex flex-wrap -m-[5px] 2xl:-m-[7px]">
-                                {data?.gallery.map((item) => (
-                                    <div className="w-1/2 sm:w-1/3 flex-grow-1 p-[5px] 2xl:p-[7px]">
+                                {data?.gallery?.map((item) => (
+                                    <div key={item.id} className="w-1/2 sm:w-1/3 flex-grow-1 p-[5px] 2xl:p-[7px]">
                                         <div className="w-full h-full rounded-[6px] xl:rounded-[8px] 2xl:rounded-[10px] overflow-hidden">
                                             {isVideo ? (
                                                 <video autoPlay muted loop playsInline className="h-full w-full object-cover">
