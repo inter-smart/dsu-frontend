@@ -14,7 +14,6 @@ export const DEPARTMENT_TABS = [
   { key: "programs", label: "Programs Offered" },
   { key: "faculty", label: "Faculty" },
   { key: "laboratories", label: "Laboratories" },
-  { key: "research-areas", label: "Research Areas" },
   { key: "industry-connect", label: "Industry Connect" },
   { key: "library", label: "Library" },
   { key: "student-chapters", label: "Student Chapters" },

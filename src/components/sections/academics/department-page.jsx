@@ -9,7 +9,6 @@ import AcademicCollaboration from "@/components/sections/academics/academic-coll
 import AcademicPartners from "@/components/sections/academics/academic-partners";
 import AcademicPlacementReport from "@/components/sections/academics/academic-placement-report";
 import DeanMessage from "@/components/sections/academics/dean-message";
-import DepartmentResearchAreas from "@/components/sections/academics/department-research-areas";
 import NewsEvents from "@/components/sections/news-events/news-events";
 import AiHighlights from "@/components/sections/ai-enabled/Ai-highlights";
 import AiFaculty from "@/components/sections/ai-enabled/Ai-faculty";
@@ -68,14 +67,12 @@ function Sections({ tab, data, schoolSlug, department }) {
                 </>
             );
         }
-        case "research-areas":
-            return show(data.researchAreasSection) && <DepartmentResearchAreas data={data.researchAreasSection} />;
         case "industry-connect": {
             const recent = adapt.recentEngagementSection(data.recentEngagementSection);
             const partner = adapt.partnerWithUsSection(data.partnerWithUsSection);
             return (
                 <>
-                    {show(data.achievementSection) && <AcademicAchievements data={data.achievementSection} variant="AiChapter" />}
+                    {show(data.achievementSection) && <AcademicAchievements data={data.achievementSection} variant="Ai-achievements" />}
                     {show(data.partnersSection) && <AcademicPartners data={data.partnersSection} varient="AiChapter" />}
                     {show(data.keyCollaborationsSection) && <AiAcademicCollaboration data={data.keyCollaborationsSection} />}
                     {show(data.industryEngagementSection) && <AiIndustryEngagement data={data.industryEngagementSection} />}
