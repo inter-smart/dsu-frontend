@@ -200,7 +200,7 @@ export default function HomeExcellence({ data }) {
                   </div>
                   <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25 max-lg:hidden">
                     <Link
-                      href={activeItem?.excellenceContent?.button?.link}
+                      href={activeItem?.excellenceContent?.button?.link || "#"}
                       className={buttonVariants({
                         variant: "default",
                         size: "default",
@@ -223,7 +223,7 @@ export default function HomeExcellence({ data }) {
           </div>
           <div className="mt-5 max-lg:block hidden max-lg:order-4">
             <Link
-              href={activeItem?.excellenceContent?.button?.link}
+              href={activeItem?.excellenceContent?.button?.link || "#"}
               className={buttonVariants({
                 variant: "default",
                 size: "default",
