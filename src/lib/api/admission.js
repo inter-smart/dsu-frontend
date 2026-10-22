@@ -40,6 +40,13 @@ export async function getAdmissionDownloadPage() {
 }
 
 
+// Get the "programme" template entry (/admission/admission-programme)
+export async function getAdmissionProgrammePage() {
+  const entries = await getAdmissions();
+  const entry = (entries || []).find((e) => e.template === "programme");
+  return entry?.slug ? getAdmissionBySlug(entry.slug) : null;
+}
+
 // faqs
 export async function getAdmissionFaqPage() {
   const entries = await getAdmissions();

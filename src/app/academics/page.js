@@ -378,10 +378,6 @@ const local_data = {
     },
     newsEvents: {
         title: "News & Events",
-        cta: {
-            label: "View More",
-            url: "/why-choose-this-school",
-        },
         newsEvents: [
             {
                 id: 1,

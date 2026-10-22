@@ -8,11 +8,13 @@ export default function BscOverview({ data }) {
         <section className="realtive  py-[10px_0px] xl:py-[50px_0] 2xl:py-[70px_0] 3xl:py-[90px_0]">
             <div className="container">
                 <div className="relative max-lg:flex max-lg:flex-col-reverse gap-[20px] after:content-[''] after:table after:clear-both ">
-                    <div className="w-full lg:w-[450px] xl:w-[500px] 2xl:w-[600px] 3xl:w-[750px] lg:float-right ml-0 lg:ml-[30px] xl:ml-[45px] 2xl:ml-[55px] mb-[25px] lg:mb-[20px]">
-                        <div className="w-full rounded-[10px] overflow-hidden">
-                            <Image src={data?.media?.url} width={740} height={345} className="w-full h-full object-cover" alt={data?.media.alternativeText} />
+                    {data?.media?.url && (
+                        <div className="w-full lg:w-[450px] xl:w-[500px] 2xl:w-[600px] 3xl:w-[750px] lg:float-right ml-0 lg:ml-[30px] xl:ml-[45px] 2xl:ml-[55px] mb-[25px] lg:mb-[20px]">
+                            <div className="w-full rounded-[10px] overflow-hidden">
+                                <Image src={data.media.url} width={740} height={345} className="w-full h-full object-cover" alt={data.media.alternativeText || data.heading || ""} />
+                            </div>
                         </div>
-                    </div>
+                    )}
                     <div className="w-full">
 
                         <div>

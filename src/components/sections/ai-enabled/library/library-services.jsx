@@ -6,7 +6,26 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
 import LibrarySidebar from "./library-sidemenubar";
 
-export default function LibraryServices({ data }) {
+// A section's single `content` field: paragraphs and lists styled like the separate intro / items / outro.
+const TEXT = "text_1 text-[#4A5565] dark:text-[#9CA3AF]";
+const sectionBlocks = {
+    paragraph: ({ children }) => (
+        <p className={`${TEXT} leading-[1.2] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]`}>{children}</p>
+    ),
+    list: ({ children, format }) =>
+        format === "ordered" ? (
+            <ol className={`${TEXT} list-decimal pl-[20px] mb-[20px]`}>{children}</ol>
+        ) : (
+            <ul className="mb-[20px]">{children}</ul>
+        ),
+    "list-item": ({ children }) => (
+        <li className={`${TEXT} relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]`}>
+            {children}
+        </li>
+    ),
+};
+
+export default function LibraryServices({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
@@ -15,6 +34,7 @@ export default function LibraryServices({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <LibrarySidebar
+                            data={menu}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
@@ -25,12 +45,14 @@ export default function LibraryServices({ data }) {
                                 {data.heading}
                             </h2>
                             <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
-                                <BlocksRenderer content={data.description} />
+                                {data.description && <BlocksRenderer content={data.description} />}
                             </div>
-                            <div className="w-full aspect-[1260/350] overflow-hidden mb-[30px]">
-                                <Image src={data?.image.url} width="1260" height="350" alt={data?.image.alternativeText} />
-                            </div>
-                            {data?.sections.map((section) => (
+                            {data?.image?.url && (
+                                <div className="w-full aspect-[1260/350] overflow-hidden mb-[30px]">
+                                    <Image src={data.image.url} width="1260" height="350" alt={data.image.alternativeText || ""} />
+                                </div>
+                            )}
+                            {data?.sections?.map((section) => (
                                 <div
                                     key={section.id}
                                     className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 dark:border-white/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] dark:bg-none dark:bg-[#18191B] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
@@ -39,6 +61,10 @@ export default function LibraryServices({ data }) {
                                         {section.title}
                                     </h2>
 
+                                    {section.content ? (
+                                        <BlocksRenderer content={section.content} blocks={sectionBlocks} />
+                                    ) : (
+                                        <>
                                     {(section.intro || section.description) && (
                                         <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                                             <BlocksRenderer content={section.intro || section.description} />
@@ -62,6 +88,8 @@ export default function LibraryServices({ data }) {
                                         <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
                                             <BlocksRenderer content={section.outro} />
                                         </div>
+                                    )}
+                                        </>
                                     )}
                                 </div>
                             ))}
@@ -147,7 +175,7 @@ export default function LibraryServices({ data }) {
 
                                 </div>
                             )}
-                            {data?.journalsSection && (
+                            {data?.dailiesSection && (
                                 <div
                                     className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 dark:border-white/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] dark:bg-none dark:bg-[#18191B] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
                                 >
@@ -233,6 +261,7 @@ export default function LibraryServices({ data }) {
                                     <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] font-semibold text-[#212121] dark:text-white">
                                         {data?.newArrivals.heading}
                                     </div>
+                                    {data?.newArrivals?.cta?.link && (
                                     <Link
                                         href={data?.newArrivals?.cta?.link}
                                         className="group relative inline-flex items-center gap-[8px] w-fit text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] font-semibold text-[#212121] dark:text-white transition-colors duration-300 hover:text-[#DC2626] after:absolute after:left-0 after:-bottom-[2px] after:h-[2px] after:w-0 after:bg-[#DC2626] after:transition-all after:duration-300 hover:after:w-full"
@@ -241,6 +270,7 @@ export default function LibraryServices({ data }) {
                                     >
                                         {data?.newArrivals?.cta?.label}
                                     </Link>
+                                    )}
 
                                 </div>
                             )}

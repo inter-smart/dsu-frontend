@@ -231,7 +231,7 @@ export default function Events({ data }) {
                         <div className="w-(--image-size) h-auto aspect-220/120 rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] overflow-hidden block shrink-0 bg-gray-200 dark:bg-white/10">
                           {item?.announcement_image?.url && (
                             <Image
-                              src={item.announcement_image.url}
+                              src={item?.announcement_image?.url}
                               width={220}
                               height={120}
                               alt={item?.announcement_image?.alternativeText || "Announcement"}

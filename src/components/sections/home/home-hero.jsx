@@ -153,39 +153,30 @@ export default function HomeHero({ data }) {
                         </span>
                       </div>
                       <div className="w-full h-auto mt-5 lg:mt-6.25 2xl:mt-7.5 3xl:mt-10 flex gap-[10px] 2xl:gap-[13px] 3xl:gap-4">
-                        <Link
-                          href="#"
-                          className={buttonVariants({
-                            variant: "secondary",
-                            size: "default",
-                          })}
-                        >
-                          Explore Centres of Excellence
-                          <Image
-                            src="/images/icon-btn.svg"
-                            alt="home-btn"
-                            width={15}
-                            height={15}
-                            className="size-[15px]"
-                          />
-                        </Link>
-                        <Link
-                          href="#"
-                          className={buttonVariants({
-                            variant: "default",
-                            size: "default",
-                          })}
-                        >
-                          Apply Now
-                          <Image
-                            src="/images/icon-btn.svg"
-                            alt="home-btn"
-                            width={15}
-                            height={15}
-                            className="size-[15px]"
-                            data-icon="inline-end"
-                          />
-                        </Link>
+                        {item?.buttons?.map(
+                          (button, index) => (
+                            <Link
+                              key={`${item?.id}-button-${index}`}
+                              href={button?.url || "#"}
+                              target={button?.isExternal ? "_blank" : undefined}
+                              rel={button?.isExternal ? "noopener noreferrer" : undefined}
+                              className={buttonVariants({
+                                variant: index === 0 ? "secondary" : "default",
+                                size: "default",
+                              })}
+                            >
+                              {button?.label}
+                              <Image
+                                src="/images/icon-btn.svg"
+                                alt="home-btn"
+                                width={15}
+                                height={15}
+                                className="size-[15px]"
+                                data-icon={index === 0 ? undefined : "inline-end"}
+                              />
+                            </Link>
+                          ),
+                        )}
                       </div>
                     </motion.div>
                     <div className="w-full md:w-1/2">

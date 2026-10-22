@@ -1,51 +1,67 @@
 import SchoolTabShell from "@/components/sections/academics/school-tab-shell";
-import EntityHtmlSection from "@/components/sections/academics/entity-html-section";
+import AcademicContact from "@/components/sections/academics/academic-contact";
+import BscOverview from "@/components/sections/ai-enabled/BSC-nursing/overview";
+import Aieligibility from "@/components/sections/ai-enabled/BSC-nursing/eligibility";
 import BscCurriculum from "@/components/sections/ai-enabled/BSC-nursing/curriculum";
-import BscDownloads from "@/components/sections/ai-enabled/BSC-nursing/downloads";
 import PoPsoSection from "@/components/sections/ai-enabled/BSC-nursing/po-pso";
+import CareerSection from "@/components/sections/ai-enabled/BSC-nursing/career";
+import BscDownloads from "@/components/sections/ai-enabled/BSC-nursing/downloads";
 import AiFaculty from "@/components/sections/ai-enabled/Ai-faculty";
-import { curriculumSection, htmlOrNull, loadProgramPage } from "@/lib/schools/entity";
+import { permanentRedirect } from "next/navigation";
+import { loadProgramPage } from "@/lib/schools/entity";
+import { hasContent } from "@/lib/has-content";
 
 export async function programMetadata(schoolSlug, programmeSlug, tab = "overview", departmentSlug) {
-    const { school, programme, label, canonical } = await loadProgramPage(schoolSlug, programmeSlug, tab, departmentSlug);
-    const base = programme.seo?.metaTitle || programme.title;
+    const { programme, canonical } = await loadProgramPage(schoolSlug, programmeSlug, tab, departmentSlug);
+    // the API gives every tab its own SEO (the tab entry's, else generated from the programme and tab names)
+    const { metaTitle, metaDescription, canonicalUrl } = programme.seo ?? {};
+    const title = metaTitle || programme.title;
     return {
-        title: `${tab === "overview" ? base : `${label} | ${base}`} | ${school.name}`,
-        description: programme.seo?.metaDescription ?? undefined,
-        // one programme, two reachable URLs (school and department): search engines get the canonical one
-        alternates: { canonical },
+        title,
+        description: metaDescription ?? undefined,
+        alternates: { canonical: canonicalUrl || canonical },
+        openGraph: { title, description: metaDescription ?? undefined },
     };
 }
 
-// One tab of a programme page; tabs are listed in PROGRAM_TABS (lib/schools/entity.js). Every tab stays
-// listed and clickable; a tab with nothing to show renders just the hero and menu.
+// The old programme URLs (/schools/[school]/programs/... and /ai-enabled/[school]/[department]/programs/...)
+// send visitors to the canonical /ai-enabled/[school]/programs/[programme]/[tab].
+export async function redirectToProgramPage(schoolSlug, programmeSlug, tab = "overview", departmentSlug) {
+    const { canonical } = await loadProgramPage(schoolSlug, programmeSlug, tab, departmentSlug);
+    permanentRedirect(canonical);
+}
+
+// One tab of a programme page; tabs are listed in PROGRAM_TABS (lib/schools/entity.js). The API returns each tab
+// in the shape of the matching ai-enabled/BSC-nursing `local_data` key, so the BSC-nursing section components
+// render it as is. Every tab stays listed and clickable; a tab with nothing to show renders just the hero and menu.
 export default async function ProgramPage({ schoolSlug, programmeSlug, tab = "overview", departmentSlug }) {
-    const { school, programme, hero, menuItems, menuHome } = await loadProgramPage(schoolSlug, programmeSlug, tab, departmentSlug);
+    const { school, data, hero, menuItems } = await loadProgramPage(schoolSlug, programmeSlug, tab, departmentSlug);
 
-    const facts = [
-        programme.level && { label: "Level", value: programme.level },
-        programme.duration && { label: "Duration", value: programme.duration },
-    ].filter(Boolean);
-
-    const curriculum = curriculumSection(programme);
-    const admissions = programme.admissionsSection;
-    const downloads = programme.downloadsSection;
+    const contact = hasContent(data.contact) ? <AcademicContact data={data.contact} schoolSlug={schoolSlug} /> : null;
+    // an outcome group shows when it has outcomes or a PDF / link
+    const outcomes = (group) => group?.items?.length > 0 || Boolean(group?.button?.href);
 
     return (
-        <SchoolTabShell hero={hero} slug={schoolSlug} hasDepartments={school.template === "department"} menuItems={menuItems} menuHome={menuHome}>
+        <SchoolTabShell hero={hero} slug={schoolSlug} hasDepartments={school.template === "department"} menuItems={menuItems} bscMenu>
             {tab === "overview" && (
-                <EntityHtmlSection eyebrow="Overview" heading={`About ${programme.title}`} html={htmlOrNull(programme.overview)} facts={facts} />
+                <>
+                    {hasContent(data.OverviewSection) && <BscOverview data={data.OverviewSection} />}
+                    {contact}
+                </>
             )}
-            {tab === "eligibility" && <EntityHtmlSection heading="Eligibility" html={htmlOrNull(programme.eligibility)} />}
-            {tab === "curriculum" && programme.curriculum?.some((c) => c?.courses?.length) && <BscCurriculum data={curriculum} />}
-            {tab === "peo" && programme.peoData?.peo?.items?.length > 0 && <PoPsoSection data={programme.peoData} />}
-            {tab === "po-pso" && (programme.poPsoData?.po?.items?.length > 0 || programme.poPsoData?.pso?.items?.length > 0) && <PoPsoSection data={programme.poPsoData} />}
-            {tab === "faculty" && programme.facultiesCollegeNursing?.facultiesSection?.categories?.length > 0 && <AiFaculty data={programme.facultiesCollegeNursing} />}
-            {tab === "career-opportunities" && (
-                <EntityHtmlSection heading="Career Opportunities" html={htmlOrNull(programme.careerOpportunities)} />
+            {tab === "eligibility" && (
+                <>
+                    {hasContent(data.eligibility) && <Aieligibility data={data.eligibility} />}
+                    {contact}
+                </>
             )}
-            {tab === "admissions" && (admissions?.files?.length > 0 || admissions?.description) && <BscDownloads data={{ heading: programme.admissionsSection?.heading, description: programme.admissionsSection?.description, files: programme.admissionsSection?.files ?? [] }} varient="Bsc-nursing" />}
-            {tab === "downloads" && downloads?.files?.length > 0 && <BscDownloads data={{ heading: "Downloads", ...programme.downloadsSection }} />}
+            {tab === "curriculum" && data.curriculumData?.semesters?.length > 0 && <BscCurriculum data={data.curriculumData} />}
+            {tab === "peo" && outcomes(data.peoData?.peo) && <PoPsoSection data={data.peoData} />}
+            {tab === "po-pso" && (outcomes(data.poPsoData?.po) || outcomes(data.poPsoData?.pso)) && <PoPsoSection data={data.poPsoData} />}
+            {tab === "faculty" && data.facultiesCollegeNursing?.facultiesSection?.categories?.length > 0 && <AiFaculty data={data.facultiesCollegeNursing} />}
+            {tab === "career-opportunities" && hasContent(data.career) && <CareerSection data={data.career} />}
+            {tab === "admissions" && data.downloadsSection?.files?.length > 0 && <BscDownloads data={data.downloadsSection} varient="Bsc-nursing" />}
+            {tab === "downloads" && data.downloadsSection?.files?.length > 0 && <BscDownloads data={data.downloadsSection} />}
         </SchoolTabShell>
     );
 }

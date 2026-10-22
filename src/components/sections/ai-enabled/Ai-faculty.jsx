@@ -215,6 +215,7 @@ export default function AiFaculty({ data }) {
 
                         <div className="block lg:hidden">
                             <FacultySlider
+                                key={category.id || catIdx}
                                 faculty={category.faculty}
                                 categoryLabel={category.label}
                             />

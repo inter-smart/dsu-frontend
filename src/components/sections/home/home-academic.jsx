@@ -191,7 +191,13 @@ function AcademicCard({ item }) {
         />
       </div>
       <h3 className="text-base lg:text-sm 2xl:text-base 3xl:text-xl leading-[1.2] font-bold text-white w-full h-auto m-(--gap) max-w-[85%] absolute z-1 inset-[auto_0_0_0]">
-        {item?.title}
+        {item?.link ? (
+          <Link href={item.link} className="hover:underline">
+            {item?.title}
+          </Link>
+        ) : (
+          item?.title
+        )}
       </h3>
       <div className="w-full h-full sm:p-[20px_10px] 2xl:p-[35px_15px] bg-[#CDBF8D] opacity-0 pointer-events-none transition-opacity duration-500 block absolute z-1 inset-0 group-hover:opacity-100 group-hover:pointer-events-auto">
         <div className="w-full h-full block">
