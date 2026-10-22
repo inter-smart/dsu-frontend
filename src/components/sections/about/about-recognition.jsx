@@ -1,12 +1,24 @@
 
 "use client";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { hasContent } from "@/lib/has-content";
+
+// an item is shown only with a label and a real url or file url
+const hasRealLink = (link) =>
+    Boolean(link?.label) && Boolean(link?.linkType === "file" ? link?.file?.url : link?.url);
 
 
 export default function AboutRecognition({ data }) {
-    if (!data || !data?.columns?.length) return null;
-    const firstcolumn = data.columns.slice(0, 1);
-    const secondcolumn = data.columns.slice(1);
+    const columns = [];
+    (Array.isArray(data?.columns) ? data.columns : []).forEach((col) => {
+        const items = (Array.isArray(col?.items) ? col.items : []).filter((item) =>
+            hasRealLink(item?.link),
+        );
+        if (col?.title && items.length > 0) columns.push({ title: col.title, items });
+    });
+    if (!columns.length) return null;
+    const firstcolumn = columns.slice(0, 1);
+    const secondcolumn = columns.slice(1);
    return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010] transition-colors duration-300">
             <div className="container">
@@ -16,7 +28,7 @@ export default function AboutRecognition({ data }) {
                         {data.heading}
                     </h2>
                 )}
-                {data.subheading && (
+                {hasContent(data.subheading) && (
                     <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] text-center mb-[30px] 3xl:mb-[50px]">
                         {Array.isArray(data.subheading) ? (
                             <BlocksRenderer content={data.subheading} />
@@ -79,6 +91,7 @@ export default function AboutRecognition({ data }) {
                             </div>
                         </div>
                     ))}
+                    {secondcolumn.length > 0 && (
                     <div className="w-full md:w-2/3 ">
                         <div className="text-[15px] lg:text-[18px] xl:text-[23px] 2xl:text-[28px] 3xl:text-[35px] font-bold text-black dark:text-white relative mb-[15px] 2xl:mb-[25px] pb-[8px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px] after:w-[30px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316]">
                             {secondcolumn?.[0]?.title}
@@ -181,6 +194,7 @@ export default function AboutRecognition({ data }) {
                             })}
                         </div>
                     </div>
+                    )}
                 </div>
 
             </div>
