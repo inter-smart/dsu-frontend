@@ -1,6 +1,6 @@
 import { cache } from "react";
 import { getHomePage, getNewsEvents, getAnnouncements } from "@/lib/api";
-// import { hasContent } from "@/lib/has-content"; // only used by the commented-out fallback version below
+import { hasContent } from "@/lib/has-content";
 import News from "@/components/sections/home/home-news";
 import Events from "@/components/sections/home/home-events";
 import Journey from "@/components/layout/common/journey";
@@ -1837,11 +1837,19 @@ const homePageData = {
   },
 };
 
-/*
 // Use the CMS section when its list has content, otherwise the local_data section.
 const pick = (cms, local, listKey) => (hasContent(cms?.[listKey]) ? cms : local);
 const pickList = (cms, local) => (hasContent(cms) ? cms : local);
-*/
+
+// A CMS hero slide missing a field (media, logo, buttons, ...) takes it from the local slide at the same position.
+const HERO_SLIDE_FIELDS = ["poweredBy", "media", "title", "description", "buttons", "featuredItems"];
+const mergeHeroSlide = (slide, fallback) => {
+  const merged = { ...slide };
+  HERO_SLIDE_FIELDS.forEach((key) => {
+    if (!hasContent(slide?.[key])) merged[key] = fallback?.[key];
+  });
+  return merged;
+};
 
 // Shared by the metadata and the page so Strapi is queried once per request.
 const loadHome = cache(getHomePage);
@@ -1854,17 +1862,29 @@ export async function generateMetadata() {
   };
 }
 
-// Previous version: each section falls back to `homePageData` when the CMS has no content for it.
-/*
+// Each section falls back to `homePageData` when Strapi returns nothing for it.
 export default async function Home() {
-  const cms = await loadHome();
+  const [cms, newsList, announcementList] = await Promise.all([
+    loadHome(),
+    getNewsEvents(),
+    getAnnouncements(),
+  ]);
   const local = homePageData;
 
+  const cmsHero = cms?.heroSlides?.hero;
   const heroSlides = {
-    hero: pickList(cms?.heroSlides?.hero, local.heroSlides.hero),
-    heroMarquee: pickList(cms?.heroSlides?.heroMarquee, local.heroSlides.heroMarquee),
+    hero: hasContent(cmsHero)
+      ? cmsHero
+          .filter(hasContent)
+          .map((slide, i) =>
+            mergeHeroSlide(slide, local.heroSlides.hero[i] ?? local.heroSlides.hero[0]),
+          )
+      : local.heroSlides.hero,
+    heroMarquee: pickList(cms?.heroSlides?.heroMarquee, local.heroSlides.heroMarquee).filter(
+      (item) => item?.label,
+    ),
   };
-  // The CMS fills the text, tour and about info with defaults; its two lists fall back on their own.
+  // The CMS fills the text, tour and about info with defaults; its two lists and the leaders fall back on their own.
   const aboutCms = cms?.homeAbout ?? local.homeAbout;
   const homeAbout = {
     ...aboutCms,
@@ -1877,15 +1897,25 @@ export default async function Home() {
       ),
     },
   };
+  // Announcements come from the announcement entries; the Latest Happenings list is still local_data.
   const events = {
     ...pick(cms?.events, local.events, "announcements_list"),
     latest_list: local.events.latest_list,
+    announcements_list: pickList(
+      announcementList,
+      pickList(cms?.events?.announcements_list, local.events.announcements_list),
+    ),
+  };
+  // The News & Events section lists every News & Events entry (cards: path, title, date, year, link).
+  const news = {
+    title: cms?.latestNews?.title ?? local.latestNews.title,
+    news_list: pickList(newsList, local.latestNews.news_list),
   };
 
   return (
     <main className="flex flex-col min-h-screen">
       <HomeHero data={heroSlides} />
-      <HomeExcellence data={local.centresOfExcellence} />
+      <HomeExcellence data={pick(cms?.centresOfExcellence, local.centresOfExcellence, "excellence")} />
       <HomeAcademic data={pick(cms?.academicPrograms, local.academicPrograms, "academics")} />
       <HomeResearch data={local.researchInnovation} />
       <HomeIndustry data={local.industryCollaboration} />
@@ -1894,50 +1924,8 @@ export default async function Home() {
       <HomeCampusLife data={pick(cms?.campusLife, local.campusLife, "featureCards")} />
       <HomeCollaborations data={pick(cms?.internationalCollaboration, local.internationalCollaboration, "countries")} />
       <Events data={events} />
-      <News data={pick(cms?.latestNews, local.latestNews, "news_list")} />
-      <Journey data={pick(cms?.journey, local.journey, "ctaLinks")} />
-    </main>
-  );
-}
-*/
-
-// Same page without fallbacks: every section renders what Strapi returns, and nothing when it returns nothing.
-export default async function Home() {
-  const [cms, newsList, announcementList] = await Promise.all([
-    loadHome(),
-    getNewsEvents(),
-    getAnnouncements(),
-  ]);
-  // Research & Innovation, Industry Collaboration and the Latest Happenings list still render local_data.
-  const local = homePageData;
-  // Announcements come from the announcement entries.
-  const events = {
-    ...cms?.events,
-    latest_list: local.events.latest_list,
-    announcements_list: Array.isArray(announcementList)
-      ? announcementList
-      : cms?.events?.announcements_list,
-  };
-  // The News & Events section lists every News & Events entry (cards: path, title, date, year, link).
-  const news = {
-    title: cms?.latestNews?.title,
-    news_list: Array.isArray(newsList) ? newsList : [],
-  };
-
-  return (
-    <main className="flex flex-col min-h-screen">
-      <HomeHero data={cms?.heroSlides} />
-      <HomeExcellence data={cms?.centresOfExcellence} />
-      <HomeAcademic data={cms?.academicPrograms} />
-      <HomeResearch data={local?.researchInnovation} />
-      <HomeIndustry data={local?.industryCollaboration} />
-      <HomeAbout data={cms?.homeAbout} />
-      <HomeTestimonials data={cms?.studentSuccess} />
-      <HomeCampusLife data={cms?.campusLife} />
-      <HomeCollaborations data={cms?.internationalCollaboration} />
-      <Events data={events} />
       <News data={news} />
-      <Journey data={cms?.journey} />
+      <Journey data={pick(cms?.journey, local.journey, "ctaLinks")} />
     </main>
   );
 }
