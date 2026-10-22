@@ -2,11 +2,15 @@
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
+import { hasContent } from "@/lib/has-content";
 
 export default function AboutLeadership({ data }) {
-  if (!data || !data?.leaders?.length) return null;
-  const featuredLeaders = data.leaders.slice(0, 2);
-  const otherLeaders = data.leaders.slice(2);
+  const leaders = (Array.isArray(data?.leaders) ? data.leaders : []).filter(
+    (item) => item?.name,
+  );
+  if (!leaders.length) return null;
+  const featuredLeaders = leaders.slice(0, 2);
+  const otherLeaders = leaders.slice(2);
 
 
   return (
@@ -20,7 +24,7 @@ export default function AboutLeadership({ data }) {
             {data.heading}
           </h2>
         )}
-        {data.description && (
+        {hasContent(data.description) && (
           <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] text-center mb-[30px] 3xl:mb-[50px]">
             {Array.isArray(data.description) ? (
               <BlocksRenderer content={data.description} />
@@ -54,16 +58,20 @@ export default function AboutLeadership({ data }) {
                   <div className="text-[13px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold mb-[6px]">
                     {item.name}
                   </div>
+                  {item.designation && (
                   <div
                     className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#DC2626] font-semibold relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px]
                                      after:w-[30px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316] max-sm:after:m-auto max-sm:after:right-0"
                   >
                     {item.designation}
                   </div>
-                  {Array.isArray(item.description) ? (
-                    <BlocksRenderer content={item.description} />
-                  ) : (
-                    <p>{item.description}</p>
+                  )}
+                  {hasContent(item.description) && (
+                    Array.isArray(item.description) ? (
+                      <BlocksRenderer content={item.description} />
+                    ) : (
+                      <p>{item.description}</p>
+                    )
                   )}
                   <div className="w-[20px] 2xl:w-[25px] 3xl:w-[28px] h-[15px] 2xl:h-[18px] 3xl:h-[20px] max-sm:m-auto !mt-[30px]">
                     <svg 
@@ -105,13 +113,17 @@ export default function AboutLeadership({ data }) {
                   <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black dark:text-white font-bold mb-[6px]">
                     {item.name}
                   </div>
+                  {item.designation && (
                   <div className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#4A5565] dark:text-[#9CA3AF] font-normal relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px]  ">
                     {item.designation}
                   </div>
-                  {Array.isArray(item.description) ? (
-                    <BlocksRenderer content={item.description} />
-                  ) : (
-                    <p>{item.description}</p>
+                  )}
+                  {hasContent(item.description) && (
+                    Array.isArray(item.description) ? (
+                      <BlocksRenderer content={item.description} />
+                    ) : (
+                      <p>{item.description}</p>
+                    )
                   )}
                   <div className="w-[22px] xl:w-[28px] h-[15px] xl:h-[20px] max-sm:m-auto !mt-[30px]">
                     <svg
