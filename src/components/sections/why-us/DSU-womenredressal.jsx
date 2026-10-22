@@ -17,6 +17,7 @@ export default function DSUWomenRedressal({ data, menu }) {
     const committee = data?.coreCommitteeMembers;
     const activities = data?.activitiesAndAchievements;
     const documentsSection = data?.documentsAndReachOut?.documentsSection;
+    const validDocuments = documentsSection?.documents?.filter((doc) => doc?.label && doc?.file?.url) || [];
     const reachOut = data?.documentsAndReachOut?.reachOutSection;
 
     return (
@@ -173,9 +174,11 @@ export default function DSUWomenRedressal({ data, menu }) {
                                                         <div className="text-[15px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[30px] text-[#212121] font-semibold mb-[4px]">
                                                             {item.title}
                                                         </div>
-                                                        <div className="text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] text-[#565656] font-normal">
-                                                            {item.date}
-                                                        </div>
+                                                        {item.date && (
+                                                            <div className="text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] text-[#565656] font-normal">
+                                                                {item.date}
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 </AccordionTrigger>
 
@@ -195,7 +198,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                                     </Accordion>
                                 </div>
                             )}
-                            {documentsSection?.documents?.length > 0 && (
+                            {validDocuments.length > 0 && (
                                 <div className="w-full mb-[25px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[70px]">
                                     <h2 className="cmn_Title">
                                         {documentsSection?.heading}
@@ -206,7 +209,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                                         {documentsSection?.description?.length > 0 && <BlocksRenderer content={documentsSection.description} />}
                                     </div>
                                     <div className="flex flex-wrap -m-[5px] md:-m-[8px] xl:-m-[10px]">
-                                        {documentsSection?.documents?.filter((doc) => doc?.file?.url).map((item,idx) =>
+                                        {validDocuments.map((item,idx) =>
                                             <div className="w-full sm:w-1/2 p-[5px] md:p-[8px] xl:p-[10px]" key={idx}>
                                                 <Link href={item.file.url} className="flex items-center justify-between  py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 px-0 lg:max-w-[80%]  "  >
                                                     <div className="flex items-center justify-between gap-[15px]">

@@ -37,7 +37,7 @@ export default function AboutLeadership({ data }) {
           {featuredLeaders.map((item, id) => (
             <div className=" xs:w-1/2 md:w-1/2 p-[5px] lg:p-[10px]" key={id}>
               <Link
-                href={item.link ? `/chancellor/${item.link}` : "/chancellor"}
+                href={item.link ? `/leadership/${item.link}` : "/about"}
                 className=" flex flex-wrap border border-transparent dark:border-white/10 items-center p-[20px_15px] lg:p-[25px_15px] xl:p-[30px_20px] 2xl:p-[35px_25px] 3xl:p-[44px_30px] bg-white dark:bg-[#18191B] w-full h-full rounded-[10px] hover:bg-gradient-to-b hover:from-[#FFF8EE] hover:to-[#FFF3E0] hover:border-[#f9741681] dark:hover:from-white/10 dark:hover:to-white/5
                                max-sm:text-center transition-colors duration-300"
               >
@@ -92,7 +92,7 @@ export default function AboutLeadership({ data }) {
           {otherLeaders.map((item, id) => (
             <div className="w-1/2 md:w-1/3 p-[5px] lg:p-[10px]" key={id}>
               <Link
-                href={item.link ? `/chancellor/${item.link}` : "/chancellor"}
+                href={item.link ? `/leadership/${item.link}` : "/about"}
                 className=" flex flex-wrap items-center p-[20px_10px] lg:p-[8px_12px] xl:p-[10px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] bg-white dark:bg-[#18191B] dark:border dark:border-white/10 w-full h-full rounded-[10px] hover:bg-gradient-to-b hover:from-[#FFF8EE] hover:to-[#FFF3E0] dark:hover:from-white/10 dark:hover:to-white/5
                             max-sm:text-center transition-colors duration-300"
               >

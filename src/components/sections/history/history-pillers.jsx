@@ -64,7 +64,9 @@ export default function HistoryPillers({ data }) {
                                             <div className="text_1">{itemList.designation}</div>
                                         </div>
                                     </div>
-                                    <p>{itemList.description}</p>
+                                    <div className="typography">
+                                        <BlocksRenderer content={Array.isArray(itemList.description) ? itemList.description : []} />
+                                    </div>
                                 </div>
                             </SwiperSlide>
                         ))}

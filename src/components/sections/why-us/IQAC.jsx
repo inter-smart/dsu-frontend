@@ -5,11 +5,26 @@ import IQACChairmanMessage from "./IQAC-chairmanMessage";
 import IQACTeam from "./IQAC-team";
 import IQACContact from "./IQAC-contact";
 import IQACActivities from "./IQACActivities";
+import { hasContent } from "@/lib/has-content";
 
 export default function IQAC({ data }) {
     if (!data) return null;
 
-    const tabs = data.tabs || [];
+    const hasAbout = hasContent(data.aboutIqacSection);
+    const hasActivities = hasContent(data.activities?.items);
+    const hasAccreditations =
+        hasContent(data.accreditationsData?.cards) || hasContent(data.accreditationsData?.rankings);
+    const hasChairman = hasContent(data.chairmanMessage);
+    const hasTeam = hasContent(data.teamData?.tabs);
+    const hasContact = hasContent(data.contactData);
+
+    // a tab is shown only when its panel has something to render
+    const hasAboutTab = hasAbout || hasAccreditations || hasChairman || hasTeam || hasContact;
+    const tabs = (data.tabs || []).filter((tab) =>
+        tab.value === "about-iqac" ? hasAboutTab : tab.value === "iqac-activities" ? hasActivities : true,
+    );
+    if (!tabs.length) return null;
+
     const defaultTab = tabs.find((tab) => tab.active)?.value || tabs[0]?.value || "about-iqac";
 
     return (
@@ -41,17 +56,21 @@ export default function IQAC({ data }) {
                     </TabsList>
                 </div>
 
-                <TabsContent value="about-iqac" className="mt-[10px]">
-                    <IQACAbout data={data.aboutIqacSection} />
-                    <IQACAccredition data={data.accreditationsData} />
-                    <IQACChairmanMessage data={data.chairmanMessage} />
-                    <IQACTeam data={data.teamData} />
-                    <IQACContact data={data.contactData} />
-                </TabsContent>
+                {hasAboutTab && (
+                    <TabsContent value="about-iqac" className="mt-[10px]">
+                        {hasAbout && <IQACAbout data={data.aboutIqacSection} />}
+                        {hasAccreditations && <IQACAccredition data={data.accreditationsData} />}
+                        {hasChairman && <IQACChairmanMessage data={data.chairmanMessage} />}
+                        {hasTeam && <IQACTeam data={data.teamData} />}
+                        {hasContact && <IQACContact data={data.contactData} />}
+                    </TabsContent>
+                )}
 
-                <TabsContent value="iqac-activities" className="mt-[10px] pb-[50px]">
-                    <IQACActivities data={data.activities} />
-                </TabsContent>
+                {hasActivities && (
+                    <TabsContent value="iqac-activities" className="mt-[10px] pb-[50px]">
+                        <IQACActivities data={data.activities} />
+                    </TabsContent>
+                )}
             </Tabs>
         </section>
     );

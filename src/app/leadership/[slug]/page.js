@@ -1,14 +1,30 @@
+import { notFound } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
 import ChancellorMessage from "@/components/sections/chancellor/chancellor-message";
 import { getLeadershipMemberBySlug } from "@/lib/api";
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const member = await getLeadershipMemberBySlug(slug);
 
+  return {
+    title:
+      member?.seo?.metaTitle ||
+      (member?.name
+        ? `${member.name} | Dayananda Sagar University`
+        : "Leadership | Dayananda Sagar University"),
+    description: member?.seo?.metaDescription || undefined,
+    alternates: member?.seo?.canonicalUrl
+      ? { canonical: member.seo.canonicalUrl }
+      : undefined,
+  };
+}
 
 export default async function Page({ params }) {
   const { slug } = await params;
   const member = await getLeadershipMemberBySlug(slug);
 
-  if (!member) return null;
+  if (!member) notFound();
 
   return (
     <>

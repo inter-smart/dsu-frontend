@@ -92,5 +92,5 @@ const local_data = {
     }
 }
 export default function Page() {
-  redirect("/chancellor/dr-d-hemachandra-sagar");
+  redirect("/leadership/dr-d-hemachandra-sagar");
 }

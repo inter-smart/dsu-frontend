@@ -35,6 +35,47 @@ const getExternalHref = (value) => {
     }
 };
 
+// Strapi `date` is YYYY-MM-DD; parsed as UTC so the day never shifts with the viewer's timezone
+const parseDate = (value) => {
+    const date = value ? new Date(`${value}T00:00:00Z`) : null;
+    return date && !Number.isNaN(date.getTime()) ? date : null;
+};
+
+const fmt = (date, options) => date.toLocaleDateString("en-GB", { timeZone: "UTC", ...options });
+
+const formatDateRange = (start, end) => {
+    const from = parseDate(start);
+    if (!from) return null;
+    const to = parseDate(end);
+    if (!to || to.getTime() === from.getTime()) return fmt(from, { day: "numeric", month: "long", year: "numeric" });
+
+    const sameMonth = from.getUTCMonth() === to.getUTCMonth() && from.getUTCFullYear() === to.getUTCFullYear();
+    return sameMonth
+        ? `${fmt(from, { day: "numeric" })} & ${fmt(to, { day: "numeric", month: "long", year: "numeric" })}`
+        : `${fmt(from, { day: "numeric", month: "long", year: "numeric" })} - ${fmt(to, { day: "numeric", month: "long", year: "numeric" })}`;
+};
+
+// Strapi `time` is HH:mm:ss.SSS
+const formatTime = (value) => {
+    const match = /^(\d{1,2}):(\d{2})/.exec(value || "");
+    if (!match) return null;
+    const hours = Number(match[1]);
+    return `${String(hours % 12 || 12).padStart(2, "0")}:${match[2]} ${hours >= 12 ? "PM" : "AM"}`;
+};
+
+const formatTimeRange = (start, end) => {
+    const from = formatTime(start);
+    const to = formatTime(end);
+    return from && to ? `${from} - ${to}` : from || to;
+};
+
+// internal paths stay relative; anything else must be a valid http(s) URL
+const getReadMoreHref = (value) => {
+    const href = value?.trim();
+    if (!href) return null;
+    return href.startsWith("/") ? href : getExternalHref(href);
+};
+
 export default function IQACActivities({ data }) {
     if (!data) return null;
 
@@ -56,6 +97,9 @@ export default function IQACActivities({ data }) {
                     {data.items?.map((item, index) => {
                         const zoomHref = getExternalHref(item.zoomUrl);
                         const youtubeHref = getExternalHref(item.youtubeUrl);
+                        const readMoreHref = getReadMoreHref(item.readMoreUrl);
+                        const dateText = formatDateRange(item.date, item.endDate);
+                        const timeText = formatTimeRange(item.startTime, item.endTime);
 
                         return (
                         <article
@@ -83,29 +127,29 @@ export default function IQACActivities({ data }) {
                                         {item.description}
                                     </p>
                                 )}
-                                {(item.date || item.time) && (
+                                {(dateText || timeText) && (
                                     <div className="flex flex-col gap-[14px] xl:gap-[20px] mb-[22px] xl:mb-[28px] 2xl:mb-[35px]">
-                                        {item.date && (
+                                        {dateText && (
                                             <div className="flex items-center gap-[10px] text_1 font-bold text-[#1F2937] dark:text-[#E5E7EB]">
                                                 <CalendarDays className="h-[18px] w-[18px] shrink-0 text-[#F97316]" aria-hidden="true" />
-                                                <span>{item.date}</span>
+                                                <span>{dateText}</span>
                                             </div>
                                         )}
-                                        {item.time && (
+                                        {timeText && (
                                             <div className="flex items-center gap-[10px] text_1 font-bold text-[#1F2937] dark:text-[#E5E7EB]">
                                                 <Clock3 className="h-[18px] w-[18px] shrink-0 text-[#F97316]" aria-hidden="true" />
-                                                <span>{item.time}</span>
+                                                <span>{timeText}</span>
                                             </div>
                                         )}
                                     </div>
                                 )}
                                 <div className="flex flex-wrap gap-[10px]">
-                                    {item.readMoreUrl && (
-                                        <Link className="rounded-[5px] border border-black/15 dark:border-white/15 px-[20px] py-[10px] text-sm font-bold text-[#1F2937] dark:text-[#E5E7EB] hover:border-[#F97316] hover:text-[#F97316]" href={item.readMoreUrl}>
+                                    {readMoreHref && (
+                                        <Link className="rounded-[5px] border border-black/15 dark:border-white/15 px-[20px] py-[10px] text-sm font-bold text-[#1F2937] dark:text-[#E5E7EB] hover:border-[#F97316] hover:text-[#F97316]" href={readMoreHref}>
                                             Read More
                                         </Link>
                                     )}
-                                    {item.zoomUrl && (
+                                    {zoomHref && (
                                         zoomHref ? (
                                         <Link className="inline-flex items-center gap-[8px] rounded-[5px] border border-black/15 dark:border-white/15 px-[20px] py-[10px] text-sm font-bold text-[#1F2937] dark:text-[#E5E7EB] hover:border-[#2D8CFF] hover:text-[#2D8CFF]" href={zoomHref} target="_blank" rel="noopener noreferrer">
                                             <ZoomIcon />
@@ -118,7 +162,7 @@ export default function IQACActivities({ data }) {
                                             </span>
                                         )
                                     )}
-                                    {item.youtubeUrl && (
+                                    {youtubeHref && (
                                         youtubeHref ? (
                                         <Link className="inline-flex items-center gap-[8px] rounded-[5px] border border-black/15 dark:border-white/15 px-[20px] py-[10px] text-sm font-bold text-[#1F2937] dark:text-[#E5E7EB] hover:border-[#FF0000] hover:text-[#FF0000]" href={youtubeHref} target="_blank" rel="noopener noreferrer">
                                             <YouTubeIcon />

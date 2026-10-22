@@ -10,8 +10,8 @@ export async function getGovernancePageBySlug(slug) {
 }
 
 // ── Leadership Members ────────────────────────────────────────────────────────
-export async function getLeadershipMembers(category) {
-  return fetchAPI("/api/leadership-members", { category });
+export async function getLeadershipMembers() {
+  return fetchAPI("/api/leadership-members");
 }
 
 export async function getLeadershipMemberBySlug(slug) {
