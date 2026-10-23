@@ -22,7 +22,10 @@ export default function ChancellorMessage({ data }) {
     const phone = typeof data?.phone === "string" ? data.phone.trim() : "";
     const telHref = toTelHref(phone);
     const linkText = typeof data?.linkText === "string" ? data.linkText.trim() : "";
-    const hasLink = isRealLink(data?.linkUrl) && linkText !== "";
+    // an uploaded file takes priority over the url; it opens/downloads in a new tab
+    const hasFile = isRealLink(data?.linkFileUrl);
+    const linkHref = hasFile ? data.linkFileUrl.trim() : isRealLink(data?.linkUrl) ? data.linkUrl.trim() : "";
+    const hasLink = linkHref !== "" && linkText !== "";
     const hasContactList = hasEmail || Boolean(telHref) || hasLink;
     const hasImage = Boolean(data?.image?.url);
     const hasSidebar = hasImage || hasContactList;
@@ -89,7 +92,7 @@ export default function ChancellorMessage({ data }) {
                                 )}
                                 {hasLink && (
                                 <li className="py-[13px] border-b border-black/20 dark:border-white/10 last-of-type:border-0">
-                                    <Link href={data.linkUrl.trim()} className="flex gap-[10px] group">
+                                    <Link href={linkHref} {...(hasFile ? { target: "_blank", rel: "noopener noreferrer", download: true } : {})} className="flex gap-[10px] group">
                                         <div className="w-[18px] xl:w-[20px] 3xl:w-[22px] h-[18px] 2xl:w-[20px] 3xl:h-[22px] flex">
                                             <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M8.80575 12.5627C7.56342 12.5627 6.34899 12.1943 5.31603 11.5041C4.28307 10.8139 3.47797 9.83286 3.00255 8.6851C2.52714 7.53733 2.40274 6.27437 2.64511 5.05591C2.88748 3.83745 3.48572 2.71822 4.36418 1.83976C5.24264 0.961302 6.36186 0.363064 7.58032 0.120697C8.79878 -0.12167 10.0617 0.00272157 11.2095 0.478141C12.3573 0.95356 13.3383 1.75865 14.0285 2.79161C14.7187 3.82457 15.0871 5.03901 15.0871 6.28134C15.0852 7.94668 14.4229 9.54329 13.2453 10.7209C12.0677 11.8984 10.4711 12.5608 8.80575 12.5627ZM8.80575 1.75C7.90954 1.75 7.03345 2.01576 6.28828 2.51367C5.5431 3.01158 4.96231 3.71928 4.61934 4.54727C4.27638 5.37526 4.18664 6.28636 4.36149 7.16536C4.53633 8.04435 4.9679 8.85175 5.60161 9.48547C6.23533 10.1192 7.04274 10.5508 7.92173 10.7256C8.80072 10.9004 9.71182 10.8107 10.5398 10.4677C11.3678 10.1248 12.0755 9.54398 12.5734 8.79881C13.0713 8.05364 13.3371 7.17755 13.3371 6.28134C13.3355 5.08003 12.8576 3.92836 12.0082 3.0789C11.1587 2.22945 10.0071 1.75155 8.80575 1.75Z" fill="url(#paint0_linear_6104_14918)" />

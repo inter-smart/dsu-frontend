@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
+import { cn } from "@/lib/utils";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -16,7 +17,8 @@ import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar"
 import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
 
 // placementMenuItems: optional [{ label, href }] for the Placement pill menu (otherwise it loads its own)
-export default function InnerHero({ data, placementMenuItems }) {
+// className: optional extra classes for the hero <section> (e.g. a page-specific hook)
+export default function InnerHero({ data, placementMenuItems, className }) {
   if (!data) return null;
   const isVideo = data?.heroMedia?.mime?.includes("video");
   const hasMenubar = Boolean(
@@ -36,7 +38,7 @@ export default function InnerHero({ data, placementMenuItems }) {
     ];
 
   return (
-    <section className="relative z-0 block h-[350px] w-full md:h-[450px] xl:h-[500px] 2xl:h-[600px] 3xl:h-[750px]">
+    <section className={cn("relative z-0 block h-[350px] w-full md:h-[450px] xl:h-[500px] 2xl:h-[600px] 3xl:h-[750px]", className)}>
       {/* Background Media */}
       <div className="absolute inset-0 z-0 h-full w-full">
         <div className="absolute inset-0 z-10 bg-black/10" />

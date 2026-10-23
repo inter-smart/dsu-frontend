@@ -28,7 +28,7 @@ export default async function Page({ params }) {
 
   return (
     <>
-      {member.hero && <InnerHero data={member.hero} />}
+      {member.hero && <InnerHero data={member.hero} className="leadership-detail-hero" />}
       <ChancellorMessage
         data={{
           name: member.name,
@@ -37,6 +37,7 @@ export default async function Page({ params }) {
           phone: member.phone,
           linkText: member.linkText,
           linkUrl: member.linkUrl,
+          linkFileUrl: member.linkFileUrl,
           closingNote: member.message,
           image: member.image,
           description: member.bio,
