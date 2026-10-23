@@ -27,6 +27,7 @@ export default function PoPsoSection({ data }) {
                             <div className="mt-[30px] lg:mt-[40px]">
                                 <Link
                                     href={data.po.button.href || "#"}
+                                    {...(data.po.button.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                                     className="group relative flex items-center gap-[20px] justify-between w-fit py-[15px] 2xl:py-[18px] 3xl:py-[22px]   dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
                                 >
                                     <span className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 bg-gradient-to-r from-[#DC2626]/5 to-[#F97316]/5 transition-transform duration-500 ease-out -z-10" />
@@ -77,6 +78,7 @@ export default function PoPsoSection({ data }) {
                             <div className="mt-[30px] lg:mt-[40px]">
                                 <Link
                                     href={data.pso.button.href || "#"}
+                                    {...(data.pso.button.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                                     className="group relative flex items-center gap-[20px] justify-between w-fit py-[15px] 2xl:py-[18px] 3xl:py-[22px]   dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
                                 >
                                     <span className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 bg-gradient-to-r from-[#DC2626]/5 to-[#F97316]/5 transition-transform duration-500 ease-out -z-10" />
@@ -127,6 +129,7 @@ export default function PoPsoSection({ data }) {
                             <div className="mt-[30px] lg:mt-[40px]">
                                 <Link
                                     href={data.peo.button.href || "#"}
+                                    {...(data.peo.button.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                                     className="group relative flex items-center gap-[20px] justify-between w-fit py-[15px] 2xl:py-[18px] 3xl:py-[22px]   dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
                                 >
                                     <span className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 bg-gradient-to-r from-[#DC2626]/5 to-[#F97316]/5 transition-transform duration-500 ease-out -z-10" />

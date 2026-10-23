@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
-import { getDepartmentTab, getProgrammeBySlug } from "@/lib/api";
-import { departmentHref, programmeHref } from "@/lib/schools/items";
+import { getDepartmentLibraryPage, getDepartmentTab, getProgrammeTab } from "@/lib/api";
+import { departmentHref, libraryHref, librarySidebarItems, programmeBase, programmeHref } from "@/lib/schools/items";
 
 // Department and programme pages, resolved from the real hierarchy:
 //   /ai-enabled/[school]/[department]/[tab]
-//   /ai-enabled/[school]/[department]/programs/[programme]/[tab]
-//   /schools/[school]/programs/[programme]/[tab]            (programme owned by the school or, as an
-//                                                            alias, by one of its departments)
+//   /ai-enabled/[school]/programs/[programme]/[tab]         (every programme, school-direct or owned by a
+//                                                            department; the old /schools/... and
+//                                                            /ai-enabled/[school]/[department]/programs/...
+//                                                            URLs redirect here)
 // A tab is listed in the menu (and reachable) only when the API has something for it.
 export const DEPARTMENT_TABS = [
   { key: "overview", label: "Overview" },
@@ -14,7 +15,6 @@ export const DEPARTMENT_TABS = [
   { key: "programs", label: "Programs Offered" },
   { key: "faculty", label: "Faculty" },
   { key: "laboratories", label: "Laboratories" },
-  { key: "research-areas", label: "Research Areas" },
   { key: "industry-connect", label: "Industry Connect" },
   { key: "library", label: "Library" },
   { key: "student-chapters", label: "Student Chapters" },
@@ -42,11 +42,22 @@ const menuHref = (base, tab) => `${base}/${tab}`;
 
 const menuFor = (tabs, base) => tabs.map((t) => ({ label: t.label, href: menuHref(base, t.key) }));
 
-// An API HTML field is only usable as a non-empty string (an empty field arrives as []).
-export const htmlOrNull = (v) => (typeof v === "string" && v.trim() ? v : null);
+// Vision & Mission has no page of its own: it is the #vision-mission section of the department Overview.
+const VISION_MISSION_ITEM = { label: "Vision & Mission", anchor: "vision-mission" };
 
-// Every programme tab is listed (and clickable), even when its content is empty.
-const programmeTabKeys = () => PROGRAM_TABS.map((t) => t.key);
+// Department menu: the tabs the API has content for, with Vision & Mission right after Overview and the
+// Library's sub-pages (Overview + each published sub-page) as the Library item's sub-menu.
+function departmentMenu(tabs, base, schoolSlug, departmentSlug, librarySubpages = []) {
+  return tabs.flatMap((t) => {
+    const item = { label: t.label, href: menuHref(base, t.key) };
+    if (t.key === "library" && librarySubpages.length) {
+      item.submenu = librarySidebarItems(schoolSlug, departmentSlug, librarySubpages).map(({ label, slug }) => ({ label, href: slug }));
+    }
+    return t.key === "overview"
+      ? [item, { label: VISION_MISSION_ITEM.label, href: `${menuHref(base, "overview")}#${VISION_MISSION_ITEM.anchor}` }]
+      : [item];
+  });
+}
 
 // Hero for an entity page: the API hero (its own banner or the school's), full breadcrumb.
 function buildHero(apiHero, trail, title) {
@@ -84,40 +95,74 @@ export async function loadDepartmentPage(schoolSlug, departmentSlug, tab) {
       // a breadcrumb set on the tab's own Hero wins over the generated trail
       ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
     },
-    menuItems: menuFor(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base),
+    menuItems: departmentMenu(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base, schoolSlug, departmentSlug, res.librarySubpages),
     menuHome: base,
   };
 }
 
+// One Library sub-page of a department (/ai-enabled/[school]/[department]/library/[page]); 404s for an
+// unknown department, a department of another school, or a page the Library entry does not list.
+export async function loadDepartmentLibraryPage(schoolSlug, departmentSlug, pageSlug) {
+  const res = await getDepartmentLibraryPage(departmentSlug, pageSlug);
+  if (!res?.slug || res.school?.slug !== schoolSlug || !res.page?.slug) notFound();
+
+  const available = new Set(["overview", ...(res.availableTabs ?? [])]);
+  if (!available.has("library")) notFound();
+
+  const base = departmentHref(schoolSlug, departmentSlug);
+  const trail = [
+    { label: res.school.name, href: `/schools/${schoolSlug}` },
+    { label: res.name, href: base },
+    { label: "Library", href: libraryHref(schoolSlug, departmentSlug) },
+    { label: res.page.title, href: libraryHref(schoolSlug, departmentSlug, pageSlug) },
+  ];
+
+  return {
+    school: res.school,
+    department: res,
+    page: res.page,
+    sidebar: librarySidebarItems(schoolSlug, departmentSlug, res.sidebar),
+    hero: {
+      ...buildHero(res.hero, trail, res.hero?.title || res.page.title),
+      ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
+    },
+    menuItems: departmentMenu(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base, schoolSlug, departmentSlug, res.librarySubpages),
+    menuHome: base,
+  };
+}
+
+// One tab of a programme. Every tab is listed (and clickable) even when its content is empty; the page then
+// renders just the hero and menu. `departmentSlug` is only passed by the old department URL, which must match.
 export async function loadProgramPage(schoolSlug, programmeSlug, tab, departmentSlug) {
   const entry = PROGRAM_TABS.find((t) => t.key === tab);
   if (!entry) notFound();
 
-  const programme = await getProgrammeBySlug(programmeSlug);
+  const res = await getProgrammeTab(programmeSlug, tab);
   // the school is the programme's own or, through its department, the department's
-  if (!programme?.slug || programme.school?.slug !== schoolSlug) notFound();
-  if (departmentSlug && programme.department?.slug !== departmentSlug) notFound();
+  if (!res?.slug || res.school?.slug !== schoolSlug) notFound();
+  if (departmentSlug && res.department?.slug !== departmentSlug) notFound();
 
-  const available = new Set(programmeTabKeys());
-  if (!available.has(tab)) notFound();
-
-  const owner = programme.department;
-  const base = programmeHref(schoolSlug, programmeSlug, owner?.slug);
+  const owner = res.department;
+  const base = programmeBase(schoolSlug, programmeSlug);
   const trail = [
-    { label: programme.school.name, href: `/schools/${schoolSlug}` },
+    { label: res.school.name, href: `/schools/${schoolSlug}` },
     ...(owner ? [{ label: owner.name, href: departmentHref(schoolSlug, owner.slug) }] : []),
-    { label: programme.title, href: base },
-    ...(tab === "overview" ? [] : [{ label: entry.label, href: tabHref(base, tab) }]),
+    { label: res.title, href: programmeHref(schoolSlug, programmeSlug) },
+    ...(tab === "overview" ? [] : [{ label: entry.label, href: menuHref(base, tab) }]),
   ];
 
   return {
-    school: programme.school,
-    programme,
+    school: res.school,
+    programme: res,
+    data: res.tab ?? {},
     label: entry.label,
-    canonical: tabHref(base, tab),
-    hero: buildHero(programme.hero, trail, programme.title),
-    menuItems: menuFor(PROGRAM_TABS.filter((t) => available.has(t.key)), base),
-    menuHome: owner ? departmentHref(schoolSlug, owner.slug) : `/schools/${schoolSlug}`,
+    canonical: menuHref(base, tab),
+    hero: {
+      ...buildHero(res.hero, trail, res.hero?.title || res.title),
+      // a breadcrumb set on the tab's own Hero wins over the generated trail
+      ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
+    },
+    menuItems: menuFor(PROGRAM_TABS, base),
   };
 }
 
@@ -125,20 +170,39 @@ export async function loadProgramPage(schoolSlug, programmeSlug, tab, department
 
 const LEVEL_CODES = { Undergraduate: "UG", Postgraduate: "PG" };
 
-// Department programmes → AcademicProgram `categories` (one per level), as /ai-enabled/program-offered.
-export function departmentProgramsSection(schoolSlug, department, programmes = department.programmes) {
+// Department programmes → AcademicProgram `categories`, as /ai-enabled/program-offered. The Programs
+// Offered entry (`section`: title, description, offers → linked programmes) wins when it has offers;
+// otherwise the department's programmes are grouped by level.
+export function departmentProgramsSection(schoolSlug, department, programmes = department.programmes, section) {
+  const programItem = (p) => ({
+    id: p.slug,
+    title: p.title,
+    url: programmeHref(schoolSlug, p.slug),
+    degree: p.level,
+    duration: p.duration,
+  });
+
+  const offers = (section?.offers ?? []).filter((o) => o?.programmes?.some((p) => p?.slug) || o?.label || o?.description);
+  if (offers.length) {
+    return {
+      heading: section.title || "Programs Offered",
+      ...(section.description ? { description: section.description } : {}),
+      categories: offers.map((o, i) => ({
+        id: o.id ?? i,
+        badge: o.badge,
+        label: o.label,
+        description: o.description,
+        programs: (o.programmes ?? []).filter((p) => p?.slug).map(programItem),
+      })),
+    };
+  }
+
   const byLevel = new Map();
   for (const p of programmes ?? []) {
     if (!p?.slug) continue;
     const level = p.level || "Programmes";
     if (!byLevel.has(level)) byLevel.set(level, []);
-    byLevel.get(level).push({
-      id: p.slug,
-      title: p.title,
-      url: programmeHref(schoolSlug, p.slug, department.slug),
-      degree: p.level,
-      duration: p.duration,
-    });
+    byLevel.get(level).push(programItem(p));
   }
   const categories = [...byLevel].map(([level, programs]) => ({
     id: level,
@@ -147,29 +211,4 @@ export function departmentProgramsSection(schoolSlug, department, programmes = d
     programs,
   }));
   return categories.length ? { heading: "Programs Offered", categories } : null;
-}
-
-const blockText = (node) =>
-  Array.isArray(node?.children) ? node.children.map((c) => (c.type === "text" ? c.text ?? "" : blockText(c))).join("") : "";
-
-// Strapi Blocks → one subject string per list item / paragraph.
-function blocksToLines(blocks) {
-  if (!Array.isArray(blocks)) return [];
-  return blocks
-    .flatMap((b) => (b.type === "list" ? (b.children ?? []).map(blockText) : [blockText(b)]))
-    .map((line) => line.trim())
-    .filter(Boolean);
-}
-
-// Programme curriculum items ({ semester, courses: blocks }) → BscCurriculum `semesters`.
-export function curriculumSection(programme) {
-  const semesters = (programme.curriculum ?? [])
-    .map((c, i) => ({
-      id: c.id ?? i,
-      slug: `sem-${i + 1}`,
-      label: c.semester || `Semester ${i + 1}`,
-      subjects: blocksToLines(c.courses),
-    }))
-    .filter((s) => s.subjects.length);
-  return semesters.length ? { heading: "Curriculum", semesters } : null;
 }

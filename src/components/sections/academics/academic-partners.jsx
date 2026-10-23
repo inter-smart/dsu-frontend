@@ -69,7 +69,7 @@ export default function AcademicPartners({ data, varient }) {
                                     <div className="w-full h-full flex items-center justify-center p-[15px]">
                                         <Image
                                             src={partner.logo?.url}
-                                            alt={partner.logo?.alternativeText || "Partner logo"}
+                                            alt={partner.logo?.alternativeText || partner.name || "Partner logo"}
                                             width={110}
                                             height={40}
                                             className="object-contain max-h-[35px] xl:max-h-[36px] lg:min-w-[150px] w-full h-full object-contain flex items-center justify-center dark:bg-white/90 dark:rounded-[4px] dark:p-[4px]"
@@ -106,7 +106,7 @@ export default function AcademicPartners({ data, varient }) {
                                     <div className="w-full h-full flex items-center justify-center p-[15px]">
                                         <Image
                                             src={partner.logo?.url}
-                                            alt={partner.logo?.alternativeText || "Partner logo"}
+                                            alt={partner.logo?.alternativeText || partner.name || "Partner logo"}
                                             width={110}
                                             height={40}
                                             className="object-contain max-h-[30px] xl:max-h-[36px] w-auto flex items-center justify-center dark:bg-white/90 dark:rounded-[4px] dark:p-[4px]"

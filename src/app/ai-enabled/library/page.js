@@ -153,7 +153,6 @@ export default function page() {
             <InnerHero data={local_data.hero} />
             <AiAcademicMenubar className="lg:!hidden block" />
             <LibraryOverview data={local_data.librarySection} />
-
         </>
     )
 }

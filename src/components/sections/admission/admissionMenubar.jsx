@@ -85,7 +85,8 @@ const loadDynamicItems = () => {
   if (!admissionsPromise) {
     admissionsPromise = getAdmissions().then((entries) =>
       (entries || [])
-        .filter((e) => e.slug)
+        // the Programme entry is the static "Programme" item below, not a second menu item
+        .filter((e) => e.slug && e.template !== "programme")
         .map((e) => ({
           label: e.menuLabel || e.title,
           href: `/admission/${e.slug}`,

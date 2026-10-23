@@ -1,11 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function SchoolCampus({ data }) {
+    // slug of the school whose programme list is open (cards with `groups` are clickable)
+    const [openSlug, setOpenSlug] = useState(null);
     if (!data) return null;
+
+    const openSchool = data?.schoolsSection?.items?.find((item) => item.groups && item.slug === openSlug);
 
     return (
         <section className="relative py-[30px] sm:py-[40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010]">
@@ -28,9 +33,11 @@ export default function SchoolCampus({ data }) {
                             </div>
                         )}
                         <div className="flex flex-wrap -m-[5px] md:-m-[10px_5px] xl:-m-[15px_5px] 3xl:-m-[20px_10px]">
-                            {data.schoolsSection.items.map((item, id) => (
-                                <div className="w-1/2 sm:w-1/3 md:w-1/4 p-[5px] md:p-[10px_5px] xl:p-[15px_5px] 3xl:p-[20px_10px]" key={id}>
-                                    <div className="w-full h-full border border-black/10 rounded-[10px] p-[20px_10px] dark:bg-[#242424]  text-center">
+                            {data.schoolsSection.items.map((item, id) => {
+                                const isOpen = Boolean(item.groups) && item.slug === openSlug;
+                                const cardClass = `w-full h-full border rounded-[10px] p-[20px_10px] dark:bg-[#242424] text-center ${isOpen ? "border-(--basecolor) shadow-md" : "border-black/10"}`;
+                                const content = (
+                                    <>
                                         {item?.title && (
                                             <div className="text-[12px] xl:text-[14px] 2xl:text-[17px] 3xl:text-[22px] text-[#212121] dark:text-white font-semibold">
                                                 {item.title}
@@ -39,10 +46,74 @@ export default function SchoolCampus({ data }) {
                                         {item?.programCount && (
                                             <div className="text_1 dark:text-[#d35700]">{item.programCount}</div>
                                         )}
+                                    </>
+                                );
+                                return (
+                                    <div className="w-1/2 sm:w-1/3 md:w-1/4 p-[5px] md:p-[10px_5px] xl:p-[15px_5px] 3xl:p-[20px_10px]" key={id}>
+                                        {item.groups ? (
+                                            <button
+                                                type="button"
+                                                className={`${cardClass} cursor-pointer transition-shadow hover:shadow-md`}
+                                                aria-expanded={isOpen}
+                                                aria-controls="school-programmes-panel"
+                                                onClick={() => setOpenSlug(isOpen ? null : item.slug)}
+                                            >
+                                                {content}
+                                            </button>
+                                        ) : (
+                                            <div className={cardClass}>{content}</div>
+                                        )}
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
+                        {openSchool && (
+                            <div id="school-programmes-panel" className="w-full mt-[15px] xl:mt-[25px] border border-black/10 rounded-[10px] bg-white dark:bg-[#242424] p-[15px] xl:p-[25px_30px]">
+                                <div className="flex flex-wrap items-center justify-between gap-[10px] mb-[15px]">
+                                    <div className="text-[16px] xl:text-[22px] 2xl:text-[28px] text-[#212121] dark:text-white font-semibold">
+                                        {openSchool.title}
+                                    </div>
+                                    {openSchool.href && (
+                                        <Link href={openSchool.href} className="text-[12px] xl:text-[14px] 2xl:text-[16px] font-bold underline underline-offset-4 text-(--basecolor)">
+                                            View school
+                                        </Link>
+                                    )}
+                                </div>
+                                {openSchool.groups.length > 0 ? (
+                                    <div className="space-y-[20px]">
+                                        {openSchool.groups.map((group) => (
+                                            <div key={group.id ?? group.title}>
+                                                {group.title && (
+                                                    <div className="text-[14px] xl:text-[17px] 3xl:text-[22px] text-[#212121] dark:text-white font-semibold mb-[8px]">
+                                                        {group.href ? (
+                                                            <Link href={group.href} className="hover:text-(--basecolor)">{group.title}</Link>
+                                                        ) : (
+                                                            group.title
+                                                        )}
+                                                    </div>
+                                                )}
+                                                <ul className="grid gap-x-[20px] gap-y-[6px] sm:grid-cols-2 lg:grid-cols-3">
+                                                    {group.programmes.map((programme) => (
+                                                        <li key={programme.id}>
+                                                            <Link href={programme.href} className="text_1 hover:text-(--basecolor) hover:underline">
+                                                                {programme.title}
+                                                                {(programme.academicLevel || programme.meta) && (
+                                                                    <span className="text-[#4A5565] dark:text-[#9CA3AF]">
+                                                                        {` (${[programme.academicLevel, programme.meta].filter(Boolean).join(", ")})`}
+                                                                    </span>
+                                                                )}
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p className="text_1">Programmes will be listed soon.</p>
+                                )}
+                            </div>
+                        )}
                     </div>
                 )}
                 {data?.campusesSection?.items?.length > 0 && (

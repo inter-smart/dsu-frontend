@@ -37,7 +37,7 @@ export default function Journey({ data }) {
         <div
           className="text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-normal text-center [&>*]:text-[#FFF2F2] mb-3.75 2xl:mb-6.25 [&_br]:max-md:hidden"
           dangerouslySetInnerHTML={{
-            __html: data?.description,
+            __html: data?.description || "",
           }}
         />
         <div className="w-full h-auto gap-1.25 xl:gap-2.5 mb-2.5 sm:mb-3.75 xl:mb-5 2xl:mb-7.5 flex flex-wrap justify-center">

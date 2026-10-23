@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -396,15 +396,19 @@ export default function AcademicContact({ data, schoolSlug }) {
                                             <div className="text_1 text-[#212121] font-medium dark:text-white leading-tight mb-[4px]">
                                                  E-Mail:
                                             </div>
-                                            {emails.map((email) => (
-                                                <a
-                                                    key={email}
-                                                    href={`mailto:${email}`}
-                                                    className="block text_1 text-[#4A5565] dark:text-[#D1D5DB] hover:text-[#DC2626] transition-colors"
-                                                >
-                                                    {email}
-                                                </a>
-                                            ))}
+                                            <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">
+                                                {emails.map((email, i) => (
+                                                    <Fragment key={email}>
+                                                        {i > 0 && " / "}
+                                                        <a
+                                                            href={`mailto:${email}`}
+                                                            className="hover:text-[#DC2626] transition-colors"
+                                                        >
+                                                            {email}
+                                                        </a>
+                                                    </Fragment>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
 
@@ -429,7 +433,10 @@ export default function AcademicContact({ data, schoolSlug }) {
                                                 Admissions Helpline:
                                             </div>
                                             <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">
-                                               <a href={contactInfo.helpline} className="w-fit block hover:text-[#DC2626] transition-colors"> {contactInfo.helpline}</a>
+                                               <PhoneNumbers
+                                                    value={phones.join(" / ")}
+                                                    linkClassName="hover:text-[#DC2626] transition-colors"
+                                               />
                                             </div>
                                         </div>
                                     </div>

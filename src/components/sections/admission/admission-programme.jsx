@@ -22,9 +22,9 @@ export default function AdmissionProgramme({ data }) {
           </Heading>
           <Text>{data?.description}</Text>
         </div>
-        <Tabs defaultValue={data?.categories[0]?.id} className="w-full">
+        <Tabs defaultValue={data?.categories?.[0]?.id} className="w-full">
           <TabsList className="w-full h-auto! mb-5 2xl:mb-7.5 3xl:mb-8.75 gap-2.5 2xl:gap-3.75 p-0 bg-transparent rounded-none flex flex-wrap justify-start">
-            {data?.categories.map((items) => (
+            {data?.categories?.map((items) => (
               <TabsTrigger
                 key={items?.id}
                 value={items?.id}
@@ -34,13 +34,13 @@ export default function AdmissionProgramme({ data }) {
               </TabsTrigger>
             ))}
           </TabsList>
-          {data?.categories.map((items) => (
+          {data?.categories?.map((items) => (
             <TabsContent key={items?.id} value={items?.id}>
               <Accordion
-                defaultValue={[items?.courses[0]?.id]}
+                defaultValue={[items?.courses?.[0]?.id]}
                 className="w-full h-auto gap-1.25 2xl:gap-2.5"
               >
-                {items?.courses.map((item) => (
+                {items?.courses?.map((item) => (
                   <AccordionItem
                     key={item?.id}
                     value={item?.id}
@@ -51,18 +51,33 @@ export default function AdmissionProgramme({ data }) {
                     </AccordionTrigger>
                     <AccordionContent>
                       <div className="w-full h-auto p-(--gap) pt-0 gap-1.25 flex flex-col">
-                        {item?.items.map((item) => (
-                          <Link
-                            key={item?.link}
-                            href={item?.link}
-                            className="text-sm 2xl:text-base 3xl:text-xl leading-[1.4] font-medium text-[#212121] w-full h-auto p-[10px_15px] 2xl:p-[15px_20px] 3xl:p-[15px_30px] bg-white rounded-[10px] 2xl:rounded-[15px] border border-[#E3E9EF] overflow-hidden !no-underline flex items-center justify-between transition-colors duration-300 hover:bg-(--basecolor2)/10 hover:border-(--basecolor)"
-                          >
-                            <span>{item?.title}</span>
-                            <span className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] shrink-0">
-                              {items?.label}
-                            </span>
-                          </Link>
-                        ))}
+                        {item?.items?.map((item, index) => {
+                          const rowClassName =
+                            "text-sm 2xl:text-base 3xl:text-xl leading-[1.4] font-medium text-[#212121] w-full h-auto p-[10px_15px] 2xl:p-[15px_20px] 3xl:p-[15px_30px] bg-white rounded-[10px] 2xl:rounded-[15px] border border-[#E3E9EF] overflow-hidden !no-underline flex items-center justify-between transition-colors duration-300";
+                          const row = (
+                            <>
+                              <span>{item?.title}</span>
+                              <span className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] shrink-0">
+                                {items?.label}
+                              </span>
+                            </>
+                          );
+                          const key = `${item?.title}-${index}`;
+                          // a row without a linked programme stays visible, just not clickable
+                          return item?.link ? (
+                            <Link
+                              key={key}
+                              href={item.link}
+                              className={`${rowClassName} hover:bg-(--basecolor2)/10 hover:border-(--basecolor)`}
+                            >
+                              {row}
+                            </Link>
+                          ) : (
+                            <div key={key} className={rowClassName}>
+                              {row}
+                            </div>
+                          );
+                        })}
                       </div>
                     </AccordionContent>
                   </AccordionItem>

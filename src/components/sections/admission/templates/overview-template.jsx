@@ -2,9 +2,11 @@ import OverviewSection from "../overviewSection";
 import WhySection from "../WhySection";
 import SchoolCampus from "../SchoolCampus";
 import AdmissionSection from "../admissionSection";
+import { getDepartments, getProgrammes, getSchools } from "@/lib/api";
+import { buildSchoolCards } from "@/lib/schools/admission-schools";
 
-// Schools (heading, description, school list) are not managed in the CMS yet;
-// campuses come from overview.campusesSection
+// Schools heading / description are not managed in the CMS yet; the school cards (with every programme
+// under each school) come from the schools / departments / programmes API, campuses from overview.campusesSection
 const SCHOOL_CAMPUS = {
   heading: "Schools & Campuses",
   description: [
@@ -18,62 +20,17 @@ const SCHOOL_CAMPUS = {
       ],
     },
   ],
-  schoolsSection: {
-    heading: "Schools",
-    items: [
-      {
-        id: 1,
-        title: "School of Engineering",
-        programCount: "19 Programs",
-        href: "#",
-      },
-      {
-        id: 2,
-        title: "School of Computer Applications",
-        programCount: "07 Programs",
-        href: "#",
-      },
-      {
-        id: 3,
-        title: "School of Law",
-        programCount: "04 Programs",
-        href: "#",
-      },
-      {
-        id: 4,
-        title: "School of Basic & Applied Sciences",
-        programCount: "07 Programs",
-        href: "#",
-      },
-      {
-        id: 5,
-        title: "School of Commerce & Management",
-        programCount: "5 Programs",
-        href: "#",
-      },
-      {
-        id: 6,
-        title: "School of Health Sciences",
-        programCount: "17 Programs",
-        href: "#",
-      },
-      {
-        id: 7,
-        title: "School of Arts, Design & Humanities",
-        programCount: "01 Programs",
-        href: "#",
-      },
-      {
-        id: 8,
-        title: "School of Design & Digital Trans Media",
-        programCount: "04 Programs",
-        href: "#",
-      },
-    ],
-  },
 };
 
-export default function OverviewTemplate({ data }) {
+export default async function OverviewTemplate({ data }) {
+  const [schools, departments, programmes] = await Promise.all([
+    getSchools(),
+    getDepartments(),
+    getProgrammes(),
+  ]);
+  const cards = buildSchoolCards(schools, departments, programmes);
+  const schoolsSection = cards.length ? { heading: "Schools", items: cards } : undefined;
+
   return (
     <>
       {data.programOverviewSection && (
@@ -81,7 +38,7 @@ export default function OverviewTemplate({ data }) {
       )}
       {data.whyChoose && <WhySection data={data.whyChoose} />}
       <SchoolCampus
-        data={{ ...SCHOOL_CAMPUS, campusesSection: data.campusesSection }}
+        data={{ ...SCHOOL_CAMPUS, schoolsSection, campusesSection: data.campusesSection }}
       />
       {data.admission && <AdmissionSection data={data.admission} />}
     </>
