@@ -1912,20 +1912,23 @@ export default async function Home() {
     news_list: pickList(newsList, local.latestNews.news_list),
   };
 
+  // The CMS sends { showSection: false } for a section switched off with "Show This Section".
+  const hidden = (key) => cms?.[key]?.showSection === false;
+
   return (
     <main className="flex flex-col min-h-screen">
       <HomeHero data={heroSlides} />
-      <HomeExcellence data={pick(cms?.centresOfExcellence, local.centresOfExcellence, "excellence")} />
-      <HomeAcademic data={pick(cms?.academicPrograms, local.academicPrograms, "academics")} />
-      <HomeResearch data={local.researchInnovation} />
-      <HomeIndustry data={local.industryCollaboration} />
-      <HomeAbout data={homeAbout} />
-      <HomeTestimonials data={pick(cms?.studentSuccess, local.studentSuccess, "successStories")} />
-      <HomeCampusLife data={pick(cms?.campusLife, local.campusLife, "featureCards")} />
-      <HomeCollaborations data={pick(cms?.internationalCollaboration, local.internationalCollaboration, "countries")} />
-      <Events data={events} />
-      <News data={news} />
-      <Journey data={pick(cms?.journey, local.journey, "ctaLinks")} />
+      {!hidden("centresOfExcellence") && <HomeExcellence data={pick(cms?.centresOfExcellence, local.centresOfExcellence, "excellence")} />}
+      {!hidden("academicPrograms") && <HomeAcademic data={pick(cms?.academicPrograms, local.academicPrograms, "academics")} />}
+      {!hidden("researchInnovation") && <HomeResearch data={local.researchInnovation} />}
+      {!hidden("industryCollaboration") && <HomeIndustry data={local.industryCollaboration} />}
+      {!hidden("homeAbout") && <HomeAbout data={homeAbout} />}
+      {!hidden("studentSuccess") && <HomeTestimonials data={pick(cms?.studentSuccess, local.studentSuccess, "successStories")} />}
+      {!hidden("campusLife") && <HomeCampusLife data={pick(cms?.campusLife, local.campusLife, "featureCards")} />}
+      {!hidden("internationalCollaboration") && <HomeCollaborations data={pick(cms?.internationalCollaboration, local.internationalCollaboration, "countries")} />}
+      {!hidden("events") && <Events data={events} />}
+      {!hidden("latestNews") && <News data={news} />}
+      {!hidden("journey") && <Journey data={pick(cms?.journey, local.journey, "ctaLinks")} />}
     </main>
   );
 }

@@ -392,17 +392,20 @@ export async function generateMetadata() {
 export default async function Page() {
   const data = mergeData(await getAiFirstPage());
 
+  // The CMS sends { showSection: false } for a section switched off with "Show This Section".
+  const hidden = (section) => section?.showSection === false;
+
   return (
     <>
       <AiFirstHero data={data.hero} />
-      <AboutInitiative data={data.aboutSection} />
-      <EducationAmplified data={data.educationSection} />
-      <ResearchDomains data={data.domainsSection} />
-      <ResearchEngagement data={data.engagementSection} />
-      <AiLeadership data={data.leadershipSection} />
-      <BePartOfFuture data={data.futureSection} />
-      <ShapeFuture data={data.shapeSection} />
-      <ReadyCta data={data.readySection} />
+      {!hidden(data.aboutSection) && <AboutInitiative data={data.aboutSection} />}
+      {!hidden(data.educationSection) && <EducationAmplified data={data.educationSection} />}
+      {!hidden(data.domainsSection) && <ResearchDomains data={data.domainsSection} />}
+      {!hidden(data.engagementSection) && <ResearchEngagement data={data.engagementSection} />}
+      {!hidden(data.leadershipSection) && <AiLeadership data={data.leadershipSection} />}
+      {!hidden(data.futureSection) && <BePartOfFuture data={data.futureSection} />}
+      {!hidden(data.shapeSection) && <ShapeFuture data={data.shapeSection} />}
+      {!hidden(data.readySection) && <ReadyCta data={data.readySection} />}
     </>
   );
 }

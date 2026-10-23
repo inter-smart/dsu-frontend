@@ -946,19 +946,22 @@ export default async function Page() {
     const pageData = await getNvidiaPage();
     const data = mergeData(pageData, local_data);
 
+    // The CMS sends { showSection: false } for a section switched off with "Show This Section".
+    const hidden = (section) => section?.showSection === false;
+
     return (
         <>
             <BannerSection data={data.heroBanner} />
-            <TechnologySection data={data.technologySection} />
-            <ArchitectureSection data={data.ArchitectureSection} />
-            <StackSection data={data.nvidiaAiStackSection} />
-            <JourneySection data={data.journey} />
-            <AiTrainingSection data={data.AiTraining} />
-            <AiTools data={data.aiTools} />
-            <BuildSection data={data.build} />
-            <WhysetupSection data={data.whySetup} />
-            <GatewaySection data={data.gateWay} />
-            <MasterAi data={data.readySection} />
+            {!hidden(data.technologySection) && <TechnologySection data={data.technologySection} />}
+            {!hidden(data.ArchitectureSection) && <ArchitectureSection data={data.ArchitectureSection} />}
+            {!hidden(data.nvidiaAiStackSection) && <StackSection data={data.nvidiaAiStackSection} />}
+            {!hidden(data.journey) && <JourneySection data={data.journey} />}
+            {!hidden(data.AiTraining) && <AiTrainingSection data={data.AiTraining} />}
+            {!hidden(data.aiTools) && <AiTools data={data.aiTools} />}
+            {!hidden(data.build) && <BuildSection data={data.build} />}
+            {!hidden(data.whySetup) && <WhysetupSection data={data.whySetup} />}
+            {!hidden(data.gateWay) && <GatewaySection data={data.gateWay} />}
+            {!hidden(data.readySection) && <MasterAi data={data.readySection} />}
         </>
     );
 }
