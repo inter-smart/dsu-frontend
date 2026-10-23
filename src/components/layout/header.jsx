@@ -397,6 +397,18 @@ const local_data = {
       id: 5,
       url: "#!",
       label: "Placements",
+      children: [
+        {
+          id: 1,
+          url: "#!",
+          label: "Undergraduate Admissions",
+        },
+        {
+          id: 2,
+          url: "#!",
+          label: "Undergraduate Admissions",
+        },
+      ]
     },
     {
       id: 6,
@@ -490,15 +502,26 @@ export default function Header({ data = local_data }) {
     };
   }, [isHeaderVisible]);
   useEffect(() => {
+    let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
     let ticking = false;
 
     const handleScroll = () => {
       if (ticking) return;
 
       window.requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
+        const currentScrollY = Math.max(0, window.scrollY);
         setIsScrolled(currentScrollY > 10);
-        setIsHeaderVisible(true);
+
+        if (currentScrollY <= 10) {
+          setIsHeaderVisible(true);
+        } else if (currentScrollY > lastScrollY && currentScrollY > 80) {
+          setIsHeaderVisible(false);
+          setOpenMenuId(null);
+        } else if (currentScrollY < lastScrollY) {
+          setIsHeaderVisible(true);
+        }
+
+        lastScrollY = currentScrollY;
         ticking = false;
       });
       ticking = true;
@@ -680,9 +703,9 @@ export default function Header({ data = local_data }) {
                     />
                   </Link>
                 </div>
-                <div className="w-auto h-auto">
+                <div className="w-auto h-auto m-auto">
                   <div
-                    className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white"
+                    className="max-sm:text-[9px] text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white"
                     dangerouslySetInnerHTML={{
                       __html: data?.logo?.logoText,
                     }}
@@ -700,7 +723,7 @@ export default function Header({ data = local_data }) {
                     <Link
                       href={item?.url}
                       aria-label={item?.label}
-                      className="text-[10px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-5 border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
+                      className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-5 border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
                     >
                       {item?.label}
                     </Link>
@@ -943,9 +966,16 @@ export default function Header({ data = local_data }) {
                 onActivate={() => openMenu(item?.id)}
                 onDeactivate={scheduleCloseMenu}
                 isMenuOpen={openMenuId === item?.id}
+                items={data?.navigationLinks}
+                activeChildId={activeChildId}
+                setActiveChildId={setActiveChildId}
+                keepMenuOpen={keepMenuOpen}
+                scheduleCloseMenu={scheduleCloseMenu}
                 className={cn(
-                  "w-auto h-auto lg:p-[20px_10px] xl:p-[20px_20px] 2xl:p-5 3xl:p-7.5 first:pl-0 last:pr-0 transition-opacity duration-400 relative z-0 hover:before:lg:w-[calc(100%-40px)] hover:before:2xl:w-[calc(100%-50px)] hover:before:3xl:w-[calc(100%-70px)] before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
-                  openMenuId === item?.id && "before:lg:w-[calc(100%-40px)] before:2xl:w-[calc(100%-50px)] before:3xl:w-[calc(100%-70px)]",
+                  "w-auto h-auto lg:p-[20px_10px] xl:p-[20px_20px] 2xl:p-5 3xl:p-7.5 first:pl-0 last:pr-0 transition-opacity duration-400 relative hover:before:lg:w-[calc(100%-40px)] hover:before:2xl:w-[calc(100%-50px)] hover:before:3xl:w-[calc(100%-70px)] before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
+                  openMenuId === item?.id
+                    ? "z-50 before:lg:w-[calc(100%-40px)] before:2xl:w-[calc(100%-50px)] before:3xl:w-[calc(100%-70px)]"
+                    : "z-0",
                   isSearchOpen && "opacity-0",
                 )}
               />
@@ -1012,14 +1042,6 @@ export default function Header({ data = local_data }) {
               </button>
             </div>
           </div>
-          <MegaMenuPanel
-            itemId={openMenuId}
-            items={data?.navigationLinks}
-            activeChildId={activeChildId}
-            setActiveChildId={setActiveChildId}
-            onKeepOpen={keepMenuOpen}
-            onLeave={scheduleCloseMenu}
-          />
         </div>
       )}
     </header>
@@ -1122,13 +1144,13 @@ function MegaMenuPanel({
       onMouseEnter={onKeepOpen}
       onMouseLeave={onLeave}
       className={cn(
-        "h-auto absolute top-full z-50 pt-1",
+        "w-max h-auto absolute top-full z-50 pt-1",
         alignRight ? "right-0" : "left-0",
       )}
     >
       {/* Smooth entrance animation */}
       <div
-        className="w-auto h-auto max-w-full"
+        className="w-auto h-auto"
         style={{
           animation: "megaMenuIn 0.18s cubic-bezier(0.16,1,0.3,1) both",
         }}
@@ -1139,8 +1161,8 @@ function MegaMenuPanel({
             to   { opacity: 1; transform: translateY(0) scale(1); }
           }
         `}</style>
-        <div className="w-fit max-w-full overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.22)] rounded-b-[8px]">
-          <div className="w-fit max-w-full flex items-stretch">
+        <div className="w-fit overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.22)] rounded-b-[8px]">
+          <div className="w-fit flex items-stretch">
             {/* ─── Vibrant Orange/Red Gradient Sidebar ─── */}
             <nav className="w-[260px] 2xl:w-[280px] 3xl:w-[320px] shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-5 flex flex-col justify-start">
               {children.map((child) => {
@@ -1231,6 +1253,11 @@ function NavigationMenu({
   onActivate,
   onDeactivate,
   isMenuOpen = false,
+  items,
+  activeChildId,
+  setActiveChildId,
+  keepMenuOpen,
+  scheduleCloseMenu,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
@@ -1314,18 +1341,18 @@ function NavigationMenu({
             className={cn(
               level === 0
                 ? cn(
-                    "text-sm font-medium transition-colors",
-                    isOpen
-                      ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent font-bold"
-                      : "text-[#212121] dark:text-white",
-                  )
+                  "text-sm font-medium transition-colors",
+                  isOpen
+                    ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent font-bold"
+                    : "text-[#212121] dark:text-white",
+                )
                 : level === 1
                   ? cn(
-                      "text-[13.5px] font-semibold transition-colors",
-                      isOpen
-                        ? "text-(--basecolor)"
-                        : "text-[#212121] dark:text-white",
-                    )
+                    "text-[13.5px] font-semibold transition-colors",
+                    isOpen
+                      ? "text-(--basecolor)"
+                      : "text-[#212121] dark:text-white",
+                  )
                   : "text-xs font-bold uppercase tracking-wider text-[#ea580c]",
             )}
           >
@@ -1401,7 +1428,7 @@ function NavigationMenu({
     }
     return (
       <div
-        className={cn("relative z-0", className)}
+        className={cn("relative", isMenuOpen ? "z-50" : "z-0", className)}
         onMouseEnter={onActivate}
         onMouseLeave={onDeactivate}
       >
@@ -1432,6 +1459,16 @@ function NavigationMenu({
             )}
           />
         </div>
+        {isMenuOpen && (
+          <MegaMenuPanel
+            itemId={item?.id}
+            items={items}
+            activeChildId={activeChildId}
+            setActiveChildId={setActiveChildId}
+            onKeepOpen={keepMenuOpen}
+            onLeave={scheduleCloseMenu}
+          />
+        )}
       </div>
     );
   }
