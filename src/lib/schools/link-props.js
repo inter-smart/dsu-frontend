@@ -1,11 +1,15 @@
-// Link attributes for a CMS file/URL link: external opens in a new tab, otherwise it downloads.
-export function externalLinkProps(isExternal) {
-    return isExternal ? { target: "_blank", rel: "noopener noreferrer" } : { download: true };
+// Link attributes for a link to an uploaded file or external URL: always opens in a new tab.
+export function fileLinkProps() {
+    return { target: "_blank", rel: "noopener noreferrer" };
 }
 
-// Props for a formatted CMS link ({ url, isExternal, isFile }): external opens in a new tab, an internal
-// page link stays in the same tab, and only an uploaded file downloads.
+// Link attributes for a CMS file/URL link; files and external links both open in a new tab.
+export function externalLinkProps() {
+    return fileLinkProps();
+}
+
+// Props for a formatted CMS link ({ url, isExternal, isFile }): external links and uploaded files open in a new tab,
+// an internal page link stays in the same tab.
 export function ctaLinkProps(link) {
-    if (link?.isExternal) return externalLinkProps(true);
-    return link?.isFile ? externalLinkProps(false) : {};
+    return link?.isExternal || link?.isFile ? fileLinkProps() : {};
 }
