@@ -1,6 +1,7 @@
 "use client";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
+import { fileLinkProps, isFileUrl } from "@/lib/schools/link-props";
 import {
     Accordion,
     AccordionContent,
@@ -36,6 +37,7 @@ export default function SchoolPlacement({ data }) {
                                                 <div className="w-full lg:w-1/2">
                                                     <Link
                                                         href={reports?.href}
+                                                        {...(isFileUrl(reports?.href) ? fileLinkProps() : {})}
                                                         key={reports.id}
                                                         className="group relative flex items-center !no-underline justify-between lg:max-w-[70%] py-[15px] 2xl:py-[18px] 3xl:py-[22px] border-b  dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
                                                     >

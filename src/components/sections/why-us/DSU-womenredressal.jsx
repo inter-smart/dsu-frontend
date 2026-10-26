@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
+import { fileLinkProps } from "@/lib/schools/link-props";
 import StudentSupportSidebar from "./StudentSupportSidebar";
 import {
     Accordion,
@@ -211,7 +212,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                                     <div className="flex flex-wrap -m-[5px] md:-m-[8px] xl:-m-[10px]">
                                         {validDocuments.map((item,idx) =>
                                             <div className="w-full sm:w-1/2 p-[5px] md:p-[8px] xl:p-[10px]" key={idx}>
-                                                <Link href={item.file.url} className="flex items-center justify-between  py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 px-0 lg:max-w-[80%]  "  >
+                                                <Link href={item.file.url} {...fileLinkProps()} className="flex items-center justify-between  py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 px-0 lg:max-w-[80%]  "  >
                                                     <div className="flex items-center justify-between gap-[15px]">
                                                         <div className="w-[18px] xl:w-[20px] 2xl:w-[25px] 3xl:w-[33px] h-[15px] xl:h-[18px] 2xl:h-[20px] 3xl:h-[23px] flex items-center justify-center">
                                                             <svg width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link"; 
 import DsuActSidebarSection from "./dsuActSidebarSection";
+import { fileLinkProps } from "@/lib/schools/link-props";
 
 const P_CLASS = "text_1 leading-[1.2] text-[#4A5565] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]";
 const UL_CLASS = "mb-[20px] lg:mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]";
@@ -82,7 +83,7 @@ export default function DSUAct({ data, menu }) {
                             {data?.document?.file?.url && (
                             <Link
                                 href={data.document.file.url}
-                                {...(data.document.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                {...fileLinkProps()}
                                 className="flex items-center justify-between pb-[14px] 2xl:pb-[15px] 3xl:pb-[20px] border-b border-black/20 w-full sm:w-1/2 md:w-[220px] lg:w-[250px] xl:w-[300px] 2xl:w-[360px] 3xl::w-[450px]"  >
                                 <div className="flex items-center justify-between gap-[15px]">
                                     <div className="w-[16px] xl:w-[18px] 2xl:w-[22px] 3xl:w-[30px] h-[12px] xl:h-[16px] 2xl:h-[18px] 3xl:h-[20px] flex items-center justify-center">

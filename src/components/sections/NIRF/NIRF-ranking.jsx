@@ -6,6 +6,7 @@ import NIRFSidebar from './NIRFSidebar';
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
+import { fileLinkProps } from "@/lib/schools/link-props";
 
 export default function NIRFRanking({ data, menu = [], basePath = "/national-Ranking", activeSlug }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
@@ -81,7 +82,7 @@ export default function NIRFRanking({ data, menu = [], basePath = "/national-Ran
                                         {data.ranking.report && (
                                         <Link
                                             href={data.ranking.report.url}
-                                            {...(data.ranking.report.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                            {...fileLinkProps()}
                                             className="min-w-[115px] xl:min-w-[135px] 2xl:min-w-[165px] 3xl:min-w-[204px] h-[35px] 2xl:h-[40px] 3xl:h-[54px] flex items-center justify-between p-[1px] rounded-[5px] w-fit overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] transition-all duration-200 ease-in-out hover:shadow-[0_6px_20px_rgba(220,38,38,0.18)] !no-underline"
                                         >
                                             <div className="text_1 text-[#212121] font-bold bg-white w-full h-full flex items-center justify-between !no-underline gap-[10px] rounded-[5px] px-[15px] transition-all duration-100 ease-in-out hover:bg-transparent hover:text-white">
