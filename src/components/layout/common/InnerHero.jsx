@@ -38,10 +38,10 @@ export default function InnerHero({ data, placementMenuItems, className }) {
     ];
 
   return (
-    <section className={cn("relative z-0 block h-[350px] w-full md:h-[450px] xl:h-[500px] 2xl:h-[600px] 3xl:h-[750px]", className)}>
+    <section className={cn("relative z-0 block h-[330px] w-full md:h-[330px] xl:h-[350px] 2xl:h-[450px] 3xl:h-[750px]", className)}>
       {/* Background Media */}
       <div className="absolute inset-0 z-0 h-full w-full">
-        <div className="absolute inset-0 z-10 bg-black/10" />
+        <div className="absolute inset-0 z-10 bg-black/25" />
 
         {isVideo ? (
           <video autoPlay muted loop playsInline className="h-full w-full object-cover">
