@@ -69,6 +69,8 @@ const TEMPLATE_ORDER = [
   "hostel",
   "dates",
   "download",
+  "faqs",
+  "contact",
 ];
 
 const STATIC_ITEMS_BEFORE = [
