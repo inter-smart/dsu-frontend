@@ -1,3 +1,8 @@
+// True when a URL points at a downloadable document (PDF etc.), ignoring query string / hash.
+export function isFileUrl(url) {
+    return /\.(pdf|docx?|xlsx?|pptx?|zip)$/i.test(String(url ?? "").split(/[?#]/)[0]);
+}
+
 // Link attributes for a link to an uploaded file or external URL: always opens in a new tab.
 export function fileLinkProps() {
     return { target: "_blank", rel: "noopener noreferrer" };
