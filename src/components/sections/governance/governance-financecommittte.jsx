@@ -67,17 +67,19 @@ export default function GovernanceFinancecommittte({ data, title, governancePage
                                         >
                                             <td className="rounded-l-[10px] p-[15px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px] relative  after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last-of-type:after:hidden">
                                                 <div className="flex items-center min-w-[200px] xl:min-w-[250px] 2xl:min-w-[300px] 3xl:min-w-[375px]">
-                                                    <div className="h-[50px] xl:h-[61px] 2xl:h-[73px] 3xl:h-[92px] w-[50px] xl:w-[61px] 2xl:w-[73px] 3xl:w-[92px] shrink-0 overflow-hidden rounded-full">
-                                                        <Image
-                                                            src={item.image}
-                                                            width={92}
-                                                            height={92}
-                                                            className="h-full w-full object-cover"
-                                                            alt={item.name || "Committee member"}
-                                                        />
-                                                    </div>
+                                                    {item.image && (
+                                                        <div className="h-[50px] xl:h-[61px] 2xl:h-[73px] 3xl:h-[92px] w-[50px] xl:w-[61px] 2xl:w-[73px] 3xl:w-[92px] shrink-0 overflow-hidden rounded-full">
+                                                            <Image
+                                                                src={item.image}
+                                                                width={92}
+                                                                height={92}
+                                                                className="h-full w-full object-cover"
+                                                                alt={item.name || "Committee member"}
+                                                            />
+                                                        </div>
+                                                    )}
 
-                                                    <div className="w-[calc(100%-50px)] xl:w-[calc(100%-61px)] 2xl:w-[calc(100%-73px)] 3xl:w-[calc(100%-92px)] pl-[15px] xl:pl-[25px] 2xl:pl-[35px] 3xl:pl-[45px]">
+                                                    <div className={`${item.image ? "w-[calc(100%-50px)] xl:w-[calc(100%-61px)] 2xl:w-[calc(100%-73px)] 3xl:w-[calc(100%-92px)] pl-[15px] xl:pl-[25px] 2xl:pl-[35px] 3xl:pl-[45px]" : "w-full"}`}>
                                                         <div className="text_1 font-semibold text-[#212121]">
                                                             {item.name}
                                                         </div>
