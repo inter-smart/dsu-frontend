@@ -1,6 +1,19 @@
 "use client";
 
 import Image from "next/image";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+
+// CMS descriptions are rich-text blocks; the static page still passes plain strings.
+function Description({ value, className }) {
+    if (Array.isArray(value)) {
+        return value.length > 0 ? (
+            <div className={className}>
+                <BlocksRenderer content={value} />
+            </div>
+        ) : null;
+    }
+    return value ? <p className={className}>{value}</p> : null;
+}
 
 export default function AcademicVisionMission({ data }) {
     if (!data) return null;
@@ -68,11 +81,7 @@ export default function AcademicVisionMission({ data }) {
                                     )}
 
                                     {/* Mission Description */}
-                                    {mission.description && (
-                                        <p className="text_1 text-white font-normal">
-                                            {mission.description}
-                                        </p>
-                                    )}
+                                    <Description value={mission.description} className="text_1 text-white font-normal" />
                                 </div>
                             )}
                         </div>
@@ -103,11 +112,7 @@ export default function AcademicVisionMission({ data }) {
                                 )}
 
                                 {/* Vision Description / Intro */}
-                                {vision.description && (
-                                    <p className="text_1 font-semibold text-slate-200 mb-[16px] xl:mb-[22px]">
-                                        {vision.description}
-                                    </p>
-                                )}
+                                <Description value={vision.description} className="text_1 font-semibold text-slate-200 mb-[16px] xl:mb-[22px]" />
 
                                 {/* Points List (M1 to M5) */}
                                 {vision.points?.length > 0 && (

@@ -46,7 +46,14 @@ export default async function Page({ params }) {
         </div>
       )}
       {hasContent(data.messageFromDean) && (
-        <DeanMessage data={data.messageFromDean} varient="home" />
+        <DeanMessage
+          data={{
+            ...data.messageFromDean,
+            // static button: always opens the full Dean / HoD message tab
+            cta: { label: "Read More", url: `/schools/${slug}/dean-message` },
+          }}
+          varient="home"
+        />
       )}
       {hasContent(data.whyChooseThisSchool) && (
         <AcademicWhychoose data={data.whyChooseThisSchool} />
