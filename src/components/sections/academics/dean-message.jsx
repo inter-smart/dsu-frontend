@@ -18,7 +18,7 @@ export default function DeanMessage({ data, varient }) {
 
     return (
         <section className="relative py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
-            <div className="container">
+            <div className="container typography">
                 <div className="relative after:content-[''] after:table after:clear-both">
                     {/* Floating Dean Image Card (Floated Left on md and above) */}
                     <div className={`w-full ${varient === "home"
@@ -77,8 +77,8 @@ export default function DeanMessage({ data, varient }) {
                         <h2 className={`text-[25px] sm:text-[28px] md:text-[32px] xl:text-[40px] 2xl:text-[46px] 3xl:text-[55px] font-bold leading-tight text-[#212121] dark:text-[#F9FAFB] 
                          mb-[12px] xl:mb-[16px] 2xl:mb-[20px] 
                          ${varient === "home"
-                        ? "pt-0 xl:pt-[10px] max-w-[85%]"
-                        : "xl:pt-[30px] 2xl:pt-[40px] 3xl::pt-[60px]"} `}>
+                                ? "pt-0 xl:pt-[10px] max-w-[85%]"
+                                : "xl:pt-[30px] 2xl:pt-[40px] 3xl::pt-[60px]"} `}>
                             {heading}
                         </h2>
                     )}
@@ -96,33 +96,42 @@ export default function DeanMessage({ data, varient }) {
                             {Array.isArray(message) ? (
                                 <BlocksRenderer content={message} />
                             ) : (
-                                <p>{message}</p>
+                                <div className="">
+                                    <p>{message}</p>
+
+                                </div>
                             )}
                         </div>
                     )}
+                    <ul>
+                        <li>gfhgg</li>
+                        <li>gfhgg</li>
+                        <li>gfhgg</li>
+                        <li>gfhgg</li>
+                    </ul>
                     {data.cta && (
                         <Link href={data.cta.file.url}
-                              className="group relative flex h-[30px] w-fit mt-[20px] xl:mt-[30px] min-w-[130px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
-                                    >
-                                        <span className="relative z-[1] transition-transform duration-300  ">
-                                            { data.cta.label}</span>
+                            className="group relative flex h-[30px] w-fit mt-[20px] xl:mt-[30px] min-w-[130px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
+                        >
+                            <span className="relative z-[1] transition-transform duration-300  ">
+                                {data.cta.label}</span>
 
-                                        <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
-                                            <svg
-                                                width="11"
-                                                height="9"
-                                                viewBox="0 0 11 9"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="transition-transform duration-300 group-hover:rotate-180"
-                                            >
-                                                <circle cx="5.12232" cy="0.919192" r="0.919192" fill="white" />
-                                                <circle cx="5.12232" cy="4.33325" r="0.919192" fill="white" />
-                                                <circle cx="5.12232" cy="7.74732" r="0.919192" fill="white" />
-                                                <circle cx="9.32349" cy="4.33325" r="0.919192" fill="white" />
-                                                <circle cx="0.919192" cy="4.33325" r="0.919192" fill="white" />
-                                            </svg>
-                                        </div>
+                            <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
+                                <svg
+                                    width="11"
+                                    height="9"
+                                    viewBox="0 0 11 9"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="transition-transform duration-300 group-hover:rotate-180"
+                                >
+                                    <circle cx="5.12232" cy="0.919192" r="0.919192" fill="white" />
+                                    <circle cx="5.12232" cy="4.33325" r="0.919192" fill="white" />
+                                    <circle cx="5.12232" cy="7.74732" r="0.919192" fill="white" />
+                                    <circle cx="9.32349" cy="4.33325" r="0.919192" fill="white" />
+                                    <circle cx="0.919192" cy="4.33325" r="0.919192" fill="white" />
+                                </svg>
+                            </div>
 
 
 
