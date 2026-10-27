@@ -7,7 +7,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 function Description({ value, className }) {
     if (Array.isArray(value)) {
         return value.length > 0 ? (
-            <div className={className}>
+            <div className={`${className} [&_p]:text-inherit [&_p]:font-[inherit]`}>
                 <BlocksRenderer content={value} />
             </div>
         ) : null;
