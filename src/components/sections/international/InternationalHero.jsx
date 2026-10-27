@@ -43,8 +43,8 @@ export default function InternationalHero({ data }) {
             <div className="container">
                 <div className="grid   gap-8 lg:grid-cols-2 lg:gap-7 2xl:gap-[25px]">
                     {/* Text */}
-                    <div className="2xl:pr-[40px]">
-                        <h1 className="text-[28px] font-bold text-[#1a1a1a] sm:text-[34px] lg:text-[38px] 2xl:text-[42px] 3xl:text-[55px] leading-snug">
+                    <div className="w-full">
+                        <h1 className="text-[28px] font-bold text-[#1a1a1a] md:text-[30px] lg:text-[35px] 2xl:text-[42px] 3xl:text-[55px] leading-snug">
                             {title}
                         </h1>
                         <p className="mt-5 text-[14px] leading-[1.7] text-[#555] lg:text-[15px] 2xl:mt-[40px] 2xl:max-w-[780px] 2xl:text-[18px] 2xl:leading-[29px]">

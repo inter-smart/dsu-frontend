@@ -2,75 +2,87 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
 
-// Fade slides by distance from the centre: centre and its neighbours stay
-// fully visible, the next ones fade out (matches the design).
-const updateFade = (swiper) => {
-    swiper.slides.forEach((slide) => {
-        const distance = Math.abs(slide.progress);
-        const opacity = distance <= 1 ? 1 : Math.max(0.15, 1 - (distance - 1) * 0.4);
-        slide.style.opacity = String(opacity);
-    });
-};
+function InnovationCard({ card, priority }) {
+    const { title, description, href = "#", image } = card;
 
-export default function AwardsSlider({ data }) {
-    const { title, items } = data;
+    return (
+        <Link
+            href={href}
+            className="group relative block aspect-[325/292] w-full overflow-hidden rounded-[6px] bg-[#111] shadow-[0_2px_8px_rgba(0,0,0,0.25)] outline-none focus-visible:ring-2 focus-visible:ring-(--basecolor) focus-visible:ring-offset-2"
+        >
+            <Image
+                src={image.url}
+                alt={image.alternativeText || title}
+                fill
+                priority={priority}
+                sizes="(max-width: 639px) 85vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, (max-width: 1535px) 25vw, 20vw"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-105 motion-reduce:transition-none"
+            />
+
+            {/* Dark gradient so text stays readable on every photo */}
+            <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-linear-to-t from-black/90 via-black/55 to-black/5"
+            />
+
+            <div className="absolute inset-x-0 bottom-0 px-5 pb-5 lg:px-6 lg:pb-6">
+                <h3 className="max-w-[9ch] text-[20px] font-semibold leading-[1.3] text-white lg:text-[22px] 2xl:text-[26px] 2xl:leading-[34px]">
+                    {title}
+                </h3>
+                <p className="mt-3 text-[14px] leading-[1.6] text-white/95 lg:text-[15px] 2xl:mt-[18px] 2xl:text-[18px] 2xl:leading-[29px]">
+                    {description}
+                </p>
+            </div>
+        </Link>
+    );
+}
+
+export default function InnovationCenters({ data }) {
+    const { title, description, cards = [] } = data;
     const [prevEl, setPrevEl] = useState(null);
     const [nextEl, setNextEl] = useState(null);
 
-    // Loop needs more slides than the widest view (7), so repeat the list when it is short
-    const slides = items.length < 14 ? [...items, ...items] : items;
-
+    // swiper-button-lock is added by Swiper when every card fits (5 cards on 2xl),
+    // so the buttons hide themselves on the full-width desktop layout
     const navButton =
-        "absolute top-1/2 z-20 flex size-5 -translate-y-1/2 items-center justify-center rounded-full border border-black/10 bg-white text-(--basecolor) shadow-md transition-colors duration-300 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:text-white disabled:opacity-40 lg:size-8 2xl:size-[40px]";
+        "absolute top-1/2 z-20 flex size-8 -translate-y-1/2 items-center justify-center rounded-full border border-black/10 bg-white text-(--basecolor) shadow-md transition-colors duration-300 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:text-white disabled:opacity-40 [&.swiper-button-lock]:hidden 2xl:size-[40px]";
 
     return (
-        <section
-            id="awards"
-            className="w-full bg-linear-to-b from-[#F1F5FB] to-[#F8FAFD] py-10 lg:py-14 2xl:py-[60px]"
-        >
+        <section id="innovation-centres" className="w-full bg-[#F4F8FD] py-10 lg:py-14 2xl:py-[60px]">
             <div className="container">
-                <h2 className="mb-6 text-center text-[18px] font-semibold uppercase tracking-[0.02em] text-[#111] lg:mb-8 lg:text-[20px] 2xl:mb-[40px] 2xl:text-[22px]">
+                <h2 className="text-[28px] font-bold leading-tight text-[#1a1a1a] md:text-[30px] lg:text-[35px] 2xl:text-[42px] 3xl:text-[52px]">
                     {title}
                 </h2>
+                <p className="mt-2 text-[14px] leading-[1.6] text-[#333] lg:text-[15px] 2xl:mt-[10px] 2xl:text-[18px]">
+                    {description}
+                </p>
 
-                <div className="relative">
+                <div className="relative mt-6 lg:mt-8 2xl:mt-[34px]">
                     <Swiper
                         modules={[Navigation]}
                         navigation={{ prevEl, nextEl }}
-                        loop
-                        centeredSlides
-                        watchSlidesProgress
+                        watchOverflow
+                        grabCursor
                         speed={500}
-                        slidesPerView={1.6}
-                        spaceBetween={12}
+                        slidesPerView={1.15}
+                        spaceBetween={16}
                         breakpoints={{
-                            480: { slidesPerView: 2.4, spaceBetween: 14 },
-                            768: { slidesPerView: 3.4, spaceBetween: 16 },
-                            1024: { slidesPerView: 5, spaceBetween: 18 },
-                            1280: { slidesPerView: 7, spaceBetween: 20 },
+                            640: { slidesPerView: 2, spaceBetween: 16 },
+                            1024: { slidesPerView: 3, spaceBetween: 20 },
+                            1280: { slidesPerView: 4, spaceBetween: 22 },
+                            1536: { slidesPerView: 5, spaceBetween: 24 },
                         }}
-                        onSwiper={updateFade}
-                        onProgress={updateFade}
-                        onResize={updateFade}
-                        onBreakpoint={updateFade}
-                        className="[&_.swiper-slide]:transition-opacity [&_.swiper-slide]:duration-300"
+                        className="-mx-1 px-1 py-1 [&_.swiper-slide]:h-auto"
                     >
-                        {slides.map((item, index) => (
-                            <SwiperSlide key={`${item.id}-${index}`} className="!h-auto">
-                                <div className="relative aspect-[236/124] w-full overflow-hidden rounded-[10px] border border-black/15 bg-white/70">
-                                    <Image
-                                        src={item.image.url}
-                                        alt={item.image.alternativeText}
-                                        fill
-                                        sizes="(max-width: 767px) 45vw, (max-width: 1279px) 20vw, 14vw"
-                                        className="object-contain p-3 lg:p-4"
-                                    />
-                                </div>
+                        {cards.map((card, i) => (
+                            <SwiperSlide key={card.id ?? i}>
+                                <InnovationCard card={card} priority={i < 2} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
@@ -79,7 +91,7 @@ export default function AwardsSlider({ data }) {
                     <button
                         ref={setPrevEl}
                         type="button"
-                        aria-label="Previous award"
+                        aria-label="Previous centre"
                         className={`${navButton} left-0 lg:-left-2 2xl:-left-[26px]`}
                     >
                         <ChevronLeft className="w-5" />
@@ -87,7 +99,7 @@ export default function AwardsSlider({ data }) {
                     <button
                         ref={setNextEl}
                         type="button"
-                        aria-label="Next award"
+                        aria-label="Next centre"
                         className={`${navButton} right-0 lg:-right-2 2xl:-right-[26px]`}
                     >
                         <ChevronRight className="w-5" />
