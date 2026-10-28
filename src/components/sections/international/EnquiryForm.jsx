@@ -228,7 +228,7 @@ export default function EnquiryForm({ data, className = "" }) {
                                 />
                                 <FieldLabel
                                     htmlFor="enquiry-consent"
-                                    className="cursor-pointer text-[13px] font-normal leading-[1.6] text-[#444] 2xl:text-[15px] 2xl:leading-[22px]"
+                                    className="cursor-pointer !text_1 "
                                 >
                                     {consent}
                                 </FieldLabel>
