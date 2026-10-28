@@ -253,7 +253,9 @@
     ol > li {
       @apply my-1 lg:my-1.5 font-medium;
     }
-
+    ul{
+      @apply  !ml-4
+    }
     ul > li {
       @apply list-disc;
     }
