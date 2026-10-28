@@ -13,7 +13,7 @@ export default function InstructionsAccordion({ data }) {
     const { title, items = [], defaultOpen } = data;
 
     return (
-        <section id="instructions" className="relative w-full overflow-hidden bg-[#F3F5F8] py-8 lg:py-12 2xl:py-[60px]">
+        <section id="instructions" className="relative w-full overflow-hidden bg-[#F3F5F8] py-8 lg:py-12 2xl:py-[60px] scroll-mt-24">
             {/* Background image */}
             <Image
                 src="/images/course-bg-1.png"

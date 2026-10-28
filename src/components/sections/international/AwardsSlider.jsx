@@ -7,8 +7,7 @@ import { Navigation } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
 
-// Fade slides by distance from the centre: centre and its neighbours stay
-// fully visible, the next ones fade out (matches the design).
+ 
 const updateFade = (swiper) => {
     swiper.slides.forEach((slide) => {
         const distance = Math.abs(slide.progress);
@@ -31,7 +30,7 @@ export default function AwardsSlider({ data }) {
     return (
         <section
             id="awards"
-            className="w-full bg-linear-to-b from-[#F1F5FB] to-[#F8FAFD] py-10 lg:py-14 2xl:py-[60px]"
+            className="w-full bg-linear-to-b from-[#F1F5FB] to-[#F8FAFD] py-10 lg:py-14 2xl:py-[60px] scroll-mt-24"
         >
             <div className="container">
                 <h2 className="mb-6 text-center text-[18px] font-semibold uppercase tracking-[0.02em] text-[#111] lg:mb-8 lg:text-[20px] 2xl:mb-[40px] 2xl:text-[22px]">

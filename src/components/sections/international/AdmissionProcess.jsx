@@ -13,7 +13,7 @@ export default function AdmissionProcess({ data }) {
     return (
         <section
             id="admission-process"
-            className="w-full bg-linear-to-b from-[#F1F5FC] via-[#F3F6FC] to-[#FFF6EC] py-10 lg:py-14 2xl:py-[70px]"
+            className="w-full bg-linear-to-b from-[#F1F5FC] via-[#F3F6FC] to-[#FFF6EC] py-10 lg:py-14 2xl:py-[70px] scroll-mt-24"
         >
             <div className="container">
                 {/* Heading + CTA */}

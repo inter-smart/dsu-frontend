@@ -1,6 +1,26 @@
+import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Grip } from "lucide-react";
+
+// One paragraph: a plain string, or an array of strings and { bold } parts
+function Paragraph({ content }) {
+    const parts = Array.isArray(content) ? content : [content];
+
+    return (
+        <p className="text-[14px] leading-[1.7] text-[#555] lg:text-[15px] 2xl:text-[18px] 2xl:leading-[29px]">
+            {parts.map((part, i) =>
+                typeof part === "string" ? (
+                    <Fragment key={i}>{part}</Fragment>
+                ) : (
+                    <strong key={i} className="font-semibold text-[#444]">
+                        {part.bold}
+                    </strong>
+                ),
+            )}
+        </p>
+    );
+}
 
 function AnnouncementBar({ items }) {
     // List is rendered twice so the -50% translate loops without a jump
@@ -37,30 +57,47 @@ function AnnouncementBar({ items }) {
 
 export default function InternationalHero({ data }) {
     const { title, description, button, image, badge, announcements } = data;
+    const paragraphs = Array.isArray(description) ? description : [description];
 
     return (
-        <section id="about-us" className="w-full bg-white py-8 lg:py-12 2xl:py-[70px]">
+        <section id="about-us" className="w-full bg-white py-8 lg:py-12 2xl:py-[70px] scroll-mt-24">
             <div className="container">
-                <div className="grid   gap-8 lg:grid-cols-2 lg:gap-7 2xl:gap-[25px]">
+                <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10 2xl:gap-[35px]">
                     {/* Text */}
-                    <div className="w-full">
-                        <h1 className="text-[28px] font-bold text-[#1a1a1a] md:text-[30px] lg:text-[35px] 2xl:text-[42px] 3xl:text-[55px] leading-snug">
+                    <div className="2xl:pr-[40px]">
+                        <h1 className="text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[#1a1a1a] sm:text-[34px] lg:text-[38px] xl:text-[46px] 2xl:text-[56px] 2xl:leading-[60px]">
                             {title}
                         </h1>
-                        <p className="mt-5 text-[14px] leading-[1.7] text-[#555] lg:text-[15px] 2xl:mt-[40px] 2xl:max-w-[780px] 2xl:text-[18px] 2xl:leading-[29px]">
-                            {description}
-                        </p>
-                        <Link
-                            href={button.href}
-                            className="mt-6 inline-flex h-[44px] items-center gap-4 rounded-[3px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-5 text-[15px] font-medium text-white transition-opacity duration-300 hover:opacity-90 2xl:mt-[44px] 2xl:h-[50px] 2xl:gap-[18px] 2xl:text-[18px]"
-                        >
-                            {button.label}
-                            <Grip className="size-4 text-white/80 2xl:size-[18px]" strokeWidth={2} />
-                        </Link>
+
+                        <div className="mt-5 space-y-4 2xl:mt-[40px] 2xl:max-w-[790px] 2xl:space-y-[29px]">
+                            {paragraphs.map((paragraph, i) => (
+                                <Paragraph key={i} content={paragraph} />
+                            ))}
+                        </div>
+
+                        {button && (
+                            <Link
+                                href={button.href}
+                                {...(button.newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                className="mt-6 inline-flex min-h-[44px] items-center gap-4 rounded-[3px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-5 py-2 text-[15px] font-medium text-white transition-opacity duration-300 hover:opacity-90 2xl:mt-[50px] 2xl:h-[50px] 2xl:gap-[18px] 2xl:py-0 2xl:text-[18px]"
+                            >
+                                {button.label}
+                                <div className="size-[16px] flex items-center justify-center">
+                                    <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="7.68152" cy="1.37879" r="1.37879" fill="white" />
+                                        <circle cx="7.68152" cy="6.49988" r="1.37879" fill="white" />
+                                        <circle cx="7.68152" cy="11.621" r="1.37879" fill="white" />
+                                        <circle cx="13.9852" cy="6.49988" r="1.37879" fill="white" />
+                                        <circle cx="1.37879" cy="6.49988" r="1.37879" fill="white" />
+                                    </svg>
+
+                                </div>
+                            </Link>
+                        )}
                     </div>
 
                     {/* Image + NAAC badge */}
-                    <div className="relative aspect-[855/544] w-full h-full overflow-hidden rounded-[10px]">
+                    <div className="relative aspect-[855/544] w-full overflow-hidden rounded-[10px]">
                         <Image
                             src={image.url}
                             alt={image.alternativeText}
@@ -69,23 +106,26 @@ export default function InternationalHero({ data }) {
                             sizes="(max-width: 1023px) 100vw, 50vw"
                             className="object-cover"
                         />
-                        <div className="absolute left-0 top-[6%] flex items-center gap-3 rounded-r-[10px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-2.5 pl-3 pr-4 lg:gap-4 lg:py-3 lg:pl-5 lg:pr-6 2xl:top-[6.8%] 2xl:py-[16px] 2xl:pr-[32px] max-w-[200px] xl:max-w-[250px] 2xl:max-w-[270px] 3xl:max-w-[320px]">
-                            <Image
-                                src={badge.logo.url}
-                                alt={badge.logo.alternativeText}
-                                width={120}
-                                height={50}
-                                className="h-7 w-auto lg:h-9 2xl:h-[50px]"
-                            />
-                            <span className="h-8 w-px bg-white/30 2xl:h-[44px]" />
-                            <span className="text-[13px] leading-[1.25] text-white lg:text-[16px] 2xl:text-[18px] max-w-[50%] text-center">
-                                {badge.text}
-                            </span>
-                        </div>
+                        {badge && (
+                            <div className="absolute left-0 top-[6%] flex items-center gap-3 rounded-r-[10px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-2.5 pl-3 pr-4 lg:gap-4 lg:py-3 lg:pl-5 lg:pr-6 2xl:top-[6.8%] 2xl:py-[16px] 2xl:pr-[32px]">
+                                <Image
+                                    src={badge.logo.url}
+                                    alt={badge.logo.alternativeText}
+                                    width={120}
+                                    height={50}
+                                    className="h-7 w-auto lg:h-9 2xl:h-[50px]"
+                                />
+                                <span className="h-8 w-px bg-white/30 2xl:h-[44px]" />
+                                <span className="text-[11px] leading-[1.25] text-white lg:text-[14px] 2xl:text-[17px]">
+                                    {badge.text}
+                                </span>
+                            </div>
+                        )}
                     </div>
                 </div>
 
-                <AnnouncementBar items={announcements} />
+                {/* Only shown when the data has announcements */}
+                {announcements?.length > 0 && <AnnouncementBar items={announcements} />}
             </div>
         </section>
     );
