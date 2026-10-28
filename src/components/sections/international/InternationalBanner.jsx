@@ -21,23 +21,23 @@ export default function InternationalBanner({ data, formData }) {
             <div className="absolute inset-x-0 top-0 h-[260px] bg-linear-to-b from-black/60 to-transparent" />
 
             {/* pt clears the fixed header (taller on desktop) */}
-            <div className="container relative z-10 pb-10 pt-[130px] lg:pt-[240px] lg:pb-[50px]">
-                <div className="grid items-stretch gap-8 lg:grid-cols-[1fr_46%] xl:grid-cols-[1fr_40%] 2xl:grid-cols-[1fr_655px] 2xl:gap-[40px]">
+            <div className="container relative z-10 pb-10 pt-[130px] lg:pt-[240px] lg:pb-[40px] xl:pb-[50px] 2xl:pb-[80px] 3xl:pb-[100px]">
+                <div className="grid  gap-8 lg:grid-cols-[1fr_46%] xl:grid-cols-[1fr_40%] 2xl:grid-cols-[1fr_655px] 2xl:gap-[40px]">
                     {/* Left: text pinned to the bottom */}
-                    <div className="flex flex-col justify-end text-white">
+                    <div className="flex flex-col justify-end text-white max-lg:pt-[120px] pb-3 lg:pb-15">
                         {/* Breadcrumb */}
                         <nav aria-label="Breadcrumb" className="mb-4 2xl:mb-[18px]">
-                            <ol className="flex items-center gap-2 text-[14px] 2xl:text-[18px]">
+                            <ol className="flex items-center gap-2 text_1">
                                 {breadcrumb.map((crumb, index) => {
                                     const isLast = index === breadcrumb.length - 1;
                                     return (
                                         <li key={crumb.label} className="flex items-center gap-2">
                                             {isLast ? (
-                                                <span aria-current="page" className="font-medium">
+                                                <span aria-current="page" className="font-medium text-white">
                                                     {crumb.label}
                                                 </span>
                                             ) : (
-                                                <Link href={crumb.href} className="text-white/80 transition-colors hover:text-white">
+                                                <Link href={crumb.href} className="text-white font-light transition-colors hover:text-white">
                                                     {crumb.label}
                                                 </Link>
                                             )}
@@ -48,10 +48,10 @@ export default function InternationalBanner({ data, formData }) {
                             </ol>
                         </nav>
 
-                        <p className="text-[22px] font-medium leading-tight text-[#F04A23] lg:text-[28px] 2xl:text-[32px]">
+                        <p className="w-fit bg-linear-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-[17px] xl:text-[22px] font-medium leading-tight text-transparent 2xl:text-[28px] 3xl:text-[30px]">
                             {subtitle}
                         </p>
-                        <h1 className="mt-1 max-w-[780px] text-[34px] font-bold leading-[1.05] tracking-[-0.03em] sm:text-[44px] lg:text-[48px] xl:text-[56px] 2xl:text-[64px] 2xl:leading-[60px]">
+                        <h1 className="mt-1 max-w-[750px] text-[34px] font-bold  leading-tight lg:text-[44px] xl:text-[48px]  2xl:text-[45px] 3xl:text-[56px]  3xl:text-[60.9px]  ">
                             {title}
                         </h1>
 
@@ -71,10 +71,10 @@ export default function InternationalBanner({ data, formData }) {
                                     alt={scholarship.icon.alternativeText}
                                     width={52}
                                     height={52}
-                                    className="size-10 object-contain lg:size-12 2xl:size-[52px]"
+                                    className="size-10 object-contain lg:size-12 2xl:size-[52px] 3xl:size-[65px]"
                                 />
                                 <div>
-                                    <p className="text-[20px] font-medium leading-tight lg:text-[26px] 2xl:text-[30px]">
+                                    <p className="text-[20px] font-semibold text-white leading-tight lg:text-[26px] 2xl:text-[30px]">
                                         {scholarship.title}
                                     </p>
                                     <p className="mt-0.5 text-[14px] text-white/85 2xl:text-[18px]">{scholarship.note}</p>
@@ -84,7 +84,7 @@ export default function InternationalBanner({ data, formData }) {
                     </div>
 
                     {/* Right: enquiry form */}
-                    <EnquiryForm data={formData} />
+                    <EnquiryForm data={formData} className="mt-4" />
                 </div>
             </div>
         </section>

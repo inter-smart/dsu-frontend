@@ -34,8 +34,8 @@ const schema = z.object({
 });
 
 const fieldClass =
-    "h-[44px] w-full rounded-[3px] border border-black/15 bg-white px-4 text-[14px] text-[#222] shadow-none placeholder:text-[#9a9a9a] focus-visible:border-(--basecolor) focus-visible:ring-0 2xl:h-[46px] 2xl:text-[15px]";
-const labelClass = "text-[12px] font-normal uppercase tracking-normal text-[#222] 2xl:text-[14px]";
+    "h-[44px] w-full rounded-[3px] border border-black/15 bg-white px-4 text-[14px] text-[#222] shadow-none placeholder:text-[#9a9a9a] focus-visible:border-(--basecolor) focus-visible:ring-0 2xl:h-[45px] 2xl:text-[15px]";
+const labelClass = "text-[10px] font-normal uppercase  text-[#222] 2xl:text-[11px] 3xl:text-[12px] !mb-[1px]";
 
 // Reusable text field
 function TextField({ control, name, label, placeholder, type = "text" }) {
@@ -156,7 +156,7 @@ export default function EnquiryForm({ data, className = "" }) {
             >
                 <TextField control={control} name="name" label="Name" placeholder="Enter Your Name" />
 
-                <div className="grid gap-3 sm:grid-cols-2 2xl:gap-[16px]">
+                <div className="grid gap-3 sm:grid-cols-2 2xl:gap-[16px] [&>div]:gap-[2px]">
                     {/* Phone: country code + number */}
                     <Field data-invalid={!!phoneError}>
                         <FieldLabel htmlFor="enquiry-phone" className={labelClass}>
@@ -218,17 +218,17 @@ export default function EnquiryForm({ data, className = "" }) {
                     name="consent"
                     render={({ field, fieldState }) => (
                         <Field data-invalid={fieldState.invalid}>
-                            <div className="flex items-start gap-3">
+                            <div className="flex items-start gap-[10px]">
                                 <Checkbox
                                     id="enquiry-consent"
                                     checked={field.value}
                                     onCheckedChange={field.onChange}
                                     aria-invalid={fieldState.invalid}
-                                    className="mt-1 size-4 rounded-[2px] border-black/40 bg-white data-[state=checked]:border-(--basecolor) data-[state=checked]:bg-(--basecolor)"
+                                    className="mt-[3px] size-[14px] shrink-0 rounded-[2px] border border-[#767676] bg-white text-[#222] shadow-none outline-none transition-colors focus-visible:ring-2 focus-visible:ring-(--basecolor)/40 data-[state=checked]:border-(--basecolor) data-[state=checked]:bg-(--basecolor) data-[state=checked]:text-white data-[checked]:border-(--basecolor) data-[checked]:bg-(--basecolor) data-[checked]:text-white aria-invalid:border-red-500 lg:mt-[4px] 2xl:size-[15px] [&_svg]:size-[11px]"
                                 />
                                 <FieldLabel
                                     htmlFor="enquiry-consent"
-                                    className="cursor-pointer !text_1 "
+                                    className="block cursor-pointer text-[13px] font-normal normal-case leading-snug text-[#444] lg:text-[14px] 2xl:text-[15px] tracking-normal"
                                 >
                                     {consent}
                                 </FieldLabel>

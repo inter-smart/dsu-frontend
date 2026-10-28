@@ -539,7 +539,7 @@ const local_data = {
         title: "Empowering Students with Knowledge, Discovery & Healing",
         button: { label: "Admissions Open 2026–27", href: "/admissions/apply" },
         scholarship: {
-            icon: { alternativeText: "Scholarship", url: "/images/international/scholarship-icon.svg" },
+            icon: { alternativeText: "Scholarship", url: "/images/scholar.svg" },
             title: "Scholarship Up-to 40%",
             note: "*For Eligible Students",
         },
