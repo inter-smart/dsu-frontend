@@ -16,7 +16,7 @@ export default function SdgIntroduction({ data }) {
                             className="cmn_Title mb-[25px] 2xl:mb-[40px]"
                             dangerouslySetInnerHTML={{ __html: data?.heading || "" }}
                         />
-                        <div className="text_1 leading-[1.2] text-[#4A5565] [&>_p]:mb-[15px] [&>_p]:2xl:mb-[25px] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] lg:max-w-[80%]">
+                        <div className="text_1 leading-[1.2] text-[#4A5565] [&>_p]:mb-[15px] [&>_p]:2xl:mb-[25px] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] lg:max-w-[80%] typography">
                             {data?.description?.length > 0 && <BlocksRenderer content={data.description} />}
                         </div>
                     </div>

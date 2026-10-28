@@ -9,7 +9,7 @@ export default function AdmissionPlanning({ data }) {
                     <h2 className='cmn_Title mb-[25px] lg:mb-[45px]'>
                         {data.heading}
                     </h2>
-                    <div className="text-[13px] sm:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6]   mb-8 sm:mb-10 xl:mb-12">
+                    <div className="text-[13px] sm:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6]   mb-8 sm:mb-10 xl:mb-12 typography">
                         {data?.description?.length > 0 && <BlocksRenderer content={data.description} />}
                     </div>
                     {data?.button && (

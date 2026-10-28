@@ -60,11 +60,11 @@ export default function DSUAct({ data, menu }) {
                                 {data.heading}
                             </h2>
                             {data?.content ? (
-                                <div dangerouslySetInnerHTML={{ __html: formatContentHtml(data.content) }} />
+                                <div className="typography" dangerouslySetInnerHTML={{ __html: formatContentHtml(data.content) }} />
                             ) : (
                                 <>
                                     {data?.description && (
-                                        <div className={P_CLASS}>
+                                        <div className={`typography ${P_CLASS}`}>
                                             <BlocksRenderer content={data.description} />
                                         </div>
                                     )}

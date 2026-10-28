@@ -20,7 +20,7 @@ export default function GatewaySection({ data }) {
                             {data?.heading}
                         </div>
                         {data?.description && (
-                            <div className="text_1 dark:text-[#9CA3AF] text-center max-w-[650px] mx-auto">
+                            <div className="typography text_1 dark:text-[#9CA3AF] text-center max-w-[650px] mx-auto">
                                 {Array.isArray(data?.description) ? (
                                     <BlocksRenderer
                                         content={data?.description}
@@ -152,7 +152,7 @@ export default function GatewaySection({ data }) {
                         {recruitements.heading}
                     </div>
                     {recruitements?.description && (
-                        <div className="text_1 dark:text-[#9CA3AF] text-center mb-[15px] lg:mb-[20px] xl:mb-[30px] 2xl:mb-[40px] 3xl:mb-[50px] ">
+                        <div className="typography text_1 dark:text-[#9CA3AF] text-center mb-[15px] lg:mb-[20px] xl:mb-[30px] 2xl:mb-[40px] 3xl:mb-[50px] ">
                             {Array.isArray(recruitements?.description) ? (
                                 <BlocksRenderer
                                     content={recruitements?.description}

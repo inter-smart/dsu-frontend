@@ -26,7 +26,7 @@ export default function LibraryAutomation({ data, menu }) {
                                 {data.heading}
                             </h2>
                             <div className="text_1 dark:text-[#9CA3AF] mb-[25px]">{data.subheading}</div>
-                            <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
+                            <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] typography">
                                 {data.description && <BlocksRenderer content={data.description} />}
                             </div>
                             {data?.webOpac && (

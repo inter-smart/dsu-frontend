@@ -76,7 +76,7 @@ export default function JourneySection({ data }) {
                     </h2>
 
                     {description && (
-                        <div className="mt-2.5 sm:mt-3.5 text-[13px] sm:text-[14px] md:text-[15px] xl:text-[16px] text-[#4A5565] dark:text-[#9CA3AF] leading-relaxed">
+                        <div className="typography mt-2.5 sm:mt-3.5 text-[13px] sm:text-[14px] md:text-[15px] xl:text-[16px] text-[#4A5565] dark:text-[#9CA3AF] leading-relaxed">
                             {Array.isArray(description) ? (
                                 <BlocksRenderer
                                     content={description}

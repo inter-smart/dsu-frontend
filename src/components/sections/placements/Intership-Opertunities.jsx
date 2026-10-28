@@ -43,7 +43,7 @@ export default function InternshipOpportunities({ data }) {
                     {data.heading}
                 </h2>
                 {data?.description?.length > 0 && (
-                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] mb-[20px] xl:mb-[25px]">
+                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] mb-[20px] xl:mb-[25px] typography">
                         <BlocksRenderer content={data.description} />
                     </div>
                 )}

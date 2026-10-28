@@ -29,7 +29,7 @@ export default function AcademicAchievements({ data, variant }) {
                     </div>
                     <div className="w-full max-lg:mb-[20px]">
                         {data?.heading && <div className="cmn_Title mb-[25px]">{data.heading}</div>}
-                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]">
+                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] typography">
                             {data?.description?.length > 0 && <BlocksRenderer content={data.description} />}
                         </div>
                         

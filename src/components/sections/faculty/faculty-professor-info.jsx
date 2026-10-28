@@ -56,7 +56,7 @@ export default function FacultyProfessorInfo({ data }) {
           </div>
         </div>
         <div
-          className="typhography [&_p]:leading-[1.8] [&_p]:text-[#4A5565] [&_p]:mb-2.5 sm:[&_p]:mb-3.75 2xl:[&_p]:mb-5 3xl:[&_p]:mb-7.5"
+          className="typography [&_p]:leading-[1.8] [&_p]:text-[#4A5565] [&_p]:mb-2.5 sm:[&_p]:mb-3.75 2xl:[&_p]:mb-5 3xl:[&_p]:mb-7.5"
           dangerouslySetInnerHTML={{
             __html: data?.bio || "",
           }}

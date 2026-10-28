@@ -60,7 +60,7 @@ export default function AboutHistory({ data }) {
                                                     {itemList.period}
                                                 </div>
                                                 {hasContent(itemList.description) && (
-                                                    <p className="dark:text-[#9CA3AF]">{renderText(itemList.description)}</p>
+                                                    <p className="typography dark:text-[#9CA3AF]">{renderText(itemList.description)}</p>
                                                 )}
                                             </div>
                                         </div>
@@ -88,7 +88,7 @@ export default function AboutHistory({ data }) {
                                     </h2>
                                 )}
                                 {Array.isArray(data?.description) && hasContent(data.description) && (
-                                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] mb-[30px] 3xl:mb-[50px]">
+                                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] mb-[30px] 3xl:mb-[50px] typography">
                                         <BlocksRenderer content={data.description} />
                                     </div>
                                 )}

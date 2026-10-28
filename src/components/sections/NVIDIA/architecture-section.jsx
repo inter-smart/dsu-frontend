@@ -13,7 +13,7 @@ export default function ArchitectureSection({ data }) {
           >
             {data?.heading}
           </h2>
-          <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] text-center mb-[30px] 3xl:mb-[50px]">
+          <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] text-center mb-[30px] 3xl:mb-[50px] typography">
             <BlocksRenderer content={data?.subheading || []} />
           </div>
         </div>
@@ -25,14 +25,14 @@ export default function ArchitectureSection({ data }) {
             >
               {data?.contentBlock?.heading}
             </h2>
-            <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]  mb-[30px] 3xl:mb-[50px]">
+            <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]  mb-[30px] 3xl:mb-[50px] typography">
               <BlocksRenderer content={data?.contentBlock?.description || []} />
             </div>
             <div className="w-full border border-[rgb(0,0,0,0.1)] dark:border-white/10 rounded-[8px] xl:rounded-[14px] 2xl:rounded-[15px] 3xl:rounded-[17px] overflow-hidden p-[10px] xl:p-[15px] 2xl:p-[20px] bg-gradient-to-r from-[rgb(230,81,0,0.1)] via-[rgb(255,109,0,0.1)] to-[rgb(255,143,0,0.1)] dark:from-[rgb(230,81,0,0.2)] dark:via-[rgb(255,109,0,0.2)] dark:to-[rgb(255,143,0,0.2)]">
               <div className="text-[12px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[20px] text-black dark:text-white font-bold mb-[5px] xl:mb-[8px] 2xl:mb-[12px] 3xl:mb-[15px]">
                 {data?.contentBlock?.highlightBox?.title}
               </div>
-              <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]">
+              <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] typography">
                 <BlocksRenderer
                   content={data?.contentBlock?.highlightBox?.description || []}
                 />

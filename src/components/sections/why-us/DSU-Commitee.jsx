@@ -44,7 +44,7 @@ export default function DSUCommitee({ data, menu }) {
                                 <h2 className="cmn_Title">
                                     {data.heading}
                                 </h2>
-                                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[15px] xl:mb-[20px] 2xl:mb-[30px] 3xl:mb-[40px]">
+                                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[15px] xl:mb-[20px] 2xl:mb-[30px] 3xl:mb-[40px] typography">
                                     <BlocksRenderer content={data.description} />
                                 </div>
 

@@ -21,7 +21,7 @@ export default function IQACAbout({ data }) {
                             )}
                             {/* Description (supports Strapi rich-text blocks or raw string) */}
                             {Array.isArray(data?.description) ? (
-                                <div className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[30px] max-w-[95%] [&_p]:mb-[12px] last:[&_p]:mb-0">
+                                <div className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[30px] max-w-[95%] [&_p]:mb-[12px] last:[&_p]:mb-0 typography">
                                     <BlocksRenderer content={data?.description} />
                                 </div>
                             ) : typeof data?.description === "string" ? (

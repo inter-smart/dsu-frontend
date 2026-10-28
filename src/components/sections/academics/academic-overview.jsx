@@ -50,7 +50,7 @@ export default function AcademicOverview({ data }) {
 
                         {data?.nursingBannerSection && (
                             <div className="w-full rounded-[10px] overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] p-[20px] lg:p-[30px_50px]">
-                                <div className="text_1 !text-white font-semibold [&_p]:text-white [&_p]:font-semibold text-center leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
+                                <div className="text_1 !text-white font-semibold [&_p]:text-white [&_p]:font-semibold text-center leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px] typography">
                                     <BlocksRenderer content={data?.nursingBannerSection.description} />
                                 </div>
                                 {data.nursingBannerSection.badge?.label && (
@@ -87,7 +87,7 @@ export default function AcademicOverview({ data }) {
                         )}
 
                         {data?.intro && (
-                            <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
+                            <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px] typography">
                                 <BlocksRenderer content={data.intro} />
                             </div>
                         )}
@@ -123,7 +123,7 @@ export default function AcademicOverview({ data }) {
                         {/* Right Flowing Content: Outro */}
                         {data?.outro && (
                             <div>
-                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
+                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px] typography">
                                     <BlocksRenderer content={data.outro} />
                                 </div>
                             </div>

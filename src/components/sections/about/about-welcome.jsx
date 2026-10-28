@@ -31,7 +31,7 @@ export default function AboutWelcome({ data }) {
                   )}
 
                   {Array.isArray(data?.description) && hasContent(data.description) && (
-                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]">
+                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] typography">
                       <BlocksRenderer content={data.description} />
                     </div>
                   )}
@@ -114,7 +114,7 @@ export default function AboutWelcome({ data }) {
                         {item.title}
                       </div>
                       {Array.isArray(item.description) && hasContent(item.description) && (
-                        <div className="text_1 leading-[1.2] text-white [&_p]:text-white">
+                        <div className="text_1 leading-[1.2] text-white [&_p]:text-white typography">
                           <BlocksRenderer content={item.description} />
                         </div>
                       )}

@@ -48,7 +48,7 @@ function AccordionGroup({ sectionId, group, variant = "default" }) {
                         {(item.answer?.length > 0 || item.links?.length > 0) && (
                             <AccordionContent className="p-0 pt-[10px] xl:pt-[15px] 2xl:pt-[25px]">
                                 {item.answer?.length > 0 && (
-                                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[10px]">
+                                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[10px] typography">
                                         <BlocksRenderer content={item.answer} />
                                     </div>
                                 )}
@@ -123,7 +123,7 @@ export default function PlacementSections({ data }) {
                                 {section.heading}
                             </h2>
                             {section.description?.length > 0 && (
-                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] mb-[20px] xl:mb-[25px]">
+                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] mb-[20px] xl:mb-[25px] typography">
                                     <BlocksRenderer content={section.description} />
                                 </div>
                             )}

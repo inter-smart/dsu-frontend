@@ -28,7 +28,7 @@ export default function CareerSection({ data }) {
                     <h2 className="cmn_Title mb-[25px]">
                         {data.heading}
                     </h2>
-                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
+                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px] typography">
                         <BlocksRenderer content={data.description} blocks={descriptionBlocks} />
                     </div>
                    {data?.opportunity && (

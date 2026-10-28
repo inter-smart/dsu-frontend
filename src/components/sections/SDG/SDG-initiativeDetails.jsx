@@ -65,7 +65,7 @@ export default function SDGInitativeDetails({ data, menu }) {
                                         {data.description}
                                     </p>
                                 ) : Array.isArray(data.description) ? (
-                                    <div className="leading-relaxed mb-6 lg:mb-8 [&_p]:mb-3 text-[#4A5565]">
+                                    <div className="leading-relaxed mb-6 lg:mb-8 [&_p]:mb-3 text-[#4A5565] typography">
                                         <BlocksRenderer content={data.description} />
                                     </div>
                                 ) : null

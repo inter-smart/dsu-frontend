@@ -141,7 +141,7 @@ export default function NewsEventsDetail({
                     )}
                     {group?.otherMembers && (
                       <div
-                        className="w-full h-auto mb-4 text-sm text-[#4A5565] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-sm 2xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-[15px] 3xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-lg [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:leading-[1.1] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:font-medium [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-black [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:mb-3.75 [&_ul]:list-disc [&_ul]:list-inside [&_ul]:pl-0 [&_ol]:list-decimal [&_ol]:list-inside [&_ol]:pl-0 [&_li]:leading-relaxed 2xl:[&_ul]:space-y-1.25 3xl:[&_ul]:space-y-2.5 [&_p]:mb-2.5"
+                        className="typography w-full h-auto mb-4 text-sm text-[#4A5565] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-sm 2xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-[15px] 3xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-lg [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:leading-[1.1] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:font-medium [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-black [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:mb-3.75 [&_ul]:list-disc [&_ul]:list-inside [&_ul]:pl-0 [&_ol]:list-decimal [&_ol]:list-inside [&_ol]:pl-0 [&_li]:leading-relaxed 2xl:[&_ul]:space-y-1.25 3xl:[&_ul]:space-y-2.5 [&_p]:mb-2.5"
                         dangerouslySetInnerHTML={{
                           __html: group?.otherMembers,
                         }}

@@ -31,7 +31,7 @@ export default function HistoryNewpahse({ data }) {
                      <h2 className="cmn_Title text-white mb-[15px] xl:mb-[25px] 2xl:mb-[35px] 3xl:mb-[45px]">
                                 {data.title}
                             </h2>
-                      <div className="text_1 leading-[1.2] text-white mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[20px] [&_p]:xl:mb-[25px] [&_p]:2xl:mb-[30px] [&_p]:3xl:mb-[40px] [&_p]:text-white">
+                      <div className="text_1 leading-[1.2] text-white mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[20px] [&_p]:xl:mb-[25px] [&_p]:2xl:mb-[30px] [&_p]:3xl:mb-[40px] [&_p]:text-white typography">
                                 <BlocksRenderer content={data?.description || []} />
                             </div>
                 </div>

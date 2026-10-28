@@ -40,7 +40,7 @@ export default function DirectorMessage({ data }) {
                         <div className="w-full">
                             <div className="cmn_Title mb-[40px]">{data?.title}</div>
 
-                            <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white [&_p]:text-[#4A5565] dark:[&_p]:text-white mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
+                            <div className="typography text_1 leading-[1.2] text-[#4A5565] dark:text-white [&_p]:text-[#4A5565] dark:[&_p]:text-white mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
                                 w-full max-w-[550px] xl:max-w-[590px] 2xl:max-w-[790px] 3xl:max-w-[820px]">
                                 {data?.description?.length > 0 && (
                                     <BlocksRenderer content={data.description} />

@@ -42,7 +42,7 @@ export default function IQACChairmanMessage({ data }) {
                             <div className="cmn_Title mb-[40px]">{data?.title}</div>
 
                             <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white [&_p]:text-[#4A5565] dark:[&_p]:text-white mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
-                                w-full max-w-[550px] xl:max-w-[590px] 2xl:max-w-[790px] 3xl:max-w-[820px]">
+                                w-full max-w-[550px] xl:max-w-[590px] 2xl:max-w-[790px] 3xl:max-w-[820px] typography">
                                 <BlocksRenderer content={data.description || []} />
                             </div>
                             <div className="text-[13px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-black font-bold mb-[6px] dark:text-white">

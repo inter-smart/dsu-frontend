@@ -13,7 +13,7 @@ export default function WhyChoose({ data }) {
                         {data.heading && <div className="cmn_Title">{data.heading}</div>}
                     </div>
                     <div className="lg:max-w-[480px] xl:max-w-[450px] 2xl:max-[670px] 3xl:max-w-[720px] ml-auto max-lg:ml-0">
-                        <div className="text_1 [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_p]:mb-[14px] [&_p]:xl:mb-[18px] [&_p]:2xl:mb-[22px] [&_p]:leading-[22px] [&_p]:2xl:leading-[25px] [&_p]:3xl:leading-[28px] [&_p]:last:mb-0">
+                        <div className="typography text_1 [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_p]:mb-[14px] [&_p]:xl:mb-[18px] [&_p]:2xl:mb-[22px] [&_p]:leading-[22px] [&_p]:2xl:leading-[25px] [&_p]:3xl:leading-[28px] [&_p]:last:mb-0">
                             {typeof data?.description === "string" ? (
                                 <p>{data.description}</p>
                             ) : (

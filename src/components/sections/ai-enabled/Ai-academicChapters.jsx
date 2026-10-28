@@ -11,7 +11,7 @@ export default function AiAcademicChapters({ data }) {
             <div className="container">
                 <div className="text-center md:max-w-[65%] m-auto mb-[30px]">
                     <div className="cmn_Title mb-[25px]">{data.heading}</div>
-                    <div className="text_1 leading-[1.2] text-[#4A5565]">
+                    <div className="text_1 leading-[1.2] text-[#4A5565] typography">
                         {data.description && <BlocksRenderer content={data.description} />}
                     </div>
                 </div>

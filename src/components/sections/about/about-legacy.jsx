@@ -29,7 +29,7 @@ export default function AboutLegacy({ data }) {
                                     {item.title}
                                 </div>
                                 {Array.isArray(item.description) && hasContent(item.description) && (
-                                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]">
+                                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] typography">
                                         <BlocksRenderer content={item.description} />
                                     </div>
                                 )}

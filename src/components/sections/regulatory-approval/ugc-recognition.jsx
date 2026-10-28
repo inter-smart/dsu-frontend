@@ -50,7 +50,7 @@ export default function UgcRegnition({ data, menu = [] }) {
                                 {data.title}
                             </h2>
                             {data?.description?.length > 0 && (
-                                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
+                                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] typography">
                                     <BlocksRenderer content={data.description} />
                                 </div>
                             )}
@@ -93,7 +93,7 @@ export default function UgcRegnition({ data, menu = [] }) {
                                                 <div className="text_1 text-[#212121] font-bold">
                                                     {item.title}
                                                 </div>
-                                                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[10px] lg:mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
+                                                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[10px] lg:mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] typography">
                                                     <BlocksRenderer content={item.description} />
                                                 </div>
                                             </div>
@@ -151,7 +151,7 @@ export default function UgcRegnition({ data, menu = [] }) {
                                             </AccordionTrigger>
 
                                             <AccordionContent className=" text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] text-[#797979] px-[15px] xl:px-[20px] 2xl:px-[25px] 3xl:px-[30px]  ">
-                                                <div className="text_1 leading-[1.2] text-[#4A5565] lg:max-w-[70%] last-of-type:[&_p]:mb-0 ">
+                                                <div className="text_1 leading-[1.2] text-[#4A5565] lg:max-w-[70%] last-of-type:[&_p]:mb-0  typography">
                                                     <BlocksRenderer content={item.answer} />
                                                 </div>
                                             </AccordionContent>

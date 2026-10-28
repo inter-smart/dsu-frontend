@@ -16,7 +16,7 @@ export default function NBABoard({ data }) {
                     </div>
                     <div className="lg:w-2/3">
                         <div className="flex max-lg:flex-wrap justify-between gap-[15px] w-full items-start">
-                            <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] lg:mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]  lg:w-2/3">
+                            <div className="typography text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] lg:mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]  lg:w-2/3">
                                 <BlocksRenderer content={data.description} />
                                 {data.Button && (
                                     <Link

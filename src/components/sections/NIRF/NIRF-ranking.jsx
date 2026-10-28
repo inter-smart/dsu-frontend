@@ -48,7 +48,7 @@ export default function NIRFRanking({ data, menu = [], basePath = "/national-Ran
                             <h2 className="text-[20px] xl:text-[25px] 2xl:text-[30px] 3xl:text-[35px] text-[#212121] mb-[25px] 3xl:mb-[45px] font-bold">
                                 {data.name}
                             </h2>
-                            <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[20px] [&_p]:xl:mb-[25px] [&_p]:2xl:mb-[30px] [&_p]:3xl:mb-[40px]">
+                            <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[20px] [&_p]:xl:mb-[25px] [&_p]:2xl:mb-[30px] [&_p]:3xl:mb-[40px] typography">
                                 <BlocksRenderer content={data.description || []} />
                             </div>
                             {data?.ranking && (
@@ -76,7 +76,7 @@ export default function NIRFRanking({ data, menu = [], basePath = "/national-Ran
                                 </div>
                                 <div className="lg:w-[calc(100%-350px)] xl:w-[calc(100%-380px)] 2xl:w-[calc(100%-440px)] 3xl:w-[calc(100%-550px)] lg:pl-[15px] xl:pl-[25px] 2xl:pl-[35px] 3xl:pl-[45px]">
                                     <div className="w-full">
-                                        <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[25px] [&_p]:xl:mb-[35px] [&_p]:2xl:mb-[40px] [&_p]:3xl:mb-[50px]">
+                                        <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[25px] [&_p]:xl:mb-[35px] [&_p]:2xl:mb-[40px] [&_p]:3xl:mb-[50px] typography">
                                             <BlocksRenderer content={data.ranking.description || []} />
                                         </div>
                                         {data.ranking.report && (

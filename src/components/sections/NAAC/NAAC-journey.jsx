@@ -10,7 +10,7 @@ export default function NAACJourney({ data }) {
                 <h2 className="cmn_Title">
                     {data.title}
                 </h2>
-                <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]">
+                <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] typography">
                     <BlocksRenderer content={data.description} />
                 </div>
                 <div className="flex flex-wrap gap-[10px] xl:gap-[20px]">

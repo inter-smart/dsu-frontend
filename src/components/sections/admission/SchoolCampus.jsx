@@ -21,7 +21,7 @@ export default function SchoolCampus({ data }) {
                     </div>
                 )}
                 {data?.description?.length > 0 && (
-                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  mb-[30px]">
+                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  mb-[30px] typography">
                         <BlocksRenderer content={data.description} />
                     </div>
                 )}

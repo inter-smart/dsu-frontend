@@ -55,7 +55,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                             </h2>
                             {data?.intro?.length > 0 && (
                                 <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
-                                        w-full ">
+                                        w-full  typography">
                                     <BlocksRenderer content={data.intro} />
                                 </div>
                             )}
@@ -82,7 +82,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                                     </h2>
                                     {Array.isArray(item.description) && item.description.length > 0 && (
                                         <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
-                                         w-full ">
+                                         w-full  typography">
                                             <BlocksRenderer content={item.description} />
                                         </div>
                                     )}
@@ -104,7 +104,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                                     </h2>
 
                                     <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
-                                            w-full ">
+                                            w-full  typography">
                                         {committee?.description?.length > 0 && <BlocksRenderer content={committee.description} />}
                                     </div>
                                     <div className="w-full overflow-x-auto">
@@ -162,7 +162,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                                     </h2>
 
                                     <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
-                                            w-full ">
+                                            w-full  typography">
                                         {activities?.description?.length > 0 && <BlocksRenderer content={activities.description} />}
                                     </div>
                                     <Accordion type="single" collapsible defaultValue="item-2" className="mt-[30px] w-full xl:mt-[40px]">
@@ -206,7 +206,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                                     </h2>
 
                                     <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
-                                            w-full ">
+                                            w-full  typography">
                                         {documentsSection?.description?.length > 0 && <BlocksRenderer content={documentsSection.description} />}
                                     </div>
                                     <div className="flex flex-wrap -m-[5px] md:-m-[8px] xl:-m-[10px]">
@@ -243,7 +243,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                                     </h2>
 
                                     <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
-                                            w-full ">
+                                            w-full  typography">
                                         {reachOut?.description?.length > 0 && <BlocksRenderer content={reachOut.description} />}
                                     </div>
                                     <div className="w-full relative rounded-[4px] border border-[#ECE3DA] bg-gradient-to-r from-[rgba(220,38,38,0.06)] to-[rgb(255,255,255)] p-[15px] 2xl:p-[15px_20px] 3xl:p-[20px_30px] ">

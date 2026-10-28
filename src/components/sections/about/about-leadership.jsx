@@ -25,7 +25,7 @@ export default function AboutLeadership({ data }) {
           </h2>
         )}
         {hasContent(data.description) && (
-          <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] text-center mb-[30px] 3xl:mb-[50px]">
+          <div className="typography text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] text-center mb-[30px] 3xl:mb-[50px]">
             {Array.isArray(data.description) ? (
               <BlocksRenderer content={data.description} />
             ) : (
@@ -60,7 +60,7 @@ export default function AboutLeadership({ data }) {
                   </div>
                   {item.designation && (
                   <div
-                    className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#DC2626] font-semibold relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px]
+                    className="typography text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#DC2626] font-semibold relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px]
                                      after:w-[30px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316] max-sm:after:m-auto max-sm:after:right-0"
                   >
                     {item.designation}
@@ -114,7 +114,7 @@ export default function AboutLeadership({ data }) {
                     {item.name}
                   </div>
                   {item.designation && (
-                  <div className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#4A5565] dark:text-[#9CA3AF] font-normal relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px]  ">
+                  <div className="typography text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#4A5565] dark:text-[#9CA3AF] font-normal relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px]  ">
                     {item.designation}
                   </div>
                   )}

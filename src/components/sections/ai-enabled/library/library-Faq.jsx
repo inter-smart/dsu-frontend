@@ -45,7 +45,7 @@ export default function LibraryFaq({ data, menu }) {
                                             {item?.answer && (
                                                 <AccordionContent className="pt-4 text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] text-[#797979] dark:text-[#9CA3AF] ">
                                                     <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px] last-of-type:!mb-0 [&_p]:last-of-type:!mb-0
-                                                            w-full ">
+                                                            w-full  typography">
                                                         <BlocksRenderer content={item?.answer} />
                                                     </div>
                                                 </AccordionContent>
