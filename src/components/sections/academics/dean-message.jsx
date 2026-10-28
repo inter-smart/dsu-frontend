@@ -18,7 +18,7 @@ export default function DeanMessage({ data, varient }) {
 
     return (
         <section className="relative py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
-            <div className="container">
+            <div className="container typography">
                 <div className="relative after:content-[''] after:table after:clear-both">
                     {/* Floating Dean Image Card (Floated Left on md and above) */}
                     <div className={`w-full ${varient === "home"
@@ -77,8 +77,8 @@ export default function DeanMessage({ data, varient }) {
                         <h2 className={`text-[25px] sm:text-[28px] md:text-[32px] xl:text-[40px] 2xl:text-[46px] 3xl:text-[55px] font-bold leading-tight text-[#212121] dark:text-[#F9FAFB] 
                          mb-[12px] xl:mb-[16px] 2xl:mb-[20px] 
                          ${varient === "home"
-                        ? "pt-0 xl:pt-[10px] max-w-[85%]"
-                        : "xl:pt-[30px] 2xl:pt-[40px] 3xl::pt-[60px]"} `}>
+                                ? "pt-0 xl:pt-[10px] max-w-[85%]"
+                                : "xl:pt-[30px] 2xl:pt-[40px] 3xl::pt-[60px]"} `}>
                             {heading}
                         </h2>
                     )}
@@ -96,7 +96,10 @@ export default function DeanMessage({ data, varient }) {
                             {Array.isArray(message) ? (
                                 <BlocksRenderer content={message} />
                             ) : (
-                                <p>{message}</p>
+                                <div className="">
+                                    <p>{message}</p>
+
+                                </div>
                             )}
                         </div>
                     )}
