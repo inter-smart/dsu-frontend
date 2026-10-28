@@ -251,7 +251,7 @@
 
     ul > li,
     ol > li {
-      @apply my-1 lg:my-1.5 !font-normal !text-[#4a5565];
+      @apply my-1 lg:my-1.5 font-normal text-[#212121];
     }
     ul{
       @apply  !ml-4
