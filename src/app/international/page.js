@@ -6,8 +6,6 @@ import CoursesOffered from "@/components/sections/international/CoursesOffered";
 import InnovationCenters from "@/components/sections/international/InnovationCenters";
 import InstructionsAccordion from "@/components/sections/international/InstructionsAccordion";
 import Gallery from "@/components/sections/international/Gallery";
-import AdmissionProcess from "@/components/sections/international/AdmissionProcess";
-import InternationalBanner from "@/components/sections/international/InternationalBanner";
 
 const local_data = {
     id: 24,
@@ -480,91 +478,28 @@ const local_data = {
         ],
     },
     gallery: {
-        id: 70,
+        id: 90,
         title: "Gallery",
         items: [
-            { id: 1, type: "image", thumbnail: "/images/gallery-1.jpg", src: "/images/gallery-1.jpg", caption: "Campus night aerial view" },
-            { id: 2, type: "image", thumbnail: "/images/gallery-2.jpg", src: "/images/gallery-2.jpg", caption: "Central courtyard" },
-            { id: 3, type: "image", thumbnail: "/images/gallery-3.jpg", src: "/images/gallery-3.jpg", caption: "Main academic building" },
-            { id: 4, type: "video", thumbnail: "/images/gallery-4.jpg", src: "/videos/campus-top-view.mp4", caption: "Campus top view" },
-            { id: 5, type: "image", thumbnail: "/images/gallery-5.jpg", src: "/images/gallery-4.jpg", caption: "Students on campus" },
-            { id: 6, type: "image", thumbnail: "/images/gallery-6.jpg", src: "/images/gallery-5.jpg", caption: "Campus at dusk" },
-            { id: 7, type: "video", thumbnail: "/images/gallery-4.jpg", src: "/videos/campus-top-view.mp4", caption: "Campus top view" },
-            { id: 7, type: "image", thumbnail: "/images/gallery-5.jpg", src: "/images/gallery-6.jpg", caption: "Students on campus" },
-            { id: 8, type: "image", thumbnail: "/images/gallery-6.jpg", src: "/images/gallery-7jpg", caption: "Campus at dusk" },
-            { id: 9, type: "image", thumbnail: "/images/gallery-6.jpg", src: "/images/gallery-8.jpg", caption: "Campus at dusk" },
-            { id: 10, type: "image", thumbnail: "/images/gallery-6.jpg", src: "/images/gallery-9.jpg", caption: "Campus at dusk" },
-            // add more items here. Each new swipe shows the next column
-        ],
-    },
-    admissionProcess: {
-        id: 80,
-        title: "Admission Process",
-        subtitle: "Our admission process is designed to make your application simple and convenient.",
-        button: { label: "Start Your Applications", href: "/admissions/apply" },
-        steps: [
-            {
-                id: 1,
-                title: "Registration",
-                description: "Sign up and pay $25\nRegistration",
-            },
-            {
-                id: 2,
-                title: "Online Application Form",
-                description: "Fill in the details, pay the programme fee and\nupload relevant documents",
-            },
-            {
-                id: 3,
-                title: "Document Verification",
-                description: "Sit back and wait for the approval",
-            },
+            { id: 1, image: { alternativeText: "Campus aerial view at night", url: "/images/gallery-1.jpg" } },
+            { id: 2, image: { alternativeText: "Campus courtyard and gardens", url: "/images/gallery-2.jpg" } },
+            { id: 3, image: { alternativeText: "Main academic building", url: "/images/gallery-3.jpg" } },
             {
                 id: 4,
-                title: "Student Registration\n& LMS Activation",
-                description: "Get your LMS credentials over the email",
+                image: { alternativeText: "Campus aerial walkthrough", url: "/images/gallery-4.jpg" },
+                videoUrl: "https://www.youtube.com/watch?v=VIDEO_ID",
             },
+            { id: 5, image: { alternativeText: "Students walking on campus", url: "/images/gallery-5.jpg" } },
+            { id: 6, image: { alternativeText: "Campus building lit up at dusk", url: "/images/gallery-6.jpg" } },
+            // add 6 more for a second slide
         ],
-    },
-    internationalBanner: {
-        id: 90,
-        image: {
-            alternativeText: "Graduates celebrating on campus",
-            url: "/images/internationl-banner.jpg",
-        },
-        breadcrumb: [
-            { label: "Home", href: "/" },
-            { label: "International Admission", href: "/international" },
-        ],
-        subtitle: "International Admission",
-        title: "Empowering Students with Knowledge, Discovery & Healing",
-        button: { label: "Admissions Open 2026–27", href: "/admissions/apply" },
-        scholarship: {
-            icon: { alternativeText: "Scholarship", url: "/images/international/scholarship-icon.svg" },
-            title: "Scholarship Up-to 40%",
-            note: "*For Eligible Students",
-        },
-    },
-
-    enquiryForm: {
-        id: 91,
-        title: "Enquire Now for More",
-        consent:
-            "I authorize Dayananda Sagar University & its representative to contact me with updates/notification via emails,sms,whatsapp, & call. This will override the registry on DND/NDNC.",
-        submitLabel: "Submit",
-        countryCodes: ["+91", "+1", "+44", "+61", "+971", "+977", "+880", "+94"],
-        countries: ["India", "Nepal", "Bangladesh", "Sri Lanka", "United Arab Emirates", "Nigeria", "Other"],
-        schools: ["School of Engineering", "School of Basic and Applied Sciences", "School of Commerce and Management", "College of Allied Health Sciences"],
-        programs: ["Undergraduate", "Postgraduate", "Doctoral"],
-        courses: ["B.Tech Computer Science & Engineering", "B.Tech Robotics & AI", "BBA", "M.Tech Data Science"],
-        // Webhook or API route that receives the form
-        action: "/api/enquiry",
     },
 };
 
 export default function Page() {
     return (
         <>
-            <InternationalBanner data={local_data.internationalBanner} formData={local_data.enquiryForm}/>
+            <InnerHero data={local_data.hero} />
             <TopMenu data={local_data.topMenu} />
             <InternationalHero data={local_data.internationalHero} />
             <AwardsSlider data={local_data.awardsSlider} />
@@ -572,7 +507,6 @@ export default function Page() {
             <InnovationCenters data={local_data.innovationCenters} />
             <InstructionsAccordion data={local_data.instructions} />
             <Gallery data={local_data.gallery} />
-            <AdmissionProcess data={local_data.admissionProcess} />
         </>
     );
 }
