@@ -1,10 +1,18 @@
 import { notFound } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
-import flexibleRegistry from "@/components/flexible/registry";
+import FlexibleSections from "@/components/flexible/FlexibleSections";
 import { getFlexiblePageBySlug } from "@/lib/api/flexible-page";
 import { getAboutPage } from "@/lib/api";
 import AboutPageView from "@/components/sections/about/about-page-view";
 import { hasContent } from "@/lib/has-content";
+
+// "Top Menu Bar" choice of the entry -> the flag InnerHero reads to show that menu bar
+const TOP_BAR_FLAGS = {
+    placement: "PlacementmenuBar",
+    admission: "admissionMenubar",
+    "ai-enabled": "AimenuBar",
+    "nursing-bsc": "AiBscmenuBar",
+};
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
@@ -21,6 +29,8 @@ export async function generateMetadata({ params }) {
     };
 }
 
+// A Flexible Page entry (a new common page built from any mix of sections) is shown at /<slug>;
+// the About page keeps its slug as the fallback.
 export default async function page({ params }) {
     const { slug } = await params;
     const apiData = await getFlexiblePageBySlug(slug);
@@ -31,19 +41,15 @@ export default async function page({ params }) {
         return <AboutPageView pageData={about} />;
     }
 
-    const sections = apiData.sections || [];
+    const topBarFlag = TOP_BAR_FLAGS[apiData.topBar];
+    const hero = hasContent(apiData.hero) ? { ...apiData.hero, ...(topBarFlag ? { [topBarFlag]: true } : {}) } : null;
+    // the entry's own sidebar links are what the sections read as their sidebar / menu
+    const sidebar = apiData.sidebar || [];
 
     return (
         <>
-            {hasContent(apiData.hero) && <InnerHero data={apiData.hero} />}
-            {sections.map((item) => {
-                const entry = flexibleRegistry[item.component];
-                if (!entry || !hasContent(item.data)) return null;
-
-                const Component = entry.Component;
-                const props = entry.props || {};
-                return <Component key={`${item.component}-${item.id}`} data={item.data} {...props} />;
-            })}
+            {hero && <InnerHero data={hero} />}
+            <FlexibleSections sections={apiData.sections} sidebar={sidebar} menu={sidebar} slug={apiData.slug} />
         </>
-    )
+    );
 }

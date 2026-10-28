@@ -1,5 +1,6 @@
 import AboutPlacementTemplate from "./AboutPlacementTemplate";
 import CareerDevelopmentTemplate from "./CareerDevelopmentTemplate";
+import FlexibleTemplate from "./FlexibleTemplate";
 import InternshipTemplate from "./InternshipTemplate";
 import PlacementContactTemplate from "./PlacementContactTemplate";
 import PlacementPageTemplate from "./PlacementPageTemplate";
@@ -19,6 +20,7 @@ const placementTemplates = {
     "recruiters-industry": RecruitersIndustryTemplate,
     recruit: RecruitTemplate,
     "placement-contact": PlacementContactTemplate,
+    "flexible-page": FlexibleTemplate,
 };
 
 export default placementTemplates;

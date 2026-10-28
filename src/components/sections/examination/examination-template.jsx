@@ -3,6 +3,7 @@ import Examination from "./examination";
 import ExaminationResult from "./examination-result";
 import ExaminationTimeTable from "./examination-time-table";
 import ExaminationContact from "./examination-contact";
+import FlexibleSections from "@/components/flexible/FlexibleSections";
 
 // Renders an Examination entry by its `template`
 export default function ExaminationTemplate({ pageData }) {
@@ -27,6 +28,13 @@ export default function ExaminationTemplate({ pageData }) {
       )}
       {pageData?.template === "contact" && pageData.contact && (
         <ExaminationContact data={pageData.contact} sidebar={sidebar} />
+      )}
+      {pageData?.template === "flexible-page" && (
+        <FlexibleSections
+          sections={pageData.flexiblePage?.sections}
+          slug={pageData.slug}
+          sidebar={sidebar}
+        />
       )}
     </>
   );

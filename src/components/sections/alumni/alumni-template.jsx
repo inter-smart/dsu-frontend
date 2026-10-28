@@ -3,6 +3,7 @@ import Alumni from "@/components/sections/alumni/alumni";
 import AlumniEvents from "@/components/sections/alumni/alumni-events";
 import AlumniNewsletter from "@/components/sections/alumni/alumni-newsletter";
 import AlumniContact from "@/components/sections/alumni/alumni-contact";
+import FlexibleSections from "@/components/flexible/FlexibleSections";
 
 const DEFAULT_HERO_MEDIA = {
   url: "/images/faculty-banner.jpg",
@@ -48,6 +49,12 @@ export default function AlumniTemplate({ pageData }) {
         pageData?.alumniNewsletter && (
           <AlumniNewsletter data={{ ...pageData.alumniNewsletter, sidebar }} />
         )}
+      {pageData?.template === "flexible-page" && (
+        <FlexibleSections
+          sections={pageData.flexiblePage?.sections}
+          sidebar={sidebar}
+        />
+      )}
       {pageData?.template === "alumni-contact" && pageData?.alumniContact && (
         <AlumniContact data={{ ...pageData.alumniContact, sidebar }} />
       )}

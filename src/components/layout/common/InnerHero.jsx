@@ -117,14 +117,7 @@ export default function InnerHero({ data, placementMenuItems, className }) {
         </div>
 
         <div className="max-lg:hidden">
-          {data?.menuBar && (
-            <AcademicMenubar
-              slug={data.slug}
-              hasDepartments={data.hasDepartments}
-              items={data.menuItems}
-              homeHref={data.menuHome}
-            />
-          )}
+          {data?.menuBar && <AcademicMenubar />}
           {data?.AimenuBar && <AiAcademicMenubar />}
           {data?.AiBscmenuBar && <AiBSCMenubar />}
           {data?.PlacementmenuBar && <PlacementmenuBar />}

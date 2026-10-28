@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
+import FlexibleSections from "@/components/flexible/FlexibleSections";
 import DSUAct from "@/components/sections/why-us/DSU-act";
 import IQAC from "@/components/sections/why-us/IQAC";
 import IQACReport from "@/components/sections/why-us/IQAC-reports";
@@ -106,6 +107,15 @@ export default async function Page({ params }) {
             );
         }
 
+        if (iqacPage.template === "flexible-page") {
+            return (
+                <>
+                    {iqacPage.hero && <InnerHero data={iqacPage.hero} />}
+                    <FlexibleSections sections={iqacPage.flexiblePage?.sections} />
+                </>
+            );
+        }
+
         notFound();
     }
 
@@ -116,6 +126,17 @@ export default async function Page({ params }) {
 
     if (!pageData) {
         const studentSupportPage = await getStudentSupportPageBySlug(slug);
+
+        if (studentSupportPage?.template === "flexible-page") {
+            const studentSupportMenu = await getStudentSupportMenu();
+            return (
+                <>
+                    {hasContent(studentSupportPage.hero) && <InnerHero data={studentSupportPage.hero} />}
+                    <FlexibleSections sections={studentSupportPage.flexiblePage?.sections} menu={studentSupportMenu} />
+                </>
+            );
+        }
+
         const template = studentSupportTemplates[studentSupportPage?.template];
         if (!template) notFound();
 

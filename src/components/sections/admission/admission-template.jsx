@@ -10,6 +10,7 @@ import DownloadTemplate from "./templates/download-template";
 import FaqTemplate from "./templates/faq-template";
 import ContactTemplate from "./templates/contact-template";
 import ProgrammeTemplate from "./templates/programme-template";
+import FlexibleSections from "@/components/flexible/FlexibleSections";
 
 // One component per Admission `template` value
 const TEMPLATES = {
@@ -38,6 +39,10 @@ export default function AdmissionTemplate({ pageData }) {
         <AdmissionMenubar className="lg:!hidden block" />
       )}
       {Template && templateData && <Template data={templateData} />}
+      {/* "flexible-page" template: the entry's own mix of template blocks */}
+      {template === "flexible-page" && (
+        <FlexibleSections sections={pageData?.flexiblePage?.sections} />
+      )}
     </>
   );
 }

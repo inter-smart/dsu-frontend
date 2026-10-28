@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
+import FlexibleSections from "@/components/flexible/FlexibleSections";
 import OtherApproval from "@/components/sections/regulatory-approval/other-approval";
 import UgcRegnition from "@/components/sections/regulatory-approval/ugc-recognition";
 import {
@@ -48,6 +49,12 @@ export default async function Page({ params }) {
       )}
       {pageData.otherApproval && (
         <OtherApproval data={pageData.otherApproval} menu={menu || []} />
+      )}
+      {pageData.template === "flexible-page" && (
+        <FlexibleSections
+          sections={pageData.flexiblePage?.sections}
+          menu={menu || []}
+        />
       )}
     </>
   );

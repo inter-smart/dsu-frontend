@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
+import FlexibleSections from "@/components/flexible/FlexibleSections";
 import NIRFRanking from "@/components/sections/NIRF/NIRF-ranking";
 import SdgIntroduction from "@/components/sections/SDG/SdgInroduction";
 import SDGInitativeDetails from "@/components/sections/SDG/SDG-initiativeDetails";
@@ -55,6 +56,7 @@ export default async function Page({ params }) {
   // `sdgGoal` is set on an SDG goal detail page (linked from the SDG goal tiles); there
   // `hero` is the goal's own banner (falling back to the discipline / entry banner).
   const isSdg = pageData.template === "sdg-initiative";
+  const isFlexible = pageData.template === "flexible-page";
   if (isSdg && category?.length && !pageData.category && !pageData.sdgGoal) {
     notFound();
   }
@@ -62,7 +64,12 @@ export default async function Page({ params }) {
   return (
     <>
       {pageData.hero && <InnerHero data={pageData.hero} />}
-      {pageData.sdgGoal ? (
+      {isFlexible ? (
+        <FlexibleSections
+          sections={pageData.flexiblePage?.sections}
+          menu={menu || []}
+        />
+      ) : pageData.sdgGoal ? (
         <SDGInitativeDetails
           data={pageData.sdgGoal}
           menu={pageData.sdgGoalMenu}
