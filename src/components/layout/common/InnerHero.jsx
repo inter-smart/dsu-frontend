@@ -21,6 +21,10 @@ import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
 export default function InnerHero({ data, placementMenuItems, className }) {
   if (!data) return null;
   const isVideo = data?.heroMedia?.mime?.includes("video");
+  const breadcrumb =
+    Array.isArray(data.breadcrumb) && data.breadcrumb.length > 0
+      ? data.breadcrumb
+      : [{ label: "Home", href: "/" }, ...(data.title ? [{ label: data.title }] : [])];
   const hasMenubar = Boolean(
     data?.menuBar ||
       data?.AimenuBar ||

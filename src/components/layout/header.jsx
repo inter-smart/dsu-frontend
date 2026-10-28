@@ -1206,6 +1206,29 @@ function MegaMenuPanel({
             <nav className="w-[260px] 2xl:w-[280px] 3xl:w-[320px] shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-5 flex flex-col justify-start">
               {children.map((child) => {
                 const isActive = child?.id === activeChild?.id;
+                if (!child?.children?.length) {
+                  return (
+                    <Link
+                      key={child?.id}
+                      href={child?.url || "#!"}
+                      aria-label={child?.label}
+                      onMouseEnter={() => setActiveChildId(child?.id)}
+                      className={cn(
+                        "w-full text-left flex items-center px-6 2xl:px-7 py-3 2xl:py-3.5 transition-colors duration-150 select-none",
+                        isActive ? "bg-white/20" : "hover:bg-white/10",
+                      )}
+                    >
+                      <span
+                        className={cn(
+                          "text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-tight text-white whitespace-nowrap",
+                          isActive ? "font-semibold" : "font-normal opacity-95",
+                        )}
+                      >
+                        {child?.label}
+                      </span>
+                    </Link>
+                  );
+                }
                 return (
                   <button
                     key={child?.id}

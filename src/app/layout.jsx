@@ -33,13 +33,16 @@ export default async function RootLayout({ children }) {
       className={`${roboto.variable} ${robotoMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Sets the theme class before hydration to avoid a flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme")||"light";var d=t==="dark"||(t==="system"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d)}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider defaultTheme="light">
           <SmoothScrollProvider>
             <Header data={header ?? undefined} />
             <main className="flex-1">{children}</main>
