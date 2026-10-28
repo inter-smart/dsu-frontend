@@ -10,10 +10,11 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function NAACAquarSection({ data }) {
-    const academicYears = data?.academicYears || [];
-    const getYearData = (year) => data?.yearData?.[year];
+    // data.years -> tabs -> parts (accordion) -> documents
+    const academicYears = data?.years || [];
+    const firstYear = academicYears[0]?.value;
 
-    const firstYear = academicYears?.find((item) => item.active)?.value || academicYears?.[0]?.value;
+    if (academicYears.length === 0) return null;
 
     return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[120px]">
@@ -37,13 +38,19 @@ export default function NAACAquarSection({ data }) {
                     </div>
 
                     {academicYears.map((item) => {
-                        const yearData = getYearData(item.value);
+                        const yearData = item;
 
                         return (
                             <TabsContent key={item.id} value={item.value} className="mt-[10px] xl:mt-[30px]">
-                                <p className="mb-[30px]">{yearData?.year?.description}</p>
+                                {yearData.description && <p className="mb-[30px]">{yearData.description}</p>}
 
-                                <Tabs defaultValue={yearData?.tabs?.find((tab) => tab.active)?.value || yearData?.tabs?.[0]?.value} className="h-auto w-full">
+                                {!yearData.tabs?.length && (
+                                    <p className="text_1 text-gray-400 py-[14px]">
+                                        No reports available for this year yet.
+                                    </p>
+                                )}
+
+                                <Tabs defaultValue={yearData.tabs?.[0]?.value} className="h-auto w-full">
                                     <TabsList className="gap-[8px] bg-transparent p-0">
                                         {yearData?.tabs?.map((tab) => (
                                             <TabsTrigger key={tab.id} value={tab.value} className="h-[35px] xl:h-[40px] 2xl:h-[50px] 3xl:h-[60px] px-[20px] min-w-[50px]  xl:min-w-[100px] 2xl:min-w-[120px] 3xl:min-w-[145px] w-full rounded-[100px] border border-black/10 overflow-hidden !no-underline flex items-center justify-center text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] transition-all duration-200 ease-in-out 
@@ -61,9 +68,8 @@ export default function NAACAquarSection({ data }) {
                                     </TabsList>
 
                                     {yearData?.tabs?.map((tab) => {
-                                        const sectionData = yearData?.[tab.value];
-                                        const defaultPart = sectionData?.parts?.find((p) => p.expanded)?.value ||
-                                            (sectionData?.parts?.[0]?.value ? sectionData?.parts?.[0]?.value : (sectionData?.parts?.[0]?.id ? `part-${sectionData.parts[0].id}` : undefined));
+                                        const sectionData = tab;
+                                        const defaultPart = sectionData.parts?.[0]?.value;
 
                                         return (
                                             <TabsContent key={tab.id} value={tab.value} className="mt-[20px]">
@@ -85,8 +91,11 @@ export default function NAACAquarSection({ data }) {
                                                                     </AccordionTrigger>
 
                                                                     <AccordionContent className="p-0  text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] text-[#797979]   [&_a]:no-underline [&_a]:hover:no-underline">
+                                                                        {!part.documents?.length && (
+                                                                            <p className="!mb-0 pt-[12px]">No reports available for this part yet.</p>
+                                                                        )}
                                                                         {part.documents?.map((document, id) => (
-                                                                            <Link href={document.url || "#"} className="flex items-center justify-between hover:no-underline no-underline !no-underline py-[12px] 2xl:py-[15px] 3xl:py-[20px] border-b border-black/20 last:border-b-0 w-full last-of-type:border-0 group/link mb-[8px] last-of-type:mb-0 last-of-type:pb-0" key={document.id || id}>
+                                                                            <Link href={document.url || "#"} target={document.isExternal ? "_blank" : "_self"} className="flex items-center justify-between hover:no-underline no-underline !no-underline py-[12px] 2xl:py-[15px] 3xl:py-[20px] border-b border-black/20 last:border-b-0 w-full last-of-type:border-0 group/link mb-[8px] last-of-type:mb-0 last-of-type:pb-0" key={document.id || id}>
                                                                                 <div className="flex items-center justify-between gap-[8px] xl:gap-[10px]">
                                                                                     <div className="w-[20px] xl:w-[20px] 2xl:w-[22px] 3xl:w-[30px] h-[16px] xl:h-[18px] 2xl:h-[20px] 3xl:h-[22px] flex items-center justify-center">
                                                                                         <svg  className="w-full h-full object-contain" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">

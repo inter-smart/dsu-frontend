@@ -1,6 +1,5 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import PlacementConnect from "@/components/sections/placements/placement-connect";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
+import PlacementContactTemplate from "@/components/sections/placements/templates/PlacementContactTemplate";
+import { getPlacementContactPage } from "@/lib/api/placement";
 
 const local_data = {
     id: 24,
@@ -148,13 +147,16 @@ const local_data = {
 
 }
 
-export default function page() {
-    return (
-        <>
-            <InnerHero data={local_data.hero} />
-            <PlacementmenuBar className="lg:!hidden block" />
-            <PlacementConnect data={local_data.placementContact} />
+const fallback = {
+    hero: local_data.hero,
+    placementContactPage: {
+        placementContact: local_data.placementContact,
+    },
+};
 
-        </>
-    )
+export default async function page() {
+    const apiData = await getPlacementContactPage();
+
+    // API data when the entry exists, otherwise the static local_data
+    return <PlacementContactTemplate data={apiData || fallback} />;
 }

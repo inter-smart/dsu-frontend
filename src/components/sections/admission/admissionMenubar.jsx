@@ -11,49 +11,116 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { getAdmissions } from "@/lib/api/admission";
 
-const menuItems = [
+// Overview, Admission Process, Eligibility, Fees, Hostel and Important Dates tabs come from the CMS
+// (Admission entries); these are shown until it responds, or if it fails
+const FALLBACK_DYNAMIC_ITEMS = [
   {
     label: "Overview",
-    href: "/admission",
-  },
-  {
-    label: "Programme",
-    href: "/admission/admission-programme",
+    href: "/admission/overview",
+    slug: "overview",
+    template: "overview",
   },
   {
     label: "Admission Process",
-    href: "/admission/process",
+    href: "/admission/admission-process",
+    slug: "admission-process",
+    template: "process",
   },
   {
     label: "Eligibility & Selection",
-    href: "/placement/career",
+    href: "/admission/admission-eligibility",
+    slug: "admission-eligibility",
+    template: "eligibility",
   },
   {
     label: "Fees & Scholarships",
-    href: "/placement/corporate-connect",
+    href: "/admission/admission-fee",
+    slug: "admission-fee",
+    template: "admission-fee",
   },
   {
     label: "Hostel & Campus Life",
     href: "/admission/hostel",
+    slug: "hostel",
+    template: "hostel",
   },
-  {       
+  {
     label: "Important Dates",
-    href: "/admission/ImportantDates",
+    href: "/admission/important-dates",
+    slug: "important-dates",
+    template: "dates",
   },
   {
     label: "Downloads",
     href: "/admission/download",
-  },
-  {
-    label: "FAQs",
-    href: "/admission/faq",
-  },
-  {
-    label: "Contact Admissions",
-    href: "/admission/contact",
+    slug: "download",
+    template: "download",
   },
 ];
+
+// Menu order of the CMS entries by template; unknown templates follow in CMS order
+const TEMPLATE_ORDER = [
+  "overview",
+  "process",
+  "eligibility",
+  "admission-fee",
+  "hostel",
+  "dates",
+  "download",
+  "faqs",
+  "contact",
+];
+
+const STATIC_ITEMS_BEFORE = [
+  {
+    label: "Programme",
+    href: "/admission/admission-programme",
+  },
+];
+
+// shared by every menubar instance on the page (desktop + mobile)
+let admissionsPromise = null;
+
+const loadDynamicItems = () => {
+  if (!admissionsPromise) {
+    admissionsPromise = getAdmissions().then((entries) =>
+      (entries || [])
+        // the Programme entry is the static "Programme" item below, not a second menu item
+        .filter((e) => e.slug && e.template !== "programme")
+        .map((e) => ({
+          label: e.menuLabel || e.title,
+          href: `/admission/${e.slug}`,
+          slug: e.slug,
+          template: e.template,
+        })),
+    );
+  }
+  return admissionsPromise;
+};
+
+const templateRank = (item) => {
+  const rank = TEMPLATE_ORDER.indexOf(item.template);
+  return rank === -1 ? TEMPLATE_ORDER.length : rank;
+};
+
+// Overview tab goes first (before Programme); the rest follow TEMPLATE_ORDER
+// (stable sort, so entries sharing a template keep CMS order).
+// Prefer the "overview" slug, since more than one entry may use the overview template.
+const buildMenuItems = (dynamicItems) => {
+  const overview =
+    dynamicItems.find((item) => item.slug === "overview") ||
+    dynamicItems.find((item) => item.template === "overview");
+  const others = dynamicItems
+    .filter((item) => item !== overview)
+    .sort((a, b) => templateRank(a) - templateRank(b));
+  return [
+    ...(overview ? [overview] : []),
+    ...STATIC_ITEMS_BEFORE,
+    ...others,
+  ];
+};
 
 export default function AdmissionMenubar({
   title = "Placement Menu",
@@ -63,6 +130,18 @@ export default function AdmissionMenubar({
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [currentHash, setCurrentHash] = useState("");
   const lenis = useLenis();
+  const [dynamicItems, setDynamicItems] = useState(FALLBACK_DYNAMIC_ITEMS);
+  const menuItems = buildMenuItems(dynamicItems);
+
+  useEffect(() => {
+    let active = true;
+    loadDynamicItems().then((items) => {
+      if (active && items.length > 0) setDynamicItems(items);
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (isMobileSidebarOpen) {
@@ -386,16 +465,15 @@ export default function AdmissionMenubar({
         </div>
       </div>
 
-            {/* Desktop Horizontal Menubar   */}
-            <nav className="w-full z-0 relative mt-[30px] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[50%] after:bg-white dark:after:bg-[#0f1011] after:content-[''] after:-z-1 hidden lg:block transition-colors duration-300">
-                <div className="container">
-                    <div className="relative rounded-[12px] lg:rounded-[15px] xl:rounded-[20px] 2xl:rounded-[23px] 3xl:rounded-[30px] bg-white border border-[#F3DFD2] dark:bg-[#1a1a1a] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-hidden transition-colors duration-300">
-                        {/* Menu content */}
-                        <div className="flex flex-wrap items-center justify-center gap-[8px] xl:gap-[10px] 2xl:gap-[12px] 3xl:gap-[14px] p-[20px_15px] md:p-[20px] lg:p-[25px_20px] xl:p-[30px_70px] 2xl:p-[30px_80px] 3xl:p-[45px_90px]">
-                           
-                            {/* Menu items */}
-                            {menuItems.map((item) => {
-                                const isActive = isCurrentItemActive(item.href);
+      {/* Desktop Horizontal Menubar   */}
+      <nav className="w-full z-0 relative mt-[30px] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[50%] after:bg-white dark:after:bg-[#0f1011] after:content-[''] after:-z-1 hidden lg:block transition-colors duration-300">
+        <div className="container">
+          <div className="relative rounded-[12px] lg:rounded-[15px] xl:rounded-[20px] 2xl:rounded-[23px] 3xl:rounded-[30px] bg-white border border-[#F3DFD2] dark:bg-[#1a1a1a] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-hidden transition-colors duration-300">
+            {/* Menu content */}
+            <div className="flex flex-wrap items-center justify-center gap-[8px] xl:gap-[10px] 2xl:gap-[12px] 3xl:gap-[14px] p-[20px_15px] md:p-[20px] lg:p-[25px_20px] xl:p-[30px_70px] 2xl:p-[30px_80px] 3xl:p-[45px_90px]">
+              {/* Menu items */}
+              {menuItems.map((item) => {
+                const isActive = isCurrentItemActive(item.href);
 
                 return (
                   <Link

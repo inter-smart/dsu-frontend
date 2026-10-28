@@ -51,8 +51,12 @@ const sidebarMenu = [
    
 ];
 
-export default function DsuActSidebarSection({ isOpen = false, onClose, title = "DSU Act Menu" }) {
+export default function DsuActSidebarSection({ menu, isOpen = false, onClose, title = "DSU Act Menu" }) {
      const pathname = usePathname();
+     // CMS menu (Compliance & Disclosures) when provided, static list otherwise
+     const items = Array.isArray(menu) && menu.length > 0
+        ? menu.filter((item) => item?.slug).map((item) => ({ label: item.title, slug: item.slug }))
+        : sidebarMenu;
     
         return (
             <>
@@ -88,7 +92,7 @@ export default function DsuActSidebarSection({ isOpen = false, onClose, title = 
                         </div>
     
                         <ul>
-                            {sidebarMenu.map((item, idx) => {
+                            {items.map((item, idx) => {
                                 const normalizedSlug = item.slug.startsWith("/") ? item.slug : `/${item.slug}`;
                                 const href = `/why-us${normalizedSlug}`;
                                 const isActive = pathname === href;

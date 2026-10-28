@@ -1,5 +1,9 @@
-import InnerHero from "@/components/layout/common/InnerHero" 
+﻿import InnerHero from "@/components/layout/common/InnerHero" 
 import DSUCell from "@/components/sections/why-us/DSU-Cell"
+import { getStudentSupportMenu } from "@/lib/api/women-redressal";
+
+
+
 
 
 const local_data = {
@@ -72,11 +76,13 @@ const local_data = {
         
     }
 }
-export default function page() {
+export default async function Page() {
+    const menu = await getStudentSupportMenu();
+
     return (
         <>
             <InnerHero data={local_data.hero} />
-            <DSUCell data={local_data.dsuActSection}/>
+            <DSUCell data={local_data.dsuActSection} menu={menu} />
         </>
     )
 }

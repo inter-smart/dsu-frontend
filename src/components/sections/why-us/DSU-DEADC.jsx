@@ -5,6 +5,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
+import { fileLinkProps } from "@/lib/schools/link-props";
 import StudentSupportSidebar from "./StudentSupportSidebar";
 import {
     Accordion,
@@ -13,7 +14,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export default function DSUDEADC({ data }) {
+export default function DSUDEADC({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
@@ -22,6 +23,7 @@ export default function DSUDEADC({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <StudentSupportSidebar
+                            menu={menu}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
@@ -50,11 +52,11 @@ export default function DSUDEADC({ data }) {
 
                             <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
                                          w-full ">
-                                <BlocksRenderer content={data?.description} />
+                                {data?.description?.length > 0 && <BlocksRenderer content={data.description} />}
                             </div>
                             <Accordion type="single" collapsible defaultValue="item-2" className="mt-[30px] w-full xl:mt-[40px]">
-                                {data?.items?.map((item) => (
-                                    <AccordionItem key={item.id} value={`item-${item.id}`} className="p-[8px_10px] md:p-[10px] xl:p-[15px_12px] 3xl:p-[20px_12px] border border-[#E5E9EE] rounded-[6px] mb-[10px] xl:mb-[20px]">
+                                {data?.items?.map((item, index) => (
+                                    <AccordionItem key={item.id ?? index} value={`item-${item.id ?? index}`} className="p-[8px_10px] md:p-[10px] xl:p-[15px_12px] 3xl:p-[20px_12px] border border-[#E5E9EE] rounded-[6px] mb-[10px] xl:mb-[20px]">
                                         <AccordionTrigger
                                             className="relative p-0  font-medium !text-black text-[11px] hover:no-underline  md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]  3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold after:text-base2 data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden"
                                         >
@@ -72,8 +74,8 @@ export default function DSUDEADC({ data }) {
                                                         {item.content && (
                                                             <p>{item.content}</p>
                                                         )}
-                                                        {item.document && (
-                                                            <Link href={item?.document.file.url} className="flex items-center justify-between  py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 px-0 w-fit lg:w-full gap-[20px] !no-underline  lg:max-w-[220px] xl:max-[260px] 2xl:max-w-[360px] 3xl:max-w-[460px]"  >
+                                                        {item.document?.file?.url && (
+                                                            <Link href={item.document.file.url} {...fileLinkProps()} className="flex items-center justify-between  py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 px-0 w-fit lg:w-full gap-[20px] !no-underline  lg:max-w-[220px] xl:max-[260px] 2xl:max-w-[360px] 3xl:max-w-[460px]"  >
                                                                 <div className="flex items-center justify-between gap-[15px]">
                                                                     <div className="w-[18px] xl:w-[20px] 2xl:w-[25px] 3xl:w-[33px] h-[15px] xl:h-[18px] 2xl:h-[20px] 3xl:h-[23px] flex items-center justify-center">
                                                                         <svg width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,7 +85,7 @@ export default function DSUDEADC({ data }) {
                                                                             <path d="M14.6316 27.5023H8.77889C8.00277 27.5023 7.25844 27.1547 6.70965 26.5358C6.16085 25.9169 5.85254 25.0776 5.85254 24.2023C5.85254 23.3271 6.16085 22.4878 6.70965 21.8689C7.25844 21.25 8.00277 20.9023 8.77889 20.9023H14.6316C15.4077 20.9023 16.152 21.25 16.7008 21.8689C17.2496 22.4878 17.5579 23.3271 17.5579 24.2023C17.5579 25.0776 17.2496 25.9169 16.7008 26.5358C16.152 27.1547 15.4077 27.5023 14.6316 27.5023ZM8.77889 23.0989C8.53687 23.1254 8.31226 23.2525 8.14883 23.4556C7.98541 23.6586 7.89487 23.923 7.89487 24.1972C7.89487 24.4714 7.98541 24.7358 8.14883 24.9388C8.31226 25.1418 8.53687 25.269 8.77889 25.2955H14.6316C14.8736 25.269 15.0982 25.1418 15.2616 24.9388C15.4251 24.7358 15.5156 24.4714 15.5156 24.1972C15.5156 23.923 15.4251 23.6586 15.2616 23.4556C15.0982 23.2525 14.8736 23.1254 14.6316 23.0989H8.77889Z" fill="#4A5565" />
                                                                         </svg>
                                                                     </div>
-                                                                    <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black">{item?.document.label}</div>
+                                                                    <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black">{item.document.label}</div>
 
                                                                 </div>
                                                                 <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex">
@@ -95,10 +97,10 @@ export default function DSUDEADC({ data }) {
                                                         )}
                                                     </div>
                                                 </div>
-                                                {item.media && (
+                                                {item.media?.url && (
                                                     <div className="w-full md:w-[250px] xl:w-[310px] 2xl:w-[370px] 3xl:w-[460px] ">
                                                         <div className="w-full h-full rounded-[10px] overflow-hidden">
-                                                            <Image src={item.media.url} width={460} height={260} className="w-full h-full object-cover" alt={item.alternativeText} />
+                                                            <Image src={item.media.url} width={460} height={260} className="w-full h-full object-cover" alt={item.media.alternativeText || item.title || ""} />
                                                         </div>
                                                     </div>
                                                 )}

@@ -13,7 +13,7 @@ export default function TechnologySection({ data }) {
                     {/* Left Column - Tech Stack Diagram Card */}
                     <div className="w-full lg:w-1/2 xl:w-[54%]">
                         <div className="relative w-full h-full overflow-hidden rounded-[8px] dark:ring-1 dark:ring-white/10">
-                            <Image src={data?.media?.url} className="w-full h-full object-cover" width={680} height={350} alt={data?.media?.alternativeText}/>
+                            {data?.media?.url && <Image src={data.media.url} className="w-full h-full object-cover" width={680} height={350} alt={data.media.alternativeText || ""}/>}
                         </div>
                     </div>
 

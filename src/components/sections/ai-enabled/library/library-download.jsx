@@ -3,9 +3,10 @@
 import { useState } from "react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
+import { fileLinkProps } from "@/lib/schools/link-props";
 import LibrarySidebar from "./library-sidemenubar";
 
-export default function LibraryDownloads({ data }) {
+export default function LibraryDownloads({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
@@ -14,6 +15,7 @@ export default function LibraryDownloads({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <LibrarySidebar
+                            data={menu}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
@@ -27,9 +29,10 @@ export default function LibraryDownloads({ data }) {
                                 {data.description}
                             </div>
 
-                            {data?.files.map((item, id) => (
+                            {data?.files?.map((item, id) => (
                                 <Link
                                     href={item?.file.url}
+                                    {...fileLinkProps()}
                                     key={id}
                                     className="group relative flex items-center justify-between lg:max-w-[35%] py-[15px] 2xl:py-[18px] 3xl:py-[22px]   dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
                                 >

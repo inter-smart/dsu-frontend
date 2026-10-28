@@ -1,15 +1,5 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import CareerGoal from "@/components/sections/placements/Career-Goal";
-import CareerJourney from "@/components/sections/placements/Career-journey";
-import CareerPartners from "@/components/sections/placements/Career-Partners";
-import CareerPlacement from "@/components/sections/placements/Career-Placement";
-import IntershipSupport from "@/components/sections/placements/intership-support";
-import KeyFocus from "@/components/sections/placements/Key-Focus";
-import PlacementOverview from "@/components/sections/placements/overview";
-import PlacementActivities from "@/components/sections/placements/Placement-Activities";
-import CampusDrives from "@/components/sections/placements/placement-campusdrive";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import ProfessionalCertification from "@/components/sections/placements/profeesional-section";
+import CareerDevelopmentTemplate from "@/components/sections/placements/templates/CareerDevelopmentTemplate";
+import { getPlacementCareerPage } from "@/lib/api/placement";
 
 const local_data = {
     id: 24,
@@ -595,19 +585,30 @@ const local_data = {
 
 }
 
-export default function page() {
-    return (
-        <>
-            <InnerHero data={local_data.hero} />
-            <PlacementmenuBar className="lg:!hidden block" />
-            <CareerPlacement data={local_data.programOverviewSection} />
-            <KeyFocus data={local_data.KeyFocus} />
-            <CareerGoal data={local_data.careerGoal} />
-            <CampusDrives data={local_data.campusDrive} />
-            <ProfessionalCertification data={local_data.professional} />
-            <CareerPartners data={local_data.partnersSection} />
-            <CareerJourney data={local_data.careerJorney} />
+export async function generateMetadata() {
+    const apiData = await getPlacementCareerPage();
+    return {
+        title: apiData?.seo?.metaTitle || local_data.seo.metaTitle,
+        description: apiData?.seo?.metaDescription || local_data.seo.metaDescription,
+    };
+}
 
-        </>
-    )
+const fallback = {
+    hero: local_data.hero,
+    careerDevelopment: {
+        programOverviewSection: local_data.programOverviewSection,
+        KeyFocus: local_data.KeyFocus,
+        careerGoal: local_data.careerGoal,
+        campusDrive: local_data.campusDrive,
+        professional: local_data.professional,
+        partnersSection: local_data.partnersSection,
+        careerJorney: local_data.careerJorney,
+    },
+};
+
+export default async function page() {
+    const apiData = await getPlacementCareerPage();
+
+    // API data when the entry exists, otherwise the static local_data
+    return <CareerDevelopmentTemplate data={apiData || fallback} />;
 }

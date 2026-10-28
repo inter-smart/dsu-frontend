@@ -53,7 +53,7 @@ export default function AcademicFacultyAchievements({ data }) {
     );
 
     // Active Month Filter Pill
-    const defaultFilterId = data?.monthFilters?.find((m) => m.isActive)?.id || 6;
+    const defaultFilterId = (data?.monthFilters?.find((m) => m.isActive) ?? data?.monthFilters?.[0])?.id;
     const [selectedFilterId, setSelectedFilterId] = useState(defaultFilterId);
 
     const activeTab = useMemo(() => {
@@ -68,17 +68,18 @@ export default function AcademicFacultyAchievements({ data }) {
     const filteredAchievements = useMemo(() => {
         if (!data?.achievements) return [];
 
-        // If Student Achievements tab is active and data belongs to Faculty, return empty array
-        if (activeTab && activeTab.label.toLowerCase().includes("student")) {
-            return [];
-        }
+        // Student tab shows items marked category "student", the other tab everything else
+        const studentTab = activeTab && activeTab.label.toLowerCase().includes("student");
+        const pool = data.achievements.filter((item) =>
+            studentTab ? item.category === "student" : item.category !== "student"
+        );
 
-        if (!selectedFilter) return data.achievements;
+        if (!selectedFilter) return pool;
 
         const filterLabel = selectedFilter.label.toLowerCase();
         const tokens = filterLabel.split(" ");
 
-        return data.achievements.filter((item) => {
+        return pool.filter((item) => {
             if (!item.date) return false;
             const dateStr = item.date.toLowerCase();
             return tokens.every((token) => {
@@ -107,9 +108,9 @@ export default function AcademicFacultyAchievements({ data }) {
             <div className="container relative ">
                 {/* Header Row: Title on Left, Tab Toggle Buttons on Right */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 xl:mb-10">
-                    <h2 className="cmn_Title mb-[15px]">
-                        {data.heading || "Faculty Achievements"}
-                    </h2>
+                    {data.heading && (
+                        <h2 className="cmn_Title mb-[15px]">{data.heading}</h2>
+                    )}
 
                     {/* Toggle Buttons (Faculty Achievements / Student Achievements) */}
                     {data?.tabToggle?.options?.length > 0 && (
@@ -250,7 +251,7 @@ export default function AcademicFacultyAchievements({ data }) {
                 ) : (
                     <div className="py-16 px-4 text-center bg-white/70 dark:bg-[#18191B]/70 rounded-[12px] border border-dashed border-gray-300 dark:border-white/10">
                         <p className="text-[15px] sm:text-[16px] font-medium text-gray-500 dark:text-gray-400">
-                            No {activeTab?.label || "achievements"} recorded for {selectedFilter?.label || "this period"}.
+                            Nothing to show here yet.
                         </p>
                     </div>
                 )}

@@ -2,9 +2,17 @@
 
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { hasContent } from "@/lib/has-content";
 
 export default function AboutWelcome({ data }) {
+  if (!data) return null;
   const isVideo = data?.media?.type === "video";
+  const mediaUrl = isVideo ? data?.media?.video?.url : data?.media?.image?.url;
+  const panel = data?.innovationPanel;
+  const panelImageUrl = panel?.backgroundMedia?.image?.url;
+  const panelItems = (Array.isArray(panel?.items) ? panel.items : []).filter(
+    (item) => item?.title,
+  );
 
   return (
     <section className="bg-white dark:bg-[#101010] py-[40px] 2xl:py-[50px] 3xl:py-[70px]">
@@ -22,7 +30,7 @@ export default function AboutWelcome({ data }) {
                     </h2>
                   )}
 
-                  {data?.description && (
+                  {Array.isArray(data?.description) && hasContent(data.description) && (
                     <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]">
                       <BlocksRenderer content={data.description} />
                     </div>
@@ -32,62 +40,71 @@ export default function AboutWelcome({ data }) {
 
               {/* Main Image / Video */}
               <div className="w-full sm:w-1/2 lg:w-[360px] xl:w-[440px] 2xl:w-[530px] 3xl:w-[665px] ">
+                {mediaUrl && (
                 <div className="aspect-[665/500] h-full w-full overflow-hidden rounded-[10px]">
                   {isVideo
                     ? data?.media?.video?.url && (
-                        <video
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          className="h-full w-full object-cover"
-                        >
-                          <source
-                            src={data.media.video.url}
-                            type={data.media.video.mime}
-                          />
-                        </video>
-                      )
-                    : data?.media?.image?.url && (
-                        <Image
-                          src={data.media.image.url}
-                          alt={
-                            data.media.image.alternativeText ||
-                            data?.title ||
-                            "About DSU"
-                          }
-                          width={1920}
-                          height={750}
-                          priority
-                          className="h-full w-full object-cover"
+                      <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="h-full w-full object-cover"
+                      >
+                        <source
+                          src={data.media.video.url}
+                          type={data.media.video.mime}
                         />
-                      )}
+                      </video>
+                    )
+                    : data?.media?.image?.url && (
+                      <Image
+                        unoptimized
+                        src={data.media.image.url}
+                        alt={
+                          data.media.image.alternativeText ||
+                          data?.title ||
+                          "About DSU"
+                        }
+                        width={1920}
+                        height={750}
+                        priority
+                        className="h-full w-full object-cover"
+                      />
+                    )}
                 </div>
+                )}
               </div>
             </div>
           </div>
 
           {/* Right Innovation Panel */}
+          {panel && (
           <div className="w-full lg:w-[280px] xl:w-[320px] 2xl:w-[350px] 3xl:w-[440px] shrink-0">
             <div className="relative  w-full h-full rounded-[10px] overflow-hidden">
-              <Image
-                src={data.innovationPanel.backgroundMedia.image.url}
-                alt={
-                  data.innovationPanel.backgroundMedia.image.alternativeText ||
-                  data?.title ||
-                  "About DSU"
-                }
-                width={1920}
-                height={750}
-                priority
-                className="h-full w-full object-cover absolute top-0 left-0 "
-              />
+              {panelImageUrl && (
+                <Image
+                  src={panelImageUrl}
+                  alt={
+                    panel.backgroundMedia.image.alternativeText ||
+                    data?.title ||
+                    "About DSU"
+                  }
+                  width={1920}
+                  height={750}
+                  priority
+                  className="h-full w-full object-cover absolute top-0 left-0 "
+                />
+              )}
               <div className="w-full h-full p-[15px] xl:p-[18px] 2xl:p-[20px] 3xl:p-[25px]">
+                {panel.title && (
                 <div className="text-[20px] xl:text-[25px] 2xl:text-[30px] 3xl:text-[37px] text-white font-bold leading-[25px] xl:leading-[30px] 2xl:leading-[35px] 3xl:leading-[40px] relative mb-[20px]">
-                  {data.innovationPanel.title}
+                  {panel.title}
                 </div>
+                )}
+                {panelItems.length > 0 && (
                 <div className="flex flex-col gap-[5px] lg:gap-[8px] xl:gap-[10px] 3xl:gap-[15px] max-w-[75%] w-full">
-                  {data.innovationPanel.items.map((item, id) => (
+                  {panelItems.map((item, id) => (
                     <div
                       key={id}
                       className="w-full overflow-hidden rounded-[10px] bg-black/15 backdrop-blur-lg border border-white/20 p-[10px_12px] 2xl:p-[12px_15px] 3xl:p-[15px_20px] 
@@ -96,15 +113,19 @@ export default function AboutWelcome({ data }) {
                       <div className="text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[25px] text-white font-bold mb-[5px]">
                         {item.title}
                       </div>
-                      <div className="text_1 leading-[1.2] text-white [&_p]:text-white">
-                        <BlocksRenderer content={item.description} />
-                      </div>
+                      {Array.isArray(item.description) && hasContent(item.description) && (
+                        <div className="text_1 leading-[1.2] text-white [&_p]:text-white">
+                          <BlocksRenderer content={item.description} />
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
+                )}
               </div>
             </div>
           </div>
+          )}
         </div>
       </div>
     </section>

@@ -8,53 +8,32 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const nirfSidebarData = {
-    menuItems: [
-        {
-            id: 1,
-            label: "NIRF",
-            slug: "nirf",
-            subItems: [
-                { id: 1, label: "Overall", slug: "overall" },
-                { id: 2, label: "Engineering", slug: "engineering" },
-                { id: 3, label: "Management", slug: "management" },
-                { id: 4, label: "Pharmacy", slug: "pharmacy" },
-                { id: 5, label: "Innovation", slug: "innovation" },
-                { id: 6, label: "SDG", slug: "sdg" },
-                { id: 7, label: "Historical Performance", slug: "historical-performance" }
-            ]
-        },
-        {
-            id: 2,
-            label: "India Today",
-            slug: "india-today",
-            subItems: []
-        },
-        {
-            id: 3,
-            label: "Outlook",
-            slug: "outlook",
-            subItems: []
-        },
-        {
-            id: 4,
-            label: "IIRF",
-            slug: "iirf",
-            subItems: []
-        }, 
-    ]
-};
+const clean = (v = "") => String(v).toLowerCase().replace(/^\/+|\/+$/g, "");
 
-export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognition Menu" }) {
-    // FIX: guard against null and strip trailing slash (trailingSlash: true configs)
-    const rawPathname = usePathname() || "";
-    const pathname = rawPathname.toLowerCase().replace(/\/+$/, "");
+// `menu`: [{ label, slug, subItems: [{ label, slug }] }] - links are `${basePath}/${slug}[/${sub.slug}]`
+export default function NIRFSidebar({
+    menu = [],
+    basePath = "/national-Ranking",
+    activeSlug,
+    isOpen = false,
+    onClose,
+    title = "Recognition Menu",
+}) {
+    // guard against null and strip trailing slash (trailingSlash: true configs)
+    const pathname = (usePathname() || "").toLowerCase().replace(/\/+$/, "");
+    const base = `/${String(basePath).replace(/^\/+|\/+$/g, "")}`;
+    const menuItems = (menu || []).filter((item) => item?.slug);
 
-    const activeParentSlug = nirfSidebarData.menuItems.find((item) => {
-        const itemSlug = item.slug.toLowerCase().replace(/^\/+/, "");
-        const itemHref = `/${itemSlug}`;
-        return pathname === itemHref || pathname.startsWith(`${itemHref}/`);
-    })?.slug;
+    const isItemActive = (item) => {
+        const href = `${base.toLowerCase()}/${clean(item.slug)}`;
+        return (
+            (activeSlug && clean(activeSlug) === clean(item.slug)) ||
+            pathname === href ||
+            pathname.startsWith(`${href}/`)
+        );
+    };
+
+    const activeParentSlug = menuItems.find(isItemActive)?.slug;
 
     return (
         <>
@@ -91,10 +70,10 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
 
                     <Accordion type="single" collapsible defaultValue={activeParentSlug}>
                         <ul>
-                            {nirfSidebarData.menuItems.map((item, idx) => {
-                                const itemSlug = item.slug.toLowerCase().replace(/^\/+/, "");
-                                const itemHref = `/${itemSlug}`;
-                                const isActive = pathname === itemHref || pathname.startsWith(`${itemHref}/`);
+                            {menuItems.map((item, idx) => {
+                                const itemSlug = clean(item.slug);
+                                const itemHref = `${base}/${itemSlug}`;
+                                const isActive = isItemActive(item);
 
                                 return item.subItems?.length > 0 ? (
                                     // ============ ITEM WITH SUB-ITEMS ============
@@ -137,10 +116,11 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
                                             <AccordionContent className="pb-0">
                                                 <ul>
                                                     {item.subItems.map((sub, subIdx) => {
-                                                        const subSlug = sub.slug.toLowerCase().replace(/^\/+/, "");
+                                                        const subSlug = clean(sub.slug);
+                                                        const subHref = `${itemHref}/${subSlug}`;
                                                         const isSubActive =
-                                                            pathname === `/${itemSlug}/${subSlug}` ||
-                                                            pathname.startsWith(`/${itemSlug}/${subSlug}/`);
+                                                            pathname === subHref.toLowerCase() ||
+                                                            pathname.startsWith(`${subHref.toLowerCase()}/`);
 
                                                         return (
                                                             <li
@@ -148,7 +128,7 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
                                                                 className={`group transition-colors duration-300 ${isSubActive ? "bg-[rgba(249,115,22,0.15)] border-l-4 border-[#F97316]" : ""}`}
                                                             >
                                                                 <Link
-                                                                    href={`/${itemSlug}/${subSlug}`}
+                                                                    href={subHref}
                                                                     onClick={onClose}
                                                                     className="flex items-center justify-between p-[6px_15px] 2xl:p-[7px_20px] 3xl:p-[8px_25px] !no-underline"
                                                                 >
@@ -176,7 +156,7 @@ export default function NIRFSidebar({ isOpen = false, onClose, title = "Recognit
                                         className="border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0 transition-colors duration-300"
                                     >
                                         <Link
-                                            href={`/${itemSlug}`}
+                                            href={itemHref}
                                             onClick={onClose}
                                             className="flex items-center justify-between !no-underline"
                                         >

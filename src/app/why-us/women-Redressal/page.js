@@ -1,6 +1,21 @@
-import InnerHero from "@/components/layout/common/InnerHero"
-import DSUCell from "@/components/sections/why-us/DSU-Cell"
-import DSUWomenRedressal from "@/components/sections/why-us/DSU-womenredressal"
+﻿import InnerHero from "@/components/layout/common/InnerHero";
+import DSUWomenRedressal from "@/components/sections/why-us/DSU-womenredressal";
+import { getWomenRedressalPage } from "@/lib/api/women-redressal";
+import { getStudentSupportMenu } from "@/lib/api/women-redressal";
+import { hasContent } from "@/lib/has-content";
+
+export const revalidate = 60;
+
+export async function generateMetadata() {
+    const apiData = await getWomenRedressalPage();
+    return {
+        title: apiData?.seo?.metaTitle || "Women Redressal Cell | Dayananda Sagar University",
+        description: apiData?.seo?.metaDescription || undefined,
+    };
+}
+
+
+
 
 
 const local_data = {
@@ -359,11 +374,18 @@ const local_data = {
         }
     }
 }
-export default function page() {
+export default async function Page() {
+    const apiData = await getWomenRedressalPage();
+    const menu = await getStudentSupportMenu();
+
+    // API data when the entry exists, otherwise the static local_data
+    const hero = apiData ? apiData.hero : local_data.hero;
+    const womenRedressal = apiData ? apiData.womenRedressalCell : local_data.womenRedressalCell;
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
-            <DSUWomenRedressal data={local_data.womenRedressalCell} />
+            {hasContent(hero) && <InnerHero data={hero} />}
+            {hasContent(womenRedressal) && <DSUWomenRedressal data={womenRedressal} menu={menu} />}
         </>
     )
 }

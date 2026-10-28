@@ -9,6 +9,8 @@ import BuildSection from "@/components/sections/NVIDIA/build-section"
 import WhysetupSection from "@/components/sections/NVIDIA/Whysetup-Section"
 import GatewaySection from "@/components/sections/NVIDIA/gateway-section"
 import MasterAi from "@/components/sections/NVIDIA/MasterAi"
+import { getNvidiaPage } from "@/lib/api"
+import { mergeData } from "@/lib/utils"
 
 
 const local_data = {
@@ -236,23 +238,23 @@ const local_data = {
                 ],
             },
         ],
-        whyItMatters: {
-            heading: "Why This Stack Matters",
-            description: [
-                {
-                    type: "paragraph",
-                    children: [
-                        { type: "text", text: "This isn't just hardware. It's a complete, integrated ecosystem where every layer is optimized to work together. CUDA enables " },
-                        { type: "text", text: "PyTorch", medium: true },
-                        { type: "text", text: " to run at lightning speed on GPUs. " },
-                        { type: "text", text: "TensorRT", medium: true },
-                        { type: "text", text: " takes trained models and makes them 10X faster. Students experience this integration firsthand, understanding how real AI systems are built, deployed, and scaled in production environments. This is how " },
-                        { type: "text", text: "Google, Meta, and OpenAI", medium: true },
-                        { type: "text", text: " build their AI systems." },
-                    ],
-                },
-            ],
-        },
+        // whyItMatters: {
+        //     heading: "Why This Stack Matters",
+        //     description: [
+        //         {
+        //             type: "paragraph",
+        //             children: [
+        //                 { type: "text", text: "This isn't just hardware. It's a complete, integrated ecosystem where every layer is optimized to work together. CUDA enables " },
+        //                 { type: "text", text: "PyTorch", medium: true },
+        //                 { type: "text", text: " to run at lightning speed on GPUs. " },
+        //                 { type: "text", text: "TensorRT", medium: true },
+        //                 { type: "text", text: " takes trained models and makes them 10X faster. Students experience this integration firsthand, understanding how real AI systems are built, deployed, and scaled in production environments. This is how " },
+        //                 { type: "text", text: "Google, Meta, and OpenAI", medium: true },
+        //                 { type: "text", text: " build their AI systems." },
+        //             ],
+        //         },
+        //     ],
+        // },
     },
     journey: {
         heading: "From Day One: Your Learning Journey",
@@ -926,22 +928,40 @@ const local_data = {
         ],
     },
 }
-export default function page() {            
-    return (
-        <>
-            <BannerSection data={local_data.heroBanner} />
-            <TechnologySection data={local_data.technologySection} />
-            <ArchitectureSection data={local_data.ArchitectureSection} />
-            <StackSection data={local_data.nvidiaAiStackSection} />
-            <JourneySection data={local_data.JourneySection} />
-            <AiTrainingSection data={local_data.AiTraining} />
-            <AiTools data={local_data.aiTools} />
-            <BuildSection data={local_data.build} />
-            <WhysetupSection data={local_data.whySetup} />
-            <GatewaySection data={local_data.gateWay} />
-            <MasterAi data={local_data.readySection}/>
+const DEFAULT_TITLE = "NVIDIA AI Centre of Excellence | Dayananda Sagar University";
 
-        </>
-    )
+
+export async function generateMetadata() {
+    const pageData = await getNvidiaPage();
+    const seo = pageData?.seo;
+
+    return {
+        title: seo?.metaTitle || local_data.seo.metaTitle || DEFAULT_TITLE,
+        description: seo?.metaDescription || undefined,
+        alternates: seo?.canonicalUrl ? { canonical: seo.canonicalUrl } : undefined,
+    };
 }
 
+export default async function Page() {
+    const pageData = await getNvidiaPage();
+    const data = mergeData(pageData, local_data);
+
+    // The CMS sends { showSection: false } for a section switched off with "Show This Section".
+    const hidden = (section) => section?.showSection === false;
+
+    return (
+        <>
+            <BannerSection data={data.heroBanner} />
+            {!hidden(data.technologySection) && <TechnologySection data={data.technologySection} />}
+            {!hidden(data.ArchitectureSection) && <ArchitectureSection data={data.ArchitectureSection} />}
+            {!hidden(data.nvidiaAiStackSection) && <StackSection data={data.nvidiaAiStackSection} />}
+            {!hidden(data.journey) && <JourneySection data={data.journey} />}
+            {!hidden(data.AiTraining) && <AiTrainingSection data={data.AiTraining} />}
+            {!hidden(data.aiTools) && <AiTools data={data.aiTools} />}
+            {!hidden(data.build) && <BuildSection data={data.build} />}
+            {!hidden(data.whySetup) && <WhysetupSection data={data.whySetup} />}
+            {!hidden(data.gateWay) && <GatewaySection data={data.gateWay} />}
+            {!hidden(data.readySection) && <MasterAi data={data.readySection} />}
+        </>
+    );
+}

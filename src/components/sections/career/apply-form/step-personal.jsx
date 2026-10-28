@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { inputStyle, DEPARTMENTS, POSITIONS, DESIGNATIONS } from "./form-constants";
+import { inputStyle, DESIGNATIONS } from "./form-constants";
 
 export default function StepPersonal({ formData, setFormData }) {
   const update = (field, value) => setFormData((prev) => ({ ...prev, [field]: value }));
@@ -84,35 +84,23 @@ export default function StepPersonal({ formData, setFormData }) {
             <Label className="text-xs xl:text-sm font-medium text-[#212121] dark:text-gray-200 mb-1.5">
               DEPARTMENT *
             </Label>
-            <Select value={formData.department} onValueChange={(val) => update("department", val)}>
-              <SelectTrigger className={inputStyle}>
-                <SelectValue placeholder="Select" />
-              </SelectTrigger>
-              <SelectContent>
-                {DEPARTMENTS.map((dept) => (
-                  <SelectItem key={dept} value={dept}>
-                    {dept}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Input
+              required
+              readOnly
+              className={`${inputStyle} cursor-not-allowed`}
+              value={formData.department}
+            />
           </div>
           <div>
             <Label className="text-xs xl:text-sm font-medium text-[#212121] dark:text-gray-200 mb-1.5">
               POSITION YOU ARE APPLYING FOR? *
             </Label>
-            <Select value={formData.position} onValueChange={(val) => update("position", val)}>
-              <SelectTrigger className={inputStyle}>
-                <SelectValue placeholder="Select" />
-              </SelectTrigger>
-              <SelectContent>
-                {POSITIONS.map((position) => (
-                  <SelectItem key={position} value={position}>
-                    {position}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Input
+              required
+              readOnly
+              className={`${inputStyle} cursor-not-allowed`}
+              value={formData.position}
+            />
           </div>
           <div>
             <Label className="text-xs xl:text-sm font-medium text-[#212121] dark:text-gray-200 mb-1.5">

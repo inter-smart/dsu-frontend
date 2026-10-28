@@ -9,12 +9,26 @@ import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
+import { hasContent } from "@/lib/has-content";
+
+
+const renderText = (value) =>
+    Array.isArray(value) ? <BlocksRenderer content={value} /> : value;
+
 
 export default function AboutHistory({ data }) {
+    if (!data) return null;
+    const timeline = (Array.isArray(data?.timeline) ? data.timeline : []).filter(
+        (item) => item?.period,
+    );
+    const founders = (Array.isArray(data?.founders) ? data.founders : []).filter(
+        (item) => item?.name,
+    );
     return (
         <section className='relative py-[40px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[75px] dark:bg-[#101010] transition-colors duration-300'>
             <div className="container">
                 <div className="flex max-sm:gap-[20px] lg:gap-[25px] 2xl:gap-[35px] 3xl:gap-[45px] max-lg:flex-wrap max-lg:mb-[30px]">
+                    {timeline.length > 0 && (
                     <div className="w-full lg:w-[260px] xl:w-[330px] 2xl:w-[400px] 3xl:w-[500px] mb-[30px] max-lg:border-[#f4f4f4] max-lg:border-b">
 
                         <div className="w-full">
@@ -32,7 +46,7 @@ export default function AboutHistory({ data }) {
                                 }}
                                 className="h-[400px] lg:h-[360px] xl:h-[400px] 2xl:h-[484px] 3xl:h-[610px] w-full "
                             >
-                                {data?.timeline.map((itemList, idx) => (
+                                {timeline.map((itemList, idx) => (
                                     <SwiperSlide key={idx} className="relative before:absolute before:content-[''] before:left-[22px] before:xl:left-[27px] before:2xl:left-[32px] before:3xl:left-[40px] before:top-0 before:h-[calc(100%-40px)] before:bottom-0 before:m-auto before:-z-1 before:w-[1px] before:bg-black/20 dark:before:bg-white/20">
                                         <div className="w-full flex pb-[30px] xl:pb-[40px] 2xl:pb-[60px] 3xl:pb-[80px]">
                                             <div className="w-[45px] xl:w-[55px] 2xl:w-[65px] 3xl:w-[83px] h-[45px] xl:h-[55px] 2xl:h-[65px] 3xl:h-[85px] mt-[10px] bg-[#FFF8EE] dark:bg-[#18191B] rounded-full border border-[#FF6D00] dark:border-[#F97316]/50 p-[10px] lg:p-[15px] 2xl:p-[20px] 3xl:p-[25px]
@@ -45,7 +59,9 @@ export default function AboutHistory({ data }) {
                                                 <div className="text-[24px] xl:text-[30px] 2xl:text-[36px] 3xl:text-[45px] text-black dark:text-white font-semibold">
                                                     {itemList.period}
                                                 </div>
-                                                <p className="dark:text-[#9CA3AF]">{itemList.description}</p>
+                                                {hasContent(itemList.description) && (
+                                                    <p className="dark:text-[#9CA3AF]">{renderText(itemList.description)}</p>
+                                                )}
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -54,63 +70,80 @@ export default function AboutHistory({ data }) {
                         </div>
 
                     </div>
+                    )}
                     <div className="flex gap-[40px] lg:w-[calc(100%-260px)] xl:w-[calc(100%-330px)] 2xl:w-[calc(100%-400px)] 3xl:w-[calc(100%-500px)] max-sm:flex-wrap">
                         <div className="w-full sm:w-1/2 lg:w-1/2">
-                            <div className="w-full h-full rounded-[10px] overflow-hidden ">
-                                <Image src={data?.media.url} width={550} height={600} alt={data?.media.alternativeText} className="w-full h-full object-cover" />
-                            </div>
+                            {data?.media?.url && (
+                                <div className="w-full h-full rounded-[10px] overflow-hidden ">
+                                    <Image src={data.media.url} width={550} height={600} alt={data.media.alternativeText || "History"} className="w-full h-full object-cover" />
+                                </div>
+                            )}
                         </div>
                         <div className="w-full lg:w-1/2">
                             <div className="w-full">
-                                <h2 className=" text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] mb-[10px]
+                                {data?.heading && (
+                                    <h2 className=" text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] mb-[10px]
                                 xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white">
-                                    {data.heading}
-                                </h2>
-                                <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] mb-[30px] 3xl:mb-[50px]">
-                                    <BlocksRenderer content={data.description} />
-                                </div>
+                                        {data.heading}
+                                    </h2>
+                                )}
+                                {Array.isArray(data?.description) && hasContent(data.description) && (
+                                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] mb-[30px] 3xl:mb-[50px]">
+                                        <BlocksRenderer content={data.description} />
+                                    </div>
+                                )}
+                                {founders.length > 0 && (
+                                <>
                                 <div className="text-1 text-[#F97316] font-bold mb-[0px] uppercase">FOUNDERS</div>
                                 <div className="w-full mb-[10px]">
-                                    {data.founders.map((item, id) => (
+                                    {founders.map((item, id) => (
 
                                         <div className="w-full flex items-center py-[15px] xl:py-[20px] 2xl:py-[25px] 3xl:py-[30px] border-b border-black/10 dark:border-white/10 last-of-type:border-0"
                                             key={id}>
                                             <div className="w-[42px] xl:w-[52px] 2xl:w-[62px] 3xl:w-[78px] h-[42px] xl:h-[52px] 2xl:h-[62px] 3xl:h-[78px] rounded-full">
-                                                <Image src={item?.photo.url} width={78} height={78} alt={item?.photo.alternativeText} />
+                                                {item?.photo?.url && (
+                                                    <Image src={item.photo.url} width={78} height={78} alt={item.photo.alternativeText || item.name} />
+                                                )}
                                             </div>
                                             <div className="w-[calc(100%-42px)] xl:w-[calc(100%-52px)] 2xl:w-[calc(100%-62px)] 3xl:w-[calc(100%-78px)] pl-[15px] 2xl:pl-[20px] 3xl:pl-[25px]">
                                                 <div className="text_1 text-black dark:text-white font-bold">{item.name}</div>
-                                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] font-normal">{item.role}</div>
+                                                {item.role && (
+                                                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] font-normal">{item.role}</div>
+                                                )}
                                             </div>
                                         </div>
                                     ))}
                                 </div>
+                                </>
+                                )}
 
-                                <Link
-                                    href={data?.cta.url}
-                                    className="group relative flex h-[30px] w-fit min-w-[160px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px] xl:min-w-[155px] 2xl:h-[40px] 2xl:min-w-[185px] 2xl:gap-[20px] 2xl:rounded-[4px] 3xl:h-[50px] 3xl:min-w-[230px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
-                                >
-                                    <span className="relative z-[1] transition-transform duration-300 group-hover:translate-x-[-2px]">
-                                        {data?.cta.label}
-                                    </span>
+                                {data?.cta?.url && data?.cta?.label && (
+                                    <Link
+                                        href={data.cta.url}
+                                        className="group relative flex h-[30px] w-fit min-w-[160px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px] xl:min-w-[155px] 2xl:h-[40px] 2xl:min-w-[185px] 2xl:gap-[20px] 2xl:rounded-[4px] 3xl:h-[50px] 3xl:min-w-[230px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
+                                    >
+                                        <span className="relative z-[1] transition-transform duration-300 group-hover:translate-x-[-2px]">
+                                            {data?.cta.label}
+                                        </span>
 
-                                    <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
-                                        <svg
-                                            width="11"
-                                            height="9"
-                                            viewBox="0 0 11 9"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="transition-transform duration-300 group-hover:rotate-180"
-                                        >
-                                            <circle cx="5.12232" cy="0.919192" r="0.919192" fill="white" />
-                                            <circle cx="5.12232" cy="4.33325" r="0.919192" fill="white" />
-                                            <circle cx="5.12232" cy="7.74732" r="0.919192" fill="white" />
-                                            <circle cx="9.32349" cy="4.33325" r="0.919192" fill="white" />
-                                            <circle cx="0.919192" cy="4.33325" r="0.919192" fill="white" />
-                                        </svg>
-                                    </div>
-                                </Link>
+                                        <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
+                                            <svg
+                                                width="11"
+                                                height="9"
+                                                viewBox="0 0 11 9"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="transition-transform duration-300 group-hover:rotate-180"
+                                            >
+                                                <circle cx="5.12232" cy="0.919192" r="0.919192" fill="white" />
+                                                <circle cx="5.12232" cy="4.33325" r="0.919192" fill="white" />
+                                                <circle cx="5.12232" cy="7.74732" r="0.919192" fill="white" />
+                                                <circle cx="9.32349" cy="4.33325" r="0.919192" fill="white" />
+                                                <circle cx="0.919192" cy="4.33325" r="0.919192" fill="white" />
+                                            </svg>
+                                        </div>
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>

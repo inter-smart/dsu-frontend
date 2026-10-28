@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const title = "Governance Menu";
@@ -59,7 +59,7 @@ const sidebarMenu = [
     },
 ];
 
-export default function SidebarSection({ isOpen = false, onClose, title = "Governance Menu" }) {
+export default function SidebarSection({ menu = [],isOpen = false, onClose, title = "Governance Menu" }) {
     const rawPathname = usePathname() || "";
     const pathname = rawPathname.toLowerCase().replace(/\/+$/, "");
 
@@ -97,13 +97,13 @@ export default function SidebarSection({ isOpen = false, onClose, title = "Gover
                     </div>
 
                     <ul>
-                        {sidebarMenu.map((item, idx) => {
+                        {menu.map((item) => {
                             const itemSlug = item.slug.toLowerCase().replace(/^\/+/, "");
                             const href = `/governance/${itemSlug}`;
                             const isActive = pathname === href || pathname.startsWith(`${href}/`);
 
                             return (
-                                <li key={`${item.slug}-${idx}`} className="border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0 transition-colors duration-300">
+                                <li key={item.slug} className="border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0 transition-colors duration-300">
                                     <Link
                                         href={href}
                                         onClick={onClose}
@@ -112,10 +112,10 @@ export default function SidebarSection({ isOpen = false, onClose, title = "Gover
                                         <div className="flex items-center gap-[10px] 3xl:gap-[15px]">
                                             <div className="flex h-[15px] w-[18px] items-center justify-center xl:h-[18px] xl:w-[20px] 2xl:h-[20px] 2xl:w-[25px] 3xl:h-[23px] 3xl:w-[33px]">
                                                 <Image
-                                                    src={item.icon}
+                                                    src={item.sidebarIcon?.url || "/images/governance/side_icon-1.svg"}
                                                     width={33}
                                                     height={23}
-                                                    alt={item.label}
+                                                    alt=""
                                                     className={`h-full w-full max-w-[33px] object-contain transition-all duration-300 ${
                                                         isActive
                                                             ? "brightness-[0] invert-[-1]"
@@ -129,7 +129,7 @@ export default function SidebarSection({ isOpen = false, onClose, title = "Gover
                                                     ? "!text-[#F97316]"
                                                     : "text-[#212121] group-hover:text-[#F97316]"
                                             }`}>
-                                                {item.label}
+                                                {item.name}
                                             </div>
                                         </div>
 

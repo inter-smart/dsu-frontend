@@ -4,6 +4,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import SmoothScrollProvider from "@/components/providers/smooth-scroll-provider";
+import { getHeader, getFooter } from "@/lib/api/layout";
+import FileLinkTarget from "@/components/providers/file-link-target";
 import SidebarWidget from "@/components/layout/common/sidebar-widget";
 
 const roboto = Roboto({
@@ -22,25 +24,31 @@ export const metadata = {
   description: "Dayananda Sagar University description.",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const [header, footer] = await Promise.all([getHeader(), getFooter()]);
+
   return (
     <html
       lang="en"
       className={`${roboto.variable} ${robotoMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
+      <head>
+        {/* Sets the theme class before hydration to avoid a flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme")||"light";var d=t==="dark"||(t==="system"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d)}catch(e){}})()`,
+          }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <ThemeProvider defaultTheme="light">
           <SmoothScrollProvider>
-            <Header />
+            <Header data={header ?? undefined} />
             <main className="flex-1">{children}</main>
-            <Footer />
+            <Footer data={footer ?? undefined} />
             <SidebarWidget />
+            <FileLinkTarget />
           </SmoothScrollProvider>
         </ThemeProvider>
       </body>

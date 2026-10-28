@@ -13,6 +13,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { fileLinkProps } from "@/lib/schools/link-props";
 
 export default function AcademicQualitySection({ data }) {
     const tabs = data?.tabs || [];
@@ -235,6 +236,7 @@ export default function AcademicQualitySection({ data }) {
                                                                     <Link
                                                                         key={doc.id}
                                                                         href={doc.url || "#"}
+                                                                        {...fileLinkProps()}
                                                                         className="flex items-center gap-[8px] xl:gap-[10px] 2xl:gap-[12px] py-[10px] xl:py-[12px] 2xl:py-[14px] 3xl:py-[16px] px-[12px] xl:px-[15px] 2xl:px-[18px] 3xl:px-[20px] border border-black/10 rounded-[6px] xl:rounded-[8px] hover:border-[#F97316]/50 transition-colors group/doc min-w-[200px] xl:min-w-[240px] 2xl:min-w-[280px] 3xl:min-w-[320px] !no-underline"
                                                                     >
                                                                         <div className="w-[16px] xl:w-[18px] 2xl:w-[20px] 3xl:w-[24px] h-[20px] xl:h-[22px] 2xl:h-[26px] 3xl:h-[30px] flex items-center justify-center shrink-0">

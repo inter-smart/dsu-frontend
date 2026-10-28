@@ -23,7 +23,7 @@ export default function AdmissionDining({ data }) {
                     {data.heading}
                 </h2>
                 <div className="text-[13px] sm:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6]   mb-8 sm:mb-10 xl:mb-12">
-                    <BlocksRenderer content={data.description} />
+                    {data?.description?.length > 0 && <BlocksRenderer content={data.description} />}
                 </div> 
                 <div className="w-full">
                     <Swiper
@@ -61,7 +61,9 @@ export default function AdmissionDining({ data }) {
                     {data?.button && (
                         <Link
                             key={data?.button.id}
-                            href={data?.button.href}
+                            href={data?.button.href || "#"}
+                            target={data?.button.isExternal ? "_blank" : undefined}
+                            rel={data?.button.isExternal ? "noopener noreferrer" : undefined}
                             className="group relative mt-[20px] flex h-[30px] w-fit items-center m-auto justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[20px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
 
                         >

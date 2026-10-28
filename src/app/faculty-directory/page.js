@@ -1,5 +1,8 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import FacultyDirectoryListing from "@/components/sections/faculty/faculty-directory-listing";
+import { getFacultyDirectoryPage } from "@/lib/api";
+
+
 
 const local_data = {
   hero: {
@@ -248,11 +251,16 @@ const local_data = {
   },
 };
 
-export default function page() {
+export default async function Page() {
+  const page = await getFacultyDirectoryPage();
+  const hero = page?.hero;
+  // `local_data` until Strapi is reachable and has published faculty
+  const facultyListing = page?.facultyListing;
+
   return (
     <>
-      <InnerHero data={local_data?.hero} />
-      <FacultyDirectoryListing data={local_data?.facultyListing} />
+      <InnerHero data={hero} />
+      <FacultyDirectoryListing data={facultyListing} />
     </>
   );
 }

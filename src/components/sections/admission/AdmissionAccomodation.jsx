@@ -9,27 +9,10 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 
-const defaultData = {
-    heroSection: {
-        eyebrow: "ACCOMMODATION",
-        heading: "S' Residences",
-        description: [],
-        list: [],
-        media: { url: "/images/accomodation.jpg", alternativeText: "S' Residences" },
-        highlights: [],
-    },
-    accommodationOptionsSection: {
-        eyebrow: "ACCOMMODATION OPTIONS",
-        heading: "Choose the Room Type that Fits You",
-        description: [],
-        rooms: [],
-    },
-};
-
 export default function AdmissionAccomodation({ data }) {
-    const accomodationData = data || defaultData;
-    const hero = accomodationData?.heroSection || defaultData.heroSection;
-    const options = accomodationData?.accommodationOptionsSection || defaultData.accommodationOptionsSection;
+    // each block renders only when the CMS provides it
+    const hero = data?.heroSection;
+    const options = data?.accommodationOptionsSection;
 
     const [canSlide, setCanSlide] = useState(false);
     const swiperRef = useRef(null);
@@ -43,6 +26,7 @@ export default function AdmissionAccomodation({ data }) {
 
     return (
         <div className="bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-[linear-gradient(135deg,#000_0%,#000_100%)]">         
+            {hero && (
             <section className="relative py-[30px] sm:py-[25px] lg:py-[30px] xl:py-[45px] 2xl:py-[50px] 3xl:py-[70px]">
                 <div className="container">
                   
@@ -96,13 +80,15 @@ export default function AdmissionAccomodation({ data }) {
                      
                         <div className="xl:col-span-5">
                             <div className="relative w-full  aspect-[580/510] 2xl:aspect-[580/495] rounded-lg sm:rounded-xl overflow-hidden">
-                                <Image
-                                    src={hero.media?.url || "/images/accomodation.jpg"}
-                                    alt={hero.media?.alternativeText || "S' Residences"}
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 1024px) 100vw, 33vw"
-                                />
+                                {hero.media?.url && (
+                                    <Image
+                                        src={hero.media.url}
+                                        alt={hero.media.alternativeText || hero.heading || "Accommodation"}
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 1024px) 100vw, 33vw"
+                                    />
+                                )}
                             </div>
                         </div>
  
@@ -124,8 +110,9 @@ export default function AdmissionAccomodation({ data }) {
                     </div>
                 </div>
             </section>
+            )}
 
-           
+            {options && (
             <section className="relative  pb-[30px] sm:pb-[40px] lg:pb-[40px] xl:pb-[55px] 2xl:pb-[70px] 3xl:pb-[90px] ">
                 <div className="container">
                     {/* Eyebrow */}
@@ -240,6 +227,7 @@ export default function AdmissionAccomodation({ data }) {
                     </div>
                 </div>
             </section>
+            )}
         </div>
     );
 }

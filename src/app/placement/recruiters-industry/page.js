@@ -1,10 +1,5 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import Recruiters from "@/components/sections/placements/recruiters";
-import IndustryPartnerships from "@/components/sections/placements/industry-partnerships";
-import IndustryEngagement from "@/components/sections/placements/industry-engagement";
-import RecruiterTestimonials from "@/components/sections/placements/recruiter-testimonials";
-import RecruitmentGallery from "@/components/sections/placements/recruitment-gallery";
+import RecruitersIndustryTemplate from "@/components/sections/placements/templates/RecruitersIndustryTemplate";
+import { getPlacementRecruitersIndustryPage } from "@/lib/api/placement";
 
 const IMG = "/images/recruiters-industry";
 
@@ -312,24 +307,29 @@ const local_data = {
   },
 };
 
-export const metadata = {
-  title: local_data.seo.metaTitle,
-  description: local_data.seo.metaDescription,
+export async function generateMetadata() {
+  const apiData = await getPlacementRecruitersIndustryPage();
+  return {
+    title: apiData?.seo?.metaTitle || local_data.seo.metaTitle,
+    description:
+      apiData?.seo?.metaDescription || local_data.seo.metaDescription,
+  };
+}
+
+const fallback = {
+    hero: local_data.hero,
+    recruitersIndustryPage: {
+        recruitersSection: local_data.recruitersSection,
+        partnershipsSection: local_data.partnershipsSection,
+        engagementSection: local_data.engagementSection,
+        testimonialsSection: local_data.testimonialsSection,
+        gallerySection: local_data.gallerySection,
+    },
 };
 
-export default function page() {
-  return (
-    <>
-      <InnerHero data={local_data.hero} />
-      <PlacementmenuBar className="lg:!hidden block" />
-      <Recruiters
-        data={local_data.recruitersSection}
-        className="[--recruiters-bg:#fff]"
-      />
-      <IndustryPartnerships data={local_data.partnershipsSection} />
-      <IndustryEngagement data={local_data.engagementSection} />
-      <RecruiterTestimonials data={local_data.testimonialsSection} />
-      <RecruitmentGallery data={local_data.gallerySection} />
-    </>
-  );
+export default async function page() {
+    const apiData = await getPlacementRecruitersIndustryPage();
+
+    // API data when the entry exists, otherwise the static local_data
+    return <RecruitersIndustryTemplate data={apiData || fallback} />;
 }

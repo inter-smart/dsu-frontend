@@ -1,65 +1,48 @@
 "use client";
 
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import Link from "next/link";
 
+import Link from "next/link";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+
+import AcademicCta from "./academic-cta";
 export default function AcademicProgram({ data, variant }) {
+    if (!data) return null;
+
     return (
         <section className="relative py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] 
                 bg-gradient-to-b from-[rgba(255,248,238,0.3)] to-[rgba(255,243,224,0.5)] dark:from-[#000] dark:to-[#000] transition-colors duration-300">
             <div className="container">
                 <div className="mb-[15px] lg:mb-[25px] 2xl:mb-[40px] 3xl:mb-[45px] flex max-lg:flex-wrap max-lg:gap-[20px]">
                     <div className="w-auto lg:flex-grow-1">
-                        <div className="cmn_Title mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] text-black dark:text-white">{data.heading}</div>
+                        {data.heading && <div className="cmn_Title mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] text-black dark:text-white">{data.heading}</div>}
                         <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] lg:max-w-[90%]">
-                            <BlocksRenderer content={data.description} />
+                            {data?.description && <BlocksRenderer content={data.description} />}
                         </div>
+                        <AcademicCta cta={data?.cta} className="mt-[15px] xl:mt-[20px]" />
                     </div>
-                    {data.cta && (
-                        <Link href={data.cta.url}
-                            className="group relative  flex h-[30px] w-fit lg:ml-auto min-w-[130px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
-                        >
-                            <span className="relative z-[1] transition-transform duration-300  ">
-                                {data.cta.label}</span>
-
-                            <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
-                                <svg
-                                    width="11"
-                                    height="9"
-                                    viewBox="0 0 11 9"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="transition-transform duration-300 group-hover:rotate-180"
-                                >
-                                    <circle cx="5.12232" cy="0.919192" r="0.919192" fill="white" />
-                                    <circle cx="5.12232" cy="4.33325" r="0.919192" fill="white" />
-                                    <circle cx="5.12232" cy="7.74732" r="0.919192" fill="white" />
-                                    <circle cx="9.32349" cy="4.33325" r="0.919192" fill="white" />
-                                    <circle cx="0.919192" cy="4.33325" r="0.919192" fill="white" />
-                                </svg>
-                            </div>
-                        </Link>
-                    )}
+                    
                 </div>
                 <div className={`flex gap-[30px] lg:gap-[40px] mt-[30px] xl:gap-[60px] ${variant === "aiprogram" ? "w-full flex-wrap  " : "max-sm:flex-wrap gap-[15px] lg:max-w-[95%] w-full lg:w-1/2"}`}>
-                    {data.categories.map((item, id) => (
+                    {data.categories?.map((item, id) => (
                         <div
                             key={id}
                             className={`${variant === "aiprogram" ? "w-full pb-[35px] lg:pb-[45px] xl:pb-[65px] last-of-type:pb-0 not-last-of-type:border-b border-black/10 dark:border-white/10" : "w-full sm:w-1/2"}`}
                         >
-                            <div className="flex items-center gap-[10px] mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[40px]">
-                                <div className="flex items-center justify-center text-[14px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-center font-bold text-[#212121] dark:text-white
-                               w-[40px] 2xl:w-[50px] 3xl:w-[60px] h-[40px] 2xl:h-[50px] 3xl:h-[60px] overflow-hidden rounded-full border border-[rgba(249,115,22,0.2)] dark:border-white/10
-                                 bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] dark:from-[#232428] dark:to-[#18191B]">
-                                    {item.badge}
+                            {(item.badge || item.label) && (
+                                <div className="flex items-center gap-[10px] mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[40px]">
+                                    <div className="flex items-center justify-center text-[14px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-center font-bold text-[#212121] dark:text-white
+                                   w-[40px] 2xl:w-[50px] 3xl:w-[60px] h-[40px] 2xl:h-[50px] 3xl:h-[60px] overflow-hidden rounded-full border border-[rgba(249,115,22,0.2)] dark:border-white/10
+                                     bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] dark:from-[#232428] dark:to-[#18191B]">
+                                        {item.badge}
+                                    </div>
+                                    <div className="text-[14px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] 3xl:text-[28px] font-bold bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent ">{item.label}</div>
                                 </div>
-                                <div className="text-[14px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] 3xl:text-[28px] font-bold bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent ">{item.label}</div>
-                            </div>
+                            )}
                             {item.description && (
                                 <p className="lg:max-w-[98%] text-[#4A5565] dark:text-[#9CA3AF]">{item.description}</p>
                             )}
-                            <div className="flex flex-wrap mt-[30px]">
-                                {item.programs.map((program, idx) => (
+                            <div className={`flex flex-wrap ${item.badge || item.label || item.description ? "mt-[30px]" : ""}`}>
+                                {item.programs?.map((program, idx) => (
                                     <div key={idx} className={`${variant === "aiprogram" ? "w-full lg:w-1/2" : "w-full"}`}>
                                         <Link
                                             href={program?.url}

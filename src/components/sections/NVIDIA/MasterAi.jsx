@@ -30,7 +30,7 @@ export default function MasterAi({ data }) {
         )}
         {data?.ctas?.length > 0 && (
           <div className="flex flex-wrap items-center justify-center gap-3 xl:gap-4">
-            {data.ctas.map((cta) => (
+            {data?.ctas?.map((cta) => (
               <Link
                 key={cta.label}
                 href={cta.href || "#"}

@@ -16,6 +16,7 @@ export default function TeamSection({ data }) {
           </Heading>
           <Text className="dark:text-[#9CA3AF]">{data?.description}</Text>
         </div>
+        {data?.table?.rows?.length > 0 && (
         <div>
           <div className="w-full overflow-x-auto">
             <table className="[--padding:10px] sm:[--padding:15px] 2xl:[--padding:20px] text-[13px] sm:text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.2] text-left text-[#212121] dark:text-white w-full min-w-170 border-collapse">
@@ -76,6 +77,7 @@ export default function TeamSection({ data }) {
             </div>
           )}
         </div>
+        )}
       </div>
     </section>
   );

@@ -1,12 +1,5 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import AcademicAchievements from "@/components/sections/academics/academic-achievements";
-import PlacementSections from "@/components/sections/academics/PlacementDashboard";
-import PlacementDashboard from "@/components/sections/academics/PlacementDashboard";
-import PlacementProcess from "@/components/sections/placements/placement-process";
-import PlacementReport from "@/components/sections/placements/Placement-report";
-import PlacementDocuments from "@/components/sections/placements/PlacementDocuments";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import SchoolPlacement from "@/components/sections/placements/School-placement";
+import PlacementPageTemplate from "@/components/sections/placements/templates/PlacementPageTemplate";
+import { getPlacementResultsPage } from "@/lib/api/placement";
 
 const local_data = {
     id: 24,
@@ -386,15 +379,27 @@ const local_data = {
 
 }
 
-export default function page() {
-    return (
-        <>
-            <InnerHero data={local_data.hero} />
-            <PlacementmenuBar className="lg:!hidden block" />
-            <PlacementProcess data={local_data.placementProcess} variant="whiteBg" />
-            <PlacementDocuments data={local_data.documentSection} />
-            <PlacementSections data={local_data.PlacementSection} />
-            <PlacementReport data={local_data.PlacementReport} /> 
-        </>
-    )
+export async function generateMetadata() {
+    const apiData = await getPlacementResultsPage();
+    return {
+        title: apiData?.seo?.metaTitle || local_data.seo.metaTitle,
+        description: apiData?.seo?.metaDescription || local_data.seo.metaDescription,
+    };
+}
+
+const fallback = {
+    hero: local_data.hero,
+    placementPage: {
+        placementProcess: local_data.placementProcess,
+        documentSection: local_data.documentSection,
+        PlacementSection: local_data.PlacementSection,
+        PlacementReport: local_data.PlacementReport,
+    },
+};
+
+export default async function page() {
+    const apiData = await getPlacementResultsPage();
+
+    // API data when the entry exists, otherwise the static local_data
+    return <PlacementPageTemplate data={apiData || fallback} />;
 }

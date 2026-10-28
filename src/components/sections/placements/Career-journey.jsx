@@ -9,6 +9,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { fileLinkProps } from "@/lib/schools/link-props";
 
 
 export default function CareerJourney({ data }) {
@@ -56,6 +57,7 @@ export default function CareerJourney({ data }) {
                                 <div className="w-full">
                                     <Link
                                         href={item?.href}
+                                        {...fileLinkProps()}
                                         key={item.id}
                                         className="group relative flex items-center !no-underline justify-between  py-[15px] 2xl:py-[18px] 3xl:py-[20px] border-b border-black/10 dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
                                     >

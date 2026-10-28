@@ -7,14 +7,25 @@ import { cn } from "@/lib/utils";
 export default function Recruiters({ data, className }) {
     const [selectedSchool, setSelectedSchool] = useState("all");
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [visibleCount, setVisibleCount] = useState(data?.loadMore?.initialCount || 18);
+    const batchSize = data?.loadMore?.initialCount || 18;
+    const [visibleCount, setVisibleCount] = useState(batchSize);
 
     if (!data) return null;
 
-    const recruiters = data?.recruiters || [];
-    const filterOptions = data?.filter?.options || [
-        { id: 1, label: "All Schools", value: "all" },
-    ];
+    const recruiters = (data?.recruiters || []).filter((recruiter) => recruiter?.logo?.url);
+    // dropdown options: use the ones sent by the API, or build them from the schools found on the recruiters
+    let filterOptions = data?.filter?.options || [];
+    if (filterOptions.length < 2) {
+        filterOptions = [{ id: "all", label: "All Schools", value: "all" }];
+        const seenSchools = [];
+        for (let i = 0; i < recruiters.length; i++) {
+            const category = recruiters[i].category;
+            if (category && !seenSchools.includes(category)) {
+                seenSchools.push(category);
+                filterOptions.push({ id: category, label: category, value: category });
+            }
+        }
+    }
 
     const currentFilterLabel =
         filterOptions.find((opt) => opt.value === selectedSchool)?.label ||
@@ -23,13 +34,13 @@ export default function Recruiters({ data, className }) {
 
     const filteredRecruiters = selectedSchool === "all"
         ? recruiters
-        : recruiters.filter((r) => r.school === selectedSchool || r.category === selectedSchool);
+        : recruiters.filter((r) => r.category === selectedSchool);
 
     const displayedRecruiters = filteredRecruiters.slice(0, visibleCount);
 
     const handleLoadMore = () => {
         if (visibleCount < filteredRecruiters.length) {
-            setVisibleCount((prev) => prev + 18);
+            setVisibleCount((prev) => prev + batchSize);
         }
     };
 
@@ -43,7 +54,7 @@ export default function Recruiters({ data, className }) {
                     </h2>
 
                     {/* School Filter Dropdown */}
-                    <div className="relative shrink-0 w-full sm:w-[220px] 2xl:w-[240px]">
+                    {recruiters.length > 0 && filterOptions.length > 0 && <div className="relative shrink-0 w-full sm:w-[220px] 2xl:w-[240px]">
                         <button
                             type="button"
                             onClick={() => setIsDropdownOpen((prev) => !prev)}
@@ -80,6 +91,7 @@ export default function Recruiters({ data, className }) {
                                             key={option.id || option.value}
                                             onClick={() => {
                                                 setSelectedSchool(option.value);
+                                                setVisibleCount(batchSize);
                                                 setIsDropdownOpen(false);
                                             }}
                                             className={`px-4 py-2 text-[13px] sm:text-[14px] cursor-pointer transition-colors ${
@@ -96,30 +108,32 @@ export default function Recruiters({ data, className }) {
                                 </ul>
                             </>
                         )}
-                    </div>
+                    </div>}
                 </div>
  
-                <div className="w-full grid grid-cols-3 md:grid-cols-6 relative after:absolute after:top-0 after:left-0 after:w-full after:h-full after:border-(--recruiters-bg) dark:after:border-[#0f1011] after:border after:content-['']">
-                    {displayedRecruiters.map((recruiter, index) => (
-                        <div
-                            key={recruiter.id || index}
-                            className="border-b border-r border-black/10 dark:border-white/10 h-[95px] sm:h-[110px] md:h-[120px] xl:h-[135px] 2xl:h-[145px] flex items-center justify-center p-4 sm:p-5 xl:p-6 transition-all duration-300"
-                        >
-                            <div className="relative w-full h-full flex items-center justify-center p-[10px] dark:bg-white/90 dark:rounded-[6px]">
-                                <Image
-                                    src={recruiter.logo.url}
-                                    alt={recruiter.logo.alternativeText || recruiter.name || "Recruiter Logo"}
-                                    width={140}
-                                    height={55}
-                                    className="max-h-[38px] sm:max-h-[44px] xl:max-h-[50px] 2xl:max-h-[56px] max-w-[90px] sm:max-w-[130px] xl:max-w-[145px] 2xl:max-w-[160px] w-auto h-auto object-contain transition-transform duration-300  "
-                                />
+                {displayedRecruiters.length > 0 && (
+                    <div className="w-full grid grid-cols-3 md:grid-cols-6 relative after:absolute after:top-0 after:left-0 after:w-full after:h-full after:border-(--recruiters-bg) dark:after:border-[#0f1011] after:border after:content-['']">
+                        {displayedRecruiters.map((recruiter, index) => (
+                            <div
+                                key={recruiter.id || index}
+                                className="border-b border-r border-black/10 dark:border-white/10 h-[95px] sm:h-[110px] md:h-[120px] xl:h-[135px] 2xl:h-[145px] flex items-center justify-center p-4 sm:p-5 xl:p-6 transition-all duration-300"
+                            >
+                                <div className="relative w-full h-full flex items-center justify-center p-[10px] dark:bg-white/90 dark:rounded-[6px]">
+                                    <Image
+                                        src={recruiter.logo.url}
+                                        alt={recruiter.logo.alternativeText || recruiter.name || "Recruiter Logo"}
+                                        width={140}
+                                        height={55}
+                                        className="max-h-[38px] sm:max-h-[44px] xl:max-h-[50px] 2xl:max-h-[56px] max-w-[90px] sm:max-w-[130px] xl:max-w-[145px] 2xl:max-w-[160px] w-auto h-auto object-contain transition-transform duration-300"
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                )}
 
                 {/* Load More Button */}
-                {data?.loadMore && (
+                {data?.loadMore && visibleCount < filteredRecruiters.length && (
                     <div className="text-center mt-[35px] sm:mt-[45px] xl:mt-[55px]">
                         <button
                             type="button"

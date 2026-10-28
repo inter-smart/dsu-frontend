@@ -4,7 +4,7 @@ import { useState } from "react";
 import SidebarSection from '@/components/sections/governance/sidebarSection'
 import Image from "next/image";
 
-export default function GovernanceFinancecommittte({ data }) {
+export default function GovernanceFinancecommittte({ data, title, governancePages = [] }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
@@ -13,6 +13,7 @@ export default function GovernanceFinancecommittte({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <SidebarSection
+                            menu={governancePages}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
@@ -35,16 +36,19 @@ export default function GovernanceFinancecommittte({ data }) {
                             <span>Menu</span>
                         </button>
 
-                        <div className="text-[20px] xl:text-[25px] 2xl:text-[35px] 3xl:text-[45px] text-[#212121] font-semibold">
-                            {data.title}
-                        </div>
-                        <div className="text_1 text-[#4A5565]">{data.subtitle}</div>
+                        {(data?.title || title) && (
+                            <div className="text-[20px] xl:text-[25px] 2xl:text-[35px] 3xl:text-[45px] text-[#212121] font-semibold">
+                                {data?.title || title}
+                            </div>
+                        )}
+                        {data?.subtitle && <div className="text_1 text-[#4A5565]">{data.subtitle}</div>}
                         {/* table */}
+                        {data && (
                         <div className="w-full rounded-[10px] max-lg:overflow-x-auto">
                             <table className="w-full min-w-[700px] border-separate border-spacing-y-[10px]">
                                 <thead>
                                     <tr className="bg-gradient-to-r from-[rgba(220,38,38,0.8)] to-[rgba(249,115,22,0.8)]">
-                                        {data?.tableHeaders?.map((item, idx) => (
+                                        {["Name", "Address/Designation", "Status in the Authority"].map((item, idx) => (
                                             <th
                                                 key={idx}
                                                 className="whitespace-nowrap p-[10px_15px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px] text-center text-[13px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[20px] font-normal uppercase text-white first:rounded-l-[10px] last:rounded-r-[10px]"
@@ -63,17 +67,19 @@ export default function GovernanceFinancecommittte({ data }) {
                                         >
                                             <td className="rounded-l-[10px] p-[15px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px] relative  after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last-of-type:after:hidden">
                                                 <div className="flex items-center min-w-[200px] xl:min-w-[250px] 2xl:min-w-[300px] 3xl:min-w-[375px]">
-                                                    <div className="h-[50px] xl:h-[61px] 2xl:h-[73px] 3xl:h-[92px] w-[50px] xl:w-[61px] 2xl:w-[73px] 3xl:w-[92px] shrink-0 overflow-hidden rounded-full">
-                                                        <Image
-                                                            src={item.image}
-                                                            width={92}
-                                                            height={92}
-                                                            className="h-full w-full object-cover"
-                                                            alt={item.name || "Committee member"}
-                                                        />
-                                                    </div>
+                                                    {item.image && (
+                                                        <div className="h-[50px] xl:h-[61px] 2xl:h-[73px] 3xl:h-[92px] w-[50px] xl:w-[61px] 2xl:w-[73px] 3xl:w-[92px] shrink-0 overflow-hidden rounded-full">
+                                                            <Image
+                                                                src={item.image}
+                                                                width={92}
+                                                                height={92}
+                                                                className="h-full w-full object-cover"
+                                                                alt={item.name || "Committee member"}
+                                                            />
+                                                        </div>
+                                                    )}
 
-                                                    <div className="w-[calc(100%-50px)] xl:w-[calc(100%-61px)] 2xl:w-[calc(100%-73px)] 3xl:w-[calc(100%-92px)] pl-[15px] xl:pl-[25px] 2xl:pl-[35px] 3xl:pl-[45px]">
+                                                    <div className={`${item.image ? "w-[calc(100%-50px)] xl:w-[calc(100%-61px)] 2xl:w-[calc(100%-73px)] 3xl:w-[calc(100%-92px)] pl-[15px] xl:pl-[25px] 2xl:pl-[35px] 3xl:pl-[45px]" : "w-full"}`}>
                                                         <div className="text_1 font-semibold text-[#212121]">
                                                             {item.name}
                                                         </div>
@@ -112,6 +118,7 @@ export default function GovernanceFinancecommittte({ data }) {
                                 </tbody>
                             </table>
                         </div>
+                        )}
                     </div>
                 </div>
             </div>

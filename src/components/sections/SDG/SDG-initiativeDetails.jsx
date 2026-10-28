@@ -13,7 +13,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export default function SDGInitativeDetails({ data }) {
+export default function SDGInitativeDetails({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     // Default open items (e.g. metrics with indicators)
@@ -27,6 +27,7 @@ export default function SDGInitativeDetails({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <SDGSidebarSection
+                            menu={menu || []}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
@@ -121,11 +122,11 @@ export default function SDGInitativeDetails({ data }) {
                                                                         <h4 className="text_1 text-[#4A5565] font-bold mb-1.5">
                                                                             {indicator.label}
                                                                         </h4>
-                                                                        {indicator.description && (
+                                                                        {/* {indicator.description && ( */}
                                                                             <p className="text-[#4A5565] font-normal leading-relaxed mb-0">
-                                                                                {indicator.description}
+                                                                                {indicator.description ? indicator.description : "No specific targets currently in place (N/A)."}
                                                                             </p>
-                                                                        )}
+                                                                        {/* )} */}
                                                                     </div>
 
                                                                     {indicator.evidenceLink && (

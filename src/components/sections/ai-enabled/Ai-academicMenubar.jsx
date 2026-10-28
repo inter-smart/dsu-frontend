@@ -125,7 +125,13 @@ export default function AiAcademicMenubar({
   }, [isMobileSidebarOpen, lenis]);
   const navigationItems =
     data?.length > 0
-      ? data.map(({ label, slug }) => ({ label, href: slug }))
+      ? data.map(({ label, slug, href, submenu }) => ({
+          label,
+          href: href ?? slug,
+          ...(submenu?.length
+            ? { submenu: submenu.map((sub) => ({ label: sub.label, href: sub.href ?? sub.slug })) }
+            : {}),
+        }))
       : menuItems;
 
   useEffect(() => {

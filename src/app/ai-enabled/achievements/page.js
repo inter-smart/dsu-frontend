@@ -1,8 +1,6 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import AcademicAchievements from "@/components/sections/academics/academic-achievements";
-import AcademicCollaboration from "@/components/sections/academics/academic-collaboration";
 import AcademicFacultyAchievements from "@/components/sections/academics/academic-faculty-achievements";
-import AcademicPartners from "@/components/sections/academics/academic-partners";
 import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 
 const local_data = {
@@ -150,7 +148,6 @@ export default function page() {
             <AcademicMenubar className="lg:!hidden block" />
             <AcademicAchievements data={local_data.achievementSection} />
             <AcademicFacultyAchievements data={local_data.facultyAchievementsSection} />
-
         </>
     )
 }

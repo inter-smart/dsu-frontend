@@ -1,4 +1,4 @@
-import InnerHero from "@/components/layout/common/InnerHero";
+ 
 import InternationalHero from "@/components/sections/international/InternationalHero";
 import TopMenu from "@/components/sections/international/TopMenu";
 import AwardsSlider from "@/components/sections/international/AwardsSlider";

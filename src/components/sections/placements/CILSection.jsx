@@ -16,16 +16,24 @@ export default function CILsection({ data }) {
                 <div className="cmn_Title dark:text-white">
                     {data.heading}
                 </div>
-                <div className="text_1 dark:text-[#9CA3AF] mb-[25px]">{data.subheading}</div>
-                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
-                    <BlocksRenderer content={data.description} />
-                </div>
+                {data?.subheading && (
+                    <div className="text_1 dark:text-[#9CA3AF] mb-[25px]">{data.subheading}</div>
+                )}
+                {data?.description?.length > 0 && (
+                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
+                        <BlocksRenderer content={data.description} />
+                    </div>
+                )}
                 {data.programSection && (
                     <div className="w-full">
-                        <div className="text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px] text-black dark:text-white font-semibold my-[25px]">{data?.programSection.heading}</div>
-                        <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
-                            <BlocksRenderer content={data?.programSection.description} />
-                        </div>
+                        {data?.programSection.heading && (
+                            <div className="text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px] text-black dark:text-white font-semibold my-[25px]">{data.programSection.heading}</div>
+                        )}
+                        {data?.programSection.description?.length > 0 && (
+                            <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
+                                <BlocksRenderer content={data.programSection.description} />
+                            </div>
+                        )}
                         <Accordion type="single" collapsible defaultValue="item-2" className="mt-[30px] w-full xl:mt-[40px]">
                             {data?.accordion?.map((item) => (
                                 <AccordionItem key={item.id} value={`item-${item.id}`} className="p-[8px_10px] md:p-[10px_15px] xl:p-[15px] 3xl:p-[20px] border border-[#E5E9EE] dark:border-white/10 dark:bg-[#18191B] rounded-[6px] mb-[10px] xl:mb-[20px]">
@@ -41,11 +49,9 @@ export default function CILsection({ data }) {
                                     {item?.answer?.length > 0 && (
                                         <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] text-[#797979] dark:text-[#9CA3AF]">
                                             <div className="w-full">
-                                                {item.answer.map((ans, index) => (
-                                                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
-                                                        <BlocksRenderer content={[ans]} />
-                                                    </div>
-                                                ))}
+                                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
+                                                    <BlocksRenderer content={item.answer} />
+                                                </div>
                                             </div>
                                         </AccordionContent>
                                     )}

@@ -1,17 +1,5 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import AcademicAchievements from "@/components/sections/academics/academic-achievements";
-import PlacementSections from "@/components/sections/academics/PlacementDashboard";
-import PlacementDashboard from "@/components/sections/academics/PlacementDashboard";
-import CorporateConnect from "@/components/sections/placements/corporate-connect";
-import IndustryProjects from "@/components/sections/placements/IndustryProjects";
-import InternshipOpportunities from "@/components/sections/placements/Intership-Opertunities";
-import InternshipPartners from "@/components/sections/placements/Placement-Partners";
-import PlacementProcess from "@/components/sections/placements/placement-process";
-import PlacementReport from "@/components/sections/placements/Placement-report";
-import PlacementDocuments from "@/components/sections/placements/PlacementDocuments";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import SchoolPlacement from "@/components/sections/placements/School-placement";
-import StudentSuccessStories from "@/components/sections/placements/student-success-stories";
+import InternshipTemplate from "@/components/sections/placements/templates/InternshipTemplate";
+import { getPlacementInternshipPage } from "@/lib/api/placement";
 
 const local_data = {
     id: 24,
@@ -303,16 +291,29 @@ const local_data = {
         ],
     }
 }
-export default function page() {
-    return (
-        <>
-            <InnerHero data={local_data.hero} />
-            <PlacementmenuBar className="lg:!hidden block" />
-            <CorporateConnect data={local_data.programOverviewSection} />
-            <InternshipOpportunities data={local_data.intershipOpertunities} />
-            <InternshipPartners data={local_data.internshipPartners} />
-            <IndustryProjects data={local_data.industryProjects} />
-            <StudentSuccessStories data={local_data.successStoriesSection} />
-        </>
-    )
+
+export async function generateMetadata() {
+    const apiData = await getPlacementInternshipPage();
+    return {
+        title: apiData?.seo?.metaTitle || local_data.seo.metaTitle,
+        description: apiData?.seo?.metaDescription || local_data.seo.metaDescription,
+    };
+}
+
+const fallback = {
+    hero: local_data.hero,
+    internshipPage: {
+        programOverviewSection: local_data.programOverviewSection,
+        intershipOpertunities: local_data.intershipOpertunities,
+        internshipPartners: local_data.internshipPartners,
+        industryProjects: local_data.industryProjects,
+        successStoriesSection: local_data.successStoriesSection,
+    },
+};
+
+export default async function page() {
+    const apiData = await getPlacementInternshipPage();
+
+    // API data when the entry exists, otherwise the static local_data
+    return <InternshipTemplate data={apiData || fallback} />;
 }

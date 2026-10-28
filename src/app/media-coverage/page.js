@@ -1,6 +1,13 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import MediaCoverage from "@/components/sections/media-coverage/media-coverage";
 import FloatingContactRail from "@/components/layout/common/floating-contact-rail";
+import {
+  getMediaCoveragePage,
+  getMediaCoverageItemsPaged,
+  MEDIA_PAGE_SIZE,
+} from "@/lib/api/media-coverage";
+
+export const revalidate = 60;
 
 const local_data = {
   hero: {
@@ -82,11 +89,26 @@ const local_data = {
   },
 };
 
-export default function page() {
+export default async function page() {
+  const pageData = await getMediaCoveragePage();
+  const paged = await getMediaCoverageItemsPaged(1, MEDIA_PAGE_SIZE, {
+    next: { revalidate: 60 },
+  });
+  const hasData = paged?.data?.length > 0;
+
+  const hero = pageData?.hero || local_data.hero;
+  const mediaCoverage = {
+    ...local_data.mediaCoverage,
+    title: pageData?.title || local_data.mediaCoverage.title,
+    description: pageData?.description || local_data.mediaCoverage.description,
+    items: hasData ? paged.data : local_data.mediaCoverage.items,
+    pagination: hasData ? paged.pagination : null,
+  };
+
   return (
     <>
-      <InnerHero data={local_data?.hero} />
-      <MediaCoverage data={local_data?.mediaCoverage} />
+      <InnerHero data={hero} />
+      <MediaCoverage data={mediaCoverage} />
       <FloatingContactRail />
     </>
   );

@@ -51,8 +51,20 @@ const sidebarMenu = [
 
 ];
 
-export default function StudentSupportSidebar({ isOpen = false, onClose, title = "Recognition Menu" }) {
+export default function StudentSupportSidebar({ isOpen = false, onClose, title = "Recognition Menu", menu = null }) {
     const pathname = usePathname();
+
+    // API list when the request succeeded (even if short), the static list only as a fallback
+    const items = Array.isArray(menu)
+        ? menu.map((entry) => ({
+            key: entry.documentId || entry.slug,
+            label: entry.menuLabel || entry.title,
+            href: entry.href,
+        }))
+        : sidebarMenu.map((item, idx) => {
+            const normalizedSlug = item.slug.startsWith("/") ? item.slug : `/${item.slug}`;
+            return { key: `${item.slug}-${idx}`, label: item.label, href: `/why-us${normalizedSlug}` };
+        });
 
     return (
         <>
@@ -88,14 +100,13 @@ export default function StudentSupportSidebar({ isOpen = false, onClose, title =
                     </div>
 
                     <ul>
-                        {sidebarMenu.map((item, idx) => {
-                            const normalizedSlug = item.slug.startsWith("/") ? item.slug : `/${item.slug}`;
-                            const href = `/why-us${normalizedSlug}`;
-                            const isActive = pathname === href;
+                        {items.map((item) => {
+                            const href = item.href;
+                            const isActive = pathname?.toLowerCase() === href.toLowerCase();
 
                             return (
                                 <li
-                                    key={`${item.slug}-${idx}`}
+                                    key={item.key}
                                     className={`border-b border-black/10 p-[11px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] group last:border-b-0 transition-colors duration-300 `}
                                 >
                                     <Link

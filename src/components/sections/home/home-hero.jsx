@@ -153,39 +153,30 @@ export default function HomeHero({ data }) {
                         </span>
                       </div>
                       <div className="w-full h-auto mt-5 lg:mt-6.25 2xl:mt-7.5 3xl:mt-10 flex gap-[10px] 2xl:gap-[13px] 3xl:gap-4">
-                        <Link
-                          href="#"
-                          className={buttonVariants({
-                            variant: "secondary",
-                            size: "default",
-                          })}
-                        >
-                          Explore Centres of Excellence
-                          <Image
-                            src="/images/icon-btn.svg"
-                            alt="home-btn"
-                            width={15}
-                            height={15}
-                            className="size-[15px]"
-                          />
-                        </Link>
-                        <Link
-                          href="#"
-                          className={buttonVariants({
-                            variant: "default",
-                            size: "default",
-                          })}
-                        >
-                          Apply Now
-                          <Image
-                            src="/images/icon-btn.svg"
-                            alt="home-btn"
-                            width={15}
-                            height={15}
-                            className="size-[15px]"
-                            data-icon="inline-end"
-                          />
-                        </Link>
+                        {item?.buttons?.map(
+                          (button, index) => (
+                            <Link
+                              key={`${item?.id}-button-${index}`}
+                              href={button?.url || "#"}
+                              target={button?.isExternal ? "_blank" : undefined}
+                              rel={button?.isExternal ? "noopener noreferrer" : undefined}
+                              className={buttonVariants({
+                                variant: index === 0 ? "secondary" : "default",
+                                size: "default",
+                              })}
+                            >
+                              {button?.label}
+                              <Image
+                                src="/images/icon-btn.svg"
+                                alt="home-btn"
+                                width={15}
+                                height={15}
+                                className="size-[15px]"
+                                data-icon={index === 0 ? undefined : "inline-end"}
+                              />
+                            </Link>
+                          ),
+                        )}
                       </div>
                     </motion.div>
                     <div className="w-full md:w-1/2">
@@ -254,6 +245,7 @@ export default function HomeHero({ data }) {
                 <Link
                   key={"marqueeText" + index}
                   href={item?.url}
+                  {...(item?.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="[--icon-size:12px] 2xl:[--icon-size:15px] text-sm 3xl:text-base leading-[1.1] font-normal tracking-[-2%] text-center text-white w-auto h-auto pl-[calc(var(--icon-size)+10px)] 2xl:pl-[calc(var(--icon-size)+15px)] pr-2.5 2xl:pr-3.75 flex items-center relative z-0 before:content-[''] before:w-(--icon-size) before:h-auto before:aspect-square before:my-auto before:bg-[url('data:image/svg+xml,%3Csvg%20width=%2212%22%20height=%2212%22%20viewBox=%220%200%2012%2012%22%20fill=%22none%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath%20d=%22M6.49517%202.35386L6%200L5.50483%202.35386C5.34195%203.12816%204.95733%203.83835%204.39784%204.39784C3.83835%204.95733%203.12816%205.34195%202.35386%205.50483L0%206L2.35386%206.49517C3.12815%206.65805%203.83835%207.0427%204.39784%207.60218C4.95733%208.16166%205.34195%208.87183%205.50483%209.64616L6%2012L6.49517%209.64616C6.65805%208.87183%207.04265%208.16166%207.60213%207.60218C8.16166%207.0427%208.87183%206.65805%209.64616%206.49517L12%206L9.64616%205.50483C8.87183%205.34195%208.16161%204.95733%207.60213%204.39784C7.04265%203.83835%206.65805%203.12816%206.49517%202.35386Z%22%20fill=%22white%22/%3E%3C/svg%3E')] before:bg-contain before:bg-center before:bg-no-repeat before:absolute before:z-1 before:inset-[0_auto_0_0]"
                 >
                   {item?.label}

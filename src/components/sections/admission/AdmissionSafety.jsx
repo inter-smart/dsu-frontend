@@ -53,7 +53,7 @@ export default function AdmissionSafety({ data }) {
                                         <p className="dark:text-black">{item.description}</p>
                                     )}
                                     <ul className="mb-[30px] 3xl:mb-[50px]">
-                                        {item.list.map((item, id) => (
+                                        {item.list?.map((item, id) => (
                                             <li className="text_1 text-[#4A5565] dark:text-white relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]" key={id}>
                                                 {item.label}
                                             </li>

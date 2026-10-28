@@ -2,22 +2,24 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { externalLinkProps } from "@/lib/schools/link-props";
 
 export default function AcademicPlacementReport({ data }) {
+    if (!data) return null;
+
     return (
         <section className="relative py-[40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010] ">
             <div className="container">
                 <div className="flex flex-wrap max-lg:gap-[15px]">
                     <div className="w-full lg:w-4/12">
                         <div className="w-full mb-[20px] xl:mb-[30px]">
-                            <div className="cmn_Title mb-[25px]">
-                                {data?.heading}
-                            </div>
-                            <p>{data?.description}</p>
+                            {data.heading && <div className="cmn_Title mb-[25px]">{data.heading}</div>}
+                            {data.description && <p>{data.description}</p>}
                         </div>
-                        {data?.documents.map((item, id) => (
+                        {data.documents?.filter((item) => item?.file?.url).map((item, id) => (
                             <Link
-                                href={item?.file.url}
+                                href={item.file.url}
+                                {...externalLinkProps(item.isExternal)}
                                 key={id}
                                 className="group relative flex items-center justify-between py-[15px] 2xl:py-[18px] 3xl:py-[22px] max-lg:w-fit max-lg:gap-[20px] border-b border-black/20 dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
                             >
@@ -46,7 +48,9 @@ export default function AcademicPlacementReport({ data }) {
                     </div>
                     <div className="w-full lg:w-8/12">
                         <div className="w-full h-full rounded-[10px] overflow-hidden lg:max-w-[90%] ml-auto">
-                            <Image src={data?.media.url} width="1068" height="430" className="w-full h-full object-cover" alt={data?.media.alternativeText} />
+                            {data?.media?.url && (
+                                <Image src={data.media.url} width="1068" height="430" className="w-full h-full object-cover" alt={data.media.alternativeText || data?.heading || ""} />
+                            )}
                         </div>
                     </div>
                 </div>

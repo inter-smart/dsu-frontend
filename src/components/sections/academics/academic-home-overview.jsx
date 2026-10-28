@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
+import AcademicCta from "./academic-cta";
 export default function AcademicHomeOverview({ data }) {
     if (!data) return null;
 
@@ -73,31 +73,8 @@ export default function AcademicHomeOverview({ data }) {
                                 <BlocksRenderer content={data.intro} />
                             </div>
                         )}
-                        {data.cta && (
-                            <Link href={data.cta.file.url}
-                                className="group relative flex h-[30px] w-fit mt-[25px] 2xl:mt-[30px] min-w-[130px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
-                            >
-                                <span className="relative z-[1] transition-transform duration-300  ">
-                                    {data.cta.label}</span>
 
-                                <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
-                                    <svg
-                                        width="11"
-                                        height="9"
-                                        viewBox="0 0 11 9"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="transition-transform duration-300 group-hover:rotate-180"
-                                    >
-                                        <circle cx="5.12232" cy="0.919192" r="0.919192" fill="white" />
-                                        <circle cx="5.12232" cy="4.33325" r="0.919192" fill="white" />
-                                        <circle cx="5.12232" cy="7.74732" r="0.919192" fill="white" />
-                                        <circle cx="9.32349" cy="4.33325" r="0.919192" fill="white" />
-                                        <circle cx="0.919192" cy="4.33325" r="0.919192" fill="white" />
-                                    </svg>
-                                </div>
-                            </Link>
-                        )}
+                        <AcademicCta cta={data?.cta} className="mt-[15px] xl:mt-[25px]" />
                     </div>
                 </div>
 

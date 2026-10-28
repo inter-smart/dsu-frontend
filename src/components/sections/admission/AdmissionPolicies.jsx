@@ -10,64 +10,26 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const defaultAccordion = [
-    {
-        id: 1,
-        question: "Eligibility & Fees",
-        answer: [],
-    },
-    {
-        id: 2,
-        question: "Admission Routes",
-        answer: [
-            {
-                type: "paragraph",
-                children: [
-                    {
-                        type: "text",
-                        text: "The applicable admission route depends on the programme. DSU publishes routes including DSAT, CET, COMEDK, Uni-GAUGE and PGCET.",
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        id: 3,
-        question: "Document Verification",
-        answer: [],
-    },
-    {
-        id: 4,
-        question: "Fee Payment",
-        answer: [],
-    },
-    {
-        id: 5,
-        question: "International Applicants",
-        answer: [],
-    },
-    {
-        id: 6,
-        question: "Check Current Information",
-        answer: [],
-    },
-];
-
 export default function AdmissionPolicies({ data }) {
-    const heading = data?.heading || "Admission Policies";
+    if (!data) return null;
+
+    const heading = data?.heading;
     const description = data?.description;
-    const accordion = data?.accordion && data.accordion.length > 0 ? data.accordion : defaultAccordion;
+    const accordion = data?.accordion || [];
 
     return (
         <section className="relative bg-white py-[30px] sm:py-[40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#0f1011]">
             <div className="container">
                 {/* Header */}
+                {(heading || description?.length > 0) && (
                 <div className="mb-6 sm:mb-8 xl:mb-10">
-                    <h2 className="cmn_Title font-bold text-[#1E1E1E] dark:text-white tracking-tight leading-[1.2]">
-                        {heading}
-                    </h2>
+                    {heading && (
+                        <h2 className="cmn_Title font-bold text-[#1E1E1E] dark:text-white tracking-tight leading-[1.2]">
+                            {heading}
+                        </h2>
+                    )}
 
-                    {description && (
+                    {description?.length > 0 && (
                         <div className="mt-2 sm:mt-2.5 text-[13px] sm:text-[14px] xl:text-[15px] 3xl:text-[17px] text-[#6B7280] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
                             {Array.isArray(description) ? (
                                 <BlocksRenderer
@@ -88,17 +50,19 @@ export default function AdmissionPolicies({ data }) {
                         </div>
                     )}
                 </div>
+                )}
 
                 {/* Accordion List */}
+                {accordion.length > 0 && (
                 <div className="w-full border border-[#E5E7EB] dark:border-white/10 rounded-[6px] xl:rounded-[10px] divide-y divide-[#E5E7EB] dark:divide-white/10 overflow-hidden">
                     <Accordion type="single" collapsible className="w-full">
-                        {accordion.map((item) => {
-                            const hasContent = item.answer && item.answer.length > 0;
+                        {accordion.filter((item) => item?.question).map((item, index) => {
+                            const hasContent = item?.answer?.length > 0;
 
                             return (
                                 <AccordionItem
-                                    key={item.id}
-                                    value={`item-${item.id}`}
+                                    key={item.id || index}
+                                    value={`item-${item.id || index}`}
                                     className="border-0 border-b border-[#E5E7EB] dark:border-white/10 last:border-b-0"
                                 >
                                     <AccordionTrigger
@@ -133,6 +97,7 @@ export default function AdmissionPolicies({ data }) {
                         })}
                     </Accordion>
                 </div>
+                )}
             </div>
         </section>
     );

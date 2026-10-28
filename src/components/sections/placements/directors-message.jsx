@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function DirectorMessage({ data }) {
@@ -21,20 +20,31 @@ export default function DirectorMessage({ data }) {
                         </svg>
 
                     </div>
-                    <div className="w-full md:w-[200px] lg:w-[225px] xl:w-[280px] 2xl:w-[335px] 3xl:w-[420px]  ">
-                        <div className="w-full lg:aspect-[420/420] mb-[15px] rounded-[10px] overflow-hidden">
-                            <Image src={data?.image.url} width={420} height={414} className="w-full h-full object-cover" alt={data.name} />
+                    {data?.image?.url && (
+                        <div className="w-full md:w-[200px] lg:w-[225px] xl:w-[280px] 2xl:w-[335px] 3xl:w-[420px]">
+                            <div className="w-full lg:aspect-[420/420] mb-[15px] rounded-[10px] overflow-hidden">
+                                <Image
+                                    src={data.image.url}
+                                    width={420}
+                                    height={414}
+                                    className="w-full h-full object-cover"
+                                    alt={data.image.alternativeText || data.name || data.title || "Placement director"}
+                                />
+                            </div>
                         </div>
+                    )}
 
-                    </div>
-                    <div className="md:w-[calc(100%-200px)] lg:w-[calc(100%-225px)] xl:w-[calc(100%-280px)] 2xl:w-[calc(100%-335px)] 3xl:w-[calc(100%-420px)]
-                    md:pl-[40px] lg:pl-[30px] xl:pl-[50px] 2xl:pl-[60px] 3xl:pl-[80px] flex items-center">
+                    <div className={`flex items-center ${data?.image?.url
+                        ? "md:w-[calc(100%-200px)] lg:w-[calc(100%-225px)] xl:w-[calc(100%-280px)] 2xl:w-[calc(100%-335px)] 3xl:w-[calc(100%-420px)] md:pl-[40px] lg:pl-[30px] xl:pl-[50px] 2xl:pl-[60px] 3xl:pl-[80px]"
+                        : "w-full"}`}>
                         <div className="w-full">
                             <div className="cmn_Title mb-[40px]">{data?.title}</div>
 
                             <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white [&_p]:text-[#4A5565] dark:[&_p]:text-white mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
                                 w-full max-w-[550px] xl:max-w-[590px] 2xl:max-w-[790px] 3xl:max-w-[820px]">
-                                <BlocksRenderer content={data.description} />
+                                {data?.description?.length > 0 && (
+                                    <BlocksRenderer content={data.description} />
+                                )}
                             </div>
                             <div className="text-[13px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-black font-bold mb-[6px] dark:text-white">
                                 {data.name}

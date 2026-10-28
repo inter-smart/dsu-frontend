@@ -1,11 +1,5 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import PlacementProcess from "@/components/sections/placements/placement-process";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import CorporateConnect from "@/components/sections/placements/corporate-connect";
-import CampusFacility from "@/components/sections/placements/campus-facility";
-import PlacementTeam from "@/components/sections/placements/placement-team";
-import RecruiteDsu from "@/components/sections/placements/recruteDsu";
-import PlacementDocuments from "@/components/sections/placements/PlacementDocuments";
+import RecruitTemplate from "@/components/sections/placements/templates/RecruitTemplate";
+import { getPlacementRecruitPage } from "@/lib/api/placement";
 
 const local_data = {
     id: 24,
@@ -331,17 +325,21 @@ const local_data = {
     },
 }
 
-export default function page() {
-    return (
-        <>
-            <InnerHero data={local_data.hero} />
-            <PlacementmenuBar className="lg:!hidden block" />
-            <CorporateConnect data={local_data.programOverviewSection} />
-            <PlacementProcess data={local_data.placementProcess} variant="corporate" />
-            <CampusFacility data={local_data.campusSection} />
-            <PlacementDocuments data={local_data.documentSection} />
-            <PlacementTeam data={local_data.placementTeam} />
-            <RecruiteDsu data={local_data.recruiteSection} />
-        </>
-    )
+const fallback = {
+    hero: local_data.hero,
+    recruitPage: {
+        programOverviewSection: local_data.programOverviewSection,
+        placementProcess: local_data.placementProcess,
+        campusSection: local_data.campusSection,
+        documentSection: local_data.documentSection,
+        placementTeam: local_data.placementTeam,
+        recruiteSection: local_data.recruiteSection,
+    },
+};
+
+export default async function page() {
+    const apiData = await getPlacementRecruitPage();
+
+    // API data when the entry exists, otherwise the static local_data
+    return <RecruitTemplate data={apiData || fallback} />;
 }

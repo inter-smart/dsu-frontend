@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { PhoneInput, COUNTRIES } from "@/components/ui/phone-input";
+import PhoneNumbers from "@/components/ui/phone-numbers";
+import { COURSES, STATES } from "@/lib/schools/constants";
 import {
     Select,
     SelectContent,
@@ -16,7 +18,7 @@ import {
 
 const inputStyle = `h-[40px] 2xl:h-[45px] 3xl:h-[60px] w-full border border-black/10 rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px] border-[#E5E7EB] dark:border-[#333] bg-white dark:bg-[#1f1f1f]  text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px]  font-normal placeholder:text-[#4A5565]/50 text-[#212121] dark:text-[#F9FAFB]`
 
-export default function AcademicContact({ data }) {
+export default function AcademicContact({ data, schoolSlug }) {
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
@@ -30,67 +32,92 @@ export default function AcademicContact({ data }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (e) => {
+    const emptyForm = {
+        name: "",
+        phone: "",
+        country: COUNTRIES[0],
+        email: "",
+        course: "",
+        state: "",
+        message: "",
+    };
+    const [errorMessage, setErrorMessage] = useState("");
+    const [honeypot, setHoneypot] = useState("");
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrorMessage("");
+        setSubmitted(false);
         setIsSubmitting(true);
-        setTimeout(() => {
-            setIsSubmitting(false);
-            setSubmitted(true);
-        }, 800);
+        try {
+            const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+            const response = await fetch(`${baseUrl}/api/school-enquiries`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    data: {
+                        name: formData.name,
+                        phone: `${formData.country?.dialCode || ""} ${formData.phone}`.trim(),
+                        email: formData.email,
+                        course: formData.course,
+                        state: formData.state,
+                        message: formData.message,
+                        schoolSlug: schoolSlug || data?.schoolSlug || "",
+                        websiteUrl: window.location.href,
+                        website: honeypot,
+                    },
+                }),
+            });
+
+            if (!response.ok) {
+                let message = "Something went wrong. Please try again.";
+                try {
+                    const result = await response.json();
+                    if (result?.error?.message) message = result.error.message;
+                } catch {
+                    // keep the default message
+                }
+                setErrorMessage(message);
+            } else {
+                setSubmitted(true);
+                setFormData(emptyForm);
+            }
+        } catch {
+            setErrorMessage("Could not reach the server. Please try again.");
+        }
+        setIsSubmitting(false);
     };
 
-    const contactInfo = data?.info || {
-        title: "Start Your Journey With Us",
-        description:
-            "Take the next step toward a future-ready education supported by innovation, research, and industry collaboration.",
-        address:
-            "Gate 2, 6th Floor, University Building, Dental Block, Kumaraswamy Layout, Bengaluru - 560 111",
-        mapUrl: "https://maps.google.com/?q=Dayananda+Sagar+University+Kumaraswamy+Layout+Bengaluru",
-        email: "admissions@dsu.edu.in",
-        helpline: "080 46461800 / 080 49092800",
-        accreditations: "NAAC A+ Accredited  |  UGC Recognized",
-    };
+    const contactInfo = data?.info ?? {};
 
-    const courseOptions = data?.courses || [
-        "Bachelor of Computer Applications (BCA)",
-        "Master of Computer Applications (MCA)",
-        "B.Tech in Computer Science & Engineering",
-        "B.Tech in AI & Machine Learning",
-        "B.Tech in Data Science",
-        "M.Tech in Computer Science",
-        "Ph.D in Computer Applications",
-    ];
-
-    const stateOptions = data?.states || [
-        "Karnataka",
-        "Andhra Pradesh",
-        "Delhi",
-        "Gujarat",
-        "Kerala",
-        "Maharashtra",
-        "Tamil Nadu",
-        "Telangana",
-        "Uttar Pradesh",
-        "West Bengal",
-        "Other",
-    ];
+    // email / phone entries come from the reusable contact-detail component (type email | phone)
+    const valuesOf = (type) =>
+        (contactInfo.details || []).filter((d) => d.type === type).flatMap((d) => d.values || []);
+    const emails = valuesOf("email");
+    const phones = valuesOf("phone");
+    if (!emails.length && contactInfo.email) emails.push(contactInfo.email);
+    if (!phones.length && contactInfo.helpline) phones.push(contactInfo.helpline);
 
     return (
         <section className="relative py-[0px_40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
             <div className="container">
                 {/* Section Title */}
-                <h1 className="cmn_Title mb-[25px] xl:mb-[35px] text-black dark:text-white">
-                    {data?.pageTitle || "Contact"}
-                </h1>
+                {data?.pageTitle && (
+                    <h1 className="cmn_Title mb-[25px] xl:mb-[35px] text-black dark:text-white">
+                        {data.pageTitle}
+                    </h1>
+                )}
 
                 {/* Grid Layout */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-[24px] xl:gap-[32px] 2xl:gap-[40px] items-stretch">
                     {/* Left Column: Form Card */}
                     <div className="bg-white dark:bg-[#1a1a1a] border border-black/10 dark:border-[#333] rounded-[4px] 2xl:rounded-[8px] xl:rounded-[10px] p-[24px_20px] sm:p-[30px_25px] xl:p-[35px_30px] 2xl:p-[40px_35px] 3xl:p-[65px_50px] shadow-[inset_3px_3px_10px_rgba(0,0,0,0.1)] flex flex-col justify-between">
                         <div>
-                            <h2 className="text-[22px] xl:text-[25px] 2xl:text-[28px] 3xl:text-[45px] font-bold text-[#212121] dark:text-[#F9FAFB] leading-tight mb-[20px] xl:mb-[25px]">
-                                {data?.formTitle || "Enquire Now for More"}
-                            </h2>
+                            {data?.formTitle && (
+                                <h2 className="text-[22px] xl:text-[25px] 2xl:text-[28px] 3xl:text-[45px] font-bold text-[#212121] dark:text-[#F9FAFB] leading-tight mb-[20px] xl:mb-[25px]">
+                                    {data.formTitle}
+                                </h2>
+                            )}
 
                             <form onSubmit={handleSubmit} className="space-y-4 xl:space-y-5">
                                 {/* Name */}
@@ -162,13 +189,13 @@ export default function AcademicContact({ data }) {
                                                 <SelectValue placeholder="Select Course" />
                                             </SelectTrigger>
                                             <SelectContent className="max-h-[260px] bg-white dark:bg-[#1f1f1f] border border-[#E5E7EB] dark:border-[#333] rounded-[8px] shadow-lg z-50">
-                                                {courseOptions.map((course, idx) => (
+                                                {COURSES.map((course) => (
                                                     <SelectItem
-                                                        key={idx}
-                                                        value={course}
+                                                        key={course.slug}
+                                                        value={course.title}
                                                         className="text-[13px] py-2 px-3 text-[#374151] dark:text-[#D1D5DB] hover:bg-[#FFF8F0] dark:hover:bg-[#2a2a2a] cursor-pointer"
                                                     >
-                                                        {course}
+                                                        {course.title}
                                                     </SelectItem>
                                                 ))}
                                             </SelectContent>
@@ -188,13 +215,13 @@ export default function AcademicContact({ data }) {
                                                 <SelectValue placeholder="Select State" />
                                             </SelectTrigger>
                                             <SelectContent className="max-h-[260px] bg-white dark:bg-[#1f1f1f] border border-[#E5E7EB] dark:border-[#333] rounded-[8px] shadow-lg z-50">
-                                                {stateOptions.map((state, idx) => (
+                                                {STATES.map((state) => (
                                                     <SelectItem
-                                                        key={idx}
-                                                        value={state}
+                                                        key={state.slug}
+                                                        value={state.slug}
                                                         className="text-[13px] py-2 px-3 text-[#374151] dark:text-[#D1D5DB] hover:bg-[#FFF8F0] dark:hover:bg-[#2a2a2a] cursor-pointer"
                                                     >
-                                                        {state}
+                                                        {state.title}
                                                     </SelectItem>
                                                 ))}
                                             </SelectContent>
@@ -215,6 +242,18 @@ export default function AcademicContact({ data }) {
                                         }
                                     />
                                 </div>
+
+                                {/* Honeypot: hidden from visitors, filled only by bots */}
+                                <input
+                                    type="text"
+                                    name="website"
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                    aria-hidden="true"
+                                    className="hidden"
+                                    value={honeypot}
+                                    onChange={(e) => setHoneypot(e.target.value)}
+                                />
 
                                 {/* Submit Button */}
                                 <div className="pt-1">
@@ -246,6 +285,12 @@ export default function AcademicContact({ data }) {
 
                                     </button>
 
+                                    {errorMessage && (
+                                        <p role="alert" className="text-[12px] text-red-600 font-medium mt-2">
+                                            {errorMessage}
+                                        </p>
+                                    )}
+
                                     {submitted && (
                                         <p className="text-[12px] text-green-600 font-medium mt-2">
                                             Thank you! Your enquiry has been submitted successfully.
@@ -260,25 +305,32 @@ export default function AcademicContact({ data }) {
                     <div className="bg-gradient-to-b from-[#FFF9F2] to-[#FFF3E0] dark:from-[#1c1815] dark:to-[#131416] border border-[#FDEEE0] dark:border-white/10 rounded-[4px] 2xl:rounded-[8px] xl:rounded-[10px] p-[24px_20px] sm:p-[30px_25px] xl:p-[35px_30px] 2xl:p-[40px_35px] flex flex-col justify-between">
                         <div>
                             {/* Heading */}
-                            <h2 className="cmn_Title mb-[10px] xl:mb-[12px] text-black dark:text-white">
-                                {contactInfo.title}
-                            </h2>
+                            {contactInfo.title && (
+                                <h2 className="cmn_Title mb-[10px] xl:mb-[12px] text-black dark:text-white">
+                                    {contactInfo.title}
+                                </h2>
+                            )}
 
                             {/* Subtitle */}
-                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[24px] xl:mb-[28px] lg:max-w-[85%]">
-                                {contactInfo.description}
-                            </p>
+                            {contactInfo.description && (
+                                <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[24px] xl:mb-[28px] lg:max-w-[85%]">
+                                    {contactInfo.description}
+                                </p>
+                            )}
 
                             {/* Inner White Contact Card */}
                             <div className="bg-white dark:bg-[#151515] border border-transparent dark:border-white/10 rounded-[3px] xl:rounded-[5px] p-[20px] xl:p-[24px] 2xl:p-[28px] space-y-4 xl:space-y-5">
                                 {/* Address */}
-                                <div>
-                                    <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] max-w-[80%]">
-                                        {contactInfo.address}
-                                    </p>
-                                </div>
+                                {contactInfo.address && (
+                                    <div>
+                                        <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] max-w-[80%]">
+                                            {contactInfo.address}
+                                        </p>
+                                    </div>
+                                )}
 
                                 {/* Get Directions Link */}
+                                {contactInfo.mapUrl && (
                                 <div>
                                     <Link
                                         href={contactInfo.mapUrl}
@@ -328,10 +380,12 @@ export default function AcademicContact({ data }) {
                                         <span>Get Directions</span>
                                     </Link>
                                 </div>
+                                )}
 
                                 {/* Divider */}
                                 <div className="space-y-3.5 xl:space-y-4">
                                     {/* Email */}
+                                    {emails.length > 0 && (
                                     <div className="flex items-center gap-3">
                                         <div className="flex items-center justify-center w-[35px] xl:w-[45px] 2xl:w-[50px] 3xl:w-[65px] h-[30px] xl:h-[38px] 2xl:h-[45px] 3xl:h-[58px] p-[5px] xl:p-[10px] 2xl:p-[12px] rounded-[4px] bg-[#F9FAFB] dark:bg-[#222] border border-[#E5E7EB] dark:border-[#333] shrink-0 text-[#374151] dark:text-[#D1D5DB]">
                                             <svg className="w-full h-full object-cover" viewBox="0 0 37 19" fill="none" >
@@ -342,16 +396,26 @@ export default function AcademicContact({ data }) {
                                             <div className="text_1 text-[#212121] font-medium dark:text-white leading-tight mb-[4px]">
                                                  E-Mail:
                                             </div>
-                                            <a
-                                                href={`mailto:${contactInfo.email}`}
-                                                className="text_1 text-[#4A5565] dark:text-[#D1D5DB] dark:text-[#D1D5DB] hover:text-[#DC2626] transition-colors"
-                                            >
-                                                {contactInfo.email}
-                                            </a>
+                                            <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">
+                                                {emails.map((email, i) => (
+                                                    <Fragment key={email}>
+                                                        {i > 0 && " / "}
+                                                        <a
+                                                            href={`mailto:${email}`}
+                                                            className="hover:text-[#DC2626] transition-colors"
+                                                        >
+                                                            {email}
+                                                        </a>
+                                                    </Fragment>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
 
+                                    )}
+
                                     {/* Helpline */}
+                                    {phones.length > 0 && (
                                     <div className="flex items-center gap-3">
                                         <div className="flex items-center justify-center w-[35px] xl:w-[45px] 2xl:w-[50px] 3xl:w-[65px] h-[30px] xl:h-[38px] 2xl:h-[45px] 3xl:h-[58px] p-[5px] xl:p-[10px] 2xl:p-[12px]  rounded-[4px] bg-[#F9FAFB] dark:bg-[#222] border border-[#E5E7EB] dark:border-[#333] shrink-0 text-[#374151] dark:text-[#D1D5DB]">
                                             <svg className="w-full h-full object-cover" viewBox="0 0 32 32" fill="none"  >
@@ -369,15 +433,20 @@ export default function AcademicContact({ data }) {
                                                 Admissions Helpline:
                                             </div>
                                             <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">
-                                               <a href={contactInfo.helpline} className="w-fit block hover:text-[#DC2626] transition-colors"> {contactInfo.helpline}</a>
+                                               <PhoneNumbers
+                                                    value={phones.join(" / ")}
+                                                    linkClassName="hover:text-[#DC2626] transition-colors"
+                                               />
                                             </div>
                                         </div>
                                     </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
 
                         {/* Bottom Accreditation Badge */}
+                        {contactInfo.accreditations && (
                         <div className="flex items-center gap-1.5 mt-6 xl:mt-8 text-[#212121] dark:text-[#9CA3AF] text-[11px] xl:text-[12px] 2xl:text-[14px] font-medium">
                             <div className="flex items-center gap-0.5 text-[#F59E0B]">
                                 {[...Array(5)].map((_, i) => (
@@ -387,6 +456,7 @@ export default function AcademicContact({ data }) {
                             </div>
                             <span className="ml-1 text-[#212121]">{contactInfo.accreditations}</span>
                         </div>
+                        )}
                     </div>
                 </div>
             </div>

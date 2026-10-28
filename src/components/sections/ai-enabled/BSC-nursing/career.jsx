@@ -4,6 +4,21 @@
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 
+// Bullet lists inside the description render as the same dotted rows the separate opportunity list uses.
+const descriptionBlocks = {
+    list: ({ children }) => (
+        <ul className="mt-[20px] xl:mt-[25px] space-y-[12px] xl:space-y-[16px]">{children}</ul>
+    ),
+    "list-item": ({ children }) => (
+        <li className="flex items-start gap-[10px] text_1">
+            <span className="mt-[5px] xl:mt-[2px] 3xl:mt-[5px] w-[10px] xl:w-[15px] 3xl:w-[21px] h-[10px] xl:h-[15px] 3xl:h-[21px] rounded-full bg-gradient-to-r from-[#DC2626] to-[#F97316] shrink-0" />
+            <span className="text-[#4A5565] dark:text-[#9CA3AF] [&_strong]:font-semibold [&_strong]:text-[#4A5565] dark:[&_strong]:text-white">
+                {children}
+            </span>
+        </li>
+    ),
+};
+
 export default function CareerSection({ data }) {
 
     return (
@@ -14,7 +29,7 @@ export default function CareerSection({ data }) {
                         {data.heading}
                     </h2>
                     <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
-                        <BlocksRenderer content={data.description} />
+                        <BlocksRenderer content={data.description} blocks={descriptionBlocks} />
                     </div>
                    {data?.opportunity && (
                         <ul className="mt-[20px] xl:mt-[25px] space-y-[12px] xl:space-y-[16px]">

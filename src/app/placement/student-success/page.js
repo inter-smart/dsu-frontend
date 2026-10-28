@@ -1,9 +1,5 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import AlumniWorld from "@/components/sections/placements/alumni-world";
-import PlacementExcellence from "@/components/sections/placements/placement-excellence";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import StudentSuccess from "@/components/sections/placements/student-success";
-import StudentSuccessStories from "@/components/sections/placements/student-success-stories";
+import StudentSuccessTemplate from "@/components/sections/placements/templates/StudentSuccessTemplate";
+import { getPlacementStudentSuccessPage } from "@/lib/api/placement";
 
 const local_data = {
   seo: {
@@ -395,20 +391,27 @@ const local_data = {
   },
 };
 
-export const metadata = {
-  title: local_data.seo.metaTitle,
-  description: local_data.seo.metaDescription,
+export async function generateMetadata() {
+  const apiData = await getPlacementStudentSuccessPage();
+  return {
+    title: apiData?.seo?.metaTitle || local_data.seo.metaTitle,
+    description: apiData?.seo?.metaDescription || local_data.seo.metaDescription,
+  };
+}
+
+const fallback = {
+    hero: local_data.hero,
+    studentSuccessPage: {
+        studentSuccess: local_data.studentSuccess,
+        alumniWorld: local_data.alumniWorld,
+        excellence: local_data.excellence,
+        successStoriesSection: local_data.successStoriesSection,
+    },
 };
 
-export default function page() {
-  return (
-    <>
-      <InnerHero data={local_data.hero} />
-      <PlacementmenuBar className="lg:hidden! block" />
-      <StudentSuccess data={local_data?.studentSuccess} />
-      <AlumniWorld data={local_data?.alumniWorld} />
-      <PlacementExcellence data={local_data.excellence} />
-      <StudentSuccessStories data={local_data.successStoriesSection} variant="bg-gradient"/>
-    </>
-  );
+export default async function page() {
+    const apiData = await getPlacementStudentSuccessPage();
+
+    // API data when the entry exists, otherwise the static local_data
+    return <StudentSuccessTemplate data={apiData || fallback} />;
 }

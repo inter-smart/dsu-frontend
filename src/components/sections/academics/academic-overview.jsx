@@ -53,16 +53,18 @@ export default function AcademicOverview({ data }) {
                                 <div className="text_1 !text-white font-semibold [&_p]:text-white [&_p]:font-semibold text-center leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]">
                                     <BlocksRenderer content={data?.nursingBannerSection.description} />
                                 </div>
+                                {data.nursingBannerSection.badge?.label && (
                                 <Link href="/"
                                     className="group relative flex h-[30px] w-fit mt-[25px] 2xl:mt-[30px] min-w-[130px] mx-auto px-[30px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-white text_1 font-bold capitalize text-[#F97316] transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                                 >
                                     <span className="relative z-[1] transition-transform duration-300  ">
-                                        {data?.nursingBannerSection?.badge.label}</span>
+                                        {data.nursingBannerSection.badge.label}</span>
 
                                     <div className="relative z-[1] flex h-[13px] w-[15px] xl:w-[22] xl:h-[22px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
-                                        <Image src={data?.nursingBannerSection?.badge?.icon?.url} width={22} height={22} className="w-full h-full object-contain" />
+                                        {data.nursingBannerSection.badge.icon?.url && <Image src={data.nursingBannerSection.badge.icon.url} alt="" width={22} height={22} className="w-full h-full object-contain" />}
                                     </div>
                                 </Link>
+                                )}
                             </div>
                         )}
                     </div>
@@ -93,7 +95,7 @@ export default function AcademicOverview({ data }) {
                 </div>
 
                 {/* Floated Left Block (Secondary Media from JSON) */}
-                {data?.secondaryMedia && (
+                {(data?.secondaryMedia?.length > 0 || data?.outro?.length > 0) && (
                     <div className="relative after:content-[''] after:table after:clear-both mt-[0px] lg:mt-[50px] xl:mt-[65px]">
                         {data?.secondaryMedia?.length > 0 && (
                             <div className="w-full lg:w-[50%] lg:float-left mr-0 lg:mr-[30px] xl:mr-[45px] 2xl:mr-[55px] mb-[25px] lg:mb-[20px]">

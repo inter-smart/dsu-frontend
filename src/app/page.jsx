@@ -1,3 +1,6 @@
+import { cache } from "react";
+import { getHomePage, getNewsEvents, getAnnouncements } from "@/lib/api";
+import { hasContent } from "@/lib/has-content";
 import News from "@/components/sections/home/home-news";
 import Events from "@/components/sections/home/home-events";
 import Journey from "@/components/layout/common/journey";
@@ -31,6 +34,10 @@ const homePageData = {
           highlightText:
             " AI Factory and Multidisciplinary Centers of Excellence",
         },
+        buttons: [
+          { label: "Explore Centres of Excellence", url: "#", isExternal: false },
+          { label: "Apply Now", url: "#", isExternal: false },
+        ],
         featuredItems: [
           {
             id: 1,
@@ -78,6 +85,10 @@ const homePageData = {
           highlightText:
             " AI Factory and Multidisciplinary Centers of Excellence 2",
         },
+        buttons: [
+          { label: "Explore Centres of Excellence", url: "#", isExternal: false },
+          { label: "Apply Now", url: "#", isExternal: false },
+        ],
         featuredItems: [
           {
             id: 1,
@@ -1181,7 +1192,7 @@ const homePageData = {
             "Our founding father, late Sri R Dayananda Sagar, was a graduate in Arts & Commerce from India & a barrister-at-law from England.",
           avatarImage: {
             url: "/images/home-about-avatar-1.jpg",
-            alt: "leadership-1",
+            alternativeText: "leadership-1",
           },
         },
         {
@@ -1192,13 +1203,13 @@ const homePageData = {
             "Our founding father, late Sri R Dayananda Sagar, was a graduate in Arts & Commerce from India & a barrister-at-law from England.",
           avatarImage: {
             url: "/images/home-leadership.jpg",
-            alt: "leadership-1",
+            alternativeText: "leadership-1",
           },
         },
       ],
       leaderShipImage: {
         url: "/images/home-leadership.jpg",
-        alt: "leadership",
+        alternativeText: "leadership",
       },
     },
     aboutInfo: {
@@ -1211,13 +1222,6 @@ const homePageData = {
         suffix: "+",
         label: "Years of <br> Educational Excellence",
       },
-    },
-  },
-  leadership: {
-    data: {
-      id: 1,
-      documentId: "leadership-1",
-      attributes: { title: "leadership" },
     },
   },
   studentSuccess: {
@@ -1255,11 +1259,9 @@ const homePageData = {
         media: {
           type: "video",
           url: "/videos/home-testimonial-1.mp4",
-          alternativeText: "Success Story",
         },
         avatar: {
           url: "/images/home-testimonial-avatar-1.jpg",
-          alternativeText: "Avatar",
         },
         badge: {
           url: "/images/home-badge-1.png",
@@ -1275,11 +1277,9 @@ const homePageData = {
         media: {
           type: "video",
           url: "/videos/home-testimonial-2.mp4",
-          alternativeText: "Success Story",
         },
         avatar: {
           url: "/images/home-testimonial-avatar-2.png",
-          alternativeText: "Avatar",
         },
         badge: {
           url: "/images/home-badge-2.png",
@@ -1295,11 +1295,9 @@ const homePageData = {
         media: {
           type: "video",
           url: "/videos/home-testimonial-3.mp4",
-          alternativeText: "Success Story",
         },
         avatar: {
           url: "/images/home-testimonial-avatar-3.png",
-          alternativeText: "Avatar",
         },
         badge: {
           url: "/images/home-badge-1.png",
@@ -1315,11 +1313,9 @@ const homePageData = {
         media: {
           type: "video",
           url: "/videos/home-testimonial-4.mp4",
-          alternativeText: "Success Story",
         },
         avatar: {
           url: "/images/home-testimonial-avatar-4.jpg",
-          alternativeText: "Avatar",
         },
         badge: {
           url: "/images/home-badge-1.png",
@@ -1335,11 +1331,9 @@ const homePageData = {
         media: {
           type: "video",
           url: "/videos/home-testimonial-2.mp4",
-          alternativeText: "Success Story",
         },
         avatar: {
           url: "/images/home-testimonial-avatar-2.png",
-          alternativeText: "Avatar",
         },
         badge: {
           url: "/images/home-badge-2.png",
@@ -1823,12 +1817,16 @@ const homePageData = {
   journey: {
     background_image: "/images/home-journey.webp",
     title: "Start Your Journey With Us",
+    ctaLinks: [
+      { url: "#!", label: "Apply Now" },
+      { url: "#!", label: "Talk to an Advisor" },
+      { url: "#!", label: "Book a Campus Visit" },
+    ],
     description:
       "<p>Take the next step toward a future-ready education supported by innovation, <br> research, and industry collaboration.</p>",
     certified_list: [
       {
         id: 1,
-        icon: "/images/rating-star.svg",
         label: "NAAC A+ Accredited",
       },
       {
@@ -1839,21 +1837,98 @@ const homePageData = {
   },
 };
 
-export default function Home() {
+// Use the CMS section when its list has content, otherwise the local_data section.
+const pick = (cms, local, listKey) => (hasContent(cms?.[listKey]) ? cms : local);
+const pickList = (cms, local) => (hasContent(cms) ? cms : local);
+
+// A CMS hero slide missing a field (media, logo, buttons, ...) takes it from the local slide at the same position.
+const HERO_SLIDE_FIELDS = ["poweredBy", "media", "title", "description", "buttons", "featuredItems"];
+const mergeHeroSlide = (slide, fallback) => {
+  const merged = { ...slide };
+  HERO_SLIDE_FIELDS.forEach((key) => {
+    if (!hasContent(slide?.[key])) merged[key] = fallback?.[key];
+  });
+  return merged;
+};
+
+// Shared by the metadata and the page so Strapi is queried once per request.
+const loadHome = cache(getHomePage);
+
+export async function generateMetadata() {
+  const seo = (await loadHome())?.seo;
+  return {
+    ...(seo?.metaTitle && { title: seo.metaTitle }),
+    ...(seo?.metaDescription && { description: seo.metaDescription }),
+  };
+}
+
+// Each section falls back to `homePageData` when Strapi returns nothing for it.
+export default async function Home() {
+  const [cms, newsList, announcementList] = await Promise.all([
+    loadHome(),
+    getNewsEvents(),
+    getAnnouncements(),
+  ]);
+  const local = homePageData;
+
+  const cmsHero = cms?.heroSlides?.hero;
+  const heroSlides = {
+    hero: hasContent(cmsHero)
+      ? cmsHero
+          .filter(hasContent)
+          .map((slide, i) =>
+            mergeHeroSlide(slide, local.heroSlides.hero[i] ?? local.heroSlides.hero[0]),
+          )
+      : local.heroSlides.hero,
+    heroMarquee: pickList(cms?.heroSlides?.heroMarquee, local.heroSlides.heroMarquee).filter(
+      (item) => item?.label,
+    ),
+  };
+  // The CMS fills the text, tour and about info with defaults; its two lists and the leaders fall back on their own.
+  const aboutCms = cms?.homeAbout ?? local.homeAbout;
+  const homeAbout = {
+    ...aboutCms,
+    statistics: pickList(cms?.homeAbout?.statistics, local.homeAbout.statistics),
+    leadership: {
+      ...aboutCms.leadership,
+      leaders: pickList(
+        cms?.homeAbout?.leadership?.leaders,
+        local.homeAbout.leadership.leaders,
+      ),
+    },
+  };
+  // Announcements come from the announcement entries; the Latest Happenings list is still local_data.
+  const events = {
+    ...pick(cms?.events, local.events, "announcements_list"),
+    latest_list: local.events.latest_list,
+    announcements_list: pickList(
+      announcementList,
+      pickList(cms?.events?.announcements_list, local.events.announcements_list),
+    ),
+  };
+  // The News & Events section lists every News & Events entry (cards: path, title, date, year, link).
+  const news = {
+    title: cms?.latestNews?.title ?? local.latestNews.title,
+    news_list: pickList(newsList, local.latestNews.news_list),
+  };
+
+  // The CMS sends { showSection: false } for a section switched off with "Show This Section".
+  const hidden = (key) => cms?.[key]?.showSection === false;
+
   return (
     <main className="flex flex-col min-h-screen">
-      <HomeHero data={homePageData?.heroSlides} />
-      {/* <HomeExcellence data={homePageData?.centresOfExcellence} /> */}
-      <HomeAcademic data={homePageData?.academicPrograms} />
-      <HomeResearch data={homePageData?.researchInnovation} />
-      <HomeIndustry data={homePageData?.industryCollaboration} />
-      <HomeAbout data={homePageData?.homeAbout} />
-      <HomeTestimonials data={homePageData?.studentSuccess} />
-      <HomeCampusLife data={homePageData?.campusLife} />
-      <HomeCollaborations data={homePageData?.internationalCollaboration} />
-      <Events data={homePageData?.events} />
-      <News data={homePageData.latestNews} />
-      <Journey data={homePageData?.journey} />
+      <HomeHero data={heroSlides} />
+      {!hidden("centresOfExcellence") && <HomeExcellence data={pick(cms?.centresOfExcellence, local.centresOfExcellence, "excellence")} />}
+      {!hidden("academicPrograms") && <HomeAcademic data={pick(cms?.academicPrograms, local.academicPrograms, "academics")} />}
+      {!hidden("researchInnovation") && <HomeResearch data={local.researchInnovation} />}
+      {!hidden("industryCollaboration") && <HomeIndustry data={local.industryCollaboration} />}
+      {!hidden("homeAbout") && <HomeAbout data={homeAbout} />}
+      {!hidden("studentSuccess") && <HomeTestimonials data={pick(cms?.studentSuccess, local.studentSuccess, "successStories")} />}
+      {!hidden("campusLife") && <HomeCampusLife data={pick(cms?.campusLife, local.campusLife, "featureCards")} />}
+      {!hidden("internationalCollaboration") && <HomeCollaborations data={pick(cms?.internationalCollaboration, local.internationalCollaboration, "countries")} />}
+      {!hidden("events") && <Events data={events} />}
+      {!hidden("latestNews") && <News data={news} />}
+      {!hidden("journey") && <Journey data={pick(cms?.journey, local.journey, "ctaLinks")} />}
     </main>
   );
 }

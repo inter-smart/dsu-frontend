@@ -19,6 +19,7 @@ export default function NAACJourney({ data }) {
                         <Link
                             key={id}
                             href={doc?.url || "/"}
+                            target={doc?.isExternal ? "_blank" : "_self"}
                             className="min-w-[115px] xl:min-w-[135px] 2xl:min-w-[165px] 3xl:min-w-[204px] h-[35px] 2xl:h-[40px] 3xl:h-[54px] flex items-center justify-between border border-[#212121] rounded-[5px] w-fit overflow-hidden transition-all grow-1 duration-200 ease-in-out hover:shadow-[0_6px_20px_rgba(220,38,38,0.18)] !no-underline"
                         >
                             <div className="text_1 text-[#212121] font-normal bg-white w-full h-full flex items-center justify-between !no-underline gap-[10px] rounded-[5px] px-[15px] transition-all duration-100 ease-in-out hover:bg-transparent hover:text-black">

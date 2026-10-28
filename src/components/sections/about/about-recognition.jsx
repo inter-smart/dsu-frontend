@@ -1,21 +1,58 @@
 
 "use client";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { hasContent } from "@/lib/has-content";
 
+// an item is shown only with a label and a real url or file url
+const hasRealLink = (link) =>
+    Boolean(link?.label) && Boolean(link?.linkType === "file" ? link?.file?.url : link?.url);
+
+// whole row is the link (icon, label, arrow and padding); falls back to a plain div without an href
+function RowLink({ link, className, children }) {
+    const href = link?.linkType === "file" ? link?.file?.url : link?.url;
+    if (!href) return <div className={className}>{children}</div>;
+    const newTab = link?.isExternal || link?.linkType === "file";
+    return (
+        <a
+            href={href}
+            target={newTab ? "_blank" : undefined}
+            rel={newTab ? "noopener noreferrer" : undefined}
+            className={className}
+        >
+            {children}
+        </a>
+    );
+}
 
 export default function AboutRecognition({ data }) {
-    const firstcolumn = data?.columns?.slice(0, 1);
-    const secondcolumn = data?.columns?.slice(1);
+    const columns = [];
+    (Array.isArray(data?.columns) ? data.columns : []).forEach((col) => {
+        const items = (Array.isArray(col?.items) ? col.items : []).filter((item) =>
+            hasRealLink(item?.link),
+        );
+        if (col?.title && items.length > 0) columns.push({ title: col.title, items });
+    });
+    if (!columns.length) return null;
+    const firstcolumn = columns.slice(0, 1);
+    const secondcolumn = columns.slice(1);
    return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010] transition-colors duration-300">
             <div className="container">
-                <h2 className=" text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] text-center mb-[10px]
-                                xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white">
-                    {data.heading}
-                </h2>
-                <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] text-center mb-[30px] 3xl:mb-[50px]">
-                    <BlocksRenderer content={data.subheading} />
-                </div>
+                {data.heading && (
+                    <h2 className=" text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] text-center mb-[10px]
+                                    xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white">
+                        {data.heading}
+                    </h2>
+                )}
+                {hasContent(data.subheading) && (
+                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] text-center mb-[30px] 3xl:mb-[50px]">
+                        {Array.isArray(data.subheading) ? (
+                            <BlocksRenderer content={data.subheading} />
+                        ) : typeof data.subheading === "string" ? (
+                            <p>{data.subheading}</p>
+                        ) : null}
+                    </div>
+                )}
                 <div className="flex max-md:flex-wrap gap-[15px] md:gap-[50px]">
                     {firstcolumn.map((item, idx) => (
                         <div className="w-full md:w-1/3"
@@ -25,10 +62,11 @@ export default function AboutRecognition({ data }) {
                                     {item.title}
                                 </div>
                                 <div className="flex flex-wrap">
-                                    {item.items.map((data, id) => (
-                                        <div
-                                            className="group flex items-center justify-between py-[12px] 2xl:py-[12px] 3xl:py-[14px] px-[10px] 2xl:px-[14px] -mx-[10px] 2xl:-mx-[14px] rounded-[6px] border-b border-black/10 dark:border-white/10 w-full cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#FFF8EE] hover:to-[#FFF3E0] dark:hover:bg-white/5"
+                                    {(item.items || []).map((data, id) => (
+                                        <RowLink
+                                            link={data.link}
                                             key={id}
+                                            className="group flex items-center justify-between py-[12px] 2xl:py-[12px] 3xl:py-[14px] px-[10px] 2xl:px-[14px] -mx-[10px] 2xl:-mx-[14px] rounded-[6px] border-b border-black/10 dark:border-white/10 w-full cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#FFF8EE] hover:to-[#FFF3E0] dark:hover:bg-white/5"
                                         >
                                             <div className="flex items-center justify-between gap-[15px]">
                                                 <div className="w-[18px] xl:w-[20px] 2xl:w-[25px] 3xl:w-[33px] h-[15px] xl:h-[18px] 2xl:h-[20px] 3xl:h-[23px] flex items-center justify-center">
@@ -39,21 +77,21 @@ export default function AboutRecognition({ data }) {
                                                         <path d="M14.6316 27.5023H8.77889C8.00277 27.5023 7.25844 27.1547 6.70965 26.5358C6.16085 25.9169 5.85254 25.0776 5.85254 24.2023C5.85254 23.3271 6.16085 22.4878 6.70965 21.8689C7.25844 21.25 8.00277 20.9023 8.77889 20.9023H14.6316C15.4077 20.9023 16.152 21.25 16.7008 21.8689C17.2496 22.4878 17.5579 23.3271 17.5579 24.2023C17.5579 25.0776 17.2496 25.9169 16.7008 26.5358C16.152 27.1547 15.4077 27.5023 14.6316 27.5023ZM8.77889 23.0989C8.53687 23.1254 8.31226 23.2525 8.14883 23.4556C7.98541 23.6586 7.89487 23.923 7.89487 24.1972C7.89487 24.4714 7.98541 24.7358 8.14883 24.9388C8.31226 25.1418 8.53687 25.269 8.77889 25.2955H14.6316C14.8736 25.269 15.0982 25.1418 15.2616 24.9388C15.4251 24.7358 15.5156 24.4714 15.5156 24.1972C15.5156 23.923 15.4251 23.6586 15.2616 23.4556C15.0982 23.2525 14.8736 23.1254 14.6316 23.0989H8.77889Z" className="fill-[#4A5565] dark:fill-[#9CA3AF] transition-colors duration-300 group-hover:fill-[#F97316]" />
                                                     </svg>
                                                 </div>
-                                                <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] font-medium group-hover:font-bold text-black dark:text-white transition-all duration-300">
-                                                    {data.label}
-                                                </div>
+                                                <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] font-medium group-hover:font-bold text-black dark:text-white transition-all duration-300">{data.link?.label}</div>
+
                                             </div>
                                             <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex items-center transition-transform duration-300 group-hover:translate-x-[4px]">
                                                 <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.1973 7.80308L12.1519 0.330392C11.9508 0.117084 11.6827 0 11.3969 0C11.1108 0 10.8429 0.117252 10.6418 0.330392L10.0021 1.00901C9.80113 1.22198 9.69042 1.50645 9.69042 1.80976C9.69042 2.1129 9.80113 2.40695 10.0021 2.61993L14.1123 6.98888H1.05396C0.465202 6.98888 0 7.47774 0 8.10236V9.06174C0 9.68635 0.465202 10.2245 1.05396 10.2245H14.1589L10.0022 14.6179C9.80128 14.8312 9.69057 15.1079 9.69057 15.4112C9.69057 15.7142 9.80128 15.9949 10.0022 16.2081L10.6419 16.8845C10.843 17.0978 11.1109 17.2141 11.3971 17.2141C11.6829 17.2141 11.9509 17.0963 12.152 16.883L19.1975 9.41047C19.3991 9.19649 19.5099 8.91084 19.5091 8.6072C19.5098 8.30254 19.3991 8.01673 19.1973 7.80308Z" className="fill-[#212121] dark:fill-white transition-colors duration-300 group-hover:fill-[#F97316]" />
                                                 </svg>
                                             </div>
-                                        </div>
+                                        </RowLink>
                                     ))}
                                 </div>
                             </div>
                         </div>
                     ))}
+                    {secondcolumn.length > 0 && (
                     <div className="w-full md:w-2/3 ">
                         <div className="text-[15px] lg:text-[18px] xl:text-[23px] 2xl:text-[28px] 3xl:text-[35px] font-bold text-black dark:text-white relative mb-[15px] 2xl:mb-[25px] pb-[8px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px] after:w-[30px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316]">
                             {secondcolumn?.[0]?.title}
@@ -69,9 +107,10 @@ export default function AboutRecognition({ data }) {
                                             <div className="w-full">
 
                                                 {firstList.map((data, id) => (
-                                                    <div
-                                                        className="group flex items-center justify-between py-[12px] 2xl:py-[12px] 3xl:py-[14px] px-[10px] 2xl:px-[14px] -mx-[10px] 2xl:-mx-[14px] rounded-[6px] border-b border-black/10 dark:border-white/10 w-full cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#FFF8EE] hover:to-[#FFF3E0] dark:hover:bg-white/5"
+                                                    <RowLink
+                                                        link={data.link}
                                                         key={id}
+                                                        className="group flex items-center justify-between py-[12px] 2xl:py-[12px] 3xl:py-[14px] px-[10px] 2xl:px-[14px] -mx-[10px] 2xl:-mx-[14px] rounded-[6px] border-b border-black/10 dark:border-white/10 w-full cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#FFF8EE] hover:to-[#FFF3E0] dark:hover:bg-white/5"
                                                     >
                                                         <div className="flex items-center justify-between gap-[15px]">
                                                             <div className="w-[18px] xl:w-[20px] 2xl:w-[25px] 3xl:w-[33px] h-[15px] xl:h-[18px] 2xl:h-[20px] 3xl:h-[23px] flex items-center justify-center">
@@ -82,16 +121,14 @@ export default function AboutRecognition({ data }) {
                                                                     <path d="M14.6316 27.5023H8.77889C8.00277 27.5023 7.25844 27.1547 6.70965 26.5358C6.16085 25.9169 5.85254 25.0776 5.85254 24.2023C5.85254 23.3271 6.16085 22.4878 6.70965 21.8689C7.25844 21.25 8.00277 20.9023 8.77889 20.9023H14.6316C15.4077 20.9023 16.152 21.25 16.7008 21.8689C17.2496 22.4878 17.5579 23.3271 17.5579 24.2023C17.5579 25.0776 17.2496 25.9169 16.7008 26.5358C16.152 27.1547 15.4077 27.5023 14.6316 27.5023ZM8.77889 23.0989C8.53687 23.1254 8.31226 23.2525 8.14883 23.4556C7.98541 23.6586 7.89487 23.923 7.89487 24.1972C7.89487 24.4714 7.98541 24.7358 8.14883 24.9388C8.31226 25.1418 8.53687 25.269 8.77889 25.2955H14.6316C14.8736 25.269 15.0982 25.1418 15.2616 24.9388C15.4251 24.7358 15.5156 24.4714 15.5156 24.1972C15.5156 23.923 15.4251 23.6586 15.2616 23.4556C15.0982 23.2525 14.8736 23.1254 14.6316 23.0989H8.77889Z" className="fill-[#4A5565] dark:fill-[#9CA3AF] transition-colors duration-300 group-hover:fill-[#F97316]" />
                                                                 </svg>
                                                             </div>
-                                                            <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] font-medium group-hover:font-bold text-black dark:text-white transition-all duration-300">
-                                                                {data.label}
-                                                            </div>
+                                                            <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] font-medium group-hover:font-bold text-black dark:text-white transition-all duration-300">{data.link?.label}</div>
                                                         </div>
                                                         <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex items-center transition-transform duration-300 group-hover:translate-x-[4px]">
                                                             <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M19.1973 7.80308L12.1519 0.330392C11.9508 0.117084 11.6827 0 11.3969 0C11.1108 0 10.8429 0.117252 10.6418 0.330392L10.0021 1.00901C9.80113 1.22198 9.69042 1.50645 9.69042 1.80976C9.69042 2.1129 9.80113 2.40695 10.0021 2.61993L14.1123 6.98888H1.05396C0.465202 6.98888 0 7.47774 0 8.10236V9.06174C0 9.68635 0.465202 10.2245 1.05396 10.2245H14.1589L10.0022 14.6179C9.80128 14.8312 9.69057 15.1079 9.69057 15.4112C9.69057 15.7142 9.80128 15.9949 10.0022 16.2081L10.6419 16.8845C10.843 17.0978 11.1109 17.2141 11.3971 17.2141C11.6829 17.2141 11.9509 17.0963 12.152 16.883L19.1975 9.41047C19.3991 9.19649 19.5099 8.91084 19.5091 8.6072C19.5098 8.30254 19.3991 8.01673 19.1973 7.80308Z" className="fill-[#212121] dark:fill-white transition-colors duration-300 group-hover:fill-[#F97316]" />
                                                             </svg>
                                                         </div>
-                                                    </div>
+                                                    </RowLink>
                                                 ))}
                                             </div>
                                         </div>
@@ -109,9 +146,10 @@ export default function AboutRecognition({ data }) {
                                             <div className="w-full">
 
                                                 {secondList.map((data, id) => (
-                                                    <div
-                                                        className="group flex items-center justify-between py-[12px] 2xl:py-[12px] 3xl:py-[14px] px-[10px] 2xl:px-[14px] -mx-[10px] 2xl:-mx-[14px] rounded-[6px] border-b border-black/10 dark:border-white/10 w-full cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#FFF8EE] hover:to-[#FFF3E0] dark:hover:bg-white/5"
+                                                    <RowLink
+                                                        link={data.link}
                                                         key={id}
+                                                        className="group flex items-center justify-between py-[12px] 2xl:py-[12px] 3xl:py-[14px] px-[10px] 2xl:px-[14px] -mx-[10px] 2xl:-mx-[14px] rounded-[6px] border-b border-black/10 dark:border-white/10 w-full cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#FFF8EE] hover:to-[#FFF3E0] dark:hover:bg-white/5"
                                                     >
                                                         <div className="flex items-center justify-between gap-[15px]">
                                                             <div className="w-[18px] xl:w-[20px] 2xl:w-[25px] 3xl:w-[33px] h-[15px] xl:h-[18px] 2xl:h-[20px] 3xl:h-[23px] flex items-center justify-center">
@@ -122,16 +160,15 @@ export default function AboutRecognition({ data }) {
                                                                     <path d="M14.6316 27.5023H8.77889C8.00277 27.5023 7.25844 27.1547 6.70965 26.5358C6.16085 25.9169 5.85254 25.0776 5.85254 24.2023C5.85254 23.3271 6.16085 22.4878 6.70965 21.8689C7.25844 21.25 8.00277 20.9023 8.77889 20.9023H14.6316C15.4077 20.9023 16.152 21.25 16.7008 21.8689C17.2496 22.4878 17.5579 23.3271 17.5579 24.2023C17.5579 25.0776 17.2496 25.9169 16.7008 26.5358C16.152 27.1547 15.4077 27.5023 14.6316 27.5023ZM8.77889 23.0989C8.53687 23.1254 8.31226 23.2525 8.14883 23.4556C7.98541 23.6586 7.89487 23.923 7.89487 24.1972C7.89487 24.4714 7.98541 24.7358 8.14883 24.9388C8.31226 25.1418 8.53687 25.269 8.77889 25.2955H14.6316C14.8736 25.269 15.0982 25.1418 15.2616 24.9388C15.4251 24.7358 15.5156 24.4714 15.5156 24.1972C15.5156 23.923 15.4251 23.6586 15.2616 23.4556C15.0982 23.2525 14.8736 23.1254 14.6316 23.0989H8.77889Z" className="fill-[#4A5565] dark:fill-[#9CA3AF] transition-colors duration-300 group-hover:fill-[#F97316]" />
                                                                 </svg>
                                                             </div>
-                                                            <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] font-medium group-hover:font-bold text-black dark:text-white transition-all duration-300">
-                                                                {data.label}
-                                                            </div>
+                                                            <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] font-medium group-hover:font-bold text-black dark:text-white transition-all duration-300">{data.link?.label}</div>
+
                                                         </div>
                                                         <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex items-center transition-transform duration-300 group-hover:translate-x-[4px]">
                                                             <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M19.1973 7.80308L12.1519 0.330392C11.9508 0.117084 11.6827 0 11.3969 0C11.1108 0 10.8429 0.117252 10.6418 0.330392L10.0021 1.00901C9.80113 1.22198 9.69042 1.50645 9.69042 1.80976C9.69042 2.1129 9.80113 2.40695 10.0021 2.61993L14.1123 6.98888H1.05396C0.465202 6.98888 0 7.47774 0 8.10236V9.06174C0 9.68635 0.465202 10.2245 1.05396 10.2245H14.1589L10.0022 14.6179C9.80128 14.8312 9.69057 15.1079 9.69057 15.4112C9.69057 15.7142 9.80128 15.9949 10.0022 16.2081L10.6419 16.8845C10.843 17.0978 11.1109 17.2141 11.3971 17.2141C11.6829 17.2141 11.9509 17.0963 12.152 16.883L19.1975 9.41047C19.3991 9.19649 19.5099 8.91084 19.5091 8.6072C19.5098 8.30254 19.3991 8.01673 19.1973 7.80308Z" className="fill-[#212121] dark:fill-white transition-colors duration-300 group-hover:fill-[#F97316]" />
                                                             </svg>
                                                         </div>
-                                                    </div>
+                                                    </RowLink>
                                                 ))}
                                             </div>
                                         </div>
@@ -140,6 +177,7 @@ export default function AboutRecognition({ data }) {
                             })}
                         </div>
                     </div>
+                    )}
                 </div>
 
             </div>

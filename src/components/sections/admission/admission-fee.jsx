@@ -9,6 +9,11 @@ import {
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+const hasFeeValue = (value) => {
+  const trimmed = typeof value === "string" ? value.trim() : value;
+  return Boolean(trimmed) && trimmed !== "-";
+};
+
 export default function AdmissionFee({ data }) {
   return (
     <section className="block h-auto w-full py-[10px_40px] sm:py-[10px_50px] lg:py-15 2xl:py-20 3xl:py-25">
@@ -97,32 +102,38 @@ export default function AdmissionFee({ data }) {
                                 </div>
                                 <div className="w-full lg:w-1/2">
                                   <div className="w-full h-auto gap-2.5 2xl:gap-3.75 grid sm:grid-cols-3 [&>div]:p-2 2xl:[&>div]:p-2.5 3xl:[&>div]:p-3.75">
-                                    <div className="w-full h-full gap-2.5 bg-linear-to-b from-[#FFF8EE]/30 to-[#FFF3E0]/30 border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col justify-between">
-                                      <div className="text-[10px] 3xl:text-xs leading-[1.2] font-semibold text-[#4A5565]">
-                                        {item?.cetFee?.label || "CET Total Fee"}
+                                    {hasFeeValue(item?.cetFee?.value) && (
+                                      <div className="w-full h-full gap-2.5 bg-linear-to-b from-[#FFF8EE]/30 to-[#FFF3E0]/30 border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col justify-between">
+                                        <div className="text-[10px] 3xl:text-xs leading-[1.2] font-semibold text-[#4A5565]">
+                                          {item?.cetFee?.label || "CET Total Fee"}
+                                        </div>
+                                        <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-[#212121]">
+                                          {item.cetFee.value}
+                                        </div>
                                       </div>
-                                      <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-[#212121]">
-                                        {item?.cetFee?.value || "-"}
+                                    )}
+                                    {hasFeeValue(item?.ranking?.value) && (
+                                      <div className="w-full h-full gap-2.5 bg-linear-to-b from-[#FFF8EE]/30 to-[#FFF3E0]/30 border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col justify-between">
+                                        <div className="text-[10px] 3xl:text-xs leading-[1.2] font-semibold text-[#4A5565]">
+                                          {item?.ranking?.label ||
+                                            "Ranking Based on JEE Mains / Uniguage / Comed-K"}
+                                        </div>
+                                        <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-[#212121]">
+                                          {item.ranking.value}
+                                        </div>
                                       </div>
-                                    </div>
-                                    <div className="w-full h-full gap-2.5 bg-linear-to-b from-[#FFF8EE]/30 to-[#FFF3E0]/30 border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col justify-between">
-                                      <div className="text-[10px] 3xl:text-xs leading-[1.2] font-semibold text-[#4A5565]">
-                                        {item?.ranking?.label ||
-                                          "Ranking Based on JEE Mains / Uniguage / Comed-K"}
+                                    )}
+                                    {hasFeeValue(item?.totalFee?.value) && (
+                                      <div className="w-full h-full gap-2.5 bg-linear-to-b from-[#FFF8EE]/30 to-[#FFF3E0]/30 border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col justify-between">
+                                        <div className="text-[10px] 3xl:text-xs leading-[1.2] font-semibold text-[#4A5565]">
+                                          {item?.totalFee?.label ||
+                                            "Others Total Fee"}
+                                        </div>
+                                        <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-[#212121]">
+                                          {item.totalFee.value}
+                                        </div>
                                       </div>
-                                      <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-[#212121]">
-                                        {item?.ranking?.value || "-"}
-                                      </div>
-                                    </div>
-                                    <div className="w-full h-full gap-2.5 bg-linear-to-b from-[#FFF8EE]/30 to-[#FFF3E0]/30 border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col justify-between">
-                                      <div className="text-[10px] 3xl:text-xs leading-[1.2] font-semibold text-[#4A5565]">
-                                        {item?.totalFee?.label ||
-                                          "Others Total Fee"}
-                                      </div>
-                                      <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-[#212121]">
-                                        {item?.totalFee?.value || "-"}
-                                      </div>
-                                    </div>
+                                    )}
                                   </div>
                                 </div>
                               </div>

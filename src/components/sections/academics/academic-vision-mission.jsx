@@ -1,28 +1,40 @@
 "use client";
 
 import Image from "next/image";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+
+// CMS descriptions are rich-text blocks; the static page still passes plain strings.
+function Description({ value, className }) {
+    if (Array.isArray(value)) {
+        return value.length > 0 ? (
+            <div className={`${className} [&_p]:text-inherit [&_p]:font-[inherit]`}>
+                <BlocksRenderer content={value} />
+            </div>
+        ) : null;
+    }
+    return value ? <p className={className}>{value}</p> : null;
+}
 
 export default function AcademicVisionMission({ data }) {
     if (!data) return null;
 
     const { eyebrow, heading, media, mission, vision } = data;
 
-    // Use provided bg image URL or fallback to high quality existing background
-    const bgImageUrl = media?.url || "/images/academic-banner.jpg";
-
     return (
         <section className="relative max-lg:py-[40px]  text-white overflow-hidden after:absolute after:content-[''] after:bottom-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-b after:from-[rgba(0,0,0,0)] after:to-[#000000]  after:z-10">
             {/* Campus Background Image */}
-            <div className="absolute top-0 right-0 w-full h-full z-0">
-                <Image
-                    src={bgImageUrl}
-                    alt={media?.alternativeText || "Vision background"}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 60vw"
-                    className="object-cover  object-right mix-blend-luminosity"
-                    priority
-                />
-            </div>
+            {media?.url && (
+                <div className="absolute top-0 right-0 w-full h-full z-0">
+                    <Image
+                        src={media.url}
+                        alt={media.alternativeText || ""}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 60vw"
+                        className="object-cover  object-right mix-blend-luminosity"
+                        priority
+                    />
+                </div>
+            )}
             <div className="container relative z-20">
                 <div className="relative  overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 min-h-[520px] max-lg:gap-[10px]">
 
@@ -56,7 +68,9 @@ export default function AcademicVisionMission({ data }) {
                                     {/* Mission Icon */}
                                     <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[65px] 3xl:w-[78px] bg-white/20 flex border border-white rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
                                                                             group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316]">
-                                        <Image src={mission.icon.icon} width={78} height={65}  className="w-[19px] xl:w-[21px] 2xl:w-[25px] 3xl:w-[34px]"  alt={mission.icon.alternativeText} />
+                                        {(mission.icon?.url || mission.icon?.icon) && (
+                                            <Image src={mission.icon.url || mission.icon.icon} width={78} height={65} className="w-[19px] xl:w-[21px] 2xl:w-[25px] 3xl:w-[34px]" alt={mission.icon.alternativeText || mission.heading || ""} />
+                                        )}
                                     </div>
 
                                     {/* Mission Title */}
@@ -67,11 +81,7 @@ export default function AcademicVisionMission({ data }) {
                                     )}
 
                                     {/* Mission Description */}
-                                    {mission.description && (
-                                        <p className="text_1 text-white font-normal">
-                                            {mission.description}
-                                        </p>
-                                    )}
+                                    <Description value={mission.description} className="text_1 text-white font-normal" />
                                 </div>
                             )}
                         </div>
@@ -89,7 +99,9 @@ export default function AcademicVisionMission({ data }) {
                                 {/* Vision Icon (Orange Gradient Box) */}
                                 <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[62px] 3xl:w-[78px] flex border border-white bg-white/20 rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
                                     group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316]">
-                                    <Image src={vision.icon.url} width={78} height={65} alt={vision.icon.alt} className="max-w-[19px] xl:max-w-[21px] 2xl:max-w-[25px] 3xl:max-w-[34px] " />
+                                    {vision.icon?.url && (
+                                        <Image src={vision.icon.url} width={78} height={65} alt={vision.icon.alternativeText || vision.heading || ""} className="max-w-[19px] xl:max-w-[21px] 2xl:max-w-[25px] 3xl:max-w-[34px] " />
+                                    )}
                                 </div>
 
                                 {/* Vision Title */}
@@ -100,11 +112,7 @@ export default function AcademicVisionMission({ data }) {
                                 )}
 
                                 {/* Vision Description / Intro */}
-                                {vision.description && (
-                                    <p className="text_1 font-semibold text-slate-200 mb-[16px] xl:mb-[22px]">
-                                        {vision.description}
-                                    </p>
-                                )}
+                                <Description value={vision.description} className="text_1 font-semibold text-slate-200 mb-[16px] xl:mb-[22px]" />
 
                                 {/* Points List (M1 to M5) */}
                                 {vision.points?.length > 0 && (

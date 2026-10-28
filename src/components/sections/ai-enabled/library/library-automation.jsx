@@ -5,7 +5,7 @@ import LibrarySidebar from "./library-sidemenubar";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { MenuItem } from "@base-ui/react";
 
-export default function LibraryAutomation({ data }) {
+export default function LibraryAutomation({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
@@ -14,6 +14,7 @@ export default function LibraryAutomation({ data }) {
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <LibrarySidebar
+                            data={menu}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
@@ -26,7 +27,7 @@ export default function LibraryAutomation({ data }) {
                             </h2>
                             <div className="text_1 dark:text-[#9CA3AF] mb-[25px]">{data.subheading}</div>
                             <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
-                                <BlocksRenderer content={data.description} />
+                                {data.description && <BlocksRenderer content={data.description} />}
                             </div>
                             {data?.webOpac && (
                                 <div className="w-full">
@@ -34,8 +35,8 @@ export default function LibraryAutomation({ data }) {
                                         {data?.webOpac.heading}
                                     </div>
                                     <ul>
-                                        {data?.webOpac?.items.map((MenuItem) => (
-                                            <li className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[10px] xl:mb-[20px]">
+                                        {data?.webOpac?.items?.map((MenuItem, idx) => (
+                                            <li key={MenuItem.id ?? idx} className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[10px] xl:mb-[20px]">
                                                 {MenuItem.label}
                                             </li>
                                         ))}

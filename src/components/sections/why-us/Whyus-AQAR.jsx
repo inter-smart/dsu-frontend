@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { fileLinkProps } from "@/lib/schools/link-props";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function WhyusAQAR({ data }) {
@@ -45,6 +46,7 @@ export default function WhyusAQAR({ data }) {
                                         <Link
                                             key={doc.id}
                                             href={doc.file.url}
+                                            {...fileLinkProps()}
                                             className="group flex items-center justify-between py-[15px] 2xl:py-[18px] 3xl:py-[22px] border-b border-black/20 transition-colors duration-300  sm:max-w-[50%] lg:max-w-[30%]"
                                         >
                                             <div className="flex items-center justify-between gap-[15px]">

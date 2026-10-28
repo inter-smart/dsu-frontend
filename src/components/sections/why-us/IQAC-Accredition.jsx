@@ -9,27 +9,30 @@ import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 
 export default function IQACAccredition({ data }) {
-    const tabs = data?.tabs || [
-        { id: "accreditations", label: "Accreditations" },
-        { id: "rankings", label: "Rankings" },
-    ];
-    const [activeTab, setActiveTab] = useState(
-        tabs.find((t) => t.active)?.id || tabs[0]?.id || "accreditations"
+    const accreditationsCards = data?.cards || [];
+    const rankingsCards = data?.rankings || [];
+
+    // only tabs whose list has entries; labels come from the CMS tabs when present
+    const configuredTabs = data?.tabs?.length
+        ? data.tabs
+        : [
+            { id: "accreditations", label: "Accreditations" },
+            { id: "rankings", label: "Rankings" },
+        ];
+    const isRankingsTab = (tab) =>
+        String(tab?.id || tab?.value || "").toLowerCase().includes("ranking");
+    const tabs = configuredTabs.filter((tab) =>
+        (isRankingsTab(tab) ? rankingsCards : accreditationsCards).length > 0
     );
 
-    if (!data) return null;
+    const [activeTab, setActiveTab] = useState(
+        tabs.find((t) => t.active)?.id || tabs[0]?.id
+    );
 
-    const allCards = data?.cards || [];
-    const rankingsCards =
-        data?.rankings || allCards.filter((c) => c.type === "rankings");
-    const accreditationsCards = allCards.filter((c) => c.type !== "rankings");
+    if (!data || !tabs.length) return null;
 
-    const currentCards =
-        activeTab === "rankings" && rankingsCards.length > 0
-            ? rankingsCards
-            : activeTab === "accreditations" && accreditationsCards.length > 0
-                ? accreditationsCards
-                : allCards;
+    const activeTabData = tabs.find((tab) => tab.id === activeTab) || tabs[0];
+    const currentCards = isRankingsTab(activeTabData) ? rankingsCards : accreditationsCards;
 
     const title = data?.title || "Recognised for\nMeasured Excellence";
 
@@ -43,7 +46,7 @@ export default function IQACAccredition({ data }) {
                     </h2> 
                     <div className="inline-flex items-center gap-[10px] self-start md:self-auto shrink-0">
                         {tabs.map((tab) => {
-                            const isActive = activeTab === tab.id;
+                            const isActive = activeTabData.id === tab.id;
                             return (
                                 <button
                                     key={tab.id}
@@ -64,6 +67,7 @@ export default function IQACAccredition({ data }) {
                 {/* Swiper Slider with partially visible side cards */}
                 <div className="w-full">
                     <Swiper
+                        key={activeTabData.id}
                         modules={[Autoplay]}
                         slidesPerView={1.15}
                         spaceBetween={16}
@@ -100,16 +104,20 @@ export default function IQACAccredition({ data }) {
                         {currentCards.map((item, idx) => (
                             <SwiperSlide key={item.id || idx} className="!h-auto">
                                 <div className="relative w-full h-full group p-[15px] xl:p-[20px] 2xl:p-[25px] 3xl:p-[35px] bg-white dark:bg-[#1A1A1A] border border-[#EFD8CA] dark:border-white/10 hover:border-[#F97316] dark:hover:border-[#F97316] transition-all duration-300 rounded-[5px] xl:rounded-[10px] 2xl:rounded-[15px] 3xl:rounded-[20px]">
-                                    <div className="w-[60px] xl:w-[80px] 2xl:w-[110px] 3xl:w-[140px] h-[50px] xl:h-[70px] 2xl:h-[90px] 3xl:h-[105px] flex items-center justify-center mb-[25px] lg:mb-[35px] xl:mb-[45px] 2xl:mb-[55px] 3xl:mb-[75px]">
-                                        <Image src={item.logo} width={140} height={105} alt={item.title || "Accreditation Logo"} className="w-full h-full object-contain" />
-                                    </div>
+                                    {item.logo && (
+                                        <div className="w-[60px] xl:w-[80px] 2xl:w-[110px] 3xl:w-[140px] h-[50px] xl:h-[70px] 2xl:h-[90px] 3xl:h-[105px] flex items-center justify-center mb-[25px] lg:mb-[35px] xl:mb-[45px] 2xl:mb-[55px] 3xl:mb-[75px]">
+                                            <Image src={item.logo} width={140} height={105} alt={item.title || "Accreditation Logo"} className="w-full h-full object-contain" />
+                                        </div>
+                                    )}
 
                                     <div className="text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[28px] text-[#212121] dark:text-white font-bold mb-[10px]">
                                         {item.title}
                                     </div>
-                                    <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF]">{item.description}</p>
+                                    {item.description && (
+                                        <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF]">{item.description}</p>
+                                    )}
 
-                                    <Link href={item.linkUrl || item.link || "/"} className="absolute top-[35px] right-[20px] opacity-0 group-hover:opacity-100 transition-all duration-100 hover:tracking-wider text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] flex items-center gap-[10px] bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
+                                    {item.linkUrl && <Link href={item.linkUrl} className="absolute top-[35px] right-[20px] opacity-0 group-hover:opacity-100 transition-all duration-100 hover:tracking-wider text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] flex items-center gap-[10px] bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
                                         View
                                         <div className="w-[14px] 2xl:w-[16px] 3xl:w-[19px] h-[14px] 2xl:h-[16px] 3xl:h-[18px] flex items-center">
                                             <svg viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -127,7 +135,7 @@ export default function IQACAccredition({ data }) {
                                                 </defs>
                                             </svg>
                                         </div>
-                                    </Link>
+                                    </Link>}
                                 </div>
                             </SwiperSlide>
                         ))}

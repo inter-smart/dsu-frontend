@@ -1,5 +1,6 @@
 import InnerHero from "@/components/layout/common/InnerHero"
 import ChancellorMessage from "@/components/sections/chancellor/chancellor-message"
+import { redirect } from "next/navigation";
 
 
 
@@ -91,10 +92,5 @@ const local_data = {
     }
 }
 export default function Page() {
-    return (
-        <>
-            <InnerHero data={local_data.hero} />
-            <ChancellorMessage data={local_data.chancellorMessage} />
-        </>
-    )
+  redirect("/leadership/dr-d-hemachandra-sagar");
 }

@@ -1,6 +1,21 @@
-import InnerHero from "@/components/layout/common/InnerHero"
-import DSUAct from "@/components/sections/why-us/DSU-act"
-import DSUOmbudsman from "@/components/sections/why-us/DSU-Ombudsman"
+﻿import InnerHero from "@/components/layout/common/InnerHero";
+import DSUOmbudsman from "@/components/sections/why-us/DSU-Ombudsman";
+import { getOmbudsmanPage } from "@/lib/api/ombudsman";
+import { getStudentSupportMenu } from "@/lib/api/women-redressal";
+import { hasContent } from "@/lib/has-content";
+
+export const revalidate = 60;
+
+export async function generateMetadata() {
+    const apiData = await getOmbudsmanPage();
+    return {
+        title: apiData?.seo?.metaTitle || "Ombudsman | Dayananda Sagar University",
+        description: apiData?.seo?.metaDescription || undefined,
+    };
+}
+
+
+
 
 
 const local_data = {
@@ -50,7 +65,7 @@ const local_data = {
         email: "vadapadithayaps@gmail.com",
         phone: "9449207503",
         linkText: "View Detailed Biodata",
-        linkUrl: "#",
+        linkUrl: "",
         image: {
             url: "/images/ombudsman.jpg",
             alternativeText: "Dayananda Sagar University",
@@ -100,11 +115,18 @@ const local_data = {
     }
    
 }
-export default function page() {
+export default async function Page() {
+    const apiData = await getOmbudsmanPage();
+    const menu = await getStudentSupportMenu();
+
+    // API data when the entry exists, otherwise the static local_data
+    const hero = apiData ? apiData.hero : local_data.hero;
+    const message = apiData ? apiData.ombudsmanMessage : local_data.ombudsmanMessage;
+
     return (
         <>
-            <InnerHero data={local_data.hero} /> 
-            <DSUOmbudsman data={local_data.ombudsmanMessage} />
+            {hasContent(hero) && <InnerHero data={hero} />}
+            {hasContent(message) && <DSUOmbudsman data={message} menu={menu} />}
         </>
     )
 }

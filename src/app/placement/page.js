@@ -1,17 +1,6 @@
-import InnerHero from "@/components/layout/common/InnerHero";
-import PlacementOverview from "@/components/sections/placements/overview";
-import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenubar";
-import AiVisionMission from "@/components/sections/ai-enabled/Ai-vision-mission";
-import Announcement from "@/components/sections/placements/announcement";
-import PlacementProcess from "@/components/sections/placements/placement-process";
-import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
-import CILsection from "@/components/sections/placements/CILSection";
-import Recruiters from "@/components/sections/placements/recruiters";
-import PlacementContact from "@/components/sections/placements/placementcontact";
-import DirectorMessage from "@/components/sections/placements/directors-message";
-import AdmissionEntrance from "@/components/sections/admission/admission-entrance";
-import TeamSection from "@/components/sections/placements/Team-section";
-import PlacementExcellence from "@/components/sections/placements/placement-excellence";
+import AboutPlacementTemplate from "@/components/sections/placements/templates/AboutPlacementTemplate";
+import { getPlacementAboutPage } from "@/lib/api/placement";
+
 
 const local_data = {
     id: 24,
@@ -579,21 +568,31 @@ const local_data = {
     },
 }
 
-export default function page() {
-    return (
-        <>
-            <InnerHero data={local_data.hero} />
-            <PlacementmenuBar className="lg:!hidden block" />
-            <PlacementOverview data={local_data.programOverviewSection} />
-            <AiVisionMission data={local_data.missionVisionSection} />
-            <Announcement data={local_data.announcemntSection} />
-            <DirectorMessage data={local_data.chairmanMessage} /> 
-            <TeamSection data={local_data.placementTeam} />
-            <CILsection data={local_data.CILSection} />
-            <PlacementContact data={local_data.placemntContact} />
-            <Recruiters data={local_data.recruterSection} />
-            <PlacementExcellence />
+export async function generateMetadata() {
+    const apiData = await getPlacementAboutPage();
+    return {
+        title: apiData?.seo?.metaTitle || local_data.seo.metaTitle,
+        description: apiData?.seo?.metaDescription || local_data.seo.metaDescription,
+    };
+}
 
-        </>
-    )
+const fallback = {
+    hero: local_data.hero,
+    aboutPlacementCell: {
+        programOverviewSection: local_data.programOverviewSection,
+        missionVisionSection: local_data.missionVisionSection,
+        announcemntSection: local_data.announcemntSection,
+        chairmanMessage: local_data.chairmanMessage,
+        placementTeam: local_data.placementTeam,
+        CILSection: local_data.CILSection,
+        placemntContact: local_data.placemntContact,
+        recruterSection: local_data.recruterSection,
+    },
+};
+
+export default async function page() {
+    const apiData = await getPlacementAboutPage();
+
+    // API data when the entry exists, otherwise the static local_data
+    return <AboutPlacementTemplate data={apiData || fallback} />;
 }

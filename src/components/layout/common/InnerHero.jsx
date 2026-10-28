@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
+import { cn } from "@/lib/utils";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -15,8 +16,15 @@ import AiBSCMenubar from "@/components/sections/ai-enabled/BSC-nursing/bsc-Menub
 import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
 import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
 
-export default function InnerHero({ data }) {
+// placementMenuItems: optional [{ label, href }] for the Placement pill menu (otherwise it loads its own)
+// className: optional extra classes for the hero <section> (e.g. a page-specific hook)
+export default function InnerHero({ data, placementMenuItems, className }) {
+  if (!data) return null;
   const isVideo = data?.heroMedia?.mime?.includes("video");
+  const breadcrumb =
+    Array.isArray(data.breadcrumb) && data.breadcrumb.length > 0
+      ? data.breadcrumb
+      : [{ label: "Home", href: "/" }, ...(data.title ? [{ label: data.title }] : [])];
   const hasMenubar = Boolean(
     data?.menuBar ||
       data?.AimenuBar ||
@@ -65,11 +73,11 @@ export default function InnerHero({ data }) {
           }`}
         >
           {/* Breadcrumb */}
-          {data?.breadcrumb?.length > 0 && (
+          {breadcrumb.length > 0 && (
             <Breadcrumb className="mb-0">
               <BreadcrumbList className="gap-2">
-                {data.breadcrumb.map((item, index) => {
-                  const isLast = index === data.breadcrumb.length - 1;
+                {breadcrumb.map((item, index) => {
+                  const isLast = index === breadcrumb.length - 1;
 
                   return (
                     <Fragment key={`${item.label}-${index}`}>
@@ -109,7 +117,14 @@ export default function InnerHero({ data }) {
         </div>
 
         <div className="max-lg:hidden">
-          {data?.menuBar && <AcademicMenubar />}
+          {data?.menuBar && (
+            <AcademicMenubar
+              slug={data.slug}
+              hasDepartments={data.hasDepartments}
+              items={data.menuItems}
+              homeHref={data.menuHome}
+            />
+          )}
           {data?.AimenuBar && <AiAcademicMenubar />}
           {data?.AiBscmenuBar && <AiBSCMenubar />}
           {data?.PlacementmenuBar && <PlacementmenuBar />}

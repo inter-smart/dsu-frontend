@@ -20,16 +20,18 @@ export default function GetInvolved({ data }) {
           )}
           <div className="relative z-0 w-full h-auto p-6.25 sm:p-8.75 xl:p-10 flex flex-col gap-3.75 xl:gap-5">
             {data?.contacts?.map((contact, index) => (
-              <div key={index} className="flex items-center gap-3.5 xl:gap-4">
-                <span className="shrink-0 size-8 xl:size-9">
-                  <Image
-                    src={contact.icon}
-                    alt=""
-                    width={32}
-                    height={32}
-                    className="w-full h-full object-contain"
-                  />
-                </span>
+              <div key={contact?.id || index} className="flex items-center gap-3.5 xl:gap-4">
+                {contact?.icon && (
+                  <span className="shrink-0 size-8 xl:size-9">
+                    <Image
+                      src={contact.icon}
+                      alt=""
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-contain"
+                    />
+                  </span>
+                )}
                 <span className="text-base xl:text-lg 3xl:text-xl leading-normal text-[#212121] dark:text-white">
                   {contact.label}
                 </span>
