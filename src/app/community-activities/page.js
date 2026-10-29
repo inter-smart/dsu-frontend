@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import CommunityActivities from "@/components/sections/community-activities/community-activities";
 import GetInvolved from "@/components/sections/community-activities/get-involved";
@@ -21,7 +22,8 @@ export async function generateMetadata() {
   };
 }
 
-export default async function page() {
+export default async function page({ viaSlug } = {}) {
+  await redirectToSlug("community-activities", viaSlug);
   const pageData = await getCommunityActivitiesPage();
   const getInvolved = pageData?.getInvolved;
 

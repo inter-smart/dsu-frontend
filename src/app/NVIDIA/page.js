@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 import ArchitectureSection from "@/components/sections/NVIDIA/architecture-section"
 import BannerSection from "@/components/sections/NVIDIA/banner-section"
 import JourneySection from "@/components/sections/NVIDIA/journey-section"
@@ -942,7 +943,8 @@ export async function generateMetadata() {
     };
 }
 
-export default async function Page() {
+export default async function Page({ viaSlug } = {}) {
+  await redirectToSlug("nvidia", viaSlug);
     const pageData = await getNvidiaPage();
     const data = mergeData(pageData, local_data);
 

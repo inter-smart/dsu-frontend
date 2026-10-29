@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import NewsEvents from "@/components/sections/news-events/news-events";
 import { getNewsEventsPage } from "@/lib/api";
@@ -16,7 +17,8 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Page() {
+export default async function Page({ viaSlug } = {}) {
+  await redirectToSlug("news-events", viaSlug);
   const pageData = await getNewsEventsPage();
 
   return (

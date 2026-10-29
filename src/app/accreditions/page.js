@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import ProfessionalAccredition from "@/components/sections/professional-accredition/professional-accredition";
 import { getAccreditationPage } from "@/lib/api";
@@ -34,7 +35,8 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Page() {
+export default async function Page({ viaSlug } = {}) {
+  await redirectToSlug("accreditation", viaSlug);
   const pageData = await getAccreditationPage();
 
   // keep the local banner until one is uploaded in Strapi

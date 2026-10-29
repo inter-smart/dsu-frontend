@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import MediaCoverage from "@/components/sections/media-coverage/media-coverage";
 import FloatingContactRail from "@/components/layout/common/floating-contact-rail";
@@ -89,7 +90,8 @@ const local_data = {
   },
 };
 
-export default async function page() {
+export default async function page({ viaSlug } = {}) {
+  await redirectToSlug("media-coverage", viaSlug);
   const pageData = await getMediaCoveragePage();
   const paged = await getMediaCoverageItemsPaged(1, MEDIA_PAGE_SIZE, {
     next: { revalidate: 60 },

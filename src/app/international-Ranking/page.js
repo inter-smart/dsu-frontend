@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import NationalRanking from "@/components/sections/national-Ranking/national-Ranking";
 import NationalRankingStats from "@/components/sections/national-Ranking/national-Ranking-stats";
@@ -20,7 +21,8 @@ export async function generateMetadata() {
 }
 
 // agency cards and stats reuse the National Rankings sections (same data shape)
-export default async function Page() {
+export default async function Page({ viaSlug } = {}) {
+  await redirectToSlug("international-ranking", viaSlug);
   const pageData = await getInternationalRankingPage();
 
 

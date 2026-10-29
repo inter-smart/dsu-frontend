@@ -5,6 +5,7 @@ import { getFlexiblePageBySlug } from "@/lib/api/flexible-page";
 import { getAboutPage } from "@/lib/api";
 import AboutPageView from "@/components/sections/about/about-page-view";
 import { hasContent } from "@/lib/has-content";
+import { getPageModuleBySlug } from "@/lib/page-routes";
 
 // "Top Menu Bar" choice of the entry -> the flag InnerHero reads to show that menu bar
 const TOP_BAR_FLAGS = {
@@ -19,7 +20,10 @@ export async function generateMetadata({ params }) {
     const apiData = await getFlexiblePageBySlug(slug);
     if (!apiData) {
         const about = await getAboutPage();
-        if (about?.slug !== slug) return {};
+        if (about?.slug !== slug) {
+            const pageModule = await getPageModuleBySlug(slug);
+            return pageModule?.generateMetadata ? pageModule.generateMetadata() : {};
+        }
         return { title: about.seo?.metaTitle, description: about.seo?.metaDescription };
     }
 
@@ -37,7 +41,13 @@ export default async function page({ params }) {
 
     if (!apiData) {
         const about = await getAboutPage();
-        if (about?.slug !== slug) notFound();
+        if (about?.slug !== slug) {
+            // a page whose slug was set in the CMS
+            const pageModule = await getPageModuleBySlug(slug);
+            if (!pageModule) notFound();
+            const PageView = pageModule.default;
+            return <PageView viaSlug />;
+        }
         return <AboutPageView pageData={about} />;
     }
 

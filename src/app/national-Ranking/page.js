@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 ﻿import InnerHero from "@/components/layout/common/InnerHero";
 import NationalRanking from "@/components/sections/national-Ranking/national-Ranking";
 import NationalRankingStats from "@/components/sections/national-Ranking/national-Ranking-stats";
@@ -126,7 +127,8 @@ const local_data = {
     },
   ],
 };
-export default async function Page() {
+export default async function Page({ viaSlug } = {}) {
+  await redirectToSlug("national-ranking", viaSlug);
   const data = await getNationalRankingPage();
 
   if (!data) return null;

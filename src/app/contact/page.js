@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import Journey from "@/components/layout/common/journey";
 import Contact from "@/components/sections/contact/contact";
@@ -240,7 +241,8 @@ import { getContactPage } from "@/lib/api";
 //   },
 // };
 
-export default async function Page() {
+export default async function Page({ viaSlug } = {}) {
+  await redirectToSlug("contact", viaSlug);
   const data = await getContactPage();
   const pageData = data || {};
 

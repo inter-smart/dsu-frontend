@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import HistoryDetails from "@/components/sections/history/history-Details";
 import HistoryNewpahse from "@/components/sections/history/history-newpahse";
@@ -61,7 +62,8 @@ export async function generateMetadata() {
     };
 }
 
-export default async function Page() {
+export default async function Page({ viaSlug } = {}) {
+  await redirectToSlug("history", viaSlug);
     const pageData = await getHistoryPage();
 
     if (!pageData) return null;

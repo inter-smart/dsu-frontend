@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import Gallery from "@/components/sections/gallery/gallery";
 import FloatingContactRail from "@/components/layout/common/floating-contact-rail";
@@ -91,7 +92,8 @@ const local_data = {
   },
 };
 
-export default async function page() {
+export default async function page({ viaSlug } = {}) {
+  await redirectToSlug("gallery", viaSlug);
   const pageData = await getGalleryPage();
   const items = await getGalleryItems();
 

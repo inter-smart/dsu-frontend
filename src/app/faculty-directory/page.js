@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import FacultyDirectoryListing from "@/components/sections/faculty/faculty-directory-listing";
 import { getFacultyDirectoryPage } from "@/lib/api";
@@ -251,7 +252,8 @@ const local_data = {
   },
 };
 
-export default async function Page() {
+export default async function Page({ viaSlug } = {}) {
+  await redirectToSlug("faculty-directory", viaSlug);
   const page = await getFacultyDirectoryPage();
   const hero = page?.hero;
   // `local_data` until Strapi is reachable and has published faculty

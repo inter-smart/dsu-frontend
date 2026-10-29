@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 import AiFirstHero from "@/components/sections/ai-first/ai-first-hero";
 import AboutInitiative from "@/components/sections/ai-first/ai-first-about-initiative";
 import EducationAmplified from "@/components/sections/ai-first/ai-first-education-amplified";
@@ -389,7 +390,8 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Page() {
+export default async function Page({ viaSlug } = {}) {
+  await redirectToSlug("ai-first", viaSlug);
   const data = mergeData(await getAiFirstPage());
 
   // The CMS sends { showSection: false } for a section switched off with "Show This Section".

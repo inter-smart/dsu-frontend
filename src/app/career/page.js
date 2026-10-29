@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import CareerIntro from "@/components/sections/career/career-intro";
 import CareerOpenings from "@/components/sections/career/career-openings";
@@ -42,7 +43,8 @@ const local_data = {
   },
 };
 
-export default async function page() {
+export default async function page({ viaSlug } = {}) {
+  await redirectToSlug("careers", viaSlug);
   const apiPage = await getCareersPage();
   const apiJobs = await getJobOpenings();
 

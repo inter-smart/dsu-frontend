@@ -1,3 +1,4 @@
+import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import RegulatoryApprovalList from "@/components/sections/regulatory-approval/approval-list";
 import { getRegulatoryApprovalPage } from "@/lib/api";
@@ -27,7 +28,8 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Page() {
+export default async function Page({ viaSlug } = {}) {
+  await redirectToSlug("regulatory-approval", viaSlug);
   const pageData = await getRegulatoryApprovalPage();
 
   return (
