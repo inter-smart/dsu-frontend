@@ -125,8 +125,8 @@ export default function InnerHero({ data, placementMenuItems, className }) {
               homeHref={data.menuHome}
             />
           )}
-          {data?.AimenuBar && <AiAcademicMenubar />}
-          {data?.AiBscmenuBar && <AiBSCMenubar />}
+          {data?.AimenuBar && <AiAcademicMenubar data={data.menuItems} />}
+          {data?.AiBscmenuBar && <AiBSCMenubar items={data.menuItems} title={data.title} />}
           {data?.PlacementmenuBar && <PlacementmenuBar />}
           {data?.admissionMenubar && <AdmissionMenubar />}
         </div>
