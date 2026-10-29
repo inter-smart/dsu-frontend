@@ -101,6 +101,7 @@
 
 @layer base {
   html {
+    scroll-behavior: smooth;
     tab-size: 4;
     font-size: 16px;
     font-feature-settings: normal;
@@ -205,14 +206,14 @@
       --text-color: #f9fafb;
     }
 
-    * {
+    /* * {
       @apply my-2.5 lg:my-4;
-    }
+    } */
 
     p,
     &,
     li {
-      @apply text-[14px] lg:text-[14px] 2xl:text-[15px] 3xl:text-[18px] leading-normal font-normal text-(--text-color);
+      @apply text-[14px] lg:text-[14px] 2xl:text-[15px] 3xl:text-[18px] leading-normal font-normal  ;
     }
 
     h1 {

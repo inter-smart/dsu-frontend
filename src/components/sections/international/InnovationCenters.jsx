@@ -69,7 +69,7 @@ export default function InnovationCenters({ data }) {
     const sync = (s) => setNav({ begin: s.isBeginning, end: s.isEnd, locked: s.isLocked });
 
     return (
-        <section id="innovation-centres" className="w-full bg-[#F4F8FD] py-10 lg:py-14 2xl:py-[60px]">
+        <section id="innovation-centres" className="w-full bg-[#F4F8FD] py-10 lg:py-14 2xl:py-[60px] scroll-mt-24">
             <div className="container">
                 {/* Heading + nav buttons */}
                 <div className="flex items-end justify-between gap-6">

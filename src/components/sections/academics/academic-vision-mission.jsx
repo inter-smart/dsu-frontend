@@ -3,11 +3,25 @@
 import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
+// CHANGED: shared list styles so editor lists look like the points list
+const richTextLists = [
+    // bullet list
+    "[&_ul]:mt-[12px] [&_ul]:list-none [&_ul]:space-y-[10px] sm:[&_ul]:space-y-[12px] xl:[&_ul]:space-y-[14px]",
+    "[&_ul>li]:relative [&_ul>li]:pl-[18px] sm:[&_ul>li]:pl-[21px] xl:[&_ul>li]:pl-[23px] [&_ul>li]:leading-[1.55]",
+    "[&_ul>li]:before:absolute [&_ul>li]:before:content-[''] [&_ul>li]:before:left-0 [&_ul>li]:before:top-[6px]",
+    "[&_ul>li]:before:h-[8px] [&_ul>li]:before:w-[8px] sm:[&_ul>li]:before:h-[11px] sm:[&_ul>li]:before:w-[11px]",
+    "[&_ul>li]:before:rounded-full [&_ul>li]:before:border-[1.5px] [&_ul>li]:before:border-[#F97316]",
+    // numbered list
+    "[&_ol]:mt-[12px] [&_ol]:list-decimal [&_ol]:pl-[22px] [&_ol]:space-y-[10px] [&_ol>li]:pl-[4px] [&_ol>li]:leading-[1.55] [&_ol>li]:marker:text-[#F97316] [&_ol>li]:marker:font-semibold",
+    // nested lists
+    "[&_li_ul]:mt-[10px] [&_li_ol]:mt-[10px]",
+].join(" ");
+
 // CMS descriptions are rich-text blocks; the static page still passes plain strings.
 function Description({ value, className }) {
     if (Array.isArray(value)) {
         return value.length > 0 ? (
-            <div className={`typography ${className} [&_p]:text-inherit [&_p]:font-[inherit]`}>
+            <div className={`typography ${className} [&_p]:text-inherit [&_p]:font-[inherit] ${richTextLists}`}>
                 <BlocksRenderer content={value} />
             </div>
         ) : null;
@@ -21,7 +35,7 @@ export default function AcademicVisionMission({ data }) {
     const { eyebrow, heading, media, mission, vision } = data;
 
     return (
-        <section className="relative max-lg:py-[40px]  text-white overflow-hidden after:absolute after:content-[''] after:bottom-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-b after:from-[rgba(0,0,0,0)] after:to-[#000000]  after:z-10">
+        <section className="relative max-lg:py-[40px]  text-white overflow-hidden  after:absolute after:content-[''] after:bottom-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-b after:from-[rgba(0,0,0,0)] after:to-[#000000]  after:z-10">
             {/* Campus Background Image */}
             {media?.url && (
                 <div className="absolute top-0 right-0 w-full h-full z-0">
@@ -36,12 +50,13 @@ export default function AcademicVisionMission({ data }) {
                 </div>
             )}
             <div className="container relative z-20">
-                <div className="relative  overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 min-h-[520px] max-lg:gap-[10px]">
+                <div className={`relative  overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 min-h-[520px] max-lg:gap-[10px] ${richTextLists}`}>
 
                     {/* LEFT COLUMN: Eyebrow, Heading & Mission */}
+                    {/* CHANGED: added after:pointer-events-none */}
                     <div className="lg:col-span-5 flex flex-col justify-between relative z-10 py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]
                      max-lg:py-[30px]  max-lg:px-[15px] relative
-                    after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-full after:max-lg:bg-[rgba(0,0,0,0.3)]  ">
+                    after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-full after:max-lg:bg-[rgba(0,0,0,0.3)] after:pointer-events-none">
                         <div className="lg:max-w-[85%] w-full">
                             <div>
                                 {/* Eyebrow */}
@@ -66,8 +81,9 @@ export default function AcademicVisionMission({ data }) {
                             {mission && (
                                 <div className="mt-auto lg:pt-[20px] group">
                                     {/* Mission Icon */}
+                                    {/* CHANGED: group-hover:bg-gradient-to-r -> group-hover:bg-linear-to-r */}
                                     <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[65px] 3xl:w-[78px] bg-white/20 flex border border-white rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
-                                                                            group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316]">
+                                       group-hover:bg-linear-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316]">
                                         {(mission.icon?.url || mission.icon?.icon) && (
                                             <Image src={mission.icon.url || mission.icon.icon} width={78} height={65} className="w-[19px] xl:w-[21px] 2xl:w-[25px] 3xl:w-[34px]" alt={mission.icon.alternativeText || mission.heading || ""} />
                                         )}
@@ -83,13 +99,14 @@ export default function AcademicVisionMission({ data }) {
                                     {/* Mission Description */}
                                     <Description value={mission.description} className="text_1 text-white font-normal" />
                                 </div>
-                            )}
+                            )} 
                         </div>
                     </div>
 
                     {/* RIGHT COLUMN: Vision & Points with Background Image Overlay */}
+                    {/* CHANGED: added after:pointer-events-none */}
                     <div className="lg:col-span-7 relative flex flex-col justify-center py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] px-[15px] md:px-[25px] lg:px-[35px] xl:px-[45px] 2xl:px-[55px] 3xl:px-[65px] relative
-                    after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-full after:bg-[rgba(0,0,0,0.3)] after:lg:bg-[rgba(132,132,132,0.1)]">
+                    after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-full after:bg-[rgba(0,0,0,0.3)] after:lg:bg-[rgba(132,132,132,0.1)] after:pointer-events-none">
 
 
 
@@ -97,8 +114,9 @@ export default function AcademicVisionMission({ data }) {
                         {vision && (
                             <div className="relative z-10 group">
                                 {/* Vision Icon (Orange Gradient Box) */}
+                                {/* CHANGED: group-hover:bg-gradient-to-r -> group-hover:bg-linear-to-r */}
                                 <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[62px] 3xl:w-[78px] flex border border-white bg-white/20 rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
-                                    group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316]">
+                                    group-hover:bg-linear-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316]">
                                     {vision.icon?.url && (
                                         <Image src={vision.icon.url} width={78} height={65} alt={vision.icon.alternativeText || vision.heading || ""} className="max-w-[19px] xl:max-w-[21px] 2xl:max-w-[25px] 3xl:max-w-[34px] " />
                                     )}
@@ -118,9 +136,7 @@ export default function AcademicVisionMission({ data }) {
                                 {vision.points?.length > 0 && (
                                     <ul className="space-y-[10px] sm:space-y-[12px] xl:space-y-[14px]">
                                         {vision.points.map((point) => (
-                                            <li key={point.id || point.code} className="flex items-start gap-[10px] xl:gap-[12px]">
-                                                {/* Orange Circle Bullet (○) */}
-                                                <span className="w-[8px] h-[8px] sm:w-[11px] sm:h-[11px] rounded-full border-[1.5px] border-[#F97316] shrink-0 mt-[6px]" />
+                                            <li key={point.id || point.code} className="flex items-start gap-[10px] xl:gap-[12px]"> 
 
                                                 {/* Point text with Code prefix */}
                                                 <div className="text_1 text-white leading-[1.55]">
@@ -134,7 +150,7 @@ export default function AcademicVisionMission({ data }) {
                                             </li>
                                         ))}
                                     </ul>
-                                )}
+                                )} 
                             </div>
                         )}
 
