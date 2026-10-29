@@ -248,7 +248,6 @@ export default async function Page() {
     ? pageData.hero
     : {
         title: "Contact Us",
-        menuBar: true,
         heroMedia: {
           url: "/images/contact-banner.webp",
           alternativeText: "Contact page title",
