@@ -501,6 +501,8 @@ export default function Footer({ data = local_data }) {
                 <div key={item?.id} className="w-auto h-auto">
                   <Link
                     href={item?.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={item?.alternativeTxt}
                     className="group w-11.25 lg:w-8.75 2xl:w-10 3xl:w-11.25 h-auto aspect-square p-2.5 lg:p-2 2xl:p-2.5 bg-black dark:bg-white rounded-[5px] overflow-hidden transition-colors duration-400 flex items-center justify-center hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2)"
                   >
