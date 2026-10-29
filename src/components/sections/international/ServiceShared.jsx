@@ -4,7 +4,7 @@ import { Play } from "lucide-react";
 export function NumberBadge({ number }) {
     return (
         <span className="flex size-[64px] shrink-0 items-center justify-center rounded-full bg-linear-to-br from-[#E8302A] to-[#F97316] p-[1.5px] lg:size-[76px] 2xl:size-[92px]">
-            <span className="flex size-full items-center justify-center rounded-full bg-[#FFF4E8] text-[26px] font-medium leading-none text-[#FFF4E8] [-webkit-text-stroke:1px_#F2C3A4] lg:text-[32px] 2xl:text-[40px]">
+            <span className="flex size-full items-center justify-center rounded-full bg-[#FFF4E8] text-[26px] font-medium leading-none font-uuna text-[#FFF4E8] [-webkit-text-stroke:1px_rgba(0,0,0,0.2)] lg:text-[32px] 2xl:text-[40px]">
                 {number}
             </span>
         </span>

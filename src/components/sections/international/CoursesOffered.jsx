@@ -46,23 +46,23 @@ export default function CoursesOffered({ data }) {
                                     {/* span, not div: a button may only contain inline content */}
                                     <span className="flex min-w-0 flex-1 items-center gap-3 lg:gap-5">
                                         {/* Number box */}
-                                        <span className="flex size-11 shrink-0 items-center justify-center rounded-[6px] border border-black/10 bg-white text-[18px] font-medium text-[#222] lg:size-[60px] lg:text-[22px] 2xl:size-[72px] 2xl:text-[22px]">
+                                        <span className="flex size-11 shrink-0 items-center justify-center rounded-[6px] border border-black/10 bg-white text-[16px] font-medium text-[#222] lg:size-[60px] lg:text-[22px] 2xl:size-[72px] 2xl:text-[22px]">
                                             {String(index + 1).padStart(2, "0")}
                                         </span>
                                         <span className="min-w-0 text-left">
-                                            <span className="block text-[16px] font-medium leading-tight text-[#111] lg:text-[20px] 2xl:text-[22px]">
+                                            <span className="block text-[14px] font-medium leading-tight text-[#111] lg:text-[20px] 2xl:text-[22px]">
                                                 {section.title}
                                             </span>
-                                            <span className="mt-1 block text-[13px] font-normal text-[#666] lg:text-[15px] 2xl:text-[16px]">
+                                            <span className="mt-1 block text-[10px] font-normal text-[#666] lg:text-[15px] 2xl:text-[16px]">
                                                 {count} {count === 1 ? "Program" : "Programs"}
                                             </span>
                                         </span>
                                     </span>
 
                                     {/* Plus when closed, minus when open. Same size and stroke so nothing jumps */}
-                                    <span className="mr-2 flex size-6 shrink-0 items-center justify-center text-[#333] lg:mr-4">
-                                        <Plus className="block size-4 group-aria-expanded:hidden" strokeWidth={4} />
-                                        <Minus className="hidden size-4 group-aria-expanded:block" strokeWidth={4} />
+                                    <span className="mr-2 flex size-6 shrink-0 items-center justify-center text-[#333] lg:mr-2">
+                                        <Plus className="block size-3 group-aria-expanded:hidden" strokeWidth={5} />
+                                        <Minus className="hidden size-3 group-aria-expanded:block" strokeWidth={5} />
                                     </span>
                                 </AccordionTrigger>
 

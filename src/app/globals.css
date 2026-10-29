@@ -206,9 +206,9 @@
       --text-color: #f9fafb;
     }
 
-    * {
+    /* * {
       @apply my-2.5 lg:my-4;
-    }
+    } */
 
     p,
     &,

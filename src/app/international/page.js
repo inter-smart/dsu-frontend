@@ -506,12 +506,12 @@ const local_data = {
             {
                 id: 1,
                 title: "Registration",
-                description: "Sign up and pay $25\nRegistration",
+                description: "Sign up and pay $25 Registration",
             },
             {
                 id: 2,
                 title: "Online Application Form",
-                description: "Fill in the details, pay the programme fee and\nupload relevant documents",
+                description: "Fill in the details, pay the programme fee and upload relevant documents",
             },
             {
                 id: 3,
@@ -520,7 +520,7 @@ const local_data = {
             },
             {
                 id: 4,
-                title: "Student Registration\n& LMS Activation",
+                title: "Student Registration & LMS Activation",
                 description: "Get your LMS credentials over the email",
             },
         ],

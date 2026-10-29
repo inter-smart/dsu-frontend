@@ -9,6 +9,9 @@ import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+
+import { PhoneInput, COUNTRIES } from "@/components/ui/phone-input";
+import PhoneNumbers from "@/components/ui/phone-numbers";
 import {
     Select,
     SelectContent,
@@ -158,48 +161,35 @@ export default function EnquiryForm({ data, className = "" }) {
 
                 <div className="grid gap-3 sm:grid-cols-2 2xl:gap-[16px] [&>div]:gap-[2px]">
                     {/* Phone: country code + number */}
+                    {/* Phone: same PhoneInput as the contact page */}
                     <Field data-invalid={!!phoneError}>
                         <FieldLabel htmlFor="enquiry-phone" className={labelClass}>
                             Phone *
                         </FieldLabel>
-                        <div className="flex">
-                            <Controller
-                                control={control}
-                                name="countryCode"
-                                render={({ field }) => (
-                                    <Select value={field.value} onValueChange={field.onChange}>
-                                        <SelectTrigger
-                                            aria-label="Country code"
-                                            className={`${fieldClass} w-[92px] shrink-0 rounded-r-none border-r-0 px-3`}
-                                        >
-                                            <SelectValue />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {countryCodes.map((code) => (
-                                                <SelectItem key={code} value={code}>
-                                                    {code}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                )}
-                            />
-                            <Controller
-                                control={control}
-                                name="phone"
-                                render={({ field }) => (
-                                    <Input
-                                        {...field}
-                                        id="enquiry-phone"
-                                        type="tel"
-                                        inputMode="numeric"
-                                        placeholder="000 000 0000"
-                                        aria-invalid={!!errors.phone}
-                                        className={`${fieldClass} rounded-l-none`}
-                                    />
-                                )}
-                            />
-                        </div>
+                        <Controller
+                            control={control}
+                            name="countryCode"
+                            render={({ field: codeField }) => (
+                                <Controller
+                                    control={control}
+                                    name="phone"
+                                    render={({ field }) => (
+                                        <PhoneInput
+                                            id="enquiry-phone"
+                                            placeholder="000 000 0000"
+                                            value={field.value}
+                                            selectedCountry={
+                                                COUNTRIES.find((c) => c.dialCode === codeField.value) || COUNTRIES[0]
+                                            }
+                                            aria-invalid={!!phoneError}
+                                            className={`${fieldClass} p-0 [&>button]:bg-transparent`}
+                                            onCountryChange={(country) => codeField.onChange(country.dialCode)}
+                                            onChange={(e) => field.onChange(e.target.value.replace(/\D/g, ""))}
+                                        />
+                                    )}
+                                />
+                            )}
+                        />
                         {phoneError && <FieldError errors={[phoneError]} />}
                     </Field>
 
@@ -246,7 +236,16 @@ export default function EnquiryForm({ data, className = "" }) {
                         className="h-[40px] gap-3 rounded-[3px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-5 text-[14px] font-medium text-white transition-opacity duration-300 hover:opacity-90 disabled:opacity-60 2xl:text-[15px]"
                     >
                         {status === "sending" ? "Sending..." : submitLabel}
-                        <Grip className="size-3.5 text-white/80" strokeWidth={2} />
+                         <div className="size-[16px] flex items-center justify-center">
+                                    <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="7.68152" cy="1.37879" r="1.37879" fill="white" />
+                                        <circle cx="7.68152" cy="6.49988" r="1.37879" fill="white" />
+                                        <circle cx="7.68152" cy="11.621" r="1.37879" fill="white" />
+                                        <circle cx="13.9852" cy="6.49988" r="1.37879" fill="white" />
+                                        <circle cx="1.37879" cy="6.49988" r="1.37879" fill="white" />
+                                    </svg>
+
+                                </div>
                     </Button>
 
                     {status === "success" && (
