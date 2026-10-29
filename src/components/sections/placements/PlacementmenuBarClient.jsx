@@ -19,7 +19,7 @@ const fallbackMenuItems = [
     },
     {
         label: "Career Development Centre",
-        href: "/placement/career"
+        href: "/placement/career-development"
     },
     {
         label: "Placement",

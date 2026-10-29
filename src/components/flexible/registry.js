@@ -157,7 +157,7 @@ const flexibleRegistry = {
   "placement.contact-section": { Component: PlacementContact },
   "placement.recruiters-section": { Component: Recruiters },
 
-  // career-development (src/app/placement/career/page.js)
+  // career-development (src/app/placement/[slug]/page.js)
   "placement.career-overview-section": { Component: CareerPlacement },
   "placement.career-key-focus-section": { Component: KeyFocus },
   "placement.career-goal-section": { Component: CareerGoal },

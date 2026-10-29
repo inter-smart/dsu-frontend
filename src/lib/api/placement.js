@@ -42,11 +42,6 @@ async function getFixedPlacementPage(slug, template) {
   return entry?.slug ? getPlacementBySlug(entry.slug) : null;
 }
 
-// /placement/career
-export async function getPlacementCareerPage() {
-  return getFixedPlacementPage("career", "career-development");
-}
-
 // /placement/placement (its entry slug is "placement-results")
 export async function getPlacementResultsPage() {
   return getFixedPlacementPage("placement-results", "placement-page");
