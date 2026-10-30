@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 export default function JobDetailModal({ job, open, onOpenChange }) {
@@ -57,9 +58,13 @@ export default function JobDetailModal({ job, open, onOpenChange }) {
                 <h4 className="text-base xl:text-lg font-bold text-[#212121] dark:text-white mb-2.5">
                   Job Description
                 </h4>
-                <p className="text-sm xl:text-base leading-relaxed text-[#4A5565] dark:text-gray-300">
-                  {job.description}
-                </p>
+                <div className="text-sm xl:text-base leading-relaxed text-[#4A5565] dark:text-gray-300 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:pl-5 [&_ol]:pl-5 [&_p]:mb-2">
+                  {Array.isArray(job.description) ? (
+                    <BlocksRenderer content={job.description} />
+                  ) : (
+                    <p>{job.description}</p>
+                  )}
+                </div>
               </div>
             )}
 
