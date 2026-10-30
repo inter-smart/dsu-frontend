@@ -1,7 +1,7 @@
 import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 
-// Opened by the Strapi admin "Preview" button: /api/preview?secret=..&path=/page&status=draft|published
+// Opened by the Strapi admin "Preview" button: /preview-mode?secret=..&path=/page&status=draft|published
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const secret = searchParams.get("secret");
