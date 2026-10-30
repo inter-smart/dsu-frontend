@@ -4,8 +4,8 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
 import { useEffect, useState, useRef } from "react";
-import { createPortal } from "react-dom"; // ADDED
-import { ChevronRight, ChevronDown, X } from "lucide-react";
+import { createPortal } from "react-dom"; // ADDED 
+import { ChevronRight, ChevronDown, X, User, LogOut } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,7 +31,7 @@ import {
 // ADDED: flyout items shown to the right of "Pro-Vice Chancellor" (replace labels/urls)
 const proViceChancellorSubMenu = [
   { id: 1, url: "#!", label: "Prof. R Janardhan" },
-  { id: 2, url: "#!", label: "Dr. Prakash S" }, 
+  { id: 2, url: "#!", label: "Dr. Prakash S" },
 ];
 
 const local_data = {
@@ -622,10 +622,9 @@ export default function Header({ data = local_data }) {
             <div className="w-auto h-auto">
               <DropdownMenu>
                 <DropdownMenuTrigger
+                  nativeButton={false}
                   render={
-                    <span
-                      className={cn(TopHeaderTextStyle, "cursor-pointer")}
-                    />
+                    <span className={cn(TopHeaderTextStyle, "cursor-pointer")} />
                   }
                 >
                   Login
@@ -639,10 +638,27 @@ export default function Header({ data = local_data }) {
                     />
                   </span>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem variant="destructive">
+
+                <DropdownMenuContent
+                  align="end"
+                  sideOffset={10}
+                  
+                  className="min-w-[190px] 2xl:min-w-[210px] rounded-[10px]! border-0! bg-white! p-2! pt-3! ring-1 ring-black/5 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.3),inset_0_3px_0_0_var(--basecolor)]! dark:bg-[#18181b]! dark:ring-white/10"
+                >
+                  <DropdownMenuItem
+                    className="group/item cursor-pointer gap-3 rounded-[6px] px-3 py-2.5 text-[13px] 2xl:text-[14px] 3xl:text-[15px] font-medium text-[#262626] outline-none transition-colors duration-150 data-[highlighted]:bg-[#FFE8D6] data-[highlighted]:text-[#ea580c] focus:bg-[#FFE8D6] focus:text-[#ea580c] dark:text-white/90 dark:data-[highlighted]:bg-white/10"
+                  >
+                    <User size={16} strokeWidth={2} className="shrink-0 text-[#ea580c]" />
+                    Profile
+                  </DropdownMenuItem>
+
+                  <DropdownMenuSeparator className="mx-2 my-1.5 bg-black/8 dark:bg-white/10" />
+
+                  <DropdownMenuItem
+                    variant="destructive"
+                    className="cursor-pointer gap-3 rounded-[6px] px-3 py-2.5 text-[13px] 2xl:text-[14px] 3xl:text-[15px] font-medium text-[#B91C1C] outline-none transition-colors duration-150 data-[highlighted]:bg-[#FEE2E2] data-[highlighted]:text-[#B91C1C] focus:bg-[#FEE2E2] focus:text-[#B91C1C] dark:text-red-400 dark:data-[highlighted]:bg-red-500/15"
+                  >
+                    <LogOut size={16} strokeWidth={2} className="shrink-0" />
                     Log out
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -694,20 +710,20 @@ export default function Header({ data = local_data }) {
                       aria-label={data?.logo?.mainlogo?.alternativeTxt}
                       className="w-40 2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-105"
                     >
-                     {data?.logo?.mainlogo?.url &&
-                      <Image
-                        src={data?.logo?.mainlogo?.url}
-                        alt={
-                          data?.logo?.mainlogo?.alternativeTxt ||
-                          data?.logo?.mainlogo?.alt ||
-                          "Logo"
-                        }
-                        width={110}
-                        height={80}
-                        className="w-full h-full object-contain"
-                      />
-                     }
-                      </Link>
+                      {data?.logo?.mainlogo?.url &&
+                        <Image
+                          src={data?.logo?.mainlogo?.url}
+                          alt={
+                            data?.logo?.mainlogo?.alternativeTxt ||
+                            data?.logo?.mainlogo?.alt ||
+                            "Logo"
+                          }
+                          width={110}
+                          height={80}
+                          className="w-full h-full object-contain"
+                        />
+                      }
+                    </Link>
                   </div>
                 )}
 
@@ -1256,53 +1272,53 @@ function MegaMenuPanel({
             {/* ─── Warm Cream / Ivory Right Panel ─── */}
             {activeChild?.children?.length > 0 && (
 
-            <div className="bg-[#FFF8EE] py-7 px-8 2xl:px-10 flex-1 min-w-0 text-[#262626]">
-              {hasColumnGroups ? (
-                <div className="flex items-start gap-x-8 2xl:gap-x-10 3xl:gap-x-12">
-                  {columns.map((colGroups, colIdx) => (
-                    <div
-                      key={colIdx}
-                      className="w-[190px] 2xl:w-[210px] 3xl:w-[240px] shrink-0 flex flex-col gap-5"
-                    >
-                      {colGroups.map((group) => (
-                        <div
-                          key={group?.id || group?.label}
-                          className="w-full"
-                        >
-                          {group?.label && (
-                            <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
-                              {group?.label}
-                            </span>
-                          )}
-                          <ul className="flex flex-col gap-[3px] p-0 m-0">
-                            {group?.children?.map((leaf) =>
-                              renderLeafItem(leaf),
+              <div className="bg-[#FFF8EE] py-7 px-8 2xl:px-10 flex-1 min-w-0 text-[#262626]">
+                {hasColumnGroups ? (
+                  <div className="flex items-start gap-x-8 2xl:gap-x-10 3xl:gap-x-12">
+                    {columns.map((colGroups, colIdx) => (
+                      <div
+                        key={colIdx}
+                        className="w-[190px] 2xl:w-[210px] 3xl:w-[240px] shrink-0 flex flex-col gap-5"
+                      >
+                        {colGroups.map((group) => (
+                          <div
+                            key={group?.id || group?.label}
+                            className="w-full"
+                          >
+                            {group?.label && (
+                              <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
+                                {group?.label}
+                              </span>
                             )}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              ) : activeChild?.children?.length > 0 ? (
-                <div className="w-[220px] 2xl:w-[250px] 3xl:w-[280px] shrink-0">
-                  <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
+                            <ul className="flex flex-col gap-[3px] p-0 m-0">
+                              {group?.children?.map((leaf) =>
+                                renderLeafItem(leaf),
+                              )}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                ) : activeChild?.children?.length > 0 ? (
+                  <div className="w-[220px] 2xl:w-[250px] 3xl:w-[280px] shrink-0">
+                    <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
+                      {activeChild?.label}
+                    </span>
+                    <ul className="flex flex-col gap-[3px] p-0 m-0">
+                      {activeChild.children.map((leaf) => renderLeafItem(leaf))}
+                    </ul>
+                  </div>
+                ) : (
+                  <Link
+                    href={activeChild?.url || "#!"}
+                    aria-label={activeChild?.label}
+                    className="inline-flex items-center gap-2 text-[13px] 2xl:text-[15px] font-bold text-[#ea580c] hover:underline"
+                  >
                     {activeChild?.label}
-                  </span>
-                  <ul className="flex flex-col gap-[3px] p-0 m-0">
-                    {activeChild.children.map((leaf) => renderLeafItem(leaf))}
-                  </ul>
-                </div>
-              ) : (
-                <Link
-                  href={activeChild?.url || "#!"}
-                  aria-label={activeChild?.label}
-                  className="inline-flex items-center gap-2 text-[13px] 2xl:text-[15px] font-bold text-[#ea580c] hover:underline"
-                >
-                  {activeChild?.label}
-                </Link>
-              )}
-            </div>
+                  </Link>
+                )}
+              </div>
             )}
           </div>
         </div>
