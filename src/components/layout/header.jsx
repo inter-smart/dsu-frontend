@@ -619,35 +619,12 @@ export default function Header({ data = local_data }) {
                 </Link>
               </div>
             ))}
-            <div className="w-auto h-auto">
-              <DropdownMenu>
-                <DropdownMenuTrigger
-                  render={
-                    <span
-                      className={cn(TopHeaderTextStyle, "cursor-pointer")}
-                    />
-                  }
-                >
-                  Login
-                  <span className="w-2.5 sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center">
-                    <Image
-                      src="/images/header-login.svg"
-                      alt="login"
-                      width={20}
-                      height={20}
-                      className="w-full h-full object-contain"
-                    />
-                  </span>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem variant="destructive">
-                    Log out
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
+            <LoginButton
+              button={data?.topBar?.loginButton}
+              className={TopHeaderTextStyle}
+              iconSrc="/images/header-login.svg"
+              iconClassName="w-2.5 sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center"
+            />
             {/* <div className="w-auto h-auto px-1.25 sm:px-2.5 2xl:px-2.5 border-r border-white/20">
               <Select className="w-full h-auto">
                 <SelectTrigger
@@ -760,33 +737,7 @@ export default function Header({ data = local_data }) {
                     </Link>
                   </div>
                 ))}
-                <div className="w-auto 2xl:h-10 3xl:h-12.5 ml-1.25 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] overflow-x-clip flex items-center relative z-0 transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)">
-                  <div className="w-auto h-full">
-                    <Link
-                      href="/#"
-                      aria-label="Register"
-                      className="text-[10px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center relative z-0 before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:translate-y-0.75 2xl:before:translate-y-1.25 before:absolute before:z-1 before:inset-[0_0_0_auto]"
-                    >
-                      <span className="translate-y-0.75 2xl:translate-y-1.25">
-                        NRI/Foreigners
-                      </span>
-                    </Link>
-                  </div>
-                  <div className="w-auto h-full">
-                    <Link
-                      href="/#"
-                      aria-label="Register"
-                      className="text-[10px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-medium text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center"
-                    >
-                      <span className="translate-y-0.75 2xl:translate-y-1.25">
-                        Others
-                      </span>
-                    </Link>
-                  </div>
-                  <button className="text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold text-black w-fit h-auto p-[3px_5px] mx-auto bg-white rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0]">
-                    Apply Here
-                  </button>
-                </div>
+                <ApplyButtons buttons={data?.applyButtons} variant="desktop" />
                 <div className="w-auto h-auto pl-0.75 max-lg:flex hidden">
                   <Sheet>
                     <SheetTrigger className="w-7.5 h-full aspect-square bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] border border-[#D1D5DC80]/50 overflow-hidden flex items-center justify-center">
@@ -870,22 +821,19 @@ export default function Header({ data = local_data }) {
                                 className="w-3.5 h-3.5 dark:invert"
                               />
                             </Link>
-                            <span className="text-black/20 dark:text-white/20">
-                              |
-                            </span>
-                            <Link
-                              href="#!"
-                              className="flex items-center gap-1 hover:text-(--basecolor)"
-                            >
-                              <span>Login</span>
-                              <Image
-                                src="/images/header-login-black.svg"
-                                alt="Login"
-                                width={13}
-                                height={13}
-                                className="w-3.5 h-3.5 dark:invert"
-                              />
-                            </Link>
+                            {isValidLoginButton(data?.topBar?.loginButton) && (
+                              <>
+                                <span className="text-black/20 dark:text-white/20">
+                                  |
+                                </span>
+                                <LoginButton
+                                  button={data?.topBar?.loginButton}
+                                  className="flex items-center gap-1 hover:text-(--basecolor) cursor-pointer"
+                                  iconSrc="/images/header-login-black.svg"
+                                  iconClassName="w-3.5 h-3.5 flex items-center justify-center dark:invert"
+                                />
+                              </>
+                            )}
                           </div>
                           <div className="flex items-center gap-1.5 shrink-0 ml-2">
                             <ThemeToggle iconClassName="max-lg:invert" />
@@ -907,33 +855,10 @@ export default function Header({ data = local_data }) {
 
                         {/* Main Buttons (Apply Here, CDSIMER, DSU Online) */}
                         <div className="w-full px-2.5 pb-3 pt-2 flex items-center justify-between gap-2">
-                          <div className="w-auto h-11.25 2xl:h-10 3xl:h-12.5 ml-1.25 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] overflow-x-clip flex items-center relative z-0 transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)">
-                            <div className="w-auto h-full">
-                              <Link
-                                href="/#"
-                                aria-label="Register"
-                                className="text-[15px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-white w-full h-full px-2.5 sm:px-2.5 lg:px-3.75 flex items-center justify-center relative z-0 before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:translate-y-0.75 2xl:before:translate-y-1.25 before:absolute before:z-1 before:inset-[0_0_0_auto]"
-                              >
-                                <span className="translate-y-0.75 2xl:translate-y-1.25">
-                                  NRI/Foreigners
-                                </span>
-                              </Link>
-                            </div>
-                            <div className="w-auto h-full">
-                              <Link
-                                href="/#"
-                                aria-label="Register"
-                                className="text-[15px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-medium text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center"
-                              >
-                                <span className="translate-y-0.75 2xl:translate-y-1.25">
-                                  Others
-                                </span>
-                              </Link>
-                            </div>
-                            <button className="text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold text-black dark:text-white w-fit h-auto p-[3px_5px] mx-auto bg-[#fff7eb] dark:bg-[#18181b] rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0]">
-                              Apply Here
-                            </button>
-                          </div>
+                          <ApplyButtons
+                            buttons={data?.applyButtons}
+                            variant="mobile"
+                          />
                           <div className="flex items-center gap-1.25">
                             <Link
                               href="/#"
@@ -1078,6 +1003,163 @@ export default function Header({ data = local_data }) {
         </div>
       )}
     </header>
+  );
+}
+
+// Valid = has a label and either a url (plain link) or at least one sub item (dropdown).
+function isValidLoginButton(button) {
+  if (!button?.label?.trim()) return false;
+  if (button?.subItems?.length) return true;
+  return Boolean(button?.url?.trim());
+}
+
+function LoginButton({ button, className, iconSrc, iconClassName }) {
+  if (!isValidLoginButton(button)) return null;
+
+  const content = (
+    <>
+      <span>{button.label}</span>
+      <span className={iconClassName}>
+        <Image
+          src={iconSrc}
+          alt=""
+          width={20}
+          height={20}
+          className="w-full h-full object-contain"
+        />
+      </span>
+    </>
+  );
+
+  // Sub buttons present -> dropdown only, the button itself is not a link
+  if (button.subItems?.length) {
+    return (
+      <div className="w-auto h-auto">
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            render={<button type="button" className={cn(className, "cursor-pointer")} />}
+          >
+            {content}
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            {button.subItems.map((sub, index) => (
+              <DropdownMenuItem
+                key={sub?.id ?? index}
+                render={
+                  <Link
+                    href={sub?.url || "#"}
+                    {...(sub?.isExternal && {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
+                  />
+                }
+              >
+                {sub?.label}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-auto h-auto">
+      <Link
+        href={button.url}
+        aria-label={button.label}
+        {...(button.isExternal && {
+          target: "_blank",
+          rel: "noopener noreferrer",
+        })}
+        className={cn(className, "transition-opacity duration-300 hover:opacity-70")}
+      >
+        {content}
+      </Link>
+    </div>
+  );
+}
+
+const isValidButton = (b) => Boolean(b?.label?.trim() && b?.url?.trim());
+
+const externalProps = (b) =>
+  b?.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
+
+// NRI/Foreigners + Others + "Apply Here" badge. Each one only shows with a label and url.
+function ApplyButtons({ buttons, variant = "desktop" }) {
+  const { applyHere, nri, others } = buttons || {};
+  const showApply = isValidButton(applyHere);
+  const showNri = isValidButton(nri);
+  const showOthers = isValidButton(others);
+  if (!showApply && !showNri && !showOthers) return null;
+
+  const isMobile = variant === "mobile";
+  const textSize = isMobile
+    ? "text-[15px] sm:text-[11px]"
+    : "text-[10px] sm:text-[11px]";
+
+  return (
+    <div
+      className={cn(
+        "w-auto ml-1.25 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] overflow-x-clip flex items-center relative z-0 transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)",
+        isMobile
+          ? "h-11.25 2xl:h-10 3xl:h-12.5"
+          : "2xl:h-10 3xl:h-12.5",
+      )}
+    >
+      {showNri && (
+        <div className="w-auto h-full">
+          <Link
+            href={nri.url}
+            aria-label={nri.label}
+            {...externalProps(nri)}
+            className={cn(
+              textSize,
+              "2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center relative z-0",
+              showOthers &&
+                "before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:translate-y-0.75 2xl:before:translate-y-1.25 before:absolute before:z-1 before:inset-[0_0_0_auto]",
+            )}
+          >
+            <span className="translate-y-0.75 2xl:translate-y-1.25">
+              {nri.label}
+            </span>
+          </Link>
+        </div>
+      )}
+      {showOthers && (
+        <div className="w-auto h-full">
+          <Link
+            href={others.url}
+            aria-label={others.label}
+            {...externalProps(others)}
+            className={cn(
+              textSize,
+              "2xl:text-sm 3xl:text-lg leading-[1.1] font-medium text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center",
+            )}
+          >
+            <span className="translate-y-0.75 2xl:translate-y-1.25">
+              {others.label}
+            </span>
+          </Link>
+        </div>
+      )}
+      {showApply && (
+        <Link
+          href={applyHere.url}
+          aria-label={applyHere.label}
+          {...externalProps(applyHere)}
+          className={cn(
+            "text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold w-fit h-auto p-[3px_5px] mx-auto rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0]",
+            isMobile
+              ? "text-black dark:text-white bg-[#fff7eb] dark:bg-[#18181b]"
+              : "text-black bg-white",
+          )}
+        >
+          {applyHere.label}
+        </Link>
+      )}
+    </div>
   );
 }
 
