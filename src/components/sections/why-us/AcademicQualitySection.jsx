@@ -13,7 +13,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { fileLinkProps } from "@/lib/schools/link-props";
+import { ctaLinkProps, fileLinkProps } from "@/lib/schools/link-props";
 
 export default function AcademicQualitySection({ data }) {
     const tabs = data?.tabs || [];
@@ -172,6 +172,7 @@ export default function AcademicQualitySection({ data }) {
                                             <div key={idx} className="mb-[6px] xl:mb-[8px] 2xl:mb-[10px]">
                                                 <Link
                                                     href={link.url || "#"}
+                                                    {...ctaLinkProps(link)}
                                                     className="text_1 text-[#212121] font-bold underline underline-offset-3 hover:text-[#F97316] transition-colors"
                                                 >
                                                     {link.label}

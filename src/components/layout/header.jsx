@@ -581,6 +581,10 @@ export default function Header({ data = local_data }) {
                 <Link
                   href={item?.url || "#"}
                   aria-label={item?.label}
+                  {...(item?.isExternal && {
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })}
                   className="text-[8px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full lg:h-auto p-2.5 sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
                 >
                   {item?.label}

@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { ctaLinkProps } from "@/lib/schools/link-props";
 import Image from "next/image";
 import { Text } from "../ui/text";
 import PhoneNumbers from "../ui/phone-numbers";
@@ -607,6 +608,7 @@ export default function Footer({ data = local_data }) {
                         <li key={index}>
                           <Link
                             href={item?.url || "#"}
+                            {...ctaLinkProps(item)}
                             className="text-[15px] lg:text-xs 2xl:text-[13px] 3xl:text-[15px] leading-[1.2] font-normal text-black dark:text-[#FFFF] py-1.25 3xl:py-2 transition-colors duration-300 block hover:text-(--basecolor) dark:hover:text-(--basecolor)"
                           >
                             {item?.label}
