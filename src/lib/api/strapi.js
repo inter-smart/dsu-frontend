@@ -5,12 +5,34 @@ export const REVALIDATE_LONG = { next: { revalidate: 300 } };
 export const NO_STORE = { cache: "no-store" };
 
 
+// True while an editor previews from the Strapi admin (Next.js Draft Mode).
+// Outside a request (build time) there is no draft mode.
+async function isPreview() {
+  if (!process.env.PREVIEW_SECRET) return false;
+  try {
+    const { draftMode } = await import("next/headers");
+    return (await draftMode()).isEnabled;
+  } catch {
+    return false;
+  }
+}
+
 export async function fetchAPI(path, params = {}, options = NO_STORE) {
   try {
     const mergedOptions = {
       headers: { "Content-Type": "application/json" },
       ...options,
     };
+
+    // Draft Mode: Strapi serves the draft versions to requests carrying the shared secret, never cached
+    if (await isPreview()) {
+      mergedOptions.headers = {
+        ...mergedOptions.headers,
+        "x-preview-secret": process.env.PREVIEW_SECRET,
+      };
+      mergedOptions.cache = "no-store";
+      delete mergedOptions.next;
+    }
 
     const query = Object.entries(params).filter(
       ([, value]) => value !== undefined && value !== null && value !== "",

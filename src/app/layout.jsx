@@ -6,6 +6,7 @@ import Footer from "@/components/layout/footer";
 import SmoothScrollProvider from "@/components/providers/smooth-scroll-provider";
 import { getHeader, getFooter } from "@/lib/api/layout";
 import FileLinkTarget from "@/components/providers/file-link-target";
+import PreviewBanner from "@/components/layout/common/preview-banner";
 import SidebarWidget from "@/components/layout/common/sidebar-widget";
 
 const roboto = Roboto({
@@ -49,6 +50,7 @@ export default async function RootLayout({ children }) {
             <Footer data={footer ?? undefined} />
             <SidebarWidget />
             <FileLinkTarget />
+            <PreviewBanner />
           </SmoothScrollProvider>
         </ThemeProvider>
       </body>
