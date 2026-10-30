@@ -1177,6 +1177,13 @@ function useIsMobile() {
   return isMobile;
 }
 
+// Flyout items of a leaf: the static `subMenu` key, or the CMS's nested `children`.
+function getFlyoutItems(leaf) {
+  if (leaf?.subMenu?.length) return leaf.subMenu;
+  if (leaf?.children?.length) return leaf.children;
+  return [];
+}
+
 function MegaMenuPanel({
   itemId,
   items,
@@ -1206,7 +1213,10 @@ function MegaMenuPanel({
   const activeChild =
     children.find((c) => c?.id === activeChildId) || children[0] || {};
   const grandGroups = activeChild?.children || [];
-  const hasColumnGroups = grandGroups.some((g) => g?.children?.length > 0);
+  // Column layout only when several headings each hold their own list (Excellence & Quality
+  // Assurance). A lone item with children, or one mixed with plain links, is a flyout leaf.
+  const hasColumnGroups =
+    grandGroups.length > 1 && grandGroups.every((g) => g?.children?.length > 0);
 
   // Group columns for multi-column layouts like Excellence & Quality Assurance:
   // each group (CMS order) goes into the currently shortest of up to 3 columns,
@@ -1225,8 +1235,8 @@ function MegaMenuPanel({
   }
 
   const renderLeafItem = (leaf) => {
-    // ADDED: leaf with a flyout submenu (e.g. Pro-Vice Chancellor)
-    if (leaf?.subMenu?.length) {
+    // Leaf with a flyout submenu (e.g. Pro-Vice Chancellor)
+    if (getFlyoutItems(leaf).length) {
       return (
         <SubMenuLeaf
           key={leaf?.id || leaf?.label}
@@ -1516,7 +1526,7 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
               />
 
               <ul className="flex flex-col gap-[3px] p-0 m-0">
-                {leaf.subMenu.map((sub) => (
+                {getFlyoutItems(leaf).map((sub) => (
                   <li key={sub?.id || sub?.label} className="w-full list-none">
                     <Link
                       href={sub?.url || "#!"}
