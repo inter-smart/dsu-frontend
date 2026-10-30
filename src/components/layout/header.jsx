@@ -1393,29 +1393,50 @@ function MegaMenuPanel({
   );
 }
 
-// ADDED: leaf item with a separate flyout menu on its right (rendered via portal so
-// the MegaMenuPanel's overflow-hidden can't clip it and no other menu is affected)
-const SUBMENU_WIDTH = 232;
+// Flyout for items with a subMenu (Pro-Vice Chancellor). Rendered in a portal so the
+// mega panel's overflow-hidden can't clip it. White card, thin orange border and a
+// left-pointing notch aligned to the parent row, flush with the mega panel's right edge.
+const FLYOUT_PAD_TOP = 14; // same as pt-3.5, so the first item lines up with the parent row
+const FLYOUT_NOTCH = 12; // same as size-3
+const FLYOUT_MAX_WIDTH = 300; // widest breakpoint, only used to decide whether to flip left
 
 function SubMenuLeaf({ leaf, onKeepOpen }) {
   const rowRef = useRef(null);
+  const linkRef = useRef(null);
   const closeTimer = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [pos, setPos] = useState({ top: 0, x: 0, flip: false });
+  const [pos, setPos] = useState({ top: 0, x: 0, flip: false, notchTop: 0, bridge: 0 });
 
   useEffect(() => () => clearTimeout(closeTimer.current), []);
 
   const openSub = () => {
     clearTimeout(closeTimer.current);
     onKeepOpen?.();
-    const rect = rowRef.current?.getBoundingClientRect();
-    if (rect) {
-      // flip to the left side if there is no room on the right
-      const flip = rect.right + SUBMENU_WIDTH > window.innerWidth;
+
+    const link = linkRef.current;
+    if (link) {
+      const linkRect = link.getBoundingClientRect();
+      // The flyout sits flush against the mega panel's right edge
+      const panel = link.closest(".overflow-hidden");
+      const panelRect = (panel || link).getBoundingClientRect();
+      const viewportWidth = document.documentElement.clientWidth;
+      const flip = panelRect.right + FLYOUT_MAX_WIDTH > viewportWidth;
+
+      // 1px border + padding puts the first item exactly level with the parent row
+      const top = Math.max(8, linkRect.top - FLYOUT_PAD_TOP - 1);
+      const rowCenter = linkRect.top + linkRect.height / 2;
+
       setPos({
-        top: rect.top - 12,
-        x: flip ? window.innerWidth - rect.left : rect.right,
+        top,
+        x: flip ? viewportWidth - panelRect.left : panelRect.right,
         flip,
+        // Notch is centred on the parent row
+        notchTop: rowCenter - (top + 1) - FLYOUT_NOTCH / 2,
+        // Invisible hover bridge across the gap between the row and the card
+        bridge: Math.max(
+          0,
+          flip ? linkRect.left - panelRect.left : panelRect.right - linkRect.right,
+        ),
       });
     }
     setIsOpen(true);
@@ -1434,20 +1455,25 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
       className="w-full list-none"
     >
       <Link
+        ref={linkRef}
         href={leaf?.url || "#!"}
         aria-label={leaf?.label}
         aria-haspopup="true"
         aria-expanded={isOpen}
         className={cn(
-          "w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150",
+          "w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug rounded-[5px] px-2.5 py-[5px] transition-all duration-150",
           isOpen
-            ? "bg-[#FFE8D6] font-medium"
-            : "hover:bg-[#FFE8D6] hover:font-medium",
+            ? "bg-[#FFE8D6] font-semibold text-[#ea580c]"
+            : "text-[#262626] hover:bg-[#FFE8D6] hover:font-medium",
         )}
       >
         <span className="w-[8px] h-[8px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
         <span className="truncate flex-1">{leaf?.label}</span>
-        <ChevronRight size={14} className="shrink-0 text-[#ea580c]" />
+        <ChevronRight
+          size={16}
+          strokeWidth={2.5}
+          className="mr-1.5 shrink-0 text-[#ea580c]"
+        />
       </Link>
 
       {isOpen &&
@@ -1458,19 +1484,37 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
               onKeepOpen?.();
             }}
             onMouseLeave={closeSub}
-            className={cn("fixed z-[10000]", pos.flip ? "pr-2" : "pl-2")}
-            style={{
-              top: pos.top,
-              width: SUBMENU_WIDTH,
-              [pos.flip ? "right" : "left"]: pos.x,
-            }}
+            className="fixed z-[10000] w-[245px] 2xl:w-[264px] 3xl:w-[300px]"
+            style={{ top: pos.top, [pos.flip ? "right" : "left"]: pos.x }}
           >
+            {/* Invisible bridge so the menu stays open while the mouse crosses the gap */}
+            <span
+              aria-hidden="true"
+              className="absolute inset-y-0"
+              style={{
+                width: pos.bridge + 2,
+                [pos.flip ? "left" : "right"]: "100%",
+              }}
+            />
+
             <div
-              className="rounded-[8px] bg-[#FFF8EE] px-3 py-3 shadow-[0_20px_45px_rgba(0,0,0,0.22)]"
+              className="relative rounded-[8px] border border-[#ea580c] bg-white px-2.5 pb-5 pt-3.5 shadow-[0_20px_45px_rgba(0,0,0,0.22)]"
               style={{
                 animation: "megaMenuIn 0.18s cubic-bezier(0.16,1,0.3,1) both",
               }}
             >
+              {/* Notch pointing at the parent row */}
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "absolute size-3 rotate-45 bg-white",
+                  pos.flip
+                    ? "-right-[7px] border-r border-t border-[#ea580c]"
+                    : "-left-[7px] border-b border-l border-[#ea580c]",
+                )}
+                style={{ top: pos.notchTop }}
+              />
+
               <ul className="flex flex-col gap-[3px] p-0 m-0">
                 {leaf.subMenu.map((sub) => (
                   <li key={sub?.id || sub?.label} className="w-full list-none">
@@ -1783,4 +1827,3 @@ function NavigationMenu({
     );
   }
 }
-
