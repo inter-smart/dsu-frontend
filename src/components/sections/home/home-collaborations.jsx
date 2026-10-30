@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/ui/safe-image";
+import { safeHref } from "@/lib/utils";
 import ClientCountUp from "@/components/ui/client-count-up";
 import Fade from "embla-carousel-fade";
 import useEmblaCarousel from "embla-carousel-react";
@@ -215,7 +216,7 @@ export default function HomeCollaborations({ data }) {
                           ))}
                           {(item?.partners?.length ?? 0) > 5 && (
                             <Link
-                              href={item?.moreLink}
+                              href={safeHref(item?.moreLink)}
                               aria-label="More"
                               className="text-[10px] sm:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-semibold text-white p-[5px_10px] sm:p-[10px_20px] 2xl:p-[10px_25px] 3xl:p-[15px_30px] border border-white sm:rounded-[10px] 2xl:rounded-[15px] overflow-hidden transition-colors duration-300 hover:bg-(--basecolor2) hover:border-(--basecolor2)"
                             >

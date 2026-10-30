@@ -92,3 +92,8 @@ export function mergeData(cms, local_data) {
 export function getCtaHref(cta) {
     return cta?.url || cta?.file?.url?.trim() || "#";
 }
+
+// A link target from the CMS: the trimmed value, or `fallback` when it is empty.
+export function safeHref(value, fallback = "/") {
+    return typeof value === "string" && value.trim() ? value.trim() : fallback;
+}

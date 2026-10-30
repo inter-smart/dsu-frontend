@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/ui/safe-image";
+import { safeHref } from "@/lib/utils";
 import ClientCountUp from "@/components/ui/client-count-up";
 import { Fancybox } from "@fancyapps/ui";
 import { Text } from "@/components/ui/text";
@@ -178,7 +179,7 @@ export default function HomeTestimonials({ data }) {
                 >
                   <Link
                     data-fancybox="testimonials"
-                    href={item?.media?.url || "#"}
+                    href={safeHref(item?.media?.url)}
                     data-caption={item?.name}
                     data-type={
                       item?.media?.type === "video" ? "html5video" : "image"
@@ -198,7 +199,7 @@ export default function HomeTestimonials({ data }) {
                         />
                       ) : (
                         <Image
-                          src={item?.media?.url || "/images/placeholder.jpg"}
+                          src={item?.media?.url}
                           alt={item?.name || "Testimonial media"}
                           fill
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -211,7 +212,7 @@ export default function HomeTestimonials({ data }) {
                           <div className="w-(--avatar-size) h-auto aspect-square rounded-md 2xl:rounded-lg 3xl:rounded-[10px] overflow-hidden block">
                             <Image
                               src={
-                                item?.avatar?.url || "/images/placeholder.jpg"
+                                item?.avatar?.url
                               }
                               width={70}
                               height={70}
@@ -237,7 +238,7 @@ export default function HomeTestimonials({ data }) {
                           <div className="w-5 2xl:w-6.25 h-auto aspect-square mb-1.25 2xl:mb-2.5 overflow-hidden block">
                             <Image
                               src={
-                                item?.badge?.url || "/images/placeholder.jpg"
+                                item?.badge?.url
                               }
                               width={20}
                               height={20}
@@ -259,7 +260,7 @@ export default function HomeTestimonials({ data }) {
         </div>
         <div className="w-full h-auto sm:mt-7.5 lg:mt-10 2xl:mt-12.5 3xl:mt-15 hidden sm:flex items-center justify-center">
           <Link
-            href="/centres-of-excellence"
+            href="/placement"
             className={buttonVariants({
               variant: "default",
               size: "default",

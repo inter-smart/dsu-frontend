@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
+import Image from "@/components/ui/safe-image";
+import { cn, safeHref } from "@/lib/utils";
 import { useEffect, useCallback, useState } from "react";
 import ClientCountUp from "@/components/ui/client-count-up";
 import { Fancybox } from "@fancyapps/ui";
@@ -88,7 +88,7 @@ export default function HomeCampusLife({ data }) {
                   </div>
                   <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25">
                     <Link
-                      href="/centres-of-excellence"
+                      href="/gallery"
                       className={buttonVariants({
                         variant: "default",
                         size: "default",
@@ -181,7 +181,7 @@ export default function HomeCampusLife({ data }) {
               </div>
               <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25">
                 <Link
-                  href="/centres-of-excellence"
+                  href="/gallery"
                   className={buttonVariants({
                     variant: "default",
                     size: "default",
@@ -288,7 +288,7 @@ function FeatureCard({ item, className }) {
   return (
     <Link
       data-fancybox="campus"
-      href={item?.media?.url || "#"}
+      href={safeHref(item?.media?.url)}
       data-caption={item?.title}
       data-type={item?.media?.type === "video" ? "html5video" : "image"}
       className={cn(

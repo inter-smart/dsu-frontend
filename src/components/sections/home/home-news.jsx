@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/ui/safe-image";
 import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import NewsCard from "@/components/layout/common/news-card";

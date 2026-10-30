@@ -1,5 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/ui/safe-image";
+import { safeHref } from "@/lib/utils";
 
 export default function Journey({ data }) {
   const ctaStyles = [
@@ -46,7 +47,7 @@ export default function Journey({ data }) {
             return (
               <Link
                 key={`${cta?.url}-${index}`}
-                href={cta?.url || "#!"}
+                href={safeHref(cta?.url)}
                 target={cta?.isExternal ? "_blank" : undefined}
                 rel={cta?.isExternal ? "noopener noreferrer" : undefined}
                 className={`text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-bold w-auto h-5 sm:h-7.5 xl:h-8.75 2xl:h-12.5 px-2.5 sm:px-3.75 2xl:px-5 gap-2.5 xl:gap-3.75 2xl:gap-5 rounded-[3px] xl:rounded-[5px] overflow-hidden transition-colors duration-500 inline-flex items-center justify-center ${style.className}`}

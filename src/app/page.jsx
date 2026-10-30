@@ -35,8 +35,8 @@ const homePageData = {
             " AI Factory and Multidisciplinary Centers of Excellence",
         },
         buttons: [
-          { label: "Explore Centres of Excellence", url: "#", isExternal: false },
-          { label: "Apply Now", url: "#", isExternal: false },
+          { label: "Explore Centres of Excellence", url: "/NVIDIA", isExternal: false },
+          { label: "Apply Now", url: "/admission", isExternal: false },
         ],
         featuredItems: [
           {
@@ -86,8 +86,8 @@ const homePageData = {
             " AI Factory and Multidisciplinary Centers of Excellence 2",
         },
         buttons: [
-          { label: "Explore Centres of Excellence", url: "#", isExternal: false },
-          { label: "Apply Now", url: "#", isExternal: false },
+          { label: "Explore Centres of Excellence", url: "/NVIDIA", isExternal: false },
+          { label: "Apply Now", url: "/admission", isExternal: false },
         ],
         featuredItems: [
           {
@@ -189,7 +189,7 @@ const homePageData = {
             alternativeTxt: "NVIDIA Logo",
           },
           button: {
-            link: "#",
+            link: "/NVIDIA",
             label: "View All Centers",
           },
         },
@@ -230,7 +230,7 @@ const homePageData = {
             alternativeTxt: "NVIDIA Logo",
           },
           button: {
-            link: "#",
+            link: "/NVIDIA",
             label: "View All Centers",
           },
         },
@@ -271,7 +271,7 @@ const homePageData = {
             alternativeTxt: "NVIDIA Logo",
           },
           button: {
-            link: "#",
+            link: "/NVIDIA",
             label: "View All Centers",
           },
         },
@@ -312,7 +312,7 @@ const homePageData = {
             alternativeTxt: "NVIDIA Logo",
           },
           button: {
-            link: "#",
+            link: "/NVIDIA",
             label: "View All Centers",
           },
         },
@@ -353,7 +353,7 @@ const homePageData = {
             alternativeTxt: "NVIDIA Logo",
           },
           button: {
-            link: "#",
+            link: "/NVIDIA",
             label: "View All Centers",
           },
         },
@@ -394,7 +394,7 @@ const homePageData = {
             alternativeTxt: "NVIDIA Logo",
           },
           button: {
-            link: "#",
+            link: "/NVIDIA",
             label: "View All Centers",
           },
         },
@@ -424,7 +424,7 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "BCA",
               },
             ],
@@ -435,12 +435,12 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "MCA",
               },
               {
                 id: 2,
-                link: "#",
+                link: "/academics",
                 label: "M.Sc",
               },
             ],
@@ -465,7 +465,7 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "BCA",
               },
             ],
@@ -476,12 +476,12 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "MCA",
               },
               {
                 id: 2,
-                link: "#",
+                link: "/academics",
                 label: "M.Sc",
               },
             ],
@@ -506,7 +506,7 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "BCA",
               },
             ],
@@ -517,12 +517,12 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "MCA",
               },
               {
                 id: 2,
-                link: "#",
+                link: "/academics",
                 label: "M.Sc",
               },
             ],
@@ -547,7 +547,7 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "BCA",
               },
             ],
@@ -558,12 +558,12 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "MCA",
               },
               {
                 id: 2,
-                link: "#",
+                link: "/academics",
                 label: "M.Sc",
               },
             ],
@@ -588,7 +588,7 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "BCA",
               },
             ],
@@ -599,12 +599,12 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "MCA",
               },
               {
                 id: 2,
-                link: "#",
+                link: "/academics",
                 label: "M.Sc",
               },
             ],
@@ -629,7 +629,7 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "BCA",
               },
             ],
@@ -640,12 +640,12 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "MCA",
               },
               {
                 id: 2,
-                link: "#",
+                link: "/academics",
                 label: "M.Sc",
               },
             ],
@@ -670,7 +670,7 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "BCA",
               },
             ],
@@ -681,12 +681,12 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "MCA",
               },
               {
                 id: 2,
-                link: "#",
+                link: "/academics",
                 label: "M.Sc",
               },
             ],
@@ -711,7 +711,7 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "BCA",
               },
             ],
@@ -722,12 +722,12 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "MCA",
               },
               {
                 id: 2,
-                link: "#",
+                link: "/academics",
                 label: "M.Sc",
               },
             ],
@@ -752,7 +752,7 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "BCA",
               },
             ],
@@ -763,12 +763,12 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "MCA",
               },
               {
                 id: 2,
-                link: "#",
+                link: "/academics",
                 label: "M.Sc",
               },
             ],
@@ -794,7 +794,7 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "BCA",
               },
             ],
@@ -805,12 +805,12 @@ const homePageData = {
             courses: [
               {
                 id: 1,
-                link: "#",
+                link: "/academics",
                 label: "MCA",
               },
               {
                 id: 2,
-                link: "#",
+                link: "/academics",
                 label: "M.Sc",
               },
             ],
@@ -830,7 +830,7 @@ const homePageData = {
           "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India's leading educational institutions today. This growth is the result of the institutions focused effort to advance knowledge and educate students in..",
         button: {
           label: "Explore More",
-          link: "#",
+          link: "/academics",
         },
       },
       featuredCards: [
@@ -902,7 +902,7 @@ const homePageData = {
       ],
       ctaButton: {
         label: "UG Research Forum",
-        link: "#",
+        link: "/academics",
         icon: "/images/research-researchForumBtn-1.svg",
       },
     },
@@ -913,7 +913,7 @@ const homePageData = {
           "DSU promotes innovation and entrepreneurship through incubation support, industry mentorship, startup guidance, and innovation labs—empowering students to build impactful real-world solutions.",
         button: {
           label: "Explore More",
-          link: "#",
+          link: "/academics",
         },
       },
       featuredCards: [
@@ -950,7 +950,7 @@ const homePageData = {
           "IBM collaborates with Dayananda Sagar University in Post graduate programs: Computer Science Engineering with specialization in Cloud Computing, Big Data & Analytics and Internet of Things (IoT). These Post Graduate M.Tech. programs....",
         button: {
           label: "Explore More",
-          link: "#",
+          link: "/academics",
         },
       },
       featuredCards: [
@@ -1006,7 +1006,7 @@ const homePageData = {
           url: "/images/home-industry-1.webp",
           alternativeTxt: "Internship & Training Opportunities",
         },
-        link: "/#",
+        link: "/academics/industry-collabration",
       },
       {
         id: 2,
@@ -1016,7 +1016,7 @@ const homePageData = {
           url: "/images/home-industry-2.webp",
           alternativeTxt: "Internship & Training Opportunities",
         },
-        link: "/#",
+        link: "/academics/industry-collabration",
       },
       {
         id: 3,
@@ -1026,7 +1026,7 @@ const homePageData = {
           url: "/images/home-industry-3.webp",
           alternativeTxt: "Internship & Training Opportunities",
         },
-        link: "/#",
+        link: "/academics/industry-collabration",
       },
       {
         id: 4,
@@ -1036,7 +1036,7 @@ const homePageData = {
           url: "/images/home-industry-2.webp",
           alternativeTxt: "Internship & Training Opportunities",
         },
-        link: "/#",
+        link: "/academics/industry-collabration",
       },
     ],
     industryPartners: [
@@ -1697,7 +1697,7 @@ const homePageData = {
           "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047   ",
         date: "29th",
         year: "Dec 2025",
-        link: "#!",
+        link: "/news-events",
       },
       {
         id: 2,
@@ -1706,7 +1706,7 @@ const homePageData = {
           "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047   ",
         date: "29th",
         year: "Dec 2025",
-        link: "#!",
+        link: "/news-events",
       },
       {
         id: 3,
@@ -1715,7 +1715,7 @@ const homePageData = {
           "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047   ",
         date: "29th",
         year: "Dec 2025",
-        link: "#!",
+        link: "/news-events",
       },
       {
         id: 4,
@@ -1724,7 +1724,7 @@ const homePageData = {
           "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047   ",
         date: "29th",
         year: "Dec 2025",
-        link: "#!",
+        link: "/news-events",
       },
     ],
   },
@@ -1742,7 +1742,7 @@ const homePageData = {
         title: "The Economic Times",
         description:
           "As artificial intelligence reshapes industries, hospitality faces a distinct challenge: preserving human connection while embracing automation.",
-        link: "#!",
+        link: "/news-events",
       },
       {
         id: 2,
@@ -1753,7 +1753,7 @@ const homePageData = {
         title: "The Economic Times",
         description:
           "As artificial intelligence reshapes industries, hospitality faces a distinct challenge: preserving human connection while embracing automation.",
-        link: "#!",
+        link: "/news-events",
       },
     ],
     announcements_list: [
@@ -1766,7 +1766,7 @@ const homePageData = {
         title: "PGCET & DSAT",
         description:
           "School of commerce and Management studies welcomes the full time MBA students from DSAT & PGCET.",
-        link: "#!",
+        link: "/announcements",
       },
       {
         id: 2,
@@ -1777,7 +1777,7 @@ const homePageData = {
         title: "AIC-DSU Innovation",
         description:
           "School of commerce and Management studies Welcomes the full time MBA students from DSAT & PGCET.",
-        link: "#!",
+        link: "/announcements",
       },
       {
         id: 3,
@@ -1788,7 +1788,7 @@ const homePageData = {
         title: "BUSINESS APPLICATIONS OF",
         description:
           "School of commerce and Management studies Welcomes the full time MBA students from DSAT & PGCET.",
-        link: "#!",
+        link: "/announcements",
       },
       {
         id: 4,
@@ -1799,7 +1799,7 @@ const homePageData = {
         title: "AIC-DSU Innovation",
         description:
           "School of commerce and Management studies Welcomes the full time MBA students from DSAT & PGCET.",
-        link: "#!",
+        link: "/announcements",
       },
       {
         id: 5,
@@ -1810,7 +1810,7 @@ const homePageData = {
         title: "BUSINESS APPLICATIONS OF",
         description:
           "School of commerce and Management studies Welcomes the full time MBA students from DSAT & PGCET.",
-        link: "#!",
+        link: "/announcements",
       },
     ],
   },
@@ -1818,9 +1818,9 @@ const homePageData = {
     background_image: "/images/home-journey.webp",
     title: "Start Your Journey With Us",
     ctaLinks: [
-      { url: "#!", label: "Apply Now" },
-      { url: "#!", label: "Talk to an Advisor" },
-      { url: "#!", label: "Book a Campus Visit" },
+      { url: "/admission", label: "Apply Now" },
+      { url: "/contact", label: "Talk to an Advisor" },
+      { url: "/contact", label: "Book a Campus Visit" },
     ],
     description:
       "<p>Take the next step toward a future-ready education supported by innovation, <br> research, and industry collaboration.</p>",
