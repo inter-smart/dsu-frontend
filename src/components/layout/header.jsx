@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
 import { useEffect, useState, useRef } from "react";
@@ -1177,6 +1178,17 @@ function useIsMobile() {
   return isMobile;
 }
 
+// True when a menu url points at the page being viewed. Placeholders ("#", "#!") never match.
+function isActiveUrl(url, pathname) {
+  if (!url || !pathname || url.startsWith("#")) return false;
+  let path = url;
+  try {
+    path = new URL(url, "http://x").pathname;
+  } catch {}
+  const clean = (p) => (p.length > 1 ? p.replace(/\/+$/, "") : p);
+  return clean(path) === clean(pathname);
+}
+
 // Flyout items of a leaf: the static `subMenu` key, or the CMS's nested `children`.
 function getFlyoutItems(leaf) {
   if (leaf?.subMenu?.length) return leaf.subMenu;
@@ -1192,6 +1204,7 @@ function MegaMenuPanel({
   onKeepOpen,
   onLeave,
 }) {
+  const pathname = usePathname();
   const item = items?.find((i) => i?.id === itemId);
   const children = item?.children || [];
   const hasChildMenu = children.length > 0;
@@ -1246,9 +1259,7 @@ function MegaMenuPanel({
       );
     }
 
-    // Pro Chancellor or IQAC Committee are highlighted in the reference design
-    const isHighlight =
-      leaf?.label === "IQAC Committee" || leaf?.label === "Pro Chancellor";
+    const isHighlight = isActiveUrl(leaf?.url, pathname);
 
     return (
       <li key={leaf?.id || leaf?.label} className="w-full list-none">
@@ -1414,8 +1425,13 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
   const rowRef = useRef(null);
   const linkRef = useRef(null);
   const closeTimer = useRef(null);
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [pos, setPos] = useState({ top: 0, x: 0, flip: false, notchTop: 0, bridge: 0 });
+  // The row is current if its own page or any flyout page is the one being viewed
+  const isCurrent =
+    isActiveUrl(leaf?.url, pathname) ||
+    getFlyoutItems(leaf).some((sub) => isActiveUrl(sub?.url, pathname));
 
   useEffect(() => () => clearTimeout(closeTimer.current), []);
 
@@ -1474,7 +1490,9 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
           "w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug rounded-[5px] px-2.5 py-[5px] transition-all duration-150",
           isOpen
             ? "bg-[#FFE8D6] font-semibold text-[#ea580c]"
-            : "text-[#262626] hover:bg-[#FFE8D6] hover:font-medium",
+            : isCurrent
+              ? "bg-[#FFE8D6] font-medium text-[#262626]"
+              : "text-[#262626] hover:bg-[#FFE8D6] hover:font-medium",
         )}
       >
         <span className="w-[8px] h-[8px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
@@ -1531,7 +1549,11 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
                     <Link
                       href={sub?.url || "#!"}
                       aria-label={sub?.label}
-                      className="w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium"
+                      className={cn(
+                        "w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium",
+                        isActiveUrl(sub?.url, pathname) &&
+                          "bg-[#FFE8D6] font-medium",
+                      )}
                     >
                       <span className="w-[8px] h-[8px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
                       <span className="truncate">{sub?.label}</span>
@@ -1560,6 +1582,7 @@ function NavigationMenu({
   keepMenuOpen,
   scheduleCloseMenu,
 }) {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
   const hasSubmenu = item?.children?.length > 0;
@@ -1661,8 +1684,7 @@ function NavigationMenu({
         );
       }
 
-      const isHighlight =
-        item?.label === "IQAC Committee" || item?.label === "Pro Chancellor";
+      const isHighlight = isActiveUrl(item?.url, pathname);
 
       return (
         <Link
