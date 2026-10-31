@@ -1,4 +1,5 @@
 import InnerHero from "@/components/layout/common/InnerHero";
+import FlexibleSections from "@/components/flexible/FlexibleSections";
 import GovernanceFinancecommittte from "@/components/sections/governance/governance-financecommittte";
 import { getGovernancePageBySlug, getGovernancePages } from "@/lib/api";
 
@@ -32,11 +33,18 @@ export default async function GovernancePage({ params }) {
   return (
     <>
       {pageData.hero && <InnerHero data={pageData.hero} />}
-      <GovernanceFinancecommittte
-        data={pageData.financeCommitteeData}
-        title={pageData.name}
-        governancePages={governancePages || []}
-      />
+      {pageData.template === "flexible-page" ? (
+        <FlexibleSections
+          sections={pageData.flexiblePage?.sections}
+          governancePages={governancePages || []}
+        />
+      ) : (
+        <GovernanceFinancecommittte
+          data={pageData.financeCommitteeData}
+          title={pageData.name}
+          governancePages={governancePages || []}
+        />
+      )}
     </>
   );
 }
