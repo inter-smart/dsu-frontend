@@ -6,7 +6,7 @@ import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
-import { buttonVariants } from "@/components/ui/button"; 
+import CtaButton from "@/components/ui/cta-button"; 
 
 
 
@@ -114,12 +114,15 @@ export default function Events({ data }) {
                   </div>
                 </div>
                 <div>
-                  <Link
-                    href="/news-events"
-                    className="text-sm 3xl:text-base leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
-                  >
-                    View All
-                  </Link>
+                  {data?.latestButton?.label && data?.latestButton?.url && (
+<Link
+ href={safeHref(data.latestButton.url)}
+ target={data.latestButton.target === "_blank" ? "_blank" : undefined}
+ className="text-sm 3xl:text-base leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
+>
+{data.latestButton.label}
+</Link>
+)}
                 </div>
               </div>
               <div className="w-full h-auto overflow-hidden" ref={emblaRef}>
@@ -203,12 +206,15 @@ export default function Events({ data }) {
                   </div>
                 </div>
                 <div>
-                  <Link
-                    href="/announcements"
-                    className="text-[14px] 3xl:text-[16px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
-                  >
-                    View All
-                  </Link>
+                  {data?.announcementsButton?.label && data?.announcementsButton?.url && (
+<Link
+ href={safeHref(data.announcementsButton.url)}
+ target={data.announcementsButton.target === "_blank" ? "_blank" : undefined}
+ className="text-[14px] 3xl:text-[16px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
+>
+{data.announcementsButton.label}
+</Link>
+)}
                 </div>
               </div>
               <div
@@ -260,23 +266,7 @@ export default function Events({ data }) {
                   ))}
                 </div>
                  <div className="w-full h-auto mt-3.75 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center">
-                          <Link
-                            href="/announcements"
-                            className={buttonVariants({
-                              variant: "default",
-                              size: "default",
-                            })}
-                          >
-                            View All Announcements
-                            <Image
-                              src="/images/icon-btn.svg"
-                              alt="home-btn"
-                              width={15}
-                              height={15}
-                              className="size-3.75"
-                              data-icon="inline-end"
-                            />
-                          </Link>
+                          <CtaButton button={data?.button} />
                         </div>
               </div>
             </div>

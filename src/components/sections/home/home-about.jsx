@@ -8,7 +8,7 @@ import { Text } from "@/components/ui/text";
 import Autoplay from "embla-carousel-autoplay";
 import { Heading } from "@/components/ui/heading";
 import useEmblaCarousel from "embla-carousel-react";
-import { buttonVariants } from "@/components/ui/button";
+import CtaButton from "@/components/ui/cta-button";
 import { ShineBorder } from "@/components/ui/shine-border";
 import React, { useState, useEffect, useCallback } from "react";
 
@@ -291,23 +291,7 @@ export default function HomeAbout({ data }) {
               </div>
             </div>
             <div className="w-full h-auto mt-3.75 sm:mt-7.5 lg:mt-5">
-              <Link
-                href="/about"
-                className={buttonVariants({
-                  variant: "default",
-                  size: "default",
-                })}
-              >
-                Explore DSU
-                <Image
-                  src="/images/icon-btn.svg"
-                  alt="home-btn"
-                  width={15}
-                  height={15}
-                  className="size-3.75"
-                  data-icon="inline-end"
-                />
-              </Link>
+              <CtaButton button={data?.button} />
             </div>
           </div>
         </div>

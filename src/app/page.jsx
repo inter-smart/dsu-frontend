@@ -997,6 +997,11 @@ const homePageData = {
     },
     title: "Industry Collaboration",
     description: "Built with Industry, Not Just for Industry",
+    button: {
+      label: "Explore Industry Collaborations",
+      url: "/academics/industry-collabration",
+      target: "_self",
+    },
     collaborations: [
       {
         id: 1,
@@ -1910,6 +1915,7 @@ export default async function Home() {
   const news = {
     title: cms?.latestNews?.title ?? local.latestNews.title,
     news_list: pickList(newsList, local.latestNews.news_list),
+    button: cms?.latestNews?.button,
   };
 
   // The CMS sends { showSection: false } for a section switched off with "Show This Section".
@@ -1921,7 +1927,7 @@ export default async function Home() {
       {!hidden("centresOfExcellence") && <HomeExcellence data={pick(cms?.centresOfExcellence, local.centresOfExcellence, "excellence")} />}
       {!hidden("academicPrograms") && <HomeAcademic data={pick(cms?.academicPrograms, local.academicPrograms, "academics")} />}
       {!hidden("researchInnovation") && <HomeResearch data={local.researchInnovation} />}
-      {!hidden("industryCollaboration") && <HomeIndustry data={local.industryCollaboration} />}
+      {!hidden("industryCollaboration") && <HomeIndustry data={{ ...local.industryCollaboration, button: cms?.industryCollaboration?.button ?? local.industryCollaboration.button }} />}
       {!hidden("homeAbout") && <HomeAbout data={homeAbout} />}
       {!hidden("studentSuccess") && <HomeTestimonials data={pick(cms?.studentSuccess, local.studentSuccess, "successStories")} />}
       {!hidden("campusLife") && <HomeCampusLife data={pick(cms?.campusLife, local.campusLife, "featureCards")} />}

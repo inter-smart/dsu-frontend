@@ -7,7 +7,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Heading } from "@/components/ui/heading";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
-import { buttonVariants } from "@/components/ui/button";
+import CtaButton from "@/components/ui/cta-button";
 import { useEffect, useRef } from "react";
 import { jarallax } from "jarallax";
 import "jarallax/dist/jarallax.css";
@@ -115,24 +115,7 @@ export default function HomeIndustry({ data }) {
           </div>
         </div>
         <div className="w-full h-auto mt-10 sm:mt-6.25 2xl:mt-7.5 3xl:mt-8.75 flex items-center justify-center">
-          <Link
-            href="/academics/industry-collabration"
-            className={buttonVariants({
-              variant: "default",
-              size: "default",
-              className: "!text-[#E84E1B] bg-none bg-white",
-            })}
-          >
-            Explore Industry Collaborations
-            <Image
-              src="/images/icon-btn-white.svg"
-              alt="home-btn"
-              width={15}
-              height={15}
-              className="size-3.75"
-              data-icon="inline-end"
-            />
-          </Link>
+          <CtaButton button={data?.button} icon="/images/icon-btn-white.svg" className="!text-[#E84E1B] bg-none bg-white" />
         </div>
         <div className="w-full h-auto absolute z-1 inset-[auto_0_0_0]">
           <div className="container">

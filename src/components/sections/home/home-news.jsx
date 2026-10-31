@@ -4,7 +4,7 @@ import Image from "@/components/ui/safe-image";
 import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import NewsCard from "@/components/layout/common/news-card";
-import { buttonVariants } from "@/components/ui/button";
+import CtaButton from "@/components/ui/cta-button";
 
 export default function News({ data }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -70,23 +70,7 @@ export default function News({ data }) {
           </div>
         </div>
         <div className="w-full h-auto mt-6 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center">
-          <Link
-            href={data?.view_all_link || data?.link || "/news-events"}
-            className={buttonVariants({
-              variant: "default",
-              size: "default",
-            })}
-          >
-            View All
-            <Image
-              src="/images/icon-btn.svg"
-              alt="View All"
-              width={15}
-              height={15}
-              className="size-3.75"
-              data-icon="inline-end"
-            />
-          </Link>
+          <CtaButton button={data?.button} />
         </div>
       </div>
     </section>

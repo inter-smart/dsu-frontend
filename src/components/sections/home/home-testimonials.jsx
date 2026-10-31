@@ -9,7 +9,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Heading } from "@/components/ui/heading";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import useEmblaCarousel from "embla-carousel-react";
-import { buttonVariants } from "@/components/ui/button";
+import CtaButton from "@/components/ui/cta-button";
 import { useEffect, useCallback, useState } from "react";
 import { ShineBorder } from "@/components/ui/shine-border";
 
@@ -259,23 +259,7 @@ export default function HomeTestimonials({ data }) {
           </div>
         </div>
         <div className="w-full h-auto sm:mt-7.5 lg:mt-10 2xl:mt-12.5 3xl:mt-15 hidden sm:flex items-center justify-center">
-          <Link
-            href="/placement"
-            className={buttonVariants({
-              variant: "default",
-              size: "default",
-            })}
-          >
-            View All Success Stories
-            <Image
-              src="/images/icon-btn.svg"
-              alt="home-btn"
-              width={15}
-              height={15}
-              className="size-3.75"
-              data-icon="inline-end"
-            />
-          </Link>
+          <CtaButton button={data?.button} />
         </div>
       </div>
     </section>
