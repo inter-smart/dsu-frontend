@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
 import FlexibleSections from "@/components/flexible/FlexibleSections";
 import { getFlexiblePageBySlug } from "@/lib/api/flexible-page";
-import { getAboutPage } from "@/lib/api";
+import { getAboutPage, getAccreditationBySlug } from "@/lib/api";
+import AccreditationPage, { generateMetadata as accreditationMetadata } from "../accreditions/[slug]/page";
 import AboutPageView from "@/components/sections/about/about-page-view";
 import { hasContent } from "@/lib/has-content";
 import { getPageModuleBySlug } from "@/lib/page-routes";
@@ -22,6 +23,9 @@ export async function generateMetadata({ params }) {
         const about = await getAboutPage();
         if (about?.slug !== slug) {
             const pageModule = await getPageModuleBySlug(slug);
+            if (!pageModule && (await getAccreditationBySlug(slug))) {
+                return accreditationMetadata({ params: Promise.resolve({ slug }) });
+            }
             return pageModule?.generateMetadata ? pageModule.generateMetadata() : {};
         }
         return { title: about.seo?.metaTitle, description: about.seo?.metaDescription };
@@ -44,7 +48,13 @@ export default async function page({ params }) {
         if (about?.slug !== slug) {
             // a page whose slug was set in the CMS
             const pageModule = await getPageModuleBySlug(slug);
-            if (!pageModule) notFound();
+            if (!pageModule) {
+                // an Accredition entry (NAAC, NBA ...) whose slug was set in the CMS
+                if (await getAccreditationBySlug(slug)) {
+                    return <AccreditationPage params={Promise.resolve({ slug })} />;
+                }
+                notFound();
+            }
             const PageView = pageModule.default;
             return <PageView viaSlug />;
         }
