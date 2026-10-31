@@ -1270,6 +1270,7 @@ function MegaMenuPanel({
         <Link
           href={leaf?.url || "#!"}
           aria-label={leaf?.label}
+          {...externalProps(leaf)}
           className={cn(
             "w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 group",
             isHighlight
@@ -1319,6 +1320,7 @@ function MegaMenuPanel({
                       key={child?.id}
                       href={child?.url || "#!"}
                       aria-label={child?.label}
+                      {...externalProps(child)}
                       onMouseEnter={() => setActiveChildId(child?.id)}
                       className={cn(
                         "w-full text-left flex items-center px-6 2xl:px-7 py-3 2xl:py-3.5 transition-colors duration-150 select-none",
@@ -1404,6 +1406,7 @@ function MegaMenuPanel({
                 <Link
                   href={activeChild?.url || "#!"}
                   aria-label={activeChild?.label}
+                  {...externalProps(activeChild)}
                   className="inline-flex items-center gap-2 text-[13px] 2xl:text-[15px] font-bold text-[#ea580c] hover:underline"
                 >
                   {activeChild?.label}
@@ -1490,6 +1493,7 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
         aria-label={leaf?.label}
         aria-haspopup="true"
         aria-expanded={isOpen}
+        {...externalProps(leaf)}
         className={cn(
           "w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug rounded-[5px] px-2.5 py-[5px] transition-all duration-150",
           isOpen
@@ -1553,6 +1557,7 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
                     <Link
                       href={sub?.url || "#!"}
                       aria-label={sub?.label}
+                      {...externalProps(sub)}
                       className={cn(
                         "w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium",
                         isActiveUrl(sub?.url, pathname) &&
@@ -1653,6 +1658,7 @@ function NavigationMenu({
                     key={sub?.id || sub?.label}
                     href={sub?.url || "#!"}
                     aria-label={sub?.label}
+                    {...externalProps(sub)}
                     className="w-full flex items-center gap-2 py-1.5 px-3 text-[13px] rounded-md text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5 transition-colors duration-200"
                   >
                     <span className="w-[7px] h-[7px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
@@ -1673,6 +1679,7 @@ function NavigationMenu({
           <Link
             href={item?.url || "#!"}
             aria-label={item?.label}
+            {...externalProps(item)}
             className={cn(
               "w-full flex items-center justify-between px-5 py-3.5 border-b border-black/8 dark:border-white/10",
               "text-sm font-medium text-[#212121] dark:text-white hover:text-(--basecolor) transition-colors duration-200",
@@ -1694,6 +1701,7 @@ function NavigationMenu({
         <Link
           href={item?.url || "#!"}
           aria-label={item?.label}
+          {...externalProps(item)}
           className={cn(
             "w-full flex items-center gap-2 py-1.5 px-3 text-[13px] rounded-md transition-colors duration-200",
             isHighlight
@@ -1807,6 +1815,7 @@ function NavigationMenu({
         <Link
           href={item?.url || "#"}
           aria-label={item?.label}
+          {...externalProps(item)}
           className={cn(
             "text-[14px] lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent",
             className,
@@ -1827,6 +1836,7 @@ function NavigationMenu({
             <Link
               href={item?.url || "#"}
               aria-label={item.label}
+              {...externalProps(item)}
               className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium text-white transition-colors duration-400"
             >
               <span>{item.label}</span>
