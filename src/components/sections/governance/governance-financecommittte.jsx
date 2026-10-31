@@ -51,7 +51,7 @@ export default function GovernanceFinancecommittte({ data, title, governancePage
                                         {["Name", "Address/Designation", "Status in the Authority"].map((item, idx) => (
                                             <th
                                                 key={idx}
-                                                className="whitespace-nowrap p-[10px_15px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px] text-center text-[13px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[20px] font-normal uppercase text-white first:rounded-l-[10px] last:rounded-r-[10px]"
+                                                className="whitespace-nowrap p-[10px_15px] xl:p-[10px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] text-center text-[12px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[20px] font-normal uppercase text-white first:rounded-l-[10px] last:rounded-r-[10px]"
                                             >
                                                 {item}
                                             </th>
