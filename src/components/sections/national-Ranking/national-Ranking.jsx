@@ -16,7 +16,7 @@ export default function NationalRanking({ data }) {
                 <h2 className="cmn_Title">
                     {data.sectionTitle}
                 </h2>
-                <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] lg:max-w-[92%] typography">
+                <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] lg:max-w-[92%] ">
                     <BlocksRenderer content={data.sectionDescription} />
                 </div>
 

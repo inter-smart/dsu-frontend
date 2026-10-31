@@ -13,7 +13,7 @@ export default function IntershipSupport({ data }) {
                     <div className="w-full lg:w-1/2">
                         <div className="lg:w-[85%]">
                             <div className="cmn_Title">{data.heading}</div>
-                            <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px] typography">
+                            <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px] ">
                                 <BlocksRenderer content={data.description} />
                             </div>
                             <ul className="space-y-4 mt-[15px] 3xl:mt-[25px]">

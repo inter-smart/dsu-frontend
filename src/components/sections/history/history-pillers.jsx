@@ -17,7 +17,7 @@ export default function HistoryPillers({ data }) {
                         {data?.title} <br />
                         {data?.titleContinuation}
                     </h2>
-                    <div className="text_1 leading-[1.2] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[20px] [&_p]:xl:mb-[25px] [&_p]:2xl:mb-[30px] [&_p]:3xl:mb-[40px]  typography">
+                    <div className="text_1 leading-[1.2] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[20px] [&_p]:xl:mb-[25px] [&_p]:2xl:mb-[30px] [&_p]:3xl:mb-[40px]  ">
                         <BlocksRenderer content={data?.description || []} />
                     </div>
                 </div>
@@ -64,7 +64,7 @@ export default function HistoryPillers({ data }) {
                                             <div className="text_1">{itemList.designation}</div>
                                         </div>
                                     </div>
-                                    <div className="typography">
+                                    <div>
                                         <BlocksRenderer content={Array.isArray(itemList.description) ? itemList.description : []} />
                                     </div>
                                 </div>

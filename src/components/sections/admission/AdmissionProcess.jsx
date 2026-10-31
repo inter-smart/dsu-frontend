@@ -25,7 +25,7 @@ export default function AdmissionProcess({ data }) {
                     )}
 
                     {description?.length > 0 && (
-                        <div className="typography mt-2.5 sm:mt-3 text-[14px] sm:text-[15px] xl:text-[16px] text-[#6B7280] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
+                        <div className="mt-2.5 sm:mt-3 text-[14px] sm:text-[15px] xl:text-[16px] text-[#6B7280] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
                             {Array.isArray(description) ? (
                                 <BlocksRenderer
                                     content={description}

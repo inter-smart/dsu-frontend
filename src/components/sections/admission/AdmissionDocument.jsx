@@ -25,7 +25,7 @@ export default function AdmissionDocument({ data }) {
                     )}
 
                     {description?.length > 0 && (
-                        <div className="typography mt-2 sm:mt-2.5 text-[13px] sm:text-[14px] xl:text-[15px] 3xl:text-[17px] text-[#6B7280] dark:text-[#9CA3AF] max-w-4xl leading-relaxed">
+                        <div className="mt-2 sm:mt-2.5 text-[13px] sm:text-[14px] xl:text-[15px] 3xl:text-[17px] text-[#6B7280] dark:text-[#9CA3AF] max-w-4xl leading-relaxed">
                             {Array.isArray(description) ? (
                                 <BlocksRenderer
                                     content={description}

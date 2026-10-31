@@ -61,7 +61,7 @@ export function SchoolItemList({ title, items = [], groupByLevel = false, groups
         <section className="container py-[40px] md:py-[60px]">
             <div className="cmn_Title mb-[25px]">{title}</div>
             {Array.isArray(description) && description.length > 0 && (
-                <div className="mb-[25px] text-[#4A5565] dark:text-white/80 typography">
+                <div className="mb-[25px] text-[#4A5565] dark:text-white/80 ">
                     <BlocksRenderer content={description} />
                 </div>
             )}

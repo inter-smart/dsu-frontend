@@ -13,7 +13,6 @@ export default function FacultyPublications({ data }) {
           <Heading>{data?.title}</Heading>
           {data?.description && (
             <Text
-              className="typography"
               dangerouslySetInnerHTML={{ __html: data.description }}
             />
           )}

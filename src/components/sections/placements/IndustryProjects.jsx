@@ -48,7 +48,7 @@ export default function IndustryProjects({ data }) {
                             </p>
                         )}
                         {data?.description?.length > 0 && (
-                            <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.7] space-y-[14px] typography">
+                            <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.7] space-y-[14px] ">
                                 <BlocksRenderer content={data.description} />
                             </div>
                         )}
@@ -89,7 +89,7 @@ export default function IndustryProjects({ data }) {
                                         <div className="text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[25px] font-semibold text-[#212121] dark:text-white mb-[12px] xl:mb-[18px]">
                                             {card.title}
                                         </div>
-                                        <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.7] [&_strong]:font-semibold [&_strong]:text-[#212121] dark:[&_strong]:text-white typography">
+                                        <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.7] [&_strong]:font-semibold [&_strong]:text-[#212121] dark:[&_strong]:text-white ">
                                             <BlocksRenderer content={card.description} />
                                         </div>
                                     </div>

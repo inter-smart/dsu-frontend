@@ -16,7 +16,7 @@ export default function AcademicFacilities({ data }) {
             <div className="container">
                 <div className="flex flex-wrap [&>div]:lg:w-1/2  mb-[15px] lg:mb-[25px] 2xl:mb-[40px] 3xl:mb-[45px]">
                     {data.heading && <div className="cmn_Title mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] ">{data.heading}</div>}
-                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] typography">
+                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] ">
                         {data?.description && <BlocksRenderer content={data.description} />}
                     </div>
                 </div>

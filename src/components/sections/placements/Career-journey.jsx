@@ -17,7 +17,7 @@ export default function CareerJourney({ data }) {
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[90px] 3xl:py-[110px] dark:bg-[#000]">
             <div className="container">
                 <div className="cmn_Title dark:text-white">{data.heading}</div>
-                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px] mb-[10px] typography">
+                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px] mb-[10px] ">
                     <BlocksRenderer content={data.description} />
                 </div>
                 <div className="flex max-lg:flex-wrap gap-[10px] lg:gap-[20px]">
@@ -39,7 +39,7 @@ export default function CareerJourney({ data }) {
                                     </AccordionTrigger>
                                     {item?.answer?.length > 0 && (
                                         <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] text-[#797979] dark:text-[#9CA3AF]">
-                                            <div className="w-full typography">
+                                            <div className="w-full ">
                                                 <BlocksRenderer content={item.answer} />
                                             </div>
                                         </AccordionContent>

@@ -42,7 +42,7 @@ export default function DSUCell({ data, menu }) {
                             <h2 className="cmn_Title">
                                 {data.heading}
                             </h2>
-                            <div className="text_1 leading-[1.2] text-[#4A5565] mb-[15px] xl:mb-[20px] 2xl:mb-[30px] 3xl:mb-[40px] typography">
+                            <div className="text_1 leading-[1.2] text-[#4A5565] mb-[15px] xl:mb-[20px] 2xl:mb-[30px] 3xl:mb-[40px] ">
                                 <BlocksRenderer content={data.description} />
                             </div>
                             <ul className="mb-[20px] lg:mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]">

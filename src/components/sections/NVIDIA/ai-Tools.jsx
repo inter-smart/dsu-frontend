@@ -118,7 +118,7 @@ export default function AiTools({ data }) {
                         </h2>
 
                         {description && (
-                            <div className="typography text_1 mb-[24px] xl:mb-[30px] 2xl:mb-[36px] max-w-[360px] xl:max-w-[400px]">
+                            <div className="text_1 mb-[24px] xl:mb-[30px] 2xl:mb-[36px] max-w-[360px] xl:max-w-[400px]">
                                 {Array.isArray(description) ? (
                                     <BlocksRenderer
                                         content={description}

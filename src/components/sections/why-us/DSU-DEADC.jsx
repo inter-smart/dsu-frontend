@@ -51,7 +51,7 @@ export default function DSUDEADC({ data, menu }) {
                             </h2>
 
                             <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
-                                         w-full  typography">
+                                         w-full  ">
                                 {data?.description?.length > 0 && <BlocksRenderer content={data.description} />}
                             </div>
                             <Accordion type="single" collapsible defaultValue="item-2" className="mt-[30px] w-full xl:mt-[40px]">

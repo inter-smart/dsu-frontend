@@ -47,7 +47,7 @@ export default function IndustryPartnerships({ data }) {
             >
               {data?.title}
             </Heading>
-            <div className="typography text_1 [--text-color:#4A5565] dark:[--text-color:#f9fafb] space-y-[16px] 3xl:space-y-[28px]">
+            <div className="text_1 [--text-color:#4A5565] dark:[--text-color:#f9fafb] space-y-[16px] 3xl:space-y-[28px]">
               <BlocksRenderer content={data?.description || []} />
             </div>
           </div>

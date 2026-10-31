@@ -25,7 +25,7 @@ export default function LibraryOverview({ data, menu }) {
                             <h2 className="cmn_Title dark:text-white mb-[25px]">
                                 {data.heading}
                             </h2>
-                            <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] typography">
+                            <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] ">
                                 {data.description && <BlocksRenderer content={data.description} />}
                             </div>
                             {data?.image?.url && (
@@ -71,7 +71,7 @@ export default function LibraryOverview({ data, menu }) {
                             </div>
                             <div className="w-full">
                                 <div className="cmn_Title dark:text-white">{data?.membershipSection.heading}</div>
-                                <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] typography">
+                                <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] ">
                                     {data?.membershipSection?.description && <BlocksRenderer content={data.membershipSection.description} />}
                                 </div>
                                 <div className="w-full border border-black/10 dark:border-white/10 bg-[#F4F8FD] dark:bg-[#18191B] rounded-[4px] xl:rounded-[8px] 2xl:rounded-[8px] 3xl:rounded-[10px] mb-[30px] 2xl:mb-[40px] 3xl:mb-[60px]">

@@ -11,7 +11,7 @@ export default function FacultyAchievements({ data }) {
           </div>
           {/* rich text: paragraphs in the description style, bullet lists as achievements */}
           <Text
-            className="typography text-[#4A5565] [&_p]:mb-2.5 2xl:[&_p]:mb-3.75 [&_ul]:text-sm 2xl:[&_ul]:text-[15px] 3xl:[&_ul]:text-lg [&_ul]:leading-[1.3] [&_ul]:font-medium [&_ul]:text-[#212121] [&_ul]:pl-5 [&_ul]:list-disc [&_ul]:space-y-2.5 2xl:[&_ul]:space-y-3.75 3xl:[&_ul]:space-y-5 [&_ol]:pl-5 [&_ol]:list-decimal"
+            className="text-[#4A5565] [&_p]:mb-2.5 2xl:[&_p]:mb-3.75 [&_ul]:text-sm 2xl:[&_ul]:text-[15px] 3xl:[&_ul]:text-lg [&_ul]:leading-[1.3] [&_ul]:font-medium [&_ul]:text-[#212121] [&_ul]:pl-5 [&_ul]:list-disc [&_ul]:space-y-2.5 2xl:[&_ul]:space-y-3.75 3xl:[&_ul]:space-y-5 [&_ol]:pl-5 [&_ol]:list-decimal"
             dangerouslySetInnerHTML={{ __html: data?.description || "" }}
           />
         </div>

@@ -56,7 +56,7 @@ export default function AboutVision({ data }) {
                                                 </div>
                                                 {typeof item.description === "string" && item.description.trim() && (
                                                     item.description.startsWith("<") ? (
-                                                        <div className="typography" dangerouslySetInnerHTML={{ __html: item.description }} />
+                                                        <div dangerouslySetInnerHTML={{ __html: item.description }} />
                                                     ) : (
                                                         <p>{item.description}</p>
                                                     )
@@ -91,7 +91,7 @@ export default function AboutVision({ data }) {
                                         </div>
                                         {typeof item.description === "string" && item.description.trim() && (
                                             item.description.startsWith("<") ? (
-                                                <div className="typography" dangerouslySetInnerHTML={{ __html: item.description }} />
+                                                <div dangerouslySetInnerHTML={{ __html: item.description }} />
                                             ) : (
                                                 <p>{item.description}</p>
                                             )

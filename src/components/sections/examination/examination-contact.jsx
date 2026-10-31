@@ -38,7 +38,7 @@ export default function ExaminationContact({ data }) {
                           {item?.addressDetail?.title}
                         </div>
                         <div
-                          className="typography text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.8] font-normal text-[#4A5565] [&_p]:[font:inherit] [&_p]:[color:inherit] [&_p]:[letter-spacing:inherit]"
+                          className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.8] font-normal text-[#4A5565] [&_p]:[font:inherit] [&_p]:[color:inherit] [&_p]:[letter-spacing:inherit]"
                           dangerouslySetInnerHTML={{
                             __html: item?.addressDetail?.address ?? "",
                           }}

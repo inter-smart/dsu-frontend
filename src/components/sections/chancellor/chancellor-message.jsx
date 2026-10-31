@@ -151,7 +151,7 @@ export default function ChancellorMessage({ data }) {
                         </div>
                         )}
                         {hasContent(data?.description) && (
-                        <div className="typography text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
+                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
                         w-full max-w-[550px] xl:max-w-[590px] 2xl:max-w-[790px] 3xl:max-w-[820px]">
                             {Array.isArray(data.description) && (
                                 <BlocksRenderer content={data.description} />
@@ -159,7 +159,7 @@ export default function ChancellorMessage({ data }) {
                         </div>
                         )}
                         {hasContent(data?.closingNote) && (
-                            <div className="typography text-[15px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[28px] text-[#212121] dark:text-white font-semibold uppercase">
+                            <div className="text-[15px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[28px] text-[#212121] dark:text-white font-semibold uppercase">
                                 {Array.isArray(data.closingNote) ? (
                                     <BlocksRenderer content={data.closingNote} />
                                 ) : (

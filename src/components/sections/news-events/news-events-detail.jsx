@@ -71,7 +71,7 @@ export default function NewsEventsDetail({
                 </div>
               </div>
               <div
-                className="typography [&_p]:text-[#4A5565] [&_p]:mb-2.5 sm:[&_p]:mb-3.75 lg:[&_p]:mb-5 2xl:[&_p]:mb-7.5 3xl:[&_p]:mb-10 [&_h2]:mb-5 sm:[&_h2]:mb-6.25 2xl:[&_h2]:mb-8.75 [&_h3]:mb-3.75 2xl:[&_h3]:mb-5"
+                className="[&_p]:text-[#4A5565] [&_p]:mb-2.5 sm:[&_p]:mb-3.75 lg:[&_p]:mb-5 2xl:[&_p]:mb-7.5 3xl:[&_p]:mb-10 [&_h2]:mb-5 sm:[&_h2]:mb-6.25 2xl:[&_h2]:mb-8.75 [&_h3]:mb-3.75 2xl:[&_h3]:mb-5"
                 dangerouslySetInnerHTML={{
                   __html: data?.description1 || "",
                 }}
@@ -141,7 +141,7 @@ export default function NewsEventsDetail({
                     )}
                     {group?.otherMembers && (
                       <div
-                        className="typography w-full h-auto mb-4 text-sm text-[#4A5565] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-sm 2xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-[15px] 3xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-lg [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:leading-[1.1] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:font-medium [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-black [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:mb-3.75 [&_ul]:list-disc [&_ul]:list-inside [&_ul]:pl-0 [&_ol]:list-decimal [&_ol]:list-inside [&_ol]:pl-0 [&_li]:leading-relaxed 2xl:[&_ul]:space-y-1.25 3xl:[&_ul]:space-y-2.5 [&_p]:mb-2.5"
+                        className="w-full h-auto mb-4 text-sm text-[#4A5565] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-sm 2xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-[15px] 3xl:[&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-lg [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:leading-[1.1] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:font-medium [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:text-black [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:mb-3.75 [&_ul]:list-disc [&_ul]:list-inside [&_ul]:pl-0 [&_ol]:list-decimal [&_ol]:list-inside [&_ol]:pl-0 [&_li]:leading-relaxed 2xl:[&_ul]:space-y-1.25 3xl:[&_ul]:space-y-2.5 [&_p]:mb-2.5"
                         dangerouslySetInnerHTML={{
                           __html: group?.otherMembers,
                         }}
@@ -151,7 +151,7 @@ export default function NewsEventsDetail({
                 ))}
               </div>
               <div
-                className="typography [&_p]:leading-[1.8] [&_p]:text-[#4A5565] [&_p]:mb-2.5 sm:[&_p]:mb-3.75 2xl:[&_p]:mb-5 3xl:[&_p]:mb-7.5 [&_h2]:mb-3.75 sm:[&_h2]:mb-6.25 2xl:[&_h2]:mb-8.75"
+                className="[&_p]:leading-[1.8] [&_p]:text-[#4A5565] [&_p]:mb-2.5 sm:[&_p]:mb-3.75 2xl:[&_p]:mb-5 3xl:[&_p]:mb-7.5 [&_h2]:mb-3.75 sm:[&_h2]:mb-6.25 2xl:[&_h2]:mb-8.75"
                 dangerouslySetInnerHTML={{
                   __html: data?.description2 || "",
                 }}
