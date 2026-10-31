@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
 import { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom"; // ADDED
-import { ChevronRight, ChevronDown, ExternalLink, X } from "lucide-react";
+import { ChevronRight, ChevronDown, X } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -1182,30 +1182,6 @@ function useIsMobile() {
   return isMobile;
 }
 
-// Small button beside a menu link: the link itself opens in the same tab, this opens a new tab.
-// Skipped for placeholder urls ("#", "#!") since there is nothing to open.
-function NewTabButton({ url, label, className }) {
-  if (!url || url.startsWith("#")) return null;
-  return (
-    <button
-      type="button"
-      title="Open in new tab"
-      aria-label={`Open ${label} in a new tab`}
-      onClick={(event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        window.open(url, "_blank", "noopener,noreferrer");
-      }}
-      className={cn(
-        "shrink-0 size-6 flex items-center justify-center rounded-[4px] cursor-pointer transition-opacity duration-150",
-        className,
-      )}
-    >
-      <ExternalLink size={12} strokeWidth={2.5} />
-    </button>
-  );
-}
-
 // True when a menu url points at the page being viewed. Placeholders ("#", "#!") never match.
 function isActiveUrl(url, pathname) {
   if (!url || !pathname || url.startsWith("#")) return false;
@@ -1290,16 +1266,12 @@ function MegaMenuPanel({
     const isHighlight = isActiveUrl(leaf?.url, pathname);
 
     return (
-      <li
-        key={leaf?.id || leaf?.label}
-        className="w-full list-none flex items-center group/row"
-      >
+      <li key={leaf?.id || leaf?.label} className="w-full list-none">
         <Link
           href={leaf?.url || "#!"}
           aria-label={leaf?.label}
-          {...externalProps(leaf)}
           className={cn(
-            "flex-1 min-w-0 inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 group",
+            "w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 group",
             isHighlight
               ? "bg-[#FFE8D6] font-medium"
               : "hover:bg-[#FFE8D6] hover:font-medium",
@@ -1309,11 +1281,6 @@ function MegaMenuPanel({
           <span className="w-[8px] h-[8px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
           <span className="truncate">{leaf?.label}</span>
         </Link>
-        <NewTabButton
-          url={leaf?.url}
-          label={leaf?.label}
-          className="text-[#ea580c] opacity-0 group-hover/row:opacity-100 focus-visible:opacity-100 hover:bg-[#FFE8D6]"
-        />
       </li>
     );
   };
@@ -1348,35 +1315,25 @@ function MegaMenuPanel({
                 const isActive = child?.id === activeChild?.id;
                 if (!child?.children?.length) {
                   return (
-                    <div
+                    <Link
                       key={child?.id}
+                      href={child?.url || "#!"}
+                      aria-label={child?.label}
                       onMouseEnter={() => setActiveChildId(child?.id)}
                       className={cn(
-                        "w-full flex items-center pr-3 transition-colors duration-150 group/row",
+                        "w-full text-left flex items-center px-6 2xl:px-7 py-3 2xl:py-3.5 transition-colors duration-150 select-none",
                         isActive ? "bg-white/20" : "hover:bg-white/10",
                       )}
                     >
-                      <Link
-                        href={child?.url || "#!"}
-                        aria-label={child?.label}
-                        {...externalProps(child)}
-                        className="flex-1 text-left flex items-center px-6 2xl:px-7 py-3 2xl:py-3.5 select-none"
+                      <span
+                        className={cn(
+                          "text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-tight text-white whitespace-nowrap",
+                          isActive ? "font-semibold" : "font-normal opacity-95",
+                        )}
                       >
-                        <span
-                          className={cn(
-                            "text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-tight text-white whitespace-nowrap",
-                            isActive ? "font-semibold" : "font-normal opacity-95",
-                          )}
-                        >
-                          {child?.label}
-                        </span>
-                      </Link>
-                      <NewTabButton
-                        url={child?.url}
-                        label={child?.label}
-                        className="text-white opacity-0 group-hover/row:opacity-100 focus-visible:opacity-100 hover:bg-white/20"
-                      />
-                    </div>
+                        {child?.label}
+                      </span>
+                    </Link>
                   );
                 }
                 return (
@@ -1447,7 +1404,6 @@ function MegaMenuPanel({
                 <Link
                   href={activeChild?.url || "#!"}
                   aria-label={activeChild?.label}
-                  {...externalProps(activeChild)}
                   className="inline-flex items-center gap-2 text-[13px] 2xl:text-[15px] font-bold text-[#ea580c] hover:underline"
                 >
                   {activeChild?.label}
@@ -1526,7 +1482,7 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
       ref={rowRef}
       onMouseEnter={openSub}
       onMouseLeave={closeSub}
-      className="w-full list-none flex items-center group/row"
+      className="w-full list-none"
     >
       <Link
         ref={linkRef}
@@ -1534,9 +1490,8 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
         aria-label={leaf?.label}
         aria-haspopup="true"
         aria-expanded={isOpen}
-        {...externalProps(leaf)}
         className={cn(
-          "flex-1 min-w-0 inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug rounded-[5px] px-2.5 py-[5px] transition-all duration-150",
+          "w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug rounded-[5px] px-2.5 py-[5px] transition-all duration-150",
           isOpen
             ? "bg-[#FFE8D6] font-semibold text-[#ea580c]"
             : isCurrent
@@ -1552,11 +1507,6 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
           className="mr-1.5 shrink-0 text-[#ea580c]"
         />
       </Link>
-      <NewTabButton
-        url={leaf?.url}
-        label={leaf?.label}
-        className="text-[#ea580c] opacity-0 group-hover/row:opacity-100 focus-visible:opacity-100 hover:bg-[#FFE8D6]"
-      />
 
       {isOpen &&
         createPortal(
@@ -1599,16 +1549,12 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
 
               <ul className="flex flex-col gap-[3px] p-0 m-0">
                 {getFlyoutItems(leaf).map((sub) => (
-                  <li
-                    key={sub?.id || sub?.label}
-                    className="w-full list-none flex items-center group/row"
-                  >
+                  <li key={sub?.id || sub?.label} className="w-full list-none">
                     <Link
                       href={sub?.url || "#!"}
                       aria-label={sub?.label}
-                      {...externalProps(sub)}
                       className={cn(
-                        "flex-1 min-w-0 inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium",
+                        "w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium",
                         isActiveUrl(sub?.url, pathname) &&
                           "bg-[#FFE8D6] font-medium",
                       )}
@@ -1616,11 +1562,6 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
                       <span className="w-[8px] h-[8px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
                       <span className="truncate">{sub?.label}</span>
                     </Link>
-                    <NewTabButton
-                      url={sub?.url}
-                      label={sub?.label}
-                      className="text-[#ea580c] opacity-0 group-hover/row:opacity-100 focus-visible:opacity-100 hover:bg-[#FFE8D6]"
-                    />
                   </li>
                 ))}
               </ul>
@@ -1708,25 +1649,15 @@ function NavigationMenu({
                 )}
               >
                 {item.subMenu.map((sub) => (
-                  <div
+                  <Link
                     key={sub?.id || sub?.label}
-                    className="w-full flex items-center"
+                    href={sub?.url || "#!"}
+                    aria-label={sub?.label}
+                    className="w-full flex items-center gap-2 py-1.5 px-3 text-[13px] rounded-md text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5 transition-colors duration-200"
                   >
-                    <Link
-                      href={sub?.url || "#!"}
-                      aria-label={sub?.label}
-                      {...externalProps(sub)}
-                      className="flex-1 min-w-0 flex items-center gap-2 py-1.5 px-3 text-[13px] rounded-md text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5 transition-colors duration-200"
-                    >
-                      <span className="w-[7px] h-[7px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
-                      <span className="truncate">{sub?.label}</span>
-                    </Link>
-                    <NewTabButton
-                      url={sub?.url}
-                      label={sub?.label}
-                      className="text-(--basecolor)"
-                    />
-                  </div>
+                    <span className="w-[7px] h-[7px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
+                    <span className="truncate">{sub?.label}</span>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -1739,57 +1670,40 @@ function NavigationMenu({
     if (!hasSubmenu) {
       if (level === 0) {
         return (
-          <div
+          <Link
+            href={item?.url || "#!"}
+            aria-label={item?.label}
             className={cn(
-              "w-full flex items-center pr-3 border-b border-black/8 dark:border-white/10",
+              "w-full flex items-center justify-between px-5 py-3.5 border-b border-black/8 dark:border-white/10",
+              "text-sm font-medium text-[#212121] dark:text-white hover:text-(--basecolor) transition-colors duration-200",
               className,
             )}
           >
-            <Link
-              href={item?.url || "#!"}
-              aria-label={item?.label}
-              {...externalProps(item)}
-              className="flex-1 min-w-0 flex items-center justify-between pl-5 pr-2 py-3.5 text-sm font-medium text-[#212121] dark:text-white hover:text-(--basecolor) transition-colors duration-200"
-            >
-              <span>{item?.label}</span>
-              <ChevronRight
-                size={16}
-                className="shrink-0 text-black/60 dark:text-white/60"
-              />
-            </Link>
-            <NewTabButton
-              url={item?.url}
-              label={item?.label}
-              className="text-(--basecolor)"
+            <span>{item?.label}</span>
+            <ChevronRight
+              size={16}
+              className="shrink-0 text-black/60 dark:text-white/60"
             />
-          </div>
+          </Link>
         );
       }
 
       const isHighlight = isActiveUrl(item?.url, pathname);
 
       return (
-        <div className="w-full flex items-center">
-          <Link
-            href={item?.url || "#!"}
-            aria-label={item?.label}
-            {...externalProps(item)}
-            className={cn(
-              "flex-1 min-w-0 flex items-center gap-2 py-1.5 px-3 text-[13px] rounded-md transition-colors duration-200",
-              isHighlight
-                ? "bg-[#FFE8D6] dark:bg-white/10 font-medium text-black dark:text-white"
-                : "text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5",
-            )}
-          >
-            <span className="w-[7px] h-[7px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
-            <span className="truncate">{item?.label}</span>
-          </Link>
-          <NewTabButton
-            url={item?.url}
-            label={item?.label}
-            className="text-(--basecolor)"
-          />
-        </div>
+        <Link
+          href={item?.url || "#!"}
+          aria-label={item?.label}
+          className={cn(
+            "w-full flex items-center gap-2 py-1.5 px-3 text-[13px] rounded-md transition-colors duration-200",
+            isHighlight
+              ? "bg-[#FFE8D6] dark:bg-white/10 font-medium text-black dark:text-white"
+              : "text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5",
+          )}
+        >
+          <span className="w-[7px] h-[7px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
+          <span className="truncate">{item?.label}</span>
+        </Link>
       );
     }
 
@@ -1890,21 +1804,16 @@ function NavigationMenu({
     if (level > 0) return null;
     if (!hasSubmenu) {
       return (
-        <div className={cn("group/row w-auto h-full flex items-center", className)}>
-          <Link
-            href={item?.url || "#"}
-            aria-label={item?.label}
-            {...externalProps(item)}
-            className="text-[14px] lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent"
-          >
-            <span>{item?.label}</span>
-          </Link>
-          <NewTabButton
-            url={item?.url}
-            label={item?.label}
-            className="ml-1 text-white opacity-0 group-hover/row:opacity-100 focus-visible:opacity-100 hover:bg-white/20"
-          />
-        </div>
+        <Link
+          href={item?.url || "#"}
+          aria-label={item?.label}
+          className={cn(
+            "text-[14px] lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent",
+            className,
+          )}
+        >
+          <span>{item?.label}</span>
+        </Link>
       );
     }
     return (
@@ -1915,21 +1824,13 @@ function NavigationMenu({
       >
         <div className="w-full h-auto flex items-center justify-center gap-1.25">
           {item?.url ? (
-            <>
-              <Link
-                href={item?.url || "#"}
-                aria-label={item.label}
-                {...externalProps(item)}
-                className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium text-white transition-colors duration-400"
-              >
-                <span>{item.label}</span>
-              </Link>
-              <NewTabButton
-                url={item.url}
-                label={item.label}
-                className="size-5 text-white hover:bg-white/20"
-              />
-            </>
+            <Link
+              href={item?.url || "#"}
+              aria-label={item.label}
+              className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium text-white transition-colors duration-400"
+            >
+              <span>{item.label}</span>
+            </Link>
           ) : (
             <button
               type="button"
