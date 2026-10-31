@@ -7,15 +7,8 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 
 function DomainCard({ domain }) {
-  const isHighlight = domain.variant === "highlight";
   return (
-    <div
-      className={
-        isHighlight
-          ? "rounded-[10px] border border-black/10 bg-gradient-to-r from-[#e65100] via-[#ff6d00] to-[#ff8f00] p-5 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg xl:p-6"
-          : "rounded-[10px] border border-black/10 bg-gradient-to-r from-(--basecolor)/10 via-[#ff6d00]/10 to-(--basecolor2)/10 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-(--basecolor2) hover:shadow-lg dark:border-white/10 xl:p-6"
-      }
-    >
+    <div className="group rounded-[10px] border border-black/10 bg-gradient-to-r from-(--basecolor)/10 via-[#ff6d00]/10 to-(--basecolor2)/10 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:from-[#e65100] hover:via-[#ff6d00] hover:to-[#ff8f00] hover:shadow-lg dark:border-white/10 xl:p-6">
       {domain.icon && (
         <Image
           src={domain.icon}
@@ -25,22 +18,10 @@ function DomainCard({ domain }) {
           className="mb-3 size-9 object-contain xl:size-12"
         />
       )}
-      <h3
-        className={
-          isHighlight
-            ? "mb-2 text-[18px] font-semibold xl:text-[22px]"
-            : "mb-2 text-[18px] font-semibold text-[#212121] dark:text-white xl:text-[22px]"
-        }
-      >
+      <h3 className="mb-2 text-[18px] font-semibold text-[#212121] transition-colors duration-300 group-hover:text-white dark:text-white xl:text-[22px]">
         {domain.title}
       </h3>
-      <p
-        className={
-          isHighlight
-            ? "text-[14px] leading-[1.4] text-white/90 3xl:text-[16px]"
-            : "text_1 3xl:text-[16px]"
-        }
-      >
+      <p className="text_1 transition-colors duration-300 group-hover:!text-white/90 3xl:text-[16px]">
         {domain.description}
       </p>
     </div>

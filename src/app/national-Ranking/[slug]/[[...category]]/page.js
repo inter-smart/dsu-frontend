@@ -63,7 +63,7 @@ export default async function Page({ params }) {
 
   return (
     <>
-      {pageData.hero && <InnerHero data={pageData.hero} />}
+      {pageData.hero && <InnerHero data={pageData.hero} className="leadership-detail-hero" />}
       {isFlexible ? (
         <FlexibleSections
           sections={pageData.flexiblePage?.sections}

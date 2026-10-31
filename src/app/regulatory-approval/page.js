@@ -34,7 +34,7 @@ export default async function Page({ viaSlug } = {}) {
 
   return (
     <>
-      {pageData?.hero && <InnerHero data={pageData.hero} />}
+      {pageData?.hero && <InnerHero data={pageData.hero} className="leadership-detail-hero" />}
       {pageData?.listSection && (
         <RegulatoryApprovalList items={pageData.listSection} />
       )}

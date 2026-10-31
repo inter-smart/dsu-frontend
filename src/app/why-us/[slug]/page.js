@@ -65,7 +65,7 @@ export default async function Page({ params }) {
     if (academicQualityPage) {
         return (
             <>
-                {academicQualityPage.hero && <InnerHero data={academicQualityPage.hero} />}
+                {academicQualityPage.hero && <InnerHero data={academicQualityPage.hero} className="leadership-detail-hero" />}
                 {academicQualityPage.academicQualitySection && (
                     <AcademicQualitySection data={academicQualityPage.academicQualitySection} />
                 )}
@@ -78,7 +78,7 @@ export default async function Page({ params }) {
     if (aqarPage) {
         return (
             <>
-                {aqarPage.hero && <InnerHero data={aqarPage.hero} />}
+                {aqarPage.hero && <InnerHero data={aqarPage.hero} className="leadership-detail-hero" />}
                 {aqarPage.aqarReportsSection && (
                     <WhyusAQAR data={aqarPage.aqarReportsSection} />
                 )}
@@ -92,7 +92,7 @@ export default async function Page({ params }) {
         if (iqacPage.template === "IQAC") {
             return (
                 <>
-                    {iqacPage.hero && <InnerHero data={iqacPage.hero} />}
+                    {iqacPage.hero && <InnerHero data={iqacPage.hero} className="leadership-detail-hero" />}
                     {iqacPage.iqacSection && <IQAC data={iqacPage.iqacSection} />}
                 </>
             );
@@ -101,7 +101,7 @@ export default async function Page({ params }) {
         if (iqacPage.template === "reports") {
             return (
                 <>
-                    {iqacPage.hero && <InnerHero data={iqacPage.hero} />}
+                    {iqacPage.hero && <InnerHero data={iqacPage.hero} className="leadership-detail-hero" />}
                     {iqacPage.reportsSection && <IQACReport data={iqacPage.reportsSection} />}
                 </>
             );
@@ -110,7 +110,7 @@ export default async function Page({ params }) {
         if (iqacPage.template === "flexible-page") {
             return (
                 <>
-                    {iqacPage.hero && <InnerHero data={iqacPage.hero} />}
+                    {iqacPage.hero && <InnerHero data={iqacPage.hero} className="leadership-detail-hero" />}
                     <FlexibleSections sections={iqacPage.flexiblePage?.sections} />
                 </>
             );

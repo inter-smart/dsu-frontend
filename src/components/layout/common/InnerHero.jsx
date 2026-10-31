@@ -40,7 +40,7 @@ export default function InnerHero({ data, placementMenuItems, className }) {
     : "h-[330px] xl:h-[350px] 2xl:h-[450px] 3xl:h-[750px]";
 
   return (
-    <section className={`relative z-0 block w-full ${heightClass}`}>
+    <section className={cn("relative z-0 block w-full", heightClass, className)}>
       {/* Background Media */}
       <div className="absolute inset-0 z-0 h-full w-full">
         <div className="absolute inset-0 z-10 bg-black/25" />

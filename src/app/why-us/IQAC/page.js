@@ -556,7 +556,7 @@ const local_data = {
 export default function page() {
     return (
         <>
-            <InnerHero data={local_data.hero} />
+            <InnerHero data={local_data.hero} className="leadership-detail-hero" />
             <IQAC data={local_data.iqacSection} />
         </>
     );

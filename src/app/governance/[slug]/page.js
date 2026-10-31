@@ -32,7 +32,7 @@ export default async function GovernancePage({ params }) {
 
   return (
     <>
-      {pageData.hero && <InnerHero data={pageData.hero} />}
+      {pageData.hero && <InnerHero data={pageData.hero} className="leadership-detail-hero" />}
       {pageData.template === "flexible-page" ? (
         <FlexibleSections
           sections={pageData.flexiblePage?.sections}

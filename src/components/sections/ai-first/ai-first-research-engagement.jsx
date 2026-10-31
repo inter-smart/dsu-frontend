@@ -7,7 +7,10 @@ export default function ResearchEngagement({ data }) {
     <section className="relative isolate w-full overflow-hidden bg-[#061b27] pt-10 sm:pt-15 lg:pt-20 2xl:pt-25 3xl:pt-30">
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[url('/images/ai-first/engagement-bg.jpg')] bg-cover bg-center"
+        className="absolute inset-0 -z-10 bg-cover bg-center"
+        style={{
+          backgroundImage: `url('${data?.backgroundImage?.url || "/images/ai-first/engagement-bg.jpg"}')`,
+        }}
       />
       <div
         aria-hidden="true"
@@ -23,21 +26,14 @@ export default function ResearchEngagement({ data }) {
           </div>
           {data?.industries?.map((industry, index) => {
             const isAutomotive = industry.title === "Automotive & Mobility";
-            const isHighlight = industry.variant === "highlight";
-            const desktopOrder = isAutomotive
-              ? "lg:order-1"
-              : isHighlight
-                ? "lg:order-2"
-                : ["lg:order-3", "lg:order-4", "lg:order-5", "lg:order-6"][
-                    index - 2
-                  ];
+            const desktopOrder = isAutomotive ? "lg:order-1" : "lg:order-2";
 
             return (
               <article
                 key={industry.title}
                 className={`w-auto h-auto lg:col-span-3 ${desktopOrder}`}
               >
-                <div className="w-full h-full p-[20px_15px] 2xl:p-[30px_20px] 3xl:p-[35px_25px] bg-white/90 border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden block">
+                <div className="w-full h-full p-[20px_15px] 2xl:p-[30px_20px] 3xl:p-[35px_25px] bg-white/90 border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden block transition-all duration-300 hover:-translate-y-1 hover:border-(--basecolor2) hover:bg-white hover:shadow-lg">
                   <div className="w-full h-auto pb-2.5 2xl:pb-3.75 mb-2.5 2xl:mb-3.75 border-b border-black/10 flex">
                     <div className="w-7.5 sm:w-8.75 2xl:w-10 3xl:w-12.5 h-auto aspect-square shrink-0 flex items-center justify-center">
                       <Image
@@ -60,7 +56,7 @@ export default function ResearchEngagement({ data }) {
                   {industry.focusAreas?.length > 0 && (
                     <div className="w-full h-auto block">
                       <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-semibold text-[#212121] mb-3.75">
-                        Focus Areas
+                        {industry.focusAreasLabel || "Focus Areas"}
                       </div>
                       <ul className="space-y-2.5 2xl:space-y-3.75">
                         {industry.focusAreas.map((area) => (

@@ -7,6 +7,8 @@ import Image from "next/image";
 export default function GovernanceFinancecommittte({ data, title, governancePages = [] }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
+    const hasImages = data?.financeCommittee?.some((item) => item.image);
+
     return (
         <section className="relative py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
             <div className="container">
@@ -51,7 +53,9 @@ export default function GovernanceFinancecommittte({ data, title, governancePage
                                         {["Name", "Address/Designation", "Status in the Authority"].map((item, idx) => (
                                             <th
                                                 key={idx}
-                                                className="whitespace-nowrap p-[10px_15px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px] text-center text-[13px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[20px] font-normal uppercase text-white first:rounded-l-[10px] last:rounded-r-[10px]"
+                                                className={`whitespace-nowrap text-[13px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[20px] font-normal uppercase text-white first:rounded-l-[10px] last:rounded-r-[10px] ${idx === 0 && !hasImages
+                                                    ? "text-left p-[10px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px]"
+                                                    : "text-center p-[10px_15px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px]"}`}
                                             >
                                                 {item}
                                             </th>
