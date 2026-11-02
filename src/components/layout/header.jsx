@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
 import { useEffect, useState, useRef } from "react";
@@ -482,6 +483,8 @@ const TOP_BAR_ICONS = [
 ];
 
 export default function Header({ data = local_data }) {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [mobileOpenPath, setMobileOpenPath] = useState([]);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -568,8 +571,10 @@ export default function Header({ data = local_data }) {
         "w-full h-auto block transition-all duration-800 fixed z-20 lg:z-[9999] inset-[0_0_auto_0]",
         isHeaderVisible ? "translate-y-0" : "-translate-y-full",
         isScrolled
-          ? ["bg-black/40 backdrop-blur-xl transition-all duration-800"]
-          : ["bg-linear-to-r", "from-(--basecolor)/10", "to-(--basecolor2)/10"],
+          ? ["bg-black/70 backdrop-blur-xl transition-all duration-800 shadow-md"]
+          : isHome
+            ? ["bg-linear-to-r", "from-(--basecolor)/10", "to-(--basecolor2)/10"]
+            : ["bg-linear-to-r from-[#3B0703]/95 via-[#5E1212]/95 to-[#801818]/95 backdrop-blur-md shadow-md border-b border-white/10"],
       )}
     >
       <div className="w-full h-11.25 lg:h-7.5 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block">

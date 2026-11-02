@@ -29,43 +29,43 @@ export default function ResearchEngagement({ data }) {
               : isHighlight
                 ? "lg:order-2"
                 : ["lg:order-3", "lg:order-4", "lg:order-5", "lg:order-6"][
-                    index - 2
-                  ];
+                index - 2
+                ];
 
             return (
               <article
                 key={industry.title}
                 className={`w-auto h-auto lg:col-span-3 ${desktopOrder}`}
               >
-                <div className="w-full h-full p-[20px_15px] 2xl:p-[30px_20px] 3xl:p-[35px_25px] bg-white/90 border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden block">
-                  <div className="w-full h-auto pb-2.5 2xl:pb-3.75 mb-2.5 2xl:mb-3.75 border-b border-black/10 flex">
+                <div className="group/card w-full h-full p-[20px_15px] 2xl:p-[30px_20px] 3xl:p-[35px_25px] bg-white/90 border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden block transition-all duration-300 hover:bg-[#F37A1F] hover:border-transparent hover:shadow-lg">
+                  <div className="w-full h-auto pb-2.5 2xl:pb-3.75 mb-2.5 2xl:mb-3.75 border-b border-black/10 transition-colors duration-300 group-hover/card:border-white/30 flex">
                     <div className="w-7.5 sm:w-8.75 2xl:w-10 3xl:w-12.5 h-auto aspect-square shrink-0 flex items-center justify-center">
                       <Image
                         src={industry?.icon}
                         alt="Icon"
                         width={40}
                         height={40}
-                        className="size-full object-contain"
+                        className="size-full object-contain transition-[filter] duration-300 group-hover/card:brightness-0 group-hover/card:invert"
                       />
                     </div>
                     <div className="flex-1 min-w-0 pl-2.5 2xl:pl-5">
-                      <div className="text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-semibold text-[#212121] mb-1.25 2xl:mb-2.5">
+                      <div className="text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-semibold text-[#212121] transition-colors duration-300 group-hover/card:text-white mb-1.25 2xl:mb-2.5">
                         {industry?.title}
                       </div>
-                      <div className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#4A5565]">
+                      <div className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] transition-colors duration-300 group-hover/card:text-white">
                         {industry?.description}
                       </div>
                     </div>
                   </div>
                   {industry.focusAreas?.length > 0 && (
                     <div className="w-full h-auto block">
-                      <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-semibold text-[#212121] mb-3.75">
+                      <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-semibold text-[#212121] transition-colors duration-300 group-hover/card:text-white mb-3.75">
                         Focus Areas
                       </div>
                       <ul className="space-y-2.5 2xl:space-y-3.75">
                         {industry.focusAreas.map((area) => (
                           <li
-                            className="text-sm 2xl:text-[15px] 3xl:text-lg leading-1 font-normal text-[#4A5565] gap-1.25 2xl:gap-2 flex items-center"
+                            className="text-sm 2xl:text-[15px] 3xl:text-lg leading-1 font-normal text-[#4A5565] transition-colors duration-300 group-hover/card:text-white gap-1.25 2xl:gap-2 flex items-center"
                             key={area}
                           >
                             <span className="w-3 2xl:w-3.75 h-auto aspect-square flex items-center justify-center">
@@ -74,7 +74,7 @@ export default function ResearchEngagement({ data }) {
                                 alt="Icon"
                                 width={15}
                                 height={15}
-                                className="size-full object-contain"
+                                className="size-full object-contain transition-[filter] duration-300 group-hover/card:brightness-0 group-hover/card:invert"
                               />
                             </span>
                             {area}
@@ -95,9 +95,8 @@ export default function ResearchEngagement({ data }) {
             {data.personas.map((persona, index) => (
               <div
                 key={persona.title}
-                className={`group flex flex-col p-[15px_0px] sm:p-[20px_20px] lg:p-[30px_40px] xl:p-[40px_50px] 2xl:p-[40px_90px] 3xl:p-[50px_120px] ${
-                  index > 0 ? "lg:border-l lg:border-white/10" : ""
-                }`}
+                className={`group flex flex-col p-[15px_0px] sm:p-[20px_20px] lg:p-[30px_40px] xl:p-[40px_50px] 2xl:p-[40px_90px] 3xl:p-[50px_120px] ${index > 0 ? "lg:border-l lg:border-white/10" : ""
+                  }`}
               >
                 <div className="mb-2.5 sm:mb-3.75 lg:mb-5 2xl:mb-6.25 3xl:mb-10 flex items-center gap-2.5">
                   <div className="w-7.5 2xl:w-8.75 3xl:w-11.25 h-auto aspect-square shrink-0 flex items-center justify-center">

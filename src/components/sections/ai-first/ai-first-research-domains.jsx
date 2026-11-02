@@ -7,40 +7,21 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 
 function DomainCard({ domain }) {
-  const isHighlight = domain.variant === "highlight";
   return (
-    <div
-      className={
-        isHighlight
-          ? "rounded-[10px] border border-black/10 bg-gradient-to-r from-[#e65100] via-[#ff6d00] to-[#ff8f00] p-5 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg xl:p-6"
-          : "rounded-[10px] border border-black/10 bg-gradient-to-r from-(--basecolor)/10 via-[#ff6d00]/10 to-(--basecolor2)/10 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-(--basecolor2) hover:shadow-lg dark:border-white/10 xl:p-6"
-      }
-    >
+    <div className="group relative isolate overflow-hidden rounded-[10px] border border-black/10 bg-gradient-to-r from-(--basecolor)/10 via-[#ff6d00]/10 to-(--basecolor2)/10 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-lg before:absolute before:inset-0 before:-z-10 before:bg-gradient-to-r before:from-[#e65100] before:via-[#ff6d00] before:to-[#ff8f00] before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100 dark:border-white/10 xl:p-6">
       {domain.icon && (
         <Image
           src={domain.icon}
           alt={domain.title}
           width={48}
           height={48}
-          className="mb-3 size-9 object-contain xl:size-12"
+          className="mb-3 size-9 object-contain transition-[filter] duration-300 group-hover:brightness-0 group-hover:invert xl:size-12"
         />
       )}
-      <h3
-        className={
-          isHighlight
-            ? "mb-2 text-[18px] font-semibold xl:text-[22px]"
-            : "mb-2 text-[18px] font-semibold text-[#212121] dark:text-white xl:text-[22px]"
-        }
-      >
+      <h3 className="mb-2 text-[18px] font-semibold text-[#212121] transition-colors duration-300 group-hover:text-white dark:text-white xl:text-[22px]">
         {domain.title}
       </h3>
-      <p
-        className={
-          isHighlight
-            ? "text-[14px] leading-[1.4] text-white/90 3xl:text-[16px]"
-            : "text_1 3xl:text-[16px]"
-        }
-      >
+      <p className="text_1 transition-colors duration-300 group-hover:text-white/90! 3xl:text-[16px]">
         {domain.description}
       </p>
     </div>
