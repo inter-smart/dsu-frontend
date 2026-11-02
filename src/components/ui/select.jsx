@@ -24,14 +24,12 @@ function Select({ open: openProp, onOpenChange, ...props }) {
     if (!open) return undefined;
 
     const activeLenis = lenis;
-    const html = document.documentElement;
-    const prevOverflow = html.style.overflow;
 
+    // CHANGED: removed html.style.overflow = "hidden" (it hid the scrollbar and shifted the layout).
+    // Base UI's own scroll lock covers touch scrolling; Lenis covers wheel and smooth scrolling.
     activeLenis?.stop();
-    html.style.overflow = "hidden";
 
     return () => {
-      html.style.overflow = prevOverflow;
       activeLenis?.start();
     };
   }, [open, lenis]);

@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
 import { useEffect, useState, useRef } from "react";
-import { createPortal } from "react-dom"; // ADDED
-import { ChevronRight, ChevronDown, X } from "lucide-react";
+import { createPortal } from "react-dom"; // ADDED 
+import { ChevronRight, ChevronDown, X, User, LogOut } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,7 +32,7 @@ import {
 // ADDED: flyout items shown to the right of "Pro-Vice Chancellor" (replace labels/urls)
 const proViceChancellorSubMenu = [
   { id: 1, url: "#!", label: "Prof. R Janardhan" },
-  { id: 2, url: "#!", label: "Dr. Prakash S" }, 
+  { id: 2, url: "#!", label: "Dr. Prakash S" },
 ];
 
 const local_data = {
@@ -676,20 +676,20 @@ export default function Header({ data = local_data }) {
                       aria-label={data?.logo?.mainlogo?.alternativeTxt}
                       className="w-40 2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-105"
                     >
-                     {data?.logo?.mainlogo?.url &&
-                      <Image
-                        src={data?.logo?.mainlogo?.url}
-                        alt={
-                          data?.logo?.mainlogo?.alternativeTxt ||
-                          data?.logo?.mainlogo?.alt ||
-                          "Logo"
-                        }
-                        width={110}
-                        height={80}
-                        className="w-full h-full object-contain"
-                      />
-                     }
-                      </Link>
+                      {data?.logo?.mainlogo?.url &&
+                        <Image
+                          src={data?.logo?.mainlogo?.url}
+                          alt={
+                            data?.logo?.mainlogo?.alternativeTxt ||
+                            data?.logo?.mainlogo?.alt ||
+                            "Logo"
+                          }
+                          width={110}
+                          height={80}
+                          className="w-full h-full object-contain"
+                        />
+                      }
+                    </Link>
                   </div>
                 )}
 
@@ -1365,54 +1365,54 @@ function MegaMenuPanel({
             {/* ─── Warm Cream / Ivory Right Panel ─── */}
             {activeChild?.children?.length > 0 && (
 
-            <div className="bg-[#FFF8EE] py-7 px-8 2xl:px-10 flex-1 min-w-0 text-[#262626]">
-              {hasColumnGroups ? (
-                <div className="flex items-start gap-x-8 2xl:gap-x-10 3xl:gap-x-12">
-                  {columns.map((colGroups, colIdx) => (
-                    <div
-                      key={colIdx}
-                      className="w-[190px] 2xl:w-[210px] 3xl:w-[240px] shrink-0 flex flex-col gap-5"
-                    >
-                      {colGroups.map((group) => (
-                        <div
-                          key={group?.id || group?.label}
-                          className="w-full"
-                        >
-                          {group?.label && (
-                            <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
-                              {group?.label}
-                            </span>
-                          )}
-                          <ul className="flex flex-col gap-[3px] p-0 m-0">
-                            {group?.children?.map((leaf) =>
-                              renderLeafItem(leaf),
+              <div className="bg-[#FFF8EE] py-7 px-8 2xl:px-10 flex-1 min-w-0 text-[#262626]">
+                {hasColumnGroups ? (
+                  <div className="flex items-start gap-x-8 2xl:gap-x-10 3xl:gap-x-12">
+                    {columns.map((colGroups, colIdx) => (
+                      <div
+                        key={colIdx}
+                        className="w-[190px] 2xl:w-[210px] 3xl:w-[240px] shrink-0 flex flex-col gap-5"
+                      >
+                        {colGroups.map((group) => (
+                          <div
+                            key={group?.id || group?.label}
+                            className="w-full"
+                          >
+                            {group?.label && (
+                              <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
+                                {group?.label}
+                              </span>
                             )}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              ) : activeChild?.children?.length > 0 ? (
-                <div className="w-[220px] 2xl:w-[250px] 3xl:w-[280px] shrink-0">
-                  <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
+                            <ul className="flex flex-col gap-[3px] p-0 m-0">
+                              {group?.children?.map((leaf) =>
+                                renderLeafItem(leaf),
+                              )}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                ) : activeChild?.children?.length > 0 ? (
+                  <div className="w-[220px] 2xl:w-[250px] 3xl:w-[280px] shrink-0">
+                    <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
+                      {activeChild?.label}
+                    </span>
+                    <ul className="flex flex-col gap-[3px] p-0 m-0">
+                      {activeChild.children.map((leaf) => renderLeafItem(leaf))}
+                    </ul>
+                  </div>
+                ) : (
+                  <Link
+                    href={activeChild?.url || "#!"}
+                    aria-label={activeChild?.label}
+                    {...externalProps(activeChild)}
+                    className="inline-flex items-center gap-2 text-[13px] 2xl:text-[15px] font-bold text-[#ea580c] hover:underline"
+                  >
                     {activeChild?.label}
-                  </span>
-                  <ul className="flex flex-col gap-[3px] p-0 m-0">
-                    {activeChild.children.map((leaf) => renderLeafItem(leaf))}
-                  </ul>
-                </div>
-              ) : (
-                <Link
-                  href={activeChild?.url || "#!"}
-                  aria-label={activeChild?.label}
-                  {...externalProps(activeChild)}
-                  className="inline-flex items-center gap-2 text-[13px] 2xl:text-[15px] font-bold text-[#ea580c] hover:underline"
-                >
-                  {activeChild?.label}
-                </Link>
-              )}
-            </div>
+                  </Link>
+                )}
+              </div>
             )}
           </div>
         </div>
