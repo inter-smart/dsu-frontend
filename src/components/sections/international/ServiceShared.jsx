@@ -2,6 +2,7 @@ import { Play } from "lucide-react";
 
 // Gradient ring with an outlined number
 export function NumberBadge({ number }) {
+    if (!number) return null;
     return (
         <span className="flex size-[64px] shrink-0 items-center justify-center rounded-full bg-linear-to-br from-[#E8302A] to-[#F97316] p-[1.5px] lg:size-[76px] 2xl:size-[92px]">
             <span className="flex size-full items-center justify-center rounded-full bg-[#FFF4E8] text-[26px] font-medium leading-none font-uuna text-[#FFF4E8] [-webkit-text-stroke:1px_rgba(0,0,0,0.2)] lg:text-[32px] 2xl:text-[40px]">
@@ -12,6 +13,7 @@ export function NumberBadge({ number }) {
 }
 
 export function Eyebrow({ children }) {
+    if (!children) return null;
     return (
         <p className="text-[13px] uppercase leading-tight tracking-[0.08em] text-[#E8402A] lg:text-[15px] 2xl:text-[18px]">
             {children}
@@ -29,7 +31,7 @@ export default function SectionHeader({ number, eyebrow, title, description }) {
             <NumberBadge number={number} />
             <div className="min-w-0">
                 <Eyebrow>{eyebrow}</Eyebrow>
-                <h2 className={`mt-0.5 ${sectionTitleClass}`}>{title}</h2>
+                {title && <h2 className={`mt-0.5 ${sectionTitleClass}`}>{title}</h2>}
                 {description && <p className={`mt-1 ${bodyClass}`}>{description}</p>}
             </div>
         </div>

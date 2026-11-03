@@ -44,7 +44,7 @@ export default function CtaBanner({ data }) {
 
     return (
         <section className="relative w-full overflow-hidden bg-[#1a1a1a] py-14 lg:py-20 2xl:py-[112px]">
-            <Background media={background} />
+            {background && <Background media={background} />}
 
             <div className="container relative z-10">
                 <div className="mx-auto flex flex-col items-center text-center">
@@ -52,16 +52,21 @@ export default function CtaBanner({ data }) {
                         {title}
                     </h2>
 
-                    <p className="mt-4 max-w-[620px] text-[14px] leading-[1.7] text-white/95 lg:text-[16px] 2xl:mt-[22px] 2xl:max-w-[600px] 2xl:text-[18px] 2xl:leading-[29px]">
-                        {description}
-                    </p>
+                    {description && (
+                        <p className="mt-4 max-w-[620px] text-[14px] leading-[1.7] text-white/95 lg:text-[16px] 2xl:mt-[22px] 2xl:max-w-[600px] 2xl:text-[18px] 2xl:leading-[29px]">
+                            {description}
+                        </p>
+                    )}
 
                     {/* Buttons */}
+                    {buttons.length > 0 && (
                     <div className="mt-6 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center lg:mt-8 2xl:mt-[36px] 2xl:gap-[10px]">
                         {buttons.map((btn) => (
                             <Link
                                 key={btn.id}
                                 href={btn.href}
+                                target={btn.isExternal ? "_blank" : undefined}
+                                rel={btn.isExternal ? "noopener noreferrer" : undefined}
                                 className={`inline-flex h-[44px] w-full items-center justify-between gap-4 rounded-[3px] px-5 text-[15px] font-medium transition-colors duration-300 sm:w-auto 2xl:h-[50px] 2xl:gap-[18px] 2xl:text-[18px] ${buttonVariants[btn.variant] ?? buttonVariants.light}`}
                             >
                                 {btn.label}
@@ -78,8 +83,10 @@ export default function CtaBanner({ data }) {
                             </Link>
                         ))}
                     </div>
+                    )}
 
                     {/* Trust badges */}
+                    {badges.length > 0 && (
                     <ul className="mt-5 flex flex-wrap items-center justify-center gap-y-2 lg:mt-6 2xl:mt-[30px]">
                         {badges.map((badge, i) => (
                             <li
@@ -100,6 +107,7 @@ export default function CtaBanner({ data }) {
                             </li>
                         ))}
                     </ul>
+                    )}
                 </div>
             </div>
         </section>

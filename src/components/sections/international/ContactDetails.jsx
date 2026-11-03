@@ -38,6 +38,7 @@ export default function ContactDetails({ data }) {
                                                 {i > 0 && " or "}
                                                 <Link
                                                     href={value.href}
+                                                    {...(value.newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                                                     className="no-underline! transition-colors duration-300 font-medium text-[#4A5565] hover:text-(--basecolor)"
                                                 >
                                                     {value.text}
