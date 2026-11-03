@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
+import AiFirstYoutubePlayer from "./ai-first-youtube-player";
 
 export default function AboutInitiative({ data }) {
   return (
@@ -17,7 +18,13 @@ export default function AboutInitiative({ data }) {
           </div>
           <div className="w-full md:w-[50%] max-md:mb-(--gap)">
             <div className="w-full h-auto aspect-815/460 rounded-md 2xl:rounded-[10px] overflow-hidden block">
-              {data?.media?.type === "video" ? (
+              {data?.media?.type === "youtube" ? (
+                <AiFirstYoutubePlayer
+                  url={data?.media?.url}
+                  poster={data?.media?.poster}
+                  title={data?.title}
+                />
+              ) : data?.media?.type === "video" ? (
                 <video
                   src={data?.media?.url}
                   autoPlay

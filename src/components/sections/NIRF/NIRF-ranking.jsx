@@ -14,9 +14,11 @@ export default function NIRFRanking({ data, menu = [], basePath = "/national-Ran
     return (
         <section className="relative py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
             <div className="container">
-                <h2 className="cmn_Title mb-[25px]">
-                    {data.title}
-                </h2>
+                {data.title && (
+                    <h2 className="cmn_Title mb-[25px]">
+                        {data.title}
+                    </h2>
+                )}
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <NIRFSidebar

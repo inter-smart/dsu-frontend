@@ -80,7 +80,7 @@ export default async function Page({ params }) {
         )
       ) : (
         pageData.collegeRanking && (
-          <NIRFRanking data={pageData.collegeRanking} menu={menu || []} />
+          <NIRFRanking data={{ ...pageData.collegeRanking, title: "" }} menu={menu || []} />
         )
       )}
     </>

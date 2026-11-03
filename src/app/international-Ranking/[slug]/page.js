@@ -47,7 +47,7 @@ export default async function Page({ params }) {
       {pageData.hero && <InnerHero data={pageData.hero} className="leadership-detail-hero" />}
       {pageData.collegeRanking && (
         <NIRFRanking
-          data={pageData.collegeRanking}
+          data={{ ...pageData.collegeRanking, title: "" }}
           menu={menu || []}
           basePath={BASE_PATH}
         />
