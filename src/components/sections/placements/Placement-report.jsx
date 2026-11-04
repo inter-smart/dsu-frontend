@@ -62,7 +62,7 @@ export default function PlacementReport({ data }) {
                                     {row.year}
                                 </div>
                                 <Link
-                                    href={row?.file?.url || "#"}
+                                    href={(row?.linkType === "url" ? row?.url : row?.file?.url) || "#"}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="group flex items-center   justify-between gap-[12px] px-[12px] xl:px-[15px] py-[12px] xl:py-[14px] transition-colors duration-300 hover:bg-[#F97316]/5"
