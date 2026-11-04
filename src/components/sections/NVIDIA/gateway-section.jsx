@@ -76,7 +76,7 @@ export default function GatewaySection({ data }) {
                 {/* graduate */}
                 <div className="w-full p-[25px_15px] lg:p-[25px] xl:p-[30px] 2xl:p-[40px] 3xl:p-[45px] border border-black/10 dark:border-white/10 rounded-[8px] xl:rounded-[12px] 2xl:rounded-[15px] 3xl:rounded-[17px] bg-[linear-gradient(90deg,rgba(230,81,0,0.10)_0%,rgba(255,109,0,0.10)_60%,rgba(255,143,0,0.10)_100%)] dark:bg-[linear-gradient(90deg,rgba(230,81,0,0.20)_0%,rgba(255,109,0,0.20)_60%,rgba(255,143,0,0.20)_100%)]">
                     <div className="flex flex-wrap max-lg:gap-[20px]">
-                        <div className="w-full lg:w-[280px] xl:w-[300px] 2xl:w-[350px] 3xl:w-[400px] ">
+                        <div className="w-full lg:w-[260px] xl:w-[300px] 2xl:w-[350px] 3xl:w-[400px] ">
                             <div className="text-[16px] lg:text-[22px] xl:text-[25px] 2xl:text-[30px] 3xl:text-[35px] font-semibold leading-snug max-lg:text-center dark:text-white">
                                 {graduates.heading}
                             </div>

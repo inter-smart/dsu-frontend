@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/accordion";
 
 const tabClass =
-    "w-full !text-[12px] xl:!text-[13px] 2xl:!text-[16px] 3xl:!text-[18px] font-medium text-[#212121] dark:text-white h-[32px] xl:h-[36px] 2xl:h-[40px] px-[18px] xl:px-[24px] 3xl:px-[32px] rounded-[6px] border border-[#F3D8CC] dark:border-white/10 bg-white dark:bg-[#18191B] whitespace-nowrap transition-all duration-300 hover:bg-[#F97316]/10 data-active:border-transparent data-active:bg-gradient-to-r data-active:from-[#DC2626] data-active:to-[#F97316] data-active:!text-white data-[state=active]:border-transparent data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#DC2626] data-[state=active]:to-[#F97316] data-[state=active]:!text-white";
+    "w-full !text-[12px] xl:!text-[14px] 2xl:!text-[14px] 3xl:!text-[18px] font-medium text-[#212121] dark:text-white h-[32px] xl:h-[36px] 2xl:h-[40px] px-[10px] 2xl:px-[24px] 3xl:px-[32px] rounded-[6px] border border-[#F3D8CC] dark:border-white/10 bg-white dark:bg-[#18191B] whitespace-nowrap transition-all duration-300 hover:bg-[#F97316]/10 data-active:border-transparent data-active:bg-gradient-to-r data-active:from-[#DC2626] data-active:to-[#F97316] data-active:!text-white data-[state=active]:border-transparent data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#DC2626] data-[state=active]:to-[#F97316] data-[state=active]:!text-white";
 
 const navBtn =
     "shrink-0 w-[30px] h-[30px] xl:w-[34px] xl:h-[34px] 2xl:w-[40px] 2xl:h-[40px] rounded-full bg-white dark:bg-[#18191B] border border-[#F97316]/40 text-[#F97316] mt-2 flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#DC2626] hover:to-[#F97316] hover:text-white hover:border-transparent disabled:opacity-30 disabled:cursor-not-allowed";
@@ -69,7 +69,7 @@ export default function InternshipOpportunities({ data }) {
                                 freeMode
                                 grabCursor
                                 slidesPerView="auto"
-                                spaceBetween={15}
+                                spaceBetween={10}
                                 watchOverflow
                                 observer
                                 observeParents

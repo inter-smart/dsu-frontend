@@ -14,7 +14,7 @@ export default function StackSection({ data }) {
     return (
         <section className="relative z-0 py-[40px] xl:py-[50px] 2xl:py-[70px] 3xl:py-[90px] bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] dark:from-[#101010] dark:to-[#18191B] ">
             <div className="absolute bottom-0 left-0 m-auto max-lg:right-0 max-lg:top-0 -z-10 max-w-[350px] lg:max-w-[min(850px,45vw)] w-full h-auto max-lg:opacity-20">
-                {data?.media?.url && <Image src={data.media.url} width={840} height={850} className="w-full h-full object-contain" alt={data.media.alternativeText || ""}/>}
+                {data?.media?.url && <Image src={data.media.url} width={840} height={850} className="w-full h-full object-contain" alt={data.media.alternativeText || ""} />}
             </div>
             <div className="container">
                 <div className="lg:w-8/12 ml-auto">
@@ -57,7 +57,22 @@ export default function StackSection({ data }) {
                         ))}
                     </div>
                 </div>
+                {(data?.whyStack?.heading || data?.whyStack?.description) && (
+                    <div className="mt-[30px] lg:mt-[40px] xl:mt-[50px] 2xl:mt-[60px]">
+                        {data?.whyStack?.heading && (
+                            <h3 className="text-[18px] sm:text-[20px] xl:text-[24px] 2xl:text-[28px] font-bold text-[#212121] dark:text-white leading-[1.25] mb-[8px] xl:mb-[10px]">
+                                {data.whyStack.heading}
+                            </h3>
+                        )}
+                        {data?.whyStack?.description && (
+                            <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] w-full">
+                                {data.whyStack.description}
+                            </p>
+                        )}
+                    </div>
+                )}
             </div>
+
         </section>
     )
 }

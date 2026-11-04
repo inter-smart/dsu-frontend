@@ -21,10 +21,10 @@ export default function BePartOfFuture({ data }) {
       )}
       <div className="container">
         {(data?.title || data?.description || data?.ctas?.length > 0) && (
-          <div className="mb-10 flex 3xl:items-center flex-wrap justify-between gap-6 2xl:mb-12.5 3xl:mb-20">
-            <div className="sm:w-[50%] [&>*]:text-white 3xl:flex 3xl:items-center gap-2.5">
+          <div className="mb-10 flex 3xl:items-center max-lg:flex-wrap justify-between gap-6 2xl:mb-12.5 3xl:mb-20">
+            <div className="sm:w-[65%] [&>*]:text-white flex flex-col xl:flex-row xl:items-center gap-4.5">
               <Heading>{data.title}</Heading>
-              <Text>{data.description}</Text>
+              <Text className="max-w-[60%]">{data.description}</Text>
             </div>
             {data?.ctas?.length > 0 && (
               <div className="flex flex-wrap items-center gap-3 xl:gap-4">
@@ -58,7 +58,7 @@ export default function BePartOfFuture({ data }) {
             {data.cards.map((card) => (
               <div
                 key={card.title}
-                className="group rounded-md 2xl:rounded-[10px] bg-white/5 p-2.5 transition-colors duration-300 hover:bg-white/10 backdrop-blur-[10px] relative z-0"
+                className="group rounded-md 2xl:rounded-[10px] bg-[#0B1224]/40 p-2.5 transition-colors duration-300 hover:bg-[#0B1224]/55 backdrop-blur-[10px] relative z-0"
               >
                 <ShineBorder shineColor={["#909191"]} />
                 {card.image?.url && (
@@ -67,7 +67,7 @@ export default function BePartOfFuture({ data }) {
                       src={card.image.url}
                       alt={card.image.alternativeText || card.title}
                       fill
-                      sizes="(max-width: 1024px) 50vw, 25vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
@@ -76,7 +76,7 @@ export default function BePartOfFuture({ data }) {
                 <h3 className="mb-2 px-1 text-base font-semibold text-white 2xl:text-xl 3xl:text-[25px]">
                   {card.title}
                 </h3>
-                <p className="text-[13px] leading-relaxed text-white/80 2xl:text-base 3xl:text-lg">
+                <p className="px-1 text-[13px] leading-relaxed text-white/90 2xl:text-base 3xl:text-lg">
                   {card.description}
                 </p>
                 </div>

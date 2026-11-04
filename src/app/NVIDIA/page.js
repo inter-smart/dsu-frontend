@@ -239,23 +239,23 @@ const local_data = {
                 ],
             },
         ],
-        // whyItMatters: {
-        //     heading: "Why This Stack Matters",
-        //     description: [
-        //         {
-        //             type: "paragraph",
-        //             children: [
-        //                 { type: "text", text: "This isn't just hardware. It's a complete, integrated ecosystem where every layer is optimized to work together. CUDA enables " },
-        //                 { type: "text", text: "PyTorch", medium: true },
-        //                 { type: "text", text: " to run at lightning speed on GPUs. " },
-        //                 { type: "text", text: "TensorRT", medium: true },
-        //                 { type: "text", text: " takes trained models and makes them 10X faster. Students experience this integration firsthand, understanding how real AI systems are built, deployed, and scaled in production environments. This is how " },
-        //                 { type: "text", text: "Google, Meta, and OpenAI", medium: true },
-        //                 { type: "text", text: " build their AI systems." },
-        //             ],
-        //         },
-        //     ],
-        // },
+        whyItMatters: {
+            heading: "Why This Stack Matters",
+            description: [
+                {
+                    type: "paragraph",
+                    children: [
+                        { type: "text", text: "This isn't just hardware. It's a complete, integrated ecosystem where every layer is optimized to work together. CUDA enables " },
+                        { type: "text", text: "PyTorch", medium: true },
+                        { type: "text", text: " to run at lightning speed on GPUs. " },
+                        { type: "text", text: "TensorRT", medium: true },
+                        { type: "text", text: " takes trained models and makes them 10X faster. Students experience this integration firsthand, understanding how real AI systems are built, deployed, and scaled in production environments. This is how " },
+                        { type: "text", text: "Google, Meta, and OpenAI", medium: true },
+                        { type: "text", text: " build their AI systems." },
+                    ],
+                },
+            ],
+        },
     },
     journey: {
         heading: "From Day One: Your Learning Journey",
