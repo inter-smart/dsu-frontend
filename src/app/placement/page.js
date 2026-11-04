@@ -533,7 +533,7 @@ const local_data = {
         description:
             "The IQAC Committee includes representatives from the University's leadership, academic departments, administration, industry, alumni, students, and parents. Together, they contribute their expertise and perspectives to strengthen quality assurance practices and support the University's mission of continuous improvement.",
         table: {
-            columns: ["Designation", "Name", "Area / Responsibility", "Contact/Email"],
+            columns: ["Designation", "Name", "Area / Responsibility", "Contact/Email/Campus"],
             rows: [
                 {
                     id: 1,
