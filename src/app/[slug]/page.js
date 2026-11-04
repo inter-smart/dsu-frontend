@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
 import FlexibleSections from "@/components/flexible/FlexibleSections";
 import { getFlexiblePageBySlug } from "@/lib/api/flexible-page";
+import { getPdfReportPageBySlug } from "@/lib/api/pdf-report-page";
 import { getAboutPage, getAccreditationBySlug } from "@/lib/api";
 import AccreditationPage, { generateMetadata as accreditationMetadata } from "../accreditions/[slug]/page";
 import AboutPageView from "@/components/sections/about/about-page-view";
@@ -16,9 +17,14 @@ const TOP_BAR_FLAGS = {
     "nursing-bsc": "AiBscmenuBar",
 };
 
+// A Pdf Reports entry is built like a Flexible Page and shown at /<slug> too
+async function getCmsPageBySlug(slug) {
+    return (await getFlexiblePageBySlug(slug)) ?? (await getPdfReportPageBySlug(slug));
+}
+
 export async function generateMetadata({ params }) {
     const { slug } = await params;
-    const apiData = await getFlexiblePageBySlug(slug);
+    const apiData = await getCmsPageBySlug(slug);
     if (!apiData) {
         const about = await getAboutPage();
         if (about?.slug !== slug) {
@@ -41,7 +47,7 @@ export async function generateMetadata({ params }) {
 // the About page keeps its slug as the fallback.
 export default async function page({ params }) {
     const { slug } = await params;
-    const apiData = await getFlexiblePageBySlug(slug);
+    const apiData = await getCmsPageBySlug(slug);
 
     if (!apiData) {
         const about = await getAboutPage();
