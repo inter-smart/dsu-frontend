@@ -14,9 +14,11 @@ export default function NIRFRanking({ data, menu = [], basePath = "/national-Ran
     return (
         <section className="relative py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
             <div className="container">
-                <h2 className="cmn_Title mb-[25px]">
-                    {data.title}
-                </h2>
+                {data.title && (
+                    <h2 className="cmn_Title mb-[25px]">
+                        {data.title}
+                    </h2>
+                )}
                 <div className="cmnFlx">
                     <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
                         <NIRFSidebar
@@ -48,7 +50,7 @@ export default function NIRFRanking({ data, menu = [], basePath = "/national-Ran
                             <h2 className="text-[20px] xl:text-[25px] 2xl:text-[30px] 3xl:text-[35px] text-[#212121] mb-[25px] 3xl:mb-[45px] font-bold">
                                 {data.name}
                             </h2>
-                            <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[20px] [&_p]:xl:mb-[25px] [&_p]:2xl:mb-[30px] [&_p]:3xl:mb-[40px] typography">
+                            <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[20px] [&_p]:xl:mb-[25px] [&_p]:2xl:mb-[30px] [&_p]:3xl:mb-[40px] ">
                                 <BlocksRenderer content={data.description || []} />
                             </div>
                             {data?.ranking && (
@@ -76,7 +78,7 @@ export default function NIRFRanking({ data, menu = [], basePath = "/national-Ran
                                 </div>
                                 <div className="lg:w-[calc(100%-350px)] xl:w-[calc(100%-380px)] 2xl:w-[calc(100%-440px)] 3xl:w-[calc(100%-550px)] lg:pl-[15px] xl:pl-[25px] 2xl:pl-[35px] 3xl:pl-[45px]">
                                     <div className="w-full">
-                                        <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[25px] [&_p]:xl:mb-[35px] [&_p]:2xl:mb-[40px] [&_p]:3xl:mb-[50px] typography">
+                                        <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[25px] [&_p]:xl:mb-[35px] [&_p]:2xl:mb-[40px] [&_p]:3xl:mb-[50px] ">
                                             <BlocksRenderer content={data.ranking.description || []} />
                                         </div>
                                         {data.ranking.report && (

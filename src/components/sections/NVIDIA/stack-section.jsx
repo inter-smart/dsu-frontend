@@ -13,11 +13,11 @@ function renderTextNodes(nodes) {
 export default function StackSection({ data }) {
     return (
         <section className="relative z-0 py-[40px] xl:py-[50px] 2xl:py-[70px] 3xl:py-[90px] bg-gradient-to-b from-[#FFF8EE] to-[#FFF3E0] dark:from-[#101010] dark:to-[#18191B] ">
-            <div className="absolute bottom-0 left-0 m-auto max-lg:right-0 max-lg:top-0 -z-10 max-w-[350px] lg:max-w-[400px] xl:max-w-[600px] 2xl:max-w-[720px] 3xl:max-w-[850px] w-full h-auto max-lg:opacity-20">
+            <div className="absolute bottom-0 left-0 m-auto max-lg:right-0 max-lg:top-0 -z-10 max-w-[350px] lg:max-w-[min(850px,45vw)] w-full h-auto max-lg:opacity-20">
                 {data?.media?.url && <Image src={data.media.url} width={840} height={850} className="w-full h-full object-contain" alt={data.media.alternativeText || ""}/>}
             </div>
             <div className="container">
-                <div className="lg:w-9/12 ml-auto">
+                <div className="lg:w-8/12 ml-auto">
                     <h2 className=" cmn_Title dark:text-white mb-[20px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]">
                         {data?.sectionHeading}
                     </h2>

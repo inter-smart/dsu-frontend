@@ -16,7 +16,7 @@ export default function AiClinicalFacility({ data }) {
                     </div>
                     <div className="w-full">
                         <div className="cmn_Title mb-[25px] dark:!text-white">{data.heading}</div>
-                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white [&_p]:mb-[15px] [&_p]:3xl:mb-[20px] typography">
+                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white [&_p]:mb-[15px] [&_p]:3xl:mb-[20px] ">
                             {data.description && <BlocksRenderer content={data.description} />}
                         </div>
                         {data?.specializedAreas && (
@@ -61,7 +61,7 @@ export default function AiClinicalFacility({ data }) {
                                 <div className="cmn_Txt mb-[10px] 2xl:mb-[15px]">
                                     {data?.communityFacilities.heading}
                                 </div>
-                                <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:mb-[15px] [&_p]:3xl:mb-[20px] typography">
+                                <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:mb-[15px] [&_p]:3xl:mb-[20px] ">
                                     {data?.communityFacilities?.description && <BlocksRenderer content={data.communityFacilities.description} />}
                                 </div>
 

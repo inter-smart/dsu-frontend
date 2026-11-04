@@ -1,11 +1,12 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/ui/safe-image";
+import { safeHref } from "@/lib/utils";
 import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
-import { buttonVariants } from "@/components/ui/button"; 
+import CtaButton from "@/components/ui/cta-button"; 
 
 
 
@@ -113,12 +114,15 @@ export default function Events({ data }) {
                   </div>
                 </div>
                 <div>
-                  <Link
-                    href="#!"
-                    className="text-sm 3xl:text-base leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
-                  >
-                    View All
-                  </Link>
+                  {data?.latestButton?.label && data?.latestButton?.url && (
+<Link
+ href={safeHref(data.latestButton.url)}
+ target={data.latestButton.target === "_blank" ? "_blank" : undefined}
+ className="text-sm 3xl:text-base leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
+>
+{data.latestButton.label}
+</Link>
+)}
                 </div>
               </div>
               <div className="w-full h-auto overflow-hidden" ref={emblaRef}>
@@ -129,8 +133,7 @@ export default function Events({ data }) {
                         <div className="w-full h-auto lg:min-h-90.5 2xl:min-h-92.5 3xl:min-h-107.5 aspect-765/430 rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] overflow-hidden">
                           <Image
                             src={
-                              item?.featured_image?.url ||
-                              "/images/placeholder.jpg"
+                              item?.featured_image?.url
                             }
                             width={760}
                             height={430}
@@ -149,7 +152,7 @@ export default function Events({ data }) {
                             {item?.description}
                           </div>
                           <Link
-                            href={item?.link}
+                            href={safeHref(item?.link, "/news-events")}
                             className="text-[14px] 3xl:text-[15px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
                           >
                             Read More {" > "}
@@ -203,12 +206,15 @@ export default function Events({ data }) {
                   </div>
                 </div>
                 <div>
-                  <Link
-                    href="#!"
-                    className="text-[14px] 3xl:text-[16px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
-                  >
-                    View All
-                  </Link>
+                  {data?.announcementsButton?.label && data?.announcementsButton?.url && (
+<Link
+ href={safeHref(data.announcementsButton.url)}
+ target={data.announcementsButton.target === "_blank" ? "_blank" : undefined}
+ className="text-[14px] 3xl:text-[16px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
+>
+{data.announcementsButton.label}
+</Link>
+)}
                 </div>
               </div>
               <div
@@ -249,7 +255,7 @@ export default function Events({ data }) {
                             </div>
                           </div>
                           <Link
-                            href={item?.link}
+                            href={safeHref(item?.link, "/announcements")}
                             className="text-sm leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
                           >
                             Read More &gt;
@@ -260,23 +266,7 @@ export default function Events({ data }) {
                   ))}
                 </div>
                  <div className="w-full h-auto mt-3.75 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center">
-                          <Link
-                            href="/centres-of-excellence"
-                            className={buttonVariants({
-                              variant: "default",
-                              size: "default",
-                            })}
-                          >
-                            View All Programs
-                            <Image
-                              src="/images/icon-btn.svg"
-                              alt="home-btn"
-                              width={15}
-                              height={15}
-                              className="size-3.75"
-                              data-icon="inline-end"
-                            />
-                          </Link>
+                          <CtaButton button={data?.button} />
                         </div>
               </div>
             </div>

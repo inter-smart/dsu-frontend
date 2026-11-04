@@ -1,11 +1,12 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/ui/safe-image";
+import { safeHref } from "@/lib/utils";
 import { Text } from "@/components/ui/text";
 import Autoplay from "embla-carousel-autoplay";
 import { Heading } from "@/components/ui/heading";
 import useEmblaCarousel from "embla-carousel-react";
-import { buttonVariants } from "@/components/ui/button";
+import CtaButton from "@/components/ui/cta-button";
 import { useCallback, useEffect, useState } from "react";
 
 export default function HomeAcademic({ data }) {
@@ -146,23 +147,7 @@ export default function HomeAcademic({ data }) {
           </div>
         </div>
         <div className="w-full h-auto mt-3.75 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center">
-          <Link
-            href="/centres-of-excellence"
-            className={buttonVariants({
-              variant: "default",
-              size: "default",
-            })}
-          >
-            View All Programs
-            <Image
-              src="/images/icon-btn.svg"
-              alt="home-btn"
-              width={15}
-              height={15}
-              className="size-3.75"
-              data-icon="inline-end"
-            />
-          </Link>
+          <CtaButton button={data?.button} />
         </div>
       </div>
     </section>
@@ -171,7 +156,7 @@ export default function HomeAcademic({ data }) {
 
 function AcademicCard({ item }) {
   return (
-    <div className="group [--gap:20px_15px] 2xl:[--gap:25px_20px] w-full h-full aspect-335/355 rounded-[7px] 2xl:rounded-[10px] overflow-hidden block relative z-0 before:content-[''] before:w-full before:h-[40%] before:bg-linear-to-t before:from-[#090909] before:to-[#0B2148]/0 before:opacity-50 before:absolute before:z-1 before:inset-[auto_0_0_0]">
+    <div className="group [--gap:20px_15px] 2xl:[--gap:25px_20px] w-full h-full aspect-335/355 rounded-[7px] 2xl:rounded-[10px] overflow-hidden block relative z-0 bg-linear-to-br from-[#0B2148] to-[#E84E1B]/70 before:content-[''] before:w-full before:h-[40%] before:bg-linear-to-t before:from-[#090909] before:to-[#0B2148]/0 before:opacity-50 before:absolute before:z-1 before:inset-[auto_0_0_0]">
       <div className="w-full h-full block">
         <Image
           src={item?.academicImage?.url}
@@ -181,6 +166,7 @@ function AcademicCard({ item }) {
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
       </div>
+      {item?.icon?.url && (
       <div className="w-12.5 lg:w-10 2xl:w-12.5 3xl:w-13.75 h-auto aspect-square p-2.5 lg:p-2 2xl:p-2.5 m-(--gap) rounded-[7px] 2xl:rounded-[10px] backdrop-blur-[45px] absolute z-1 inset-[0_auto_auto_0] flex items-center justify-center">
         <Image
           src={item?.icon?.url}
@@ -190,9 +176,10 @@ function AcademicCard({ item }) {
           className="w-full h-full object-contain"
         />
       </div>
+      )}
       <h3 className="text-base lg:text-sm 2xl:text-base 3xl:text-xl leading-[1.2] font-bold text-white w-full h-auto m-(--gap) max-w-[85%] absolute z-1 inset-[auto_0_0_0]">
         {item?.link ? (
-          <Link href={item.link} className="hover:underline">
+          <Link href={safeHref(item.link)} className="hover:underline">
             {item?.title}
           </Link>
         ) : (
@@ -213,7 +200,7 @@ function AcademicCard({ item }) {
                 {item?.courses?.map((course) => (
                   <div key={course?.id} className="w-auto h-auto inline">
                     <Link
-                      href={course?.link}
+                      href={safeHref(course?.link, "/academics")}
                       aria-label={course?.label}
                       className="text-[13px] 2xl:text-[15px] leading-[1.1] font-normal text-[#080C15] w-auto h-auto p-[5px_10px] bg-[#080C15]/10 rounded-full border border-black/20 transition duration-500 inline hover:text-white hover:bg-(--basecolor2) hover:border-(--basecolor2)"
                     >

@@ -57,7 +57,7 @@ export default async function Page({ viaSlug } = {}) {
 
   return (
     <>
-      <InnerHero data={hero} />
+      <InnerHero data={hero} className="leadership-detail-hero" />
       {cards.length > 0 && <ProfessionalAccredition data={{ cards }} />}
     </>
   );

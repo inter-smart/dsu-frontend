@@ -35,6 +35,11 @@ const proViceChancellorSubMenu = [
   { id: 2, url: "#!", label: "Dr. Prakash S" },
 ];
 
+// ADDED: when the 404 page (which carries data-not-found) is on screen, desktop menu items turn black
+const NOT_FOUND_BLACK_TEXT = "[body:has([data-not-found])_&]:text-black";
+const NOT_FOUND_BLACK_BORDER = "[body:has([data-not-found])_&]:border-black";
+const NOT_FOUND_INVERT = "[body:has([data-not-found])_&]:invert";
+
 const local_data = {
   // topBar: {
   //   topBarButtons: [
@@ -585,6 +590,10 @@ export default function Header({ data = local_data }) {
                 <Link
                   href={item?.url || "#"}
                   aria-label={item?.label}
+                  {...(item?.isExternal && {
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })}
                   className="text-[8px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full lg:h-auto p-2.5 sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
                 >
                   {item?.label}
@@ -624,51 +633,12 @@ export default function Header({ data = local_data }) {
                 </Link>
               </div>
             ))}
-            <div className="w-auto h-auto">
-              <DropdownMenu>
-                <DropdownMenuTrigger
-                  nativeButton={false}
-                  render={
-                    <span className={cn(TopHeaderTextStyle, "cursor-pointer")} />
-                  }
-                >
-                  Login
-                  <span className="w-2.5 sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center">
-                    <Image
-                      src="/images/header-login.svg"
-                      alt="login"
-                      width={20}
-                      height={20}
-                      className="w-full h-full object-contain"
-                    />
-                  </span>
-                </DropdownMenuTrigger>
-
-                <DropdownMenuContent
-                  align="end"
-                  sideOffset={10}
-                  
-                  className="min-w-[190px] 2xl:min-w-[210px] rounded-[10px]! border-0! bg-white! p-2! pt-3! ring-1 ring-black/5 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.3),inset_0_3px_0_0_var(--basecolor)]! dark:bg-[#18181b]! dark:ring-white/10"
-                >
-                  <DropdownMenuItem
-                    className="group/item cursor-pointer gap-3 rounded-[6px] px-3 py-2.5 text-[13px] 2xl:text-[14px] 3xl:text-[15px] font-medium text-[#262626] outline-none transition-colors duration-150 data-[highlighted]:bg-[#FFE8D6] data-[highlighted]:text-[#ea580c] focus:bg-[#FFE8D6] focus:text-[#ea580c] dark:text-white/90 dark:data-[highlighted]:bg-white/10"
-                  >
-                    <User size={16} strokeWidth={2} className="shrink-0 text-[#ea580c]" />
-                    Profile
-                  </DropdownMenuItem>
-
-                  <DropdownMenuSeparator className="mx-2 my-1.5 bg-black/8 dark:bg-white/10" />
-
-                  <DropdownMenuItem
-                    variant="destructive"
-                    className="cursor-pointer gap-3 rounded-[6px] px-3 py-2.5 text-[13px] 2xl:text-[14px] 3xl:text-[15px] font-medium text-[#B91C1C] outline-none transition-colors duration-150 data-[highlighted]:bg-[#FEE2E2] data-[highlighted]:text-[#B91C1C] focus:bg-[#FEE2E2] focus:text-[#B91C1C] dark:text-red-400 dark:data-[highlighted]:bg-red-500/15"
-                  >
-                    <LogOut size={16} strokeWidth={2} className="shrink-0" />
-                    Log out
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
+            <LoginButton
+              button={data?.topBar?.loginButton}
+              className={TopHeaderTextStyle}
+              iconSrc="/images/header-login.svg"
+              iconClassName="w-2.5 sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center"
+            />
             {/* <div className="w-auto h-auto px-1.25 sm:px-2.5 2xl:px-2.5 border-r border-white/20">
               <Select className="w-full h-auto">
                 <SelectTrigger
@@ -781,33 +751,7 @@ export default function Header({ data = local_data }) {
                     </Link>
                   </div>
                 ))}
-                <div className="w-auto 2xl:h-10 3xl:h-12.5 ml-1.25 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] overflow-x-clip flex items-center relative z-0 transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)">
-                  <div className="w-auto h-full">
-                    <Link
-                      href="/#"
-                      aria-label="Register"
-                      className="text-[10px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center relative z-0 before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:translate-y-0.75 2xl:before:translate-y-1.25 before:absolute before:z-1 before:inset-[0_0_0_auto]"
-                    >
-                      <span className="translate-y-0.75 2xl:translate-y-1.25">
-                        NRI/Foreigners
-                      </span>
-                    </Link>
-                  </div>
-                  <div className="w-auto h-full">
-                    <Link
-                      href="/#"
-                      aria-label="Register"
-                      className="text-[10px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-medium text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center"
-                    >
-                      <span className="translate-y-0.75 2xl:translate-y-1.25">
-                        Others
-                      </span>
-                    </Link>
-                  </div>
-                  <button className="text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold text-black w-fit h-auto p-[3px_5px] mx-auto bg-white rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0]">
-                    Apply Here
-                  </button>
-                </div>
+                <ApplyButtons buttons={data?.applyButtons} variant="desktop" />
                 <div className="w-auto h-auto pl-0.75 max-lg:flex hidden">
                   <Sheet>
                     <SheetTrigger className="w-7.5 h-full aspect-square bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] border border-[#D1D5DC80]/50 overflow-hidden flex items-center justify-center">
@@ -891,22 +835,19 @@ export default function Header({ data = local_data }) {
                                 className="w-3.5 h-3.5 dark:invert"
                               />
                             </Link>
-                            <span className="text-black/20 dark:text-white/20">
-                              |
-                            </span>
-                            <Link
-                              href="#!"
-                              className="flex items-center gap-1 hover:text-(--basecolor)"
-                            >
-                              <span>Login</span>
-                              <Image
-                                src="/images/header-login-black.svg"
-                                alt="Login"
-                                width={13}
-                                height={13}
-                                className="w-3.5 h-3.5 dark:invert"
-                              />
-                            </Link>
+                            {isValidLoginButton(data?.topBar?.loginButton) && (
+                              <>
+                                <span className="text-black/20 dark:text-white/20">
+                                  |
+                                </span>
+                                <LoginButton
+                                  button={data?.topBar?.loginButton}
+                                  className="flex items-center gap-1 hover:text-(--basecolor) cursor-pointer"
+                                  iconSrc="/images/header-login-black.svg"
+                                  iconClassName="w-3.5 h-3.5 flex items-center justify-center dark:invert"
+                                />
+                              </>
+                            )}
                           </div>
                           <div className="flex items-center gap-1.5 shrink-0 ml-2">
                             <ThemeToggle iconClassName="max-lg:invert" />
@@ -928,33 +869,10 @@ export default function Header({ data = local_data }) {
 
                         {/* Main Buttons (Apply Here, CDSIMER, DSU Online) */}
                         <div className="w-full px-2.5 pb-3 pt-2 flex items-center justify-between gap-2">
-                          <div className="w-auto h-11.25 2xl:h-10 3xl:h-12.5 ml-1.25 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] overflow-x-clip flex items-center relative z-0 transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)">
-                            <div className="w-auto h-full">
-                              <Link
-                                href="/#"
-                                aria-label="Register"
-                                className="text-[15px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-white w-full h-full px-2.5 sm:px-2.5 lg:px-3.75 flex items-center justify-center relative z-0 before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:translate-y-0.75 2xl:before:translate-y-1.25 before:absolute before:z-1 before:inset-[0_0_0_auto]"
-                              >
-                                <span className="translate-y-0.75 2xl:translate-y-1.25">
-                                  NRI/Foreigners
-                                </span>
-                              </Link>
-                            </div>
-                            <div className="w-auto h-full">
-                              <Link
-                                href="/#"
-                                aria-label="Register"
-                                className="text-[15px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-medium text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center"
-                              >
-                                <span className="translate-y-0.75 2xl:translate-y-1.25">
-                                  Others
-                                </span>
-                              </Link>
-                            </div>
-                            <button className="text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold text-black dark:text-white w-fit h-auto p-[3px_5px] mx-auto bg-[#fff7eb] dark:bg-[#18181b] rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0]">
-                              Apply Here
-                            </button>
-                          </div>
+                          <ApplyButtons
+                            buttons={data?.applyButtons}
+                            variant="mobile"
+                          />
                           <div className="flex items-center gap-1.25">
                             <Link
                               href="/#"
@@ -1006,7 +924,7 @@ export default function Header({ data = local_data }) {
                   alt={"Home"}
                   width={20}
                   height={20}
-                  className="w-full h-full object-contain"
+                  className={cn("w-full h-full object-contain", NOT_FOUND_INVERT)}
                 />
               </span>
             </Link>
@@ -1053,7 +971,7 @@ export default function Header({ data = local_data }) {
                   alt={"Search"}
                   width={20}
                   height={20}
-                  className="w-full h-full object-contain"
+                  className={cn("w-full h-full object-contain", NOT_FOUND_INVERT)}
                 />
               </span>
             </button>
@@ -1102,6 +1020,163 @@ export default function Header({ data = local_data }) {
   );
 }
 
+// Valid = has a label and either a url (plain link) or at least one sub item (dropdown).
+function isValidLoginButton(button) {
+  if (!button?.label?.trim()) return false;
+  if (button?.subItems?.length) return true;
+  return Boolean(button?.url?.trim());
+}
+
+function LoginButton({ button, className, iconSrc, iconClassName }) {
+  if (!isValidLoginButton(button)) return null;
+
+  const content = (
+    <>
+      <span>{button.label}</span>
+      <span className={iconClassName}>
+        <Image
+          src={iconSrc}
+          alt=""
+          width={20}
+          height={20}
+          className="w-full h-full object-contain"
+        />
+      </span>
+    </>
+  );
+
+  // Sub buttons present -> dropdown only, the button itself is not a link
+  if (button.subItems?.length) {
+    return (
+      <div className="w-auto h-auto">
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            render={<button type="button" className={cn(className, "cursor-pointer")} />}
+          >
+            {content}
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            {button.subItems.map((sub, index) => (
+              <DropdownMenuItem
+                key={sub?.id ?? index}
+                render={
+                  <Link
+                    href={sub?.url || "#"}
+                    {...(sub?.isExternal && {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
+                  />
+                }
+              >
+                {sub?.label}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-auto h-auto">
+      <Link
+        href={button.url}
+        aria-label={button.label}
+        {...(button.isExternal && {
+          target: "_blank",
+          rel: "noopener noreferrer",
+        })}
+        className={cn(className, "transition-opacity duration-300 hover:opacity-70")}
+      >
+        {content}
+      </Link>
+    </div>
+  );
+}
+
+const isValidButton = (b) => Boolean(b?.label?.trim() && b?.url?.trim());
+
+const externalProps = (b) =>
+  b?.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
+
+// NRI/Foreigners + Others + "Apply Here" badge. Each one only shows with a label and url.
+function ApplyButtons({ buttons, variant = "desktop" }) {
+  const { applyHere, nri, others } = buttons || {};
+  const showApply = isValidButton(applyHere);
+  const showNri = isValidButton(nri);
+  const showOthers = isValidButton(others);
+  if (!showApply && !showNri && !showOthers) return null;
+
+  const isMobile = variant === "mobile";
+  const textSize = isMobile
+    ? "text-[15px] sm:text-[11px]"
+    : "text-[10px] sm:text-[11px]";
+
+  return (
+    <div
+      className={cn(
+        "w-auto ml-1.25 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] overflow-x-clip flex items-center relative z-0 transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)",
+        isMobile
+          ? "h-11.25 2xl:h-10 3xl:h-12.5"
+          : "2xl:h-10 3xl:h-12.5",
+      )}
+    >
+      {showNri && (
+        <div className="w-auto h-full">
+          <Link
+            href={nri.url}
+            aria-label={nri.label}
+            {...externalProps(nri)}
+            className={cn(
+              textSize,
+              "2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center relative z-0",
+              showOthers &&
+                "before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:translate-y-0.75 2xl:before:translate-y-1.25 before:absolute before:z-1 before:inset-[0_0_0_auto]",
+            )}
+          >
+            <span className="translate-y-0.75 2xl:translate-y-1.25">
+              {nri.label}
+            </span>
+          </Link>
+        </div>
+      )}
+      {showOthers && (
+        <div className="w-auto h-full">
+          <Link
+            href={others.url}
+            aria-label={others.label}
+            {...externalProps(others)}
+            className={cn(
+              textSize,
+              "2xl:text-sm 3xl:text-lg leading-[1.1] font-medium text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center",
+            )}
+          >
+            <span className="translate-y-0.75 2xl:translate-y-1.25">
+              {others.label}
+            </span>
+          </Link>
+        </div>
+      )}
+      {showApply && (
+        <Link
+          href={applyHere.url}
+          aria-label={applyHere.label}
+          {...externalProps(applyHere)}
+          className={cn(
+            "text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold w-fit h-auto p-[3px_5px] mx-auto rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0]",
+            isMobile
+              ? "text-black dark:text-white bg-[#fff7eb] dark:bg-[#18181b]"
+              : "text-black bg-white",
+          )}
+        >
+          {applyHere.label}
+        </Link>
+      )}
+    </div>
+  );
+}
+
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -1116,6 +1191,24 @@ function useIsMobile() {
   return isMobile;
 }
 
+// True when a menu url points at the page being viewed. Placeholders ("#", "#!") never match.
+function isActiveUrl(url, pathname) {
+  if (!url || !pathname || url.startsWith("#")) return false;
+  let path = url;
+  try {
+    path = new URL(url, "http://x").pathname;
+  } catch {}
+  const clean = (p) => (p.length > 1 ? p.replace(/\/+$/, "") : p);
+  return clean(path) === clean(pathname);
+}
+
+// Flyout items of a leaf: the static `subMenu` key, or the CMS's nested `children`.
+function getFlyoutItems(leaf) {
+  if (leaf?.subMenu?.length) return leaf.subMenu;
+  if (leaf?.children?.length) return leaf.children;
+  return [];
+}
+
 function MegaMenuPanel({
   itemId,
   items,
@@ -1124,6 +1217,7 @@ function MegaMenuPanel({
   onKeepOpen,
   onLeave,
 }) {
+  const pathname = usePathname();
   const item = items?.find((i) => i?.id === itemId);
   const children = item?.children || [];
   const hasChildMenu = children.length > 0;
@@ -1145,7 +1239,10 @@ function MegaMenuPanel({
   const activeChild =
     children.find((c) => c?.id === activeChildId) || children[0] || {};
   const grandGroups = activeChild?.children || [];
-  const hasColumnGroups = grandGroups.some((g) => g?.children?.length > 0);
+  // Column layout only when several headings each hold their own list (Excellence & Quality
+  // Assurance). A lone item with children, or one mixed with plain links, is a flyout leaf.
+  const hasColumnGroups =
+    grandGroups.length > 1 && grandGroups.every((g) => g?.children?.length > 0);
 
   // Group columns for multi-column layouts like Excellence & Quality Assurance:
   // each group (CMS order) goes into the currently shortest of up to 3 columns,
@@ -1164,8 +1261,8 @@ function MegaMenuPanel({
   }
 
   const renderLeafItem = (leaf) => {
-    // ADDED: leaf with a flyout submenu (e.g. Pro-Vice Chancellor)
-    if (leaf?.subMenu?.length) {
+    // Leaf with a flyout submenu (e.g. Pro-Vice Chancellor)
+    if (getFlyoutItems(leaf).length) {
       return (
         <SubMenuLeaf
           key={leaf?.id || leaf?.label}
@@ -1175,25 +1272,24 @@ function MegaMenuPanel({
       );
     }
 
-    // Pro Chancellor or IQAC Committee are highlighted in the reference design
-    const isHighlight =
-      leaf?.label === "IQAC Committee" || leaf?.label === "Pro Chancellor";
+    const isHighlight = isActiveUrl(leaf?.url, pathname);
 
     return (
       <li key={leaf?.id || leaf?.label} className="w-full list-none">
         <Link
           href={leaf?.url || "#!"}
           aria-label={leaf?.label}
+          {...externalProps(leaf)}
           className={cn(
-            "w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 group",
+            "w-full inline-flex items-start gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 group",
             isHighlight
               ? "bg-[#FFE8D6] font-medium"
               : "hover:bg-[#FFE8D6] hover:font-medium",
           )}
         >
           {/* Delicate hollow circle bullet */}
-          <span className="w-[8px] h-[8px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
-          <span className="truncate">{leaf?.label}</span>
+          <span className="w-[8px] h-[8px] mt-[5px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
+          <span className="min-w-0 flex-1 break-words">{leaf?.label}</span>
         </Link>
       </li>
     );
@@ -1233,6 +1329,7 @@ function MegaMenuPanel({
                       key={child?.id}
                       href={child?.url || "#!"}
                       aria-label={child?.label}
+                      {...externalProps(child)}
                       onMouseEnter={() => setActiveChildId(child?.id)}
                       className={cn(
                         "w-full text-left flex items-center px-6 2xl:px-7 py-3 2xl:py-3.5 transition-colors duration-150 select-none",
@@ -1241,7 +1338,7 @@ function MegaMenuPanel({
                     >
                       <span
                         className={cn(
-                          "text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-tight text-white whitespace-nowrap",
+                          "text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-tight text-white",
                           isActive ? "font-semibold" : "font-normal opacity-95",
                         )}
                       >
@@ -1263,7 +1360,7 @@ function MegaMenuPanel({
                   >
                     <span
                       className={cn(
-                        "text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-tight text-white whitespace-nowrap",
+                        "text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-tight text-white",
                         isActive ? "font-semibold" : "font-normal opacity-95",
                       )}
                     >
@@ -1283,7 +1380,7 @@ function MegaMenuPanel({
                     {columns.map((colGroups, colIdx) => (
                       <div
                         key={colIdx}
-                        className="w-[190px] 2xl:w-[210px] 3xl:w-[240px] shrink-0 flex flex-col gap-5"
+                        className="min-w-[190px] 2xl:min-w-[210px] 3xl:min-w-[240px] max-w-[300px] shrink-0 flex flex-col gap-5"
                       >
                         {colGroups.map((group) => (
                           <div
@@ -1306,7 +1403,7 @@ function MegaMenuPanel({
                     ))}
                   </div>
                 ) : activeChild?.children?.length > 0 ? (
-                  <div className="w-[220px] 2xl:w-[250px] 3xl:w-[280px] shrink-0">
+                  <div className="min-w-[220px] 2xl:min-w-[250px] 3xl:min-w-[280px] max-w-[360px] shrink-0">
                     <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
                       {activeChild?.label}
                     </span>
@@ -1318,6 +1415,7 @@ function MegaMenuPanel({
                   <Link
                     href={activeChild?.url || "#!"}
                     aria-label={activeChild?.label}
+                    {...externalProps(activeChild)}
                     className="inline-flex items-center gap-2 text-[13px] 2xl:text-[15px] font-bold text-[#ea580c] hover:underline"
                   >
                     {activeChild?.label}
@@ -1337,14 +1435,19 @@ function MegaMenuPanel({
 // left-pointing notch aligned to the parent row, flush with the mega panel's right edge.
 const FLYOUT_PAD_TOP = 14; // same as pt-3.5, so the first item lines up with the parent row
 const FLYOUT_NOTCH = 12; // same as size-3
-const FLYOUT_MAX_WIDTH = 300; // widest breakpoint, only used to decide whether to flip left
+const FLYOUT_MAX_WIDTH = 360; // widest the flyout can grow, only used to decide whether to flip left
 
 function SubMenuLeaf({ leaf, onKeepOpen }) {
   const rowRef = useRef(null);
   const linkRef = useRef(null);
   const closeTimer = useRef(null);
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [pos, setPos] = useState({ top: 0, x: 0, flip: false, notchTop: 0, bridge: 0 });
+  // The row is current if its own page or any flyout page is the one being viewed
+  const isCurrent =
+    isActiveUrl(leaf?.url, pathname) ||
+    getFlyoutItems(leaf).some((sub) => isActiveUrl(sub?.url, pathname));
 
   useEffect(() => () => clearTimeout(closeTimer.current), []);
 
@@ -1399,19 +1502,22 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
         aria-label={leaf?.label}
         aria-haspopup="true"
         aria-expanded={isOpen}
+        {...externalProps(leaf)}
         className={cn(
-          "w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug rounded-[5px] px-2.5 py-[5px] transition-all duration-150",
+          "w-full inline-flex items-start gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug rounded-[5px] px-2.5 py-[5px] transition-all duration-150",
           isOpen
             ? "bg-[#FFE8D6] font-semibold text-[#ea580c]"
-            : "text-[#262626] hover:bg-[#FFE8D6] hover:font-medium",
+            : isCurrent
+              ? "bg-[#FFE8D6] font-medium text-[#262626]"
+              : "text-[#262626] hover:bg-[#FFE8D6] hover:font-medium",
         )}
       >
-        <span className="w-[8px] h-[8px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
-        <span className="truncate flex-1">{leaf?.label}</span>
+        <span className="w-[8px] h-[8px] mt-[5px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
+        <span className="min-w-0 flex-1 break-words">{leaf?.label}</span>
         <ChevronRight
           size={16}
           strokeWidth={2.5}
-          className="mr-1.5 shrink-0 text-[#ea580c]"
+          className="mr-1.5 mt-0.5 shrink-0 text-[#ea580c]"
         />
       </Link>
 
@@ -1423,7 +1529,7 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
               onKeepOpen?.();
             }}
             onMouseLeave={closeSub}
-            className="fixed z-[10000] w-[245px] 2xl:w-[264px] 3xl:w-[300px]"
+            className="fixed z-[10000] w-max min-w-[245px] 2xl:min-w-[264px] 3xl:min-w-[300px] max-w-[360px]"
             style={{ top: pos.top, [pos.flip ? "right" : "left"]: pos.x }}
           >
             {/* Invisible bridge so the menu stays open while the mouse crosses the gap */}
@@ -1455,15 +1561,20 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
               />
 
               <ul className="flex flex-col gap-[3px] p-0 m-0">
-                {leaf.subMenu.map((sub) => (
+                {getFlyoutItems(leaf).map((sub) => (
                   <li key={sub?.id || sub?.label} className="w-full list-none">
                     <Link
                       href={sub?.url || "#!"}
                       aria-label={sub?.label}
-                      className="w-full inline-flex items-center gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium"
+                      {...externalProps(sub)}
+                      className={cn(
+                        "w-full inline-flex items-start gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium",
+                        isActiveUrl(sub?.url, pathname) &&
+                          "bg-[#FFE8D6] font-medium",
+                      )}
                     >
-                      <span className="w-[8px] h-[8px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
-                      <span className="truncate">{sub?.label}</span>
+                      <span className="w-[8px] h-[8px] mt-[5px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
+                      <span className="min-w-0 flex-1 break-words">{sub?.label}</span>
                     </Link>
                   </li>
                 ))}
@@ -1489,6 +1600,7 @@ function NavigationMenu({
   keepMenuOpen,
   scheduleCloseMenu,
 }) {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
   const hasSubmenu = item?.children?.length > 0;
@@ -1519,20 +1631,20 @@ function NavigationMenu({
               setIsOpen((prev) => !prev);
             }}
             className={cn(
-              "w-full flex items-center gap-2 py-1.5 px-3 text-[13px] text-left rounded-md transition-colors duration-200",
+              "w-full flex items-start gap-2 py-1.5 px-3 text-[13px] text-left rounded-md transition-colors duration-200",
               isOpen
                 ? "bg-[#FFE8D6] dark:bg-white/10 font-medium text-black dark:text-white"
                 : "text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5",
             )}
           >
-            <span className="w-[7px] h-[7px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
-            <span className="truncate flex-1">{item?.label}</span>
+            <span className="w-[7px] h-[7px] mt-[6px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
+            <span className="min-w-0 break-words flex-1">{item?.label}</span>
             {isOpen ? (
-              <ChevronDown size={15} className="shrink-0 text-(--basecolor)" />
+              <ChevronDown size={15} className="mt-0.5 shrink-0 text-(--basecolor)" />
             ) : (
               <ChevronRight
                 size={15}
-                className="shrink-0 text-black/60 dark:text-white/60"
+                className="mt-0.5 shrink-0 text-black/60 dark:text-white/60"
               />
             )}
           </button>
@@ -1555,10 +1667,11 @@ function NavigationMenu({
                     key={sub?.id || sub?.label}
                     href={sub?.url || "#!"}
                     aria-label={sub?.label}
-                    className="w-full flex items-center gap-2 py-1.5 px-3 text-[13px] rounded-md text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5 transition-colors duration-200"
+                    {...externalProps(sub)}
+                    className="w-full flex items-start gap-2 py-1.5 px-3 text-[13px] rounded-md text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5 transition-colors duration-200"
                   >
-                    <span className="w-[7px] h-[7px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
-                    <span className="truncate">{sub?.label}</span>
+                    <span className="w-[7px] h-[7px] mt-[6px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
+                    <span className="min-w-0 break-words">{sub?.label}</span>
                   </Link>
                 ))}
               </div>
@@ -1575,6 +1688,7 @@ function NavigationMenu({
           <Link
             href={item?.url || "#!"}
             aria-label={item?.label}
+            {...externalProps(item)}
             className={cn(
               "w-full flex items-center justify-between px-5 py-3.5 border-b border-black/8 dark:border-white/10",
               "text-sm font-medium text-[#212121] dark:text-white hover:text-(--basecolor) transition-colors duration-200",
@@ -1590,22 +1704,22 @@ function NavigationMenu({
         );
       }
 
-      const isHighlight =
-        item?.label === "IQAC Committee" || item?.label === "Pro Chancellor";
+      const isHighlight = isActiveUrl(item?.url, pathname);
 
       return (
         <Link
           href={item?.url || "#!"}
           aria-label={item?.label}
+          {...externalProps(item)}
           className={cn(
-            "w-full flex items-center gap-2 py-1.5 px-3 text-[13px] rounded-md transition-colors duration-200",
+            "w-full flex items-start gap-2 py-1.5 px-3 text-[13px] rounded-md transition-colors duration-200",
             isHighlight
               ? "bg-[#FFE8D6] dark:bg-white/10 font-medium text-black dark:text-white"
               : "text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5",
           )}
         >
-          <span className="w-[7px] h-[7px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
-          <span className="truncate">{item?.label}</span>
+          <span className="w-[7px] h-[7px] mt-[6px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
+          <span className="min-w-0 break-words">{item?.label}</span>
         </Link>
       );
     }
@@ -1710,8 +1824,10 @@ function NavigationMenu({
         <Link
           href={item?.url || "#"}
           aria-label={item?.label}
+          {...externalProps(item)}
           className={cn(
             "text-[14px] lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent",
+            NOT_FOUND_BLACK_TEXT,
             className,
           )}
         >
@@ -1730,7 +1846,11 @@ function NavigationMenu({
             <Link
               href={item?.url || "#"}
               aria-label={item.label}
-              className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium text-white transition-colors duration-400"
+              {...externalProps(item)}
+              className={cn(
+                "text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium text-white transition-colors duration-400",
+                NOT_FOUND_BLACK_TEXT,
+              )}
             >
               <span>{item.label}</span>
             </Link>
@@ -1738,7 +1858,10 @@ function NavigationMenu({
             <button
               type="button"
               aria-haspopup="true"
-              className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-white transition-colors duration-400"
+              className={cn(
+                "text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-white transition-colors duration-400",
+                NOT_FOUND_BLACK_TEXT,
+              )}
             >
               <span>{item.label}</span>
             </button>
@@ -1746,6 +1869,7 @@ function NavigationMenu({
           <span
             className={cn(
               "w-[15px] h-[15px] lg:w-2 lg:h-2 lg:border-r-1 2xl:border-r-2 lg:border-b-1 2xl:border-b-2 border-white transition-transform duration-300 ease-out",
+              NOT_FOUND_BLACK_BORDER,
               isMenuOpen
                 ? "lg:rotate-[225deg]"
                 : "lg:rotate-45 -translate-y-0.5",

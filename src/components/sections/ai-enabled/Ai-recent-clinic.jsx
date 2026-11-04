@@ -17,7 +17,7 @@ export default function AiRecentClinic({ data }) {
                     </div>
                 )}
                 {data?.description && (
-                    <div className="text_1 leading-[1.2] text-[#4A5565] typography">
+                    <div className="text_1 leading-[1.2] text-[#4A5565] ">
                         <BlocksRenderer content={data.description} />
                     </div>
                 )}

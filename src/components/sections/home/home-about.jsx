@@ -1,13 +1,14 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/ui/safe-image";
+import { safeHref } from "@/lib/utils";
 import ClientCountUp from "@/components/ui/client-count-up";
 import Fade from "embla-carousel-fade";
 import { Text } from "@/components/ui/text";
 import Autoplay from "embla-carousel-autoplay";
 import { Heading } from "@/components/ui/heading";
 import useEmblaCarousel from "embla-carousel-react";
-import { buttonVariants } from "@/components/ui/button";
+import CtaButton from "@/components/ui/cta-button";
 import { ShineBorder } from "@/components/ui/shine-border";
 import React, { useState, useEffect, useCallback } from "react";
 
@@ -115,7 +116,7 @@ export default function HomeAbout({ data }) {
                 className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
               />
               <Link
-                href={data?.virtualTour?.link || "/"}
+                href={safeHref(data?.virtualTour?.link)}
                 aria-label="Virtual Tour"
                 target="_blank"
                 className="w-fit h-fit p-[5px_10px] sm:p-[5px_15px] 3xl:p-[5px_20px] m-auto bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[30px] overflow-hidden transition-colors duration-400 absolute z-1 inset-0 inline-flex items-center hover:from-(--basecolor2) hover:to-(--basecolor)"
@@ -290,23 +291,7 @@ export default function HomeAbout({ data }) {
               </div>
             </div>
             <div className="w-full h-auto mt-3.75 sm:mt-7.5 lg:mt-5">
-              <Link
-                href="/centres-of-excellence"
-                className={buttonVariants({
-                  variant: "default",
-                  size: "default",
-                })}
-              >
-                Explore DSU
-                <Image
-                  src="/images/icon-btn.svg"
-                  alt="home-btn"
-                  width={15}
-                  height={15}
-                  className="size-3.75"
-                  data-icon="inline-end"
-                />
-              </Link>
+              <CtaButton button={data?.button} />
             </div>
           </div>
         </div>

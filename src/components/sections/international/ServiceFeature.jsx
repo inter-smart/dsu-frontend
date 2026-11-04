@@ -25,13 +25,15 @@ export default function ServiceFeature({ data }) {
 
                 <div className="mt-6 grid items-start gap-6 lg:grid-cols-[1fr_47%] lg:gap-10 2xl:mt-[24px] 2xl:gap-[60px]">
                     <div>
-                        <h3 className="text-[18px] font-medium tracking-[-0.02em] text-[#111] lg:text-[22px] 2xl:text-[24px]">
-                            {listTitle}
-                        </h3>
+                        {listTitle && (
+                            <h3 className="text-[18px] font-medium tracking-[-0.02em] text-[#111] lg:text-[22px] 2xl:text-[24px]">
+                                {listTitle}
+                            </h3>
+                        )}
                         <ul className="mt-3 space-y-3 2xl:mt-[18px] 2xl:space-y-[22px]">
-                            {items.map((item) => (
+                            {items.map((item, index) => (
                                 <li
-                                    key={item}
+                                    key={`${index}-${item}`}
                                     className="flex items-start gap-3 text-[14px] leading-[1.5] text-[#444] lg:text-[16px] 2xl:max-w-[640px] 2xl:text-[18px]"
                                 >
                                     <span className="mt-[0.65em] size-[4px] shrink-0 rounded-full bg-[#555]" aria-hidden="true" />

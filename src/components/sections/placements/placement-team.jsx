@@ -30,7 +30,7 @@ export default function PlacementTeam({ data }) {
                         </h2>
                     )}
                     {description && Array.isArray(description) ? (
-                        <div className="text_1 text-[#5A6472] dark:!text-black max-w-[850px] leading-relaxed [&_p]:dark:!text-black typography">
+                        <div className="text_1 text-[#5A6472] dark:!text-black max-w-[850px] leading-relaxed [&_p]:dark:!text-black ">
                             <BlocksRenderer content={description} />
                         </div>
                     ) : (description || subheading) && (

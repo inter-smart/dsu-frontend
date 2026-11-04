@@ -110,7 +110,8 @@ function LostCapAnimation() {
 
 export default function NotFound() {
     return (
-        <section className="relative flex   w-full items-center overflow-hidden bg-[#FFF9F2] py-[200px_100px] 2xl:py-[250px_100px] 3xl:py-[300px_100px] ">
+        // data-not-found: lets the header turn its menu items black on this page only
+        <section data-not-found className="relative flex   w-full items-center overflow-hidden bg-[#FFF9F2] py-[200px_100px] 2xl:py-[250px_100px] 3xl:py-[300px_100px] ">
             {/* Soft brand glow behind the number */}
             <div
                 aria-hidden="true"

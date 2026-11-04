@@ -17,7 +17,7 @@ function DomainCard({ domain }) {
           height={48}
           className="mb-3 size-9 object-contain transition-[filter] duration-300 group-hover:brightness-0 group-hover:invert xl:size-12"
         />
-      )}
+      )} 
       <h3 className="mb-2 text-[18px] font-semibold text-[#212121] transition-colors duration-300 group-hover:text-white dark:text-white xl:text-[22px]">
         {domain.title}
       </h3>

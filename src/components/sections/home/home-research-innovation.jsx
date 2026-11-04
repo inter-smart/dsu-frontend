@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/ui/safe-image";
+import { safeHref } from "@/lib/utils";
 import ClientCountUp from "@/components/ui/client-count-up";
 import { Text } from "@/components/ui/text";
 import Autoplay from "embla-carousel-autoplay";
@@ -173,7 +174,7 @@ export default function HomeResearch({ data }) {
                 </div>
                 <div className="w-full sm:w-[20%] hidden sm:flex justify-end">
                   <Link
-                    href={data?.research?.header?.button?.link}
+                    href={safeHref(data?.research?.header?.button?.link)}
                     className={buttonVariants({
                       variant: "default",
                       size: "default",
@@ -234,7 +235,7 @@ export default function HomeResearch({ data }) {
                           className="min-w-0 translate-x-0 translate-y-0 flex-[0_0_calc(100%/2.2)] sm:flex-[0_0_calc(100%/4)] lg:flex-[0_0_calc(100%/3)] xl:flex-[0_0_calc(100%/4)] pl-(--slide-gap)"
                         >
                           <Link
-                            href={item?.link}
+                            href={safeHref(item?.link)}
                             aria-label={item?.title}
                             className="group w-full h-full block relative z-0"
                           >
@@ -331,7 +332,7 @@ export default function HomeResearch({ data }) {
                         </div>
                       ))}
                     <Link
-                      href={data?.research?.ctaButton?.link || "/"}
+                      href={safeHref(data?.research?.ctaButton?.link)}
                       className={buttonVariants({
                         variant: "default",
                         size: "default",
@@ -351,7 +352,7 @@ export default function HomeResearch({ data }) {
                     </Link>
                     <div className="w-full h-auto mt-7.5 col-span-12 flex items-center sm:hidden justify-center">
                       <Link
-                        href={data?.research?.header?.button?.link}
+                        href={safeHref(data?.research?.header?.button?.link)}
                         className={buttonVariants({
                           variant: "default",
                           size: "default",
@@ -383,7 +384,7 @@ export default function HomeResearch({ data }) {
               </div>
               <div className="w-full sm:w-[20%] hidden sm:flex justify-end">
                 <Link
-                  href={data?.incubation?.header?.button?.link}
+                  href={safeHref(data?.incubation?.header?.button?.link)}
                   className={buttonVariants({
                     variant: "default",
                     size: "default",
@@ -412,7 +413,7 @@ export default function HomeResearch({ data }) {
                     className="min-w-0 translate-x-0 translate-y-0 flex-[0_0_100%] sm:flex-[0_0_calc(100%/1.4)] lg:flex-[0_0_calc(100%/2)] pl-(--slide-gap)"
                   >
                     <Link
-                      href={item?.link}
+                      href={safeHref(item?.link)}
                       aria-label={item?.title}
                       className="group w-full h-full block relative z-0"
                     >
@@ -457,7 +458,7 @@ export default function HomeResearch({ data }) {
               </div>
               <div className="w-full sm:w-[20%] hidden sm:flex justify-end">
                 <Link
-                  href={data?.innovation?.header?.button?.link}
+                  href={safeHref(data?.innovation?.header?.button?.link)}
                   className={buttonVariants({
                     variant: "default",
                     size: "default",
@@ -486,7 +487,7 @@ export default function HomeResearch({ data }) {
                     className="min-w-0 translate-x-0 translate-y-0 flex-[0_0_calc(100%/1.2)] sm:flex-[0_0_calc(100%/2)] lg:flex-[0_0_calc(100%/3)] pl-(--slide-gap)"
                   >
                     <Link
-                      href={item?.link}
+                      href={safeHref(item?.link)}
                       aria-label={item?.title}
                       className="group w-full h-full block relative z-0"
                     >

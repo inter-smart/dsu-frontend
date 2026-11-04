@@ -15,7 +15,7 @@ export default function AcademicProgram({ data, variant }) {
                 <div className="mb-[15px] lg:mb-[25px] 2xl:mb-[40px] 3xl:mb-[45px] flex max-lg:flex-wrap max-lg:gap-[20px]">
                     <div className="w-auto lg:flex-grow-1">
                         {data.heading && <div className="cmn_Title mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] text-black dark:text-white">{data.heading}</div>}
-                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] lg:max-w-[90%] typography">
+                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] lg:max-w-[90%] ">
                             {data?.description && <BlocksRenderer content={data.description} />}
                         </div>
                         <AcademicCta cta={data?.cta} className="mt-[15px] xl:mt-[20px]" />

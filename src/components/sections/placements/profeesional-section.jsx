@@ -26,7 +26,7 @@ export default function ProfessionalCertification({ data }) {
                 </h2>
 
                 {data?.description && (
-                    <div className="typography text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]">
+                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]">
                         {Array.isArray(data.description) ? (
                             <BlocksRenderer content={data.description} />
                         ) : (

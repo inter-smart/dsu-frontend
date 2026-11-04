@@ -26,7 +26,7 @@ export default function EntityHtmlSection({ eyebrow, heading, html, facts = [] }
                 )}
                 {html && (
                     <div
-                        className="typography text_1 text-[#4A5565] dark:text-white/80"
+                        className="text_1 text-[#4A5565] dark:text-white/80"
                         dangerouslySetInnerHTML={{ __html: html }}
                     />
                 )}

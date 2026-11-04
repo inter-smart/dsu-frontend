@@ -39,6 +39,7 @@ export default function InternationalBanner({ data, formData }) {
                                             ) : (
                                                 <Link
                                                     href={crumb.href}
+                                                    {...(crumb.newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                                                     className="font-light text-white transition-colors hover:text-white"
                                                 >
                                                     {crumb.label}
@@ -64,6 +65,7 @@ export default function InternationalBanner({ data, formData }) {
                         <div className="mt-6 flex flex-wrap items-center gap-x-10 gap-y-5 2xl:mt-[40px] 2xl:gap-x-[90px]">
                             <Link
                                 href={button.href}
+                                {...(button.newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                                 className="inline-flex h-[44px] items-center gap-4 rounded-[3px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-5 text-[15px] font-medium text-white transition-opacity duration-300 hover:opacity-90 2xl:h-[50px] 2xl:gap-[18px] 2xl:text-[18px]"
                             >
                                 {button.label}

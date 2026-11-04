@@ -44,7 +44,7 @@ export default function LibraryServices({ data, menu }) {
                             <h2 className="cmn_Title dark:text-white mb-[25px]">
                                 {data.heading}
                             </h2>
-                            <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] typography">
+                            <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] ">
                                 {data.description && <BlocksRenderer content={data.description} />}
                             </div>
                             {data?.image?.url && (
@@ -62,11 +62,11 @@ export default function LibraryServices({ data, menu }) {
                                     </h2>
 
                                     {section.content ? (
-                                        <div className="typography"><BlocksRenderer content={section.content} blocks={sectionBlocks} /></div>
+                                        <div><BlocksRenderer content={section.content} blocks={sectionBlocks} /></div>
                                     ) : (
                                         <>
                                     {(section.intro || section.description) && (
-                                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] typography">
+                                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] ">
                                             <BlocksRenderer content={section.intro || section.description} />
                                         </div>
                                     )}
@@ -85,7 +85,7 @@ export default function LibraryServices({ data, menu }) {
                                     )}
 
                                     {section?.outro && (
-                                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] typography">
+                                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] ">
                                             <BlocksRenderer content={section.outro} />
                                         </div>
                                     )}
@@ -115,7 +115,7 @@ export default function LibraryServices({ data, menu }) {
                                     )}
 
                                     {data?.outro && (
-                                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] typography">
+                                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] ">
                                             <BlocksRenderer content={section.outro} />
                                         </div>
                                     )}

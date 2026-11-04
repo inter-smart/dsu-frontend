@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/ui/safe-image";
+import { safeHref } from "@/lib/utils";
 import Fade from "embla-carousel-fade";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
@@ -157,7 +158,7 @@ export default function HomeHero({ data }) {
                           (button, index) => (
                             <Link
                               key={`${item?.id}-button-${index}`}
-                              href={button?.url || "#"}
+                              href={safeHref(button?.url)}
                               target={button?.isExternal ? "_blank" : undefined}
                               rel={button?.isExternal ? "noopener noreferrer" : undefined}
                               className={buttonVariants({
@@ -191,7 +192,7 @@ export default function HomeHero({ data }) {
                               className="min-w-0 translate-x-0 translate-y-0 flex-[0_0_calc(100%/3)] pl-(--slide-gap)"
                             >
                               <Link
-                                href={item?.url}
+                                href={safeHref(item?.url)}
                                 aria-label={item?.title}
                                 className="w-full h-full text-center p-2.5 sm:p-[15px_10px_15px_10px] 2xl:p-[20px_10px_15px_10px] 3xl:p-[25px_10px_20px_10px] bg-black/20 rounded-[15px] sm:rounded-[18px] lg:rounded-[22px] 2xl:rounded-[30px] 3xl:rounded-[35px] backdrop-blur-[2px] overflow-hidden flex items-center sm:block transition-colors duration-400 relative z-0 hover:bg-linear-to-r hover:from-(--basecolor)/80 hover:to-(--basecolor2)/80"
                               >
@@ -244,7 +245,7 @@ export default function HomeHero({ data }) {
               {data?.heroMarquee?.map((item, index) => (
                 <Link
                   key={"marqueeText" + index}
-                  href={item?.url}
+                  href={safeHref(item?.url)}
                   {...(item?.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="[--icon-size:12px] 2xl:[--icon-size:15px] text-sm 3xl:text-base leading-[1.1] font-normal tracking-[-2%] text-center text-white w-auto h-auto pl-[calc(var(--icon-size)+10px)] 2xl:pl-[calc(var(--icon-size)+15px)] pr-2.5 2xl:pr-3.75 flex items-center relative z-0 before:content-[''] before:w-(--icon-size) before:h-auto before:aspect-square before:my-auto before:bg-[url('data:image/svg+xml,%3Csvg%20width=%2212%22%20height=%2212%22%20viewBox=%220%200%2012%2012%22%20fill=%22none%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath%20d=%22M6.49517%202.35386L6%200L5.50483%202.35386C5.34195%203.12816%204.95733%203.83835%204.39784%204.39784C3.83835%204.95733%203.12816%205.34195%202.35386%205.50483L0%206L2.35386%206.49517C3.12815%206.65805%203.83835%207.0427%204.39784%207.60218C4.95733%208.16166%205.34195%208.87183%205.50483%209.64616L6%2012L6.49517%209.64616C6.65805%208.87183%207.04265%208.16166%207.60213%207.60218C8.16166%207.0427%208.87183%206.65805%209.64616%206.49517L12%206L9.64616%205.50483C8.87183%205.34195%208.16161%204.95733%207.60213%204.39784C7.04265%203.83835%206.65805%203.12816%206.49517%202.35386Z%22%20fill=%22white%22/%3E%3C/svg%3E')] before:bg-contain before:bg-center before:bg-no-repeat before:absolute before:z-1 before:inset-[0_auto_0_0]"
                 >

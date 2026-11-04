@@ -44,10 +44,10 @@ export default async function Page({ params }) {
 
   return (
     <>
-      {pageData.hero && <InnerHero data={pageData.hero} />}
+      {pageData.hero && <InnerHero data={pageData.hero} className="leadership-detail-hero" />}
       {pageData.collegeRanking && (
         <NIRFRanking
-          data={pageData.collegeRanking}
+          data={{ ...pageData.collegeRanking, title: "" }}
           menu={menu || []}
           basePath={BASE_PATH}
         />

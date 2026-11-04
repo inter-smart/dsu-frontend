@@ -63,7 +63,7 @@ export default async function Page({ params }) {
 
   return (
     <>
-      {pageData.hero && <InnerHero data={pageData.hero} />}
+      {pageData.hero && <InnerHero data={pageData.hero} className="leadership-detail-hero" />}
       {isFlexible ? (
         <FlexibleSections
           sections={pageData.flexiblePage?.sections}
@@ -80,7 +80,7 @@ export default async function Page({ params }) {
         )
       ) : (
         pageData.collegeRanking && (
-          <NIRFRanking data={pageData.collegeRanking} menu={menu || []} />
+          <NIRFRanking data={{ ...pageData.collegeRanking, title: "" }} menu={menu || []} />
         )
       )}
     </>

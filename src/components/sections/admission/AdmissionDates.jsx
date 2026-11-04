@@ -37,7 +37,7 @@ export default function AdmissionDates({ data }) {
                         {heading}
                     </h2>
                     {description && description.length > 0 && (
-                        <div className="text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6] max-w-[700px] typography">
+                        <div className="text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6] max-w-[700px] ">
                             <BlocksRenderer content={description} />
                         </div>
                     )}

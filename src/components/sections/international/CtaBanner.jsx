@@ -15,6 +15,7 @@ export default function CtaBanner({ data }) {
                         {prompt}{" "}
                         <Link
                             href={link.href}
+                            {...(link.newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                             className="font-medium text-[#F97316] no-underline! transition-opacity duration-300 hover:opacity-80"
                         >
                             {link.label}

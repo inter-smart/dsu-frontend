@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
+import Image from "@/components/ui/safe-image";
+import { cn, safeHref } from "@/lib/utils";
 import { useEffect, useCallback, useState } from "react";
 import ClientCountUp from "@/components/ui/client-count-up";
 import { Fancybox } from "@fancyapps/ui";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
-import { buttonVariants } from "@/components/ui/button";
+import CtaButton from "@/components/ui/cta-button";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 export default function HomeCampusLife({ data }) {
@@ -87,23 +87,7 @@ export default function HomeCampusLife({ data }) {
                     {data?.campusInfo?.description}
                   </div>
                   <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25">
-                    <Link
-                      href="/centres-of-excellence"
-                      className={buttonVariants({
-                        variant: "default",
-                        size: "default",
-                      })}
-                    >
-                      Explore Campus
-                      <Image
-                        src="/images/icon-btn.svg"
-                        alt="home-btn"
-                        width={15}
-                        height={15}
-                        className="size-3.75"
-                        data-icon="inline-end"
-                      />
-                    </Link>
+                    <CtaButton button={data?.campusInfo?.button} />
                   </div>
                 </div>
               </div>
@@ -180,23 +164,7 @@ export default function HomeCampusLife({ data }) {
                 {data?.campusInfo?.description}
               </div>
               <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25">
-                <Link
-                  href="/centres-of-excellence"
-                  className={buttonVariants({
-                    variant: "default",
-                    size: "default",
-                  })}
-                >
-                  Explore Campus
-                  <Image
-                    src="/images/icon-btn.svg"
-                    alt="home-btn"
-                    width={15}
-                    height={15}
-                    className="size-3.75"
-                    data-icon="inline-end"
-                  />
-                </Link>
+                <CtaButton button={data?.campusInfo?.button} />
               </div>
             </div>
           </div>
@@ -288,7 +256,7 @@ function FeatureCard({ item, className }) {
   return (
     <Link
       data-fancybox="campus"
-      href={item?.media?.url || "#"}
+      href={safeHref(item?.media?.url)}
       data-caption={item?.title}
       data-type={item?.media?.type === "video" ? "html5video" : "image"}
       className={cn(

@@ -48,13 +48,13 @@ export default function StudentSuccessStories({ data, variant }) {
                     <div className="flex items-center justify-between mb-[18px] sm:mb-[22px] lg:mb-[26px]">
                         
                         {/* Main Heading */}
-                        <div className="">
+                        <div>
                             <h2 className="text-[28px] sm:text-[36px] lg:text-[42px] xl:text-[46px] font-bold text-[#1F1F1F] dark:text-white tracking-tight">
                                 {heading}
                             </h2>
 
                             {data?.description && (
-                                <div className="typography text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]">
+                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]">
                                     {Array.isArray(data.description) ? (
                                         <BlocksRenderer content={data.description} />
                                     ) : (

@@ -50,7 +50,7 @@ export default function OtherApproval({ data, menu = [] }) {
                                 {data.title}
                             </h2>
                             {data?.description?.length > 0 && (
-                                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] typography">
+                                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] ">
                                     <BlocksRenderer content={data.description} />
                                 </div>
                             )}

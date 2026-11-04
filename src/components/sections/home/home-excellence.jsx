@@ -1,6 +1,7 @@
 "use client";
-import Image from "next/image";
+import Image from "@/components/ui/safe-image";
 import Link from "next/link";
+import { safeHref } from "@/lib/utils";
 import { Text } from "@/components/ui/text";
 import { useEffect, useState } from "react";
 import { Heading } from "@/components/ui/heading";
@@ -200,7 +201,7 @@ export default function HomeExcellence({ data }) {
                   </div>
                   <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25 max-lg:hidden">
                     <Link
-                      href={activeItem?.excellenceContent?.button?.link || "#"}
+                      href={safeHref(activeItem?.excellenceContent?.button?.link, "/NVIDIA")}
                       className={buttonVariants({
                         variant: "default",
                         size: "default",
@@ -223,7 +224,7 @@ export default function HomeExcellence({ data }) {
           </div>
           <div className="mt-5 max-lg:block hidden max-lg:order-4">
             <Link
-              href={activeItem?.excellenceContent?.button?.link || "#"}
+              href={safeHref(activeItem?.excellenceContent?.button?.link, "/NVIDIA")}
               className={buttonVariants({
                 variant: "default",
                 size: "default",

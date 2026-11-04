@@ -52,7 +52,7 @@ export default async function Page({ params }) {
 
   return (
     <>
-      {hero && <InnerHero data={hero} />}
+      {hero && <InnerHero data={hero} className="leadership-detail-hero" />}
       {pageData.template === "naac" ? (
         <>
           {pageData.naccAccreditationData && (

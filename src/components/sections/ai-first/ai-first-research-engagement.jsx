@@ -7,7 +7,10 @@ export default function ResearchEngagement({ data }) {
     <section className="relative isolate w-full overflow-hidden bg-[#061b27] pt-10 sm:pt-15 lg:pt-20 2xl:pt-25 3xl:pt-30">
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[url('/images/ai-first/engagement-bg.jpg')] bg-cover bg-center"
+        className="absolute inset-0 -z-10 bg-cover bg-center"
+        style={{
+          backgroundImage: `url('${data?.backgroundImage?.url || "/images/ai-first/engagement-bg.jpg"}')`,
+        }}
       />
       <div
         aria-hidden="true"

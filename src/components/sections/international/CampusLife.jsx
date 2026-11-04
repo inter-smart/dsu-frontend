@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Grip } from "lucide-react";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { NumberBadge, Eyebrow, bodyClass } from "./ServiceShared";
@@ -60,35 +59,33 @@ function StatsTile({ card }) {
     );
 }
 
-function IntroTile({ card, data }) {
+// Heading, text and button of the campus block
+function CampusIntro({ data }) {
     const { number, eyebrow, title, description, button } = data;
 
     return (
-        <div className="grid h-full items-center gap-5 rounded-[10px] bg-[#F2F6FC] p-4 sm:grid-cols-[46%_1fr] lg:p-5 2xl:gap-[38px]">
-            <MediaFrame
-                media={card.media}
-                group="campus-life"
-                sizes="(max-width: 767px) 100vw, 25vw"
-                className="aspect-[398/368] w-full"
-            >
-                <TileOverlay card={card} />
-            </MediaFrame>
-
-            <div>
-                <div className="flex items-center gap-4 2xl:gap-[25px]">
-                    <NumberBadge number={number} />
-                    <div className="min-w-0">
-                        <Eyebrow>{eyebrow}</Eyebrow>
+        <div>
+            <div className="flex items-center gap-4 2xl:gap-[25px]">
+                <NumberBadge number={number} />
+                <div className="min-w-0">
+                    <Eyebrow>{eyebrow}</Eyebrow>
+                    {title && (
                         <h2 className="mt-0.5 text-[22px] font-semibold leading-[1.45] tracking-[-0.03em] text-[#1a1a1a] lg:text-[26px] 2xl:text-[30px]">
                             {title}
                         </h2>
-                    </div>
+                    )}
                 </div>
+            </div>
 
+            {description && (
                 <p className={`mt-4 2xl:mt-[24px] 2xl:max-w-[330px] 2xl:leading-[25px] ${bodyClass}`}>{description}</p>
+            )}
 
+            {button && (
                 <Link
-                    href={button.href}
+                    href={button.url}
+                    target={button.isExternal ? "_blank" : undefined}
+                    rel={button.isExternal ? "noopener noreferrer" : undefined}
                     className="mt-5 inline-flex h-[44px] items-center gap-4 rounded-[3px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-5 text-[15px] font-medium text-white no-underline! transition-opacity duration-300 hover:opacity-90 2xl:mt-[30px] 2xl:h-[50px] 2xl:text-[18px]"
                 >
                     {button.label}
@@ -100,16 +97,33 @@ function IntroTile({ card, data }) {
                             <circle cx="13.9852" cy="6.49988" r="1.37879" fill="white" />
                             <circle cx="1.37879" cy="6.49988" r="1.37879" fill="white" />
                         </svg>
-
                     </div>
                 </Link>
-            </div>
+            )}
+        </div>
+    );
+}
+
+function IntroTile({ card, data }) {
+    return (
+        <div className="grid h-full items-center gap-5 rounded-[10px] bg-[#F2F6FC] p-4 sm:grid-cols-[46%_1fr] lg:p-5 2xl:gap-[38px]">
+            <MediaFrame
+                media={card.media}
+                group="campus-life"
+                sizes="(max-width: 767px) 100vw, 25vw"
+                className="aspect-[398/368] w-full"
+            >
+                <TileOverlay card={card} />
+            </MediaFrame>
+
+            <CampusIntro data={data} />
         </div>
     );
 }
 
 export default function CampusLife({ data }) {
-    const { cards } = data;
+    const { cards = [] } = data;
+    const hasIntroTile = cards.some((card) => card.layout === "intro");
     const containerRef = useRef(null);
 
     useEffect(() => {
@@ -122,6 +136,12 @@ export default function CampusLife({ data }) {
     return (
         <section id="campus-life" className="w-full bg-white py-10 lg:py-12 2xl:py-[74px]">
             <div className="container" ref={containerRef}>
+                {/* Without an intro tile the heading and button sit above the grid */}
+                {!hasIntroTile && (
+                    <div className="mb-6 2xl:mb-[30px]">
+                        <CampusIntro data={data} />
+                    </div>
+                )}
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-[repeat(2,minmax(300px,auto))] 2xl:grid-rows-[404px_425px] 2xl:gap-[19px]">
                     {cards.map((card) => (
                         <div key={card.id} className={spanClass[card.span]}>

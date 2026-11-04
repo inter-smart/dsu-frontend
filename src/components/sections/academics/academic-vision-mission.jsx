@@ -21,7 +21,7 @@ const richTextLists = [
 function Description({ value, className }) {
     if (Array.isArray(value)) {
         return value.length > 0 ? (
-            <div className={`typography ${className} [&_p]:text-inherit [&_p]:font-[inherit] ${richTextLists}`}>
+            <div className={`${className} [&_p]:text-inherit [&_p]:font-[inherit] ${richTextLists}`}>
                 <BlocksRenderer content={value} />
             </div>
         ) : null;
