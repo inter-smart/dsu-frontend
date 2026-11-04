@@ -35,16 +35,10 @@ const proViceChancellorSubMenu = [
   { id: 2, url: "#!", label: "Dr. Prakash S" },
 ];
 
-// ADDED: when the 404 page (which carries data-not-found) is on screen, header text/icons turn black
-const NOT_FOUND_BLACK_TEXT = "[body:has([data-not-found])_&]:text-black";
-const NOT_FOUND_BLACK_BORDER = "[body:has([data-not-found])_&]:border-black";
-const NOT_FOUND_BORDER_SOFT = "[body:has([data-not-found])_&]:border-black/40";
-const NOT_FOUND_BORDER_FAINT = "[body:has([data-not-found])_&]:border-black/20";
-const NOT_FOUND_BLACK_BG = "[body:has([data-not-found])_&]:bg-black";
-const NOT_FOUND_INVERT = "[body:has([data-not-found])_&]:invert";
-const NOT_FOUND_CLOSE_HOVER = "[body:has([data-not-found])_&]:hover:bg-black/10";
-const NOT_FOUND_INPUT =
-  "[body:has([data-not-found])_&]:text-black [body:has([data-not-found])_&]:bg-black/5 [body:has([data-not-found])_&]:border-black/20 [body:has([data-not-found])_&]:placeholder:text-black/50";
+// ADDED: on the 404 page (which carries data-not-found) the header gets a brand gradient background.
+// Menu text stays white. Change the from/to colors here to adjust the gradient.
+const NOT_FOUND_HEADER_GRADIENT =
+  "[body:has([data-not-found])_&]:bg-linear-to-r [body:has([data-not-found])_&]:from-(--basecolor)/90 [body:has([data-not-found])_&]:to-(--basecolor2)/90";
 
 const local_data = {
   // topBar: {
@@ -586,6 +580,7 @@ export default function Header({ data = local_data }) {
           : isHome
             ? ["bg-linear-to-r", "from-(--basecolor)/10", "to-(--basecolor2)/10"]
             : ["backdrop-blur-md shadow-md border-b border-white/10"],
+        NOT_FOUND_HEADER_GRADIENT,
       )}
     >
       <div className="w-full h-11.25 lg:h-7.5 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block">
@@ -733,10 +728,7 @@ export default function Header({ data = local_data }) {
                 )}
                 <div className="w-auto h-auto m-auto">
                   <div
-                    className={cn(
-                      "max-sm:text-[9px] text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white",
-                      NOT_FOUND_BLACK_TEXT,
-                    )}
+                    className="max-sm:text-[9px] text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white"
                     dangerouslySetInnerHTML={{
                       __html: data?.logo?.logoText,
                     }}
@@ -754,11 +746,7 @@ export default function Header({ data = local_data }) {
                     <Link
                       href={item?.url || "#"}
                       aria-label={item?.label}
-                      className={cn(
-                        "text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-5 border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)",
-                        NOT_FOUND_BLACK_TEXT,
-                        NOT_FOUND_BORDER_SOFT,
-                      )}
+                      className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-5 border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
                     >
                       {item?.label}
                     </Link>
@@ -937,7 +925,7 @@ export default function Header({ data = local_data }) {
                   alt={"Home"}
                   width={20}
                   height={20}
-                  className={cn("w-full h-full object-contain", NOT_FOUND_INVERT)}
+                  className="w-full h-full object-contain"
                 />
               </span>
             </Link>
@@ -984,7 +972,7 @@ export default function Header({ data = local_data }) {
                   alt={"Search"}
                   width={20}
                   height={20}
-                  className={cn("w-full h-full object-contain", NOT_FOUND_INVERT)}
+                  className="w-full h-full object-contain"
                 />
               </span>
             </button>
@@ -1002,10 +990,7 @@ export default function Header({ data = local_data }) {
                   type="search"
                   autoFocus={isSearchOpen}
                   placeholder="Search..."
-                  className={cn(
-                    "w-full h-12.5 px-5 pr-12 text-base text-white bg-white/10 border border-white/20 rounded-[5px] outline-none placeholder:text-white/50 focus:border-(--basecolor2) transition-colors duration-300",
-                    NOT_FOUND_INPUT,
-                  )}
+                  className="w-full h-12.5 px-5 pr-12 text-base text-white bg-white/10 border border-white/20 rounded-[5px] outline-none placeholder:text-white/50 focus:border-(--basecolor2) transition-colors duration-300"
                 />
                 <span className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none">
                   <Image
@@ -1013,7 +998,7 @@ export default function Header({ data = local_data }) {
                     alt="Search"
                     width={20}
                     height={20}
-                    className={cn("w-full h-full object-contain", NOT_FOUND_INVERT)}
+                    className="w-full h-full object-contain"
                   />
                 </span>
               </div>
@@ -1021,26 +1006,11 @@ export default function Header({ data = local_data }) {
                 type="button"
                 aria-label="Close search"
                 onClick={() => setIsSearchOpen(false)}
-                className={cn(
-                  "w-10 h-10 shrink-0 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors duration-300",
-                  NOT_FOUND_BLACK_TEXT,
-                  NOT_FOUND_BORDER_FAINT,
-                  NOT_FOUND_CLOSE_HOVER,
-                )}
+                className="w-10 h-10 shrink-0 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors duration-300"
               >
                 <span className="relative w-4 h-4">
-                  <span
-                    className={cn(
-                      "absolute left-1/2 top-1/2 w-full h-px bg-white -translate-x-1/2 -translate-y-1/2 rotate-45",
-                      NOT_FOUND_BLACK_BG,
-                    )}
-                  />
-                  <span
-                    className={cn(
-                      "absolute left-1/2 top-1/2 w-full h-px bg-white -translate-x-1/2 -translate-y-1/2 -rotate-45",
-                      NOT_FOUND_BLACK_BG,
-                    )}
-                  />
+                  <span className="absolute left-1/2 top-1/2 w-full h-px bg-white -translate-x-1/2 -translate-y-1/2 rotate-45" />
+                  <span className="absolute left-1/2 top-1/2 w-full h-px bg-white -translate-x-1/2 -translate-y-1/2 -rotate-45" />
                 </span>
               </button>
             </div>
@@ -1858,7 +1828,6 @@ function NavigationMenu({
           {...externalProps(item)}
           className={cn(
             "text-[14px] lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent",
-            NOT_FOUND_BLACK_TEXT,
             className,
           )}
         >
@@ -1878,10 +1847,7 @@ function NavigationMenu({
               href={item?.url || "#"}
               aria-label={item.label}
               {...externalProps(item)}
-              className={cn(
-                "text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium text-white transition-colors duration-400",
-                NOT_FOUND_BLACK_TEXT,
-              )}
+              className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium text-white transition-colors duration-400"
             >
               <span>{item.label}</span>
             </Link>
@@ -1889,10 +1855,7 @@ function NavigationMenu({
             <button
               type="button"
               aria-haspopup="true"
-              className={cn(
-                "text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-white transition-colors duration-400",
-                NOT_FOUND_BLACK_TEXT,
-              )}
+              className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-white transition-colors duration-400"
             >
               <span>{item.label}</span>
             </button>
@@ -1900,7 +1863,6 @@ function NavigationMenu({
           <span
             className={cn(
               "w-[15px] h-[15px] lg:w-2 lg:h-2 lg:border-r-1 2xl:border-r-2 lg:border-b-1 2xl:border-b-2 border-white transition-transform duration-300 ease-out",
-              NOT_FOUND_BLACK_BORDER,
               isMenuOpen
                 ? "lg:rotate-[225deg]"
                 : "lg:rotate-45 -translate-y-0.5",
