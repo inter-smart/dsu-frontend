@@ -574,7 +574,7 @@ export default function Header({ data = local_data }) {
           ? ["bg-black/70 backdrop-blur-xl transition-all duration-800 shadow-md"]
           : isHome
             ? ["bg-linear-to-r", "from-(--basecolor)/10", "to-(--basecolor2)/10"]
-            : ["bg-linear-to-r from-[#3B0703]/95 via-[#5E1212]/95 to-[#801818]/95 backdrop-blur-md shadow-md border-b border-white/10"],
+            : ["backdrop-blur-md shadow-md border-b border-white/10"],
       )}
     >
       <div className="w-full h-11.25 lg:h-7.5 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block">
