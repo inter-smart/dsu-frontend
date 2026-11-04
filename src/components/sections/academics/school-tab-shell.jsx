@@ -4,12 +4,14 @@ import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenub
 import AiBSCMenubar from "@/components/sections/ai-enabled/BSC-nursing/bsc-Menubar";
  
 export default function SchoolTabShell({ hero, slug, hasDepartments, menuItems, menuHome, aiMenu = false, bscMenu = false, children }) {
+    // CMS "menuBar" toggle on the page banner: an explicit false hides the menu (unset keeps the default)
+    const showMenu = hero?.menuBar !== false;
     return (
         <>
             <InnerHero
-                data={{ ...hero, slug, hasDepartments, menuItems, menuHome, ...(bscMenu ? { AiBscmenuBar: true } : aiMenu ? { AimenuBar: true } : { menuBar: true }) }}
+                data={{ ...hero, slug, hasDepartments, menuItems, menuHome, menuBar: showMenu && !bscMenu && !aiMenu, ...(showMenu && bscMenu ? { AiBscmenuBar: true } : showMenu && aiMenu ? { AimenuBar: true } : {}) }}
             />
-            {bscMenu ? (
+            {!showMenu ? null : bscMenu ? (
                 <AiBSCMenubar className="lg:!hidden block" items={menuItems} title={hero?.title} />
             ) : aiMenu ? (
                 <AiAcademicMenubar className="lg:!hidden block" data={menuItems} />

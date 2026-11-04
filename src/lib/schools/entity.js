@@ -64,6 +64,7 @@ function buildHero(apiHero, trail, title) {
   return {
     heroMedia: apiHero?.heroMedia,
     title,
+    menuBar: apiHero?.menuBar,
     breadcrumb: [{ label: "Home", href: "/" }, { label: "Schools", href: "/schools" }, ...trail],
   };
 }
