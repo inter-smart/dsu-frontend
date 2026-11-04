@@ -35,10 +35,16 @@ const proViceChancellorSubMenu = [
   { id: 2, url: "#!", label: "Dr. Prakash S" },
 ];
 
-// ADDED: when the 404 page (which carries data-not-found) is on screen, desktop menu items turn black
+// ADDED: when the 404 page (which carries data-not-found) is on screen, header text/icons turn black
 const NOT_FOUND_BLACK_TEXT = "[body:has([data-not-found])_&]:text-black";
 const NOT_FOUND_BLACK_BORDER = "[body:has([data-not-found])_&]:border-black";
+const NOT_FOUND_BORDER_SOFT = "[body:has([data-not-found])_&]:border-black/40";
+const NOT_FOUND_BORDER_FAINT = "[body:has([data-not-found])_&]:border-black/20";
+const NOT_FOUND_BLACK_BG = "[body:has([data-not-found])_&]:bg-black";
 const NOT_FOUND_INVERT = "[body:has([data-not-found])_&]:invert";
+const NOT_FOUND_CLOSE_HOVER = "[body:has([data-not-found])_&]:hover:bg-black/10";
+const NOT_FOUND_INPUT =
+  "[body:has([data-not-found])_&]:text-black [body:has([data-not-found])_&]:bg-black/5 [body:has([data-not-found])_&]:border-black/20 [body:has([data-not-found])_&]:placeholder:text-black/50";
 
 const local_data = {
   // topBar: {
@@ -727,7 +733,10 @@ export default function Header({ data = local_data }) {
                 )}
                 <div className="w-auto h-auto m-auto">
                   <div
-                    className="max-sm:text-[9px] text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white"
+                    className={cn(
+                      "max-sm:text-[9px] text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white",
+                      NOT_FOUND_BLACK_TEXT,
+                    )}
                     dangerouslySetInnerHTML={{
                       __html: data?.logo?.logoText,
                     }}
@@ -745,7 +754,11 @@ export default function Header({ data = local_data }) {
                     <Link
                       href={item?.url || "#"}
                       aria-label={item?.label}
-                      className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-5 border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
+                      className={cn(
+                        "text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-5 border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)",
+                        NOT_FOUND_BLACK_TEXT,
+                        NOT_FOUND_BORDER_SOFT,
+                      )}
                     >
                       {item?.label}
                     </Link>
@@ -989,7 +1002,10 @@ export default function Header({ data = local_data }) {
                   type="search"
                   autoFocus={isSearchOpen}
                   placeholder="Search..."
-                  className="w-full h-12.5 px-5 pr-12 text-base text-white bg-white/10 border border-white/20 rounded-[5px] outline-none placeholder:text-white/50 focus:border-(--basecolor2) transition-colors duration-300"
+                  className={cn(
+                    "w-full h-12.5 px-5 pr-12 text-base text-white bg-white/10 border border-white/20 rounded-[5px] outline-none placeholder:text-white/50 focus:border-(--basecolor2) transition-colors duration-300",
+                    NOT_FOUND_INPUT,
+                  )}
                 />
                 <span className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none">
                   <Image
@@ -997,7 +1013,7 @@ export default function Header({ data = local_data }) {
                     alt="Search"
                     width={20}
                     height={20}
-                    className="w-full h-full object-contain"
+                    className={cn("w-full h-full object-contain", NOT_FOUND_INVERT)}
                   />
                 </span>
               </div>
@@ -1005,11 +1021,26 @@ export default function Header({ data = local_data }) {
                 type="button"
                 aria-label="Close search"
                 onClick={() => setIsSearchOpen(false)}
-                className="w-10 h-10 shrink-0 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors duration-300"
+                className={cn(
+                  "w-10 h-10 shrink-0 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors duration-300",
+                  NOT_FOUND_BLACK_TEXT,
+                  NOT_FOUND_BORDER_FAINT,
+                  NOT_FOUND_CLOSE_HOVER,
+                )}
               >
                 <span className="relative w-4 h-4">
-                  <span className="absolute left-1/2 top-1/2 w-full h-px bg-white -translate-x-1/2 -translate-y-1/2 rotate-45" />
-                  <span className="absolute left-1/2 top-1/2 w-full h-px bg-white -translate-x-1/2 -translate-y-1/2 -rotate-45" />
+                  <span
+                    className={cn(
+                      "absolute left-1/2 top-1/2 w-full h-px bg-white -translate-x-1/2 -translate-y-1/2 rotate-45",
+                      NOT_FOUND_BLACK_BG,
+                    )}
+                  />
+                  <span
+                    className={cn(
+                      "absolute left-1/2 top-1/2 w-full h-px bg-white -translate-x-1/2 -translate-y-1/2 -rotate-45",
+                      NOT_FOUND_BLACK_BG,
+                    )}
+                  />
                 </span>
               </button>
             </div>
