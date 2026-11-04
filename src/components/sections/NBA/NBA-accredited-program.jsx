@@ -11,22 +11,55 @@ import {
 } from "@/components/ui/accordion";
 
 export default function NBAAccreditedProgram({ data }) {
-    const firstProgramme = data?.programmes?.[0];
+    const hasDescription = Array.isArray(data?.description)
+        ? data.description.some(
+            (block) =>
+                block?.type !== "paragraph" ||
+                block?.children?.some((child) => child?.text?.trim()),
+        )
+        : Boolean(data?.description);
+
+    // drop blank certificates and programmes left empty in Strapi
+    const programmes = (data?.programmes || [])
+        .map((programme) => ({
+            ...programme,
+            certificates: (programme?.certificates || []).filter(
+                (doc) => doc?.label?.trim() && doc?.url,
+            ),
+        }))
+        .filter(
+            (programme) =>
+                programme.title?.trim() ||
+                programme.validity?.trim() ||
+                programme.keyHighlights?.trim() ||
+                programme.certificates.length,
+        );
+
+    // nothing to show when the Strapi entry is empty
+    if (!data?.title?.trim() && !hasDescription && !programmes.length) {
+        return null;
+    }
+
+    const firstProgramme = programmes[0];
     const defaultProgramme = firstProgramme ? [`item-${firstProgramme.id}`] : [];
 
     return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[100px]
               bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)]">
             <div className="container">
-                <h2 className="cmn_Title">
-                    {data.title}
-                </h2>
-                <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]  typography">
-                    <BlocksRenderer content={data.description} />
-                </div>
+                {data.title?.trim() && (
+                    <h2 className="cmn_Title">
+                        {data.title}
+                    </h2>
+                )}
+                {hasDescription && (
+                    <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]  typography">
+                        <BlocksRenderer content={data.description} />
+                    </div>
+                )}
                 <div className="w-full">
                     <Accordion type="single" collapsible defaultValue={defaultProgramme}className="mt-[30px] w-full xl:mt-[40px]">
-                        {data?.programmes?.map((item) => (
+                        {programmes.map((item) => (
                             <AccordionItem key={item.id} value={`item-${item.id}`} className="p-[8px_10px] md:p-[10px] xl:p-[15px] 3xl:p-[20px_30px] border border-[#E5E9EE] rounded-[6px] mb-[10px] xl:mb-[20px]">
                                 <AccordionTrigger
                                     className="relative p-0  font-medium !text-black text-[11px] hover:no-underline  md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]  3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold after:text-base2 data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden"
