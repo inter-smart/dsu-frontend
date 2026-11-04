@@ -5,7 +5,7 @@ export default function DirectorMessage({ data }) {
     return (
         <section className="relative py-[40px] xl:py-[55px] 2xl:py-[60px] 3xl:py-[80px] bg-[linear-gradient(135deg,_#EFF6FF_0%,_#F9FAFB_100%)] dark:bg-[linear-gradient(135deg,_#0f1011_0%,_#0f1011_100%)]">
             <div className="container">
-                <div className="flex flex-wrap m-auto max-md:gap-[15px] m-auto relative lg:max-w-[90%]">
+                <div className="flex flex-wrap m-auto max-md:gap-[15px] m-auto relative lg:max-w-[90%] md:flow-root">
                     <div className="absolute top-[30px] md:top-0 right-[30px] md:right-0 w-[60px] 2xl:w-[90px] h-[60px] 2xl:h-[90px] flex items-center pointer-events-none">
                         <svg viewBox="0 0 90 90" fill="none" >
                             <g opacity="0.1" clip-path="url(#clip0_5049_218163)">
@@ -21,7 +21,7 @@ export default function DirectorMessage({ data }) {
 
                     </div>
                     {data?.image?.url && (
-                        <div className="w-full md:w-[200px] lg:w-[225px] xl:w-[280px] 2xl:w-[335px] 3xl:w-[420px]">
+                        <div className="w-full md:w-[200px] lg:w-[225px] xl:w-[280px] 2xl:w-[335px] 3xl:w-[420px] md:float-left md:mr-[40px] lg:mr-[30px] xl:mr-[50px] 2xl:mr-[60px] 3xl:mr-[80px] md:mb-[10px]">
                             <div className="w-full lg:aspect-[420/420] mb-[15px] rounded-[10px] overflow-hidden">
                                 <Image
                                     src={data.image.url}
@@ -34,14 +34,14 @@ export default function DirectorMessage({ data }) {
                         </div>
                     )}
 
-                    <div className={`flex items-center ${data?.image?.url
-                        ? "md:w-[calc(100%-200px)] lg:w-[calc(100%-225px)] xl:w-[calc(100%-280px)] 2xl:w-[calc(100%-335px)] 3xl:w-[calc(100%-420px)] md:pl-[40px] lg:pl-[30px] xl:pl-[50px] 2xl:pl-[60px] 3xl:pl-[80px]"
+                    <div className={`flex items-center md:block ${data?.image?.url
+                        ? "md:w-full"
                         : "w-full"}`}>
                         <div className="w-full">
                             <div className="cmn_Title mb-[40px]">{data?.title}</div>
 
                             <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white [&_p]:text-[#4A5565] dark:[&_p]:text-white mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
-                                w-full max-w-[550px] xl:max-w-[590px] 2xl:max-w-[790px] 3xl:max-w-[820px]">
+                                w-full max-w-[550px] xl:max-w-[590px] 2xl:max-w-[790px] 3xl:max-w-[820px] md:!max-w-none">
                                 {data?.description?.length > 0 && (
                                     <BlocksRenderer content={data.description} />
                                 )}
