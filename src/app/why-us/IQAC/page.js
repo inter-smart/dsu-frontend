@@ -91,7 +91,31 @@ const local_data = {
                     title: "Mission",
                     description: "Cultivate a culture of quality and improvement by enhancing academic and administrative processes, encouraging innovation, and ensuring excellence in teaching, learning, and research.",
                 },
+
             ],
+            objectives: {
+                heading: "IQAC Objectives",
+                items: [
+                    "Institutionalise a culture of continuous improvement in academic and administrative performance through structured quality initiatives.",
+                    "Ensure transparency, accountability and excellence by promoting best practices across schools and aligning with national and global benchmarks.",
+                ],
+            },
+            functions: {
+                heading: "Functions of IQAC",
+                intro: "The functions expected of the IQAC are:",
+                items: [
+                    "Development and application of quality benchmarks / parameters for various academic and administrative activities of the institution",
+                    "Facilitating the creation of a learner-centric environment conducive to quality education and faculty maturation to adopt the required knowledge and technology for participatory teaching and learning process",
+                    "Arrangement for feedback response from students, parents and other stakeholders on quality-related institutional processes",
+                    "Dissemination of information on various quality parameters of higher education",
+                    "Organization of inter and intra institutional workshops, seminars on quality related themes and promotion of quality circles",
+                    "Documentation of the various programmes / activities leading to quality improvement",
+                    "Acting as a nodal agency of the Institution for coordinating quality-related activities, including adoption and dissemination of best practices",
+                    "Development and maintenance of institutional database through MIS for the purpose of maintaining / enhancing the institutional quality",
+                    "Development of Quality Culture in the institution",
+                    "Preparation of the Annual Quality Assurance Report (AQAR) as per guidelines and parameters of NAAC, to be submitted to NAAC",
+                ],
+            },
         },
         aboutIqac: {
             aboutIqacSection: {
