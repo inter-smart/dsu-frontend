@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from "next/image";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function AiVisionMission({ data }) {
     return (
@@ -8,7 +9,7 @@ export default function AiVisionMission({ data }) {
             <div className="container">
                 <div className="flex flex-wrap max-sm:gap-[25px]">
                     {data?.cards?.filter((item) =>
-                        item?.title?.trim() || item?.description?.trim() || item?.icon?.url
+                        item?.title?.trim() || (Array.isArray(item?.description) ? item.description.length : item?.description?.trim()) || item?.icon?.url
                     ).map((item, id) => (
                         <div
                             key={id}
@@ -31,7 +32,13 @@ export default function AiVisionMission({ data }) {
                                         {item.title}
                                     </div>
 
-                                    {item.description && (
+                                    {Array.isArray(item.description) ? (
+                                        item.description.length > 0 && (
+                                            <div className="text_1 leading-normal text-[#4A5565] dark:text-[#9CA3AF] [&_p]:!text-[#4A5565] dark:[&_p]:!text-[#9CA3AF] typography">
+                                                <BlocksRenderer content={item.description} />
+                                            </div>
+                                        )
+                                    ) : item.description && (
                                         <p className='!text-[#4A5565] dark:!text-[#9CA3AF] leading-normal'>{item.description}</p>
                                     )}
                                     {item.items && (
