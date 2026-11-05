@@ -63,7 +63,7 @@ export default async function Page({ params }) {
         <AcademicProgram data={data.computerApplicationsPrograms} />
       )}
 
-      {hasContent(data.businessManagementPrograms) && (
+      {hasContent(data.industryCollaborationsSection) && (
         <AcademicCollaboration
           data={data.industryCollaborationsSection}
           varient="home"
