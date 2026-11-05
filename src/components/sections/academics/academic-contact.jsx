@@ -92,7 +92,21 @@ export default function AcademicContact({ data, schoolSlug }) {
 
     // email / phone entries come from the reusable contact-detail component (type email | phone)
     const valuesOf = (type) =>
-        (contactInfo.details || []).filter((d) => d.type === type).flatMap((d) => d.values || []);
+        (contactInfo.details || [])
+            .filter((d) => d.type === type)
+            .flatMap((d) => d.values || [])
+            .map((v) => (typeof v === "object" ? v?.value : v))
+            .filter(Boolean);
+    // "other" entries: each keeps its own configured label
+    const otherDetails = (contactInfo.details || [])
+        .filter((d) => d.type === "other")
+        .map((d) => ({
+            label: d.label,
+            values: (d.values || []).map((v) => (typeof v === "object" ? v?.value : v)).filter(Boolean),
+        }))
+        .filter((d) => d.values.length);
+    const emailLabel = (contactInfo.details || []).find((d) => d.type === "email" && d.label)?.label;
+    const phoneLabel = (contactInfo.details || []).find((d) => d.type === "phone" && d.label)?.label;
     const emails = valuesOf("email");
     const phones = valuesOf("phone");
     if (!emails.length && contactInfo.email) emails.push(contactInfo.email);
@@ -394,7 +408,7 @@ export default function AcademicContact({ data, schoolSlug }) {
                                         </div>
                                         <div>
                                             <div className="text_1 text-[#212121] font-medium dark:text-white leading-tight mb-[4px]">
-                                                 E-Mail:
+                                                 {emailLabel || "E-Mail:"}
                                             </div>
                                             <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">
                                                 {emails.map((email, i) => (
@@ -430,7 +444,7 @@ export default function AcademicContact({ data, schoolSlug }) {
                                         </div>
                                         <div>
                                             <div className="text_1 text-[#212121] font-medium dark:text-white leading-tight mb-[4px]">
-                                                Admissions Helpline:
+                                                {phoneLabel || "Admissions Helpline:"}
                                             </div>
                                             <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">
                                                <PhoneNumbers
@@ -441,6 +455,20 @@ export default function AcademicContact({ data, schoolSlug }) {
                                         </div>
                                     </div>
                                     )}
+
+                                    {/* Other details */}
+                                    {otherDetails.map((d, i) => (
+                                        <div key={i}>
+                                            {d.label && (
+                                                <div className="text_1 text-[#212121] font-medium dark:text-white leading-tight mb-[4px]">
+                                                    {d.label}
+                                                </div>
+                                            )}
+                                            <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">
+                                                {d.values.join(" / ")}
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
