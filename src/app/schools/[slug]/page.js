@@ -13,6 +13,13 @@ import AcademicInfrastructure from "@/components/sections/academics/academic-inf
 import { notFound } from "next/navigation";
 import { hasContent, usesDepartments } from "@/lib/schools/tab-page";
 import { getSchoolBySlug } from "@/lib/api";
+import { seoMetadata } from "@/lib/seo";
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const school = await getSchoolBySlug(slug);
+  return school?.slug ? seoMetadata(school.seo, school.name) : {};
+}
 
 export default async function Page({ params }) {
   const { slug } = await params;

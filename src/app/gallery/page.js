@@ -1,3 +1,4 @@
+import { seoMetadata } from "@/lib/seo";
 import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import Gallery from "@/components/sections/gallery/gallery";
@@ -91,6 +92,11 @@ const local_data = {
     ],
   },
 };
+
+export async function generateMetadata() {
+  const pageData = await getGalleryPage();
+  return seoMetadata(pageData?.seo, "Gallery | Dayananda Sagar University");
+}
 
 export default async function page({ viaSlug } = {}) {
   await redirectToSlug("gallery", viaSlug);

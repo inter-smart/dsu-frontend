@@ -1,3 +1,4 @@
+import { seoMetadata } from "@/lib/seo";
 import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import FacultyDirectoryListing from "@/components/sections/faculty/faculty-directory-listing";
@@ -251,6 +252,11 @@ const local_data = {
       ],
   },
 };
+
+export async function generateMetadata() {
+  const pageData = await getFacultyDirectoryPage();
+  return seoMetadata(pageData?.seo, "Faculty Directory | Dayananda Sagar University");
+}
 
 export default async function Page({ viaSlug } = {}) {
   await redirectToSlug("faculty-directory", viaSlug);

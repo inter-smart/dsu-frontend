@@ -1,3 +1,4 @@
+import { seoMetadata } from "@/lib/seo";
 import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import Journey from "@/components/layout/common/journey";
@@ -240,6 +241,11 @@ import { getContactPage } from "@/lib/api";
 //     ],
 //   },
 // };
+
+export async function generateMetadata() {
+  const pageData = await getContactPage();
+  return seoMetadata(pageData?.seo, "Contact Us | Dayananda Sagar University");
+}
 
 export default async function Page({ viaSlug } = {}) {
   await redirectToSlug("contact", viaSlug);

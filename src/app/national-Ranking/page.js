@@ -1,3 +1,4 @@
+import { seoMetadata } from "@/lib/seo";
 import { redirectToSlug } from "@/lib/page-routes";
 ﻿import InnerHero from "@/components/layout/common/InnerHero";
 import NationalRanking from "@/components/sections/national-Ranking/national-Ranking";
@@ -127,6 +128,11 @@ const local_data = {
     },
   ],
 };
+export async function generateMetadata() {
+  const pageData = await getNationalRankingPage();
+  return seoMetadata(pageData?.seo, "National Ranking | Dayananda Sagar University");
+}
+
 export default async function Page({ viaSlug } = {}) {
   await redirectToSlug("national-ranking", viaSlug);
   const data = await getNationalRankingPage();

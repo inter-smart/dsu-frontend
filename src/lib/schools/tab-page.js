@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getSchoolTab } from "@/lib/api";
 import { getSchoolTabs } from "@/lib/schools/tabs";
+import { seoMetadata } from "@/lib/seo";
 
 // True when a CMS section has something to show (not null/empty, and not an object of only empty values).
 export function hasContent(v) {
@@ -41,10 +42,8 @@ export async function schoolTabMetadata(slug, tab) {
     const school = await getSchoolTab(slug, tab);
     if (!school?.slug) return {};
     const label = getSchoolTabs(usesDepartments(school)).find((t) => t.key === tab)?.label;
+    // the API lays the tab's own SEO over the school's; add the tab label only when the title does not already carry it
     const base = school.seo?.metaTitle || school.name;
-    return {
-        title: label ? `${label} | ${base}` : base,
-        description: school.seo?.metaDescription ?? undefined,
-        alternates: school.seo?.canonicalUrl ? { canonical: school.seo.canonicalUrl } : undefined,
-    };
+    const title = label && !base.toLowerCase().includes(label.toLowerCase()) ? `${label} | ${base}` : base;
+    return seoMetadata({ ...school.seo, metaTitle: title });
 }

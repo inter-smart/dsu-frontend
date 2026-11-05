@@ -1,3 +1,4 @@
+import { seoMetadata } from "@/lib/seo";
 import PlacementContactTemplate from "@/components/sections/placements/templates/PlacementContactTemplate";
 import { getPlacementContactPage } from "@/lib/api/placement";
 
@@ -153,6 +154,11 @@ const fallback = {
         placementContact: local_data.placementContact,
     },
 };
+
+export async function generateMetadata() {
+  const pageData = await getPlacementContactPage();
+  return seoMetadata(pageData?.seo, "Placement Contact | Dayananda Sagar University");
+}
 
 export default async function page() {
     const apiData = await getPlacementContactPage();
