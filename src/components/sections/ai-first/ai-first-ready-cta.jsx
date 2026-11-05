@@ -19,12 +19,12 @@ export default function ReadyCta({ data }) {
 
       <div className="container flex flex-col items-center text-center">
         {data?.title && (
-          <h2 className="mb-4 max-w-[895px] text-[26px] font-bold text-white sm:text-[32px] xl:text-[40px] 3xl:text-[55px]">
+          <h2 className="mb-4 max-w-[895px] text-[26px] font-bold text-white sm:text-[32px] xl:text-[50px] 3xl:text-[55px]">
             {data.title}
           </h2>
         )}
         {data?.description && (
-          <p className="mb-8 max-w-[800px] text-[14px] leading-relaxed text-[#fff2f2] sm:text-[16px] xl:text-[18px]">
+          <p className="mb-8 xl:max-w-[45%] text-[14px] leading-relaxed text-[#fff2f2] sm:text-[16px] xl:text-[18px]">
             {data.description}
           </p>
         )}

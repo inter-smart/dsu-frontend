@@ -255,9 +255,9 @@ export default function AiTrainingSection({ data }) {
                         {/* Column 1 (Left): 3 Feature items with icons */}
                         <div className="lg:col-span-5 xl:col-span-5 flex flex-col gap-6 xl:gap-7">
                             {dgx.features?.map((item) => (
-                                <div key={item.id} className="flex  max-sm:flex-col sm:items-start gap-3.5 sm:gap-6 group pb-[15px] xl:pb-[20px] 2xl:pb-[25px] 3xl:pb-[30px]  border-b border-white/10">
+                                <div key={item.id} className="flex  max-sm:flex-col sm:items-start gap-3.5 sm:gap-6 group pb-[15px] xl:pb-[20px] 2xl:pb-[25px] 3xl:pb-[30px]  border-b border-white/10 transition-all duration-300 hover:border-[#F97316]/60 sm:hover:translate-x-[6px]">
                                     {/* Icon container */}
-                                    <div className="w-[60px] h-[50px] sm:w-[65px] sm:h-[58px] xl:w-[85px] xl:h-[75px] 2xl:w-[106px] 2xl:h-[96px] rounded-[6px]  bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-105">
+                                    <div className="w-[60px] h-[50px] sm:w-[65px] sm:h-[58px] xl:w-[85px] xl:h-[75px] 2xl:w-[106px] 2xl:h-[96px] rounded-[6px]  bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center shrink-0 mt-0.5 transition-all duration-300 group-hover:scale-105 group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316] group-hover:border-transparent group-hover:shadow-[0_8px_25px_rgba(249,115,22,0.35)]">
                                         <Image
                                             src={
                                                 item.icon?.url?.replace("/images/idgx-200-3.svg", "/images/dgx-200-3.svg") ||
@@ -271,7 +271,7 @@ export default function AiTrainingSection({ data }) {
                                     </div>
                                     {/* Text Content */}
                                     <div>
-                                        <h4 className="text-[15px] sm:text-[16px] xl:text-[17.5px] 2xl:text-[19px] 3xl:text-[25px] font-bold text-white leading-snug">
+                                        <h4 className="text-[15px] sm:text-[16px] xl:text-[17.5px] 2xl:text-[19px] 3xl:text-[25px] font-bold text-white leading-snug transition-colors duration-300 group-hover:text-[#F97316]">
                                             {item.title}
                                         </h4>
                                         <p className="text-[12px] sm:text-[12.5px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] text-white/75 leading-relaxed mt-1">
@@ -290,7 +290,7 @@ export default function AiTrainingSection({ data }) {
                         {/* Column 2 (Center-Bottom): What You Can Do Floating Card */}
                         <div className="lg:col-span-4 xl:col-span-4">
                             {dgx.whatYouCanDo && (
-                                <div className="bg-[#0A0E17]/10 backdrop-blur-3xs border border-white/15 rounded-[14px] 2xl:rounded-[25px] p-5 sm:p-6 2xl:p-8 shadow-2xl lg:max-w-[390px] m-auto">
+                                <div className="bg-[#0A0E17]/10 backdrop-blur-3xs border border-white/15 rounded-[14px] 2xl:rounded-[25px] p-5 sm:p-6 2xl:p-8 shadow-2xl lg:max-w-[390px] m-auto transition-all duration-300 hover:border-[#F97316]/60 hover:-translate-y-[4px] hover:shadow-[0_12px_40px_rgba(249,115,22,0.25)]">
                                     <h4 className="text-[14px] sm:text-[15px] xl:text-[16px] 2xl:text-[17px] 3xl:text-[20px] font-bold text-white mb-2.5 sm:mb-3 leading-tight">
                                         {dgx.whatYouCanDo.title || "What You Can Do:"}
                                     </h4>
@@ -298,7 +298,7 @@ export default function AiTrainingSection({ data }) {
                                         {dgx.whatYouCanDo.list?.map((item) => (
                                             <li
                                                 key={item.id}
-                                                className="text-[11.5px] sm:text-[12px] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[18px] text-white/85 leading-relaxed flex items-start gap-2"
+                                                className="text-[11.5px] sm:text-[12px] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[18px] text-white/85 leading-relaxed flex items-start gap-2 transition-all duration-200 hover:text-white hover:translate-x-[4px]"
                                             >
                                                 <span className="text-[#F97316] select-none shrink-0 font-bold">•</span>
                                                 <span>{item.label}</span>
@@ -312,10 +312,10 @@ export default function AiTrainingSection({ data }) {
                         {/* Column 3 (Right): Stats Frosted Glass Panel */}
                         <div className="lg:col-span-3 xl:col-span-3 lg:flex lg:justify-end">
                             {dgx.stats && dgx.stats.length > 0 && (
-                                <div className="w-full bg-[#0E131F]/10 backdrop-blur-[3px] border border-white/15 rounded-[16px] 2xl:rounded-[20px] p-5 sm:p-6 xl:p-6 2xl:p-7 flex flex-col justify-between gap-5 sm:gap-6 2xl:gap-7 shadow-2xl">
+                                <div className="w-full bg-[#0E131F]/10 backdrop-blur-[3px] border border-white/15 rounded-[16px] 2xl:rounded-[20px] p-5 sm:p-6 xl:p-6 2xl:p-7 flex flex-col justify-between gap-5 sm:gap-6 2xl:gap-7 shadow-2xl transition-all duration-300 hover:border-[#F97316]/60 hover:shadow-[0_12px_40px_rgba(249,115,22,0.25)]">
                                     {dgx.stats.map((stat) => (
-                                        <div key={stat.id} className="flex items-center gap-3.5 sm:gap-4">
-                                            <div className="w-[34px] h-[34px] sm:w-[38px] sm:h-[38px] 2xl:w-[42px] 2xl:h-[42px] flex items-center justify-center shrink-0">
+                                        <div key={stat.id} className="flex items-center gap-3.5 sm:gap-4 group transition-transform duration-300 hover:translate-x-[4px]">
+                                            <div className="w-[34px] h-[34px] sm:w-[38px] sm:h-[38px] 2xl:w-[42px] 2xl:h-[42px] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
                                                 <Image
                                                     src={stat.icon?.url || `/images/tr-${stat.id}.svg`}
                                                     width={42}
@@ -328,7 +328,7 @@ export default function AiTrainingSection({ data }) {
                                                 <span className="text-[11px] sm:text-[11.5px] xl:text-[12px] 2xl:text-[13px] 3xl:text-[18px] text-white font-normal block leading-none">
                                                     {stat.title}
                                                 </span>
-                                                <span className="text-[19px] sm:text-[21px] xl:text-[23px] 2xl:text-[25px] font-bold text-white tracking-tight leading-tight my-0.5 block">
+                                                <span className="text-[19px] sm:text-[21px] xl:text-[23px] 2xl:text-[25px] font-bold text-white tracking-tight leading-tight my-0.5 block transition-colors duration-300 group-hover:text-[#F97316]">
                                                     {stat.value}
                                                 </span>
                                                 <span className="text_1 text-white font-normal block leading-snug">
@@ -421,7 +421,7 @@ export default function AiTrainingSection({ data }) {
                             return (
                                 <SwiperSlide key={item.id} className="!h-auto pb-2">
                                     <div
-                                        className="w-full h-full rounded-[14px] 2xl:rounded-[16px] bg-white dark:bg-[#141414] p-4.5 sm:p-4 3xl:p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-lg 
+                                        className="group w-full h-full rounded-[14px] 2xl:rounded-[16px] bg-white dark:bg-[#141414] p-4.5 sm:p-4 3xl:p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-lg 
                                          border border-black/8 dark:border-white/10 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:border-[#F97316]"
                                     >
                                         {/* Top: Image & Specs */}
@@ -434,7 +434,7 @@ export default function AiTrainingSection({ data }) {
                                                         width={88}
                                                         height={88}
                                                         alt={item.title}
-                                                        className="w-full h-full object-contain"
+                                                        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
                                                     />
                                                 </div>
 
@@ -443,7 +443,7 @@ export default function AiTrainingSection({ data }) {
                                                     <span className="text-[12px] xl:text-[12.5px] 2xl:text-[13.5px] 3xl:text-[18px] font-normal text-[#F97316] dark:text-[#FF8A3D] block  ">
                                                         {item.badge}
                                                     </span>
-                                                    <h4 className="text-[15px] sm:text-[16px] xl:text-[17px] 2xl:text-[18.5px] 3xl:text-[25px] font-bold text-[#1E1E1E] dark:text-white leading-tight mb-[10px] py-[0_10px] border-b border-black/10">
+                                                    <h4 className="text-[15px] sm:text-[16px] xl:text-[17px] 2xl:text-[18.5px] 3xl:text-[25px] font-bold text-[#1E1E1E] dark:text-white leading-tight mb-[10px] py-[0_10px] border-b border-black/10 transition-colors duration-300 group-hover:text-[#F97316]">
                                                         {item.title}
                                                     </h4>
                                                     <div className="mt-2">
@@ -480,4 +480,3 @@ export default function AiTrainingSection({ data }) {
         </section>
     );
 }
- 

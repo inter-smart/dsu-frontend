@@ -60,7 +60,7 @@ export default async function page({ viaSlug } = {}) {
       {jobList.length > 0 && (
         <CareerOpenings data={{ title: openingsTitle, jobs: jobList }} />
       )}
-      <FloatingContactRail />
+      {/* <FloatingContactRail /> */}
     </>
   );
 }
