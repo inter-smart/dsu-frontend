@@ -21,9 +21,9 @@ export default function Aieligibility({ data }) {
                         <table className="w-full border-collapse">
                             <thead>
                                 <tr className="bg-[#F97A22] text-white">
-                                    {data?.seatsSection?.tableHeaders?.map((column) => (
+                                    {data?.seatsSection?.tableHeaders?.slice(0, 5).map((column, index) => (
                                         <th
-                                            key={column}
+                                            key={`${column}-${index}`}
                                             className="border-r border-white/40 px-[15px] py-[12px] text-left text_1 font-medium last:border-r-0 text-white"
                                         >
                                             {column}

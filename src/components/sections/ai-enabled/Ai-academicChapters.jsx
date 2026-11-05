@@ -19,8 +19,7 @@ export default function AiAcademicChapters({ data }) {
                     {data.chapters.map((item, id) => (
                         <div className="w-full sm:w-1/2 md:w-1/3  p-[5px] 2xl:p-[10px]" key={id}>
                             <div className="block w-full h-full rounded-[10px] overflow-hidden bg-gradient-to-b from-[#FFF8EE] to-[#FFFFFF] dark:bg-gradient-to-r dark:from-[#383838b5] dark:to-[#383838b5]">
-                                <div className="relative w-full aspect-[530/220] overflow-hidden">
-                                    {item?.image?.url && (
+                                {item?.image?.url && <div className="relative w-full aspect-[530/220] overflow-hidden">
                                         <Image
                                             src={item.image.url}
                                             fill
@@ -28,9 +27,8 @@ export default function AiAcademicChapters({ data }) {
                                             className="object-cover"
                                             alt={item.image.alternativeText || ""}
                                         />
-                                    )}
-                                </div>
-                                <div className="p-[15px] xl:p-[20px] 3xl:p-[30px] relative">
+                                </div>}
+                                <div className={`p-[15px] xl:p-[20px] 3xl:p-[30px] relative ${item?.image?.url ? "" : "pt-[55px] xl:pt-[65px] 2xl:pt-[80px] 3xl:pt-[100px]"}`}>
                                     <div
                                         className="text-[15px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] text-white font-semibold
                                         flex items-center justify-center w-[50px] xl:w-[55px] 2xl:w-[70px] 3xl:w-[82px] h-[50px] xl:h-[55px] 2xl:h-[70px] 3xl:h-[82px] rounded-[8px] bg-gradient-to-r from-[#DC2626] to-[#F97316]

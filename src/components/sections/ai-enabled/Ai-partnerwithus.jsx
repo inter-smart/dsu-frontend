@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ctaLinkProps } from "@/lib/schools/link-props";
 
 export default function AiPartnerwithus({ data }) {
     return (
@@ -15,6 +16,7 @@ export default function AiPartnerwithus({ data }) {
                                 <Link
                                     key={item.id}
                                     href={item.link || "#!"}
+                                    {...ctaLinkProps(item)}
                                     className={`group text_1 font-bold capitalize relative flex h-[30px] w-fit mt-[25px] 2xl:mt-[30px] min-w-[130px] 2xl:min-w-[175px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] transition-all duration-500 hover:-translate-y-[2px] xl:h-[35px] 2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full ${
                                         item.type === "primary"
                                             ? "bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] before:via-white/25"

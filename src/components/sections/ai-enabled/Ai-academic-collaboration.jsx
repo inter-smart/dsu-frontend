@@ -50,7 +50,7 @@ export default function AiAcademicCollaboration({ data }) {
                                 className="w-full"
                             >
                                 <div className="w-full h-full flex-col">
-                                    <div className="w-full relative aspect-[560/440] overflow-hidden rounded-[10px] mb-[15px] xl:mb-[25px]">
+                                    <div className={`w-full relative overflow-hidden rounded-[10px] mb-[15px] xl:mb-[25px] ${collab.image?.url ? "aspect-[560/440]" : "hidden"}`}>
                                         {collab.image?.url && (
                                             <Image
                                                 src={collab.image.url}

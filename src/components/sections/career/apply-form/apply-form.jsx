@@ -1,5 +1,6 @@
 "use client";
 
+import { validateName, validateEmail, validatePhone } from "@/lib/form-validation";
 import { useState } from "react";
 import Link from "next/link";
 import StepPersonal from "./step-personal";
@@ -65,6 +66,13 @@ export default function ApplyForm({ job }) {
       !formData.designation
     ) {
       setErrorMessage("Please fill all mandatory fields in the Personal step.");
+      setCurrentStep(1);
+      return;
+    }
+    const invalid =
+      validateName(formData.name) || validatePhone(formData.phone) || validateEmail(formData.email);
+    if (invalid) {
+      setErrorMessage(invalid);
       setCurrentStep(1);
       return;
     }

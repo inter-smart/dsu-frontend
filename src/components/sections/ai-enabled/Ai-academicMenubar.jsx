@@ -199,6 +199,24 @@ export default function AiAcademicMenubar({
     return pathname === href || pathname.startsWith(href + "/");
   };
 
+  // A submenu item that shares its parent's href (e.g. library "Overview") must match exactly,
+  // otherwise it is highlighted on every sibling subpage.
+  const isSubItemActive = (parent, subHref) => {
+    if (subHref === parent.href) return pathname === subHref;
+    return isCurrentItemActive(subHref);
+  };
+
+  const activeAccordionItem = navigationItems.findIndex(
+    (item) =>
+      item.submenu?.length &&
+      item.submenu.some((sub) => isSubItemActive(item, sub.href)),
+  );
+  const [openAccordion, setOpenAccordion] = useState("");
+
+  useEffect(() => {
+    setOpenAccordion(activeAccordionItem >= 0 ? `item-${activeAccordionItem}` : "");
+  }, [activeAccordionItem]);
+
   return (
     <div className={className}>
       {/* Mobile Menu Button (under md) */}
@@ -282,7 +300,12 @@ export default function AiAcademicMenubar({
                     key={`${item.href}-${idx}`}
                     className="border-b border-black/10 group last:border-b-0 transition-colors duration-300"
                   >
-                    <Accordion type="single" collapsible>
+                    <Accordion
+                      type="single"
+                      collapsible
+                      value={openAccordion}
+                      onValueChange={setOpenAccordion}
+                    >
                       <AccordionItem
                         value={`item-${idx}`}
                         className="border-none"
@@ -313,7 +336,8 @@ export default function AiAcademicMenubar({
                         <AccordionContent className="pb-[11px] px-[15px]">
                           <ul>
                             {item.submenu.map((subItem, subIdx) => {
-                              const isSubActive = isCurrentItemActive(
+                              const isSubActive = isSubItemActive(
+                                item,
                                 subItem.href,
                               );
                               return (

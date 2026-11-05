@@ -5,6 +5,7 @@ import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import { validateName, validateEmail, validatePhone } from "@/lib/form-validation";
 import { PhoneInput, COUNTRIES } from "@/components/ui/phone-input";
 import {
     Select,
@@ -16,9 +17,6 @@ import {
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 
-const NAME_PATTERN = /^\p{L}[\p{L} .'’-]*$/u;
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const PHONE_PATTERN = /^\d{6,15}$/;
 
 const EMPTY_VALUES = {
     name: "",
@@ -60,20 +58,9 @@ const hintClass = "text-[12px] leading-snug text-[#666]";
 function validateField(name, values) {
     const value = typeof values[name] === "string" ? values[name].trim() : values[name];
 
-    if (name === "name") {
-        if (!value) return "Please enter your name";
-        if (value.length < 2) return "Name must be at least 2 characters";
-        if (value.length > 100) return "Name must be 100 characters or fewer";
-        if (!NAME_PATTERN.test(value)) return "Name can only contain letters, spaces, dots, hyphens and apostrophes";
-    }
-    if (name === "phone") {
-        if (!value) return "Please enter your phone number";
-        if (!PHONE_PATTERN.test(value)) return "Phone number must be 6 to 15 digits";
-    }
-    if (name === "email") {
-        if (!value) return "Please enter your email address";
-        if (value.length > 254 || !EMAIL_PATTERN.test(value)) return "Enter a valid email address";
-    }
+    if (name === "name") return validateName(value);
+    if (name === "phone") return validatePhone(value);
+    if (name === "email") return validateEmail(value);
     if (name === "country" && !value) return "Select your country";
     if (name === "state") {
         if (!value) return "Enter your state";

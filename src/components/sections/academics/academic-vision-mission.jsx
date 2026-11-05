@@ -82,12 +82,9 @@ export default function AcademicVisionMission({ data }) {
                                 <div className="mt-auto lg:pt-[20px] group">
                                     {/* Mission Icon */}
                                     {/* CHANGED: group-hover:bg-gradient-to-r -> group-hover:bg-linear-to-r */}
-                                    <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[65px] 3xl:w-[78px] bg-white/20 flex border border-white rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
+                                    {(mission.icon?.url || mission.icon?.icon) && <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[65px] 3xl:w-[78px] bg-white/20 flex border border-white rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
                                        group-hover:bg-linear-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316]">
-                                        {(mission.icon?.url || mission.icon?.icon) && (
-                                            <Image src={mission.icon.url || mission.icon.icon} width={78} height={65} className="w-[19px] xl:w-[21px] 2xl:w-[25px] 3xl:w-[34px]" alt={mission.icon.alternativeText || mission.heading || ""} />
-                                        )}
-                                    </div>
+                                        <Image src={mission.icon.url || mission.icon.icon} width={78} height={65} className="w-[19px] xl:w-[21px] 2xl:w-[25px] 3xl:w-[34px]" alt={mission.icon.alternativeText || mission.heading || ""} /></div>}
 
                                     {/* Mission Title */}
                                     {mission.heading && (
@@ -115,12 +112,9 @@ export default function AcademicVisionMission({ data }) {
                             <div className="relative z-10 group">
                                 {/* Vision Icon (Orange Gradient Box) */}
                                 {/* CHANGED: group-hover:bg-gradient-to-r -> group-hover:bg-linear-to-r */}
-                                <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[62px] 3xl:w-[78px] flex border border-white bg-white/20 rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
+                                {vision.icon?.url && <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[62px] 3xl:w-[78px] flex border border-white bg-white/20 rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
                                     group-hover:bg-linear-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316]">
-                                    {vision.icon?.url && (
-                                        <Image src={vision.icon.url} width={78} height={65} alt={vision.icon.alternativeText || vision.heading || ""} className="max-w-[19px] xl:max-w-[21px] 2xl:max-w-[25px] 3xl:max-w-[34px] " />
-                                    )}
-                                </div>
+                                    <Image src={vision.icon.url} width={78} height={65} alt={vision.icon.alternativeText || vision.heading || ""} className="max-w-[19px] xl:max-w-[21px] 2xl:max-w-[25px] 3xl:max-w-[34px] " /></div>}
 
                                 {/* Vision Title */}
                                 {vision.heading && (

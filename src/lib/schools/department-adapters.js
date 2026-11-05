@@ -45,7 +45,7 @@ export const recentEngagementSection = (s) =>
 
 export const partnerWithUsSection = (s) =>
   s?.heading || s?.buttons?.length
-    ? { heading: s.heading, description: s.description, buttons: (s.buttons ?? []).map((b, i) => ({ id: b.id ?? i, type: i === 0 ? "primary" : "secondary", label: b.label, link: b.link })) }
+    ? { heading: s.heading, description: s.description, buttons: (s.buttons ?? []).map((b, i) => ({ id: b.id ?? i, type: i === 0 ? "primary" : "secondary", label: b.label, link: b.link, isExternal: b.isExternal })) }
     : null;
 
 export const chaptersSection = (s) =>
