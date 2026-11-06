@@ -138,9 +138,9 @@ export default function AcademicContact({ data, schoolSlug }) {
             <div className="container">
                 {/* Section Title */}
                 {data?.pageTitle && (
-                    <h1 className="cmn_Title mb-[25px] xl:mb-[35px] text-black dark:text-white">
+                    <h2 className="cmn_Title mb-[25px] xl:mb-[35px] text-black dark:text-white">
                         {data.pageTitle}
-                    </h1>
+                    </h2>
                 )}
 
                 {/* Grid Layout */}
@@ -324,13 +324,13 @@ export default function AcademicContact({ data, schoolSlug }) {
                                     </button>
 
                                     {errorMessage && (
-                                        <p role="alert" className="text-[12px] text-red-600 font-medium mt-2">
+                                        <p role="alert" className="text-[12px] text-red-600 font-medium mt-2 lg:text-[14px] xl:text-[14px] 2xl:text-[12px]">
                                             {errorMessage}
                                         </p>
                                     )}
 
                                     {submitted && (
-                                        <p className="text-[12px] text-green-600 font-medium mt-2">
+                                        <p className="text-[12px] text-green-600 font-medium mt-2 lg:text-[14px] xl:text-[14px] 2xl:text-[12px]">
                                             Thank you! Your enquiry has been submitted successfully.
                                         </p>
                                     )}
@@ -351,7 +351,7 @@ export default function AcademicContact({ data, schoolSlug }) {
 
                             {/* Subtitle */}
                             {contactInfo.description && (
-                                <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[24px] xl:mb-[28px] lg:max-w-[85%]">
+                                <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[24px] xl:mb-[28px] lg:max-w-[85%] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                     {contactInfo.description}
                                 </p>
                             )}
@@ -361,7 +361,7 @@ export default function AcademicContact({ data, schoolSlug }) {
                                 {/* Address */}
                                 {contactInfo.address && (
                                     <div>
-                                        <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] max-w-[80%]">
+                                        <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] max-w-[80%] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                             {contactInfo.address}
                                         </p>
                                     </div>

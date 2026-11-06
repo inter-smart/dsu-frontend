@@ -14,7 +14,7 @@ export default function SupportServices({ data }) {
                             <h3 className="text-[18px] font-medium leading-tight tracking-[-0.02em] text-[#111] lg:text-[22px] 2xl:text-[26px]">
                                 {card.title}
                             </h3>
-                            <p className="mt-3 text-[14px] leading-[1.6] text-[#444] lg:text-[16px] 2xl:mt-[20px] 2xl:text-[18px] 2xl:leading-[29px]">
+                            <p className="mt-3 text-[14px] leading-[1.6] text-[#444] 2xl:mt-[20px] 2xl:leading-[29px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
                                 {card.description}
                             </p>
                         </article>

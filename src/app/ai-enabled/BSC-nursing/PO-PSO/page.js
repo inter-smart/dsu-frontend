@@ -125,3 +125,8 @@ export default function page() {
         </>
     )
 }
+
+export const metadata = {
+    title: "PO & PSO | B.Sc Nursing | Dayananda Sagar University",
+    description: "PO & PSO – B.Sc Nursing at Dayananda Sagar University.",
+};

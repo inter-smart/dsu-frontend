@@ -326,3 +326,8 @@ export default function page() {
         </>
     )
 }
+
+export const metadata = {
+    title: "Laboratory | AI-Enabled | Dayananda Sagar University",
+    description: "Laboratory – AI-Enabled at Dayananda Sagar University.",
+};

@@ -21,7 +21,7 @@ function DomainCard({ domain }) {
       <h3 className="mb-2 text-[18px] font-semibold text-[#212121] transition-colors duration-300 group-hover:text-white dark:text-white xl:text-[22px]">
         {domain.title}
       </h3>
-      <p className="text_1 transition-colors duration-300 group-hover:text-white/90! 3xl:text-[16px]">
+      <p className="text_1 transition-colors duration-300 group-hover:text-white/90! 3xl:text-[16px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
         {domain.description}
       </p>
     </div>
@@ -102,7 +102,7 @@ export default function ResearchDomains({ data }) {
           <div className="mx-auto mb-10 max-w-[765px] text-center xl:mb-14">
             {data.title && <h2 className="cmn_Title">{data.title}</h2>}
             {data.description && (
-              <p className="text_1 3xl:text-[18px]">{data.description}</p>
+              <p className="text_1 3xl:text-[18px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
             )}
           </div>
         )}
@@ -134,7 +134,7 @@ export default function ResearchDomains({ data }) {
               />
               {data.imageCaption && (
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-center sm:p-6 xl:p-10">
-                  <p className="mx-auto max-w-[90%] text-[13px] leading-snug font-bold tracking-wide text-white uppercase sm:text-[16px] xl:max-w-full xl:text-[22px]">
+                  <p className="mx-auto max-w-[90%] text-[13px] leading-snug font-bold tracking-wide text-white uppercase sm:text-[16px] xl:max-w-full lg:text-[18px] xl:text-[24px] 2xl:text-[22px]">
                     {data.imageCaption}
                   </p>
                 </div>

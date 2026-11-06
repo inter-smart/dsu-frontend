@@ -40,3 +40,8 @@ export default async function page({ searchParams }) {
     </>
   );
 }
+
+export const metadata = {
+    title: "Apply | Career | Dayananda Sagar University",
+    description: "Apply – Career at Dayananda Sagar University.",
+};

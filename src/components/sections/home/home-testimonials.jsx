@@ -12,6 +12,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import CtaButton from "@/components/ui/cta-button";
 import { useEffect, useCallback, useState } from "react";
 import { ShineBorder } from "@/components/ui/shine-border";
+import LazyVideo from "@/components/ui/lazy-video";
 
 export default function HomeTestimonials({ data }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -188,7 +189,7 @@ export default function HomeTestimonials({ data }) {
                   >
                     <div className="w-full h-full aspect-420/530 block">
                       {item?.media?.type === "video" ? (
-                        <video
+                        <LazyVideo
                           src={item?.media?.url}
                           poster={item?.media?.poster}
                           autoPlay

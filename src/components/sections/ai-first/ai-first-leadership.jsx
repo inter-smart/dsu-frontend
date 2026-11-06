@@ -26,7 +26,7 @@ export default function AiLeadership({ data }) {
                   <h2 className="cmn_Title !mb-1.25">{data.title}</h2>
                 )}
                 {data.description && (
-                  <p className="text_1 3xl:text-[18px]">{data.description}</p>
+                  <p className="text_1 3xl:text-[18px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
                 )}
               </div>
             )}

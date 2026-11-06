@@ -143,3 +143,8 @@ export default function page() {
     </>
   );
 }
+
+export const metadata = {
+    title: "Career | Examination | Dayananda Sagar University",
+    description: "Career – Examination at Dayananda Sagar University.",
+};

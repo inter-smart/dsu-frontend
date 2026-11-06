@@ -65,7 +65,7 @@ export default function StackSection({ data }) {
                             </h3>
                         )}
                         {data?.whyStack?.description && (
-                            <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] w-full">
+                            <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] w-full lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                 {data.whyStack.description}
                             </p>
                         )}

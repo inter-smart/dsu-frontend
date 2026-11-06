@@ -94,3 +94,8 @@ const local_data = {
 export default function Page() {
   redirect("/leadership/dr-d-hemachandra-sagar");
 }
+
+export const metadata = {
+    title: "Chancellor | Dayananda Sagar University",
+    description: "Chancellor at Dayananda Sagar University.",
+};

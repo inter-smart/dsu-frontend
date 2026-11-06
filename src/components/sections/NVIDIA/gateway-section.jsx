@@ -26,14 +26,14 @@ export default function GatewaySection({ data }) {
                                         content={data?.description}
                                         blocks={{
                                             paragraph: ({ children }) => (
-                                                <p className="!my-0 !text-inherit leading-relaxed">
+                                                <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                     {children}
                                                 </p>
                                             ),
                                         }}
                                     />
                                 ) : (
-                                    <p className="!my-0 !text-inherit leading-relaxed">
+                                    <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                         {data?.description}
                                     </p>
                                 )}
@@ -60,7 +60,7 @@ export default function GatewaySection({ data }) {
                                                         <div className="text_1 font-semibold text-[#212121] dark:text-white mb-[4px]">
                                                             {point.title}
                                                         </div>
-                                                        <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6]">
+                                                        <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                             {point.description}
                                                         </p>
                                                     </div>
@@ -135,7 +135,7 @@ export default function GatewaySection({ data }) {
                                                         <div className="text_1 3xl:text-[20px] mb-[10px] font-bold text-[#212121] dark:text-white">
                                                             {graduate.title}
                                                         </div>
-                                                        <p className="dark:text-[#9CA3AF] !mb-0">{graduate.description}</p>
+                                                        <p className="dark:text-[#9CA3AF] !mb-0 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{graduate.description}</p>
                                                     </div>
                                                 </div>
                                             </SwiperSlide>
@@ -158,14 +158,14 @@ export default function GatewaySection({ data }) {
                                     content={recruitements?.description}
                                     blocks={{
                                         paragraph: ({ children }) => (
-                                            <p className="!my-0 !text-inherit leading-relaxed">
+                                            <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                 {children}
                                             </p>
                                         ),
                                     }}
                                 />
                             ) : (
-                                <p className="!my-0 !text-inherit leading-relaxed">
+                                <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                     {recruitements?.description}
                                 </p>
                             )}
@@ -225,7 +225,7 @@ export default function GatewaySection({ data }) {
                                                 <div className="text_1 3xl:text-[20px] mb-[10px] font-bold text-[#212121] dark:text-white">
                                                     {recruit.title}
                                                 </div>
-                                                <p className="dark:text-[#9CA3AF]">{recruit.description}</p>
+                                                <p className="dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{recruit.description}</p>
                                             </div>
                                         </div>
                                     </SwiperSlide>

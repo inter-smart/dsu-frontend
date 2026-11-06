@@ -54,7 +54,7 @@ export default function ServiceBanner({ data }) {
                     )}
 
                     {subtitle && (
-                        <p className="w-fit bg-linear-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-[17px] font-medium leading-tight text-transparent xl:text-[22px] 2xl:text-[28px] 3xl:text-[30px]">
+                        <p className="w-fit bg-linear-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-[17px] font-medium leading-tight text-transparent 3xl:text-[30px] lg:text-[19px] xl:text-[24px] 2xl:text-[28px]">
                             {subtitle}
                         </p>
                     )}

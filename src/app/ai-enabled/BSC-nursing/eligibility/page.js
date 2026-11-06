@@ -107,3 +107,7 @@ export default function page() {
     )
 }
 
+export const metadata = {
+    title: "Eligibility | B.Sc Nursing | Dayananda Sagar University",
+    description: "Eligibility – B.Sc Nursing at Dayananda Sagar University.",
+};

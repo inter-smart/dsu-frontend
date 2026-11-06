@@ -280,3 +280,7 @@ export default function page() {
     )
 }
 
+export const metadata = {
+    title: "Services | Library | Dayananda Sagar University",
+    description: "Services – Library at Dayananda Sagar University.",
+};

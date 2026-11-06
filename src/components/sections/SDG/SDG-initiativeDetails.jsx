@@ -61,7 +61,7 @@ export default function SDGInitativeDetails({ data, menu }) {
                             {/* Description */}
                             {data?.description && (
                                 typeof data.description === "string" ? (
-                                    <p className="leading-relaxed mb-6 lg:mb-8 text-[#4A5565]">
+                                    <p className="leading-relaxed mb-6 lg:mb-8 text-[#4A5565] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                         {data.description}
                                     </p>
                                 ) : Array.isArray(data.description) ? (
@@ -123,7 +123,7 @@ export default function SDGInitativeDetails({ data, menu }) {
                                                                             {indicator.label}
                                                                         </h4>
                                                                         {/* {indicator.description && ( */}
-                                                                            <p className="text-[#4A5565] font-normal leading-relaxed mb-0">
+                                                                            <p className="text-[#4A5565] font-normal leading-relaxed mb-0 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                                                 {indicator.description ? indicator.description : "No specific targets currently in place (N/A)."}
                                                                             </p>
                                                                         {/* )} */}

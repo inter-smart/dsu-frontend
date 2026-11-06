@@ -8,7 +8,7 @@ export default function CareerIntro({ data }) {
         <div className="w-full h-auto grid lg:grid-cols-2 gap-7.5 lg:gap-10 2xl:gap-12.5 items-center">
           <div>
             <h2 className="title_1 mb-3.75 xl:mb-5">{data?.title}</h2>
-            <p className="text_1 mb-3.75 xl:mb-5">{data?.description}</p>
+            <p className="text_1 mb-3.75 xl:mb-5 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data?.description}</p>
             {data?.email && (
               <Link
                 href={`mailto:${data.email}`}

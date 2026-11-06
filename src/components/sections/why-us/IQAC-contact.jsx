@@ -15,7 +15,7 @@ export default function IQACContact({ data }) {
                         <h3 className="cmn_Title">
                             {data?.title}
                         </h3>
-                        <p className="text_1 leading-[1.65] text-[#4A5565] dark:text-[#9CA3AF]">
+                        <p className="text_1 leading-[1.65] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                             {data?.description}
                         </p>
                     </div>

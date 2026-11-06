@@ -54,7 +54,7 @@ export default function InternationalBanner({ data, formData }) {
                             </ol>
                         </nav>
 
-                        <p className="w-fit bg-linear-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-[17px] font-medium leading-tight text-transparent xl:text-[22px] 2xl:text-[28px] 3xl:text-[30px]">
+                        <p className="w-fit bg-linear-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-[17px] font-medium leading-tight text-transparent 3xl:text-[30px] lg:text-[19px] xl:text-[24px] 2xl:text-[28px]">
                             {subtitle}
                         </p>
                         <h1 className="mt-1 max-w-[750px] text-[34px] font-bold leading-tight lg:text-[44px] xl:text-[48px] 2xl:text-[45px] 3xl:text-[60.9px]">
@@ -91,10 +91,10 @@ export default function InternationalBanner({ data, formData }) {
                                         className="size-10 object-contain lg:size-12 2xl:size-[52px] 3xl:size-[65px]"
                                     />
                                     <div>
-                                        <p className="text-[20px] font-semibold leading-tight text-white lg:text-[26px] 2xl:text-[30px]">
+                                        <p className="text-[20px] font-semibold leading-tight text-white lg:text-[28px] xl:text-[28px] 2xl:text-[30px]">
                                             {scholarship.title}
                                         </p>
-                                        <p className="mt-0.5 text-[14px] text-white/85 2xl:text-[18px]">
+                                        <p className="mt-0.5 text-[14px] text-white/85 lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
                                             {scholarship.note}
                                         </p>
                                     </div>

@@ -36,7 +36,7 @@ function InnovationCard({ card, priority }) {
                 <h3 className="max-w-[9ch] text-[20px] font-semibold leading-[1.3] text-white lg:text-[22px] 2xl:text-[26px] 2xl:leading-[34px]">
                     {title}
                 </h3>
-                <p className="mt-3 text-[14px] leading-[1.6] text-white/95 lg:text-[15px] 2xl:mt-[18px] 2xl:text-[18px] 2xl:leading-[29px]">
+                <p className="mt-3 text-[14px] leading-[1.6] text-white/95 2xl:mt-[18px] 2xl:leading-[29px] lg:text-[17px] xl:text-[17px] 2xl:text-[18px]">
                     {description}
                 </p>
             </div>
@@ -77,7 +77,7 @@ export default function InnovationCenters({ data }) {
                         <h2 className="text-[28px] font-bold leading-tight text-[#1a1a1a] md:text-[30px] lg:text-[35px] 2xl:text-[42px] 3xl:text-[52px]">
                             {title}
                         </h2>
-                        <p className="mt-2 text-[14px] leading-[1.6] text-[#333] lg:text-[15px] 2xl:mt-[10px] 2xl:text-[18px]">
+                        <p className="mt-2 text-[14px] leading-[1.6] text-[#333] 2xl:mt-[10px] lg:text-[17px] xl:text-[17px] 2xl:text-[18px]">
                             {description}
                         </p>
                     </div>

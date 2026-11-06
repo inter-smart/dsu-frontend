@@ -17,7 +17,7 @@ export default function AdmissionTransportation({ data }) {
                 {data?.points?.map((item,id) => (
                     <div key={item.id ?? id} className="w-full bg-white  dark:bg-white/10 dark:py-4 relative pl-[20px] lg:pl-[25px] mb-[30px] last-of-type:mb-0 after:absolute after:left-0 after:content-[''] after:top-0 after:h-full after:w-[5px] after:lg:w-[8px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316]">
                         <div className="cmn_Txt mb-[12px]">{item.title}</div>
-                        <p className="text_1">{item.description}</p>
+                        <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.description}</p>
                     </div>
                 ))}
             </div>

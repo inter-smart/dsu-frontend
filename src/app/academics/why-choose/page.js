@@ -136,3 +136,8 @@ export default function page() {
         </>
     )
 }
+
+export const metadata = {
+    title: "Why Choose | Academics | Dayananda Sagar University",
+    description: "Why Choose – Academics at Dayananda Sagar University.",
+};

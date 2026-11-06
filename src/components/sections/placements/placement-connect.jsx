@@ -20,7 +20,7 @@ export default function PlacementConnect({ data }) {
                         </h1>
                     )}
                     {subheading && (
-                        <p className="text_1 dark:text-[#9CA3AF] mt-2 leading-relaxed">
+                        <p className="text_1 dark:text-[#9CA3AF] mt-2 leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                             {subheading}
                         </p>
                     )}
@@ -40,7 +40,7 @@ export default function PlacementConnect({ data }) {
 
                                 {/* Group Description (e.g., list of degree programs) */}
                                 {group.description && (
-                                    <p className="cmn_Txt font-semibold text-[#1F1F1F] dark:text-[#E2E8F0] leading-[1.6] mb-5 sm:mb-6 xl:mb-7">
+                                    <p className="cmn_Txt font-semibold text-[#1F1F1F] dark:text-[#E2E8F0] leading-[1.6] mb-5 sm:mb-6 xl:mb-7 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                         {group.description}
                                     </p>
                                 )}

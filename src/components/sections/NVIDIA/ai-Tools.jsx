@@ -124,14 +124,14 @@ export default function AiTools({ data }) {
                                         content={description}
                                         blocks={{
                                             paragraph: ({ children }) => (
-                                                <p className="!my-0 !text-inherit leading-relaxed">
+                                                <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                     {children}
                                                 </p>
                                             ),
                                         }}
                                     />
                                 ) : (
-                                    <p className="!my-0 !text-inherit leading-relaxed">
+                                    <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                         {description}
                                     </p>
                                 )}
@@ -209,7 +209,7 @@ export default function AiTools({ data }) {
                                             <h4 className="cmn_Txt font-bold text-black dark:text-white leading-tight my-[5px]">
                                                 {item.title}
                                             </h4>
-                                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] !my-0">
+                                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] !my-0 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                 {item.description}
                                             </p>
                                         </div>
@@ -242,7 +242,7 @@ export default function AiTools({ data }) {
                                     <h3 className="cmn_Txt mb-[6px] xl:mb-[8px] leading-snug">
                                         {cuda?.title || "CUDA: Supercharging Your Code"}
                                     </h3>
-                                    <p className="text-[12px] xl:text-[13px] 2xl:text-[13.5px] 3xl:text-[14.5px] text-[#4A5565] dark:text-[#9CA3AF] leading-relaxed !my-0">
+                                    <p className="text-[12px] 3xl:text-[14.5px] text-[#4A5565] dark:text-[#9CA3AF] leading-relaxed !my-0 lg:text-[14px] xl:text-[15px] 2xl:text-[13.5px]">
                                         {cuda?.description ||
                                             "CUDA is a technology that lets you write code that runs on NVIDIA GPUs. Instead of using just one processor, your code can use thousands of tiny processors working together in parallel—like having a thousand workers tackling a problem simultaneously."}
                                     </p>
@@ -268,7 +268,7 @@ export default function AiTools({ data }) {
                                                 {item.title}
                                             </h4>
 
-                                            <p className="text-[11.5px] xl:text-[12.5px] 2xl:text-[13px] 3xl:text-[14px] text-[#64748B] dark:text-[#9CA3AF] leading-snug !my-0">
+                                            <p className="text-[11.5px] 3xl:text-[14px] text-[#64748B] dark:text-[#9CA3AF] leading-snug !my-0 lg:text-[13.5px] xl:text-[14.5px] 2xl:text-[13px]">
                                                 {item.description}
                                             </p>
                                         </div>

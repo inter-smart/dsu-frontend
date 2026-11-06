@@ -168,7 +168,7 @@ export default function RecruiteDsu({ data }) {
                                 {leftCard.title}
                             </h2>
 
-                            <p className="text-[13px] sm:text-[14px] xl:text-[15px] 2xl:text-[16px] text-white/85 font-normal leading-relaxed mb-6 sm:mb-8 max-w-[560px]">
+                            <p className="text-[13px] sm:text-[14px] text-white/85 font-normal leading-relaxed mb-6 sm:mb-8 max-w-[560px] lg:text-[16px] xl:text-[17px] 2xl:text-[16px]">
                                 {leftCard.description}
                             </p>
 
@@ -213,7 +213,7 @@ export default function RecruiteDsu({ data }) {
                             <h3 className="text-[24px] sm:text-[28px] xl:text-[32px] 2xl:text-[36px] font-bold text-[#1F1F1F] dark:text-white leading-tight mb-2 tracking-tight">
                                 {formCard.title}
                             </h3>
-                            <p className="text-[13px] sm:text-[14px] xl:text-[15px] text-[#5A6472] dark:text-[#9CA3AF] leading-relaxed">
+                            <p className="text-[13px] sm:text-[14px] text-[#5A6472] dark:text-[#9CA3AF] leading-relaxed lg:text-[16px] xl:text-[17px] 2xl:text-[15px]">
                                 {formCard.description}
                             </p>
                         </div>
@@ -394,13 +394,13 @@ export default function RecruiteDsu({ data }) {
                             </button>
 
                             {errorMessage && (
-                                <p className="text-sm font-medium text-red-600 text-center mt-2">
+                                <p className="text-sm font-medium text-red-600 text-center mt-2 lg:text-[16px] xl:text-[16px] 2xl:text-[14px]">
                                     {errorMessage}
                                 </p>
                             )}
 
                             {submitted && (
-                                <p className="text-sm font-medium text-green-600 text-center mt-2">
+                                <p className="text-sm font-medium text-green-600 text-center mt-2 lg:text-[16px] xl:text-[16px] 2xl:text-[14px]">
                                     Thank you! Your recruitment enquiry has been submitted.
                                 </p>
                             )}

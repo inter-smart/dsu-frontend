@@ -82,3 +82,8 @@ export default function Page() {
         </>
     );
 }
+
+export const metadata = {
+    title: "Automation | Library | Dayananda Sagar University",
+    description: "Automation – Library at Dayananda Sagar University.",
+};

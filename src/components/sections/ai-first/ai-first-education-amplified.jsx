@@ -122,7 +122,7 @@ export default function EducationAmplified({ data }) {
                           <h3 className="leading-[1.1] font-bold text-white text-base 2xl:text-xl 3xl:text-[25px] mb-2.5">
                             {pill.title}
                           </h3>
-                          <p className="leading-snug text-white/90 text-xs 2xl:text-[15px] 3xl:text-lg">
+                          <p className="leading-snug text-white/90 text-xs 3xl:text-lg lg:text-[14px] xl:text-[14px] 2xl:text-[15px]">
                             {pill.description}
                           </p>
                         </div>
@@ -141,7 +141,7 @@ export default function EducationAmplified({ data }) {
           <div className="mx-auto mb-5 max-w-[640px] text-center lg:mb-7.5 2xl:mb-10 3xl:mb-14">
             {data.title && <h2 className="cmn_Title">{data.title}</h2>}
             {data.description && (
-              <p className="text_1 3xl:text-[18px]">{data.description}</p>
+              <p className="text_1 3xl:text-[18px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
             )}
           </div>
         )}
@@ -181,7 +181,7 @@ export default function EducationAmplified({ data }) {
                         <h3 className="mb-2.5 text-[18px] font-bold text-white lg:text-lg 2xl:text-[23px] 3xl:text-[28px]">
                           {card.title}
                         </h3>
-                        <p className="text-[13px] leading-snug text-white/90 2xl:text-[15px] 3xl:text-lg">
+                        <p className="text-[13px] leading-snug text-white/90 3xl:text-lg lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
                           {card.description}
                         </p>
                       </div>

@@ -140,3 +140,51 @@ Recommended next steps:
 4. Fix the `/NVIDIA` and recruiters-industry overflows.
 5. Restore the missing `public/` assets and the broken header link.
 6. Move `shadcn` to `devDependencies`.
+
+---
+
+## 11. Re-test and fixes after the first report (2026-11-06, second pass)
+
+Method: production build, headless Chromium (Playwright) over **217 internal pages** found by crawling the site's own links, at 1440, 1024, 768 and 390 px; plus a Lighthouse run and a performance trace of `/`. The CMS (remote Strapi) now responded, so CMS-driven pages could be checked. CMS content varies between runs, so counts such as "animated pages" differ slightly from run to run.
+
+| Check (217 pages) | Before | After |
+|---|--:|--:|
+| Pages with console/page errors | 137 (React #418 hydration) | **0** |
+| Horizontal overflow (4 widths) | `/NVIDIA`, recruiters (earlier) | **0** |
+| Pages without exactly one `<h1>` | 29 | 1 (`/schools`, empty CMS list) |
+| Missing meta description | 41 | **0** |
+| Generic title | 36 | 1 (`/about`, CMS returns nothing) |
+| Duplicate IDs / unnamed links | 0 / 0 | 0 / 0 |
+| 404 asset requests | `NatWest.svg` ×2 | **0** |
+
+Scroll animations: every page that has content gets the reveal; card grids get step-by-step stagger (43 groups at 1440) and 18 cards get the hover zoom. The 120 pages without animation are CMS tabs that render only the hero (main height 520 px) and have nothing to animate. Reveal replays on every scroll pass.
+
+### Issue register: final status
+| ID | Status |
+|---|---|
+| QA-01 Next RCE advisories | Fixed and verified |
+| QA-02 Indexing | Fixed and verified |
+| QA-03 Security headers | Fixed and verified |
+| QA-04 Home LCP | **Fixed and verified**: LCP 6,981 ms to 1,424 ms (render delay 6,865 ms to 261 ms). Hero text of slide 1 now paints from server HTML (no entrance animation on first paint). TTFB 1.16 s is the dynamic CMS fetch |
+| QA-05 38 MB of video | **Fixed**: below-the-fold videos load only near the viewport (`LazyVideo`): 0 MB at load, about 24 MB after scrolling the whole page. Hero video file itself (23 MB) still needs re-encoding (no ffmpeg available) |
+| QA-06 to QA-11 | Fixed and verified |
+| QA-12 `/faculty-directory` no h1 | Not reproducible in the second pass (1 h1) |
+| QA-13 2 h1 on schools/ai-enabled pages | **Fixed** (`academic-contact` h1 to h2). Verified with one `<h1>` in the server HTML of 6 sampled pages (news detail, announcements list and detail, a school, `/academics`, a program overview); not re-run over all 217 pages after the last edit |
+| QA-14 Duplicate SVG IDs | Not reproducible (0 pages with duplicate IDs) |
+| QA-15, QA-16 | Fixed (QA-16 verified by eslint) |
+| QA-17 Reveal overflow | Fixed and verified |
+| QA-18 `/NVIDIA` overflow | Not reproducible at 1440, 1024, 768, 390 in the 217-page run (earlier 30 px at 1024x900 not re-checked at that exact size) |
+| QA-19 recruiters-industry overflow | Not reproducible in the 217-page run |
+| QA-20 Titles and descriptions | **Fixed and verified**: 48 static pages get route-based titles/descriptions, CMS pages get a fallback description, `/schools/*/overview` uses the shared metadata helper. `/about` still generic because the CMS returns no page |
+| QA-21 Broken assets and links | Partly fixed: `NatWest.svg` case mismatch fixed (worked on Windows, would 404 on Linux). Open: mock download PDFs (`/documents/*.pdf`) do not exist in `public/`; "Research Areas" menu item points to `/ai-enabled/industry-collabration`, which has no page |
+| QA-22 Touch targets | Search button, footer links, theme toggle fixed. Still open: carousel pagination dots (12x5 px), hero "Apply Here" badge (17 px) |
+
+### New defects found and fixed in this pass
+- **Hydration error on 137 pages**: `InnerHero` used Radix `asChild` on a base-ui breadcrumb link, rendering `<a>` inside `<a>` (every page with a breadcrumb). Fixed with the `render` prop.
+- `<p>` inside `<p>` on `/about` (`about-history.jsx`): fixed.
+- 94 kebab-case SVG attributes in 12 components (`fill-rule`, `stroke-width`, ...) converted to camelCase (React warnings in dev).
+- Auto-tagging missed content rendered after first load: a debounced MutationObserver re-scan was added.
+- `Heading` renders a `div` by default; the news/announcement detail titles still rely on `InnerHero` for the `h1`.
+
+### Remaining open
+Hero video re-encode; mock PDF files and the "Research Areas" page; pagination-dot and badge touch targets; `/about` and `/schools` render empty (CMS); unsanitized CMS HTML (`dangerouslySetInnerHTML`, 19 files); `shadcn` is listed in `dependencies`; 37 lint errors (React-compiler style rules); Firefox/Safari not tested; Lighthouse Performance score not available from the tool (Accessibility 97, Best Practices 100, SEO 66 = intentional noindex on `/` mobile; trace LCP 1.42 s, CLS 0.00).

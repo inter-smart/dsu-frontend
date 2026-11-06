@@ -8,7 +8,7 @@ export default function AiPartnerwithus({ data }) {
                 <div className="flex flex-wrap items-center justify-between">
                     <div className="w-auto lg:max-w-[65%] xl:max-w-[57%]">
                         <div className="cmn_Title">{data.heading}</div>
-                        <p className="text_1">{data.description}</p>
+                        <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
                     </div>
                     <div className="w-auto">
                         <div className="flex flex-wrap gap-[10px]">

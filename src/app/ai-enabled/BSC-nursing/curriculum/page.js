@@ -78,3 +78,8 @@ export default function page() {
         </>
     )
 }
+
+export const metadata = {
+    title: "Curriculum | B.Sc Nursing | Dayananda Sagar University",
+    description: "Curriculum – B.Sc Nursing at Dayananda Sagar University.",
+};

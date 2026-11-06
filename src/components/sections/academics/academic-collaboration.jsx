@@ -35,7 +35,7 @@ export default function AcademicCollaboration({ data, varient }) {
                     </div>
                     <div className="w-full max-lg:mb-[20px]">
                         {data.heading && <div className="cmn_Title mb-[25px]">{data.heading}</div>}
-                        {data.description && <p className="dark:text-[#9CA3AF]">{data.description}</p>}
+                        {data.description && <p className="dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>}
                         {cta?.url && (
                             <a
                                 href={cta.url}

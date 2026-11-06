@@ -104,3 +104,8 @@ export default function page() {
     </>
   )
 }
+
+export const metadata = {
+    title: "Finance Commitee | Governance | Dayananda Sagar University",
+    description: "Finance Commitee – Governance at Dayananda Sagar University.",
+};

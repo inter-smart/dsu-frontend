@@ -33,7 +33,7 @@ export default function WhyChoose({ data }) {
                                 <h3 className="text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[25px] font-bold text-[#212121] dark:text-white mb-[10px] xl:mb-[20px] 2xl:mb-[30px] 3xl:mb-[40px] leading-[1.3]">
                                     {point.title}
                                 </h3>
-                                <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[22px] 2xl:leading-[25px]">
+                                <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[22px] 2xl:leading-[25px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                     {point.description}
                                 </p>
                             </div>

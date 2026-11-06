@@ -158,7 +158,7 @@ export default function StudentSuccessStories({ data, variant }) {
                                             </h4>
 
                                             {/* Story Quote Text */}
-                                            <p className="text_1 text-[#64748B] dark:text-[#94A3B8]">
+                                            <p className="text_1 text-[#64748B] dark:text-[#94A3B8] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                 {story.quote}
                                             </p>
                                         </div>
@@ -181,10 +181,10 @@ export default function StudentSuccessStories({ data, variant }) {
                                                     <h5 className="text-[14px] sm:text-[14.5px] 2xl:text-[16px] 3xl:text-[20px] font-bold text-[#212121] dark:text-white leading-tight truncate mb-[3px]">
                                                         {story.name}
                                                     </h5>
-                                                    <p className="text-[11.5px] sm:text-[12px] 2xl:text-[14px] text-[#212121] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate">
+                                                    <p className="text-[11.5px] sm:text-[12px] text-[#212121] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate lg:text-[14px] xl:text-[14px] 2xl:text-[14px]">
                                                         {story.role}
                                                     </p>
-                                                    <p className="text-[11px] sm:text-[11.5px] 2xl:text-[14px] text-[#212121] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate">
+                                                    <p className="text-[11px] sm:text-[11.5px] text-[#212121] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate lg:text-[13.5px] xl:text-[13.5px] 2xl:text-[14px]">
                                                         {story.degree}
                                                     </p>
                                                 </div>

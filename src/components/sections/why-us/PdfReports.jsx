@@ -12,7 +12,7 @@ export default function PdfReports({ data }) {
                 {(data.heading || data.description) && (
                     <div className="mb-[25px] xl:mb-[45px]">
                         {data.heading && <h2 className="cmn_Title">{data.heading}</h2>}
-                        {data.description && <p className="text_1">{data.description}</p>}
+                        {data.description && <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>}
                     </div>
                 )}
 

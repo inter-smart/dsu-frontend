@@ -50,7 +50,7 @@ export default function AdmissionSafety({ data }) {
                                     </div>
                                     {data.description && (
 
-                                        <p className="dark:text-black">{item.description}</p>
+                                        <p className="dark:text-black lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.description}</p>
                                     )}
                                     <ul className="mb-[30px] 3xl:mb-[50px]">
                                         {item.list?.map((item, id) => (

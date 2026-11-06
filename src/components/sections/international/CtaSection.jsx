@@ -53,7 +53,7 @@ export default function CtaBanner({ data }) {
                     </h2>
 
                     {description && (
-                        <p className="mt-4 max-w-[620px] text-[14px] leading-[1.7] text-white/95 lg:text-[16px] 2xl:mt-[22px] 2xl:max-w-[600px] 2xl:text-[18px] 2xl:leading-[29px]">
+                        <p className="mt-4 max-w-[620px] text-[14px] leading-[1.7] text-white/95 2xl:mt-[22px] 2xl:max-w-[600px] 2xl:leading-[29px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
                             {description}
                         </p>
                     )}

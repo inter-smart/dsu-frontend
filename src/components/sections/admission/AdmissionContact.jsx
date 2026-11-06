@@ -54,14 +54,14 @@ export default function AdmissionContact({ data }) {
                   content={description}
                   blocks={{
                     paragraph: ({ children }) => (
-                      <p className="!my-0 !text-inherit leading-relaxed">
+                      <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                         {children}
                       </p>
                     ),
                   }}
                 />
               ) : (
-                <p className="!my-0 !text-inherit leading-relaxed">
+                <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                   {description}
                 </p>
               )}
@@ -78,7 +78,7 @@ export default function AdmissionContact({ data }) {
                 {mainOffice.heading}
               </h3>
               {mainOffice.subtitle && (
-                <p className="text-[13px] 2xl:text-[15px] 3xl:text-[18px] leading-[1.1] font-normal text-[#4A5565] dark:text-[#9CA3AF] mt-1.5 sm:mt-2">
+                <p className="text-[13px] 3xl:text-[18px] leading-[1.1] font-normal text-[#4A5565] dark:text-[#9CA3AF] mt-1.5 sm:mt-2 lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
                   {mainOffice.subtitle}
                 </p>
               )}
@@ -450,7 +450,7 @@ export default function AdmissionContact({ data }) {
                   </h2>
                 )}
                 {visitCampus?.description && (
-                  <p className="mt-2 sm:mt-2.5 text-[13px] 2xl:text-[15px] 3xl:text-lg leading-relaxed text-[#4A5565] dark:text-[#9CA3AF]">
+                  <p className="mt-2 sm:mt-2.5 text-[13px] 3xl:text-lg leading-relaxed text-[#4A5565] dark:text-[#9CA3AF] lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
                     {visitCampus.description}
                   </p>
                 )}

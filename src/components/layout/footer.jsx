@@ -702,12 +702,12 @@ function LinkCard({ items }) {
                   {item.href?.startsWith("tel:") && item.text?.includes("/") ? (
                     <PhoneNumbers
                       value={item.text}
-                      linkClassName="py-0.5 inline-block hover:text-(--basecolor) transition-colors"
+                      linkClassName="py-0.5 min-h-6 inline-block hover:text-(--basecolor) transition-colors"
                     />
                   ) : item.href ? (
                     <Link
                       href={item?.href}
-                      className="py-0.5 inline-block hover:text-(--basecolor) transition-colors"
+                      className="py-0.5 min-h-6 inline-block hover:text-(--basecolor) transition-colors"
                     >
                       {item?.text}
                     </Link>

@@ -25,7 +25,7 @@ export default function AiFirstHero({ data }) {
           </h1>
         )}
         {data?.subtitle && (
-          <p className="mb-6 w-full max-w-[750px] text-[14px] leading-relaxed text-white sm:text-[16px] md:text-[18px] xl:text-[20px] 3xl:text-[23px]">
+          <p className="mb-6 w-full max-w-[750px] text-[14px] leading-relaxed text-white sm:text-[16px] md:text-[18px] 3xl:text-[23px] lg:text-[20px] xl:text-[22px] 2xl:text-[20px]">
             {data.subtitle}
           </p>
         )}

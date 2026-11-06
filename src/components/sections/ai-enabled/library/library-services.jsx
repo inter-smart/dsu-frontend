@@ -10,7 +10,7 @@ import LibrarySidebar from "./library-sidemenubar";
 const TEXT = "text_1 text-[#4A5565] dark:text-[#9CA3AF]";
 const sectionBlocks = {
     paragraph: ({ children }) => (
-        <p className={`${TEXT} leading-[1.2] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]`}>{children}</p>
+        <p className={`${TEXT} lg:text-[14px] 2xl:text-[14.4px] leading-[1.2] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]`}>{children}</p>
     ),
     list: ({ children, format }) =>
         format === "ordered" ? (
@@ -183,7 +183,7 @@ export default function LibraryServices({ data, menu }) {
                                         <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] text-[#212121] dark:text-white font-bold ">
                                             {data?.dailiesSection?.heading}
                                         </div>
-                                        <p className="text_1 dark:text-[#9CA3AF] mb-[20px]">{data?.dailiesSection.description}</p>
+                                        <p className="text_1 dark:text-[#9CA3AF] mb-[20px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data?.dailiesSection.description}</p>
 
                                         <div className="w-full overflow-x-auto">
                                             <div className="min-w-[700px] rounded-[8px] border border-[#707070] dark:border-white/20 overflow-hidden">

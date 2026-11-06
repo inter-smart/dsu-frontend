@@ -110,7 +110,7 @@ export default function SchoolCampus({ data }) {
                                         ))}
                                     </div>
                                 ) : (
-                                    <p className="text_1">Programmes will be listed soon.</p>
+                                    <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">Programmes will be listed soon.</p>
                                 )}
                             </div>
                         )}

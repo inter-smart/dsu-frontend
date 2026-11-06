@@ -585,3 +585,8 @@ export default function page() {
         </>
     );
 }
+
+export const metadata = {
+    title: "IQAC | Why Us | Dayananda Sagar University",
+    description: "IQAC – Why Us at Dayananda Sagar University.",
+};

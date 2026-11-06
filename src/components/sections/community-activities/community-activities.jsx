@@ -19,7 +19,7 @@ export default function CommunityActivities({ data }) {
         <div className="w-full h-auto mb-6.25 lg:mb-7.5 2xl:mb-10">
           <h2 className="title_1 mb-2.5 xl:mb-3 2xl:mb-3.5">{data?.title}</h2>
           {data?.description && (
-            <p className="text_1 max-w-[820px]">{data.description}</p>
+            <p className="text_1 max-w-[820px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
           )}
         </div>
         <Accordion
@@ -49,7 +49,7 @@ export default function CommunityActivities({ data }) {
                       className={item?.image ? "w-full lg:flex-1" : "w-full"}
                     >
                       {item?.description && (
-                        <p className="text_1 mb-3.75 xl:mb-5">
+                        <p className="text_1 mb-3.75 xl:mb-5 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                           {item.description}
                         </p>
                       )}
