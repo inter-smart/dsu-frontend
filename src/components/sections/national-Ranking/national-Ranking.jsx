@@ -72,8 +72,8 @@ export default function NationalRanking({ data }) {
                                                 </g>
                                                 <defs>
                                                     <linearGradient id="paint0_linear_6206_23091" x1="0" y1="8.80443" x2="18.9118" y2="8.80443" gradientUnits="userSpaceOnUse">
-                                                        <stop stop-color="#DC2626" />
-                                                        <stop offset="1" stop-color="#F97316" />
+                                                        <stop stopColor="#DC2626" />
+                                                        <stop offset="1" stopColor="#F97316" />
                                                     </linearGradient>
                                                     <clipPath id="clip0_6206_23091">
                                                         <rect width="18.9117" height="17.4489" fill="white" />

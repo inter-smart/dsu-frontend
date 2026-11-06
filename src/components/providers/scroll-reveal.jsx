@@ -90,34 +90,96 @@ export default function ScrollReveal() {
     const root = document.documentElement;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    tagged = [];
-    zoomed = [];
-    document.querySelectorAll(AUTO).forEach((el) => tag(el, 0));
+    const autoTagged = (tagged = []);
+    const autoZoomed = (zoomed = []);
+    const observed = new WeakSet();
+    const vh = () => window.innerHeight;
+    // An element reveals once its top is ~25% of the viewport height above the bottom edge, and hides
+    // again when it leaves, so the animation replays on each scroll pass.
+    const OPTIONS = { rootMargin: "0px 0px -25% 0px", threshold: 0 };
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) e.target.classList.toggle("is-revealed", e.isIntersecting);
+    }, OPTIONS);
+    // Tall card grids: reveal each card when it arrives (staggered within the batch that arrives together).
+    const ioEach = new IntersectionObserver((entries) => {
+      let n = 0;
+      for (const e of entries) {
+        if (e.isIntersecting) e.target.style.setProperty("--reveal-delay", `${n++ * 140}ms`);
+        e.target.classList.toggle("is-revealed", e.isIntersecting);
+      }
+    }, OPTIONS);
 
-    const targets = document.querySelectorAll("[data-reveal], [data-reveal-stagger]");
-    // Toggle on every enter/leave so the animation replays on each scroll pass.
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) e.target.classList.toggle("is-revealed", e.isIntersecting);
-      },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.05 },
-    );
+    const scan = () => {
+      document.querySelectorAll(AUTO).forEach((el) => tag(el, 0));
+      document.querySelectorAll("[data-reveal], [data-reveal-stagger]").forEach((el) => {
+        if (observed.has(el)) return;
+        observed.add(el);
+        const { top, bottom, height } = el.getBoundingClientRect();
+        const onScreen = top < vh() * 0.75 && bottom > 0;
+        if (el.hasAttribute("data-reveal-stagger") && height > vh() * 0.85) {
+          el.setAttribute("data-reveal-each", "");
+          [...el.children].forEach((c) => {
+            c.style.setProperty("--reveal-delay", "0ms");
+            if (c.getBoundingClientRect().top < vh() * 0.75 && c.getBoundingClientRect().bottom > 0) c.classList.add("is-revealed");
+            ioEach.observe(c);
+          });
+          return;
+        }
+        if (onScreen && el.getAttribute("data-reveal") === "wipe") {
+          // hero-style image: play the entrance even when it is already on screen. Settle the hidden
+          // state without a transition first, then let the observer open it.
+          el.setAttribute("data-reveal-init", "");
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => {
+              el.removeAttribute("data-reveal-init");
+              io.observe(el);
+            }),
+          );
+          return;
+        }
+        // Anything else already on screen stays put: no hide-then-show flash.
+        if (onScreen) el.classList.add("is-revealed");
+        io.observe(el);
+      });
+    };
 
-    // Anything already on screen stays put: no hide-then-show flash.
-    const vh = window.innerHeight;
-    targets.forEach((el) => {
-      const { top, bottom } = el.getBoundingClientRect();
-      if (top < vh * 0.9 && bottom > 0) el.classList.add("is-revealed");
-      io.observe(el);
-    });
+    scan();
     root.classList.add("reveal-ready");
 
-    const autoTagged = tagged;
-    const autoZoomed = zoomed;
+    // At the very bottom of the page the last blocks can never reach the trigger line: show what is on screen.
+    let frame = 0;
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        if (window.scrollY + vh() < document.documentElement.scrollHeight - 4) return;
+        document.querySelectorAll("[data-reveal]:not(.is-revealed), [data-reveal-stagger]:not([data-reveal-each]):not(.is-revealed), [data-reveal-each] > :not(.is-revealed)").forEach((el) => {
+          const r = el.getBoundingClientRect();
+          if (r.top < vh() && r.bottom > 0) el.classList.add("is-revealed");
+        });
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Content rendered after the first pass (streamed or client-rendered sections) is picked up too.
+    let timer = 0;
+    const mo = new MutationObserver(() => {
+      clearTimeout(timer);
+      timer = setTimeout(scan, 300);
+    });
+    const main = document.querySelector("main");
+    if (main) mo.observe(main, { childList: true, subtree: true });
+
     return () => {
+      clearTimeout(timer);
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      mo.disconnect();
       io.disconnect();
+      ioEach.disconnect();
       root.classList.remove("reveal-ready");
-      targets.forEach((el) => el.classList.remove("is-revealed"));
+      document.querySelectorAll(".is-revealed").forEach((el) => el.classList.remove("is-revealed"));
+      document.querySelectorAll("[data-reveal-each]").forEach((el) => el.removeAttribute("data-reveal-each"));
       autoTagged.forEach((el) => {
         el.removeAttribute("data-reveal");
         el.removeAttribute("data-reveal-stagger");

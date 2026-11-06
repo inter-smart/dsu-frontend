@@ -114,7 +114,7 @@ export default function IQACAccredition({ data }) {
                                         {item.title}
                                     </div>
                                     {item.description && (
-                                        <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF]">{item.description}</p>
+                                        <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.description}</p>
                                     )}
 
                                     {item.linkUrl && <Link href={item.linkUrl} className="absolute top-[35px] right-[20px] opacity-0 group-hover:opacity-100 transition-all duration-100 hover:tracking-wider text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] flex items-center gap-[10px] bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">

@@ -35,7 +35,7 @@ export default function AdmissionHostelFacility({ data }) {
                                 <div className="cmn_Txt text-[#212121] dark:text-white font-semibold mt-[15px] mb-[6px]">
                                     {item.title}
                                 </div>
-                                <p className="text-[13px] sm:text-[14px] text-[#6B7280] dark:text-white leading-[1.5]">
+                                <p className="text-[13px] sm:text-[14px] text-[#6B7280] dark:text-white leading-[1.5] lg:text-[16px] xl:text-[16px] 2xl:text-[14px]">
                                     {item.description}
                                 </p>
                             </div>
@@ -74,7 +74,7 @@ export default function AdmissionHostelFacility({ data }) {
                                     <div className="cmn_Txt text-[#212121] dark:text-white font-semibold mt-[15px] mb-[6px]">
                                         {item.title}
                                     </div>
-                                    <p className="text-[13px] sm:text-[14px] text-[#6B7280] dark:text-white leading-[1.5]">
+                                    <p className="text-[13px] sm:text-[14px] text-[#6B7280] dark:text-white leading-[1.5] lg:text-[16px] xl:text-[16px] 2xl:text-[14px]">
                                         {item.description}
                                     </p>
                                 </div>

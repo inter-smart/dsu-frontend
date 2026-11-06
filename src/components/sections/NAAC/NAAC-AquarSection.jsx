@@ -42,10 +42,10 @@ export default function NAACAquarSection({ data }) {
 
                         return (
                             <TabsContent key={item.id} value={item.value} className="mt-[10px] xl:mt-[30px]">
-                                {yearData.description && <p className="mb-[30px]">{yearData.description}</p>}
+                                {yearData.description && <p className="mb-[30px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{yearData.description}</p>}
 
                                 {!yearData.tabs?.length && (
-                                    <p className="text_1 text-gray-400 py-[14px]">
+                                    <p className="text_1 text-gray-400 py-[14px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                         No reports available for this year yet.
                                     </p>
                                 )}
@@ -90,9 +90,9 @@ export default function NAACAquarSection({ data }) {
                                                                         </div>
                                                                     </AccordionTrigger>
 
-                                                                    <AccordionContent className="p-0  text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] text-[#797979]   [&_a]:no-underline [&_a]:hover:no-underline">
+                                                                    <AccordionContent className="p-0  text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:lg:text-[14px] [&_p]:xl:text-[14px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] text-[#797979]   [&_a]:no-underline [&_a]:hover:no-underline">
                                                                         {!part.documents?.length && (
-                                                                            <p className="!mb-0 pt-[12px]">No reports available for this part yet.</p>
+                                                                            <p className="!mb-0 pt-[12px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">No reports available for this part yet.</p>
                                                                         )}
                                                                         {part.documents?.map((document, id) => (
                                                                             <Link href={document.url || "#"} target={document.isExternal ? "_blank" : "_self"} className="flex items-center justify-between hover:no-underline no-underline !no-underline py-[12px] 2xl:py-[15px] 3xl:py-[20px] border-b border-black/20 last:border-b-0 w-full last-of-type:border-0 group/link mb-[8px] last-of-type:mb-0 last-of-type:pb-0" key={document.id || id}>

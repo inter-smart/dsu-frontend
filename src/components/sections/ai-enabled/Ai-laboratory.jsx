@@ -13,7 +13,7 @@ export default function AiLaboratory({data}) {
                     <div className="w-full rounded-[10px] bg-gradient-to-r from-[#FFF8EE] to-[#FFF3E0] dark:bg-gradient-to-r dark:from-[#383838b5] dark:to-[#383838b5] overflow-hidden p-[15px_20px] lg:p-[15px_25px] xl:p-[15px_40px] 2xl:p-[20px_50px] 3xl:p-[30px_60px]">
                         <div className="cmn_Title">{data?.highlightCard.number}</div>
                         <div className="text-[13px] lg:text-[18px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[30px]  font-bold mb-[12px]">{data?.highlightCard.title}</div>
-                        <p className="text-[#4A5565] dark:text-white/80">{data?.highlightCard.description}</p>
+                        <p className="text-[#4A5565] dark:text-white/80 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data?.highlightCard.description}</p>
                     </div>
                 </div>
                 <div className="w-full">

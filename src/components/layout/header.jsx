@@ -916,24 +916,6 @@ export default function Header({ data = local_data }) {
       {!isMobile && (
         <div className="container relative">
           <div className="w-full h-auto flex items-center justify-between relative z-0">
-            <Link
-              href="/"
-              aria-label="Home"
-              className={cn(
-                "w-auto h-auto lg:py-3.75 2xl:py-5 3xl:py-7.5 inline transition-opacity duration-400 relative z-0 hover:before:w-full before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
-                isSearchOpen && "opacity-0",
-              )}
-            >
-              <span className="w-3.75 3xl:w-5 h-auto aspect-square flex items-center justify-center">
-                <Image
-                  src={"/images/header-home.svg"}
-                  alt={"Home"}
-                  width={20}
-                  height={20}
-                  className="w-full h-full object-contain"
-                />
-              </span>
-            </Link>
             {data?.navigationLinks?.map((item) => (
               <NavigationMenu
                 key={item?.id}
@@ -967,7 +949,7 @@ export default function Header({ data = local_data }) {
                 setIsSearchOpen(true);
               }}
               className={cn(
-                "w-auto h-auto inline shrink-0 transition-opacity duration-400",
+                "w-auto h-auto inline shrink-0 p-1 -m-1 transition-opacity duration-400", // p/-m: 24px touch target, no layout change
                 isSearchOpen && "opacity-0",
               )}
             >

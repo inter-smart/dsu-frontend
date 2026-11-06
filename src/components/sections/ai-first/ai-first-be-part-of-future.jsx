@@ -76,7 +76,7 @@ export default function BePartOfFuture({ data }) {
                 <h3 className="mb-2 px-1 text-base font-semibold text-white 2xl:text-xl 3xl:text-[25px]">
                   {card.title}
                 </h3>
-                <p className="px-1 text-[13px] leading-relaxed text-white/90 2xl:text-base 3xl:text-lg">
+                <p className="px-1 text-[13px] leading-relaxed text-white/90 3xl:text-lg lg:text-[15px] xl:text-[15px] 2xl:text-[16px]">
                   {card.description}
                 </p>
                 </div>

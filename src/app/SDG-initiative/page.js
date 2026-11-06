@@ -218,3 +218,8 @@ export default function page() {
         </>
     );
 }
+
+export const metadata = {
+    title: "SDG Initiative | Dayananda Sagar University",
+    description: "SDG Initiative at Dayananda Sagar University.",
+};

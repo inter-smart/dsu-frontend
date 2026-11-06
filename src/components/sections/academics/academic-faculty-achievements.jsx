@@ -239,7 +239,7 @@ export default function AcademicFacultyAchievements({ data }) {
                                         )}
 
                                         {item.description && (
-                                            <p className="text_1">
+                                            <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                 {item.description}
                                             </p>
                                         )}
@@ -250,7 +250,7 @@ export default function AcademicFacultyAchievements({ data }) {
                     </div>
                 ) : (
                     <div className="py-16 px-4 text-center bg-white/70 dark:bg-[#18191B]/70 rounded-[12px] border border-dashed border-gray-300 dark:border-white/10">
-                        <p className="text-[15px] sm:text-[16px] font-medium text-gray-500 dark:text-gray-400">
+                        <p className="text-[15px] sm:text-[16px] font-medium text-gray-500 dark:text-gray-400 lg:text-[18px] xl:text-[18px] 2xl:text-[16px]">
                             Nothing to show here yet.
                         </p>
                     </div>

@@ -23,7 +23,7 @@ export default function TechnologySection({ data }) {
                             {data?.heading || "The Technology Behind Your AI Future"}
                         </h2>
 
-                        <p className="text_1 dark:text-[#9CA3AF] mb-[15px]">
+                        <p className="text_1 dark:text-[#9CA3AF] mb-[15px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                             {data?.subheading || "NVIDIA technology and DSU's world-class infrastructure empower every student to build, train, deploy and innovate."}
                         </p>
 

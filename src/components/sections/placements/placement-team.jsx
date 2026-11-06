@@ -34,7 +34,7 @@ export default function PlacementTeam({ data }) {
                             <BlocksRenderer content={description} />
                         </div>
                     ) : (description || subheading) && (
-                        <p className="text_1 text-[#5A6472] dark:!text-black max-w-[850px] leading-relaxed">
+                        <p className="text_1 text-[#5A6472] dark:!text-black max-w-[850px] leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                             {description || subheading}
                         </p>
                     )}
@@ -86,12 +86,12 @@ export default function PlacementTeam({ data }) {
                                                 {member.name}
                                             </h3>
                                             {member.designation && (
-                                                <p className="text-[13px] sm:text-[13.5px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] mb-[4px] font-normal leading-[1.45]  bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit">
+                                                <p className="text-[13px] sm:text-[13.5px] 3xl:text-[18px] mb-[4px] font-normal leading-[1.45] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit lg:text-[15.5px] xl:text-[16px] 2xl:text-[15px]">
                                                     {member.designation}
                                                 </p>
                                             )}
                                             {member.post && (
-                                                <p className="text-[13px] sm:text-[13.5px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] font-normal leading-[1.45]  bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit">
+                                                <p className="text-[13px] sm:text-[13.5px] 3xl:text-[18px] font-normal leading-[1.45] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit lg:text-[15.5px] xl:text-[16px] 2xl:text-[15px]">
                                                     {member.post}
                                                 </p>
                                             )}

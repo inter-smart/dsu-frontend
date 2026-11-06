@@ -308,3 +308,7 @@ export default function page() {
     )
 }
 
+export const metadata = {
+    title: "Industry Connect | AI-Enabled | Dayananda Sagar University",
+    description: "Industry Connect – AI-Enabled at Dayananda Sagar University.",
+};

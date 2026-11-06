@@ -127,3 +127,8 @@ export default function page() {
         </>
     )
 }
+
+export const metadata = {
+    title: "Hod Message | AI-Enabled | Dayananda Sagar University",
+    description: "Hod Message – AI-Enabled at Dayananda Sagar University.",
+};

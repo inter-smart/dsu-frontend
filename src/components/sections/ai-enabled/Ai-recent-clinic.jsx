@@ -79,7 +79,7 @@ export default function AiRecentClinic({ data }) {
                                         <div className="text-base 2xl:text-lg 3xl:text-[23px] leading-normal font-bold line-clamp-3 text-[#212121] dark:text-white w-[90%]  3xl:mb-7.5">
                                             {engage?.title}
                                         </div>
-                                        <p className="mb-[10px]">{engage.description}</p>
+                                        <p className="mb-[10px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{engage.description}</p>
                                         <div className="flex flex-wrap justify-between w-full gap-[10px]">
                                             {engage?.link && (
                                                 <Link

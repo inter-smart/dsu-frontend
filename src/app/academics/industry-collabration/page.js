@@ -151,7 +151,7 @@ const local_data = {
                 logo: {
                     alternativeText: "NatWest Group logo",
                     mime: "image/svg+xml",
-                    url: "/images/logos/natwest.svg",
+                    url: "/images/logos/NatWest.svg",
                 },
             },
             {
@@ -209,3 +209,7 @@ export default function page() {
     )
 }
 
+export const metadata = {
+    title: "Industry Collabration | Academics | Dayananda Sagar University",
+    description: "Industry Collabration – Academics at Dayananda Sagar University.",
+};

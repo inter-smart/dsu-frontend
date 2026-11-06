@@ -28,7 +28,7 @@ function TabSlider({ items, onOpenVideo }) {
 
     if (!items?.length) {
         return (
-            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] py-[20px]">
+            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] py-[20px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                 No items available.
             </p>
         );

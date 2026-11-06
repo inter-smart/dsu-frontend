@@ -477,7 +477,7 @@ export default function FacultyDirectoryListing({ data }) {
               </>
             ) : (
               <div className="rounded-lg border border-[#eee5dc] bg-white px-5 py-12 text-center">
-                <p className="text-sm font-medium">
+                <p className="text-sm font-medium lg:text-[16px] xl:text-[16px] 2xl:text-[14px]">
                   No faculty members match these filters.
                 </p>
                 <button

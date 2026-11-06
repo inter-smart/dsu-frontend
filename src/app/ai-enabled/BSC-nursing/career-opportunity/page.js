@@ -110,3 +110,7 @@ export default function page() {
     )
 }
 
+export const metadata = {
+    title: "Career Opportunity | B.Sc Nursing | Dayananda Sagar University",
+    description: "Career Opportunity – B.Sc Nursing at Dayananda Sagar University.",
+};

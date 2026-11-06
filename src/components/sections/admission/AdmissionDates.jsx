@@ -74,7 +74,7 @@ export default function AdmissionDates({ data }) {
                                                 {item.title}
                                             </h4>
                                             {item.description && (
-                                                <p className="mt-0.5 sm:mt-1 text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-[1.5]">
+                                                <p className="mt-0.5 sm:mt-1 text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-[1.5] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                     {item.description}
                                                 </p>
                                             )}
@@ -94,7 +94,7 @@ export default function AdmissionDates({ data }) {
                             <h4 className="text-[12px] sm:text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[22px] font-semibold text-[#1E1E1E] dark:text-white">
                                 {note.title}
                             </h4>
-                            <p className="mt-1 sm:mt-1.5 text-[11px] sm:text-[12px] 2xl:text-[13px] 3xl:text-[15px] text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6] max-w-[800px]">
+                            <p className="mt-1 sm:mt-1.5 text-[11px] sm:text-[12px] 3xl:text-[15px] text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6] max-w-[800px] lg:text-[14px] xl:text-[14px] 2xl:text-[13px]">
                                 {note.description}
                             </p>
                         </div>

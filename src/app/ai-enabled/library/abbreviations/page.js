@@ -139,3 +139,7 @@ export default function page() {
     )
 }
 
+export const metadata = {
+    title: "Abbreviations | Library | Dayananda Sagar University",
+    description: "Abbreviations – Library at Dayananda Sagar University.",
+};

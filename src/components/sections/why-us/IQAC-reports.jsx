@@ -37,7 +37,7 @@ export default function IQACReport({ data }) {
                                     </div>
                                 </AccordionTrigger>
                                 {item?.reports && (
-                                    <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] text-[#797979] ">
+                                    <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:lg:text-[14px] [&_p]:xl:text-[14px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] text-[#797979] ">
                                         <div className="flex flex-wrap border border-black/10 p-[25px] xl:p-[30px] 2xl:p-[40px] 3xl:p-[50px] bg-gradient-to-b from-[rgba(255,248,238,0.2)] to-[rgba(255,243,224,0.2)] rounded-[10px]">
                                             <div className="w-full ">
                                                 {item?.reports.map((reports, i) => (

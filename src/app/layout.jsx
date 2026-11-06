@@ -23,7 +23,7 @@ const robotoMono = Roboto_Mono({
 
 export const metadata = {
   title: "Dayananda Sagar University",
-  description: "Dayananda Sagar University description.",
+  description: "Dayananda Sagar University, Bengaluru: AI-driven programmes, research and innovation, industry collaborations and placements.",
   robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false, noarchive: true } },
 };
 

@@ -202,14 +202,14 @@ export default function AiTrainingSection({ data }) {
                                     content={description}
                                     blocks={{
                                         paragraph: ({ children }) => (
-                                            <p className="!my-0 !text-inherit leading-relaxed">
+                                            <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                 {children}
                                             </p>
                                         ),
                                     }}
                                 />
                             ) : (
-                                <p className="!my-0 !text-inherit leading-relaxed">
+                                <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                     {description}
                                 </p>
                             )}
@@ -244,7 +244,7 @@ export default function AiTrainingSection({ data }) {
                             <h3 className="text-[24px] sm:text-[28px] xl:text-[34px] 2xl:text-[38px] font-bold text-white tracking-tight leading-tight">
                                 {dgx.title || "DGX B200"}
                             </h3>
-                            <p className="text-[13px] sm:text-[14px] xl:text-[15px] 2xl:text-[16px] text-white/80 mt-1 leading-snug max-w-[700px]">
+                            <p className="text-[13px] sm:text-[14px] text-white/80 mt-1 leading-snug max-w-[700px] lg:text-[16px] xl:text-[17px] 2xl:text-[16px]">
                                 {dgx.description}
                             </p>
                         </div>
@@ -274,7 +274,7 @@ export default function AiTrainingSection({ data }) {
                                         <h4 className="text-[15px] sm:text-[16px] xl:text-[17.5px] 2xl:text-[19px] 3xl:text-[25px] font-bold text-white leading-snug transition-colors duration-300 group-hover:text-[#F97316]">
                                             {item.title}
                                         </h4>
-                                        <p className="text-[12px] sm:text-[12.5px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px] text-white/75 leading-relaxed mt-1">
+                                        <p className="text-[12px] sm:text-[12.5px] 3xl:text-[18px] text-white/75 leading-relaxed mt-1 lg:text-[14.5px] xl:text-[15px] 2xl:text-[14px]">
                                             {item.description}
                                         </p>
                                         {item.note && (
@@ -356,14 +356,14 @@ export default function AiTrainingSection({ data }) {
                                     content={jetson.description}
                                     blocks={{
                                         paragraph: ({ children }) => (
-                                            <p className="!my-0 !text-inherit leading-relaxed">
+                                            <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                 {children}
                                             </p>
                                         ),
                                     }}
                                 />
                             ) : (
-                                <p className="!my-0 !text-inherit leading-relaxed">
+                                <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                     {jetson.description}
                                 </p>
                             )}
@@ -463,7 +463,7 @@ export default function AiTrainingSection({ data }) {
 
                                         {/* Bottom: Best For */}
                                         <div className="pt-2">
-                                            <p className="text-[11.5px] xl:text-[11px] 2xl:text-[12px] 3xl:text-[16px] text-[#212121] dark:text-[#9CA3AF] leading-snug !my-0">
+                                            <p className="text-[11.5px] 3xl:text-[16px] text-[#212121] dark:text-[#9CA3AF] leading-snug !my-0 lg:text-[13.5px] xl:text-[13px] 2xl:text-[12px]">
                                                 <span className="font-normal text-[#4A5565] dark:text-[#9CA3AF]">
                                                     Best For :{" "}
                                                 </span>

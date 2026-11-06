@@ -38,10 +38,10 @@ function FacultyCard({ member }) {
         >
           {member.name}
         </Link>
-        <p className="mt-0.5 line-clamp-1 text-[8px] font-medium leading-tight text-[#e43b27]">
+        <p className="mt-0.5 line-clamp-1 text-[8px] font-medium leading-tight text-[#e43b27] lg:text-[10px] xl:text-[10px] 2xl:text-[8px]">
           {member.designation}
         </p>
-        <p className="mt-0.5 line-clamp-1 text-[7px] leading-tight text-[#667085]">
+        <p className="mt-0.5 line-clamp-1 text-[7px] leading-tight text-[#667085] lg:text-[9px] xl:text-[9px] 2xl:text-[7px]">
           {member.department}
         </p>
       </div>
@@ -546,7 +546,7 @@ export default function FacultyDirectoryListing() {
             <p>
               <strong>{filteredFaculty.length}</strong> Faculty members found
             </p>
-            <p className="text-[#7d8795]">
+            <p className="text-[#7d8795] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
               Showing {Math.min(visibleCount, filteredFaculty.length)} Results
               Of {filteredFaculty.length || 0}
             </p>
@@ -575,7 +575,7 @@ export default function FacultyDirectoryListing() {
             </>
           ) : (
             <div className="rounded-lg border border-[#eee5dc] bg-white px-5 py-12 text-center">
-              <p className="text-sm font-medium">
+              <p className="text-sm font-medium lg:text-[16px] xl:text-[16px] 2xl:text-[14px]">
                 No faculty members match these filters.
               </p>
               <button

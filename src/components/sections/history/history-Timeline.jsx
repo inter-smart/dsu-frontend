@@ -50,7 +50,7 @@ export default function HistoryTimeline({ data }) {
                     <h2 className="cmn_Title">
                         {data?.title || "Our History of Timeline"}
                     </h2>
-                    <p className="text_1">
+                    <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                         {data?.subtitle || "The Dayananda Sagar Schools and Colleges of Science, Arts and Commerce are pioneering institutions"}
                     </p>
                 </div>
@@ -202,7 +202,7 @@ export default function HistoryTimeline({ data }) {
                                                             <h3 className="text-[15px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] font-semibold text-[#212121] dark:text-white mb-2 leading-snug">
                                                                 {event.title}
                                                             </h3>
-                                                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF]">
+                                                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                                 {event.description}
                                                             </p>
                                                         </div>

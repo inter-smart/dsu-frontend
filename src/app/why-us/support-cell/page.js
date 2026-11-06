@@ -86,3 +86,8 @@ export default async function Page() {
         </>
     )
 }
+
+export const metadata = {
+    title: "Support Cell | Why Us | Dayananda Sagar University",
+    description: "Support Cell – Why Us at Dayananda Sagar University.",
+};

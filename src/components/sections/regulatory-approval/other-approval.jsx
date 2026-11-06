@@ -79,7 +79,7 @@ export default function OtherApproval({ data, menu = [] }) {
                                                 </div>
                                             </AccordionTrigger>
 
-                                            <AccordionContent className=" text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_a]:no-underline [&_a]:hover:no-underline text-[#797979] px-[15px] xl:px-[20px] 2xl:px-[25px] 3xl:px-[30px]">
+                                            <AccordionContent className=" text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:lg:text-[14px] [&_p]:xl:text-[14px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_a]:no-underline [&_a]:hover:no-underline text-[#797979] px-[15px] xl:px-[20px] 2xl:px-[25px] 3xl:px-[30px]">
                                                 {item?.content?.description && (
                                                     <div className="text_1 text-[#4A5565] mb-[10px]">
                                                         {item.content.description}

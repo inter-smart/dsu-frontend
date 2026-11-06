@@ -21,7 +21,7 @@ export default function BscCurriculum({ data }) {
             <div className="container">
                 <div className="mb-[30px] xl:mb-[40px]">
                     <h2 className="cmn_Title mb-[10px] xl:mb-[15px]">{data.heading}</h2>
-                    <p className="text_1 text-[#4A5565] dark:text-gray-300">{data.description}</p>
+                    <p className="text_1 text-[#4A5565] dark:text-gray-300 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
                 </div>
 
                 {/* Swiper Tab Slider with Nav Buttons */}

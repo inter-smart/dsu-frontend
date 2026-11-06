@@ -44,7 +44,7 @@ export default function AiFacility({ data }) {
                                     <div className="text-[18px] lg:text-[24px] xl:text-[26px] 2xl:text-[32px] 3xl:text-[42px] font-bold text-[#212121] dark:text-white mb-[12px] sm:mb-[16px] 2xl:mb-[25px]">
                                         {item.title}
                                     </div>
-                                    <p className="text_1">
+                                    <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                         {item.description}
                                     </p>
                                 </div>

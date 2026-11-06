@@ -166,7 +166,7 @@ export default function ApplyForm({ job }) {
             <h2 className="title_1 !text-2xl xl:!text-3xl mb-3.75">
               This job opening is not available
             </h2>
-            <p className="text_1 mb-6.25">
+            <p className="text_1 mb-6.25 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
               The position you are looking for may have been closed or the link is incorrect.
             </p>
             <Link
@@ -187,7 +187,7 @@ export default function ApplyForm({ job }) {
         <div className="container">
           <div className="w-full h-auto max-w-[720px] mx-auto text-center border border-black/10 rounded-md 2xl:rounded-[10px] p-7.5 xl:p-10">
             <h2 className="title_1 !text-2xl xl:!text-3xl mb-3.75">Application Submitted</h2>
-            <p className="text_1">
+            <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
               Thank you{formData.name ? `, ${formData.name}` : ""}! Your application
               {matchedJob ? ` for ${matchedJob.title}` : ""} has been received. Our team will
               get in touch with you if your profile is shortlisted.
@@ -203,7 +203,7 @@ export default function ApplyForm({ job }) {
       <div className="container">
         <div className="w-full h-auto mb-6.25 lg:mb-7.5 2xl:mb-10">
           <h2 className="title_1 mb-2.5 xl:mb-3">Application Form</h2>
-          <p className="text_1">
+          <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
             Please fill all mandatory fields. DOB format: DD-MM-YYYY. Resume max: 10MB.
           </p>
         </div>

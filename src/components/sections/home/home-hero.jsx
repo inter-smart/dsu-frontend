@@ -10,6 +10,7 @@ import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { buttonVariants } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
+import LazyVideo from "@/components/ui/lazy-video";
 
 // Only the first slide is the page <h1>; later slides use a <p> to avoid several h1s.
 function SlideTitle({ first, ...props }) {
@@ -35,10 +36,14 @@ export default function HomeHero({ data }) {
     ],
   );
   const [activeHeroIndex, setActiveHeroIndex] = useState(0);
+  // The first slide's text is in the server HTML (no entrance animation) so the <h1> paints as LCP without waiting for hydration.
+  const [advanced, setAdvanced] = useState(false);
   useEffect(() => {
     if (!heroEmblaApi) return;
     const onSelect = () => {
-      setActiveHeroIndex(heroEmblaApi.selectedScrollSnap());
+      const index = heroEmblaApi.selectedScrollSnap();
+      setActiveHeroIndex(index);
+      if (index !== 0) setAdvanced(true);
     };
     onSelect();
     heroEmblaApi.on("select", onSelect);
@@ -105,8 +110,9 @@ export default function HomeHero({ data }) {
               <div className="w-full h-full select-none block">
                 <div className="w-full h-full block pointer-events-none relative z-0 before:content-[''] before:w-full before:h-full before:bg-black/20 before:absolute before:z-1 before:inset-0">
                   {item?.media?.type === "video" ? (
-                    <video
+                    <LazyVideo
                       src={item?.media?.url}
+                      eager={slideIndex === activeHeroIndex || slideIndex === (activeHeroIndex + 1) % data.hero.length}
                       autoPlay
                       muted
                       loop
@@ -127,7 +133,7 @@ export default function HomeHero({ data }) {
                   <div className="w-full h-full flex flex-wrap items-end">
                     <motion.div
                       key={`${item?.id}-${activeHeroIndex}`}
-                      initial={{ opacity: 0, y: 250 }}
+                      initial={slideIndex === 0 && !advanced ? false : { opacity: 0, y: 250 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{
                         duration: 1.5,

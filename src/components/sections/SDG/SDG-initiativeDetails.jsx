@@ -61,7 +61,7 @@ export default function SDGInitativeDetails({ data, menu }) {
                             {/* Description */}
                             {data?.description && (
                                 typeof data.description === "string" ? (
-                                    <p className="leading-relaxed mb-6 lg:mb-8 text-[#4A5565]">
+                                    <p className="leading-relaxed mb-6 lg:mb-8 text-[#4A5565] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                         {data.description}
                                     </p>
                                 ) : Array.isArray(data.description) ? (
@@ -96,12 +96,12 @@ export default function SDGInitativeDetails({ data, menu }) {
                                                                 <path d="M16.0305 19.7933L15.0207 14.6758C14.883 13.9782 14.2187 13.4316 13.5082 13.4316H2.55145C1.84102 13.4316 1.17668 13.9782 1.03895 14.6759L0.0291424 19.7933C-0.101485 20.455 0.218585 21.2906 0.757805 21.6958C0.930538 21.8256 5.02249 24.874 8.02984 24.874C11.0372 24.874 15.1291 21.8256 15.3019 21.6958C15.8411 21.2906 16.1612 20.455 16.0305 19.7933Z" fill="url(#paint1_linear_5049_223850)" />
                                                                 <defs>
                                                                     <linearGradient id="paint0_linear_5049_223850" x1="2.1875" y1="5.84495" x2="13.8757" y2="5.84495" gradientUnits="userSpaceOnUse">
-                                                                        <stop stop-color="#DC2626" />
-                                                                        <stop offset="1" stop-color="#F97316" />
+                                                                        <stop stopColor="#DC2626" />
+                                                                        <stop offset="1" stopColor="#F97316" />
                                                                     </linearGradient>
                                                                     <linearGradient id="paint1_linear_5049_223850" x1="0" y1="19.1528" x2="16.0597" y2="19.1528" gradientUnits="userSpaceOnUse">
-                                                                        <stop stop-color="#DC2626" />
-                                                                        <stop offset="1" stop-color="#F97316" />
+                                                                        <stop stopColor="#DC2626" />
+                                                                        <stop offset="1" stopColor="#F97316" />
                                                                     </linearGradient>
                                                                 </defs>
                                                             </svg>
@@ -123,7 +123,7 @@ export default function SDGInitativeDetails({ data, menu }) {
                                                                             {indicator.label}
                                                                         </h4>
                                                                         {/* {indicator.description && ( */}
-                                                                            <p className="text-[#4A5565] font-normal leading-relaxed mb-0">
+                                                                            <p className="text-[#4A5565] font-normal leading-relaxed mb-0 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                                                 {indicator.description ? indicator.description : "No specific targets currently in place (N/A)."}
                                                                             </p>
                                                                         {/* )} */}

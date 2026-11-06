@@ -541,7 +541,7 @@ const local_data = {
                 logo: {
                     alternativeText: "NatWest Group logo",
                     mime: "image/svg+xml",
-                    url: "/images/logos/natwest.svg",
+                    url: "/images/logos/NatWest.svg",
                 },
             },
             {
@@ -676,3 +676,7 @@ export default function page() {
     )
 }
 
+export const metadata = {
+    title: "Academics | Dayananda Sagar University",
+    description: "Academics at Dayananda Sagar University.",
+};

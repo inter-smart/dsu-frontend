@@ -158,3 +158,7 @@ export default function page() {
     )
 }
 
+export const metadata = {
+    title: "Facilities | Academics | Dayananda Sagar University",
+    description: "Facilities – Academics at Dayananda Sagar University.",
+};

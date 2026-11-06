@@ -30,7 +30,7 @@ export default function ShapeFuture({ data }) {
               </h2>
             )}
             {data?.description && (
-              <p className="mb-6 max-w-[770px] text-[14px] leading-relaxed text-white sm:text-[16px] xl:text-[18px]">
+              <p className="mb-6 max-w-[770px] text-[14px] leading-relaxed text-white sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[18px]">
                 {data.description}
               </p>
             )}

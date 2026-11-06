@@ -25,7 +25,7 @@ export default function IntlCourses({ data, catalog }) {
                         </h2>
                     )}
                     {data.subtitle && (
-                        <p className="mt-2 text-[14px] text-[#555] lg:text-[15px] 2xl:mt-[12px] 2xl:text-[18px]">
+                        <p className="mt-2 text-[14px] text-[#555] 2xl:mt-[12px] lg:text-[17px] xl:text-[17px] 2xl:text-[18px]">
                             {data.subtitle}
                         </p>
                     )}

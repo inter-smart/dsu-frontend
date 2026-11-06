@@ -11,7 +11,7 @@ export function ThemeToggle({ className, iconClassName }) {
   return (
     <button
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className={cn("p-0.75 rounded text-black dark:bg-white dark:text-white", className)}
+      className={cn("p-[4.5px] -m-[1.5px] rounded text-black dark:bg-white dark:text-white", className)}
     >
       <Image
         src="/images/icon-lang.svg"

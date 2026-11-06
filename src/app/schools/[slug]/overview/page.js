@@ -4,15 +4,14 @@ import AcademicMenubar from "@/components/sections/academics/academicMenubar";
 import AcademicOverview from "@/components/sections/academics/academic-overview";
 import AcademicContact from "@/components/sections/academics/academic-contact";
 import { getSchoolTab } from "@/lib/api";
-import { hasContent, usesDepartments } from "@/lib/schools/tab-page";
+import { hasContent, usesDepartments, schoolTabMetadata } from "@/lib/schools/tab-page";
 
 
 
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
-    const school = await getSchoolTab(slug, "overview");
-    return school?.seo ? { title: school.seo.metaTitle, description: school.seo.metaDescription } : {};
+    return schoolTabMetadata(slug, "overview");
 }
 
 export default async function Page({ params }) {

@@ -1,20 +1,37 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { jarallax } from "jarallax";
+import "jarallax/dist/jarallax.css";
 
 export default function AboutVision({ data }) {
+    const sectionRef = useRef(null);
+    const [openValue, setOpenValue] = useState(0);
+
+    // Parallax background (same jarallax setup as the home industry section); skipped for reduced motion
+    useEffect(() => {
+        const el = sectionRef.current;
+        if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        jarallax(el, { speed: 0.5 });
+        return () => jarallax(el, "destroy");
+    }, []);
+
     if (!data) return null;
     const media = data?.backgroundImage;
     const values = data?.values;
     const items = (Array.isArray(data?.items) ? data.items : []).filter((item) => item?.title);
     const valueItems = (Array.isArray(values?.items) ? values.items : []).filter((item) => item?.title);
     return (
-        <section id="vision-mission" className="relative py-[40px] lg:py-[40px_50px] xl:py-[40px_60px] 2xl:py-[50px_80px] 3xl:py-[60px_100px] before:absolute before:content-[''] before:top-0 before:left-0 before:w-full before:h-full before:bg-black/40 before:z-10 before:pointer-events-none">
+        <section id="vision-mission" ref={sectionRef} className="jarallax relative z-0 py-[40px] lg:py-[40px_50px] xl:py-[40px_60px] 2xl:py-[50px_80px] 3xl:py-[60px_100px] before:absolute before:content-[''] before:top-0 before:left-0 before:w-full before:h-full before:bg-black/40 before:z-10 before:pointer-events-none">
             {media?.url && (
                 <Image
                     src={media.url}
                     alt={media.alternativeText || "Vision"}
-                    fill
+                    width={1920}
+                    height={900}
                     priority
-                    className="object-cover absolute top-0 left-0 w-full "
+                    className="jarallax-img object-cover absolute top-0 left-0 w-full h-full"
                     sizes="100vw"
                 />
             )}
@@ -84,20 +101,78 @@ export default function AboutVision({ data }) {
                                         {values.title}
                                     </div>
                                 )}
-                                {valueItems.map((item, idx) => (
-                                    <div className="w-full mb-[20px] [&_p]:font-normal" key={idx}>
-                                        <div className="text-1 text-white font-bold mb-[5px]">
-                                            {item.title}
+                                <div className="flex flex-col gap-[10px] xl:gap-[12px]">
+                                {valueItems.map((item, idx) => {
+                                    const open = openValue === idx;
+                                    const hasText = typeof item.description === "string" && item.description.trim();
+                                    return (
+                                        <div
+                                            key={idx}
+                                            className={`group/acc rounded-[10px] border backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-300 ${
+                                                open
+                                                    ? "border-[#F97316]/70 bg-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.3)]"
+                                                    : "border-white/20 bg-white/5 hover:border-white/50 hover:bg-white/10"
+                                            }`}
+                                        >
+                                            {/* the bold title is the accordion button */}
+                                            <button
+                                                type="button"
+                                                id={`core-value-btn-${idx}`}
+                                                aria-expanded={open}
+                                                aria-controls={`core-value-panel-${idx}`}
+                                                disabled={!hasText}
+                                                onClick={() => setOpenValue(open ? -1 : idx)}
+                                                className="flex w-full items-center gap-[12px] 2xl:gap-[16px] p-[12px_14px] xl:p-[14px_18px] 2xl:p-[16px_22px] text-left cursor-pointer rounded-[10px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-default"
+                                            >
+                                                <span
+                                                    aria-hidden="true"
+                                                    className={`flex h-[28px] w-[28px] xl:h-[34px] xl:w-[34px] 2xl:h-[38px] 2xl:w-[38px] shrink-0 items-center justify-center rounded-full border text-[11px] xl:text-[13px] 2xl:text-[14px] font-bold transition-all duration-300 ${
+                                                        open
+                                                            ? "border-transparent bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white"
+                                                            : "border-white/40 text-white/80 group-hover/acc:border-white"
+                                                    }`}
+                                                >
+                                                    {String(idx + 1).padStart(2, "0")}
+                                                </span>
+                                                <span className={`flex-1 text-[14px] xl:text-[17px] 2xl:text-[21px] 3xl:text-[26px] leading-[1.2] font-bold transition-colors duration-300 ${open ? "text-[#F97316]" : "text-white"}`}>
+                                                    {item.title}
+                                                </span>
+                                                {hasText && (
+                                                    <span
+                                                        aria-hidden="true"
+                                                        className={`flex h-[24px] w-[24px] xl:h-[28px] xl:w-[28px] shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
+                                                            open ? "rotate-180 border-[#F97316] bg-[#F97316]/20" : "border-white/30"
+                                                        }`}
+                                                    >
+                                                        <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                                                            <path d="M2 4.5L7 9.5L12 4.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                                                        </svg>
+                                                    </span>
+                                                )}
+                                            </button>
+                                            {hasText && (
+                                                <div
+                                                    id={`core-value-panel-${idx}`}
+                                                    role="region"
+                                                    aria-labelledby={`core-value-btn-${idx}`}
+                                                    inert={!open}
+                                                    className={`grid transition-[grid-template-rows,opacity] duration-500 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                                                >
+                                                    <div className="overflow-hidden">
+                                                        <div className="mx-[14px] xl:mx-[18px] 2xl:mx-[22px] border-t border-white/15 pt-[10px] xl:pt-[12px] pb-[14px] xl:pb-[16px] [&_p]:text-white/90 [&_p]:leading-[1.5]">
+                                                            {item.description.startsWith("<") ? (
+                                                                <div dangerouslySetInnerHTML={{ __html: item.description }} />
+                                                            ) : (
+                                                                <p>{item.description}</p>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
-                                        {typeof item.description === "string" && item.description.trim() && (
-                                            item.description.startsWith("<") ? (
-                                                <div dangerouslySetInnerHTML={{ __html: item.description }} />
-                                            ) : (
-                                                <p>{item.description}</p>
-                                            )
-                                        )}
-                                    </div>
-                                ))}
+                                    );
+                                })}
+                                </div>
                             </div>
                         </div>
                     </div>

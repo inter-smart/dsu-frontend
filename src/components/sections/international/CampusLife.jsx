@@ -41,7 +41,7 @@ function MediaTile({ card }) {
 function StatsTile({ card }) {
     return (
         <div className="flex h-full flex-col justify-center rounded-[10px] bg-linear-to-br from-[#A82A2A] via-[#CC4A2E] to-[#F98B3D] p-6 text-white 2xl:px-[36px] 2xl:py-[32px]">
-            <p className="max-w-[330px] text-[14px] leading-[1.6] lg:text-[16px] 2xl:text-[18px] 2xl:leading-[29px] text-white">{card.text}</p>
+            <p className="max-w-[330px] text-[14px] leading-[1.6] 2xl:leading-[29px] text-white lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">{card.text}</p>
 
             <div className="mt-6 grid grid-cols-2 2xl:mt-[30px]">
                 {card.stats.map((stat, i) => (
@@ -50,8 +50,8 @@ function StatsTile({ card }) {
                         className={`border-white/30 ${i % 2 === 0 ? "border-r pr-3" : "pl-4 2xl:pl-[28px]"} ${i < 2 ? "border-b pb-5 2xl:pb-[26px]" : "pt-5 2xl:pt-[26px]"
                             }`}
                     >
-                        <p className="text-[28px] font-medium leading-none lg:text-[34px] 2xl:text-[42px] text-white">{stat.value}</p>
-                        <p className="mt-2 text-[14px] lg:text-[16px] 2xl:text-[20px] text-white">{stat.label}</p>
+                        <p className="text-[28px] font-medium leading-none text-white lg:text-[36px] xl:text-[36px] 2xl:text-[42px]">{stat.value}</p>
+                        <p className="mt-2 text-[14px] text-white lg:text-[18px] xl:text-[18px] 2xl:text-[20px]">{stat.label}</p>
                     </div>
                 ))}
             </div>

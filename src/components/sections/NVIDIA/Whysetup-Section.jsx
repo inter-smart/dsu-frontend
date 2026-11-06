@@ -47,14 +47,14 @@ export default function WhysetupSection({ data }) {
                                         content={data?.description}
                                         blocks={{
                                             paragraph: ({ children }) => (
-                                                <p className="!my-0 leading-relaxed !text-white">
+                                                <p className="!my-0 leading-relaxed !text-white lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                     {children}
                                                 </p>
                                             ),
                                         }}
                                     />
                                 ) : (
-                                    <p className="!my-0 !text-inherit !text-white leading-relaxed">
+                                    <p className="!my-0 !text-inherit !text-white leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                         {data?.description}
                                     </p>
                                 )}

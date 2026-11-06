@@ -124,14 +124,14 @@ export default function AiTools({ data }) {
                                         content={description}
                                         blocks={{
                                             paragraph: ({ children }) => (
-                                                <p className="!my-0 !text-inherit leading-relaxed">
+                                                <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                     {children}
                                                 </p>
                                             ),
                                         }}
                                     />
                                 ) : (
-                                    <p className="!my-0 !text-inherit leading-relaxed">
+                                    <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                         {description}
                                     </p>
                                 )}
@@ -150,7 +150,7 @@ export default function AiTools({ data }) {
                                         {/* Peach Circle Badge with Orange Checkmark */}
                                         <span className="w-[23px] h-[23px] xl:w-[25px] xl:h-[25px] rounded-full bg-[#FFEFE2] dark:bg-[#F97316]/20 p-[3px] border border-[#FED7AA]/70 flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
                                             <svg className="w-full h-full object-contain" viewBox="0 0 16 16" fill="none"  >
-                                                <path d="M7.02525 13.4934C6.98486 13.4934 6.94492 13.485 6.90792 13.4688C6.87092 13.4526 6.83766 13.429 6.81025 13.3993L1.01334 7.1287C0.974692 7.08689 0.949073 7.03473 0.939616 6.97859C0.930158 6.92245 0.937271 6.86477 0.960085 6.81262C0.982899 6.76046 1.02042 6.71608 1.06807 6.68492C1.11571 6.65376 1.1714 6.63716 1.22833 6.63716H4.01865C4.06054 6.63716 4.10195 6.64615 4.14007 6.66352C4.1782 6.68089 4.21215 6.70624 4.23965 6.73785L6.177 8.9667C6.38638 8.51914 6.79169 7.77392 7.50294 6.86586C8.55442 5.5234 10.5102 3.54907 13.8564 1.76678C13.921 1.73234 13.9963 1.7234 14.0672 1.74173C14.1382 1.76006 14.1997 1.80432 14.2396 1.86578C14.2795 1.92724 14.2949 2.00142 14.2827 2.07368C14.2706 2.14595 14.2318 2.21103 14.1741 2.2561C14.1613 2.26608 12.8711 3.28207 11.3863 5.14303C10.0198 6.85558 8.20325 9.65585 7.30938 13.271C7.29368 13.3345 7.25715 13.3909 7.20564 13.4312C7.15413 13.4716 7.09059 13.4935 7.02516 13.4935L7.02525 13.4934Z" fill="#F97316" fill-opacity="0.7" />
+                                                <path d="M7.02525 13.4934C6.98486 13.4934 6.94492 13.485 6.90792 13.4688C6.87092 13.4526 6.83766 13.429 6.81025 13.3993L1.01334 7.1287C0.974692 7.08689 0.949073 7.03473 0.939616 6.97859C0.930158 6.92245 0.937271 6.86477 0.960085 6.81262C0.982899 6.76046 1.02042 6.71608 1.06807 6.68492C1.11571 6.65376 1.1714 6.63716 1.22833 6.63716H4.01865C4.06054 6.63716 4.10195 6.64615 4.14007 6.66352C4.1782 6.68089 4.21215 6.70624 4.23965 6.73785L6.177 8.9667C6.38638 8.51914 6.79169 7.77392 7.50294 6.86586C8.55442 5.5234 10.5102 3.54907 13.8564 1.76678C13.921 1.73234 13.9963 1.7234 14.0672 1.74173C14.1382 1.76006 14.1997 1.80432 14.2396 1.86578C14.2795 1.92724 14.2949 2.00142 14.2827 2.07368C14.2706 2.14595 14.2318 2.21103 14.1741 2.2561C14.1613 2.26608 12.8711 3.28207 11.3863 5.14303C10.0198 6.85558 8.20325 9.65585 7.30938 13.271C7.29368 13.3345 7.25715 13.3909 7.20564 13.4312C7.15413 13.4716 7.09059 13.4935 7.02516 13.4935L7.02525 13.4934Z" fill="#F97316" fillOpacity="0.7" />
                                             </svg>
                                         </span>
 
@@ -209,7 +209,7 @@ export default function AiTools({ data }) {
                                             <h4 className="cmn_Txt font-bold text-black dark:text-white leading-tight my-[5px]">
                                                 {item.title}
                                             </h4>
-                                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] !my-0">
+                                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] !my-0 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                 {item.description}
                                             </p>
                                         </div>
@@ -242,7 +242,7 @@ export default function AiTools({ data }) {
                                     <h3 className="cmn_Txt mb-[6px] xl:mb-[8px] leading-snug">
                                         {cuda?.title || "CUDA: Supercharging Your Code"}
                                     </h3>
-                                    <p className="text-[12px] xl:text-[13px] 2xl:text-[13.5px] 3xl:text-[14.5px] text-[#4A5565] dark:text-[#9CA3AF] leading-relaxed !my-0">
+                                    <p className="text-[12px] 3xl:text-[14.5px] text-[#4A5565] dark:text-[#9CA3AF] leading-relaxed !my-0 lg:text-[14px] xl:text-[15px] 2xl:text-[13.5px]">
                                         {cuda?.description ||
                                             "CUDA is a technology that lets you write code that runs on NVIDIA GPUs. Instead of using just one processor, your code can use thousands of tiny processors working together in parallel—like having a thousand workers tackling a problem simultaneously."}
                                     </p>
@@ -268,7 +268,7 @@ export default function AiTools({ data }) {
                                                 {item.title}
                                             </h4>
 
-                                            <p className="text-[11.5px] xl:text-[12.5px] 2xl:text-[13px] 3xl:text-[14px] text-[#64748B] dark:text-[#9CA3AF] leading-snug !my-0">
+                                            <p className="text-[11.5px] 3xl:text-[14px] text-[#64748B] dark:text-[#9CA3AF] leading-snug !my-0 lg:text-[13.5px] xl:text-[14.5px] 2xl:text-[13px]">
                                                 {item.description}
                                             </p>
                                         </div>

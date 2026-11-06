@@ -71,3 +71,8 @@ export default function page() {
         </>
     )
 }
+
+export const metadata = {
+    title: "PEO | B.Sc Nursing | Dayananda Sagar University",
+    description: "PEO – B.Sc Nursing at Dayananda Sagar University.",
+};

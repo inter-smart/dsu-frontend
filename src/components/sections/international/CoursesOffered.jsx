@@ -20,7 +20,7 @@ export default function CoursesOffered({ data }) {
                     <h2 className="text-[28px] font-bold leading-tight text-[#1a1a1a] lg:text-[40px] 2xl:text-[56px]">
                         {title}
                     </h2>
-                    <p className="mt-2 text-[14px] text-[#555] lg:text-[15px] 2xl:mt-[12px] 2xl:text-[18px]">
+                    <p className="mt-2 text-[14px] text-[#555] 2xl:mt-[12px] lg:text-[17px] xl:text-[17px] 2xl:text-[18px]">
                         {subtitle}
                     </p>
                 </div>
