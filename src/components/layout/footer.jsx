@@ -137,7 +137,7 @@ const local_data = {
       ],
     },
   ],
-  bottomRow: [
+  bottomRow: [  
     {
       title: "DSU MAIN CAMPUS:",
       items: [

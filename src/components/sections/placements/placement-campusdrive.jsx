@@ -3,9 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const PlayIcon = () => (
@@ -19,12 +17,23 @@ const PlayIcon = () => (
 );
 
 const arrowBtn =
-    "w-[26px] h-[26px] xl:w-[30px] xl:h-[30px] rounded-[4px] bg-white dark:bg-[#18191B] border border-[#F97316]/40 text-[#F97316] flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#DC2626] hover:to-[#F97316] hover:text-white hover:border-transparent disabled:opacity-30 disabled:cursor-not-allowed";
+    "w-[26px] h-[26px] xl:w-[30px] xl:h-[30px] rounded-[4px] bg-white dark:bg-[#18191B] border border-[#F97316]/40 text-[#F97316] flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#DC2626] hover:to-[#F97316] hover:text-white hover:border-transparent disabled:opacity-30 disabled:cursor-not-allowed touch-manipulation select-none";
 
  
 function TabSlider({ items, onOpenVideo }) {
-    const prevRef = useRef(null);
-    const nextRef = useRef(null);
+    // ADDED: the arrows now control the Swiper instance directly (the refs were still null on the first render,
+    // so the old navigation={{ prevEl, nextEl }} never attached to the buttons)
+    const swiperRef = useRef(null);
+    const [isBeginning, setIsBeginning] = useState(true);
+    const [isEnd, setIsEnd] = useState(false);
+    const [canSlide, setCanSlide] = useState(true);
+
+    const syncState = (s) => {
+        if (!s || s.destroyed) return;
+        setCanSlide(!s.isLocked);
+        setIsBeginning(s.isBeginning);
+        setIsEnd(s.isEnd);
+    };
 
     if (!items?.length) {
         return (
@@ -36,21 +45,33 @@ function TabSlider({ items, onOpenVideo }) {
 
     return (
         <div className="relative"> 
-            <div className="absolute right-0 -top-[52px] xl:-top-[60px] flex items-center gap-[8px]">
-                <button ref={prevRef} type="button" aria-label="Previous" className={arrowBtn}>
-                    <svg className="w-[12px] h-[12px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+            {/* ADDED: z-10 so nothing covers the arrows; on mobile they sit above the slider (right aligned) instead of floating over the tabs; hidden when every slide already fits */}
+            <div className={`absolute right-0 -top-[52px] xl:-top-[60px] z-10 flex items-center gap-[8px] max-md:relative max-md:top-0 max-md:mb-[12px] max-md:justify-end ${canSlide ? "" : "hidden"}`}>
+                <button
+                    type="button"
+                    aria-label="Previous"
+                    onClick={() => swiperRef.current?.slidePrev()}
+                    disabled={isBeginning}
+                    className={arrowBtn}
+                >
+                    <svg className="w-[12px] h-[12px] pointer-events-none" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                     </svg>
                 </button>
-                <button ref={nextRef} type="button" aria-label="Next" className={arrowBtn}>
-                    <svg className="w-[12px] h-[12px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <button
+                    type="button"
+                    aria-label="Next"
+                    onClick={() => swiperRef.current?.slideNext()}
+                    disabled={isEnd}
+                    className={arrowBtn}
+                >
+                    <svg className="w-[12px] h-[12px] pointer-events-none" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
             </div>
 
             <Swiper
-                modules={[Navigation]}
                 slidesPerView={1.1}
                 spaceBetween={10}
                 speed={500}
@@ -58,11 +79,17 @@ function TabSlider({ items, onOpenVideo }) {
                 watchOverflow
                 observer
                 observeParents
-                onBeforeInit={(swiper) => {
-                    swiper.params.navigation.prevEl = prevRef.current;
-                    swiper.params.navigation.nextEl = nextRef.current;
+                onSwiper={(s) => {
+                    swiperRef.current = s;
+                    syncState(s);
                 }}
-                navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
+                onSlideChange={syncState}
+                onResize={syncState}
+                onBreakpoint={syncState}
+                onUpdate={syncState}
+                onObserverUpdate={syncState}
+                onReachBeginning={syncState}
+                onReachEnd={syncState}
                 breakpoints={{
                     640: { slidesPerView: 2, spaceBetween: 12 },
                     1024: { slidesPerView: 3, spaceBetween: 14 },
