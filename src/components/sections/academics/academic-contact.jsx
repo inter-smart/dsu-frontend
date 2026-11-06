@@ -221,7 +221,7 @@ export default function AcademicContact({ data, schoolSlug }) {
                                                 setFormData({ ...formData, course: val })
                                             }
                                         >
-                                            <SelectTrigger className={inputStyle}>
+                                            <SelectTrigger aria-label="Select course" className={inputStyle}>
                                                 <SelectValue placeholder="Select Course" />
                                             </SelectTrigger>
                                             <SelectContent className="max-h-[260px] bg-white dark:bg-[#1f1f1f] border border-[#E5E7EB] dark:border-[#333] rounded-[8px] shadow-lg z-50">
@@ -247,7 +247,7 @@ export default function AcademicContact({ data, schoolSlug }) {
                                                 setFormData({ ...formData, state: val })
                                             }
                                         >
-                                            <SelectTrigger className={inputStyle}>
+                                            <SelectTrigger aria-label="Select state" className={inputStyle}>
                                                 <SelectValue placeholder="Select State" />
                                             </SelectTrigger>
                                             <SelectContent className="max-h-[260px] bg-white dark:bg-[#1f1f1f] border border-[#E5E7EB] dark:border-[#333] rounded-[8px] shadow-lg z-50">
@@ -503,7 +503,7 @@ export default function AcademicContact({ data, schoolSlug }) {
                             <div className="flex items-center gap-0.5 text-[#F59E0B]">
                                 {[...Array(5)].map((_, i) => (
                                     // <Star key={i} className="w-3.5 h-3.5 fill-current text-[#F59E0B]" />
-                                    <span className="text-[#FDC72F]">★</span>
+                                    <span key={i} className="text-[#FDC72F]">★</span>
                                 ))}
                             </div>
                             <span className="ml-1 text-[#212121]">{contactInfo.accreditations}</span>

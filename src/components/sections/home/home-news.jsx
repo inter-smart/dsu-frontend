@@ -22,7 +22,7 @@ export default function News({ data }) {
   return (
     <section className="w-full h-auto py-10 sm:py-12.5 2xl:py-15 3xl:py-20 bg-white dark:bg-[#101010] block">
       <div className="container">
-        <div className="w-full h-auto mb-7.5 sm:mb-5 2xl:mb-6.25 3xl:mb-7.5 flex items-center flex-wrap justify-between">
+        <div data-reveal className="w-full h-auto mb-7.5 sm:mb-5 2xl:mb-6.25 3xl:mb-7.5 flex items-center flex-wrap justify-between">
           <h2 className="text-3xl 3xl:text-[40px] leading-normal font-bold text-[#212121] dark:text-white">
             {data?.title}
           </h2>
@@ -57,7 +57,7 @@ export default function News({ data }) {
             </button>
           </div>
         </div>
-        <div className="w-full h-auto overflow-hidden" ref={emblaRef}>
+        <div data-reveal className="w-full h-auto overflow-hidden" ref={emblaRef}>
           <div className="[--slide--sapcing:10px] sm:[--slide--sapcing:15px] 2xl:[--slide--sapcing:20px] ml-[calc(var(--slide--sapcing)*-1)] flex touch-pan-y touch-pinch-zoom">
             {data?.news_list?.map((item) => (
               <div

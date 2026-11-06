@@ -65,7 +65,7 @@ export default function HomeAcademic({ data }) {
   return (
     <section className="w-full h-auto py-12.5 2xl:py-15 3xl:py-20 bg-linear-to-t from-[#FFF3E0] to-[#FFF8EE] dark:bg-none dark:bg-black overflow-hidden block">
       <div className="container">
-        <div className="w-full h-auto mb-6.25 lg:mb-7.5 3xl:mb-10 text-center">
+        <div data-reveal className="w-full h-auto mb-6.25 lg:mb-7.5 3xl:mb-10 text-center">
           <Heading
             as="h2"
             aurora
@@ -77,7 +77,7 @@ export default function HomeAcademic({ data }) {
           </Heading>
           <Text>{data?.description}</Text>
         </div>
-        <div className="w-full h-auto hidden lg:grid grid-cols-5 lg:gap-[15px_10px] 2xl:gap-[20px_10px] 3xl:gap-[25px_15px]">
+        <div data-reveal-stagger className="w-full h-auto hidden lg:grid grid-cols-5 lg:gap-[15px_10px] 2xl:gap-[20px_10px] 3xl:gap-[25px_15px]">
           {data?.academics?.map((item) => (
             <div key={item?.id} className="w-full h-auto">
               <AcademicCard item={item} />
@@ -146,7 +146,7 @@ export default function HomeAcademic({ data }) {
             ))}
           </div>
         </div>
-        <div className="w-full h-auto mt-3.75 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center">
+        <div data-reveal className="w-full h-auto mt-3.75 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center">
           <CtaButton button={data?.button} />
         </div>
       </div>

@@ -760,7 +760,7 @@ export default function Header({ data = local_data }) {
                 <ApplyButtons buttons={data?.applyButtons} variant="desktop" />
                 <div className="w-auto h-auto pl-0.75 max-lg:flex hidden">
                   <Sheet>
-                    <SheetTrigger className="w-7.5 h-full aspect-square bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] border border-[#D1D5DC80]/50 overflow-hidden flex items-center justify-center">
+                    <SheetTrigger aria-label="Open menu" className="w-7.5 h-full aspect-square bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] border border-[#D1D5DC80]/50 overflow-hidden flex items-center justify-center">
                       <div className="w-full h-3 flex flex-col items-center justify-between">
                         <span className="w-1/2 h-0.5 bg-white block"></span>
                         <span className="w-[25%] h-0.5 bg-white block"></span>

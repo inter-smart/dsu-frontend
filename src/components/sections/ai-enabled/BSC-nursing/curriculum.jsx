@@ -8,12 +8,13 @@ import "swiper/css/navigation";
 import { fileLinkProps } from "@/lib/schools/link-props";
 
 export default function BscCurriculum({ data }) {
-    if (!data) return null;
     const [activeIndex, setActiveIndex] = useState(0);
     const prevRef = useRef(null);
     const nextRef = useRef(null);
     const swiperRef = useRef(null);
     const [canSlide, setCanSlide] = useState(false);
+
+    if (!data) return null;
 
     return (
         <section className="relative w-full py-[40px] xl:py-[60px] 2xl:py-[65px] 3xl:py-[70px]">

@@ -107,7 +107,7 @@ export default function StepPersonal({ formData, setFormData }) {
               DESIGNATION APPLYING FOR? *
             </Label>
             <Select value={formData.designation} onValueChange={(val) => update("designation", val)}>
-              <SelectTrigger className={inputStyle}>
+              <SelectTrigger aria-label="Designation applying for" className={inputStyle}>
                 <SelectValue placeholder="Select" />
               </SelectTrigger>
               <SelectContent>

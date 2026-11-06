@@ -420,3 +420,41 @@ body {
 [data-slot="select-trigger"][aria-expanded="true"] svg:last-child {
   transform: rotate(0deg);
 }
+
+/* Scroll reveal (see components/providers/scroll-reveal.jsx).
+   data-reveal="up|left|right|zoom|fade" on one element, or
+   data-reveal-stagger on a parent to reveal its children step by step. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready [data-reveal],
+  .reveal-ready [data-reveal-stagger] > * {
+    opacity: 0;
+    translate: 0 28px;
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      translate 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      scale 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, translate;
+  }
+  /* clip (not hidden): stops the pre-reveal x-offset adding page scroll without making a scroll container */
+  .reveal-ready main { overflow-x: clip; }
+  .reveal-ready [data-reveal="left"] { translate: -32px 0; }
+  .reveal-ready [data-reveal="right"] { translate: 32px 0; }
+  .reveal-ready [data-reveal="zoom"] { translate: 0 0; scale: 0.94; }
+  .reveal-ready [data-reveal="fade"] { translate: 0 0; }
+
+  .reveal-ready [data-reveal].is-revealed,
+  .reveal-ready [data-reveal-stagger].is-revealed > * {
+    opacity: 1;
+    translate: none;
+    scale: none;
+    will-change: auto;
+  }
+
+  .reveal-ready [data-reveal-stagger] > :nth-child(2) { --reveal-delay: 90ms; }
+  .reveal-ready [data-reveal-stagger] > :nth-child(3) { --reveal-delay: 180ms; }
+  .reveal-ready [data-reveal-stagger] > :nth-child(4) { --reveal-delay: 270ms; }
+  .reveal-ready [data-reveal-stagger] > :nth-child(5) { --reveal-delay: 360ms; }
+  .reveal-ready [data-reveal-stagger] > :nth-child(6) { --reveal-delay: 450ms; }
+  .reveal-ready [data-reveal-stagger] > :nth-child(n + 7) { --reveal-delay: 540ms; }
+}

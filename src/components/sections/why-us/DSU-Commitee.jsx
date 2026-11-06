@@ -53,8 +53,9 @@ export default function DSUCommitee({ data, menu }) {
                                         <table className="w-full border-collapse">
                                             <thead>
                                                 <tr className="bg-[#F97316] text-white">
-                                                    {data?.committeeMembers?.columns?.map((column) => (
+                                                    {data?.committeeMembers?.columns?.map((column, i) => (
                                                         <th
+ key={i}
                                                             className="border-r border-white/40 px-[15px] py-[12px] text-center text_1 font-medium last:border-r-0 text-white"
                                                         >
                                                             {column}

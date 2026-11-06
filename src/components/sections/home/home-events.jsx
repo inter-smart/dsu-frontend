@@ -60,7 +60,7 @@ export default function Events({ data }) {
     <section className="w-full h-auto bg-white dark:bg-[#101010] block">
       <div className="container">
         <div className="w-full h-full py-[30px_50px] sm:py-[40px_50px] lg:py-[50px_60px] 2xl:py-[60px_70px] 3xl:py-[70px_90px] border-b border-[#0B214833] dark:border-white/20 block">
-          <div className="w-full h-auto mb-5 sm:mb-10 lg:mb-12.5 2xl:mb-15 3xl:mb-20 sm:text-center ">
+          <div data-reveal className="w-full h-auto mb-5 sm:mb-10 lg:mb-12.5 2xl:mb-15 3xl:mb-20 sm:text-center ">
             <Heading
               as="h2"
               aurora
@@ -72,7 +72,7 @@ export default function Events({ data }) {
             <Text>{data?.description}</Text>
           </div>
           <div className="[--width:100%] lg:[--width:510px] 2xl:[--width:610px] 3xl:[--width:770px] w-full h-auto flex flex-wrap">
-            <div className="w-(--width) max-lg:pb-6.25 max-lg:mb-7.5 max-lg:border-b max-lg:border-black/10">
+            <div data-reveal className="w-(--width) max-lg:pb-6.25 max-lg:mb-7.5 max-lg:border-b max-lg:border-black/10">
               <div className="w-full h-auto mb-2.5 2xl:mb-3.75 3xl:mb-5 hidden sm:flex items-center flex-wrap justify-between">
                 <div className="flex items-center">
                   <Heading
@@ -164,7 +164,7 @@ export default function Events({ data }) {
                 </div>
               </div>
             </div>
-            <div className="w-(--width) lg:w-[calc(100%-var(--width))] lg:pl-10 xl:pl-27.5 2xl:pl-32.5 3xl:pl-40">
+            <div data-reveal style={{ "--reveal-delay": "150ms" }} className="w-(--width) lg:w-[calc(100%-var(--width))] lg:pl-10 xl:pl-27.5 2xl:pl-32.5 3xl:pl-40">
               <div className="w-full h-auto mb-2.5 2xl:mb-3.75 3xl:mb-5 flex items-center flex-wrap justify-between">
                 <div className="flex items-center">
                   <Heading

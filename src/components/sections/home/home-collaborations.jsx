@@ -49,7 +49,7 @@ export default function HomeCollaborations({ data }) {
     <section className="w-full h-auto py-8.75 sm:py-[50px_30px] lg:py-[90px_40px] 2xl:py-[110px_55px] 3xl:py-[140px_70px] block overflow-hidden">
       <div className="container">
         <div className="w-full h-auto sm:rounded-[7px] 3xl:rounded-[10px] overflow-hidden flex flex-wrap">
-          <div className="w-full lg:w-1/2 h-auto">
+          <div data-reveal="left" className="w-full lg:w-1/2 h-auto">
             <div className="w-full h-full p-[20px_10px] sm:p-[40px_20px_30px_20px] 2xl:p-[50px_20px_40px_20px] 3xl:p-[70px_30px_50px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) overflow-hidden block">
               <div className="w-full h-auto mb-1.25 sm:mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5">
                 <h2 className="text-[31px] lg:text-[38px] 2xl:text-[45px] 3xl:text-[58px] leading-[1.2] font-bold text-white sm:max-w-[85%] mb-2.5 sm:mb-3.75 2xl:mb-5 3xl:mb-7.5">
@@ -153,7 +153,7 @@ export default function HomeCollaborations({ data }) {
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-1/2 h-auto">
+          <div data-reveal="right" className="w-full lg:w-1/2 h-auto">
             <div
               className="w-full h-full bg-white dark:bg-black overflow-hidden"
               ref={emblaRef}
@@ -164,6 +164,7 @@ export default function HomeCollaborations({ data }) {
                     key={item?.id}
                     className="min-w-0 flex-[0_0_100%] h-full"
                     aria-hidden={index !== activeIndex}
+                    inert={index !== activeIndex}
                   >
                     <div className="w-full h-full p-[30px_25px_20px_15px] sm:p-[40px_35px_30px_20px] 2xl:p-[50px_40px_30px_20px] 3xl:p-[60px_50px_40px_30px] relative z-0 flex flex-col justify-between">
                       <div className="w-full h-full absolute -z-1 inset-0 before:content-[''] before:w-full before:h-1/2 before:bg-linear-to-b before:from-[#090909] before:to-[#0B2148]/0 before:absolute before:z-1 before:inset-[0_0_auto_0] after:content-[''] after:w-full after:h-[80%] after:bg-linear-to-t after:from-[#090909] after:to-[#0B2148]/0 after:opacity-50 after:absolute after:z-1 after:inset-[auto_0_0_0]">

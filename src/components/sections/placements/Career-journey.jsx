@@ -53,8 +53,8 @@ export default function CareerJourney({ data }) {
                             {data?.downloadsSection.heading}
                         </div>
                         <div className="w-full  border border-black/10 dark:border-white/10 dark:bg-[#18191B] rounded-[10px] p-[20px] sm:p-[25px_20px] lg:p-[30px_25px] xl:p-[35px_30px] 2xl:p-[45px_35px] 3xl:p-[55px_45px]">
-                            {data?.downloadsSection?.links.map((item) => (
-                                <div className="w-full">
+                            {data?.downloadsSection?.links.map((item, i) => (
+                                <div key={i} className="w-full">
                                     <Link
                                         href={item?.href}
                                         {...fileLinkProps()}

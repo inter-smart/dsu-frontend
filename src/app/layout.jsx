@@ -7,6 +7,7 @@ import SmoothScrollProvider from "@/components/providers/smooth-scroll-provider"
 import { getHeader, getFooter } from "@/lib/api/layout";
 import FileLinkTarget from "@/components/providers/file-link-target";
 import PreviewBanner from "@/components/layout/common/preview-banner";
+import ScrollReveal from "@/components/providers/scroll-reveal";
 import SidebarWidget from "@/components/layout/common/sidebar-widget";
 
 const roboto = Roboto({
@@ -23,6 +24,7 @@ const robotoMono = Roboto_Mono({
 export const metadata = {
   title: "Dayananda Sagar University",
   description: "Dayananda Sagar University description.",
+  robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false, noarchive: true } },
 };
 
 export default async function RootLayout({ children }) {
@@ -48,6 +50,7 @@ export default async function RootLayout({ children }) {
             <Header data={header ?? undefined} />
             <main className="flex-1">{children}</main>
             <Footer data={footer ?? undefined} />
+            <ScrollReveal />
             <SidebarWidget />
             <FileLinkTarget />
             <PreviewBanner />

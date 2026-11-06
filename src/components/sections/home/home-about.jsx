@@ -67,7 +67,7 @@ export default function HomeAbout({ data }) {
       <div className="container">
         <div className="[--width:100%] sm:[--width:240px] md:[--width:280px] lg:[--width:355px] xl:[--width:410px] 2xl:[--width:480px] 3xl:[--width:610px] w-full h-auto mb-10 lg:mb-12.5 2xl:mb-15 3xl:mb-20 flex flex-wrap">
           <div className="w-(--width) sm:w-[calc(100%-var(--width))] h-auto sm:pr-3.75 2xl:pr-7.5 max-sm:mb-7.5">
-            <div className="w-full h-full max-sm:-mx-[2.5px] sm:gap-2.5 2xl:gap-3.75 sm:grid sm:grid-cols-3 lg:grid-cols-5 max-sm:flex max-sm:flex-wrap max-sm:justify-center">
+            <div data-reveal-stagger className="w-full h-full max-sm:-mx-[2.5px] sm:gap-2.5 2xl:gap-3.75 sm:grid sm:grid-cols-3 lg:grid-cols-5 max-sm:flex max-sm:flex-wrap max-sm:justify-center">
               {data?.statistics?.map((item, index) => (
                 <div
                   key={item?.id}
@@ -106,7 +106,7 @@ export default function HomeAbout({ data }) {
               ))}
             </div>
           </div>
-          <div className="w-(--width) h-auto">
+          <div data-reveal="right" className="w-(--width) h-auto">
             <div className="group w-full h-full max-sm:aspect-390/125 bg-amber-200 rounded-md 2xl:rounded-[10px] overflow-hidden block relative z-0">
               <Image
                 src={data?.virtualTour?.media?.url}
@@ -141,7 +141,7 @@ export default function HomeAbout({ data }) {
           <div className="w-full lg:w-1/2 max-lg:mb-10">
             <div className="[--width:100%] sm:[--width:280px] md:[--width:340px] lg:[--width:210px] xl:[--width:250px] 2xl:[--width:300px] 3xl:[--width:375px] w-full h-auto flex flex-wrap">
               <div className="w-full sm:w-[calc(100%-var(--width))] sm:pr-5 xl:pr-10 3xl:pr-15 max-sm:mb-3.75">
-                <div className="w-full h-auto mb-5 sm:mb-6.25 2xl:mb-7.5 3xl:mb-10">
+                <div data-reveal className="w-full h-auto mb-5 sm:mb-6.25 2xl:mb-7.5 3xl:mb-10">
                   <Text
                     size="p0"
                     className={"dark:text-white tracking-[25%] w-fit mb-2.5"}
@@ -152,7 +152,7 @@ export default function HomeAbout({ data }) {
                     {data?.leadership?.title}
                   </Heading>
                 </div>
-                <div className="w-full h-auto block">
+                <div data-reveal className="w-full h-auto block" style={{ "--reveal-delay": "120ms" }}>
                   <div className="w-full h-auto overflow-hidden" ref={emblaRef}>
                     <div className="touch-pan-y touch-pinch-zoom flex">
                       {data?.leadership?.leaders?.map((item) => (
@@ -237,7 +237,7 @@ export default function HomeAbout({ data }) {
                   </div>
                 </div>
               </div>
-              <div className="w-(--width)">
+              <div data-reveal="zoom" className="w-(--width)">
                 <div className="w-full h-full max-lg:aspect-390/250 rounded-[10px] sm:rounded-[6px] 2xl:rounded-[10px] overflow-hidden block">
                   <Image
                     src={data?.leadership?.leaderShipImage?.url}
@@ -251,7 +251,7 @@ export default function HomeAbout({ data }) {
             </div>
           </div>
           <div className="w-full lg:w-1/2 lg:pl-7.5 xl:pl-12.5 2xl:pl-15 3xl:pl-20 flex flex-col justify-between">
-            <div>
+            <div data-reveal-stagger>
               <Text
                 size="p0"
                 className={

@@ -15,7 +15,7 @@ export default function BscDownloads({ data, varient }) {
                     </div>
                     <div className={`flex flex-wrap ${varient==="Bsc-nursing" ? "lg:w-[85%]": "w-full"} `}>
                         {data?.files.map((item, id) => (
-                            <div className="w-full lg:w-1/2">
+                            <div key={id} className="w-full lg:w-1/2">
                                 <Link
                                     href={item?.file.url}
                                     target={item?.file?.isExternal ? "_blank" : "_self"}
