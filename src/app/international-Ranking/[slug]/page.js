@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
+import FlexibleSections from "@/components/flexible/FlexibleSections";
 import NIRFRanking from "@/components/sections/NIRF/NIRF-ranking";
 import {
   getInternationalRankingBySlug,
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-// International Ranking entries always use the NIRF template
+// template: "nirf" (default) | "flexible-page"
 export default async function Page({ params }) {
   const { slug } = await params;
   const [pageData, menu] = await Promise.all([
@@ -45,7 +46,9 @@ export default async function Page({ params }) {
   return (
     <>
       {pageData.hero && <InnerHero data={pageData.hero} className="leadership-detail-hero" />}
-      {pageData.collegeRanking && (
+      {pageData.template === "flexible-page" ? (
+        <FlexibleSections sections={pageData.flexiblePage?.sections} menu={menu || []} />
+      ) : pageData.collegeRanking && (
         <NIRFRanking
           data={{ ...pageData.collegeRanking, title: "" }}
           menu={menu || []}

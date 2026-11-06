@@ -2,6 +2,7 @@ import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import NationalRanking from "@/components/sections/national-Ranking/national-Ranking";
 import NationalRankingStats from "@/components/sections/national-Ranking/national-Ranking-stats";
+import FlexibleSections from "@/components/flexible/FlexibleSections";
 import { getInternationalRankingPage } from "@/lib/api";
 
 
@@ -31,11 +32,17 @@ export default async function Page({ viaSlug } = {}) {
   return (
     <>
       {pageData.hero && <InnerHero data={pageData.hero} className="leadership-detail-hero" />}
-      {pageData.internationalRankingsData && (
-        <NationalRanking data={pageData.internationalRankingsData} />
-      )}
-      {pageData.stats?.length > 0 && (
-        <NationalRankingStats data={pageData.stats} />
+      {pageData.template === "flexible-page" ? (
+        <FlexibleSections sections={pageData.flexiblePage?.sections} />
+      ) : (
+        <>
+          {pageData.internationalRankingsData && (
+            <NationalRanking data={pageData.internationalRankingsData} />
+          )}
+          {pageData.stats?.length > 0 && (
+            <NationalRankingStats data={pageData.stats} />
+          )}
+        </>
       )}
     </>
   );
