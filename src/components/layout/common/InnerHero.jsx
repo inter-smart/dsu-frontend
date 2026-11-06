@@ -15,6 +15,7 @@ import AiAcademicMenubar from "@/components/sections/ai-enabled/Ai-academicMenub
 import AiBSCMenubar from "@/components/sections/ai-enabled/BSC-nursing/bsc-Menubar";
 import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar";
 import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
+import InternationalMenubar from "@/components/sections/international/InternationalMenubar";
 
 // placementMenuItems: optional [{ label, href }] for the Placement pill menu (otherwise it loads its own)
 // className: optional extra classes for the hero <section> (e.g. a page-specific hook)
@@ -30,7 +31,8 @@ export default function InnerHero({ data, placementMenuItems, className }) {
       data?.AimenuBar ||
       data?.AiBscmenuBar ||
       data?.PlacementmenuBar ||
-      data?.admissionMenubar // was missing
+      data?.admissionMenubar || // was missing
+      data?.internationalMenuItems?.length > 1
   );
 
   // Full class strings so Tailwind can detect them.
@@ -129,6 +131,7 @@ export default function InnerHero({ data, placementMenuItems, className }) {
           {data?.AiBscmenuBar && <AiBSCMenubar items={data.menuItems} title={data.title} />}
           {data?.PlacementmenuBar && <PlacementmenuBar />}
           {data?.admissionMenubar && <AdmissionMenubar />}
+          {data?.internationalMenuItems && <InternationalMenubar items={data.internationalMenuItems} />}
         </div>
       </div>
     </section>

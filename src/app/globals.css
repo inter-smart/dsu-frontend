@@ -216,6 +216,11 @@
       @apply text-[14px] lg:text-[14px] 2xl:text-[15px] 3xl:text-[18px] leading-normal font-normal  ;
     }
 
+    /* images inserted from the Strapi blocks editor */
+    img {
+      @apply block max-w-full h-auto rounded-[10px] my-3 lg:my-4;
+    }
+
     h1 {
       @apply text-[30px] sm:text-[40px] lg:text-[54px] 2xl:text-[65px] 3xl:text-[80px] leading-tight font-normal text-(--text-color);
     }

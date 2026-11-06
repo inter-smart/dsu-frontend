@@ -1,21 +1,16 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import FlexibleSections from "@/components/flexible/FlexibleSections";
 import InternationalAdmissionView from "@/components/sections/international/international-admission-view";
+import { getInternationalMenuItems } from "@/components/sections/international/InternationalMenu";
 import { hasContent } from "@/lib/has-content";
 
-// "Top Menu Bar" choice of a flexible entry -> the flag InnerHero reads to show that menu bar
-const TOP_BAR_FLAGS = {
-    placement: "PlacementmenuBar",
-    admission: "admissionMenubar",
-    "ai-enabled": "AimenuBar",
-    "nursing-bsc": "AiBscmenuBar",
-};
-
-// Renders an International entry by its `template`
-export default function InternationalPageView({ page }) {
+// Renders an International entry by its `template`.
+// Every International page shows the International menu bar (one pill per International entry),
+// in the same design as the Admission / Placement menu bars.
+export default async function InternationalPageView({ page }) {
     if (page.template === "flexible-page") {
-        const topBarFlag = TOP_BAR_FLAGS[page.topBar];
-        const hero = hasContent(page.hero) ? { ...page.hero, ...(topBarFlag ? { [topBarFlag]: true } : {}) } : null;
+        const menuItems = await getInternationalMenuItems();
+        const hero = hasContent(page.hero) ? { ...page.hero, internationalMenuItems: menuItems } : null;
         const sidebar = page.sidebar || [];
 
         return (
