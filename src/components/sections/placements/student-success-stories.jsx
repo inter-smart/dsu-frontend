@@ -71,9 +71,9 @@ export default function StudentSuccessStories({ data, variant }) {
                                 aria-label="Previous stories"
                                 onClick={() => otherSwiperRef.current?.slidePrev()}
                                 disabled={otherPrevDisabled}
-                                className="w-3 h-3 2xl:w-9 2xl:h-9 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+                                className="w-3 h-3 2xl:w-[30px] 2xl:h-[30px] flex items-center justify-center border border-black/10 text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
                             >
-                                <svg width="16" height="29" viewBox="0 0 16 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg className="w-full h-[16px] max-w-[15px]" viewBox="0 0 16 29" fill="none"  >
                                     <path d="M15.1855 2.32715C15.6012 1.91269 15.6054 1.23886 15.1943 0.819336C14.7809 0.39766 14.1041 0.392766 13.6846 0.808594L13.6826 0.811523L0.832032 13.7363L0.833008 13.7373C0.62052 13.9389 0.50025 14.2184 0.500977 14.5117L0.500001 14.5107L0.500977 14.5127L0.500001 14.5137L0.500977 14.5137C0.501149 14.7939 0.610929 15.0631 0.808594 15.2627L0.808594 15.2637L13.6592 28.1885L13.6611 28.1914L14.0137 27.8359L13.6621 28.1914C14.0817 28.6071 14.7577 28.6021 15.1709 28.1807C15.5828 27.7604 15.5781 27.0842 15.1602 26.6699L15.1592 26.6709L3.07227 14.5127L15.1855 2.32715Z" fill="#F97316" stroke="#F97316" />
                                 </svg>
 
@@ -83,9 +83,9 @@ export default function StudentSuccessStories({ data, variant }) {
                                 aria-label="Next stories"
                                 onClick={() => otherSwiperRef.current?.slideNext()}
                                 disabled={otherNextDisabled}
-                                className="w-3 h-3 2xl:w-9 2xl:h-9 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+                                className="w-3 h-3 2xl:w-[30px] 2xl:h-[30px] border border-black/10 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
                             >
-                                <svg width="16" height="29" viewBox="0 0 16 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg className="w-full h-[16px] max-w-[15px]" viewBox="0 0 16 29" fill="none"  >
                                     <path d="M0.814452 2.32715C0.398848 1.91269 0.394622 1.23886 0.805663 0.819336C1.21905 0.39766 1.89592 0.392766 2.31543 0.808594L2.31738 0.811523L15.168 13.7363L15.167 13.7373C15.3795 13.9389 15.4998 14.2184 15.499 14.5117L15.5 14.5107L15.499 14.5127L15.5 14.5137L15.499 14.5137C15.4989 14.7939 15.3891 15.0631 15.1914 15.2627L15.1914 15.2637L2.34082 28.1885L2.33887 28.1914L1.98633 27.8359L2.33789 28.1914C1.91834 28.6071 1.24231 28.6021 0.829102 28.1807C0.417212 27.7604 0.421942 27.0842 0.839844 26.6699L0.84082 26.6709L12.9277 14.5127L0.814452 2.32715Z" fill="#F97316" stroke="#F97316" />
                                 </svg>
 

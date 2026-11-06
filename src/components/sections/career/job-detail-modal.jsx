@@ -7,8 +7,8 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 export default function JobDetailModal({ job, open, onOpenChange }) {
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-linear-to-b from-[#FFF9F2] to-[#FFF3E0] dark:from-[#1c1815] dark:to-[#131416]">
+    <Dialog open={open} onOpenChange={onOpenChange}  >
+      <DialogContent className="bg-linear-to-b from-[#FFF9F2] to-[#FFF3E0] dark:from-[#1c1815] dark:to-[#131416] z-[999999]">
         <DialogTitle className="title_1 !text-2xl xl:!text-3xl 2xl:!text-4xl text-center mb-2.5 xl:mb-3.75">
           Job Details
         </DialogTitle>
