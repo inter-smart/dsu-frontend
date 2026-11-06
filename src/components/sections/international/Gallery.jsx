@@ -98,8 +98,8 @@ export default function Gallery({ data }) {
                             {/* <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2 md:gap-[18px] lg:grid-cols-3 lg:gap-[21px] 2xl:gap-x-[21px] 2xl:gap-y-[25px]"> */}
                             <div className="flex flex-wrap -m-[5px] xl:-m-[8px] 3xl:-m-[10px] w-full">
 
-                                {page.map((item) => (
-                                    <div className="w-1/2 sm:w-1/3 p-[5px] xl:p-[8px]  3xl:p-[10px]  ">
+                                {page.map((item, i) => (
+                                    <div key={i} className="w-1/2 sm:w-1/3 p-[5px] xl:p-[8px]  3xl:p-[10px]  ">
                                         <a
                                             key={item.id}
                                             href={item.src}

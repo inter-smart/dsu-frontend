@@ -33,9 +33,9 @@ export default function BannerSection({ data }) {
                             <span className="text-[16px] text-white font-bold ">Powered by :</span>
                             {data?.poweredBy?.logo?.url && <Image src={data.poweredBy.logo.url} width={95} height={75} alt={data.poweredBy.logo.alternativeText || "logo"} />}
                         </div>
-                        <div className="text-[20px] md:text-[26px] lg:text-[32px] xl:text-[41px] 2xl:text-[48px] 3xl:text-[60px] text-white font-bold mb-[8px] leading-tight">
+                        <h1 className="text-[20px] md:text-[26px] lg:text-[32px] xl:text-[41px] 2xl:text-[48px] 3xl:text-[60px] text-white font-bold mb-[8px] leading-tight">
                             {data?.heading}
-                        </div>
+                        </h1>
                         <div className="text-[14px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[23px] text-white font-normal">
                             {data?.subheading}
                         </div>

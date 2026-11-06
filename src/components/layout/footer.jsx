@@ -531,7 +531,7 @@ export default function Footer({ data = local_data }) {
               </div>
               <div className="w-full h-auto mb-2.5">
                 <Select className="w-full h-auto">
-                  <SelectTrigger className="!text-sm lg:!text-xs 2xl:!text-[13px] 3xl:!text-base !font-light !text-black dark:!text-white w-full !h-11.25 lg:!h-8.75 3xl:!h-11.25 rounded-[5px] border-[#C7C7C7] [&>svg]:text-black dark:[&>svg]:text-white">
+                  <SelectTrigger aria-label="Select program" className="!text-sm lg:!text-xs 2xl:!text-[13px] 3xl:!text-base !font-light !text-black dark:!text-white w-full !h-11.25 lg:!h-8.75 3xl:!h-11.25 rounded-[5px] border-[#C7C7C7] [&>svg]:text-black dark:[&>svg]:text-white">
                     <SelectValue placeholder="Select Program" />
                   </SelectTrigger>
                   <SelectContent>

@@ -319,7 +319,7 @@ export default function RecruiteDsu({ data }) {
                                             setFormData({ ...formData, hiringType: val })
                                         }
                                     >
-                                        <SelectTrigger className={inputStyle}>
+                                        <SelectTrigger aria-label="Recruitment type" className={inputStyle}>
                                             <SelectValue placeholder="Campus Recruitment" />
                                         </SelectTrigger>
                                         <SelectContent className="max-h-[260px] bg-white dark:bg-[#1f1f1f] border border-[#E5E7EB] dark:border-[#333] rounded-[8px] shadow-lg z-50">
@@ -346,7 +346,7 @@ export default function RecruiteDsu({ data }) {
                                             setFormData({ ...formData, talentArea: val })
                                         }
                                     >
-                                        <SelectTrigger className={inputStyle}>
+                                        <SelectTrigger aria-label="Industry" className={inputStyle}>
                                             <SelectValue placeholder="Engineering & Technology" />
                                         </SelectTrigger>
                                         <SelectContent className="max-h-[260px] bg-white dark:bg-[#1f1f1f] border border-[#E5E7EB] dark:border-[#333] rounded-[8px] shadow-lg z-50">

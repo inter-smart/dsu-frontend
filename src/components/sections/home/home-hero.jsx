@@ -11,6 +11,11 @@ import useEmblaCarousel from "embla-carousel-react";
 import { buttonVariants } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
 
+// Only the first slide is the page <h1>; later slides use a <p> to avoid several h1s.
+function SlideTitle({ first, ...props }) {
+  return first ? <h1 {...props} /> : <p {...props} />;
+}
+
 export default function HomeHero({ data }) {
   const [heroEmblaRef, heroEmblaApi] = useEmblaCarousel(
     {
@@ -92,7 +97,7 @@ export default function HomeHero({ data }) {
       </button>
       <div ref={heroEmblaRef} className="w-full h-full overflow-hidden">
         <div className="touch-pan-y touch-pinch-zoom flex">
-          {data?.hero?.map((item) => (
+          {data?.hero?.map((item, slideIndex) => (
             <div
               key={item?.id}
               className="w-full h-screen min-w-0 translate-x-0 translate-y-0 flex-[0_0_100%]"
@@ -144,9 +149,9 @@ export default function HomeHero({ data }) {
                           />
                         </span>
                       </div>
-                      <h1 className="text-3xl sm:text-[34px] lg:text-[40px] 2xl:text-5xl 3xl:text-6xl leading-[1.1] font-bold text-white mb-5 sm:mb-3.75 2xl:mb-5 3xl:mb-6.25">
+                      <SlideTitle first={slideIndex === 0} className="text-3xl sm:text-[34px] lg:text-[40px] 2xl:text-5xl 3xl:text-6xl leading-[1.1] font-bold text-white mb-5 sm:mb-3.75 2xl:mb-5 3xl:mb-6.25">
                         {item?.title}
-                      </h1>
+                      </SlideTitle>
                       <div className="text-sm lg:text-base 2xl:text-lg 3xl:text-2xl leading-[1.1] font-normal text-white">
                         {item?.description?.text}
                         <span className="font-bold">

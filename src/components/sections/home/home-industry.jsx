@@ -71,12 +71,13 @@ export default function HomeIndustry({ data }) {
         className="jarallax-img w-full h-full object-cover"
       />
       <div className="container">
-        <div className="w-full h-auto mb-7.5 3xl:mb-8.75 text-center">
+        <div data-reveal className="w-full h-auto mb-7.5 3xl:mb-8.75 text-center">
           <Heading as="h2" align="center" className="mb-1.25 3xl:mb-2.5 text-white">
             {data?.title}
           </Heading>
           <Text className={"text-white"}>{data?.description}</Text>
         </div>
+        <div data-reveal className="w-full h-auto">
         <div
           className="[--slide-gap:15px] 2xl:[--slide-gap:20px] 3xl:[--slide-gap:25px] w-full h-auto sm:overflow-hidden"
           ref={collaborationEmblaRef}
@@ -114,7 +115,8 @@ export default function HomeIndustry({ data }) {
             ))}
           </div>
         </div>
-        <div className="w-full h-auto mt-10 sm:mt-6.25 2xl:mt-7.5 3xl:mt-8.75 flex items-center justify-center">
+        </div>
+        <div data-reveal className="w-full h-auto mt-10 sm:mt-6.25 2xl:mt-7.5 3xl:mt-8.75 flex items-center justify-center">
           <CtaButton button={data?.button} icon="/images/icon-btn-white.svg" className="!text-[#E84E1B] bg-none bg-white" />
         </div>
         <div className="w-full h-auto absolute z-1 inset-[auto_0_0_0]">

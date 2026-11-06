@@ -173,6 +173,7 @@ export default function AcademicMenubar({
                 <li className="border-b border-black/10 p-[11px_15px] group transition-colors duration-300">
                   <Link
                     href={homeHref}
+                    aria-label="Home"
                     onClick={() => setIsMobileSidebarOpen(false)}
                     aria-current={isHomeActive ? "page" : undefined}
                     className="flex items-center justify-between"
@@ -265,6 +266,7 @@ export default function AcademicMenubar({
                 return (
                   <Link
                     href={homeHref}
+                    aria-label="Home"
                     className={`
                                             group inline-flex items-center justify-center
                                            min-w-[55px] xl:min-w-[65px] 2xl:min-w-[75px] 3xl:min-w-[94px] text_1 p-[2px] rounded-[10px]

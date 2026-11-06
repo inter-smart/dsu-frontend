@@ -91,7 +91,7 @@ export default function HomeResearch({ data }) {
   return (
     <section className="w-full h-auto py-[35px_10px] sm:py-12.5 lg:py-17.5 2xl:py-22.5 3xl:py-27.5 dark:bg-[#101010] block overflow-hidden">
       <div className="container">
-        <div className="w-full h-auto mb-6.25 lg:mb-8.75 2xl:mb-10 3xl:mb-12.5 text-center">
+        <div data-reveal className="w-full h-auto mb-6.25 lg:mb-8.75 2xl:mb-10 3xl:mb-12.5 text-center">
           <Heading
             as="h2"
             aurora
@@ -103,7 +103,7 @@ export default function HomeResearch({ data }) {
           </Heading>
           <Text>{data?.description}</Text>
         </div>
-        <Tabs defaultValue="research" className="w-full h-auto">
+        <Tabs data-reveal defaultValue="research" className="w-full h-auto">
           <TabsList
             className={
               "[--line:5px] lg:[--line:6px] 2xl:[--line:7px] 3xl:[--line:9px] w-full h-auto flex-1 p-0 mb-5 sm:mb-7.5 lg:mb-10 2xl:mb-12.5 3xl:mb-20 gap-0 bg-transparent rounded-none [&>button]:h-25 sm:[&>button]:h-20 lg:[&>button]:h-22.5 2xl:[&>button]:h-27.5 3xl:[&>button]:h-35 [&>button]:p-0 [&>button]:gap-0 [&>button]:border-0 [&>button]:rounded-none [&>button]:relative [&>button]:z-0 [&>button::before]:content-[''] [&>button::before]:w-full [&>button::before]:h-(--line) [&>button::before]:absolute [&>button::before]:z-1 [&>button::before]:inset-[auto_0_0_0] [&>button::before]:translate-y-(--line) [&>button::before]:transition-all [&>button::before]:duration-300 [&>button::before]:ease-in-out [&>button[data-active]::before]:bg-linear-to-r [&>button[data-active]::before]:from-(--basecolor) [&>button[data-active]::before]:to-(--basecolor2) [&>button:nth-child(1):not([data-active])::before]:bg-[#8B8B8B]/30 [&>button:nth-child(2):not([data-active])::before]:bg-[#8B8B8B]/10 [&>button:nth-child(3):not([data-active])::before]:bg-[#8B8B8B]/10 [&>button:nth-child(1)[data-active]~button:nth-child(2)::before]:bg-[#8B8B8B]/30 [&>button[data-active]]:bg-transparent [&>button[data-active]]:shadow-none"

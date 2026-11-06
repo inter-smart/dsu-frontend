@@ -65,7 +65,7 @@ export default function HomeExcellence({ data }) {
   return (
     <section className="w-full h-auto py-[40px_50px] sm:py-[50px_70px] lg:py-[70px_90px] 2xl:py-[80px_110px] 3xl:py-[100px_140px] dark:bg-[#101010] overflow-hidden block">
       <div className="container">
-        <div className="w-full h-auto mb-12.5 sm:mb-17.5 lg:mb-20 2xl:mb-25 3xl:mb-30">
+        <div data-reveal className="w-full h-auto mb-12.5 sm:mb-17.5 lg:mb-20 2xl:mb-25 3xl:mb-30">
           <Heading
             as="h2"
             aurora
@@ -77,7 +77,7 @@ export default function HomeExcellence({ data }) {
           </Heading>
           <Text className="text-center">{data?.description}</Text>
         </div>
-        <div className="w-full h-auto lg:-mx-2.5 2xl:-mx-3.75 3xl:-mx-5 lg:[&>*]:px-2.5 2xl:[&>*]:px-3.75 3xl:[&>*]:px-5 flex flex-wrap">
+        <div data-reveal="fade" className="w-full h-auto lg:-mx-2.5 2xl:-mx-3.75 3xl:-mx-5 lg:[&>*]:px-2.5 2xl:[&>*]:px-3.75 3xl:[&>*]:px-5 flex flex-wrap">
           <div className="w-full lg:w-[25%] max-lg:order-3">
             <div className="w-full h-full gap-2.5 lg:gap-3.75 2xl:gap-5 3xl:gap-7.5 max-lg:grid max-lg:grid-cols-2 lg:flex flex-col justify-between">
               {activeSpecifications?.map((item, index) => (

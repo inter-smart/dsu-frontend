@@ -47,7 +47,7 @@ export default function DSUCell({ data, menu }) {
                             </div>
                             <ul className="mb-[20px] lg:mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]">
                                 {data?.points.map((item, id) => (
-                                    <li className="text-[12px] lg:text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[23px] text-[#212121] font-bold relative flex items-start gap-[10px] w-full before:block before:h-[13px] before:w-[13px] before:relative before:top-[3px] before:2xl:top-[4px] before:2xl:top-[6px] before:shrink-0 before:bg-[url('/images/red-round.svg')] before:bg-contain before:bg-center before:bg-no-repeat before:content-[''] mb-[6px] xl:mb-[8px] 3xl:mb-[10px]">
+                                    <li key={id} className="text-[12px] lg:text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[23px] text-[#212121] font-bold relative flex items-start gap-[10px] w-full before:block before:h-[13px] before:w-[13px] before:relative before:top-[3px] before:2xl:top-[4px] before:2xl:top-[6px] before:shrink-0 before:bg-[url('/images/red-round.svg')] before:bg-contain before:bg-center before:bg-no-repeat before:content-[''] mb-[6px] xl:mb-[8px] 3xl:mb-[10px]">
                                         {item.text}
                                     </li>
 

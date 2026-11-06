@@ -40,8 +40,8 @@ export default function IQACReport({ data }) {
                                     <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] text-[#797979] ">
                                         <div className="flex flex-wrap border border-black/10 p-[25px] xl:p-[30px] 2xl:p-[40px] 3xl:p-[50px] bg-gradient-to-b from-[rgba(255,248,238,0.2)] to-[rgba(255,243,224,0.2)] rounded-[10px]">
                                             <div className="w-full ">
-                                                {item?.reports.map((reports) => (
-                                                    <div className="flex flex-wrap gap-[20px] items-center justify-between  py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 px-0  w-full"  >
+                                                {item?.reports.map((reports, i) => (
+                                                    <div key={i} className="flex flex-wrap gap-[20px] items-center justify-between  py-[14px] 2xl:py-[12px] 3xl:py-[15px] border-b border-black/20 px-0  w-full"  >
                                                         <div className="flex items-center justify-between gap-[15px]">
                                                             <div className="w-[18px] xl:w-[20px] 2xl:w-[25px] 3xl:w-[33px] h-[15px] xl:h-[18px] 2xl:h-[20px] 3xl:h-[23px] flex items-center justify-center">
                                                                 <svg width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">

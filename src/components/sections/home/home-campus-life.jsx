@@ -68,7 +68,7 @@ export default function HomeCampusLife({ data }) {
       <section className="w-full h-auto sm:py-15 lg:py-17.5 2xl:py-20 3xl:py-25 bg-[#F4F6FA] dark:bg-black hidden sm:block">
         <div className="container">
           <div className="[--gap:10px] xl:[--gap:15px] 3xl:[--gap:20px] w-full h-auto grid xl:grid-cols-2 gap-(--gap)">
-            <div className="w-full h-auto gap-(--gap) flex xl:flex-col max-lg:grid max-lg:grid-cols-2">
+            <div data-reveal-stagger className="w-full h-auto gap-(--gap) flex xl:flex-col max-lg:grid max-lg:grid-cols-2">
               <div className="sm:[--width:100%] lg:[--width:220px] xl:[--width:270px] 2xl:[--width:320px] 3xl:[--width:400px] w-full h-auto sm:p-2.5 2xl:p-3.75 3xl:p-5 bg-white dark:bg-white/5 dark:border dark:border-white/10 rounded-[7px] 2xl:rounded-[10px] flex max-md:flex-col flex-wrap xl:items-center">
                 <div className="w-(--width) max-lg:mb-5">
                   <FeatureCard item={data?.featureCards?.[0]} />
@@ -98,7 +98,7 @@ export default function HomeCampusLife({ data }) {
                 />
               </div>
             </div>
-            <div className="w-full h-auto grid sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 gap-(--gap)">
+            <div data-reveal-stagger className="w-full h-auto grid sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 gap-(--gap)">
               <div>
                 <FeatureCard item={data?.featureCards?.[2]} />
               </div>
@@ -147,7 +147,7 @@ export default function HomeCampusLife({ data }) {
 
       <section className="w-full h-auto py-10 bg-[#F4F6FA] dark:bg-[#101010] max-sm:block hidden">
         <div className="container">
-          <div className="w-full h-auto mb-3.75 flex">
+          <div data-reveal className="w-full h-auto mb-3.75 flex">
             <div className="w-1/2">
               <div className="[--before-size:20px] 2xl:[--before-size:25px] text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal text-[#F57F2A] w-fit h-auto pl-[calc(var(--before-size)+5px)] 2xl:pl-[calc(var(--before-size)+10px)] mb-2.5 relative z-0 before:content-[''] before:w-(--before-size) before:h-0.5 2xl:before:h-1.25 before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:absolute before:z-1 before:inset-[0_auto_0_0]">
                 {data?.campusInfo?.title}
@@ -168,7 +168,7 @@ export default function HomeCampusLife({ data }) {
               </div>
             </div>
           </div>
-          <div className="w-full h-auto p-[30px_30px_40px_20px] mb-5 bg-linear-to-r from-[#9C2727] to-(--basecolor2)/80 rounded-[10px] overflow-hidden max-lg:flex max-lg:flex-col max-lg:justify-center">
+          <div data-reveal className="w-full h-auto p-[30px_30px_40px_20px] mb-5 bg-linear-to-r from-[#9C2727] to-(--basecolor2)/80 rounded-[10px] overflow-hidden max-lg:flex max-lg:flex-col max-lg:justify-center">
             <div className="text-sm leading-[1.7] font-normal text-white mb-5">
               {data?.statistics?.description}
             </div>
@@ -232,6 +232,7 @@ export default function HomeCampusLife({ data }) {
             </button>
           )}
           <div
+            data-reveal
             ref={emblaRef}
             className="[--slide-spacing:10px] w-full h-auto overflow-hidden"
           >

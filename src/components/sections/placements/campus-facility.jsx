@@ -5,8 +5,6 @@ import Image from "next/image";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 export default function CampusFacility({ data }) {
-    if (!data) return null;
-
     const fallbackImage = "/images/campus-img.jpg";
     const initialMediaUrl =
         data?.media?.url && !data.media.url.includes("campus-facilities-recruitment")
@@ -14,6 +12,8 @@ export default function CampusFacility({ data }) {
             : fallbackImage;
 
     const [imgSrc, setImgSrc] = useState(initialMediaUrl);
+
+    if (!data) return null;
 
     return (
         <section className="relative py-[35px] sm:py-[45px] lg:py-[60px] xl:py-[75px] 2xl:py-[90px] 3xl:py-[110px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
