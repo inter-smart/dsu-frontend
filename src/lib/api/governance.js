@@ -52,9 +52,10 @@ export async function getRegulatoryApprovalBySlug(slug) {
 }
 
 // ── Accreditations ────────────────────────────────────────────────────────────
-// Landing page (single type): { seo, hero, listSection: [...] }
+// Landing page = the Accredition entry whose Page is "accredition":
+// { seo, hero, accreditationsData: { cards: [...] } }
 export async function getAccreditationPage() {
-  return fetchAPI("/api/accreditation-page");
+  return fetchAPI(slugPath("/api/accreditions", "accredition"));
 }
 
 export async function getAccreditationBySlug(slug) {

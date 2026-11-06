@@ -1,10 +1,18 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
+// Static pages still pass the three named groups; fold them into the same list the CMS adapter returns.
+const legacyGroups = (d) => [
+    d.specializedAreas && { ...d.specializedAreas, items: d.specializedAreas.columns },
+    d.simulationLabs && { ...d.simulationLabs, subheading: d.specializedAreas?.subheading },
+    d.communityFacilities,
+].filter(Boolean);
+
 export default function AiClinicalFacility({ data }) {
+    const groups = data.groups ?? legacyGroups(data);
     return (
         <section className="realtive py-[40px] xl:py-[50px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-black">
             <div className="container">
@@ -16,57 +24,34 @@ export default function AiClinicalFacility({ data }) {
                     </div>
                     <div className="w-full">
                         <div className="cmn_Title mb-[25px] dark:!text-white">{data.heading}</div>
-                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white [&_p]:mb-[15px] [&_p]:3xl:mb-[20px] ">
+                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white [&_p]:mb-[15px] [&_p]:3xl:mb-[20px]  typography">
                             {data.description && <BlocksRenderer content={data.description} />}
                         </div>
-                        {data?.specializedAreas && (
-                            <div className="w-full">
-                                <div className="cmn_Txt mb-[10px] 2xl:mb-[15px] dark:text-white">
-                                    {data?.specializedAreas.heading}
+                        {groups.map((g, gi) => {
+                            const items = g.items ?? [];
+                            const short = items.length > 0 && items.every((i) => (i.label?.length ?? 0) < 40);
+                            return (
+                                <div className="w-full mb-[15px] 3xl:mb-[20px]" key={g.id ?? gi}>
+                                    {g.heading && <div className="cmn_Txt mb-[10px] 2xl:mb-[15px] dark:text-white">{g.heading}</div>}
+                                    {g.subheading && <div className="text_1 text-[#4A5565] dark:text-white font-bold mb-[12px] 2xl:mb-[20px]">{g.subheading}</div>}
+                                    {g.description?.length > 0 && (
+                                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white [&_p]:mb-[15px] [&_p]:3xl:mb-[20px] typography">
+                                            <BlocksRenderer content={g.description} />
+                                        </div>
+                                    )}
+                                    {items.length > 0 && (
+                                        <ul className={short ? "columns-1 md:columns-2 gap-x-[40px] xl:gap-x-[48px] max-w-[650px] mb-[10px]" : "mb-[10px]"}>
+                                            {items.map((item, id) => (
+                                                <li className="text_1 text-[#4A5565] dark:text-[#fff] relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]" key={item.id ?? id}>
+                                                    {item.label}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                    {g.note && <div className="text_1 text-[#4A5565] dark:text-white font-regular">{g.note}</div>}
                                 </div>
-                                <div className="text_1 text-[#4A5565] dark:text-[#fff] font-bold mb-[20px]">{data?.specializedAreas.subheading}</div>
-                                {data.specializedAreas.columns && (
-                                    <ul className='columns-1 md:columns-2 gap-x-[40px] xl:gap-x-[48px] max-w-[650px] mb-[10px]'>
-                                        {data?.specializedAreas?.columns.map((item, id) => (
-                                            <li className="text_1 text-[#4A5565] dark:text-[#fff] relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[8px] before:left-0 before:w-[3px] before:h-[3px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[10px] lg:pl-[15px]" key={id}>
-                                                {item.label}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                                {data?.specializedAreas.note && (
-                                    <div className="text_1 text-[#4A5565] dark:text-white font-regular mb-[12px] 2xl:mb-[20px]">{data?.specializedAreas.note}</div>
-                                )}
-                            </div>
-                        )}
-                        {data?.simulationLabs && (
-                            <div className="w-full mb-[15px] 3xl:mb-[20px]">
-                                <div className="cmn_Txt mb-[10px] 2xl:mb-[15px]">
-                                    {data?.simulationLabs.heading}
-                                </div>
-                                <div className="text_1 text-[#4A5565] dark:text-white font-bold mb-[12px] 2xl:mb-[20px]">{data?.specializedAreas.subheading}</div>
-                                {data.simulationLabs.items && (
-                                    <ul>
-                                        {data?.simulationLabs?.items.map((item, id) => (
-                                            <li className="text_1 text-[#4A5565] dark:text-[#fff] relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]" key={id}>
-                                                {item.label}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
-                        )}
-                        {data?.communityFacilities && (
-                            <div className="w-full">
-                                <div className="cmn_Txt mb-[10px] 2xl:mb-[15px]">
-                                    {data?.communityFacilities.heading}
-                                </div>
-                                <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:mb-[15px] [&_p]:3xl:mb-[20px] ">
-                                    {data?.communityFacilities?.description && <BlocksRenderer content={data.communityFacilities.description} />}
-                                </div>
-
-                            </div>
-                        )}
+                            );
+                        })}
 
                     </div>
 

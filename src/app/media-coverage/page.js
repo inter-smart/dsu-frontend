@@ -1,3 +1,4 @@
+import { seoMetadata } from "@/lib/seo";
 import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import MediaCoverage from "@/components/sections/media-coverage/media-coverage";
@@ -89,6 +90,11 @@ const local_data = {
     ],
   },
 };
+
+export async function generateMetadata() {
+  const pageData = await getMediaCoveragePage();
+  return seoMetadata(pageData?.seo, "Media Coverage | Dayananda Sagar University");
+}
 
 export default async function page({ viaSlug } = {}) {
   await redirectToSlug("media-coverage", viaSlug);

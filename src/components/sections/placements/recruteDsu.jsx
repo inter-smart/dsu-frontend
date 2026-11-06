@@ -1,5 +1,7 @@
 "use client";
 
+import FormError from "@/components/ui/form-error";
+import { clean, validateName, validateSubject, validateEmail, validatePhone, validateMessage, useFieldErrors } from "@/lib/form-validation";
 import React, { useState } from "react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
@@ -49,19 +51,40 @@ export default function RecruiteDsu({ data }) {
     const [submitted, setSubmitted] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
+    const { errors, validate, validateForm } = useFieldErrors({
+        orgName: (v) => validateSubject(v, true),
+        contactPerson: (v) => validateName(v),
+        workEmail: (v) => validateEmail(v),
+        phone: (v) => validatePhone(v),
+        requirements: (v) => validateMessage(v, true),
+    });
+    const blurField = (name) => {
+        const next = { ...formData, [name]: clean(formData[name]) };
+        setFormData(next);
+        validate(name, next);
+    };
+    const changeField = (name, value) => {
+        setFormData({ ...formData, [name]: value });
+        if (errors[name]) validate(name, { [name]: value });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMessage("");
+        const values = { ...formData };
+        for (const k of ["orgName", "contactPerson", "workEmail", "phone", "requirements"]) values[k] = clean(values[k]);
+        setFormData(values);
+        if (Object.keys(validateForm(values)).length) return;
 
         const honeypotField = e.target.elements.website;
         const payload = {
-            orgName: formData.orgName,
-            contactPerson: formData.contactPerson,
-            workEmail: formData.workEmail,
-            phone: `${formData.country?.dialCode || ""} ${formData.phone}`.trim(),
+            orgName: values.orgName,
+            contactPerson: values.contactPerson,
+            workEmail: values.workEmail,
+            phone: `${formData.country?.dialCode || ""} ${values.phone}`.trim(),
             hiringType: formData.hiringType,
             talentArea: formData.talentArea,
-            requirements: formData.requirements,
+            requirements: values.requirements,
             website: honeypotField ? honeypotField.value : "",
         };
 
@@ -195,7 +218,7 @@ export default function RecruiteDsu({ data }) {
                             </p>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="space-y-4 xl:space-y-4.5">
+                        <form onSubmit={handleSubmit} noValidate className="space-y-4 xl:space-y-4.5">
                             <input
                                 type="text"
                                 name="website"
@@ -214,14 +237,15 @@ export default function RecruiteDsu({ data }) {
                                     <Input
                                         id="orgName"
                                         type="text"
-                                        required
                                         className={inputStyle}
                                         placeholder="Enter Name"
                                         value={formData.orgName}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, orgName: e.target.value })
-                                        }
+                                        maxLength={50}
+                                        aria-invalid={!!errors.orgName}
+                                        onChange={(e) => changeField("orgName", e.target.value)}
+                                        onBlur={() => blurField("orgName")}
                                     />
+                                    <FormError message={errors.orgName} />
                                 </div>
 
                                 <div>
@@ -231,14 +255,15 @@ export default function RecruiteDsu({ data }) {
                                     <Input
                                         id="contactPerson"
                                         type="text"
-                                        required
                                         className={inputStyle}
                                         placeholder="Full Name"
                                         value={formData.contactPerson}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, contactPerson: e.target.value })
-                                        }
+                                        maxLength={50}
+                                        aria-invalid={!!errors.contactPerson}
+                                        onChange={(e) => changeField("contactPerson", e.target.value)}
+                                        onBlur={() => blurField("contactPerson")}
                                     />
+                                    <FormError message={errors.contactPerson} />
                                 </div>
                             </div>
 
@@ -251,14 +276,15 @@ export default function RecruiteDsu({ data }) {
                                     <Input
                                         id="workEmail"
                                         type="email"
-                                        required
                                         className={inputStyle}
                                         placeholder="name@company.com"
                                         value={formData.workEmail}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, workEmail: e.target.value })
-                                        }
+                                        maxLength={256}
+                                        aria-invalid={!!errors.workEmail}
+                                        onChange={(e) => changeField("workEmail", e.target.value)}
+                                        onBlur={() => blurField("workEmail")}
                                     />
+                                    <FormError message={errors.workEmail} />
                                 </div>
 
                                 <div>
@@ -267,7 +293,6 @@ export default function RecruiteDsu({ data }) {
                                     </Label>
                                     <PhoneInput
                                         id="phone"
-                                        required
                                         placeholder="000 000 0000"
                                         value={formData.phone}
                                         selectedCountry={formData.country}
@@ -275,10 +300,10 @@ export default function RecruiteDsu({ data }) {
                                         onCountryChange={(country) =>
                                             setFormData({ ...formData, country })
                                         }
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, phone: e.target.value })
-                                        }
+                                        onChange={(e) => changeField("phone", e.target.value)}
+                                        onBlur={() => blurField("phone")}
                                     />
+                                    <FormError message={errors.phone} />
                                 </div>
                             </div>
 
@@ -348,14 +373,15 @@ export default function RecruiteDsu({ data }) {
                                     id="requirements"
                                     name="requirements"
                                     value={formData.requirements}
-                                    onChange={(e) =>
-                                        setFormData({ ...formData, requirements: e.target.value })
-                                    }
+                                    maxLength={500}
+                                    aria-invalid={!!errors.requirements}
+                                    onChange={(e) => changeField("requirements", e.target.value)}
+                                    onBlur={() => blurField("requirements")}
                                     rows={3}
                                     placeholder="Tell us about roles, eligibility, number of openings, salary range, preferred dates or other requirements."
-                                    required
                                     className="w-full border border-black/10 rounded-[4px] 2xl:rounded-[6px] border-[#E5E7EB] dark:border-[#333] bg-white dark:bg-[#1f1f1f] text-[11px] xl:text-[13px] 2xl:text-[14px] font-normal placeholder:text-[#9CA3AF] text-[#212121] dark:text-[#F9FAFB] min-h-[105px] xl:min-h-[115px] resize-none focus-visible:ring-1 focus-visible:ring-[#F97316]"
                                 />
+                                <FormError message={errors.requirements} />
                             </div>
 
                             {/* Submit Button */}

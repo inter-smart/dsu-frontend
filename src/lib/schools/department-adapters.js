@@ -6,23 +6,21 @@ const label = (items) => (items ?? []).map((i) => ({ id: i.id, label: i.text }))
 export const highlightsSection = (s) =>
   s?.items?.length ? { heading: s.heading, items: label(s.items) } : null;
 
-// Facility groups follow a fixed order set by the Strapi field description:
-// 1 = specialized areas (items are the columns), 2 = simulation labs (items), 3 = community facilities (text).
+// Every facility group renders the same way (heading, subheading, description, items, note), in CMS order.
 export function clinicalFacilitiesSection(s) {
   if (!s) return null;
-  const [areas, sims, community] = s.groups ?? [];
   return {
     heading: s.heading,
     image: s.image,
     description: s.description,
-    specializedAreas: areas && {
-      heading: areas.heading,
-      subheading: areas.subheading,
-      columns: label(areas.items),
-      note: areas.note,
-    },
-    simulationLabs: sims && { heading: sims.heading, items: label(sims.items) },
-    communityFacilities: community && { heading: community.heading, description: community.description },
+    groups: (s.groups ?? []).map((g) => ({
+      id: g.id,
+      heading: g.heading,
+      subheading: g.subheading,
+      description: g.description,
+      items: label(g.items),
+      note: g.note,
+    })),
   };
 }
 
@@ -47,7 +45,7 @@ export const recentEngagementSection = (s) =>
 
 export const partnerWithUsSection = (s) =>
   s?.heading || s?.buttons?.length
-    ? { heading: s.heading, description: s.description, buttons: (s.buttons ?? []).map((b, i) => ({ id: b.id ?? i, type: i === 0 ? "primary" : "secondary", label: b.label, link: b.link })) }
+    ? { heading: s.heading, description: s.description, buttons: (s.buttons ?? []).map((b, i) => ({ id: b.id ?? i, type: i === 0 ? "primary" : "secondary", label: b.label, link: b.link, isExternal: b.isExternal })) }
     : null;
 
 export const chaptersSection = (s) =>

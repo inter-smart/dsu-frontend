@@ -78,7 +78,7 @@ export default function AdmissionPolicies({ data }) {
 
                                     {hasContent && (
                                         <AccordionContent className="px-4 sm:px-6 xl:px-8 pb-4 sm:pb-5 xl:pb-6 pt-2">
-                                            <div className="text-[13px] sm:text-[14px] xl:text-[15px] 3xl:text-[17px] text-[#4A5565] dark:text-[#9CA3AF] leading-relaxed [&_p]:!my-0 [&_p]:!text-inherit [&_p]:leading-relaxed ">
+                                            <div className="text-[13px] sm:text-[14px] xl:text-[15px] 3xl:text-[17px] text-[#4A5565] dark:text-[#9CA3AF] leading-relaxed [&_p]:!my-0 [&_p]:!text-inherit [&_p]:leading-relaxed  typography">
                                                 <BlocksRenderer
                                                     content={item.answer}
                                                     blocks={{

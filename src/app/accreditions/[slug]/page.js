@@ -5,7 +5,7 @@ import NAACJourney from "@/components/sections/NAAC/NAAC-journey";
 import NBAAccreditedProgram from "@/components/sections/NBA/NBA-accredited-program";
 import NBABoard from "@/components/sections/NBA/NBA-board";
 import ProfessionalAccredition from "@/components/sections/professional-accredition/professional-accredition";
-import { getAccreditationBySlug, getAccreditationPage } from "@/lib/api";
+import { getAccreditationBySlug } from "@/lib/api";
 
 
 
@@ -15,13 +15,6 @@ const DEFAULT_HERO_MEDIA = {
   // if video - mime: "video/mp4",
   url: "/images/ugc/ugc-banner.jpg",
 };
-
-export async function generateStaticParams() {
-  const pageData = await getAccreditationPage();
-  return (pageData?.listSection || [])
-    .filter((item) => item.slug)
-    .map((item) => ({ slug: item.slug }));
-}
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -76,10 +69,7 @@ export default async function Page({ params }) {
         </>
       ) : (
         pageData.accreditationsData && (
-          <ProfessionalAccredition
-            data={pageData.accreditationsData}
-            isLink={false}
-          />
+          <ProfessionalAccredition data={pageData.accreditationsData} />
         )
       )}
     </>

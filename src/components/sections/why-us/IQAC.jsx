@@ -30,7 +30,8 @@ export default function IQAC({ data }) {
     return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[90px] !pb-0">
             <Tabs defaultValue={defaultTab} className="w-full">
-                <div className="container">
+                {/* a single tab needs no switcher: its content is shown directly */}
+                {tabs.length > 1 && <div className="container">
                     <TabsList
                         variant="line"
                         className="self-start inline-flex w-fit max-w-full p-0 mb-[25px] xl:mb-[35px] 2xl:mb-[45px] bg-white dark:bg-[#1A1A1A] rounded-[8px] lg:rounded-[10px] shadow-[0_2px_14px_rgba(0,0,0,0.06)] dark:shadow-[0_2px_14px_rgba(0,0,0,0.4)] border border-transparent dark:border-white/10 overflow-x-auto !h-auto"
@@ -54,7 +55,7 @@ export default function IQAC({ data }) {
                             </TabsTrigger>
                         ))}
                     </TabsList>
-                </div>
+                </div>}
 
                 {hasAboutTab && (
                     <TabsContent value="about-iqac" className="mt-[10px]">

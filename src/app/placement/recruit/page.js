@@ -1,3 +1,4 @@
+import { seoMetadata } from "@/lib/seo";
 import RecruitTemplate from "@/components/sections/placements/templates/RecruitTemplate";
 import { getPlacementRecruitPage } from "@/lib/api/placement";
 
@@ -336,6 +337,11 @@ const fallback = {
         recruiteSection: local_data.recruiteSection,
     },
 };
+
+export async function generateMetadata() {
+  const pageData = await getPlacementRecruitPage();
+  return seoMetadata(pageData?.seo, "Recruit with Us | Dayananda Sagar University");
+}
 
 export default async function page() {
     const apiData = await getPlacementRecruitPage();

@@ -17,7 +17,7 @@ export default function AiRecentClinic({ data }) {
                     </div>
                 )}
                 {data?.description && (
-                    <div className="text_1 leading-[1.2] text-[#4A5565] ">
+                    <div className="text_1 leading-[1.2] text-[#4A5565]  typography">
                         <BlocksRenderer content={data.description} />
                     </div>
                 )}
@@ -81,13 +81,15 @@ export default function AiRecentClinic({ data }) {
                                         </div>
                                         <p className="mb-[10px]">{engage.description}</p>
                                         <div className="flex flex-wrap justify-between w-full gap-[10px]">
-                                            <Link
-                                                href={engage?.link}
-                                                target="_blank"
-                                                className="text-[10px] 2xl:text-[12px] 3xl:text-[14px] leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
-                                            >
-                                                Read More {">>"}
-                                            </Link>
+                                            {engage?.link && (
+                                                <Link
+                                                    href={engage.link}
+                                                    target="_blank"
+                                                    className="text-[10px] 2xl:text-[12px] 3xl:text-[14px] leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
+                                                >
+                                                    Read More {">>"}
+                                                </Link>
+                                            )}
                                             <div className="text-[10px] 2xl:text-[12px] 3xl:text-[14px] leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
                                             >
                                               partner: {engage.partner}

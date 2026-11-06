@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { PhoneInput, COUNTRIES } from "@/components/ui/phone-input";
+import FormError from "@/components/ui/form-error";
+import { clean, validateName, validateEmail, validatePhone, validateMessage, useFieldErrors } from "@/lib/form-validation";
 import PhoneNumbers from "@/components/ui/phone-numbers";
 import { COURSES, STATES } from "@/lib/schools/constants";
 import {
@@ -43,9 +45,28 @@ export default function AcademicContact({ data, schoolSlug }) {
     };
     const [errorMessage, setErrorMessage] = useState("");
     const [honeypot, setHoneypot] = useState("");
+    const { errors, validate, validateForm } = useFieldErrors({
+        name: (v) => validateName(v),
+        phone: (v) => validatePhone(v),
+        email: (v) => validateEmail(v),
+        message: (v) => validateMessage(v),
+    });
+    // trim + collapse spaces on blur, then validate that field
+    const blurField = (name) => {
+        const next = { ...formData, [name]: clean(formData[name]) };
+        setFormData(next);
+        validate(name, next);
+    };
+    const changeField = (name, value) => {
+        setFormData({ ...formData, [name]: value });
+        if (errors[name]) validate(name, { [name]: value });
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const values = { ...formData, name: clean(formData.name), email: clean(formData.email), phone: clean(formData.phone), message: clean(formData.message) };
+        setFormData(values);
+        if (Object.keys(validateForm(values)).length) return;
         setErrorMessage("");
         setSubmitted(false);
         setIsSubmitting(true);
@@ -56,12 +77,12 @@ export default function AcademicContact({ data, schoolSlug }) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     data: {
-                        name: formData.name,
-                        phone: `${formData.country?.dialCode || ""} ${formData.phone}`.trim(),
-                        email: formData.email,
+                        name: values.name,
+                        phone: `${formData.country?.dialCode || ""} ${values.phone}`.trim(),
+                        email: values.email,
                         course: formData.course,
                         state: formData.state,
-                        message: formData.message,
+                        message: values.message,
                         schoolSlug: schoolSlug || data?.schoolSlug || "",
                         websiteUrl: window.location.href,
                         website: honeypot,
@@ -92,7 +113,21 @@ export default function AcademicContact({ data, schoolSlug }) {
 
     // email / phone entries come from the reusable contact-detail component (type email | phone)
     const valuesOf = (type) =>
-        (contactInfo.details || []).filter((d) => d.type === type).flatMap((d) => d.values || []);
+        (contactInfo.details || [])
+            .filter((d) => d.type === type)
+            .flatMap((d) => d.values || [])
+            .map((v) => (typeof v === "object" ? v?.value : v))
+            .filter(Boolean);
+    // "other" entries: each keeps its own configured label
+    const otherDetails = (contactInfo.details || [])
+        .filter((d) => d.type === "other")
+        .map((d) => ({
+            label: d.label,
+            values: (d.values || []).map((v) => (typeof v === "object" ? v?.value : v)).filter(Boolean),
+        }))
+        .filter((d) => d.values.length);
+    const emailLabel = (contactInfo.details || []).find((d) => d.type === "email" && d.label)?.label;
+    const phoneLabel = (contactInfo.details || []).find((d) => d.type === "phone" && d.label)?.label;
     const emails = valuesOf("email");
     const phones = valuesOf("phone");
     if (!emails.length && contactInfo.email) emails.push(contactInfo.email);
@@ -119,21 +154,22 @@ export default function AcademicContact({ data, schoolSlug }) {
                                 </h2>
                             )}
 
-                            <form onSubmit={handleSubmit} className="space-y-4 xl:space-y-5">
+                            <form onSubmit={handleSubmit} noValidate className="space-y-4 xl:space-y-5">
                                 {/* Name */}
                                 <div>
                                     <Label htmlFor="name" className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px] font-normal text-[#212121] dark:text-[#E5E7EB]">NAME *</Label>
                                     <Input
                                         id="name"
                                         type="text"
-                                        required
                                         className={inputStyle}
                                         placeholder="Enter Your Name"
                                         value={formData.name}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, name: e.target.value })
-                                        }
+                                        maxLength={50}
+                                        aria-invalid={!!errors.name}
+                                        onChange={(e) => changeField("name", e.target.value)}
+                                        onBlur={() => blurField("name")}
                                     />
+                                    <FormError message={errors.name} />
                                 </div>
 
                                 {/* Phone & Email row */}
@@ -143,7 +179,6 @@ export default function AcademicContact({ data, schoolSlug }) {
                                         <Label htmlFor="phone" className="text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px] font-normal text-[#212121] dark:text-[#E5E7EB]">PHONE *</Label>
                                         <PhoneInput
                                             id="phone"
-                                            required
                                             placeholder="000 000 0000"
                                             value={formData.phone}
                                             selectedCountry={formData.country}
@@ -151,10 +186,10 @@ export default function AcademicContact({ data, schoolSlug }) {
                                             onCountryChange={(country) =>
                                                 setFormData({ ...formData, country })
                                             }
-                                            onChange={(e) =>
-                                                setFormData({ ...formData, phone: e.target.value })
-                                            }
+                                            onChange={(e) => changeField("phone", e.target.value)}
+                                            onBlur={() => blurField("phone")}
                                         />
+                                        <FormError message={errors.phone} />
                                     </div>
 
                                     {/* Email */}
@@ -163,14 +198,15 @@ export default function AcademicContact({ data, schoolSlug }) {
                                         <Input
                                             id="email"
                                             type="email"
-                                            required
                                             placeholder="Enter Your Email ID"
                                             value={formData.email}
                                             className={inputStyle}
-                                            onChange={(e) =>
-                                                setFormData({ ...formData, email: e.target.value })
-                                            }
+                                            maxLength={256}
+                                            aria-invalid={!!errors.email}
+                                            onChange={(e) => changeField("email", e.target.value)}
+                                            onBlur={() => blurField("email")}
                                         />
+                                        <FormError message={errors.email} />
                                     </div>
                                 </div>
 
@@ -237,10 +273,12 @@ export default function AcademicContact({ data, schoolSlug }) {
                                         placeholder="Write Here..."
                                         value={formData.message}
                                         className="rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px] "
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, message: e.target.value })
-                                        }
+                                        maxLength={500}
+                                        aria-invalid={!!errors.message}
+                                        onChange={(e) => changeField("message", e.target.value)}
+                                        onBlur={() => blurField("message")}
                                     />
+                                    <FormError message={errors.message} />
                                 </div>
 
                                 {/* Honeypot: hidden from visitors, filled only by bots */}
@@ -394,7 +432,7 @@ export default function AcademicContact({ data, schoolSlug }) {
                                         </div>
                                         <div>
                                             <div className="text_1 text-[#212121] font-medium dark:text-white leading-tight mb-[4px]">
-                                                 E-Mail:
+                                                 {emailLabel || "E-Mail:"}
                                             </div>
                                             <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">
                                                 {emails.map((email, i) => (
@@ -430,7 +468,7 @@ export default function AcademicContact({ data, schoolSlug }) {
                                         </div>
                                         <div>
                                             <div className="text_1 text-[#212121] font-medium dark:text-white leading-tight mb-[4px]">
-                                                Admissions Helpline:
+                                                {phoneLabel || "Admissions Helpline:"}
                                             </div>
                                             <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">
                                                <PhoneNumbers
@@ -441,6 +479,20 @@ export default function AcademicContact({ data, schoolSlug }) {
                                         </div>
                                     </div>
                                     )}
+
+                                    {/* Other details */}
+                                    {otherDetails.map((d, i) => (
+                                        <div key={i}>
+                                            {d.label && (
+                                                <div className="text_1 text-[#212121] font-medium dark:text-white leading-tight mb-[4px]">
+                                                    {d.label}
+                                                </div>
+                                            )}
+                                            <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">
+                                                {d.values.join(" / ")}
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>

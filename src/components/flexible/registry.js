@@ -94,6 +94,7 @@ import { HomeEvents, HomeNews } from "./home-sections";
 import GovernanceFinancecommittte from "@/components/sections/governance/governance-financecommittte";
 import AcademicQualitySection from "@/components/sections/why-us/AcademicQualitySection";
 import WhyusAQAR from "@/components/sections/why-us/Whyus-AQAR";
+import PdfReports from "@/components/sections/why-us/PdfReports";
 import PlacementSections from "@/components/sections/academics/PlacementDashboard";
 import AlumniWorld from "@/components/sections/placements/alumni-world";
 import Announcement from "@/components/sections/placements/announcement";
@@ -335,6 +336,9 @@ const flexibleRegistry = {
   "academic-quality.quality-section": { Component: AcademicQualitySection },
   "aqar.reports-section": { Component: WhyusAQAR },
   "governance.finance-committee-data": { Component: GovernanceFinancecommittte },
+
+  // Pdf Reports pages: one PDF in an iframe, or a list of PDFs
+  "pdf-report.reports-section": { Component: PdfReports },
 };
 
 export default flexibleRegistry;

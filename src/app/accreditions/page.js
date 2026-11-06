@@ -1,4 +1,3 @@
-import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import ProfessionalAccredition from "@/components/sections/professional-accredition/professional-accredition";
 import { getAccreditationPage } from "@/lib/api";
@@ -35,8 +34,7 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Page({ viaSlug } = {}) {
-  await redirectToSlug("accreditation", viaSlug);
+export default async function Page() {
   const pageData = await getAccreditationPage();
 
   // keep the local banner until one is uploaded in Strapi
@@ -46,19 +44,13 @@ export default async function Page({ viaSlug } = {}) {
     heroMedia: pageData?.hero?.heroMedia || DEFAULT_HERO.heroMedia,
   };
 
-  // listSection: [{ id, icon, title, slug, description }]
-  const cards = (pageData?.listSection || [])
-    .filter((item) => item?.slug)
-    .map((item) => ({
-      ...item,
-      logo: item.icon?.url || null,
-      link: `/accreditions/${item.slug}`,
-    }));
-
   return (
     <>
       <InnerHero data={hero} className="leadership-detail-hero" />
-      {cards.length > 0 && <ProfessionalAccredition data={{ cards }} />}
+      {/* accreditationsData.cards: [{ id, title, logo, description, link }] */}
+      {pageData?.accreditationsData?.cards?.length > 0 && (
+        <ProfessionalAccredition data={pageData.accreditationsData} />
+      )}
     </>
   );
 }
