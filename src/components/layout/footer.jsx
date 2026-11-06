@@ -17,6 +17,16 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 
+// Bundled social icons, used when the CMS entry has no icon uploaded (keyed by its alternativeText)
+const DEFAULT_SOCIAL_ICONS = {
+  facebook: { light: "/images/social-icon-1.svg", dark: "/images/social-icon-1-dark.svg" },
+  twitter: { light: "/images/social-icon-2.svg", dark: "/images/social-icon-2-dark.svg" },
+  x: { light: "/images/social-icon-2.svg", dark: "/images/social-icon-2-dark.svg" },
+  instagram: { light: "/images/social-icon-3.svg", dark: "/images/social-icon-3-dark.svg" },
+  linkedin: { light: "/images/social-icon-4.svg", dark: "/images/social-icon-4-dark.svg" },
+  youtube: { light: "/images/social-icon-5.svg", dark: "/images/social-icon-5-dark.svg" },
+};
+
 const local_data = {
   logo: {
     light: {
@@ -498,32 +508,43 @@ export default function Footer({ data = local_data }) {
             </Text>
             )}
             <div className="w-full h-auto mb-7.5 sm:mb-12.5 lg:mb-15 2xl:mb-17.5 3xl:mb-22.5 gap-2.5 lg:gap-1.75 2xl:gap-2.5 flex flex-wrap">
-              { data?.socialLinks.length > 0 && data?.socialLinks?.map((item) => (
+              {data?.socialLinks?.length > 0 && data.socialLinks.map((item) => {
+                // CMS icons may be empty (not uploaded yet): fall back to the bundled icon of that network
+                const fallback = DEFAULT_SOCIAL_ICONS[item?.icon?.alternativeText?.toLowerCase()];
+                const light = item?.icon?.light || fallback?.light;
+                const dark = item?.icon?.dark || fallback?.dark;
+                const label = item?.icon?.alternativeText || "Social link";
+                return (
                 <div key={item?.id} className="w-auto h-auto">
                   <Link
-                    href={item?.link}
+                    href={item?.link || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={item?.alternativeTxt}
+                    aria-label={label}
                     className="group w-11.25 lg:w-8.75 2xl:w-10 3xl:w-11.25 h-auto aspect-square p-2.5 lg:p-2 2xl:p-2.5 bg-black dark:bg-white rounded-[5px] overflow-hidden transition-colors duration-400 flex items-center justify-center hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2)"
                   >
-                    <Image
-                      src={item?.icon?.light}
-                      alt={item?.icon?.alternativeText || "Icon"}
-                      width={45}
-                      height={45}
-                      className="w-full h-full object-contain dark:hidden"
-                    />
-                    <Image
-                      src={item?.icon?.dark}
-                      alt={item?.icon?.alternativeText || "Icon"}
-                      width={45}
-                      height={45}
-                      className="w-full h-full object-contain hidden dark:block group-hover:filter-[brightness(0)_saturate(100%)_invert(100%)_sepia(0%)_saturate(7487%)_hue-rotate(66deg)_brightness(106%)_contrast(100%)]"
-                    />
+                    {light && (
+                      <Image
+                        src={light}
+                        alt={label}
+                        width={45}
+                        height={45}
+                        className="w-full h-full object-contain dark:hidden"
+                      />
+                    )}
+                    {dark && (
+                      <Image
+                        src={dark}
+                        alt={label}
+                        width={45}
+                        height={45}
+                        className="w-full h-full object-contain hidden dark:block group-hover:filter-[brightness(0)_saturate(100%)_invert(100%)_sepia(0%)_saturate(7487%)_hue-rotate(66deg)_brightness(106%)_contrast(100%)]"
+                      />
+                    )}
                   </Link>
                 </div>
-              ))}
+                );
+              })}
             </div>
             <div className="w-full h-auto block max-lg:max-w-100">
               <div className="text-lg lg:text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mb-3.75 lg:mb-2.5 3xl:mb-3.75">

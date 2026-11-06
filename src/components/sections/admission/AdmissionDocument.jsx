@@ -67,8 +67,8 @@ export default function AdmissionDocument({ data }) {
                                         <path d="M4.81273 11.6877C4.57806 11.6877 4.3434 11.5979 4.16465 11.4191L0.268813 7.52331C-0.0896042 7.1649 -0.0896042 6.58556 0.268813 6.22715C0.627229 5.86873 1.20656 5.86873 1.56498 6.22715L4.81273 9.4749L14.0188 0.268813C14.3772 -0.0896042 14.9566 -0.0896042 15.315 0.268813C15.6734 0.627229 15.6734 1.20656 15.315 1.56498L5.46081 11.4191C5.28206 11.5979 5.0474 11.6877 4.81273 11.6877Z" fill="url(#paint0_linear_5987_104313)" />
                                         <defs>
                                             <linearGradient id="paint0_linear_5987_104313" x1="0" y1="5.84386" x2="15.5838" y2="5.84386" gradientUnits="userSpaceOnUse">
-                                                <stop stop-color="#DC2626" />
-                                                <stop offset="1" stop-color="#F97316" />
+                                                <stop stopColor="#DC2626" />
+                                                <stop offset="1" stopColor="#F97316" />
                                             </linearGradient>
                                         </defs>
                                     </svg>

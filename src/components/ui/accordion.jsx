@@ -3,14 +3,32 @@ import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
 import { cn } from "@/lib/utils"
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 
+// base-ui expects an array of open item values; callers written in the Radix style pass a single
+// string (or "" for none). undefined stays undefined so uncontrolled/controlled mode is unchanged.
+const toValueArray = (value) => {
+  if (value === undefined) return undefined;
+  if (Array.isArray(value)) return value;
+  return value === null || value === "" ? [] : [value];
+};
+
+// Radix-style `type` / `collapsible` props are translated here instead of leaking onto the DOM:
+// type="multiple" -> base-ui `multiple`; base-ui single accordions are always collapsible.
 function Accordion({
   className,
+  type,
+  collapsible: _collapsible, // eslint-disable-line @typescript-eslint/no-unused-vars -- Radix-only prop, dropped
+  multiple,
+  value,
+  defaultValue,
   ...props
 }) {
   return (
     <AccordionPrimitive.Root
       data-slot="accordion"
       className={cn("flex w-full flex-col", className)}
+      multiple={multiple ?? type === "multiple"}
+      value={toValueArray(value)}
+      defaultValue={toValueArray(defaultValue)}
       {...props} />
   );
 }

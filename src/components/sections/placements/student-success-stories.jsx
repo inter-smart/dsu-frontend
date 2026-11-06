@@ -140,12 +140,12 @@ export default function StudentSuccessStories({ data, variant }) {
                                                     <path d="M49.5856 20.2406H35.4212V20.2207C35.4212 16.326 37.3536 12.7201 40.5909 10.5586L49.4761 4.63184C50.6415 3.85488 50.9503 2.29102 50.1733 1.12559C49.6853 0.398437 48.8884 0 48.0616 0C47.5835 0 47.0954 0.139453 46.6571 0.42832L37.772 6.35508C33.1202 9.45293 30.3511 14.6326 30.3511 20.2207V21.2566V39.4652C30.3511 40.0231 30.7993 40.4813 31.3671 40.4813H49.5856C50.1435 40.4813 50.6017 40.033 50.6017 39.4652V21.2566C50.6017 20.6889 50.1435 20.2406 49.5856 20.2406Z" fill="url(#paint1_linear_5391_105857)" />
                                                     <defs>
                                                         <linearGradient id="paint0_linear_5391_105857" x1="0" y1="20.2406" x2="20.2406" y2="20.2406" gradientUnits="userSpaceOnUse">
-                                                            <stop stop-color="#DC2626" />
-                                                            <stop offset="1" stop-color="#F97316" />
+                                                            <stop stopColor="#DC2626" />
+                                                            <stop offset="1" stopColor="#F97316" />
                                                         </linearGradient>
                                                         <linearGradient id="paint1_linear_5391_105857" x1="30.3511" y1="20.2406" x2="50.6017" y2="20.2406" gradientUnits="userSpaceOnUse">
-                                                            <stop stop-color="#DC2626" />
-                                                            <stop offset="1" stop-color="#F97316" />
+                                                            <stop stopColor="#DC2626" />
+                                                            <stop offset="1" stopColor="#F97316" />
                                                         </linearGradient>
                                                     </defs>
                                                 </svg>

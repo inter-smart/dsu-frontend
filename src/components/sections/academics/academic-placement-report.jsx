@@ -18,9 +18,9 @@ export default function AcademicPlacementReport({ data }) {
                         </div>
                         {data.documents?.filter((item) => item?.file?.url).map((item, id) => (
                             <Link
+                                key={item?.id ?? id}
                                 href={item.file.url}
                                 {...externalLinkProps(item.isExternal)}
-                                key={id}
                                 className="group relative flex items-center justify-between py-[15px] 2xl:py-[18px] 3xl:py-[22px] max-lg:w-fit max-lg:gap-[20px] border-b border-black/20 dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
                             >
                                 {/* Sliding background highlight on hover — scaleX instead of width */}

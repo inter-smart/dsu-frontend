@@ -90,10 +90,10 @@ export default function InnerHero({ data, placementMenuItems, className }) {
                           </BreadcrumbPage>
                         ) : (
                           <BreadcrumbLink
-                            asChild
+                            render={<Link href={item.href || "#"} />}
                             className="text-[10px] font-light text-white transition-opacity hover:text-white hover:opacity-70 xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px]"
                           >
-                            <Link href={item.href || "#"}>{item.label}</Link>
+                            {item.label}
                           </BreadcrumbLink>
                         )}
                       </BreadcrumbItem>
