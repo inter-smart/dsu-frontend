@@ -9,7 +9,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
 
 // Pinned scroll-scrub needs room to pin (desktop-size viewport) and is skipped for reduced motion.
-const PIN_QUERY = "(min-width: 1024px) and (min-height: 720px) and (prefers-reduced-motion: no-preference)";
+const PIN_QUERY = "(min-width: 1024px) and (min-height: 530px) and (prefers-reduced-motion: no-preference)";
 const subscribePin = (cb) => {
   const mql = window.matchMedia(PIN_QUERY);
   mql.addEventListener("change", cb);
@@ -35,6 +35,16 @@ export default function HomeExcellence({ data }) {
   const activeItem = items?.[activeIndex] ?? items?.[0] ?? {};
   const activeSpecifications = activeItem?.specifications ?? [];
   const count = items.length;
+
+  // Autoplay only where the scroll-scrub is off (and never for reduced motion).
+  useEffect(() => {
+    if (pinned || count < 2 || isDragging) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % count);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [pinned, count, isDragging]);
 
   // Scrub: scroll progress through the pinned track drives the card stack.
   useEffect(() => {
@@ -109,8 +119,10 @@ export default function HomeExcellence({ data }) {
       className="w-full h-auto dark:bg-[#101010] block"
     >
       <div
-        className={`w-full py-[40px_50px] sm:py-[50px_70px] lg:py-[70px_90px] 2xl:py-[80px_110px] 3xl:py-[100px_140px] overflow-hidden ${
-          pinned ? "sticky top-0 h-screen flex items-center" : "h-auto block"
+        className={`w-full overflow-hidden ${
+          pinned
+            ? "sticky top-0 h-screen py-5 flex items-center"
+            : "h-auto block py-[40px_50px] sm:py-[50px_70px] lg:py-[70px_90px] 2xl:py-[80px_110px] 3xl:py-[100px_140px]"
         }`}
       >
       <div className="container">
