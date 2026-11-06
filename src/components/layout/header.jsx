@@ -40,6 +40,11 @@ const proViceChancellorSubMenu = [
 const NOT_FOUND_HEADER_GRADIENT =
   "[body:has([data-not-found])_&]:bg-linear-to-r [body:has([data-not-found])_&]:from-(--basecolor)/50 [body:has([data-not-found])_&]:to-(--basecolor2)/50";
 
+// ADDED: max height of the mega menu panel = screen height minus the header (top bar + logo row + menu row).
+// Taller lists scroll inside the panel. Increase the px values if the panel touches the bottom of the screen.
+const MEGA_MENU_MAX_HEIGHT =
+  "max-h-[calc(100vh-200px)] 2xl:max-h-[calc(100vh-230px)] 3xl:max-h-[calc(100vh-260px)]";
+
 const local_data = {
   // topBar: {
   //   topBarButtons: [
@@ -1319,9 +1324,10 @@ function MegaMenuPanel({
           }
         `}</style>
         <div className="w-fit overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.22)] rounded-b-[8px]">
-          <div className="w-fit flex items-stretch">
+          {/* ADDED: max height on the row; the sidebar and the right panel each scroll on their own */}
+          <div className={cn("w-fit flex items-stretch", MEGA_MENU_MAX_HEIGHT)}>
             {/* ─── Vibrant Orange/Red Gradient Sidebar ─── */}
-            <nav className="w-[260px] 2xl:w-[280px] 3xl:w-[320px] shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-5 flex flex-col justify-start">
+            <nav className="w-[260px] 2xl:w-[280px] 3xl:w-[320px] shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-5 flex flex-col justify-start overflow-y-auto overscroll-contain">
               {children.map((child) => {
                 const isActive = child?.id === activeChild?.id;
                 if (!child?.children?.length) {
@@ -1375,7 +1381,7 @@ function MegaMenuPanel({
             {/* ─── Warm Cream / Ivory Right Panel ─── */}
             {activeChild?.children?.length > 0 && (
 
-              <div className="bg-[#FFF8EE] py-7 px-8 2xl:px-10 flex-1 min-w-0 text-[#262626]">
+              <div className="bg-[#FFF8EE] py-7 px-8 2xl:px-10 flex-1 min-w-0 text-[#262626] overflow-y-auto overscroll-contain">
                 {hasColumnGroups ? (
                   <div className="flex items-start gap-x-8 2xl:gap-x-10 3xl:gap-x-12">
                     {columns.map((colGroups, colIdx) => (
@@ -1437,6 +1443,8 @@ function MegaMenuPanel({
 const FLYOUT_PAD_TOP = 14; // same as pt-3.5, so the first item lines up with the parent row
 const FLYOUT_NOTCH = 12; // same as size-3
 const FLYOUT_MAX_WIDTH = 360; // widest the flyout can grow, only used to decide whether to flip left
+// ADDED: card chrome that sits around the list (border 2 + pt-3.5 14 + pb-5 20) plus a 16px gap to the screen bottom
+const FLYOUT_VERTICAL_SPACE = 52;
 
 function SubMenuLeaf({ leaf, onKeepOpen }) {
   const rowRef = useRef(null);
@@ -1561,7 +1569,11 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
                 style={{ top: pos.notchTop }}
               />
 
-              <ul className="flex flex-col gap-[3px] p-0 m-0">
+              {/* ADDED: the list scrolls (not the card) so the notch is never clipped. Height = space below the card top */}
+              <ul
+                className="flex flex-col gap-[3px] p-0 m-0 overflow-y-auto overscroll-contain"
+                style={{ maxHeight: `calc(100vh - ${pos.top + FLYOUT_VERTICAL_SPACE}px)` }}
+              >
                 {getFlyoutItems(leaf).map((sub) => (
                   <li key={sub?.id || sub?.label} className="w-full list-none">
                     <Link
