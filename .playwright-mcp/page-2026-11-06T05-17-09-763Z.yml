@@ -1,0 +1,1308 @@
+- generic [active] [ref=f3e1]:
+  - banner [ref=f3e2]:
+    - button "Language Toggle theme" [ref=f3e7] [cursor=pointer]:
+      - img "Language" [ref=f3e8]
+      - generic [ref=f3e9]: Toggle theme
+    - button [ref=f3e16] [cursor=pointer]
+    - generic [ref=f3e22]:
+      - link "Home" [ref=f3e23] [cursor=pointer]:
+        - /url: /
+        - img "Home" [ref=f3e25]
+      - link "Why DSU?" [ref=f3e28] [cursor=pointer]:
+        - /url: "#!"
+      - link "AI-Enabled Academics" [ref=f3e32] [cursor=pointer]:
+        - /url: "#!"
+      - link "Research & Innovation" [ref=f3e34] [cursor=pointer]:
+        - /url: "#!"
+      - link "Industry Collaborations" [ref=f3e36] [cursor=pointer]:
+        - /url: "#!"
+      - link "Placements" [ref=f3e40] [cursor=pointer]:
+        - /url: "#!"
+      - link "Admissions" [ref=f3e44] [cursor=pointer]:
+        - /url: "#!"
+      - link "International Relations" [ref=f3e46] [cursor=pointer]:
+        - /url: "#!"
+      - link "Locate Us" [ref=f3e48] [cursor=pointer]:
+        - /url: "#!"
+      - button "Open search" [ref=f3e50] [cursor=pointer]:
+        - img "Search" [ref=f3e52]
+  - main [ref=f3e53]:
+    - main [ref=f3e54]:
+      - generic [ref=f3e55]:
+        - generic [ref=f3e57]:
+          - generic [ref=f3e61]:
+            - generic [ref=f3e62]:
+              - generic [ref=f3e63]:
+                - generic [ref=f3e64]: "Powered by :"
+                - img "hero image" [ref=f3e66]
+              - heading "Powering the Future with AI-Driven Innovation" [level=1] [ref=f3e67]
+              - generic [ref=f3e68]: Driven by our AI Factory and Multidisciplinary Centers of Excellence
+              - generic [ref=f3e69]:
+                - link [ref=f3e70] [cursor=pointer]:
+                  - /url: /NVIDIA
+                  - text: Explore Centres of Excellence
+                  - img "home-btn" [ref=f3e71]
+                - link [ref=f3e72] [cursor=pointer]:
+                  - /url: /admission
+                  - text: Apply Now
+                  - img "home-btn" [ref=f3e73]
+            - generic [ref=f3e76]:
+              - link "Admission Helpline" [ref=f3e78] [cursor=pointer]:
+                - /url: /academics
+                - img "home-banner-item-1" [ref=f3e80]
+              - link "International Students" [ref=f3e83] [cursor=pointer]:
+                - /url: /academics
+                - img "home-banner-item-2" [ref=f3e85]
+              - link "Events" [ref=f3e88] [cursor=pointer]:
+                - /url: /academics
+                - img "home-banner-item-3" [ref=f3e90]
+          - generic [ref=f3e93]:
+            - generic:
+              - img "Hero image"
+            - generic [ref=f3e95]:
+              - generic [ref=f3e96]:
+                - generic [ref=f3e97]:
+                  - generic [ref=f3e98]: "Powered by :"
+                  - img "hero image" [ref=f3e100]
+                - heading "Powering the Future with AI-Driven Innovation 2" [level=1] [ref=f3e101]
+                - generic [ref=f3e102]: Driven by our 2 AI Factory and Multidisciplinary Centers of Excellence 2
+                - generic [ref=f3e103]:
+                  - link [ref=f3e104] [cursor=pointer]:
+                    - /url: /NVIDIA
+                    - text: Explore Centres of Excellence
+                    - img "home-btn" [ref=f3e105]
+                  - link [ref=f3e106] [cursor=pointer]:
+                    - /url: /admission
+                    - text: Apply Now
+                    - img "home-btn" [ref=f3e107]
+              - generic [ref=f3e110]:
+                - link "Admission Helpline 2" [ref=f3e112] [cursor=pointer]:
+                  - /url: /academics
+                  - img "home-banner-item-1" [ref=f3e114]
+                - link "International Students 2" [ref=f3e117] [cursor=pointer]:
+                  - /url: /academics
+                  - img "home-banner-item-2" [ref=f3e119]
+                - link "Events 2" [ref=f3e122] [cursor=pointer]:
+                  - /url: /academics
+                  - img "home-banner-item-3" [ref=f3e124]
+        - img "icon-marquee" [ref=f3e130]
+      - generic [ref=f3e132]:
+        - generic [ref=f3e133]:
+          - heading "Centres of Excellence" [level=2] [ref=f3e134]
+          - generic [ref=f3e136]: Our Centers of Excellence bring together advanced infrastructure, expert faculty, and industry collaboration to solve real-world challenges.
+        - generic [ref=f3e137]:
+          - generic [ref=f3e139]:
+            - generic [ref=f3e141]:
+              - generic [ref=f3e142]: DGX B200
+              - generic [ref=f3e143]: Supercomputers with a combined GPUs
+            - generic [ref=f3e145]:
+              - generic [ref=f3e146]: Jetson Family
+              - generic [ref=f3e147]: Edge AI Deployment
+            - generic [ref=f3e149]:
+              - generic [ref=f3e150]: GPU Workstations
+              - generic [ref=f3e151]: Peak Performance Development
+            - generic [ref=f3e153]:
+              - generic [ref=f3e154]: NVLink
+              - generic [ref=f3e155]: Ultra-fast GPU-to-GPU communication
+          - generic [ref=f3e158]:
+            - generic:
+              - img "Excellence Image"
+            - generic:
+              - img "Excellence Image"
+            - generic:
+              - img "Excellence Image"
+            - generic:
+              - img "Excellence Image"
+            - generic:
+              - img "Excellence Image"
+            - generic:
+              - img "Excellence Image"
+            - button "Previous slide" [ref=f3e159] [cursor=pointer]:
+              - img "left-btn" [ref=f3e160]
+            - button "Next slide" [ref=f3e161] [cursor=pointer]:
+              - img "right-btn" [ref=f3e162]
+          - generic [ref=f3e167]:
+            - generic [ref=f3e168]:
+              - text: DSU Centre for
+              - generic [ref=f3e169]: NVIDIA AI Factory & Generative AI
+            - generic [ref=f3e170]:
+              - text: Powered By
+              - img "NVIDIA Logo" [ref=f3e172]
+            - generic [ref=f3e173]: We have partnered with NVIDIA to create an AI architecture that enables students to build, train & deploy large-scale AI systems across vision, language, and data-intensive domains.
+          - link [ref=f3e175] [cursor=pointer]:
+            - /url: /NVIDIA
+            - text: View All Centers
+            - img "home-btn" [ref=f3e176]
+      - generic [ref=f3e178]:
+        - generic [ref=f3e179]:
+          - heading "Industry-Integrated Academic Programs" [level=2] [ref=f3e180]
+          - generic [ref=f3e182]: Designed to align with real-world industry and emerging technologies
+        - generic [ref=f3e185]:
+          - generic [ref=f3e187]:
+            - img "Academic Programs" [ref=f3e189]
+            - img "Academic Programs" [ref=f3e191]
+            - heading "School of Engineering" [level=3] [ref=f3e192]
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Undergraduate (UG)
+                  - generic:
+                    - generic:
+                      - link "BCA":
+                        - /url: /academics
+                - generic:
+                  - generic: Postgraduate (PG)
+                  - generic:
+                    - generic:
+                      - link "MCA":
+                        - /url: /academics
+                    - generic:
+                      - link "M.Sc":
+                        - /url: /academics
+          - generic [ref=f3e194]:
+            - img "Academic Programs" [ref=f3e196]
+            - img "Academic Programs" [ref=f3e198]
+            - heading "School of Computer Applications" [level=3] [ref=f3e199]
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Undergraduate (UG)
+                  - generic:
+                    - generic:
+                      - link "BCA":
+                        - /url: /academics
+                - generic:
+                  - generic: Postgraduate (PG)
+                  - generic:
+                    - generic:
+                      - link "MCA":
+                        - /url: /academics
+                    - generic:
+                      - link "M.Sc":
+                        - /url: /academics
+          - generic [ref=f3e201]:
+            - img "Academic Programs" [ref=f3e203]
+            - img "Academic Programs" [ref=f3e205]
+            - heading "School of Law" [level=3] [ref=f3e206]
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Undergraduate (UG)
+                  - generic:
+                    - generic:
+                      - link "BCA":
+                        - /url: /academics
+                - generic:
+                  - generic: Postgraduate (PG)
+                  - generic:
+                    - generic:
+                      - link "MCA":
+                        - /url: /academics
+                    - generic:
+                      - link "M.Sc":
+                        - /url: /academics
+          - generic [ref=f3e208]:
+            - img "Academic Programs" [ref=f3e210]
+            - img "Academic Programs" [ref=f3e212]
+            - heading "School of Commerce & Management" [level=3] [ref=f3e213]
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Undergraduate (UG)
+                  - generic:
+                    - generic:
+                      - link "BCA":
+                        - /url: /academics
+                - generic:
+                  - generic: Postgraduate (PG)
+                  - generic:
+                    - generic:
+                      - link "MCA":
+                        - /url: /academics
+                    - generic:
+                      - link "M.Sc":
+                        - /url: /academics
+          - generic [ref=f3e215]:
+            - img "Academic Programs" [ref=f3e217]
+            - img "Academic Programs" [ref=f3e219]
+            - heading "School of Basic & Applied Sciences" [level=3] [ref=f3e220]
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Undergraduate (UG)
+                  - generic:
+                    - generic:
+                      - link "BCA":
+                        - /url: /academics
+                - generic:
+                  - generic: Postgraduate (PG)
+                  - generic:
+                    - generic:
+                      - link "MCA":
+                        - /url: /academics
+                    - generic:
+                      - link "M.Sc":
+                        - /url: /academics
+          - generic [ref=f3e222]:
+            - img "Academic Programs" [ref=f3e224]
+            - img "Academic Programs" [ref=f3e226]
+            - heading "School of Arts, Design & Humanities" [level=3] [ref=f3e227]
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Undergraduate (UG)
+                  - generic:
+                    - generic:
+                      - link "BCA":
+                        - /url: /academics
+                - generic:
+                  - generic: Postgraduate (PG)
+                  - generic:
+                    - generic:
+                      - link "MCA":
+                        - /url: /academics
+                    - generic:
+                      - link "M.Sc":
+                        - /url: /academics
+          - generic [ref=f3e229]:
+            - img "Academic Programs" [ref=f3e231]
+            - img "Academic Programs" [ref=f3e233]
+            - heading "School of Design & Digital Transmedia" [level=3] [ref=f3e234]
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Undergraduate (UG)
+                  - generic:
+                    - generic:
+                      - link "BCA":
+                        - /url: /academics
+                - generic:
+                  - generic: Postgraduate (PG)
+                  - generic:
+                    - generic:
+                      - link "MCA":
+                        - /url: /academics
+                    - generic:
+                      - link "M.Sc":
+                        - /url: /academics
+          - generic [ref=f3e236]:
+            - img "Academic Programs" [ref=f3e238]
+            - img "Academic Programs" [ref=f3e240]
+            - heading "School of Health Sciences" [level=3] [ref=f3e241]
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Undergraduate (UG)
+                  - generic:
+                    - generic:
+                      - link "BCA":
+                        - /url: /academics
+                - generic:
+                  - generic: Postgraduate (PG)
+                  - generic:
+                    - generic:
+                      - link "MCA":
+                        - /url: /academics
+                    - generic:
+                      - link "M.Sc":
+                        - /url: /academics
+          - generic [ref=f3e243]:
+            - img "Academic Programs" [ref=f3e245]
+            - img "Academic Programs" [ref=f3e247]
+            - heading "Online Degree Programs" [level=3] [ref=f3e248]
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Undergraduate (UG)
+                  - generic:
+                    - generic:
+                      - link "BCA":
+                        - /url: /academics
+                - generic:
+                  - generic: Postgraduate (PG)
+                  - generic:
+                    - generic:
+                      - link "MCA":
+                        - /url: /academics
+                    - generic:
+                      - link "M.Sc":
+                        - /url: /academics
+          - generic [ref=f3e250]:
+            - img "Academic Programs" [ref=f3e252]
+            - img "Academic Programs" [ref=f3e254]
+            - heading "Dr. Chandramma Dayananda Sagar Institute of Medical Education & Research" [level=3] [ref=f3e255]
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Undergraduate (UG)
+                  - generic:
+                    - generic:
+                      - link "BCA":
+                        - /url: /academics
+                - generic:
+                  - generic: Postgraduate (PG)
+                  - generic:
+                    - generic:
+                      - link "MCA":
+                        - /url: /academics
+                    - generic:
+                      - link "M.Sc":
+                        - /url: /academics
+      - generic [ref=f3e257]:
+        - generic [ref=f3e258]:
+          - heading "Research & Innovation" [level=2] [ref=f3e259]
+          - generic [ref=f3e261]: We foster a strong research culture through interdisciplinary collaboration, funded projects, and industry partnerships.
+        - generic [ref=f3e262]:
+          - tablist [ref=f3e263]:
+            - tab "Research-icon-1 Research" [selected] [ref=f3e264] [cursor=pointer]:
+              - img "Research-icon-1" [ref=f3e266]
+              - generic [ref=f3e267]: Research
+            - tab [ref=f3e268] [cursor=pointer]:
+              - img "Research-icon-1" [ref=f3e270]
+              - generic [ref=f3e271]: Incubation & Entrepreneurship
+            - tab "Research-icon-1 Innovation Labs" [ref=f3e272] [cursor=pointer]:
+              - img "Research-icon-1" [ref=f3e274]
+              - generic [ref=f3e275]: Innovation Labs
+          - tabpanel [ref=f3e276]:
+            - generic [ref=f3e277]:
+              - generic [ref=f3e278]:
+                - generic [ref=f3e279]: Research at DSU
+                - generic [ref=f3e280]: In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India's leading educational institutions today. This growth is the result of the institutions focused effort to advance knowledge and educate students in..
+              - generic [ref=f3e281]:
+                - generic [ref=f3e284]:
+                  - link "Ph.D Admissions" [ref=f3e286] [cursor=pointer]:
+                    - /url: /
+                    - img "Publication Media" [ref=f3e288]
+                    - generic [ref=f3e289]:
+                      - heading "Ph.D Admissions" [level=3] [ref=f3e290]
+                      - img "Arrow" [ref=f3e292]
+                  - link "Research Supervisors" [ref=f3e294] [cursor=pointer]:
+                    - /url: /
+                    - img "Publication Media" [ref=f3e296]
+                    - generic [ref=f3e297]:
+                      - heading "Research Supervisors" [level=3] [ref=f3e298]
+                      - img "Arrow" [ref=f3e300]
+                  - link "Ph.D Regulations" [ref=f3e302] [cursor=pointer]:
+                    - /url: /
+                    - img "Publication Media" [ref=f3e304]
+                    - generic [ref=f3e305]:
+                      - heading "Ph.D Regulations" [level=3] [ref=f3e306]
+                      - img "Arrow" [ref=f3e308]
+                  - link "Ph.D Course Work Syllabus" [ref=f3e310] [cursor=pointer]:
+                    - /url: /
+                    - img "Publication Media" [ref=f3e312]
+                    - generic [ref=f3e313]:
+                      - heading "Ph.D Course Work Syllabus" [level=3] [ref=f3e314]
+                      - img "Arrow" [ref=f3e316]
+                - generic [ref=f3e318]:
+                  - generic [ref=f3e320]:
+                    - img "Icon" [ref=f3e322]
+                    - generic [ref=f3e323]:
+                      - generic [ref=f3e324]: "0"
+                      - generic [ref=f3e325]: Publications
+                  - generic [ref=f3e327]:
+                    - img "Icon" [ref=f3e329]
+                    - generic [ref=f3e330]:
+                      - generic [ref=f3e331]: "0"
+                      - generic [ref=f3e332]: Funded Research Projects
+                  - generic [ref=f3e334]:
+                    - img "Icon" [ref=f3e336]
+                    - generic [ref=f3e337]:
+                      - generic [ref=f3e338]: "0"
+                      - generic [ref=f3e339]: Innovation Driven Labs
+                  - link [ref=f3e340] [cursor=pointer]:
+                    - /url: /academics
+                    - img "home-btn" [ref=f3e341]
+                    - text: UG Research Forum
+                  - link [ref=f3e343] [cursor=pointer]:
+                    - /url: /academics
+                    - text: Explore More
+                    - img "home-btn" [ref=f3e344]
+      - generic [ref=f3e345]:
+        - img "Industry Background" [ref=f3e346]
+        - generic [ref=f3e347]:
+          - generic [ref=f3e348]:
+            - heading "Industry Collaboration" [level=2] [ref=f3e349]
+            - generic [ref=f3e350]: Built with Industry, Not Just for Industry
+          - generic [ref=f3e353]:
+            - link "Industry Collaboration" [ref=f3e355] [cursor=pointer]:
+              - /url: /academics/industry-collabration
+              - img "Internship & Training Opportunities" [ref=f3e357]
+              - generic [ref=f3e358]:
+                - generic [ref=f3e359]: 400+ Annual Internships
+                - heading "Internship & Training Opportunities" [level=3] [ref=f3e360]
+            - link "Industry Collaboration" [ref=f3e362] [cursor=pointer]:
+              - /url: /academics/industry-collabration
+              - img "Internship & Training Opportunities" [ref=f3e364]
+              - generic [ref=f3e365]:
+                - generic [ref=f3e366]: 18+ Sponsored Labs
+                - heading "Industry-sponsored Labs" [level=3] [ref=f3e367]
+            - link "Industry Collaboration" [ref=f3e369] [cursor=pointer]:
+              - /url: /academics/industry-collabration
+              - img "Internship & Training Opportunities" [ref=f3e371]
+              - generic [ref=f3e372]:
+                - generic [ref=f3e373]: ₹3.2 Cr Consultancy Revenue
+                - heading "Consultancy & Innovation Projects" [level=3] [ref=f3e374]
+            - link "Industry Collaboration" [ref=f3e376] [cursor=pointer]:
+              - /url: /academics/industry-collabration
+              - img "Internship & Training Opportunities" [ref=f3e378]
+              - generic [ref=f3e379]:
+                - generic [ref=f3e380]: 18+ Sponsored Labs
+                - heading "Industry-sponsored Labs" [level=3] [ref=f3e381]
+          - link "Explore Industry Collaborations" [ref=f3e383] [cursor=pointer]:
+            - /url: /academics/industry-collabration
+          - generic [ref=f3e386]:
+            - generic [ref=f3e387]: OUR INDUSTRY PARTNERS INCLUDE
+            - generic [ref=f3e389]:
+              - img "Industry Partner" [ref=f3e392]
+              - img "Industry Partner" [ref=f3e395]
+              - img "Industry Partner" [ref=f3e398]
+              - img "Industry Partner" [ref=f3e401]
+              - img "Industry Partner" [ref=f3e404]
+              - img "Industry Partner" [ref=f3e407]
+              - img "Industry Partner" [ref=f3e410]
+              - img "Industry Partner" [ref=f3e413]
+              - img "Industry Partner" [ref=f3e416]
+              - img "Industry Partner" [ref=f3e419]
+              - img "Industry Partner" [ref=f3e422]
+      - generic [ref=f3e424]:
+        - generic [ref=f3e425]:
+          - generic [ref=f3e427]:
+            - generic [ref=f3e429]:
+              - img "home-about-icon" [ref=f3e431]
+              - generic [ref=f3e432]: "0"
+              - generic [ref=f3e433]: Students Enrolled
+            - generic [ref=f3e435]:
+              - img "home-about-icon" [ref=f3e437]
+              - generic [ref=f3e438]: "0"
+              - generic [ref=f3e439]: UG Courses
+            - generic [ref=f3e441]:
+              - img "home-about-icon" [ref=f3e443]
+              - generic [ref=f3e444]: "0"
+              - generic [ref=f3e445]: PG Courses
+            - generic [ref=f3e447]:
+              - img "home-about-icon" [ref=f3e449]
+              - generic [ref=f3e450]: "0"
+              - generic [ref=f3e451]: Faculties
+            - generic [ref=f3e453]:
+              - img "home-about-icon" [ref=f3e455]
+              - generic [ref=f3e456]: "0"
+              - generic [ref=f3e457]: Colleges
+          - generic [ref=f3e459]:
+            - img "Virtual Tour" [ref=f3e460]
+            - link "Virtual Tour" [ref=f3e461] [cursor=pointer]:
+              - /url: /
+              - img "360 Icon" [ref=f3e463]
+              - generic [ref=f3e464]: VIRTUAL TOUR
+        - generic [ref=f3e465]:
+          - generic [ref=f3e467]:
+            - generic [ref=f3e468]:
+              - generic [ref=f3e469]:
+                - generic [ref=f3e470]: THE VISIONARIES
+                - heading "Our Leadership" [level=2] [ref=f3e471]
+              - generic [ref=f3e475]:
+                - generic [ref=f3e478]:
+                  - img "leadership-1" [ref=f3e480]
+                  - generic [ref=f3e481]: LATE SHRI R DAYANANDA SAGAR
+                  - generic [ref=f3e482]: Founding Father
+                  - generic [ref=f3e483]: Our founding father, late Sri R Dayananda Sagar, was a graduate in Arts & Commerce from India & a barrister-at-law from England.
+                - generic [ref=f3e486]:
+                  - img "leadership-1" [ref=f3e488]
+                  - generic [ref=f3e489]: LATE SHRI R DAYANANDA SAGAR -2
+                  - generic [ref=f3e490]: Founding Father
+                  - generic [ref=f3e491]: Our founding father, late Sri R Dayananda Sagar, was a graduate in Arts & Commerce from India & a barrister-at-law from England.
+            - img "leadership" [ref=f3e494]
+          - generic [ref=f3e496]:
+            - generic [ref=f3e497]: ABOUT DSU
+            - heading "Honouring Our Legacy, Inspiring Tomorrow" [level=2] [ref=f3e498]
+            - generic [ref=f3e500]: Dayananda Sagar University is built on a legacy of academic excellence, innovation, and industry relevance. With world-class infrastructure, experienced faculty, and a strong focus on research and placements, DSU prepares students to excel globally.
+            - generic [ref=f3e501]:
+              - generic [ref=f3e502]: "0"
+              - generic [ref=f3e503]: Years of Educational Excellence
+      - generic [ref=f3e505]:
+        - generic:
+          - img "overlay"
+          - img "overlay"
+        - generic [ref=f3e506]:
+          - heading "Celebrating Student Success" [level=2] [ref=f3e507]
+          - generic [ref=f3e509]: Achievements that inspire the future generation.
+        - generic [ref=f3e510]:
+          - generic [ref=f3e512]:
+            - generic [ref=f3e513]: "0"
+            - generic [ref=f3e514]: Placement Success Stories
+          - generic [ref=f3e516]:
+            - generic [ref=f3e517]: "0"
+            - generic [ref=f3e518]: Alumni Achievements
+          - generic [ref=f3e520]:
+            - generic [ref=f3e521]: "0"
+            - generic [ref=f3e522]: Student-led startups
+          - generic [ref=f3e524]:
+            - generic [ref=f3e525]: "0"
+            - generic [ref=f3e526]: Esteemed Organisations
+        - generic [ref=f3e529]:
+          - link "Arjun Menon Arjun Menon Consultant at McKinsey B.Tech CSE, 2023 Badge Alumni" [ref=f3e531] [cursor=pointer]:
+            - /url: /videos/home-testimonial-1.mp4
+            - generic [ref=f3e534]:
+              - generic [ref=f3e536]:
+                - img "Arjun Menon" [ref=f3e538]
+                - generic [ref=f3e539]:
+                  - heading "Arjun Menon" [level=3] [ref=f3e540]
+                  - generic [ref=f3e541]: Consultant at McKinsey
+                  - generic [ref=f3e542]: B.Tech CSE, 2023
+              - generic [ref=f3e544]:
+                - img "Badge" [ref=f3e546]
+                - generic [ref=f3e547]: Alumni
+          - link "Priya Sharma Priya Sharma Systems Engineer at Infosys B.Tech CSE, 2025 Badge Placement" [ref=f3e549] [cursor=pointer]:
+            - /url: /videos/home-testimonial-2.mp4
+            - generic [ref=f3e552]:
+              - generic [ref=f3e554]:
+                - img "Priya Sharma" [ref=f3e556]
+                - generic [ref=f3e557]:
+                  - heading "Priya Sharma" [level=3] [ref=f3e558]
+                  - generic [ref=f3e559]: Systems Engineer at Infosys
+                  - generic [ref=f3e560]: B.Tech CSE, 2025
+              - generic [ref=f3e562]:
+                - img "Badge" [ref=f3e564]
+                - generic [ref=f3e565]: Placement
+          - link "Arjun Rao Arjun Rao Consultant at BCG B.Tech ECE, 2022 Badge Alumni" [ref=f3e567] [cursor=pointer]:
+            - /url: /videos/home-testimonial-3.mp4
+            - generic [ref=f3e570]:
+              - generic [ref=f3e572]:
+                - img "Arjun Rao" [ref=f3e574]
+                - generic [ref=f3e575]:
+                  - heading "Arjun Rao" [level=3] [ref=f3e576]
+                  - generic [ref=f3e577]: Consultant at BCG
+                  - generic [ref=f3e578]: B.Tech ECE, 2022
+              - generic [ref=f3e580]:
+                - img "Badge" [ref=f3e582]
+                - generic [ref=f3e583]: Alumni
+          - link "Justin Jose Justin Jose Founder, MyHealthAI B.Tech CSE, 2024 Badge Startup" [ref=f3e585] [cursor=pointer]:
+            - /url: /videos/home-testimonial-4.mp4
+            - generic [ref=f3e588]:
+              - generic [ref=f3e590]:
+                - img "Justin Jose" [ref=f3e592]
+                - generic [ref=f3e593]:
+                  - heading "Justin Jose" [level=3] [ref=f3e594]
+                  - generic [ref=f3e595]: Founder, MyHealthAI
+                  - generic [ref=f3e596]: B.Tech CSE, 2024
+              - generic [ref=f3e598]:
+                - img "Badge" [ref=f3e600]
+                - generic [ref=f3e601]: Startup
+          - link "Priya Sharma Priya Sharma Systems Engineer at Infosys B.Tech CSE, 2025 Badge Placement" [ref=f3e603] [cursor=pointer]:
+            - /url: /videos/home-testimonial-2.mp4
+            - generic [ref=f3e606]:
+              - generic [ref=f3e608]:
+                - img "Priya Sharma" [ref=f3e610]
+                - generic [ref=f3e611]:
+                  - heading "Priya Sharma" [level=3] [ref=f3e612]
+                  - generic [ref=f3e613]: Systems Engineer at Infosys
+                  - generic [ref=f3e614]: B.Tech CSE, 2025
+              - generic [ref=f3e616]:
+                - img "Badge" [ref=f3e618]
+                - generic [ref=f3e619]: Placement
+      - generic [ref=f3e620]:
+        - generic [ref=f3e621]:
+          - generic [ref=f3e622]:
+            - generic [ref=f3e623]:
+              - generic [ref=f3e624]: DSU CAMPUS
+              - heading "Campus Life" [level=2] [ref=f3e625]:
+                - text: Campus
+                - generic [ref=f3e626]: Life
+            - generic [ref=f3e627]: A dynamic campus environment that supports academic growth, creativity, & overall well-being.
+          - generic [ref=f3e629]:
+            - generic [ref=f3e630]: A future-ready campus designed to spark learning, creativity, and student well-being.
+            - generic [ref=f3e631]:
+              - generic [ref=f3e633]:
+                - generic [ref=f3e634]: "0"
+                - generic [ref=f3e635]: Clubs
+              - generic [ref=f3e637]:
+                - generic [ref=f3e638]: "0"
+                - generic [ref=f3e639]: Sports Facilities
+              - generic [ref=f3e641]:
+                - generic [ref=f3e642]: "0"
+                - generic [ref=f3e643]: Residents
+              - generic [ref=f3e645]:
+                - generic [ref=f3e646]: "0"
+                - generic [ref=f3e647]: Annual Events
+        - generic [ref=f3e650]:
+          - link [ref=f3e652] [cursor=pointer]:
+            - /url: /images/home-campus-life-2.webp
+            - img "Campus Life" [ref=f3e654]
+            - generic [ref=f3e655]:
+              - img "Campus Life Icon" [ref=f3e657]
+              - heading "Campus Life" [level=3] [ref=f3e658]
+          - link [ref=f3e660] [cursor=pointer]:
+            - /url: /images/home-campus-life-4.webp
+            - img "Modern Infrastructure" [ref=f3e662]
+            - generic [ref=f3e663]:
+              - img "Campus Life Icon" [ref=f3e665]
+              - heading "Modern Infrastructure" [level=3] [ref=f3e666]
+          - link [ref=f3e668] [cursor=pointer]:
+            - /url: /videos/home-campus-life-1.mp4
+            - generic [ref=f3e671]:
+              - img "Campus Life Icon" [ref=f3e673]
+              - heading "Sports & Recreation" [level=3] [ref=f3e674]
+          - link [ref=f3e676] [cursor=pointer]:
+            - /url: /images/home-campus-life-3.webp
+            - img "Hostel & Residential" [ref=f3e678]
+            - generic [ref=f3e679]:
+              - img "Campus Life Icon" [ref=f3e681]
+              - heading "Hostel & Residential" [level=3] [ref=f3e682]
+          - link [ref=f3e684] [cursor=pointer]:
+            - /url: /images/home-campus-life-5.webp
+            - img "Clubs & Student Activities" [ref=f3e686]
+            - generic [ref=f3e687]:
+              - img "Campus Life Icon" [ref=f3e689]
+              - heading "Clubs & Student Activities" [level=3] [ref=f3e690]
+      - generic [ref=f3e693]:
+        - generic [ref=f3e695]:
+          - generic [ref=f3e696]:
+            - heading "International Collaborations" [level=2] [ref=f3e697]
+            - generic [ref=f3e698]: Click on any item Flag to view DSU's partner universities.
+          - generic [ref=f3e699]:
+            - img "Collaboration Map" [ref=f3e701]
+            - button "Select undefined" [ref=f3e702] [cursor=pointer]:
+              - img "home-flag-1" [ref=f3e704]
+            - button "Select undefined" [ref=f3e705] [cursor=pointer]:
+              - img "home-flag-2" [ref=f3e707]
+              - generic: Country-2
+            - button "Select undefined" [ref=f3e708] [cursor=pointer]:
+              - img "home-flag-3" [ref=f3e710]
+              - generic: Country-3
+            - button "Select undefined" [ref=f3e711] [cursor=pointer]:
+              - img "home-flag-4" [ref=f3e713]
+              - generic: Country-4
+            - button "Select undefined" [ref=f3e714] [cursor=pointer]:
+              - img "home-flag-5" [ref=f3e716]
+              - generic: Country-5
+            - button "Select undefined" [ref=f3e717] [cursor=pointer]:
+              - img "home-flag-6" [ref=f3e719]
+              - generic: Country-6
+            - button "Select undefined" [ref=f3e720] [cursor=pointer]:
+              - img "home-flag-7" [ref=f3e722]
+              - generic: Country-7
+            - button "Select undefined" [ref=f3e723] [cursor=pointer]:
+              - img "home-flag-8" [ref=f3e725]
+              - generic: Country-8
+          - generic [ref=f3e726]:
+            - generic [ref=f3e728]:
+              - generic [ref=f3e729]: "0"
+              - generic [ref=f3e730]: Partner Universities
+            - generic [ref=f3e732]:
+              - generic [ref=f3e733]: "0"
+              - generic [ref=f3e734]: Countries
+            - generic [ref=f3e736]:
+              - generic [ref=f3e737]: Student
+              - generic [ref=f3e738]: Exchange Programs
+            - generic [ref=f3e740]:
+              - generic [ref=f3e741]: Global
+              - generic [ref=f3e742]: Research Initiatives
+            - generic [ref=f3e744]:
+              - generic [ref=f3e745]: Faculty
+              - generic [ref=f3e746]: Exchange Collaboration
+        - generic [ref=f3e749]:
+          - generic [ref=f3e751]:
+            - img "collab-usa" [ref=f3e753]
+            - generic [ref=f3e754]:
+              - generic [ref=f3e755]:
+                - img "home-flag-1" [ref=f3e757]
+                - heading "United States of America" [level=3] [ref=f3e758]
+              - generic [ref=f3e759]: USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.
+            - generic [ref=f3e760]:
+              - generic [ref=f3e761]: Partner Universities
+              - generic [ref=f3e762]:
+                - generic [ref=f3e763]: Northeastern University
+                - generic [ref=f3e764]: University of Evansville
+                - generic [ref=f3e765]: LeTourneau University
+                - generic [ref=f3e766]: University of South Carolina Aiken
+                - generic [ref=f3e767]: Worcester Polytechnic Institute
+                - link "More" [ref=f3e768] [cursor=pointer]:
+                  - /url: /collaborations/usa
+                  - text: + 1 More
+          - generic [ref=f3e770]:
+            - generic [ref=f3e773]:
+              - heading [level=3] [ref=f3e777]: Country-2
+              - generic [ref=f3e778]: USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.2
+            - generic [ref=f3e779]:
+              - generic [ref=f3e780]: Partner Universities
+              - generic [ref=f3e781]:
+                - generic [ref=f3e782]: Northeastern University2
+                - generic [ref=f3e783]: University of Evansville2
+                - generic [ref=f3e784]: LeTourneau University2
+          - generic [ref=f3e786]:
+            - generic [ref=f3e789]:
+              - heading [level=3] [ref=f3e793]: Country-3
+              - generic [ref=f3e794]: USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.3
+            - generic [ref=f3e795]:
+              - generic [ref=f3e796]: Partner Universities
+              - generic [ref=f3e797]:
+                - generic [ref=f3e798]: Northeastern University3
+                - generic [ref=f3e799]: University of Evansville3
+                - generic [ref=f3e800]: LeTourneau University3
+                - generic [ref=f3e801]: University of South Carolina Aiken3
+                - generic [ref=f3e802]: Worcester Polytechnic Institute3
+                - link [ref=f3e803] [cursor=pointer]:
+                  - /url: /collaborations/usa
+                  - text: + 1 More
+          - generic [ref=f3e805]:
+            - generic [ref=f3e808]:
+              - heading [level=3] [ref=f3e812]: Country-4
+              - generic [ref=f3e813]: USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.4
+            - generic [ref=f3e814]:
+              - generic [ref=f3e815]: Partner Universities
+              - generic [ref=f3e816]:
+                - generic [ref=f3e817]: Northeastern University4
+                - generic [ref=f3e818]: University of Evansville4
+          - generic [ref=f3e820]:
+            - generic [ref=f3e823]:
+              - heading [level=3] [ref=f3e827]: Country-5
+              - generic [ref=f3e828]: USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.5
+            - generic [ref=f3e829]:
+              - generic [ref=f3e830]: Partner Universities
+              - generic [ref=f3e831]:
+                - generic [ref=f3e832]: Northeastern University5
+                - generic [ref=f3e833]: University of Evansville5
+                - generic [ref=f3e834]: LeTourneau University5
+                - generic [ref=f3e835]: University of South Carolina Aiken5
+                - generic [ref=f3e836]: Worcester Polytechnic Institute5
+                - link [ref=f3e837] [cursor=pointer]:
+                  - /url: /collaborations/usa
+                  - text: + 1 More
+          - generic [ref=f3e839]:
+            - generic [ref=f3e842]:
+              - heading [level=3] [ref=f3e846]: Country-6
+              - generic [ref=f3e847]: USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.6
+            - generic [ref=f3e848]:
+              - generic [ref=f3e849]: Partner Universities
+              - generic [ref=f3e850]:
+                - generic [ref=f3e851]: Northeastern University6
+                - generic [ref=f3e852]: University of Evansville6
+                - generic [ref=f3e853]: Worcester Polytechnic Institute6
+                - generic [ref=f3e854]: Georgia Institute of Technology6
+          - generic [ref=f3e856]:
+            - generic [ref=f3e859]:
+              - heading [level=3] [ref=f3e863]: Country-7
+              - generic [ref=f3e864]: USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.7
+            - generic [ref=f3e865]:
+              - generic [ref=f3e866]: Partner Universities
+              - generic [ref=f3e867]:
+                - generic [ref=f3e868]: Northeastern University7
+                - generic [ref=f3e869]: University of Evansville7
+                - generic [ref=f3e870]: LeTourneau University7
+                - generic [ref=f3e871]: University of South Carolina Aiken7
+                - generic [ref=f3e872]: Worcester Polytechnic Institute7
+                - link [ref=f3e873] [cursor=pointer]:
+                  - /url: /collaborations/usa
+                  - text: + 1 More
+          - generic [ref=f3e875]:
+            - generic [ref=f3e878]:
+              - heading [level=3] [ref=f3e882]: Country-8
+              - generic [ref=f3e883]: USA collaborations give students access to world-class education, advanced research, and strong industry networks, enhancing global learning and career opportunities.8
+            - generic [ref=f3e884]:
+              - generic [ref=f3e885]: Partner Universities
+              - generic [ref=f3e886]:
+                - generic [ref=f3e887]: Northeastern University8
+                - generic [ref=f3e888]: University of Evansville8
+                - generic [ref=f3e889]: LeTourneau University8
+                - generic [ref=f3e890]: University of South Carolina Aiken8
+                - generic [ref=f3e891]: Worcester Polytechnic Institute8
+                - link [ref=f3e892] [cursor=pointer]:
+                  - /url: /collaborations/usa
+                  - text: + 1 More
+      - generic [ref=f3e895]:
+        - generic [ref=f3e896]:
+          - heading "Latest News & Events" [level=2] [ref=f3e897]
+          - generic [ref=f3e899]: Stay updated with the latest happenings, achievements, and events across the university.
+        - generic [ref=f3e900]:
+          - generic [ref=f3e903]:
+            - generic [ref=f3e905]:
+              - img "Media image" [ref=f3e907]
+              - generic [ref=f3e908]:
+                - generic [ref=f3e909]: The Economic Times
+                - generic [ref=f3e910]: "As artificial intelligence reshapes industries, hospitality faces a distinct challenge: preserving human connection while embracing automation."
+                - link "Read More >" [ref=f3e911] [cursor=pointer]:
+                  - /url: /news-events
+            - generic [ref=f3e913]:
+              - img "Media image" [ref=f3e915]
+              - generic [ref=f3e916]:
+                - generic [ref=f3e917]: The Economic Times
+                - generic [ref=f3e918]: "As artificial intelligence reshapes industries, hospitality faces a distinct challenge: preserving human connection while embracing automation."
+                - link "Read More >" [ref=f3e919] [cursor=pointer]:
+                  - /url: /news-events
+          - generic [ref=f3e920]:
+            - generic [ref=f3e922]:
+              - heading "Announcements" [level=3] [ref=f3e923]
+              - generic [ref=f3e924]:
+                - button "Previous announcement" [ref=f3e925] [cursor=pointer]:
+                  - img "Previous" [ref=f3e926]
+                - button "Next announcement" [ref=f3e927] [cursor=pointer]:
+                  - img "Next" [ref=f3e928]
+            - generic [ref=f3e930]:
+              - generic [ref=f3e932]:
+                - img "Media image" [ref=f3e934]
+                - generic [ref=f3e935]:
+                  - generic [ref=f3e936]:
+                    - heading "PGCET & DSAT" [level=4] [ref=f3e937]
+                    - generic [ref=f3e938]: School of commerce and Management studies welcomes the full time MBA students from DSAT & PGCET.
+                  - link "Read More >" [ref=f3e939] [cursor=pointer]:
+                    - /url: /announcements
+              - generic [ref=f3e941]:
+                - img "Media image" [ref=f3e943]
+                - generic [ref=f3e944]:
+                  - generic [ref=f3e945]:
+                    - heading "AIC-DSU Innovation" [level=4] [ref=f3e946]
+                    - generic [ref=f3e947]: School of commerce and Management studies Welcomes the full time MBA students from DSAT & PGCET.
+                  - link "Read More >" [ref=f3e948] [cursor=pointer]:
+                    - /url: /announcements
+              - generic [ref=f3e950]:
+                - img "Media image" [ref=f3e952]
+                - generic [ref=f3e953]:
+                  - generic [ref=f3e954]:
+                    - heading "BUSINESS APPLICATIONS OF" [level=4] [ref=f3e955]
+                    - generic [ref=f3e956]: School of commerce and Management studies Welcomes the full time MBA students from DSAT & PGCET.
+                  - link "Read More >" [ref=f3e957] [cursor=pointer]:
+                    - /url: /announcements
+              - generic [ref=f3e959]:
+                - img "Media image" [ref=f3e961]
+                - generic [ref=f3e962]:
+                  - generic [ref=f3e963]:
+                    - heading "AIC-DSU Innovation" [level=4] [ref=f3e964]
+                    - generic [ref=f3e965]: School of commerce and Management studies Welcomes the full time MBA students from DSAT & PGCET.
+                  - link "Read More >" [ref=f3e966] [cursor=pointer]:
+                    - /url: /announcements
+              - generic [ref=f3e968]:
+                - img "Media image" [ref=f3e970]
+                - generic [ref=f3e971]:
+                  - generic [ref=f3e972]:
+                    - heading "BUSINESS APPLICATIONS OF" [level=4] [ref=f3e973]
+                    - generic [ref=f3e974]: School of commerce and Management studies Welcomes the full time MBA students from DSAT & PGCET.
+                  - link "Read More >" [ref=f3e975] [cursor=pointer]:
+                    - /url: /announcements
+      - generic [ref=f3e977]:
+        - generic [ref=f3e978]:
+          - heading "News & Events" [level=2] [ref=f3e979]
+          - generic [ref=f3e980]:
+            - button "Previous slide" [ref=f3e981] [cursor=pointer]:
+              - img "Previous" [ref=f3e982]
+            - button "Next slide" [ref=f3e983] [cursor=pointer]:
+              - img "Next" [ref=f3e984]
+        - generic [ref=f3e986]:
+          - generic [ref=f3e988]:
+            - generic [ref=f3e989]:
+              - 'img "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047" [ref=f3e991]'
+              - generic [ref=f3e992]:
+                - generic [ref=f3e993]: 29th
+                - generic [ref=f3e994]: Dec 2025
+            - generic [ref=f3e995]:
+              - 'heading "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047" [level=3] [ref=f3e996]'
+              - link "Read More >" [ref=f3e997] [cursor=pointer]:
+                - /url: /news-events
+          - generic [ref=f3e999]:
+            - generic [ref=f3e1000]:
+              - 'img "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047" [ref=f3e1002]'
+              - generic [ref=f3e1003]:
+                - generic [ref=f3e1004]: 29th
+                - generic [ref=f3e1005]: Dec 2025
+            - generic [ref=f3e1006]:
+              - 'heading "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047" [level=3] [ref=f3e1007]'
+              - link "Read More >" [ref=f3e1008] [cursor=pointer]:
+                - /url: /news-events
+          - generic [ref=f3e1010]:
+            - generic [ref=f3e1011]:
+              - 'img "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047" [ref=f3e1013]'
+              - generic [ref=f3e1014]:
+                - generic [ref=f3e1015]: 29th
+                - generic [ref=f3e1016]: Dec 2025
+            - generic [ref=f3e1017]:
+              - 'heading "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047" [level=3] [ref=f3e1018]'
+              - link "Read More >" [ref=f3e1019] [cursor=pointer]:
+                - /url: /news-events
+          - generic [ref=f3e1021]:
+            - generic [ref=f3e1022]:
+              - 'img "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047" [ref=f3e1024]'
+              - generic [ref=f3e1025]:
+                - generic [ref=f3e1026]: 29th
+                - generic [ref=f3e1027]: Dec 2025
+            - generic [ref=f3e1028]:
+              - 'heading "AI Adoption in Higher Education: Key for Building a Net-Zero Future Enabled Viksit Bharat 2047" [level=3] [ref=f3e1029]'
+              - link "Read More >" [ref=f3e1030] [cursor=pointer]:
+                - /url: /news-events
+      - generic [ref=f3e1031]:
+        - img "Journey" [ref=f3e1032]
+        - generic [ref=f3e1033]:
+          - heading "Start Your Journey With Us" [level=2] [ref=f3e1034]
+          - paragraph [ref=f3e1036]: Take the next step toward a future-ready education supported by innovation, research, and industry collaboration.
+          - generic [ref=f3e1037]:
+            - link [ref=f3e1038] [cursor=pointer]:
+              - /url: /admission
+              - text: Apply Now
+              - img "Arrow" [ref=f3e1040]
+            - link [ref=f3e1041] [cursor=pointer]:
+              - /url: /contact
+              - text: Talk to an Advisor
+              - img "Arrow" [ref=f3e1043]
+            - link [ref=f3e1044] [cursor=pointer]:
+              - /url: /contact
+              - text: Book a Campus Visit
+              - img "Arrow" [ref=f3e1046]
+          - generic [ref=f3e1047]:
+            - generic [ref=f3e1049]:
+              - img "Accreditation" [ref=f3e1051]
+              - generic [ref=f3e1052]: NAAC A+ Accredited
+            - generic [ref=f3e1053]: UGC Recognized
+  - contentinfo [ref=f3e1056]:
+    - generic [ref=f3e1057]:
+      - generic [ref=f3e1058]:
+        - generic [ref=f3e1059]:
+          - img "DSU Logo" [ref=f3e1061]
+          - generic [ref=f3e1062]: Empowering minds. Transforming lives. Building an Al-driven future through innovation, research and excellence
+          - generic [ref=f3e1063]:
+            - link [ref=f3e1065] [cursor=pointer]:
+              - /url: /
+              - img "Facebook" [ref=f3e1066]
+            - link [ref=f3e1068] [cursor=pointer]:
+              - /url: /
+              - img "Twitter" [ref=f3e1069]
+            - link [ref=f3e1071] [cursor=pointer]:
+              - /url: /
+              - img "Instagram" [ref=f3e1072]
+            - link [ref=f3e1074] [cursor=pointer]:
+              - /url: /
+              - img "LinkedIn" [ref=f3e1075]
+            - link [ref=f3e1077] [cursor=pointer]:
+              - /url: /
+              - img "Youtube" [ref=f3e1078]
+          - generic [ref=f3e1079]:
+            - generic [ref=f3e1080]: DOWNLOAD BROCHURES
+            - generic [ref=f3e1081]:
+              - combobox [ref=f3e1082] [cursor=pointer]:
+                - generic [ref=f3e1083]: Select Program
+                - img [aria-hidden]: ▼
+              - textbox [aria-hidden] [ref=f3e1084]
+            - button [ref=f3e1085] [cursor=pointer]:
+              - img "Download Icon" [ref=f3e1087]
+              - text: Download PDF
+        - generic [ref=f3e1088]:
+          - generic [ref=f3e1089]:
+            - generic [ref=f3e1090]:
+              - generic [ref=f3e1091]: ADMISSION CORNER
+              - generic [ref=f3e1092]:
+                - link "Admissions details" [ref=f3e1095] [cursor=pointer]:
+                  - /url: "#"
+                - link "DSAT Admissions - Apply Online" [ref=f3e1098] [cursor=pointer]:
+                  - /url: "#"
+                - link "Direct Admissions - Apply Online" [ref=f3e1101] [cursor=pointer]:
+                  - /url: "#"
+                - link "Course Eligibility & Fee Structure" [ref=f3e1104] [cursor=pointer]:
+                  - /url: "#"
+            - generic [ref=f3e1105]:
+              - generic [ref=f3e1106]: ADMISSIONS HELPLINE
+              - generic [ref=f3e1107]:
+                - generic [ref=f3e1108]:
+                  - generic [ref=f3e1109]: "Email:"
+                  - link "admissions@dsu.edu.in" [ref=f3e1111] [cursor=pointer]:
+                    - /url: mailto:admissions@dsu.edu.in
+                - generic [ref=f3e1112]:
+                  - generic [ref=f3e1113]: "Phone:"
+                  - link "080 46461800" [ref=f3e1115] [cursor=pointer]:
+                    - /url: tel:08046461800
+                  - generic [ref=f3e1116]: /
+                  - link "+91 6366885507" [ref=f3e1118] [cursor=pointer]:
+                    - /url: tel:+916366885507
+                - generic [ref=f3e1119]: INTERNATIONAL ADMISSIONS
+                - generic [ref=f3e1121]:
+                  - generic [ref=f3e1122]: "Phone:"
+                  - link "+91 9606022152" [ref=f3e1124] [cursor=pointer]:
+                    - /url: tel:+919606022152
+                  - generic [ref=f3e1125]: /
+                  - link "+91 9606022150" [ref=f3e1127] [cursor=pointer]:
+                    - /url: tel:+919606022150
+                  - generic [ref=f3e1128]: /
+                  - link "+91 9606022149" [ref=f3e1130] [cursor=pointer]:
+                    - /url: tel:+919606022149
+            - generic [ref=f3e1131]:
+              - generic [ref=f3e1132]: REGIONAL PRESENCE
+              - generic [ref=f3e1133]:
+                - generic [ref=f3e1134]:
+                  - generic [ref=f3e1135]: "East Region:"
+                  - link "8240216553" [ref=f3e1137] [cursor=pointer]:
+                    - /url: tel:8240216553
+                - generic [ref=f3e1138]:
+                  - generic [ref=f3e1139]: "West Region:"
+                  - link "9741488001" [ref=f3e1141] [cursor=pointer]:
+                    - /url: tel:9741488001
+                - generic [ref=f3e1142]:
+                  - generic [ref=f3e1143]: "North Region:"
+                  - link "7488983636" [ref=f3e1145] [cursor=pointer]:
+                    - /url: tel:7488983636
+                - generic [ref=f3e1146]:
+                  - generic [ref=f3e1147]: "South Region:"
+                  - link "9962835358" [ref=f3e1149] [cursor=pointer]:
+                    - /url: tel:9962835358
+          - generic [ref=f3e1150]:
+            - generic [ref=f3e1151]:
+              - generic [ref=f3e1152]: "DSU MAIN CAMPUS:"
+              - generic [ref=f3e1153]:
+                - generic [ref=f3e1154]: Devarakaggalahalli, Harohalli, Kanakapura Road, Bengaluru South Dt. – 562 112
+                - generic [ref=f3e1156]:
+                  - generic [ref=f3e1157]: "Email:"
+                  - link "admissions@dsu.edu.in" [ref=f3e1159] [cursor=pointer]:
+                    - /url: mailto:admissions@dsu.edu.in
+                - generic [ref=f3e1160]:
+                  - generic [ref=f3e1161]: "Admissions Helpline:"
+                  - link "080 46461800" [ref=f3e1163] [cursor=pointer]:
+                    - /url: tel:08046461800
+                  - generic [ref=f3e1164]: /
+                  - link "080 49092800" [ref=f3e1166] [cursor=pointer]:
+                    - /url: tel:08049092800
+            - generic [ref=f3e1167]:
+              - generic [ref=f3e1168]: "DSU CITY INNOVATION CAMPUS:"
+              - generic [ref=f3e1169]:
+                - generic [ref=f3e1170]: Administrative & Main Admission office, Kudlu Gate, Hosur Road, Bengaluru - 560 114
+                - generic [ref=f3e1172]:
+                  - generic [ref=f3e1173]: "E-mail:"
+                  - link "admissions@dsu.edu.in" [ref=f3e1175] [cursor=pointer]:
+                    - /url: mailto:admissions@dsu.edu.in
+                  - generic [ref=f3e1176]: "|"
+                  - link "dsat@dsu.edu.in" [ref=f3e1178] [cursor=pointer]:
+                    - /url: mailto:dsat@dsu.edu.in
+                - generic [ref=f3e1179]:
+                  - generic [ref=f3e1180]: "Admissions Helpline:"
+                  - link "080 46461800" [ref=f3e1182] [cursor=pointer]:
+                    - /url: tel:08046461800
+                  - generic [ref=f3e1183]: /
+                  - link "080 49092800" [ref=f3e1185] [cursor=pointer]:
+                    - /url: tel:08049092800
+                  - generic [ref=f3e1186]: /
+                  - link "+91 7760964277" [ref=f3e1188] [cursor=pointer]:
+                    - /url: tel:+917760964277
+                  - generic [ref=f3e1189]: /
+                  - link "8296316737" [ref=f3e1191] [cursor=pointer]:
+                    - /url: tel:8296316737
+                  - generic [ref=f3e1192]: /
+                  - link "6366885507" [ref=f3e1194] [cursor=pointer]:
+                    - /url: tel:6366885507
+                - generic [ref=f3e1195]:
+                  - generic [ref=f3e1196]: "Office of Registrar:"
+                  - generic [ref=f3e1198]:
+                    - link "080 4909 2910" [ref=f3e1199] [cursor=pointer]:
+                      - /url: tel:08049092910
+                    - text: /
+                    - link "11" [ref=f3e1200] [cursor=pointer]:
+                      - /url: tel:08049092911
+                - generic [ref=f3e1201]:
+                  - generic [ref=f3e1202]: "Office of Dean (Engineering):"
+                  - generic [ref=f3e1204]:
+                    - link "+91 80 4909 2986" [ref=f3e1205] [cursor=pointer]:
+                      - /url: tel:+918049092986
+                    - text: /
+                    - link "32" [ref=f3e1206] [cursor=pointer]:
+                      - /url: tel:+918049092932
+                    - text: /
+                    - link "33" [ref=f3e1207] [cursor=pointer]:
+                      - /url: tel:+918049092933
+                - generic [ref=f3e1208]:
+                  - generic [ref=f3e1209]: "Dean - MBA:"
+                  - link "080 4909 2931" [ref=f3e1211] [cursor=pointer]:
+                    - /url: tel:080 4909 2931
+                - generic [ref=f3e1212]:
+                  - generic [ref=f3e1213]: "Enquiry EMBA:"
+                  - link "080 4909 2930" [ref=f3e1215] [cursor=pointer]:
+                    - /url: tel:080 4909 2930
+                - generic [ref=f3e1216]:
+                  - generic [ref=f3e1217]: "Research Cell:"
+                  - link "080 4909 2912" [ref=f3e1219] [cursor=pointer]:
+                    - /url: tel:080 4909 2912
+            - generic [ref=f3e1220]:
+              - generic [ref=f3e1221]: "DSU CITY ADMISSIONS OFFICE:"
+              - generic [ref=f3e1222]:
+                - generic [ref=f3e1223]: Gate 2, 6th Floor, University Building, Dental Block, Kumaraswamy Layout, Bengaluru - 560111
+                - generic [ref=f3e1225]:
+                  - generic [ref=f3e1226]: "E-mail:"
+                  - link "enquiry@dsu.edu.in" [ref=f3e1228] [cursor=pointer]:
+                    - /url: mailto:enquiry@dsu.edu.in
+                  - generic [ref=f3e1229]: /
+                  - link "admissions@dsu.edu.in" [ref=f3e1231] [cursor=pointer]:
+                    - /url: mailto:admissions@dsu.edu.in
+                - generic [ref=f3e1232]:
+                  - generic [ref=f3e1233]: "Admissions Helpline:"
+                  - link "080 46461800" [ref=f3e1235] [cursor=pointer]:
+                    - /url: tel:08046461800
+                  - generic [ref=f3e1236]: /
+                  - link "080 49092800" [ref=f3e1238] [cursor=pointer]:
+                    - /url: tel:08049092800
+      - generic [ref=f3e1240]:
+        - generic [ref=f3e1241]:
+          - button "AI & INNOVATION" [expanded] [ref=f3e1242] [cursor=pointer]
+          - list [ref=f3e1248]:
+            - listitem [ref=f3e1249]:
+              - link "AI Factory" [ref=f3e1250] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1251]:
+              - link "Centres of Excellence" [ref=f3e1252] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1253]:
+              - link "Research Labs" [ref=f3e1254] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1255]:
+              - link "Innovation Hub" [ref=f3e1256] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1257]:
+              - link "Startups & Incubation" [ref=f3e1258] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1259]:
+              - link "Funded Research Projects" [ref=f3e1260] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1261]:
+              - link "Publications & Patents" [ref=f3e1262] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=f3e1263]:
+          - button "STUDENT & ACADEMICS" [ref=f3e1264] [cursor=pointer]
+          - list [ref=f3e1268]:
+            - listitem [ref=f3e1269]:
+              - link "AI-Enabled Academics" [ref=f3e1270] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1271]:
+              - link "Undergraduate Programs" [ref=f3e1272] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1273]:
+              - link "Postgraduate Programs" [ref=f3e1274] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1275]:
+              - link "Doctoral Studies" [ref=f3e1276] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1277]:
+              - link "Schools & Deitemments" [ref=f3e1278] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1279]:
+              - link "Academic Calendar" [ref=f3e1280] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1281]:
+              - link "Examinations" [ref=f3e1282] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1283]:
+              - link "International Programs" [ref=f3e1284] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=f3e1285]:
+          - button "COMMUNITY" [ref=f3e1286] [cursor=pointer]
+          - list [ref=f3e1290]:
+            - listitem [ref=f3e1291]:
+              - link "Alumni Network" [ref=f3e1292] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1293]:
+              - link "Testimonials" [ref=f3e1294] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1295]:
+              - link "Student Stories" [ref=f3e1296] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1297]:
+              - link "Clubs & Communities" [ref=f3e1298] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1299]:
+              - link "Community Activities" [ref=f3e1300] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1301]:
+              - link "Events & Workshops" [ref=f3e1302] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1303]:
+              - link "Media Coverage" [ref=f3e1304] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1305]:
+              - link "Gallery (Photo & Video)" [ref=f3e1306] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1307]:
+              - link "News Letter" [ref=f3e1308] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=f3e1309]:
+          - button "SUPPORT & CAREERS" [ref=f3e1310] [cursor=pointer]
+          - list [ref=f3e1314]:
+            - listitem [ref=f3e1315]:
+              - link "Placements & Careers" [ref=f3e1316] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1317]:
+              - link "Current Openings" [ref=f3e1318] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1319]:
+              - link "Recruit from DSU" [ref=f3e1320] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1321]:
+              - link "Career Development" [ref=f3e1322] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1323]:
+              - link "FAQs" [ref=f3e1324] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1325]:
+              - link "Downloads" [ref=f3e1326] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1327]:
+              - link "Contact Us" [ref=f3e1328] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1329]:
+              - link "Enquiry Form" [ref=f3e1330] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=f3e1331]:
+          - button "COMPLIANCE & QUICK LINKS" [ref=f3e1332] [cursor=pointer]
+          - list [ref=f3e1336]:
+            - listitem [ref=f3e1337]:
+              - link "IQAC" [ref=f3e1338] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1339]:
+              - link "NIRF" [ref=f3e1340] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1341]:
+              - link "NAAC" [ref=f3e1342] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1343]:
+              - link "Anti Ragging Cell" [ref=f3e1344] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1345]:
+              - link "Grievances" [ref=f3e1346] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1347]:
+              - link "Ombudsperson" [ref=f3e1348] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1349]:
+              - link "Ethics Committee" [ref=f3e1350] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1351]:
+              - link "IT Policy" [ref=f3e1352] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1353]:
+              - link "Institutional Development Plan" [ref=f3e1354] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1355]:
+              - link "Annual Audit Reports" [ref=f3e1356] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f3e1357]:
+              - link "Mandatory Disclosures" [ref=f3e1358] [cursor=pointer]:
+                - /url: "#"
+    - generic [ref=f3e1361]:
+      - generic [ref=f3e1362]: Copyright © 2026 DSU. All Rights Reserved
+      - generic [ref=f3e1363]:
+        - text: "Designed & developed By:"
+        - link "Intersmart Link" [ref=f3e1364] [cursor=pointer]:
+          - /url: https://www.intersmartsolution.com/
+          - img "Intersmart Logo" [ref=f3e1365]
+  - complementary "Floating Quick Actions" [ref=f3e1366]:
+    - generic [ref=f3e1367]:
+      - link "Apply Now":
+        - /url: /admission
+      - link "Apply Now" [ref=f3e1368] [cursor=pointer]:
+        - /url: /admission
+    - generic [ref=f3e1369]:
+      - generic: Chat on WhatsApp
+      - link "Chat on WhatsApp" [ref=f3e1370] [cursor=pointer]:
+        - /url: https://wa.me/917760964277
+    - generic [ref=f3e1371]:
+      - generic: Call Us
+      - link "Call Us" [ref=f3e1372] [cursor=pointer]:
+        - /url: tel:08049092800
+    - generic [ref=f3e1373]:
+      - generic: Share
+      - link "Share" [ref=f3e1374] [cursor=pointer]:
+        - /url: "#!"
+    - generic [ref=f3e1375]:
+      - generic: 360° Virtual Tour
+      - link "360° Virtual Tour" [ref=f3e1376] [cursor=pointer]:
+        - /url: "#!"
+  - button "Open Next.js Dev Tools" [ref=f3e1382] [cursor=pointer]

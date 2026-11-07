@@ -1,0 +1,1861 @@
+[    6776ms] [ERROR] Failed to load resource: net::ERR_CACHE_OPERATION_NOT_SUPPORTED @ http://localhost:3100/videos/home-testimonial-2.mp4:0
+[   16334ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   16785ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   17297ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   17854ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   18400ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   18940ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   19446ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   19883ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   20398ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   20824ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   21310ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   21765ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   22259ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   22701ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   23146ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   23591ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   24038ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   24508ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   24973ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   25388ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   25852ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   26283ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   26773ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   27240ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   27726ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   28189ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   28646ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   29125ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   29595ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   30050ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   30536ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   30572ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/images/logos/natwest.svg:0
+[   30914ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   30950ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/images/logos/natwest.svg:0
+[   31389ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   31425ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/images/logos/natwest.svg:0
+[   31850ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   31881ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/images/logos/natwest.svg:0
+[   32330ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   32365ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/images/logos/natwest.svg:0
+[   32800ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   32832ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/images/logos/natwest.svg:0
+[   33261ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   33672ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   34154ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   34602ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   35060ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   35527ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   36020ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   36459ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   36924ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   37358ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   37855ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   38327ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   38812ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   39217ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   39647ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   40064ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   40573ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   41048ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   41528ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   41937ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   42397ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   42858ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   42928ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=NWEwWcmuQA9q2hGf:0
+[   43405ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   43478ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=NWEwWcmuQA9q2hGf:0
+[   43909ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   43975ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=NWEwWcmuQA9q2hGf:0
+[   51866ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   51929ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/documents/library/library-brochure-2024.pdf?_rsc=YOsJo4OHKyirROFa:0
+[   52258ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   52318ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/documents/library/library-brochure-2024.pdf?_rsc=YOsJo4OHKyirROFa:0
+[   52677ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   52734ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/documents/library/library-brochure-2024.pdf?_rsc=YOsJo4OHKyirROFa:0
+[   53093ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   53168ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/documents/library/library-brochure-2024.pdf?_rsc=YOsJo4OHKyirROFa:0
+[   53540ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   53601ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/documents/library/library-brochure-2024.pdf?_rsc=YOsJo4OHKyirROFa:0
+[   53967ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   54026ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/documents/library/library-brochure-2024.pdf?_rsc=YOsJo4OHKyirROFa:0
+[   54433ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   54835ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   55295ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   55741ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   56201ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   56637ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   57109ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   57526ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   57970ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   58415ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   58896ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   59341ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   59825ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   60238ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   60679ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   61114ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   61177ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=mnfZEmJu_XVCacA6:0
+[   61593ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   61666ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=mnfZEmJu_XVCacA6:0
+[   62092ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   62195ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=mnfZEmJu_XVCacA6:0
+[   62662ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   62747ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=1qnKosjwYb74pbt_:0
+[   62763ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/sheljin-ch?_rsc=1qnKosjwYb74pbt_:0
+[   63149ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   63225ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=1qnKosjwYb74pbt_:0
+[   63250ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/sheljin-ch?_rsc=1qnKosjwYb74pbt_:0
+[   63673ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   63794ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=1qnKosjwYb74pbt_:0
+[   63812ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/sheljin-ch?_rsc=1qnKosjwYb74pbt_:0
+[   63815ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/sharmila-j?_rsc=1qnKosjwYb74pbt_:0
+[   63820ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/geethanjali-jewrld?_rsc=1qnKosjwYb74pbt_:0
+[   64280ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   64386ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=1qnKosjwYb74pbt_:0
+[   64411ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/sheljin-ch?_rsc=1qnKosjwYb74pbt_:0
+[   64417ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/sharmila-j?_rsc=1qnKosjwYb74pbt_:0
+[   64419ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/geethanjali-jewrld?_rsc=1qnKosjwYb74pbt_:0
+[   64421ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/ramesh-s?_rsc=1qnKosjwYb74pbt_:0
+[   64423ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/januka-pp?_rsc=1qnKosjwYb74pbt_:0
+[   64434ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/s-suseela?_rsc=1qnKosjwYb74pbt_:0
+[   64436ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/ravi-kulal?_rsc=1qnKosjwYb74pbt_:0
+[   64438ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/julice-varughese?_rsc=1qnKosjwYb74pbt_:0
+[   64883ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   64973ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=1qnKosjwYb74pbt_:0
+[   65003ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/sheljin-ch?_rsc=1qnKosjwYb74pbt_:0
+[   65004ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/sharmila-j?_rsc=1qnKosjwYb74pbt_:0
+[   65006ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/geethanjali-jewrld?_rsc=1qnKosjwYb74pbt_:0
+[   65009ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/faculty/ramesh-s?_rsc=1qnKosjwYb74pbt_:0
+[   65440ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   65537ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=1qnKosjwYb74pbt_:0
+[   66012ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   66110ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=XZqfVg8TFQVLUd2g:0
+[   66473ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   66553ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=XZqfVg8TFQVLUd2g:0
+[   66947ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   67035ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=XZqfVg8TFQVLUd2g:0
+[   67425ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   67508ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=XZqfVg8TFQVLUd2g:0
+[   67899ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   67974ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=XZqfVg8TFQVLUd2g:0
+[   68396ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   68479ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=XZqfVg8TFQVLUd2g:0
+[   69015ms] [WARNING] [@strapi/block-react-renderer] No component found for modifier "link" @ http://localhost:3100/_next/static/chunks/23xk9fz1wsted.js:0
+[   69030ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   69125ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=QTV7iyh8f7ytsBn4:0
+[   69505ms] [WARNING] [@strapi/block-react-renderer] No component found for modifier "link" @ http://localhost:3100/_next/static/chunks/23xk9fz1wsted.js:0
+[   69521ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   69644ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=QTV7iyh8f7ytsBn4:0
+[   69970ms] [WARNING] [@strapi/block-react-renderer] No component found for modifier "link" @ http://localhost:3100/_next/static/chunks/23xk9fz1wsted.js:0
+[   69986ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   70061ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=QTV7iyh8f7ytsBn4:0
+[   70426ms] [WARNING] [@strapi/block-react-renderer] No component found for modifier "link" @ http://localhost:3100/_next/static/chunks/23xk9fz1wsted.js:0
+[   70445ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   70516ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=QTV7iyh8f7ytsBn4:0
+[   70923ms] [WARNING] [@strapi/block-react-renderer] No component found for modifier "link" @ http://localhost:3100/_next/static/chunks/23xk9fz1wsted.js:0
+[   70939ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   71027ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=QTV7iyh8f7ytsBn4:0
+[   71411ms] [WARNING] [@strapi/block-react-renderer] No component found for modifier "link" @ http://localhost:3100/_next/static/chunks/23xk9fz1wsted.js:0
+[   71430ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   71509ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=QTV7iyh8f7ytsBn4:0
+[   71974ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   72055ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=GqplpuAhYSrvxymM:0
+[   72444ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   72670ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=GqplpuAhYSrvxymM:0
+[   72987ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   73087ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=GqplpuAhYSrvxymM:0
+[   73456ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   73524ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=GqplpuAhYSrvxymM:0
+[   73958ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   74039ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=GqplpuAhYSrvxymM:0
+[   74585ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   74656ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=GqplpuAhYSrvxymM:0
+[   75108ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   75566ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   76065ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3100/_next/static/chunks/3qyuh7xc03jqy.js:0
+[   76069ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   76537ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3100/_next/static/chunks/3qyuh7xc03jqy.js:0
+[   76541ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   76605ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=UgzOLh0QCm7oUpQl:0
+[   77037ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3100/_next/static/chunks/3qyuh7xc03jqy.js:0
+[   77041ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   77129ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=UgzOLh0QCm7oUpQl:0
+[   77578ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ http://localhost:3100/_next/static/chunks/3qyuh7xc03jqy.js:0
+[   77582ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   77659ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/ai-enabled/industry-collabration?_rsc=UgzOLh0QCm7oUpQl:0
+[   82329ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/alumni:0
+[   82864ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/alumni:0
+[   83357ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/alumni:0
+[   83838ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/alumni:0
+[   84319ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/alumni:0
+[   84823ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/alumni:0
+[   87985ms] [WARNING] The resource http://localhost:3100/_next/static/chunks/1z_mbvpkjhpd5.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3100/alumni:0
+[   89378ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/alumni/events:0
+[   89884ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/alumni/events:0
+[   90714ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/alumni/events:0
+[   91405ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/alumni/events:0
+[   92204ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/alumni/events:0
+[   93265ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/alumni/events:0
+[   95213ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   96049ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   96970ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   97723ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   98329ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   98871ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[   99250ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/leadership/dr-d-hemachandra-sagar:0
+[   99927ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/leadership/dr-d-hemachandra-sagar:0
+[  100923ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/leadership/dr-d-hemachandra-sagar:0
+[  101908ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/leadership/dr-d-hemachandra-sagar:0
+[  102559ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/leadership/dr-d-hemachandra-sagar:0
+[  103468ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/leadership/dr-d-hemachandra-sagar:0
+[  107335ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  107828ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  108376ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  109024ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  109614ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  110215ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  110719ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  111375ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  111897ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  112402ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  112890ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  113400ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  113796ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/NAAC:0
+[  114248ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/NAAC:0
+[  114808ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/NAAC:0
+[  115355ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/NAAC:0
+[  115915ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/NAAC:0
+[  116557ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/NAAC:0
+[  122076ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  122526ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  123004ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  123528ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  124125ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  124875ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  125559ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  126100ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  126849ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  128238ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  129226ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  130016ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  130891ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  131497ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  132039ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  132603ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  133125ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  133662ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  137860ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  138307ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  138785ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  138838ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-1?_rsc=9cMSySedSDfxv4d_:0
+[  138841ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-2?_rsc=9cMSySedSDfxv4d_:0
+[  138846ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-3?_rsc=9cMSySedSDfxv4d_:0
+[  138854ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-4?_rsc=9cMSySedSDfxv4d_:0
+[  139286ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  139344ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-1?_rsc=9cMSySedSDfxv4d_:0
+[  139347ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-2?_rsc=9cMSySedSDfxv4d_:0
+[  139352ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-3?_rsc=9cMSySedSDfxv4d_:0
+[  139360ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-4?_rsc=9cMSySedSDfxv4d_:0
+[  139361ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-5?_rsc=9cMSySedSDfxv4d_:0
+[  139363ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-6?_rsc=9cMSySedSDfxv4d_:0
+[  139367ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-7?_rsc=9cMSySedSDfxv4d_:0
+[  139370ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-8?_rsc=9cMSySedSDfxv4d_:0
+[  139373ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-9?_rsc=9cMSySedSDfxv4d_:0
+[  139376ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-10?_rsc=9cMSySedSDfxv4d_:0
+[  139769ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  139831ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-1?_rsc=9cMSySedSDfxv4d_:0
+[  139834ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-2?_rsc=9cMSySedSDfxv4d_:0
+[  139839ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-3?_rsc=9cMSySedSDfxv4d_:0
+[  139843ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-4?_rsc=9cMSySedSDfxv4d_:0
+[  139847ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/SDG-initiative/sdg-5?_rsc=9cMSySedSDfxv4d_:0
+[  140249ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  140905ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/admissions/apply?_rsc=GuBLdvQFe65L5EQb:0
+[  141342ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/admissions/apply?_rsc=GuBLdvQFe65L5EQb:0
+[  141880ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/admissions/apply?_rsc=GuBLdvQFe65L5EQb:0
+[  142366ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/admissions/apply?_rsc=GuBLdvQFe65L5EQb:0
+[  143457ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/admissions/apply?_rsc=GuBLdvQFe65L5EQb:0
+[  144094ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  144277ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=IH6bSpTA0R5M6B3a:0
+[  144304ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/documents/training-and-placement-cell.pdf?_rsc=IH6bSpTA0R5M6B3a:0
+[  144555ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  144619ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/documents/training-and-placement-cell.pdf?_rsc=IH6bSpTA0R5M6B3a:0
+[  144694ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=IH6bSpTA0R5M6B3a:0
+[  144708ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=IH6bSpTA0R5M6B3a:0
+[  145019ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  145078ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/documents/training-and-placement-cell.pdf?_rsc=IH6bSpTA0R5M6B3a:0
+[  145130ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=IH6bSpTA0R5M6B3a:0
+[  145145ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=IH6bSpTA0R5M6B3a:0
+[  145466ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  145562ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/documents/training-and-placement-cell.pdf?_rsc=IH6bSpTA0R5M6B3a:0
+[  145597ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=IH6bSpTA0R5M6B3a:0
+[  145639ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=IH6bSpTA0R5M6B3a:0
+[  146011ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  146102ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/documents/training-and-placement-cell.pdf?_rsc=IH6bSpTA0R5M6B3a:0
+[  146164ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=IH6bSpTA0R5M6B3a:0
+[  146179ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=IH6bSpTA0R5M6B3a:0
+[  146849ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  147015ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=IH6bSpTA0R5M6B3a:0
+[  147261ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  147358ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=aw3meJXdPgXjeaXY:0
+[  147384ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=aw3meJXdPgXjeaXY:0
+[  147713ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  147827ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=aw3meJXdPgXjeaXY:0
+[  147836ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=aw3meJXdPgXjeaXY:0
+[  148156ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  148270ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=aw3meJXdPgXjeaXY:0
+[  148290ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=aw3meJXdPgXjeaXY:0
+[  148605ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  148719ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=aw3meJXdPgXjeaXY:0
+[  148731ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=aw3meJXdPgXjeaXY:0
+[  149044ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  149140ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=aw3meJXdPgXjeaXY:0
+[  149155ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=aw3meJXdPgXjeaXY:0
+[  149494ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  149592ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=aw3meJXdPgXjeaXY:0
+[  150159ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  150600ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  151018ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  151473ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  151935ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  152412ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  152859ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  152972ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=a-hDrLYsU_J0s-9M:0
+[  152998ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=a-hDrLYsU_J0s-9M:0
+[  153277ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  153383ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=a-hDrLYsU_J0s-9M:0
+[  153401ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=a-hDrLYsU_J0s-9M:0
+[  153706ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  153832ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=a-hDrLYsU_J0s-9M:0
+[  153851ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=a-hDrLYsU_J0s-9M:0
+[  154150ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  154257ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=a-hDrLYsU_J0s-9M:0
+[  154274ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=a-hDrLYsU_J0s-9M:0
+[  154571ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  154693ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=a-hDrLYsU_J0s-9M:0
+[  154710ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=a-hDrLYsU_J0s-9M:0
+[  155033ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  155167ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=a-hDrLYsU_J0s-9M:0
+[  155482ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  155687ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=cmlGXD0Nym_0C1Hn:0
+[  155789ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=cmlGXD0Nym_0C1Hn:0
+[  155979ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  156106ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=cmlGXD0Nym_0C1Hn:0
+[  156128ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=cmlGXD0Nym_0C1Hn:0
+[  156411ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  156532ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=cmlGXD0Nym_0C1Hn:0
+[  156568ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=cmlGXD0Nym_0C1Hn:0
+[  156863ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  156987ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=cmlGXD0Nym_0C1Hn:0
+[  157013ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=cmlGXD0Nym_0C1Hn:0
+[  157309ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  157423ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=cmlGXD0Nym_0C1Hn:0
+[  157481ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=cmlGXD0Nym_0C1Hn:0
+[  157938ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  158072ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=cmlGXD0Nym_0C1Hn:0
+[  158478ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  158605ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=Ydx8DA8-_DnJAltw:0
+[  158638ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=Ydx8DA8-_DnJAltw:0
+[  158928ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  159049ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=Ydx8DA8-_DnJAltw:0
+[  159067ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=Ydx8DA8-_DnJAltw:0
+[  159392ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  159502ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=Ydx8DA8-_DnJAltw:0
+[  159524ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=Ydx8DA8-_DnJAltw:0
+[  159852ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  159982ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=Ydx8DA8-_DnJAltw:0
+[  160004ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=Ydx8DA8-_DnJAltw:0
+[  160339ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  160473ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=Ydx8DA8-_DnJAltw:0
+[  160488ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/board-of-studies?_rsc=Ydx8DA8-_DnJAltw:0
+[  160850ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  160968ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3100/why-us/other-approval?_rsc=Ydx8DA8-_DnJAltw:0
+[  161356ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  161805ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  162289ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  162727ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  163185ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  163643ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  164140ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  164689ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  165381ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  166102ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  166606ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  167125ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  183355ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  183781ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  297793ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  402801ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  406470ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
+[  409387ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at r1 (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:58508)
+    at ih (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:109708)
+    at sw (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:151513)
+    at http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146428
+    at su (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:146529)
+    at sJ (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:173076)
+    at MessagePort.z (http://localhost:3100/_next/static/chunks/3nnnhtknydusj.js:1:226041)
