@@ -1276,7 +1276,7 @@ function MegaMenuPanel({
           aria-label={leaf?.label}
           {...externalProps(leaf)}
           className={cn(
-            "w-full inline-flex items-start gap-2 text-[15px] 2xl:text-[16px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 group",
+            "w-full inline-flex items-start gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 group",
             isHighlight
               ? "bg-[#FFE8D6] font-medium"
               : "hover:bg-[#FFE8D6] hover:font-medium",
@@ -1334,7 +1334,7 @@ function MegaMenuPanel({
                     >
                       <span
                         className={cn(
-                          "text-[16px] 2xl:text-[17px] 3xl:text-[16px] leading-tight text-white",
+                          "text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-tight text-white",
                           isActive ? "font-semibold" : "font-normal opacity-95",
                         )}
                       >
@@ -1356,7 +1356,7 @@ function MegaMenuPanel({
                   >
                     <span
                       className={cn(
-                        "text-[16px] 2xl:text-[17px] 3xl:text-[16px] leading-tight text-white",
+                        "text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-tight text-white",
                         isActive ? "font-semibold" : "font-normal opacity-95",
                       )}
                     >
@@ -1384,7 +1384,7 @@ function MegaMenuPanel({
                             className="w-full"
                           >
                             {group?.label && (
-                              <span className="text-[14px] 2xl:text-[15px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
+                              <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
                                 {group?.label}
                               </span>
                             )}
@@ -1400,7 +1400,7 @@ function MegaMenuPanel({
                   </div>
                 ) : activeChild?.children?.length > 0 ? (
                   <div className="min-w-[220px] 2xl:min-w-[250px] 3xl:min-w-[280px] max-w-[360px] shrink-0">
-                    <span className="text-[14px] 2xl:text-[15px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
+                    <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
                       {activeChild?.label}
                     </span>
                     <ul className="flex flex-col gap-[3px] p-0 m-0">
@@ -1412,7 +1412,7 @@ function MegaMenuPanel({
                     href={activeChild?.url || "#!"}
                     aria-label={activeChild?.label}
                     {...externalProps(activeChild)}
-                    className="inline-flex items-center gap-2 text-[15px] 2xl:text-[17px] font-bold text-[#ea580c] hover:underline"
+                    className="inline-flex items-center gap-2 text-[13px] 2xl:text-[15px] font-bold text-[#ea580c] hover:underline"
                   >
                     {activeChild?.label}
                   </Link>
@@ -1502,7 +1502,7 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
         aria-expanded={isOpen}
         {...externalProps(leaf)}
         className={cn(
-          "w-full inline-flex items-start gap-2 text-[15px] 2xl:text-[16px] 3xl:text-[15px] leading-snug rounded-[5px] px-2.5 py-[5px] transition-all duration-150",
+          "w-full inline-flex items-start gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug rounded-[5px] px-2.5 py-[5px] transition-all duration-150",
           isOpen
             ? "bg-[#FFE8D6] font-semibold text-[#ea580c]"
             : isCurrent
@@ -1570,7 +1570,7 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
                       aria-label={sub?.label}
                       {...externalProps(sub)}
                       className={cn(
-                        "w-full inline-flex items-start gap-2 text-[15px] 2xl:text-[16px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium",
+                        "w-full inline-flex items-start gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium",
                         isActiveUrl(sub?.url, pathname) &&
                           "bg-[#FFE8D6] font-medium",
                       )}
@@ -1633,7 +1633,7 @@ function NavigationMenu({
               setIsOpen((prev) => !prev);
             }}
             className={cn(
-              "w-full flex items-start gap-2 py-1.5 px-3 text-[15px] text-left rounded-md transition-colors duration-200",
+              "w-full flex items-start gap-2 py-1.5 px-3 text-[13px] text-left rounded-md transition-colors duration-200",
               isOpen
                 ? "bg-[#FFE8D6] dark:bg-white/10 font-medium text-black dark:text-white"
                 : "text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5",
@@ -1670,7 +1670,7 @@ function NavigationMenu({
                     href={sub?.url || "#!"}
                     aria-label={sub?.label}
                     {...externalProps(sub)}
-                    className="w-full flex items-start gap-2 py-1.5 px-3 text-[15px] rounded-md text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5 transition-colors duration-200"
+                    className="w-full flex items-start gap-2 py-1.5 px-3 text-[13px] rounded-md text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5 transition-colors duration-200"
                   >
                     <span className="w-[7px] h-[7px] mt-[6px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
                     <span className="min-w-0 break-words">{sub?.label}</span>
@@ -1714,7 +1714,7 @@ function NavigationMenu({
           aria-label={item?.label}
           {...externalProps(item)}
           className={cn(
-            "w-full flex items-start gap-2 py-1.5 px-3 text-[15px] rounded-md transition-colors duration-200",
+            "w-full flex items-start gap-2 py-1.5 px-3 text-[13px] rounded-md transition-colors duration-200",
             isHighlight
               ? "bg-[#FFE8D6] dark:bg-white/10 font-medium text-black dark:text-white"
               : "text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5",
