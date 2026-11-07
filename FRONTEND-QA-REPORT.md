@@ -188,3 +188,81 @@ Scroll animations: every page that has content gets the reveal; card grids get s
 
 ### Remaining open
 Hero video re-encode; mock PDF files and the "Research Areas" page; pagination-dot and badge touch targets; `/about` and `/schools` render empty (CMS); unsanitized CMS HTML (`dangerouslySetInnerHTML`, 19 files); `shadcn` is listed in `dependencies`; 37 lint errors (React-compiler style rules); Firefox/Safari not tested; Lighthouse Performance score not available from the tool (Accessibility 97, Best Practices 100, SEO 66 = intentional noindex on `/` mobile; trace LCP 1.42 s, CLS 0.00).
+
+---
+
+## 12. QA run 2026-11-07 (third pass)
+
+Environment: Windows 11, Node 26.11.1, npm 11.13.0, Next 16.4.5 (Turbopack), production build served with `next start -p 3100`, Chromium via Playwright MCP and Chrome DevTools MCP. The CMS responded. Branch `dev-vishal`.
+
+Context: this pass also covers the change that made all text at least 16px between `lg` and `3xl` (about 240 files, class `lg:max-3xl:text-[16px]!`).
+
+### Coverage
+- Routes: 62 static routes swept (23 + 39). Dynamic `[slug]` routes were not swept in this pass (217 pages were crawled on 2026-11-06).
+- Widths: first 23 routes at 320, 768, 1024, 1280, 1440, 1920; next 39 at 320, 768, 1024, 1440, 1920. Not the 12-width matrix, no 40 px overlap sweep, no screenshot review of inner pages.
+- Per route: horizontal overflow, text below 16px at 1024 to 1759, console errors, 4xx responses, title, meta description, `<h1>` count, duplicate IDs, images without `alt`, empty links and buttons.
+- Not performed: Lighthouse Performance score and INP (tool excludes them), cross-browser, W3C validator, keyboard pass, dark mode, form submissions.
+
+### Scorecard (this pass)
+| Category | Status |
+|---|---|
+| Build and lint | PARTIAL: build passes; lint 37 errors / 107 warnings (same 37 as before; the 38th, from my header change, was fixed) |
+| Robots and indexing | PASS (`/robots.txt` 200 `Disallow: /`; meta robots on all swept routes; `X-Robots-Tag: noindex, nofollow, noarchive`) |
+| Responsive (overflow) | PASS for the 62 routes and widths above: 0 horizontal overflow |
+| Accessibility | PARTIAL: `/` mobile Lighthouse 100 after fixes; other routes not re-audited |
+| Console and network | PARTIAL: see register |
+| Security | PARTIAL: dependency and unsanitized-HTML findings unchanged |
+| SEO | PARTIAL: descriptions missing on a few routes |
+| Performance | NOT TESTED this pass (Performance score unavailable); `/` LCP 1.42 s from the previous pass |
+| Cross-browser | NOT TESTED |
+
+### Lighthouse (production build, localhost, no throttling set, DevTools MCP)
+| Route | Device | Accessibility | Best Practices | SEO |
+|---|---|--:|--:|--:|
+| `/` before fixes | mobile / desktop | 97 / 97 | 100 / 100 | 66 / 66 |
+| `/` after fixes | mobile | **100** | **100** | 66 |
+
+SEO 66 is the intentional `noindex` (`is-crawlable`). `llms-txt` (agentic browsing) fails because no `llms.txt` exists; not required for this project.
+
+### New issues (this pass)
+| ID | Sev | Category | Route | Description | Status |
+|---|---|---|---|---|---|
+| QA-23 | P2 | Code | `/alumni/events` | "Read More" href was `/alumni/events//alumni/events/<slug>` (CMS link already contains the full path), so every card 404ed. `alumni-events.jsx` | Fixed and verified (served HTML now `/alumni/events/<slug>`; 0 console errors) |
+| QA-24 | P2 | A11y | `ai-enabled`, `admission`, `placement`, BSC-nursing menubars | Icon-only `AccordionTrigger` buttons had no accessible name (1 to 2 per page). Added `aria-label="Toggle <label> submenu"` in 4 files | Fixed and verified (0 unnamed buttons on `/ai-enabled/library`; other 3 menubars not re-checked) |
+| QA-25 | P2 | A11y | `/` | Hero pagination dots 12x5 px and the "Apply Here" badge under 24 px (Lighthouse `target-size`) | Fixed and verified (a11y 97 to 100) |
+| QA-26 | P2 | Typography | footer | Footer select trigger used `!text-sm` / `lg:!text-xs` (important) so the 16px rule missed it; same in `Career-Goal.jsx`, `Intership-Opertunities.jsx`, `home-research-innovation.jsx` | Fixed; footer verified at 1440, the 3 others not visually checked |
+| QA-27 | P3 | Typography | `/faculty-directory` | Template-literal class strings with `(` were skipped by the bulk 16px pass (13px buttons at 1024) | Fixed (re-run); `/faculty-directory` re-swept with no small text at 1024 to 1440 |
+| QA-28 | P3 | Typography | all, 1440 | Decorative "▼" glyph in the footer select is 13px | Accepted (icon, not reading text) |
+| QA-29 | P2 | Navigation | `/ai-enabled/*` | "Research Areas" links to `/ai-enabled/industry-collabration` (404). Also `/SDG-initiative/sdg-*`, `/admissions/apply`, `/faculty/sheljin-ch`, `/leadership/dr-d-hemachandra-sagar` (404 from CMS links) | **Open** (needs a content or product decision) |
+| QA-30 | P2 | HTML | `/international-admission`, `/schools` | No `<h1>` (empty CMS content) | **Open** |
+| QA-31 | P2 | HTML | `/placement/placement-contact`, `/study-in-india` | 2 `<h1>` | **Open** |
+| QA-32 | P2 | SEO | `/career`, `/history`, `/why-us/CEADC`, `/why-us/ombudsman`, `/why-us/women-Redressal` | No meta description. `/why-us/CEADC` title shows a literal `&amp;` | **Open** |
+| QA-33 | P3 | HTML | `/accreditions`, `/international-Ranking`, `/national-Ranking`, `/placement/internship`, `/placement/Statistics`, `/placement/student-success` | Duplicate SVG gradient IDs from repeated inline SVG | **Open** |
+| QA-34 | P3 | HTML | `/accreditions` | CMS title is junk text ("yutyubnb \| Dayananda Sagar University") | **Open** (CMS content) |
+| QA-35 | P3 | Network | `/academics`, `/academics/overview` | One run logged "Refused to apply style ... MIME type ('text/plain')" for a `_next/static` CSS chunk. Not reproduced in the later sweeps (the server was restarted in between) | Not reproducible; watch |
+| QA-36 | P3 | Code | `/chancellor` | Returns 404 (CMS entry `dr-d-hemachandra-sagar` missing) | Out of scope (CMS) |
+
+### Fixes implemented this pass
+- `src/components/layout/header.jsx`: close the desktop dropdown on route change (state reset during render, not an effect, to satisfy `react-hooks/set-state-in-effect`); "Apply Here" badge `min-h-6`; all text sizes at least 16px from `lg` to below `3xl`.
+- `src/components/sections/alumni/alumni-events.jsx`: href fix (QA-23).
+- `src/components/sections/home/home-academic.jsx`: pagination dots now 24 px tall hit areas (QA-25).
+- 4 menubar files: `aria-label` on icon-only accordion triggers (QA-24).
+- `src/app/globals.css` and about 240 component files: 16px minimum between `lg` and `3xl`; 3xl sizes unchanged.
+
+### Regression results
+- `next build`: succeeds (final build after the last edit).
+- ESLint: 37 errors, 107 warnings (baseline unchanged).
+- Re-sweep of 10 routes at 1440, 1280, 1024, 320 after the fixes: 0 horizontal overflow, 0 unnamed buttons, 0 text under 16px at 1024 to 1759 except the decorative "▼" glyph, no new console errors (only the pre-existing 404s listed above, and two invalid routes I typed).
+- Known layout effect of the 16px change: header menu labels wrap to two lines at 1280 (no overlap seen at 1024 or 1280). The hero info cards at `/` 1024 may be clipped at the right edge; not verified against the earlier layout.
+
+### Remaining open
+QA-29 to QA-34; hero video re-encode; mock `/documents/*.pdf` files; unsanitized CMS HTML (`dangerouslySetInnerHTML`, 19+ files); `shadcn` in `dependencies` (all 21 `npm audit` findings, including 1 critical `proxy-addr` and 11 high, come through it or its CLI tree; none ships to the browser); 37 lint errors; Firefox, Safari and Edge not tested; Lighthouse Performance score not available; no overlap detector, full 12-width matrix or Figma comparison.
+
+### Verdict: PASS WITH WARNINGS is NOT claimed. **FAIL (incomplete)**
+No release-blocking defect was found in the routes swept this pass, and indexing, headers and build are correct. The overall verdict stays **FAIL** under the checklist because required checks were not performed (Performance score, cross-browser, full responsive and overlap sweeps) and QA-29 to QA-32 are open.
+
+### 12.1 Correction: 16px minimum reverted (2026-11-07)
+The bulk "16px minimum from `lg` to below `3xl`" change caused wrapped header menus and cramped or overlapping cards. It was removed from all ~240 component files and from `globals.css`, so body, card and section text is back to its original sizes. Only these text-size changes remain:
+- Header dropdown items +2px at `lg`/`xl` (13 to 15px) and +2px at `2xl` (14 to 16px); flyout items and section labels +2px; mobile menu items 13 to 15px; 3xl unchanged.
+- Header top menu: `xl` 12 to 13px, other widths unchanged. It stays on one line (checked by screenshot at 1170 and 1440).
+Findings QA-26 and QA-27 (16px misses) no longer apply. QA-23, QA-24, QA-25 (alumni link, accordion names, touch targets) are unaffected and still fixed.

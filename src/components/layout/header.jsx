@@ -516,11 +516,12 @@ export default function Header({ data = local_data }) {
     return () => clearTimeout(closeMenuTimer.current);
   }, []);
   // Close the desktop dropdown after a link navigates (the pointer is still over it, so no mouseleave fires).
-  useEffect(() => {
-    clearTimeout(closeMenuTimer.current);
+  const [menuPath, setMenuPath] = useState(pathname);
+  if (menuPath !== pathname) {
+    setMenuPath(pathname);
     setOpenMenuId(null);
     setActiveChildId(null);
-  }, [pathname]);
+  }
   useEffect(() => {
     document.body.classList.toggle("header-visible", isHeaderVisible);
 
@@ -1158,7 +1159,7 @@ function ApplyButtons({ buttons, variant = "desktop" }) {
           aria-label={applyHere.label}
           {...externalProps(applyHere)}
           className={cn(
-            "text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold w-fit h-auto p-[3px_5px] mx-auto rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0]",
+            "text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold w-fit h-auto min-h-6 p-[3px_5px] mx-auto rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0]",
             isMobile
               ? "text-black dark:text-white bg-[#fff7eb] dark:bg-[#18181b]"
               : "text-black bg-white",
@@ -1275,7 +1276,7 @@ function MegaMenuPanel({
           aria-label={leaf?.label}
           {...externalProps(leaf)}
           className={cn(
-            "w-full inline-flex items-start gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 group",
+            "w-full inline-flex items-start gap-2 text-[15px] 2xl:text-[16px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 group",
             isHighlight
               ? "bg-[#FFE8D6] font-medium"
               : "hover:bg-[#FFE8D6] hover:font-medium",
@@ -1333,7 +1334,7 @@ function MegaMenuPanel({
                     >
                       <span
                         className={cn(
-                          "text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-tight text-white",
+                          "text-[16px] 2xl:text-[17px] 3xl:text-[16px] leading-tight text-white",
                           isActive ? "font-semibold" : "font-normal opacity-95",
                         )}
                       >
@@ -1355,7 +1356,7 @@ function MegaMenuPanel({
                   >
                     <span
                       className={cn(
-                        "text-[14px] 2xl:text-[15px] 3xl:text-[16px] leading-tight text-white",
+                        "text-[16px] 2xl:text-[17px] 3xl:text-[16px] leading-tight text-white",
                         isActive ? "font-semibold" : "font-normal opacity-95",
                       )}
                     >
@@ -1383,7 +1384,7 @@ function MegaMenuPanel({
                             className="w-full"
                           >
                             {group?.label && (
-                              <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
+                              <span className="text-[14px] 2xl:text-[15px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
                                 {group?.label}
                               </span>
                             )}
@@ -1399,7 +1400,7 @@ function MegaMenuPanel({
                   </div>
                 ) : activeChild?.children?.length > 0 ? (
                   <div className="min-w-[220px] 2xl:min-w-[250px] 3xl:min-w-[280px] max-w-[360px] shrink-0">
-                    <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
+                    <span className="text-[14px] 2xl:text-[15px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
                       {activeChild?.label}
                     </span>
                     <ul className="flex flex-col gap-[3px] p-0 m-0">
@@ -1411,7 +1412,7 @@ function MegaMenuPanel({
                     href={activeChild?.url || "#!"}
                     aria-label={activeChild?.label}
                     {...externalProps(activeChild)}
-                    className="inline-flex items-center gap-2 text-[13px] 2xl:text-[15px] font-bold text-[#ea580c] hover:underline"
+                    className="inline-flex items-center gap-2 text-[15px] 2xl:text-[17px] font-bold text-[#ea580c] hover:underline"
                   >
                     {activeChild?.label}
                   </Link>
@@ -1501,7 +1502,7 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
         aria-expanded={isOpen}
         {...externalProps(leaf)}
         className={cn(
-          "w-full inline-flex items-start gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug rounded-[5px] px-2.5 py-[5px] transition-all duration-150",
+          "w-full inline-flex items-start gap-2 text-[15px] 2xl:text-[16px] 3xl:text-[15px] leading-snug rounded-[5px] px-2.5 py-[5px] transition-all duration-150",
           isOpen
             ? "bg-[#FFE8D6] font-semibold text-[#ea580c]"
             : isCurrent
@@ -1569,7 +1570,7 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
                       aria-label={sub?.label}
                       {...externalProps(sub)}
                       className={cn(
-                        "w-full inline-flex items-start gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium",
+                        "w-full inline-flex items-start gap-2 text-[15px] 2xl:text-[16px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium",
                         isActiveUrl(sub?.url, pathname) &&
                           "bg-[#FFE8D6] font-medium",
                       )}
@@ -1632,7 +1633,7 @@ function NavigationMenu({
               setIsOpen((prev) => !prev);
             }}
             className={cn(
-              "w-full flex items-start gap-2 py-1.5 px-3 text-[13px] text-left rounded-md transition-colors duration-200",
+              "w-full flex items-start gap-2 py-1.5 px-3 text-[15px] text-left rounded-md transition-colors duration-200",
               isOpen
                 ? "bg-[#FFE8D6] dark:bg-white/10 font-medium text-black dark:text-white"
                 : "text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5",
@@ -1669,7 +1670,7 @@ function NavigationMenu({
                     href={sub?.url || "#!"}
                     aria-label={sub?.label}
                     {...externalProps(sub)}
-                    className="w-full flex items-start gap-2 py-1.5 px-3 text-[13px] rounded-md text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5 transition-colors duration-200"
+                    className="w-full flex items-start gap-2 py-1.5 px-3 text-[15px] rounded-md text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5 transition-colors duration-200"
                   >
                     <span className="w-[7px] h-[7px] mt-[6px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
                     <span className="min-w-0 break-words">{sub?.label}</span>
@@ -1713,7 +1714,7 @@ function NavigationMenu({
           aria-label={item?.label}
           {...externalProps(item)}
           className={cn(
-            "w-full flex items-start gap-2 py-1.5 px-3 text-[13px] rounded-md transition-colors duration-200",
+            "w-full flex items-start gap-2 py-1.5 px-3 text-[15px] rounded-md transition-colors duration-200",
             isHighlight
               ? "bg-[#FFE8D6] dark:bg-white/10 font-medium text-black dark:text-white"
               : "text-[#333] dark:text-white/90 hover:bg-[#FFE8D6]/60 dark:hover:bg-white/5",
@@ -1827,7 +1828,7 @@ function NavigationMenu({
           aria-label={item?.label}
           {...externalProps(item)}
           className={cn(
-            "text-[14px] lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent",
+            "text-[14px] lg:text-xs xl:text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent",
             className,
           )}
         >
@@ -1847,7 +1848,7 @@ function NavigationMenu({
               href={item?.url || "#"}
               aria-label={item.label}
               {...externalProps(item)}
-              className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium text-white transition-colors duration-400"
+              className="text-sm lg:text-xs xl:text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium text-white transition-colors duration-400"
             >
               <span>{item.label}</span>
             </Link>
@@ -1855,7 +1856,7 @@ function NavigationMenu({
             <button
               type="button"
               aria-haspopup="true"
-              className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-white transition-colors duration-400"
+              className="text-sm lg:text-xs xl:text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-white transition-colors duration-400"
             >
               <span>{item.label}</span>
             </button>

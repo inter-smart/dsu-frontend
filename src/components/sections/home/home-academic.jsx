@@ -137,12 +137,16 @@ export default function HomeAcademic({ data }) {
                 type="button"
                 onClick={() => academicEmblaApi?.scrollTo(index)}
                 aria-label={`Go to slide ${index + 1}`}
-                className={`h-1.25 rounded-full transition-all duration-300 ${
-                  selectedIndex === index
-                    ? "w-12.5 bg-[#EA580C]"
-                    : "w-3 bg-[#D3D6DB]"
-                }`}
-              />
+                className="flex h-6 min-w-6 items-center justify-center px-0.75"
+              >
+                <span
+                  className={`block h-1.25 rounded-full transition-all duration-300 ${
+                    selectedIndex === index
+                      ? "w-12.5 bg-[#EA580C]"
+                      : "w-3 bg-[#D3D6DB]"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </div>

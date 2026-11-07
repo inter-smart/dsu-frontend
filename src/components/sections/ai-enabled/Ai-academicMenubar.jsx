@@ -330,7 +330,7 @@ export default function AiAcademicMenubar({
                             </div>
                           </Link>
 
-                          <AccordionTrigger className="p-0 ml-[8px] shrink-0 [&>svg]:w-[14px] [&>svg]:h-[14px] [&>svg]:text-[#212121] hover:no-underline" />
+                          <AccordionTrigger aria-label={`Toggle ${item.label} submenu`} className="p-0 ml-[8px] shrink-0 [&>svg]:w-[14px] [&>svg]:h-[14px] [&>svg]:text-[#212121] hover:no-underline" />
                         </div>
 
                         <AccordionContent className="pb-[11px] px-[15px]">
