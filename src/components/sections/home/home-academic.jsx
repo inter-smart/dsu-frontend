@@ -186,7 +186,7 @@ function AcademicCard({ item }) {
           item?.title
         )}
       </h3>
-      <div className="w-full h-full sm:p-[20px_10px] 2xl:p-[35px_15px] bg-[#CDBF8D] opacity-0 pointer-events-none transition-opacity duration-500 block absolute z-1 inset-0 group-hover:opacity-100 group-hover:pointer-events-auto">
+      <div className="w-full h-full sm:p-[20px_10px] 2xl:p-[35px_15px] bg-[#CDBF8D] opacity-0 pointer-events-none transition-opacity duration-500 block absolute z-1 inset-0 overflow-y-auto [scrollbar-width:thin] [scrollbar-color:rgba(8,12,21,0.35)_transparent] group-hover:opacity-100 group-hover:pointer-events-auto">
         <div className="w-full h-full block">
           {item?.courses_list?.map((item) => (
             <div
@@ -202,7 +202,7 @@ function AcademicCard({ item }) {
                     <Link
                       href={safeHref(course?.link, "/academics")}
                       aria-label={course?.label}
-                      className="text-[13px] 2xl:text-[15px] leading-[1.1] font-normal text-[#080C15] w-auto h-auto p-[5px_10px] bg-[#080C15]/10 rounded-full border border-black/20 transition duration-500 inline hover:text-white hover:bg-(--basecolor2) hover:border-(--basecolor2)"
+                      className="text-[13px] 2xl:text-[15px] leading-[1.25] font-normal text-[#080C15] w-auto h-auto max-w-full p-[5px_10px] bg-[#080C15]/10 rounded-[16px] border border-black/20 transition duration-500 inline-block hover:text-white hover:bg-(--basecolor2) hover:border-(--basecolor2)"
                     >
                       {course?.label}
                     </Link>
