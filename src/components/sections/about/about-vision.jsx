@@ -5,6 +5,39 @@ import Image from "next/image";
 import { jarallax } from "jarallax";
 import "jarallax/dist/jarallax.css";
 
+// glassy card that tilts toward the pointer with a following glow (hover-capable devices, motion allowed)
+function TiltCard({ className = "", children }) {
+    const ref = useRef(null);
+    const canTilt = () => window.matchMedia("(hover: hover) and (prefers-reduced-motion: no-preference)").matches;
+    const onMove = (e) => {
+        if (!canTilt()) return;
+        const el = ref.current;
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width;
+        const y = (e.clientY - r.top) / r.height;
+        el.style.transform = `rotateY(${(x - 0.5) * 10}deg) rotateX(${(0.5 - y) * 10}deg) scale(1.02)`;
+        el.style.setProperty("--gx", `${x * 100}%`);
+        el.style.setProperty("--gy", `${y * 100}%`);
+    };
+    const onLeave = () => {
+        ref.current.style.transform = "";
+    };
+    return (
+        <div
+            ref={ref}
+            onMouseMove={onMove}
+            onMouseLeave={onLeave}
+            className={`group relative overflow-hidden rounded-[20px] border border-white/20 bg-white/[0.07] p-[20px] backdrop-blur-[6px] transition-[transform,box-shadow] duration-150 ease-out [transform-style:preserve-3d] hover:shadow-[0_20px_40px_rgba(224,51,37,0.28)] xl:p-[24px] 2xl:p-[30px] ${className}`}
+        >
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_var(--gx,50%)_var(--gy,0%),rgba(246,107,25,0.35),transparent_60%)]"
+            />
+            <div className="relative [transform-style:preserve-3d]">{children}</div>
+        </div>
+    );
+}
+
 export default function AboutVision({ data }) {
     const sectionRef = useRef(null);
     const [openValue, setOpenValue] = useState(0);
@@ -36,8 +69,8 @@ export default function AboutVision({ data }) {
                 />
             )}
             <div className="container">
-                <div className="flex gap-[10px] sm:gap-[40px] lg:max-w-[90%] relative z-10 max-md:flex-wrap">
-                    <div className="w-full md:w-1/2 relative after:absolute after:content-[''] after:top-0 after:bottom-0 after:right-0 after:h-full after:m-auto after:w-[1px]
+                <div className="relative z-10 grid gap-[24px] md:grid-cols-[1.15fr_1fr] md:gap-[40px] xl:gap-[56px] 3xl:gap-[80px]">
+                    <div className="min-w-0 relative after:absolute after:content-[''] after:top-0 after:bottom-0 after:-right-[20px] xl:after:-right-[28px] 3xl:after:-right-[40px] after:h-full after:m-auto after:w-[1px]
                         after:bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,white_51.44%,rgba(153,153,153,0)_100%)] max-md:after:hidden">
                         <div className="w-full md:pt-[30px] xl:pt-[40px] 2xl:pt-[60px] 3xl:pt-[80px]">
                             {data.label && (
@@ -56,21 +89,19 @@ export default function AboutVision({ data }) {
                             )}
 
                             {items.length > 0 && (
-                            <div className="flex max-sm:flex-wrap gap-[10px] sm:gap-[20px] 3xl:gap-[30px]">
+                            <div className="grid gap-[12px] sm:grid-cols-2 sm:gap-[16px] xl:gap-[20px] 3xl:gap-[30px] [perspective:1100px]">
                                 {items.map((item, idx) => (
-                                    <div className="w-full sm:w-1/2 max-sm:border border-white/20 max-sm:p-[20px] max-sm:rounded-[20px] max-sm:after:hidden relative after:absolute after:content-[''] after:top-0 after:bottom-0 after:right-0 after:h-full after:m-auto after:w-[1px]
-                                     after:bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,white_51.44%,rgba(153,153,153,0)_100%)]  last:[&::after]:hidden " key={idx}>
-                                        <div className="w-full h-full relative [&_p]:text-white group">
-                                            {item.icon && (
-                                            <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[65px] 3xl:w-[78px] bg-white/20 flex border border-white rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
-                                            group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316]">
+                                    <TiltCard className="[&_p]:text-white" key={idx}>
+                                        {item.icon && (
+                                            <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[65px] 3xl:w-[78px] bg-white/20 flex border border-white rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] [transform:translateZ(40px)] group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316]">
                                                 <Image src={item.icon} width={78} height={65} alt={item.alt || item.title} className="max-w-[19px] xl:max-w-[21px] 2xl:max-w-[25px] 3xl:max-w-[34px] " />
                                             </div>
-                                            )}
-                                            <div className="w-full max-w-[95%]">
-                                                <div className="text-[13px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-white font-bold mb-[8px]">
-                                                    {item.title}
-                                                </div>
+                                        )}
+                                        <div className="w-full">
+                                            <div className="text-[13px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-white font-bold mb-[8px] [transform:translateZ(28px)]">
+                                                {item.title}
+                                            </div>
+                                            <div className="[transform:translateZ(14px)]">
                                                 {typeof item.description === "string" && item.description.trim() && (
                                                     item.description.startsWith("<") ? (
                                                         <div dangerouslySetInnerHTML={{ __html: item.description }} />
@@ -80,14 +111,14 @@ export default function AboutVision({ data }) {
                                                 )}
                                             </div>
                                         </div>
-                                    </div>
+                                    </TiltCard>
                                 ))}
                             </div>
                             )}
                         </div>
                     </div>
                     {valueItems.length > 0 && (
-                    <div className="w-full md:w-1/2">
+                    <div className="min-w-0">
                         <div className="w-full h-full relative [&_p]:text-white group max-sm:border border-white/20 max-sm:p-[20px] max-sm:rounded-[20px] ">
                             {values?.icon && (
                                 <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[62px] 3xl:w-[78px] flex border border-white bg-white/20 rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
@@ -108,6 +139,9 @@ export default function AboutVision({ data }) {
                                     return (
                                         <div
                                             key={idx}
+                                            onMouseEnter={() => {
+                                                if (hasText && window.matchMedia("(hover: hover)").matches) setOpenValue(idx);
+                                            }}
                                             className={`group/acc rounded-[10px] border backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-300 ${
                                                 open
                                                     ? "border-[#F97316]/70 bg-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.3)]"
