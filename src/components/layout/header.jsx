@@ -515,6 +515,13 @@ export default function Header({ data = local_data }) {
   useEffect(() => {
     return () => clearTimeout(closeMenuTimer.current);
   }, []);
+  // Close the desktop dropdown after a link navigates (the pointer is still over it, so no mouseleave fires).
+  const [menuPath, setMenuPath] = useState(pathname);
+  if (menuPath !== pathname) {
+    setMenuPath(pathname);
+    setOpenMenuId(null);
+    setActiveChildId(null);
+  }
   useEffect(() => {
     document.body.classList.toggle("header-visible", isHeaderVisible);
 
@@ -1152,7 +1159,7 @@ function ApplyButtons({ buttons, variant = "desktop" }) {
           aria-label={applyHere.label}
           {...externalProps(applyHere)}
           className={cn(
-            "text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold w-fit h-auto p-[3px_5px] mx-auto rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0]",
+            "text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold w-fit h-auto min-h-6 p-[3px_5px] mx-auto rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0]",
             isMobile
               ? "text-black dark:text-white bg-[#fff7eb] dark:bg-[#18181b]"
               : "text-black bg-white",
@@ -1821,7 +1828,7 @@ function NavigationMenu({
           aria-label={item?.label}
           {...externalProps(item)}
           className={cn(
-            "text-[14px] lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent",
+            "text-[14px] lg:text-xs xl:text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-white w-auto h-full gap-1.25 flex items-center transition-colors duration-400 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent",
             className,
           )}
         >
@@ -1841,7 +1848,7 @@ function NavigationMenu({
               href={item?.url || "#"}
               aria-label={item.label}
               {...externalProps(item)}
-              className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium text-white transition-colors duration-400"
+              className="text-sm lg:text-xs xl:text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-bold lg:font-medium text-white transition-colors duration-400"
             >
               <span>{item.label}</span>
             </Link>
@@ -1849,7 +1856,7 @@ function NavigationMenu({
             <button
               type="button"
               aria-haspopup="true"
-              className="text-sm lg:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-white transition-colors duration-400"
+              className="text-sm lg:text-xs xl:text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-white transition-colors duration-400"
             >
               <span>{item.label}</span>
             </button>

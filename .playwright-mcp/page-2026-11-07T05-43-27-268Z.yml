@@ -1,0 +1,645 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e4]:
+      - generic [ref=f1e5]:
+        - link "CDSIMER" [ref=f1e7] [cursor=pointer]:
+          - /url: https://cdsimer.edu.in/
+        - link "DSU Online" [ref=f1e9] [cursor=pointer]:
+          - /url: https://dsuonline.com/
+      - generic [ref=f1e10]:
+        - link "Virtual Tour" [ref=f1e12] [cursor=pointer]:
+          - /url: https://www.dsu.edu.in/virtual-tour/
+          - img "Virtual Tour" [ref=f1e15]
+        - link "E-Brochure" [ref=f1e17] [cursor=pointer]:
+          - /url: https://dsu-beta.intersmarthosting.in/uploads/E_brochure_DSU_0a636a52e2.pdf
+          - img "E-Brochure" [ref=f1e20]
+        - link "ERP Login" [ref=f1e22] [cursor=pointer]:
+          - /url: https://ums.mydsi.org/Login.aspx/DSU
+        - button "Language Toggle theme" [ref=f1e26] [cursor=pointer]:
+          - img "Language" [ref=f1e27]
+          - generic [ref=f1e28]: Toggle theme
+    - generic [ref=f1e31]:
+      - generic [ref=f1e33]:
+        - link "DSU Logo" [ref=f1e35] [cursor=pointer]:
+          - /url: https://dsu-beta.intersmarthosting.in/
+          - img "DSU Logo" [ref=f1e36]
+        - link "DSU Logo" [ref=f1e38] [cursor=pointer]:
+          - /url: /
+          - img "DSU Logo" [ref=f1e39]
+        - generic [ref=f1e40]: India's AI-First University
+      - generic [ref=f1e43]:
+        - link "NVIDIA's AI Architecture" [ref=f1e45] [cursor=pointer]:
+          - /url: /NVIDIA
+        - link "AI-First @ DSU" [ref=f1e47] [cursor=pointer]:
+          - /url: /ai-first
+        - link "Centres of Excellence" [ref=f1e49] [cursor=pointer]:
+          - /url: "#"
+        - generic [ref=f1e50]:
+          - link "NRI/Foreigners" [ref=f1e52] [cursor=pointer]:
+            - /url: https://www.dsu.edu.in/admissions-international/
+          - link "Others" [ref=f1e55] [cursor=pointer]:
+            - /url: https://admissions.dsu.edu.in/
+          - link "Apply Here" [ref=f1e57] [cursor=pointer]:
+            - /url: "#"
+    - generic [ref=f1e59]:
+      - link "Why DSU?" [ref=f1e62] [cursor=pointer]:
+        - /url: "#"
+      - button "AI Enabled Academics" [ref=f1e66] [cursor=pointer]
+      - link "Research & Innovation" [ref=f1e68] [cursor=pointer]:
+        - /url: "#"
+      - link "Industry Collaboration" [ref=f1e70] [cursor=pointer]:
+        - /url: "#"
+      - link "Placements" [ref=f1e74] [cursor=pointer]:
+        - /url: "#"
+      - link "Admissions" [ref=f1e78] [cursor=pointer]:
+        - /url: "#"
+      - link "International" [ref=f1e82] [cursor=pointer]:
+        - /url: "#"
+      - button "Locate Us" [ref=f1e86] [cursor=pointer]
+      - button "Open search" [ref=f1e88] [cursor=pointer]:
+        - img "Search" [ref=f1e90]
+  - main [ref=f1e91]:
+    - generic [ref=f1e92]:
+      - img "About Banner" [ref=f1e95]
+      - generic [ref=f1e97]:
+        - navigation "breadcrumb" [ref=f1e98]:
+          - list [ref=f1e99]:
+            - listitem [ref=f1e100]:
+              - link "Home" [ref=f1e101] [cursor=pointer]:
+                - /url: /
+            - listitem [aria-hidden] [ref=f1e102]
+            - listitem [ref=f1e104]:
+              - link "Why DSU" [ref=f1e105] [cursor=pointer]:
+                - /url: "#"
+            - listitem [aria-hidden] [ref=f1e106]
+            - listitem [ref=f1e108]:
+              - link "About DSU" [disabled] [ref=f1e109]
+        - heading "About DSU" [level=1] [ref=f1e110]
+    - generic [ref=f1e113]:
+      - generic [ref=f1e115]:
+        - generic [ref=f1e117]:
+          - heading "About Dayananda Sagar University (DSU)" [level=2] [ref=f1e118]
+          - paragraph [ref=f1e120]: The late Dayananda Sagar, a visionary educationalist and philanthropist, established Dayananda Sagar Institutions in the 1960s, committed to making knowledge accessible and transforming today’s youth into tomorrow's pioneering leaders. Following this great legacy, the Dayananda Sagar University was established in Karnataka in 2014, with a promise to deliver quality education in Southern India.
+        - img "DSU" [ref=f1e124]
+      - generic [ref=f1e126]:
+        - img "AI-driven innovation at Dayananda Sagar University" [ref=f1e127]
+        - generic [ref=f1e128]:
+          - generic [ref=f1e129]: Powering the Future with AI-Driven Innovation
+          - generic [ref=f1e130]:
+            - generic [ref=f1e131]:
+              - generic [ref=f1e133]: NVIDIA's
+              - paragraph [ref=f1e135]: An Architectural AI Architecture
+            - generic [ref=f1e136]:
+              - generic [ref=f1e138]: AI-First
+              - paragraph [ref=f1e140]: "@ DSU"
+            - generic [ref=f1e141]:
+              - generic [ref=f1e143]: DSU's
+              - paragraph [ref=f1e145]: Centre of Excellence
+    - generic [ref=f1e148]:
+      - article [ref=f1e149] [cursor=pointer]:
+        - generic [ref=f1e152]:
+          - generic [aria-hidden]: "01"
+          - heading [level=3] [ref=f1e154]:
+            - button "Unveiling a Legacy" [ref=f1e155]
+        - generic:
+          - generic:
+            - paragraph: The foundation of every globally renowned university that exists today was laid by a visionary who dreamed of a better tomorrow. These Universities possess great historical, cultural and academic significance and have existed through centuries as beacons of knowledge, growth and prosperity.
+      - article [ref=f1e157] [cursor=pointer]:
+        - generic [ref=f1e160]:
+          - generic [aria-hidden]: "02"
+          - heading [level=3] [ref=f1e162]:
+            - button "Proud to be part of DSU" [ref=f1e163]
+        - generic:
+          - generic:
+            - paragraph: Dayananda Sagar University (DSU) is a proud member of the Dayananda Sagar Institutions family. Founded in the early sixties by the late Dayananda Sagar with just four students, DSI has now transformed into a powerhouse of global education and innovation, spanning five campuses, addressing the educational needs of over 17,000 students. Operating under the aegis of the Mahatma Gandhi Vidhya Peetha Trust, Bengaluru, DSI has enabled and empowered thousands of young Indians and international students to become globally recognised figures in a variety of fields.
+      - article [ref=f1e165] [cursor=pointer]:
+        - generic [ref=f1e168]:
+          - generic [aria-hidden]: "03"
+          - heading [level=3] [ref=f1e170]:
+            - button "Best in Class Facilities" [ref=f1e171]
+        - generic:
+          - generic:
+            - paragraph: Apart from top-tier teaching faculty, our students are provided with an excellent academic environment that fosters inspiration and promotes innovative thinking. Our campuses are equipped with lecture theatres, state-of-the-art laboratories, great libraries and top-notch computer facilities. DSU also provides comprehensive athletic facilities for students who possess an unwavering zeal for sports and games. Furthermore, our hostel facilities also include recreational activities catering for both local and international students.
+      - article [ref=f1e173] [cursor=pointer]:
+        - generic [ref=f1e176]:
+          - generic [aria-hidden]: "04"
+          - heading [level=3] [ref=f1e178]:
+            - button "Inspired by Innovators" [ref=f1e179]
+        - generic:
+          - generic:
+            - paragraph: With over 25000 sq. ft. of industry-grade labs, research, innovation, and incubation form the foundation of Dayananda Sagar University. It is committed to becoming the launchpad for the entrepreneurial aspirations of every young Indian and global student. This movement has garnered the support of many well-known industrialists and enterprise trailblazers. Industry bodies have dedicated 1 lakh square feet of modern, ready-to-move infrastructure.
+      - article [ref=f1e181] [cursor=pointer]:
+        - generic [ref=f1e184]:
+          - generic [aria-hidden]: "05"
+          - heading [level=3] [ref=f1e186]:
+            - 'button "DSU Rankings: Stellar Performance, Every Single Time" [ref=f1e187]'
+        - generic:
+          - generic:
+            - paragraph: Dayananda Sagar Institutions have consistently maintained an exemplary academic trajectory in every domain, securing a distinct and unparalleled scholastic standing among institutions of repute. In the year 2014, DSI secured 58 ranks from Visvesvaraya Technological University among 220 engineering colleges in Karnataka.
+      - article [ref=f1e189] [cursor=pointer]:
+        - generic [ref=f1e192]:
+          - generic [aria-hidden]: "06"
+          - heading [level=3] [ref=f1e194]:
+            - button "Different Courses for Different Passions" [ref=f1e195]
+        - generic:
+          - generic:
+            - paragraph: Since its inaugural academic year in 2015-2016, Dayananda Sagar University has offered a diverse range of academic programmes in a variety of disciplines, spanning from Engineering, Computer Applications, Pure Sciences, Arts and Management at Bachelor's, Masters, and PhD levels. Our academic initiatives are supported by the Centres of Excellence in ICT, Healthcare, Energy and Life Sciences, among other rapidly evolving fields of study.
+    - generic [ref=f1e197]:
+      - img "DSU" [ref=f1e198]
+      - generic [ref=f1e200]:
+        - generic [ref=f1e202]:
+          - heading "VISION · MISSION · VALUES" [level=2] [ref=f1e203]
+          - generic [ref=f1e204]:
+            - generic [ref=f1e206]:
+              - img "Our Vision" [ref=f1e208]
+              - generic [ref=f1e209]:
+                - generic [ref=f1e210]: Our Vision
+                - paragraph [ref=f1e212]: To achieve our objectives in an environment that enhances creativity, innovation and scholarly pursuits while adhering to our vision.
+            - generic [ref=f1e214]:
+              - img "Our Mission" [ref=f1e216]
+              - generic [ref=f1e217]:
+                - generic [ref=f1e218]: Our Mission
+                - paragraph [ref=f1e220]: To be a centre of excellence in education, research & training, innovation & entrepreneurship and to produce citizens with exceptional leadership qualities to serve national and global needs.
+        - generic [ref=f1e222]:
+          - img "Core Values" [ref=f1e224]
+          - generic [ref=f1e225]:
+            - generic [ref=f1e226]: Core Values
+            - generic [ref=f1e227]:
+              - generic [ref=f1e228]:
+                - button "The Pursuit of Excellence" [expanded] [ref=f1e229] [cursor=pointer]:
+                  - generic [aria-hidden] [ref=f1e230]: "01"
+                - region "The Pursuit of Excellence" [ref=f1e235]:
+                  - paragraph [ref=f1e239]: A commitment to continuously improve ourselves and our systems, to become the best in our field.
+              - generic [ref=f1e240]:
+                - button "Fairness" [ref=f1e241] [cursor=pointer]:
+                  - generic [aria-hidden] [ref=f1e242]: "02"
+                - generic:
+                  - generic:
+                    - paragraph: A commitment to objectivity and impartiality, to earn the trust and respect of society.
+              - generic [ref=f1e247]:
+                - button "Leadership" [ref=f1e248] [cursor=pointer]:
+                  - generic [aria-hidden] [ref=f1e249]: "03"
+                - generic:
+                  - generic:
+                    - paragraph: A commitment to lead responsively and creatively in educational and research processes.
+              - generic [ref=f1e254]:
+                - button "Integrity and Transparency" [ref=f1e255] [cursor=pointer]:
+                  - generic [aria-hidden] [ref=f1e256]: "04"
+                - generic:
+                  - generic:
+                    - paragraph: A commitment to be ethical, sincere and transparent in all activities and to treat all individuals with dignity and respect.
+    - generic [ref=f1e263]:
+      - generic [ref=f1e267]:
+        - generic [ref=f1e273]:
+          - generic [ref=f1e274]: 1960s–2000s
+          - paragraph [ref=f1e276]: The Dayananda Sagar Institutions (DSI) expanded rapidly across multiple disciplines including Engineering, Management, Medical Sciences, & Arts.
+        - generic [ref=f1e282]:
+          - generic [ref=f1e283]: "2012"
+          - paragraph [ref=f1e285]: The Karnataka Government passed the Dayananda Sagar University Act, paving the way for the university's establishment
+        - generic [ref=f1e291]:
+          - generic [ref=f1e292]: "2014"
+          - paragraph [ref=f1e294]: Dayananda Sagar University was officially established as a private university in
+        - generic [ref=f1e300]:
+          - generic [ref=f1e301]: "2020"
+          - paragraph [ref=f1e303]: DSU strengthened its focus on innovation, research, entrepreneurship, and global collaborations, emerging as a modern technology-driven university.
+      - generic [ref=f1e304]:
+        - img "DSU" [ref=f1e307]
+        - generic [ref=f1e309]:
+          - heading "Our History" [level=2] [ref=f1e310]
+          - paragraph [ref=f1e312]: Dayananda Sagar University (DSU), inspired by Late Sri R. Dayananda Sagar, is a top multidisciplinary university in Bengaluru. Since the 1960s, it has blended innovation, research, and industry-focused education to prepare leaders in engineering, management, healthcare, and tech.
+          - generic [ref=f1e313]: FOUNDERS
+          - generic [ref=f1e314]:
+            - generic [ref=f1e315]:
+              - img "Late Sri R Dayananda Sagar" [ref=f1e317]
+              - generic [ref=f1e318]:
+                - generic [ref=f1e319]: Late Sri R Dayananda Sagar
+                - generic [ref=f1e320]: Founder & Visionary
+            - generic [ref=f1e321]:
+              - img "LATE SMT CHANDRAMMA SAGAR" [ref=f1e323]
+              - generic [ref=f1e324]:
+                - generic [ref=f1e325]: LATE SMT CHANDRAMMA SAGAR
+                - generic [ref=f1e326]: Wife of the Founder
+          - link "Explore Our Legacy" [ref=f1e327] [cursor=pointer]:
+            - /url: /history
+    - generic [ref=f1e337]:
+      - heading "Leadership" [level=2] [ref=f1e338]
+      - paragraph [ref=f1e340]: Visionary leaders guiding DSU towards academic excellence, innovation, and global impact.
+      - generic [ref=f1e341]:
+        - link "Dr. D. Hemachandra Sagar Dr. D. Hemachandra Sagar Chancellor, DSU Dr. D. HemanChandra Sagar, Chancellor of DSU, is a visionary leader fostering innovation and academic excellence. His leadership empowers future-ready professionals through transformative education." [ref=f1e343] [cursor=pointer]:
+          - /url: /leadership/chancellor
+          - img "Dr. D. Hemachandra Sagar" [ref=f1e346]
+          - generic [ref=f1e347]:
+            - generic [ref=f1e348]: Dr. D. Hemachandra Sagar
+            - generic [ref=f1e349]: Chancellor, DSU
+            - paragraph [ref=f1e350]: Dr. D. HemanChandra Sagar, Chancellor of DSU, is a visionary leader fostering innovation and academic excellence. His leadership empowers future-ready professionals through transformative education.
+        - link "Dr. D. Premachandra Sagar Dr. D. Premachandra Sagar Pro Chancellor, DSU Dr. D. Premachandra Sagar, Pro Chancellor of DSU, is an innovative leader shaping the university into a future-focused institution that empowers the leaders of tomorrow." [ref=f1e355] [cursor=pointer]:
+          - /url: /leadership/prochancellor
+          - img "Dr. D. Premachandra Sagar" [ref=f1e358]
+          - generic [ref=f1e359]:
+            - generic [ref=f1e360]: Dr. D. Premachandra Sagar
+            - generic [ref=f1e361]: Pro Chancellor, DSU
+            - paragraph [ref=f1e362]: Dr. D. Premachandra Sagar, Pro Chancellor of DSU, is an innovative leader shaping the university into a future-focused institution that empowers the leaders of tomorrow.
+        - link "Prof B. S. Satyanarayana Prof B. S. Satyanarayana Vice Chancellor, DSU" [ref=f1e367] [cursor=pointer]:
+          - /url: /leadership/vicechancellor
+          - img "Prof B. S. Satyanarayana" [ref=f1e370]
+          - generic [ref=f1e371]:
+            - generic [ref=f1e372]: Prof B. S. Satyanarayana
+            - generic [ref=f1e373]: Vice Chancellor, DSU
+        - link "Prof. R Janardhan Prof. R Janardhan Pro-Vice Chancellor, DSU" [ref=f1e378] [cursor=pointer]:
+          - /url: /leadership/prof-r-janardhan
+          - img "Prof. R Janardhan" [ref=f1e381]
+          - generic [ref=f1e382]:
+            - generic [ref=f1e383]: Prof. R Janardhan
+            - generic [ref=f1e384]: Pro-Vice Chancellor, DSU
+        - link "Dr. Prakash Sheelvanthmath Dr. Prakash Sheelvanthmath Pro-Vice Chancellor, DSU" [ref=f1e389] [cursor=pointer]:
+          - /url: /leadership/dr-prakash-s
+          - img "Dr. Prakash Sheelvanthmath" [ref=f1e392]
+          - generic [ref=f1e393]:
+            - generic [ref=f1e394]: Dr. Prakash Sheelvanthmath
+            - generic [ref=f1e395]: Pro-Vice Chancellor, DSU
+        - link "Dr. Puttamadappa C Dr. Puttamadappa C Registrar, DSU" [ref=f1e400] [cursor=pointer]:
+          - /url: /leadership/dr-puttamadappa-c
+          - img "Dr. Puttamadappa C" [ref=f1e403]
+          - generic [ref=f1e404]:
+            - generic [ref=f1e405]: Dr. Puttamadappa C
+            - generic [ref=f1e406]: Registrar, DSU
+        - link "Dr. S N Prasad Dr. S N Prasad Controller of Examinations, DSU" [ref=f1e411] [cursor=pointer]:
+          - /url: /leadership/coe
+          - img "Dr. S N Prasad" [ref=f1e414]
+          - generic [ref=f1e415]:
+            - generic [ref=f1e416]: Dr. S N Prasad
+            - generic [ref=f1e417]: Controller of Examinations, DSU
+        - link "Mr. Ramanathan Mr. Ramanathan Finance Officer, DSU" [ref=f1e422] [cursor=pointer]:
+          - /url: /leadership/cfo
+          - img "Mr. Ramanathan" [ref=f1e425]
+          - generic [ref=f1e426]:
+            - generic [ref=f1e427]: Mr. Ramanathan
+            - generic [ref=f1e428]: Finance Officer, DSU
+    - generic [ref=f1e433]:
+      - heading "Recognition and Rankings" [level=2] [ref=f1e434]
+      - paragraph [ref=f1e436]: Access all official regulatory, accreditation and Statutory documents
+      - generic [ref=f1e437]:
+        - generic [ref=f1e439]:
+          - generic [ref=f1e440]: Recognition
+          - generic [ref=f1e441]:
+            - link "UGC Recognition" [ref=f1e442] [cursor=pointer]:
+              - /url: https://dsu-beta.intersmarthosting.in/uploads/lease_to_own_registration_a50ebdb969.pdf
+            - link "UGC 2(f)" [ref=f1e454] [cursor=pointer]:
+              - /url: /chancellor
+        - generic [ref=f1e466]:
+          - generic [ref=f1e467]: Rankings
+          - link "NIRF Overall" [ref=f1e472] [cursor=pointer]:
+            - /url: https://dsu-beta.intersmarthosting.in/uploads/NIRF_Overall_2026_8321ccca78.pdf
+  - contentinfo [ref=f1e485]:
+    - generic [ref=f1e486]:
+      - generic [ref=f1e487]:
+        - generic [ref=f1e488]:
+          - img "DSU Logo" [ref=f1e490]
+          - generic [ref=f1e491]: Empowering minds. Transforming lives. Building an Al-driven future through innovation, research and excellence
+          - generic [ref=f1e492]:
+            - link [ref=f1e494] [cursor=pointer]:
+              - /url: https://www.facebook.com/Dayanandasagaruniversitybangalore
+              - img "Facebooks" [ref=f1e495]
+            - link [ref=f1e497] [cursor=pointer]:
+              - /url: https://x.com/DSUBangalore
+              - img "Twitter" [ref=f1e498]
+            - link [ref=f1e500] [cursor=pointer]:
+              - /url: https://www.instagram.com/dayanandasagaruniversityblr
+              - img "Instagram" [ref=f1e501]
+            - link [ref=f1e503] [cursor=pointer]:
+              - /url: https://www.instagram.com/dayanandasagaruniversityblr
+              - img "LinkedIn" [ref=f1e504]
+            - link [ref=f1e506] [cursor=pointer]:
+              - /url: https://www.youtube.com/@Dayanandasagaruniversityblr
+              - img "Youtube" [ref=f1e507]
+          - generic [ref=f1e508]:
+            - generic [ref=f1e509]: DOWNLOAD BROCHURES
+            - generic [ref=f1e510]:
+              - combobox "Select program" [ref=f1e511] [cursor=pointer]:
+                - generic [ref=f1e512]: Select Program
+                - img [aria-hidden]: ▼
+              - textbox [aria-hidden] [ref=f1e513]
+            - button [ref=f1e514] [cursor=pointer]:
+              - img "Download Icon" [ref=f1e516]
+              - text: Download PDF
+        - generic [ref=f1e517]:
+          - generic [ref=f1e518]:
+            - generic [ref=f1e519]:
+              - generic [ref=f1e520]: ADMISSION CORNER
+              - generic [ref=f1e521]:
+                - link "Admissions details" [ref=f1e524] [cursor=pointer]:
+                  - /url: https://dsu-beta.intersmarthosting.in/admission/overview
+                - link "DSAT Admissions - Apply Online" [ref=f1e527] [cursor=pointer]:
+                  - /url: https://www.dsu.edu.in/dsat/?utm_source=Admissions%20Tab&utm_medium=Website&utm_campaign=WS-FTR-DSAT
+                - link "Direct Admissions - Apply Online" [ref=f1e530] [cursor=pointer]:
+                  - /url: https://admissions.dsu.edu.in/?utm_source=Admissions%20Tab&utm_medium=Website&utm_campaign=WS-FTR
+                - link "Course Eligibility & Fee Structure" [ref=f1e533] [cursor=pointer]:
+                  - /url: https://dsu-beta.intersmarthosting.in/admission/admission-eligibility
+            - generic [ref=f1e534]:
+              - generic [ref=f1e535]: ADMISSIONS HELPLINE
+              - generic [ref=f1e536]:
+                - generic [ref=f1e537]:
+                  - generic [ref=f1e538]: "Email:"
+                  - link "admissions@dsu.edu.in" [ref=f1e540] [cursor=pointer]:
+                    - /url: mailto:admissions@dsu.edu.in
+                - generic [ref=f1e541]:
+                  - generic [ref=f1e542]: "Phone:"
+                  - link "080 46461800" [ref=f1e544] [cursor=pointer]:
+                    - /url: tel:08046461800
+                  - generic [ref=f1e545]: /
+                  - link "+91 6366885507" [ref=f1e547] [cursor=pointer]:
+                    - /url: tel:+916366885507
+                - generic [ref=f1e548]: INTERNATIONAL ADMISSIONS
+                - generic [ref=f1e550]:
+                  - generic [ref=f1e551]: "Phone:"
+                  - link "+91 9606022152" [ref=f1e553] [cursor=pointer]:
+                    - /url: tel:+919606022152
+                  - generic [ref=f1e554]: /
+                  - link "+91 9606022150" [ref=f1e556] [cursor=pointer]:
+                    - /url: tel:+919606022150
+                  - generic [ref=f1e557]: /
+                  - link "+91 9606022149" [ref=f1e559] [cursor=pointer]:
+                    - /url: tel:+919606022149
+            - generic [ref=f1e560]:
+              - generic [ref=f1e561]: REGIONAL PRESENCE
+              - generic [ref=f1e562]:
+                - generic [ref=f1e563]:
+                  - generic [ref=f1e564]: "East Region:"
+                  - link "8240216553" [ref=f1e566] [cursor=pointer]:
+                    - /url: tel:8240216553
+                - generic [ref=f1e567]:
+                  - generic [ref=f1e568]: "West Region:"
+                  - link "9741488001" [ref=f1e570] [cursor=pointer]:
+                    - /url: tel:9741488001
+                - generic [ref=f1e571]:
+                  - generic [ref=f1e572]: "North Region:"
+                  - link "7488983636" [ref=f1e574] [cursor=pointer]:
+                    - /url: tel:7488983636
+                - generic [ref=f1e575]:
+                  - generic [ref=f1e576]: "South Region:"
+                  - link "9962835358" [ref=f1e578] [cursor=pointer]:
+                    - /url: tel:9962835358
+          - generic [ref=f1e579]:
+            - generic [ref=f1e580]:
+              - generic [ref=f1e581]: "DSU MAIN CAMPUS:"
+              - generic [ref=f1e582]:
+                - generic [ref=f1e583]: Devarakaggalahalli, Harohalli, Kanakapura Road, Bengaluru South Dt. – 562 112
+                - generic [ref=f1e585]:
+                  - generic [ref=f1e586]: "Email:"
+                  - link "admissions@dsu.edu.in" [ref=f1e588] [cursor=pointer]:
+                    - /url: mailto:admissions@dsu.edu.in
+                - generic [ref=f1e589]:
+                  - generic [ref=f1e590]: "Admissions Helpline:"
+                  - link "080 46461800" [ref=f1e592] [cursor=pointer]:
+                    - /url: tel:08046461800
+                  - generic [ref=f1e593]: /
+                  - link "080 49092800" [ref=f1e595] [cursor=pointer]:
+                    - /url: tel:08049092800
+            - generic [ref=f1e596]:
+              - generic [ref=f1e597]: "DSU CITY INNOVATION CAMPUS:"
+              - generic [ref=f1e598]:
+                - generic [ref=f1e599]: Administrative & Main Admission office,Kudlu Gate, Hosur Road,Bengaluru - 560 114
+                - generic [ref=f1e601]:
+                  - generic [ref=f1e602]: "E-mail:"
+                  - link "admissions@dsu.edu.in" [ref=f1e604] [cursor=pointer]:
+                    - /url: mailto:admissions@dsu.edu.in
+                  - generic [ref=f1e605]: "|"
+                  - link "dsat@dsu.edu.in" [ref=f1e607] [cursor=pointer]:
+                    - /url: mailto:dsat@dsu.edu.in
+                - generic [ref=f1e608]:
+                  - generic [ref=f1e609]: "Admissions Helpline:"
+                  - link "080 46461800" [ref=f1e611] [cursor=pointer]:
+                    - /url: tel:08046461800
+                  - generic [ref=f1e612]: /
+                  - link "080 49092800" [ref=f1e614] [cursor=pointer]:
+                    - /url: tel:08049092800
+                  - generic [ref=f1e615]: /
+                  - link "+91 7760964277" [ref=f1e617] [cursor=pointer]:
+                    - /url: tel:+917760964277
+                  - generic [ref=f1e618]: /
+                  - link "8296316737" [ref=f1e620] [cursor=pointer]:
+                    - /url: tel:8296316737
+                  - generic [ref=f1e621]: /
+                  - link "6366885507" [ref=f1e623] [cursor=pointer]:
+                    - /url: tel:6366885507
+                - generic [ref=f1e624]:
+                  - generic [ref=f1e625]: "Office of Registrar:"
+                  - generic [ref=f1e627]:
+                    - link "080 4909 2910" [ref=f1e628] [cursor=pointer]:
+                      - /url: tel:08049092910
+                    - text: /
+                    - link "11" [ref=f1e629] [cursor=pointer]:
+                      - /url: tel:08049092911
+                - generic [ref=f1e630]:
+                  - generic [ref=f1e631]: "Office of Dean (Engineering):"
+                  - generic [ref=f1e633]:
+                    - link "+91 80 4909 2986" [ref=f1e634] [cursor=pointer]:
+                      - /url: tel:+918049092986
+                    - text: /
+                    - link "32" [ref=f1e635] [cursor=pointer]:
+                      - /url: tel:+918049092932
+                    - text: /
+                    - link "33" [ref=f1e636] [cursor=pointer]:
+                      - /url: tel:+918049092933
+                - generic [ref=f1e637]:
+                  - generic [ref=f1e638]: "Dean - MBA:"
+                  - link "080 4909 2931" [ref=f1e640] [cursor=pointer]:
+                    - /url: tel:080 4909 2931
+                - generic [ref=f1e641]:
+                  - generic [ref=f1e642]: "Enquiry EMBA:"
+                  - link "080 4909 2930" [ref=f1e644] [cursor=pointer]:
+                    - /url: tel:080 4909 2930
+                - generic [ref=f1e645]:
+                  - generic [ref=f1e646]: "Research Cell:"
+                  - link "080 4909 2912" [ref=f1e648] [cursor=pointer]:
+                    - /url: tel:080 4909 2912
+            - generic [ref=f1e649]:
+              - generic [ref=f1e650]: "DSU CITY ADMISSIONS OFFICE:"
+              - generic [ref=f1e651]:
+                - generic [ref=f1e652]: Gate 2, 6th Floor, University Building, Dental Block, Kumaraswamy Layout, Bengaluru - 560111
+                - generic [ref=f1e654]:
+                  - generic [ref=f1e655]: "E-mail:"
+                  - link "enquiry@dsu.edu.in" [ref=f1e657] [cursor=pointer]:
+                    - /url: mailto:enquiry@dsu.edu.in
+                  - generic [ref=f1e658]: /
+                  - link "admissions@dsu.edu.in" [ref=f1e660] [cursor=pointer]:
+                    - /url: mailto:admissions@dsu.edu.in
+                - generic [ref=f1e661]:
+                  - generic [ref=f1e662]: "Admissions Helpline:"
+                  - link "080 46461800" [ref=f1e664] [cursor=pointer]:
+                    - /url: tel:08046461800
+                  - generic [ref=f1e665]: /
+                  - link "080 49092800" [ref=f1e667] [cursor=pointer]:
+                    - /url: tel:08049092800
+      - generic [ref=f1e669]:
+        - generic [ref=f1e670]:
+          - button "AI & INNOVATION" [expanded] [ref=f1e671] [cursor=pointer]
+          - list [ref=f1e675]:
+            - listitem [ref=f1e676]:
+              - link "AI Factory" [ref=f1e677] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e678]:
+              - link "Centres of Excellence" [ref=f1e679] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e680]:
+              - link "Research Labs" [ref=f1e681] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e682]:
+              - link "Innovation Hub" [ref=f1e683] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e684]:
+              - link "Startups & Incubation" [ref=f1e685] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e686]:
+              - link "Funded Research Projects" [ref=f1e687] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e688]:
+              - link "Publications & Patents" [ref=f1e689] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=f1e690]:
+          - button "STUDENT & ACADEMICS" [ref=f1e691] [cursor=pointer]
+          - list [ref=f1e695]:
+            - listitem [ref=f1e696]:
+              - link "Schools & Departments" [ref=f1e697] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e698]:
+              - link "Undergraduate Programs" [ref=f1e699] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e700]:
+              - link "Postgraduate Programs" [ref=f1e701] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e702]:
+              - link "Doctoral Studies" [ref=f1e703] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e704]:
+              - link "Academic Calendar" [ref=f1e705] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e706]:
+              - link "Examinations" [ref=f1e707] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e708]:
+              - link "International Programs" [ref=f1e709] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=f1e710]:
+          - button "COMMUNITY" [ref=f1e711] [cursor=pointer]
+          - list [ref=f1e715]:
+            - listitem [ref=f1e716]:
+              - link "Alumni Network" [ref=f1e717] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e718]:
+              - link "Testimonials" [ref=f1e719] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e720]:
+              - link "Student Stories" [ref=f1e721] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e722]:
+              - link "Clubs & Communities" [ref=f1e723] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e724]:
+              - link "Community Activities" [ref=f1e725] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e726]:
+              - link "Events & Workshops" [ref=f1e727] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e728]:
+              - link "Media Coverage" [ref=f1e729] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e730]:
+              - link "Gallery (Photo & Video)" [ref=f1e731] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e732]:
+              - link "News Letter" [ref=f1e733] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=f1e734]:
+          - button "SUPPORT & CAREERS" [ref=f1e735] [cursor=pointer]
+          - list [ref=f1e739]:
+            - listitem [ref=f1e740]:
+              - link "Placements & Careers" [ref=f1e741] [cursor=pointer]:
+                - /url: https://dsu-beta.intersmarthosting.in/placement/about-placement-cell
+            - listitem [ref=f1e742]:
+              - link "Current Openings" [ref=f1e743] [cursor=pointer]:
+                - /url: https://dsu-beta.intersmarthosting.in/career
+            - listitem [ref=f1e744]:
+              - link "Recruit from DSU" [ref=f1e745] [cursor=pointer]:
+                - /url: https://dsu-beta.intersmarthosting.in/placement/recruit-dsu
+            - listitem [ref=f1e746]:
+              - link "Career Development" [ref=f1e747] [cursor=pointer]:
+                - /url: /placement/career-development
+            - listitem [ref=f1e748]:
+              - link "FAQs" [ref=f1e749] [cursor=pointer]:
+                - /url: /faqs
+            - listitem [ref=f1e750]:
+              - link "Downloads" [ref=f1e751] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e752]:
+              - link "Contact Us" [ref=f1e753] [cursor=pointer]:
+                - /url: /contact
+            - listitem [ref=f1e754]:
+              - link "Enquiry Form" [ref=f1e755] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=f1e756]:
+          - button "COMPLIANCE & QUICK LINKS" [ref=f1e757] [cursor=pointer]
+          - list [ref=f1e761]:
+            - listitem [ref=f1e762]:
+              - link "IQAC" [ref=f1e763] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e764]:
+              - link "NIRF" [ref=f1e765] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e766]:
+              - link "NAAC" [ref=f1e767] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e768]:
+              - link "Anti Ragging Cell" [ref=f1e769] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e770]:
+              - link "Grievances" [ref=f1e771] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e772]:
+              - link "Ombudsperson" [ref=f1e773] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e774]:
+              - link "Ethics Committee" [ref=f1e775] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e776]:
+              - link "IT Policy" [ref=f1e777] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e778]:
+              - link "Institutional Development Plan" [ref=f1e779] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e780]:
+              - link "Annual Audit Reports" [ref=f1e781] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=f1e782]:
+              - link "Mandatory Disclosures" [ref=f1e783] [cursor=pointer]:
+                - /url: "#"
+    - generic [ref=f1e786]:
+      - generic [ref=f1e787]: Copyright © 2026 DSU. All Rights Reserved
+      - generic [ref=f1e788]:
+        - text: "Designed & developed By:"
+        - link "Intersmart Link" [ref=f1e789] [cursor=pointer]:
+          - /url: https://www.intersmartsolution.com/
+          - img "Intersmart Logo" [ref=f1e790]
+  - complementary "Floating Quick Actions" [ref=f1e791]:
+    - generic [ref=f1e792]:
+      - link "Apply Now":
+        - /url: /admission
+      - link "Apply Now" [ref=f1e793] [cursor=pointer]:
+        - /url: /admission
+    - generic [ref=f1e794]:
+      - generic: Chat on WhatsApp
+      - link "Chat on WhatsApp" [ref=f1e795] [cursor=pointer]:
+        - /url: https://wa.me/917760964277
+    - generic [ref=f1e796]:
+      - generic: Call Us
+      - link "Call Us" [ref=f1e797] [cursor=pointer]:
+        - /url: tel:08049092800
+    - generic [ref=f1e798]:
+      - generic: Share
+      - link "Share" [ref=f1e799] [cursor=pointer]:
+        - /url: "#!"
+    - generic [ref=f1e800]:
+      - generic: 360° Virtual Tour
+      - link "360° Virtual Tour" [ref=f1e801] [cursor=pointer]:
+        - /url: "#!"
+  - button "Open Next.js Dev Tools" [ref=f1e807] [cursor=pointer]

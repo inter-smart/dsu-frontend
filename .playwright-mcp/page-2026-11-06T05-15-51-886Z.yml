@@ -1,0 +1,296 @@
+- generic [active] [ref=e1]:
+  - status "Loading" [ref=e2]:
+    - img "Organic BPS" [ref=e4]
+    - generic [ref=e5]:
+      - generic [ref=e6]: Purpose is the journey
+      - generic [ref=e7]: "000"
+  - banner [ref=e9]:
+    - generic [ref=e11]:
+      - link "Organic BPS — home" [ref=e12] [cursor=pointer]:
+        - /url: /
+        - img "Organic BPS" [ref=e14]
+      - navigation "Main" [ref=e16]:
+        - link "Why Purpose" [ref=e18] [cursor=pointer]:
+          - /url: /why-purpose
+        - link "What we do" [ref=e19] [cursor=pointer]:
+          - /url: /what-we-do
+        - link "How We Work" [ref=e20] [cursor=pointer]:
+          - /url: /how-we-work
+        - link "Who we are" [ref=e21] [cursor=pointer]:
+          - /url: /who-we-are
+      - button "Open menu" [ref=e23] [cursor=pointer]
+  - main [ref=e24]:
+    - region [ref=e25]:
+      - generic [ref=e33]:
+        - heading "Purpose is the journey that powers every other journey." [level=1] [ref=e35]:
+          - generic [ref=e36]:
+            - generic [ref=e38]:
+              - generic [ref=e39]: Purpose
+              - generic [aria-hidden] [ref=e40]: Purpse
+            - text: is the
+          - generic [ref=e42]: journey that powers every other journey.
+        - link "Activate your purpose" [ref=e44] [cursor=pointer]:
+          - /url: "#how-we-do"
+        - link "Scroll to the next section" [ref=e48] [cursor=pointer]:
+          - /url: "#what-we-do"
+    - region [ref=e51]:
+      - generic [ref=e53]:
+        - img "Colleagues collaborating in a modern office" [ref=e55]
+        - generic [ref=e58]:
+          - heading "We do purpose on purpose." [level=2] [ref=e60]:
+            - generic [ref=e61]: We do
+            - generic [ref=e62]:
+              - generic [ref=e64]:
+                - generic [ref=e65]: purpose
+                - generic [aria-hidden] [ref=e66]: purpse
+              - text: "on"
+            - generic [ref=e68]: purpose.
+          - generic [ref=e69]:
+            - paragraph [ref=e70]: We are a Brand Purpose Consultancy with more than26 years of experience in brand strategy and communication.
+            - paragraph [ref=e71]: We work with founders and leadership teams to discover and activate purpose across strategy, brand, culture and action.
+            - paragraph [ref=e72]: We bring together the depth of strategy consultancy and the creative capability of a brand communication agency.
+          - link "Discover our purpose" [ref=e74] [cursor=pointer]:
+            - /url: "#how-we-do"
+    - region [ref=e78]:
+      - generic [ref=e79]:
+        - heading "Good for business. better for the world." [level=2] [ref=e81]:
+          - generic [ref=e82]: Good for business.
+          - generic [ref=e83]: better for the world.
+        - paragraph [ref=e84]: Purpose is not a nice-to-have. When embedded in the business, it strengthens clarity, alignment, trust, differentiation, and long-term performance.
+        - link "Discover why purpose matters" [ref=e86] [cursor=pointer]:
+          - /url: "#how-we-do"
+      - region "Interactive 3D globe showing partner locations worldwide" [ref=e91]:
+        - paragraph [ref=e95]: Loading globe…
+      - list [ref=e96]:
+        - listitem [ref=e97]:
+          - paragraph [ref=e99]:
+            - generic [ref=e100]:
+              - generic [ref=e101]: 76%
+              - text: 76%
+          - paragraph [ref=e102]: higher consumer trust
+        - listitem [ref=e103]:
+          - paragraph [ref=e105]:
+            - generic [ref=e106]:
+              - generic [ref=e107]: 72%
+              - text: 72%
+          - paragraph [ref=e108]: stronger customer loyalty
+        - listitem [ref=e109]:
+          - paragraph [ref=e111]:
+            - generic [ref=e112]:
+              - generic [ref=e113]: 93%
+              - text: 93%
+          - paragraph [ref=e114]: of executives prioritise societal value
+    - region [ref=e115]:
+      - generic [ref=e116]:
+        - heading "We discover purpose . We build belief around it. We drive action." [level=2] [ref=e117]:
+          - generic [ref=e118]:
+            - generic [ref=e119]: We discover
+            - generic [ref=e122]:
+              - generic [ref=e123]: purpose
+              - generic [aria-hidden] [ref=e124]: purpse
+            - generic [ref=e126]: .
+          - generic [ref=e127]:
+            - generic [ref=e128]: We
+            - generic [ref=e129]: build
+            - generic [ref=e130]: belief
+            - generic [ref=e131]: around
+            - generic [ref=e132]: it
+            - generic [ref=e133]: .
+          - generic [ref=e134]:
+            - generic [ref=e135]: We
+            - generic [ref=e136]: drive
+            - generic [ref=e137]: action
+            - generic [ref=e138]: .
+        - generic [ref=e139]:
+          - link "Purpose strategy" [ref=e140] [cursor=pointer]:
+            - /url: "#contact"
+          - link "Brand communication" [ref=e146] [cursor=pointer]:
+            - /url: "#contact"
+          - link "Purpose activation" [ref=e152] [cursor=pointer]:
+            - /url: "#contact"
+    - region [ref=e158]:
+      - generic [ref=e160]:
+        - heading "Good intentions deserve great experience. That’s where we come in." [level=2] [ref=e162]:
+          - generic [ref=e163]: Good intentions deserve
+          - generic [ref=e164]: great experience.
+          - generic [ref=e165]: That’s where we come in.
+        - paragraph [ref=e166]: For more than two decades, we have partnered with organisations across sectors at defining moments of growth and change by helping them clarify what they stand for, communicate it meaningfully and put it into action.
+      - region "Our clients" [ref=e168]:
+        - generic [ref=e170]:
+          - 'group "1 of 5: Kerala Management Association" [ref=e171]':
+            - img "Kerala Management Association" [ref=e174]
+          - 'group "2 of 5: SCMS Group of Educational Institutions" [ref=e175]':
+            - img "SCMS Group of Educational Institutions" [ref=e178]
+          - 'group "3 of 5: Agappe" [ref=e179]':
+            - img "Agappe" [ref=e182]
+          - 'group "4 of 5: ASSET" [ref=e183]':
+            - img "ASSET" [ref=e186]
+          - 'group "5 of 5: Aster MIMS Hospital" [ref=e187]':
+            - img "Aster MIMS Hospital" [ref=e190]
+          - group [aria-hidden]
+          - group [aria-hidden]
+          - group [aria-hidden]
+          - group [aria-hidden]
+          - group [aria-hidden]
+        - generic [ref=e191]:
+          - button "Previous client" [ref=e192]
+          - button "Next client" [ref=e195]
+    - region [ref=e198]:
+      - generic [ref=e199]:
+        - generic [ref=e200]:
+          - heading "When purpose crosses borders." [level=2] [ref=e202]:
+            - generic [ref=e203]:
+              - text: When
+              - generic [ref=e205]:
+                - generic [ref=e206]: purpose
+                - generic [aria-hidden] [ref=e207]: purpse
+              - text: crosses borders.
+          - generic [ref=e209]:
+            - paragraph [ref=e210]: 17 years ago, Greenstorm began in one city. Today, it belongs to 177 countries.
+            - paragraph [ref=e211]: Greenstorm is our global creative conservancy for climate action, exemplifying what purpose can achieve when creativity turns belief into participation.
+            - paragraph [ref=e212]: Over 17 years, Greenstorm has engaged more than 12 million young minds.
+        - generic [ref=e213]:
+          - generic [ref=e214]:
+            - generic [ref=e215]:
+              - img "Monks with umbrellas on a hillside at sunset" [ref=e218]
+              - img "Storm clouds over a lake with a fisherman" [ref=e221]
+            - generic [ref=e222]:
+              - img "Greenstorm delegates at the COP17 conference" [ref=e225]
+              - img "Aerial view of pink flowers over dark water" [ref=e228]
+          - generic [ref=e229]:
+            - generic [ref=e230]:
+              - img "United Nations Convention to Combat Desertification and G20 Global Land Initiative" [ref=e232]
+              - img "Greenstorm Global Photography Festival" [ref=e234]
+            - generic [ref=e235]:
+              - generic [ref=e236]:
+                - term [ref=e237]: Photographers
+                - definition [ref=e238]:
+                  - generic [ref=e239]:
+                    - generic [ref=e240]: 50K+
+                    - text: 50K+
+              - generic [ref=e241]:
+                - term [ref=e242]: Young Minds
+                - definition [ref=e243]:
+                  - generic [ref=e244]:
+                    - generic [ref=e245]: 12M
+                    - text: 12M
+              - generic [ref=e246]:
+                - term [ref=e247]: Countries
+                - definition [ref=e248]:
+                  - generic [ref=e249]:
+                    - generic [ref=e250]: "177"
+                    - text: "177"
+              - generic [ref=e251]:
+                - term [ref=e252]: Impactful Years
+                - definition [ref=e253]:
+                  - generic [ref=e254]:
+                    - generic [ref=e255]: "17"
+                    - text: "17"
+            - link "Discover Greenstorm" [ref=e257] [cursor=pointer]:
+              - /url: "#contact"
+    - region [ref=e261]:
+      - generic [ref=e265]:
+        - heading "Hi, I'm Dileep Narayanan." [level=2] [ref=e267]:
+          - generic [ref=e268]: Hi, I'm
+          - generic [ref=e269]: Dileep Narayanan.
+        - paragraph [ref=e270]: Founder
+        - generic [ref=e271]:
+          - paragraph [ref=e272]: In 1999, long before organic became a fashionable word, I chose it as our name for growth that is natural, rooted and life-giving. That belief still guides us in creating a beautiful world where business, people and planet thrive in harmony.
+          - paragraph [ref=e273]: We live it through Righteousness, Excellence and Results, and relationships built over decades. Because how we grow matters as much as how much we grow.
+        - paragraph [ref=e275]:
+          - generic [ref=e276]: Growth for all.
+          - generic [ref=e277]: Growth for good.
+        - link "Connect with the founder" [ref=e279] [cursor=pointer]:
+          - /url: "#contact"
+      - img "Dileep Narayanan, founder of Organic BPS" [ref=e285]
+    - region [ref=e286]:
+      - generic [ref=e287]:
+        - generic [ref=e288]:
+          - generic [ref=e289]:
+            - heading "Good work finds good people." [level=2] [ref=e291]:
+              - generic [ref=e292]: Good work
+              - generic [ref=e293]: finds good people.
+            - paragraph [ref=e294]: Thankfully, they keep finding us.
+          - link "View all" [ref=e296] [cursor=pointer]:
+            - /url: "#contact"
+        - generic [ref=e300]:
+          - img "Notebook, sticky notes and coffee from a brainstorming session" [ref=e303]
+          - img "Team discussion around a meeting table" [ref=e306]
+          - img "Team toasting a celebration with a cake" [ref=e309]
+          - img "Colleagues sharing a meal together" [ref=e312]
+          - img "Colleagues collaborating in an open office" [ref=e315]
+          - img "Volunteers planting a community garden" [ref=e318]
+    - region [ref=e319]:
+      - generic [ref=e321]:
+        - heading "The pursuit of purpose ." [level=2] [ref=e323]:
+          - generic [ref=e324]: The pursuit of
+          - generic [ref=e325]:
+            - generic [ref=e327]:
+              - generic [ref=e328]: purpose
+              - generic [aria-hidden] [ref=e329]: purpse
+            - text: .
+        - generic [ref=e331]:
+          - paragraph [ref=e332]: Ideas, insights and perspectives on purpose, growth and the changing role of business in creating lasting impact.
+          - link "Explore our thinking" [ref=e334] [cursor=pointer]:
+            - /url: "#contact"
+      - list "Purpose insights" [ref=e340]:
+        - listitem [ref=e341]:
+          - article [ref=e342]:
+            - img "Designer working at a desk with two monitors" [ref=e344]
+            - generic [ref=e345]:
+              - heading "Why purpose needs to move beyond the mission statement" [level=3] [ref=e346]
+              - paragraph [ref=e347]: Purpose becomes powerful when it moves from words on a wall into the decisions a business makes every day.
+        - listitem [ref=e348]:
+          - article [ref=e349]:
+            - img "Smiling colleagues at a table with a dartboard" [ref=e351]
+            - generic [ref=e352]:
+              - heading "Can purpose become a competitive advantage?" [level=3] [ref=e353]
+              - paragraph [ref=e354]: The strongest brands are discovering that meaningful impact isn't separate from business growth — it can become the foundation for it.
+        - listitem [ref=e355]:
+          - article [ref=e356]:
+            - img "Team members high-fiving in a meeting" [ref=e358]
+            - generic [ref=e359]:
+              - heading "Building organisations people believe in" [level=3] [ref=e360]
+              - paragraph [ref=e361]: When people understand what an organisation stands for, they don't just work for it. They become part of its journey.
+        - listitem [ref=e362]:
+          - article [ref=e363]:
+            - img "Colleagues gathered together in an office" [ref=e365]
+            - generic [ref=e366]:
+              - heading "Building organisations people believe in" [level=3] [ref=e367]
+              - paragraph [ref=e368]: When people understand what an organisation stands for, they don't just work for it. They become part of its journey.
+  - contentinfo [ref=e369]:
+    - generic [ref=e372]:
+      - generic [ref=e373]:
+        - link "Organic BPS — home" [ref=e374] [cursor=pointer]:
+          - /url: /
+          - img "Organic BPS" [ref=e376]
+        - heading "Let’s Connect." [level=2] [ref=e379]:
+          - generic [ref=e380]: Let’s
+          - generic [ref=e381]: Connect.
+      - generic [ref=e382]:
+        - navigation "Legal" [ref=e383]:
+          - link "Privacy" [ref=e384] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms of use" [ref=e385] [cursor=pointer]:
+            - /url: "#"
+        - paragraph [ref=e386]: To founders building businesses, brands looking for change, and people ready to create it.
+        - paragraph [ref=e387]: Welcome.
+        - link "Contact" [ref=e389] [cursor=pointer]:
+          - /url: /contact
+    - generic [ref=e395]:
+      - paragraph [ref=e396]: © Copyright 2026, Organic BPS Pvt ltd, All rights reserved
+      - list [ref=e397]:
+        - listitem [ref=e398]:
+          - link "Facebook" [ref=e399] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e400]:
+          - link "Instagram" [ref=e401] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e402]:
+          - link "WhatsApp" [ref=e403] [cursor=pointer]:
+            - /url: "#"
+      - paragraph [ref=e404]:
+        - generic [ref=e405]: "Designed & Developed By:"
+        - link "Intersmart" [ref=e406] [cursor=pointer]:
+          - /url: https://intersmart.in
+  - button "Open Next.js Dev Tools" [ref=e412] [cursor=pointer]

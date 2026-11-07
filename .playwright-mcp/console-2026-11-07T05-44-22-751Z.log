@@ -1,0 +1,16 @@
+[    2221ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[    2356ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[    2808ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[    3460ms] [LOG] [Fast Refresh] done in 916ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[    3665ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[    4307ms] [LOG] [Fast Refresh] done in 756ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[   14500ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[   14888ms] [LOG] [Fast Refresh] done in 489ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[   28566ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[   29079ms] [LOG] [Fast Refresh] done in 613ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[   34575ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[   35048ms] [LOG] [Fast Refresh] done in 579ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[   67595ms] [WARNING] Image with src "https://dsu-beta.intersmarthosting.in/uploads/home_badge_1_f602927ebe.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[   67599ms] [WARNING] Image with src "https://dsu-beta.intersmarthosting.in/uploads/home_badge_2_e1112e8641.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  164716ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
+[  172464ms] [LOG] [Fast Refresh] done in 7862ms @ http://localhost:3001/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js:760
