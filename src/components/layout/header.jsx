@@ -515,6 +515,12 @@ export default function Header({ data = local_data }) {
   useEffect(() => {
     return () => clearTimeout(closeMenuTimer.current);
   }, []);
+  // Close the desktop dropdown after a link navigates (the pointer is still over it, so no mouseleave fires).
+  useEffect(() => {
+    clearTimeout(closeMenuTimer.current);
+    setOpenMenuId(null);
+    setActiveChildId(null);
+  }, [pathname]);
   useEffect(() => {
     document.body.classList.toggle("header-visible", isHeaderVisible);
 

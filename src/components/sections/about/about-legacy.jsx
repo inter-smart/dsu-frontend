@@ -34,6 +34,8 @@ function LegacyCard({ item, index, active, onToggle, className }) {
                 aria-hidden="true"
                 className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_88%_6%,rgba(255,255,255,0.30),transparent_52%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-data-[active=true]:opacity-100"
             />
+            {/* front face (number, icon, title): fades out while the description shows */}
+            <div className={cn("flex flex-col items-center transition-opacity duration-500", hasText && "group-hover:opacity-0 group-data-[active=true]:opacity-0")}>
             {/* big faint index number */}
             <span
                 aria-hidden="true"
@@ -76,16 +78,15 @@ function LegacyCard({ item, index, active, onToggle, className }) {
                 aria-hidden="true"
                 className="mt-[10px] h-[3px] w-[26px] rounded-full bg-gradient-to-r from-[#DC2626] to-[#F97316] transition-all duration-500 group-hover:w-[44px] group-hover:bg-white group-hover:bg-none group-data-[active=true]:w-[44px] group-data-[active=true]:bg-white group-data-[active=true]:bg-none"
             />
+            </div>
             {hasText && (
                 <div
                     id={`legacy-desc-${uid}`}
                     inert={!active}
-                    className="grid w-full grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-500 ease-out group-hover:grid-rows-[1fr] group-hover:opacity-100 group-data-[active=true]:grid-rows-[1fr] group-data-[active=true]:opacity-100"
+                    className="absolute inset-0 flex items-center justify-center px-[18px] py-[22px] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-data-[active=true]:opacity-100 xl:px-[26px] xl:py-[26px] 3xl:px-[36px] 3xl:py-[34px]"
                 >
-                    <div className="min-h-0 overflow-hidden">
-                        <div className="mt-[10px] max-h-[96px] overflow-y-auto pr-[2px] [scrollbar-color:rgba(255,255,255,0.7)_transparent] [scrollbar-width:thin] [&_p]:text-[12px] [&_p]:leading-[1.45] [&_p]:text-white/95 sm:max-h-[110px] lg:max-h-[min(110px,max(36px,calc(clamp(160px,calc((100svh-200px)/2),270px)-150px)))] xl:[&_p]:text-[13px] 2xl:[&_p]:text-[14px] 3xl:max-h-[min(150px,max(50px,calc(clamp(210px,calc((100svh-240px)/2),330px)-185px)))] 3xl:[&_p]:text-[17px]">
-                            <BlocksRenderer content={item.description} />
-                        </div>
+                    <div className="max-h-full w-full overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&_p]:text-[13px] [&_p]:leading-[1.5] [&_p]:text-white xl:[&_p]:text-[14px] 2xl:[&_p]:text-[15px] 3xl:[&_p]:text-[18px]">
+                        <BlocksRenderer content={item.description} />
                     </div>
                 </div>
             )}
