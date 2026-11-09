@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLenis } from "lenis/react";
+import StickyMenubar from "@/components/layout/common/StickyMenubar";
 
 import {
   Accordion,
@@ -466,6 +467,7 @@ export default function AdmissionMenubar({
       </div>
 
       {/* Desktop Horizontal Menubar   */}
+      <StickyMenubar>
       <nav className="w-full z-0 relative mt-[30px] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[50%] after:bg-white dark:after:bg-[#0f1011] after:content-[''] after:-z-1 hidden lg:block transition-colors duration-300">
         <div className="container">
           <div className="relative rounded-[12px] lg:rounded-[15px] xl:rounded-[20px] 2xl:rounded-[23px] 3xl:rounded-[30px] bg-white border border-[#F3DFD2] dark:bg-[#1a1a1a] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-hidden transition-colors duration-300">
@@ -516,6 +518,7 @@ export default function AdmissionMenubar({
           </div>
         </div>
       </nav>
+      </StickyMenubar>
     </div>
   );
 }
