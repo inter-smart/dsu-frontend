@@ -190,8 +190,8 @@ function AcademicCard({ item }) {
           item?.title
         )}
       </h3>
-      <div className="w-full h-full sm:p-[20px_10px] 2xl:p-[35px_15px] bg-[#CDBF8D] opacity-0 pointer-events-none transition-opacity duration-500 block absolute z-1 inset-0 overflow-y-auto [scrollbar-width:thin] [scrollbar-color:rgba(8,12,21,0.35)_transparent] group-hover:opacity-100 group-hover:pointer-events-auto">
-        <div className="w-full h-full block">
+      <div className="w-full h-full p-[20px_10px] 2xl:p-[35px_15px] bg-[#CDBF8D] opacity-0 pointer-events-none transition-opacity duration-500 block absolute z-1 inset-0 overflow-y-auto [scrollbar-width:thin] [scrollbar-color:rgba(8,12,21,0.35)_transparent] group-hover:opacity-100 group-hover:pointer-events-auto">
+        <div className="w-full h-auto block">
           {item?.courses_list?.map((item) => (
             <div
               key={item?.id}

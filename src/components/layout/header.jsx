@@ -758,7 +758,7 @@ export default function Header({ data = local_data }) {
                     <Link
                       href={item?.url || "#"}
                       aria-label={item?.label}
-                      className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-5 border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
+                      className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-[15px] border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
                     >
                       {item?.label}
                     </Link>
@@ -1218,11 +1218,9 @@ function MegaMenuPanel({
   const hasChildMenu = children.length > 0;
   const itemIndex = items?.findIndex((i) => i?.id === itemId) ?? -1;
   const alignRight = itemIndex >= 0 && itemIndex >= (items?.length || 0) / 2;
-  // ADDED: the last menu item that has a submenu (Admissions) opens with its row reversed:
-  // the orange sidebar on the right, the cream list on the left
-  const lastSubmenuIndex =
-    items?.reduce((last, i, idx) => (i?.children?.length ? idx : last), -1) ?? -1;
-  const reverseRow = itemIndex >= 0 && itemIndex === lastSubmenuIndex;
+  // Right-half menus open with the row reversed: the orange sidebar stays pinned to the
+  // right edge (so it doesn't jump when the cream list appears/disappears), the list opens left
+  const reverseRow = alignRight;
 
   useEffect(() => {
     if (!hasChildMenu) return;
@@ -1465,7 +1463,10 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
       const panel = link.closest(".overflow-hidden");
       const panelRect = (panel || link).getBoundingClientRect();
       const viewportWidth = document.documentElement.clientWidth;
-      const flip = panelRect.right + FLYOUT_MAX_WIDTH > viewportWidth;
+      // Flip left when the panel sits in the right half of the screen, or the flyout would overflow
+      const flip =
+        panelRect.left + panelRect.width / 2 > viewportWidth / 2 ||
+        panelRect.right + FLYOUT_MAX_WIDTH > viewportWidth;
 
       // 1px border + padding puts the first item exactly level with the parent row
       const top = Math.max(8, linkRect.top - FLYOUT_PAD_TOP - 1);
