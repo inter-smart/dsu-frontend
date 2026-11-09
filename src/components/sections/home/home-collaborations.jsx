@@ -128,7 +128,7 @@ export default function HomeCollaborations({ data }) {
                   >
                     <div className="w-auto h-full text-center flex flex-col justify-between">
                       {item?.value && (
-                        <div className="text-xs xl:text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-medium text-white mb-1.25">
+                        <div className="text-[20px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[25px] leading-[1.1] font-medium text-white mb-1.25">
                           <ClientCountUp
                             start={0}
                             end={item?.value}
@@ -140,11 +140,11 @@ export default function HomeCollaborations({ data }) {
                         </div>
                       )}
                       {item?.title && (
-                        <div className="text-xs xl:text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-medium text-white mb-1.25 lg:mb-2.5">
+                        <div className="text-[20px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[25px] font-medium text-white mb-1.25 lg:mb-2.5">
                           {item?.title}
                         </div>
                       )}
-                      <div className="text-[7.37px] sm:text-[8px] xl:text-[10px] 2xl:text-[13px] 3xl:text-base leading-[1.1] font-normal text-white">
+                      <div className="text_1 font-normal text-white">
                         {item?.label}
                       </div>
                     </div>
@@ -194,7 +194,7 @@ export default function HomeCollaborations({ data }) {
                             {item?.title}
                           </h3>
                         </div>
-                        <div className="text-sm lg:text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-normal text-white">
+                        <div className="text_1 leading-[1.2] font-normal text-white">
                           {item?.description}
                         </div>
                       </div>
@@ -210,7 +210,7 @@ export default function HomeCollaborations({ data }) {
                           {item?.partners?.slice(0, 5).map((items, index) => (
                             <span
                               key={index}
-                              className="text-[9px] sm:text-[11px] 2xl:text-[13px] 3xl:text-base leading-[1.2] font-semibold text-white p-[5px_10px] sm:p-[12px_20px] 3xl:p-[15px_30px] bg-[#D9D9D9]/10 sm:rounded-[10px] 2xl:rounded-[15px] backdrop-blur-[45px] overflow-hidden inline"
+                              className="text_1 leading-[1.2] font-semibold text-white p-[5px_10px] sm:p-[12px_20px] 3xl:p-[15px_30px] bg-[#D9D9D9]/10 sm:rounded-[10px] 2xl:rounded-[15px] backdrop-blur-[45px] overflow-hidden inline"
                             >
                               {items}
                             </span>
@@ -219,7 +219,7 @@ export default function HomeCollaborations({ data }) {
                             <Link
                               href={safeHref(item?.moreLink)}
                               aria-label="More"
-                              className="text-[10px] sm:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-semibold text-white p-[5px_10px] sm:p-[10px_20px] 2xl:p-[10px_25px] 3xl:p-[15px_30px] border border-white sm:rounded-[10px] 2xl:rounded-[15px] overflow-hidden transition-colors duration-300 hover:bg-(--basecolor2) hover:border-(--basecolor2)"
+                              className="text-sm lg:text_1 leading-[1.2] font-semibold text-white p-[5px_10px] sm:p-[10px_20px] 2xl:p-[10px_25px] 3xl:p-[15px_30px] border border-white sm:rounded-[10px] 2xl:rounded-[15px] overflow-hidden transition-colors duration-300 hover:bg-(--basecolor2) hover:border-(--basecolor2)"
                             >
                               + {(item.partners?.length ?? 0) - 5} More
                             </Link>

@@ -50,7 +50,7 @@ export default function Journey({ data }) {
                 href={safeHref(cta?.url)}
                 target={cta?.isExternal ? "_blank" : undefined}
                 rel={cta?.isExternal ? "noopener noreferrer" : undefined}
-                className={`text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-bold w-auto h-5 sm:h-7.5 xl:h-8.75 2xl:h-12.5 px-2.5 sm:px-3.75 2xl:px-5 gap-2.5 xl:gap-3.75 2xl:gap-5 rounded-[3px] xl:rounded-[5px] overflow-hidden transition-colors duration-500 inline-flex items-center justify-center ${style.className}`}
+                className={`text_1 leading-normal font-bold w-auto h-8 sm:h-9 xl:h-10 2xl:h-12.5 px-2.5 sm:px-3.75 2xl:px-5 gap-2.5 xl:gap-3.75 2xl:gap-5 rounded-[3px] xl:rounded-[5px] overflow-hidden transition-colors duration-500 inline-flex items-center justify-center ${style.className}`}
               >
                 {cta?.label}
                 <span className="w-2.5 sm:w-3 2xl:w-3.75 h-auto aspect-square overflow-hidden flex items-center justify-center">
@@ -86,7 +86,7 @@ export default function Journey({ data }) {
                     />
                   </div>
                 )}
-                <div className="text-[8px] sm:text-[10px] xl:text-xs 2xl:text-sm leading-normal font-normal text-white flex-1">
+                <div className="text_1 leading-normal font-normal text-white flex-1">
                   {item?.label}
                 </div>
               </div>

@@ -17,11 +17,28 @@ import PlacementmenuBar from "@/components/sections/placements/PlacementmenuBar"
 import AdmissionMenubar from "@/components/sections/admission/admissionMenubar";
 import InternationalMenubar from "@/components/sections/international/InternationalMenubar";
 
+// Extracts the 11-character video id from any common YouTube link
+// (watch?v=, youtu.be/, /embed/, /shorts/, /live/) or a bare id. Returns "" when not YouTube.
+function getYouTubeId(input) {
+  const value = typeof input === "string" ? input : input?.url;
+  if (typeof value !== "string") return "";
+  const text = value.trim();
+  if (/^[\w-]{11}$/.test(text)) return text;
+  const match = text.match(
+    /(?:youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/|v\/)|youtu\.be\/)([\w-]{11})/i
+  );
+  return match ? match[1] : "";
+}
+
 // placementMenuItems: optional [{ label, href }] for the Placement pill menu (otherwise it loads its own)
 // className: optional extra classes for the hero <section> (e.g. a page-specific hook)
 export default function InnerHero({ data, placementMenuItems, className }) {
   if (!data) return null;
   const isVideo = data?.heroMedia?.mime?.includes("video");
+  // YouTube: add a text field (e.g. youtubeUrl) in Strapi. A YouTube link in heroMedia.url also works.
+  const youtubeId = getYouTubeId(
+    data?.youtubeUrl || data?.youtube || data?.heroYoutube || data?.heroVideoUrl || data?.heroMedia?.url
+  );
   const breadcrumb =
     Array.isArray(data.breadcrumb) && data.breadcrumb.length > 0
       ? data.breadcrumb
@@ -47,7 +64,28 @@ export default function InnerHero({ data, placementMenuItems, className }) {
       <div className="absolute inset-0 z-0 h-full w-full">
         <div className="absolute inset-0 z-10 bg-black/25" />
 
-        {isVideo ? (
+        {youtubeId ? (
+          // YouTube background: muted, looping, no controls, scaled to cover like object-cover
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 overflow-hidden"
+            style={{ containerType: "size" }}
+          >
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3`}
+              title={data?.heroMedia?.alternativeText || data?.title || "Hero video"}
+              tabIndex={-1}
+              allow="autoplay; encrypted-media; picture-in-picture"
+              referrerPolicy="strict-origin-when-cross-origin"
+              loading="eager"
+              className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2 border-0"
+              style={{
+                width: "max(100cqw, calc(100cqh * 16 / 9))",
+                height: "max(100cqh, calc(100cqw * 9 / 16))",
+              }}
+            />
+          </div>
+        ) : isVideo ? (
           <video autoPlay muted loop playsInline className="h-full w-full object-cover">
             <source src={data?.heroMedia?.url} type={data?.heroMedia?.mime} />
           </video>

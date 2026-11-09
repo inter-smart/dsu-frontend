@@ -6,7 +6,7 @@ import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
-import CtaButton from "@/components/ui/cta-button"; 
+import CtaButton from "@/components/ui/cta-button";
 
 
 
@@ -64,7 +64,7 @@ export default function Events({ data }) {
             <Heading
               as="h2"
               aurora
-              speed={2} 
+              speed={2}
               className="mb-1.25 xl:mb-2.5 3xl:mb-3.75 dark:!bg-none dark:!text-white [&_span]:dark:!bg-none [&_span]:dark:text-white"
             >
               {data?.title}
@@ -115,14 +115,14 @@ export default function Events({ data }) {
                 </div>
                 <div>
                   {data?.latestButton?.label && data?.latestButton?.url && (
-<Link
- href={safeHref(data.latestButton.url)}
- target={data.latestButton.target === "_blank" ? "_blank" : undefined}
- className="text-sm 3xl:text-base leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
->
-{data.latestButton.label}
-</Link>
-)}
+                    <Link
+                      href={safeHref(data.latestButton.url)}
+                      target={data.latestButton.target === "_blank" ? "_blank" : undefined}
+                      className="text-sm 3xl:text-base leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
+                    >
+                      {data.latestButton.label}
+                    </Link>
+                  )}
                 </div>
               </div>
               <div className="w-full h-auto overflow-hidden" ref={emblaRef}>
@@ -207,14 +207,14 @@ export default function Events({ data }) {
                 </div>
                 <div>
                   {data?.announcementsButton?.label && data?.announcementsButton?.url && (
-<Link
- href={safeHref(data.announcementsButton.url)}
- target={data.announcementsButton.target === "_blank" ? "_blank" : undefined}
- className="text-[14px] 3xl:text-[16px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
->
-{data.announcementsButton.label}
-</Link>
-)}
+                    <Link
+                      href={safeHref(data.announcementsButton.url)}
+                      target={data.announcementsButton.target === "_blank" ? "_blank" : undefined}
+                      className="text-[14px] 3xl:text-[16px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
+                    >
+                      {data.announcementsButton.label}
+                    </Link>
+                  )}
                 </div>
               </div>
               <div
@@ -228,11 +228,10 @@ export default function Events({ data }) {
                       className="min-h-0 flex-[0_0_calc(100%/3)]"
                     >
                       <div
-                        className={`group [--image-size:130px] lg:[--image-size:150px] 2xl:[--image-size:175px] 3xl:[--image-size:220px] w-full h-full py-6.25 sm:py-2.5 flex flex-wrap max-sm:items-center ${
-                          index === lastVisibleIndex
+                        className={`group [--image-size:130px] lg:[--image-size:150px] 2xl:[--image-size:175px] 3xl:[--image-size:220px] w-full h-full py-6.25 sm:py-2.5 flex flex-wrap max-sm:items-center ${index === lastVisibleIndex
                             ? "pb-0 border-b-0"
                             : "sm:border-b border-black/10"
-                        }`}
+                          }`}
                       >
                         <div className="w-(--image-size) h-auto aspect-220/120 rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] overflow-hidden block shrink-0 bg-gray-200 dark:bg-white/10">
                           {item?.announcement_image?.url && (
@@ -265,9 +264,9 @@ export default function Events({ data }) {
                     </div>
                   ))}
                 </div>
-                 <div className="w-full h-auto mt-3.75 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center">
-                          <CtaButton button={data?.button} />
-                        </div>
+                <div className="w-full h-auto mt-3.75 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center">
+                  <CtaButton button={data?.button} />
+                </div>
               </div>
             </div>
           </div>
