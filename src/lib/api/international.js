@@ -1,7 +1,7 @@
 import { fetchAPI, slugPath, REVALIDATE } from "./strapi";
 
 // International collection menu: [{ id, documentId, title, slug, template }]
-// template: "international-admission" | "flexible-page"
+// template: "international-admission" | "flexible-page" | "undergraduate-masters" (shaped like flexible-page)
 export async function getInternationalPages() {
   return fetchAPI("/api/international-pages", {}, REVALIDATE);
 }
