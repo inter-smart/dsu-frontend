@@ -123,6 +123,7 @@ const local_data = {
             { id: 1, label: "Campus Placement Offers – 2026 Batch" },
             { id: 2, label: "Placement Readiness Programme – BCA VI Semester" },
             { id: 3, label: "Placement Training – BCA & M.Sc Data Science" },
+            { id: 4, label: "Placement Training – BCA & M.Sc Data Sciencedfdfafa sas" },
         ],
         announcements: [
             {

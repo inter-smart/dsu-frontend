@@ -165,14 +165,14 @@ export default function HomeResearch({ data }) {
           </TabsList>
           <TabsContent value="research">
             <div className="w-full h-auto block">
-              <div className="w-full h-auto mb-5 lg:mb-6.25 3xl:mb-8.75 flex flex-wrap">
-                <div className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-[45px] leading-[1.1] font-bold text-[#212121] dark:text-white w-full sm:w-[35%] max-sm:mb-2.5">
+              <div className="w-full h-auto mb-5 lg:mb-6.25 3xl:mb-8.75 flex flex-wrap max-md:gap-2">
+                <div className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-[45px] leading-[1.1] font-bold text-[#212121] dark:text-white w-full md:w-[35%] max-sm:mb-2.5">
                   {data?.research?.header?.title}
                 </div>
-                <div className="text-sm sm:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.5] font-normal text-[#4A5565] dark:text-white w-full sm:w-[45%]">
+                <div className="text-sm sm:text-[14px] 2xl:text-[15px] 3xl:text-lg leading-[1.5] font-normal text-[#4A5565] dark:text-white w-full md:w-[45%]">
                   {data?.research?.header?.description}
                 </div>
-                <div className="w-full sm:w-[20%] hidden sm:flex justify-end">
+                <div className="w-full md:w-[20%] hidden md:flex justify-end">
                   <Link
                     href={safeHref(data?.research?.header?.button?.link)}
                     className={buttonVariants({
@@ -311,7 +311,7 @@ export default function HomeResearch({ data }) {
                               />
                             </div>
                             <div className="pl-2.5 2xl:pl-3.75 3xl:pl-5">
-                              <div className="text-[25px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.2] font-bold text-[#212121] w-auto h-auto mb-0.5 sm:mb-1.25 dark:bg-linear-to-r dark:from-(--basecolor) dark:to-(--basecolor2) dark:bg-clip-text dark:text-transparent dark:w-fit">
+                              <div className="text-[25px] 2xl:text-[32px] 3xl:text-[40px] leading-snug font-bold text-[#212121] w-auto h-auto mb-0.5 sm:mb-1.25 dark:bg-linear-to-r dark:from-(--basecolor) dark:to-(--basecolor2) dark:bg-clip-text dark:text-transparent dark:w-fit">
                                 <ClientCountUp
                                   start={0}
                                   end={item?.value || 0}
@@ -322,7 +322,7 @@ export default function HomeResearch({ data }) {
                                 />
                               </div>
                               <div
-                                className="text-sm sm:text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] dark:text-white"
+                                className="text_1 leading-[1.1] font-normal text-[#4A5565] dark:text-white"
                                 dangerouslySetInnerHTML={{
                                   __html: item?.label || "",
                                 }}
@@ -350,7 +350,7 @@ export default function HomeResearch({ data }) {
                       />
                       {data?.research?.ctaButton?.label}
                     </Link>
-                    <div className="w-full h-auto mt-7.5 col-span-12 flex items-center sm:hidden justify-center">
+                    <div className="w-full h-auto mt-7.5 col-span-12 flex items-center md:hidden justify-center">
                       <Link
                         href={safeHref(data?.research?.header?.button?.link)}
                         className={buttonVariants({
@@ -375,14 +375,14 @@ export default function HomeResearch({ data }) {
             </div>
           </TabsContent>
           <TabsContent value="incubation">
-            <div className="w-full h-auto mb-5 lg:mb-6.25 3xl:mb-8.75 flex flex-wrap">
-              <h3 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-[45px] leading-[1.1] font-bold text-[#212121] dark:text-white w-full sm:w-[35%] max-sm:mb-2.5">
+            <div className="w-full h-auto mb-5 lg:mb-6.25 3xl:mb-8.75 flex flex-wrap max-md:gap-2">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-[45px] leading-[1.1] font-bold text-[#212121] dark:text-white w-full md:w-[35%] max-sm:mb-2.5">
                 {data?.incubation?.header?.title}
               </h3>
-              <div className="text-sm sm:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.5] font-normal text-[#4A5565] dark:text-white w-full sm:w-[45%]">
+              <div className="text-sm sm:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.5] font-normal text-[#4A5565] dark:text-white w-full md:w-[45%]">
                 {data?.incubation?.header?.description}
               </div>
-              <div className="w-full sm:w-[20%] hidden sm:flex justify-end">
+              <div className="w-full md:w-[20%] hidden sm:flex md:justify-end">
                 <Link
                   href={safeHref(data?.incubation?.header?.button?.link)}
                   className={buttonVariants({

@@ -103,10 +103,10 @@ export default function HomeIndustry({ data }) {
                     />
                   </div>
                   <div className="w-full h-auto m-(--gap) block absolute z-1 inset-[auto_auto_0_0]">
-                    <div className="text-[9px] sm:text-[10px] 2xl:text-[13px] 3xl:text-base leading-[1.1] font-normal text-white w-auto h-auto p-[5px_10px] mb-[2.5px] sm:mb-1.25 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[100px] overflow-hidden inline-block">
+                    <div className="text_1 leading-[1.1] font-normal text-white w-auto h-auto p-[5px_10px] mb-[2.5px] sm:mb-1.25 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[100px] overflow-hidden inline-block">
                       {item?.tag}
                     </div>
-                    <h3 className="text-base sm:text-lg lg:text-xl xl:text-[22px] 2xl:text-[26px] 3xl:text-[32px] leading-[1.1] font-bold text-white line-clamp-2 max-w-[80%] xl:max-w-[60%]">
+                    <h3 className="text-[16px] sm:text-[18px] lg:text-[20px] xl:text-[22px] 2xl:text-[26px] 3xl:text-[32px] leading-[1.1] font-bold text-white line-clamp-2 max-w-[80%] xl:max-w-[60%]">
                       {item?.title}
                     </h3>
                   </div>
