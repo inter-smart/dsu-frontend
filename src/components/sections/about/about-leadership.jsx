@@ -4,6 +4,86 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
 import { hasContent } from "@/lib/has-content";
 
+const EASE = "ease-[cubic-bezier(0.22,1,0.36,1)]";
+
+ 
+function LeaderCard({ item, featured }) {
+  const hasBio = hasContent(item.description);
+  const photoBox = featured
+    ? "h-[125px] w-[110px] rounded-[38px_38px_30px_30px] shadow-[0_6px_0_-2px_#DC2626] sm:h-[136px] sm:w-[120px] xl:h-[159px] xl:w-[140px] xl:rounded-[44px_44px_34px_34px] 2xl:h-[181px] 2xl:w-[160px] 2xl:rounded-[50px_50px_40px_40px] 3xl:h-[227px] 3xl:w-[200px] 3xl:rounded-[60px_60px_48px_48px]"
+    : "h-[64px] w-[64px] rounded-[20px] sm:h-[72px] sm:w-[72px] xl:h-[84px] xl:w-[84px] xl:rounded-[24px] 2xl:h-[96px] 2xl:w-[96px] 2xl:rounded-[28px] 3xl:h-[120px] 3xl:w-[120px] 3xl:rounded-[34px]";
+  return (
+    <Link
+      href={item.link ? `/leadership/${item.link}` : "/about"}
+      className={`group relative flex h-full w-full items-center rounded-[14px] border border-transparent bg-white transition-[transform,box-shadow] duration-500 ${EASE} hover:-translate-y-[5px] hover:shadow-[0_16px_34px_rgba(0,0,0,0.14)] focus-visible:-translate-y-[5px] focus-visible:shadow-[0_16px_34px_rgba(0,0,0,0.14)] dark:border-white/10 dark:bg-[#18191B] dark:hover:shadow-[0_16px_34px_rgba(0,0,0,0.5)] ${
+        featured
+          ? "gap-[18px] p-[20px] max-sm:flex-col max-sm:text-center xl:gap-[24px] xl:p-[24px] 2xl:gap-[28px] 2xl:p-[28px] 3xl:gap-[38px] 3xl:p-[36px]"
+          : "gap-[14px] p-[14px] xl:gap-[18px] xl:p-[18px] 2xl:gap-[22px] 2xl:p-[22px] 3xl:gap-[28px] 3xl:p-[28px]"
+      }`}
+    >
+      <div className={`shrink-0 overflow-hidden bg-[#cfd6e4] ${photoBox}`}>
+        {item?.image?.url && (
+          <Image
+            src={item.image.url}
+            width={250}
+            height={250}
+            className={`h-full w-full object-cover object-top transition-transform duration-700 ${EASE} group-hover:scale-[1.06]`}
+            alt={item.image.alternativeText || item.name || "Leader"}
+          />
+        )}
+      </div>
+      <div className={`min-w-0 flex-1 ${hasBio ? (featured ? "sm:pr-[40px] xl:pr-[48px] 2xl:pr-[56px] 3xl:pr-[70px]" : "pr-[36px] xl:pr-[44px] 3xl:pr-[56px]") : ""}`}>
+        <div
+          className={`font-bold leading-[1.25] text-black dark:text-white ${
+            featured
+              ? "text-[16px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[26px]"
+              : "text-[15px] xl:text-[15px] 2xl:text-[17px] 3xl:text-[22px]"
+          }`}
+        >
+          {item.name}
+        </div>
+        {item.designation && (
+          <div
+            className={`mt-[4px] leading-[1.3] ${
+              featured
+                ? "font-semibold text-[#DC2626] text-[14px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px]"
+                : "text-[#4A5565] dark:text-[#9CA3AF] text-[13px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px]"
+            }`}
+          >
+            {item.designation}
+          </div>
+        )}
+        {hasBio && (
+          // on hover-capable devices the bio opens on hover / focus; touch devices always show it
+          <div
+            className={`grid grid-rows-[1fr] transition-[grid-template-rows,opacity] duration-700 ${EASE} [@media(hover:hover)]:grid-rows-[0fr] [@media(hover:hover)]:opacity-0 group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-visible:grid-rows-[1fr] group-focus-visible:opacity-100`}
+          >
+            <div className="min-h-0 overflow-hidden">
+              <div className="pt-[8px] xl:pt-[10px]">
+                {Array.isArray(item.description) ? (
+                  <BlocksRenderer content={item.description} />
+                ) : (
+                  <p>{item.description}</p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+      {hasBio && (
+        <span
+          aria-hidden="true"
+          className={`absolute right-[14px] top-1/2 flex h-[30px] w-[30px] -translate-y-1/2 items-center justify-center rounded-full border border-[#DC2626]/25 bg-[#DC2626]/5 text-[#DC2626] transition-all duration-500 ${EASE} group-hover:translate-x-[6px] group-hover:border-transparent group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316] group-hover:text-white max-sm:top-auto max-sm:bottom-[12px] max-sm:translate-y-0 xl:right-[20px] xl:h-[36px] xl:w-[36px] 2xl:right-[26px] 2xl:h-[40px] 2xl:w-[40px] 3xl:right-[32px] 3xl:h-[50px] 3xl:w-[50px]`}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="h-[14px] w-[14px] xl:h-[16px] xl:w-[16px] 2xl:h-[18px] 2xl:w-[18px] 3xl:h-[22px] 3xl:w-[22px]">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </span>
+      )}
+    </Link>
+  );
+}
+
 export default function AboutLeadership({ data }) {
   const leaders = (Array.isArray(data?.leaders) ? data.leaders : []).filter(
     (item) => item?.name,
@@ -11,7 +91,6 @@ export default function AboutLeadership({ data }) {
   if (!leaders.length) return null;
   const featuredLeaders = leaders.slice(0, 2);
   const otherLeaders = leaders.slice(2);
-
 
   return (
     <section className="bg-[#F4F6FA] dark:bg-[#101010] py-[65px] transition-colors duration-300">
@@ -33,115 +112,18 @@ export default function AboutLeadership({ data }) {
             )}
           </div>
         )}
-        <div className="flex flex-wrap -m-[5px] lg:-m-[10px]">
+        <div className="grid gap-[12px] md:grid-cols-2 lg:gap-[20px] 3xl:gap-[28px]">
           {featuredLeaders.map((item, id) => (
-            <div className=" xs:w-1/2 md:w-1/2 p-[5px] lg:p-[10px]" key={id}>
-              <Link
-                href={item.link ? `/leadership/${item.link}` : "/about"}
-                className=" flex flex-wrap border border-transparent dark:border-white/10 items-center p-[20px_15px] lg:p-[25px_15px] xl:p-[30px_20px] 2xl:p-[35px_25px] 3xl:p-[44px_30px] bg-white dark:bg-[#18191B] w-full h-full rounded-[10px] hover:bg-gradient-to-b hover:from-[#FFF8EE] hover:to-[#FFF3E0] hover:border-[#f9741681] dark:hover:from-white/10 dark:hover:to-white/5
-                               max-sm:text-center transition-colors duration-300"
-              >
-                <div className="w-[165px] xl:w-[200px] 2xl:w-[250px] 3xl:w-[310px] max-sm:m-auto  max-sm:mb-[10px] ">
-                  <div className="w-full h-full overflow-hidden rounded-[35px] lg:rounded-[55px] xl:rounded-[65px] 2xl:rounded-[85px] 3xl:rounded-[95px] pb-[10px] border-b-[2px] border-[#DC2626]">
-                    {item?.image?.url && (
-                      <Image
-                        src={item.image.url}
-                        width="250"
-                        height="250"
-                        className="w-full h-full object-cover rounded-[35px] lg:rounded-[55px] xl:rounded-[65px] 2xl:rounded-[85px] 3xl:rounded-[95px]"
-                        alt={item.image.alternativeText || item.name || "Leader"}
-                      />
-                    )}
-                  </div>
-                </div>
-                <div className="w-full sm:w-[calc(100%-165px)] xl:w-[calc(100%-200px)] 2xl:w-[calc(100%-250px)] 3xl:w-[calc(100%-310px)] sm:pl-[30px]">
-                  <div className="text-[13px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold mb-[6px]">
-                    {item.name}
-                  </div>
-                  {item.designation && (
-                  <div
-                    className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#DC2626] font-semibold relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px]
-                                     after:w-[30px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316] max-sm:after:m-auto max-sm:after:right-0"
-                  >
-                    {item.designation}
-                  </div>
-                  )}
-                  {hasContent(item.description) && (
-                    Array.isArray(item.description) ? (
-                      <BlocksRenderer content={item.description} />
-                    ) : (
-                      <p>{item.description}</p>
-                    )
-                  )}
-                  <div className="w-[20px] 2xl:w-[25px] 3xl:w-[28px] h-[15px] 2xl:h-[18px] 3xl:h-[20px] max-sm:m-auto !mt-[30px]">
-                    <svg 
-                      viewBox="0 0 28 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M27.776 9.0405L19.901 0.2905C19.733 0.105 19.4967 0 19.25 0H14C13.6535 0 13.3403 0.203 13.2003 0.518C13.0603 0.83475 13.118 1.204 13.349 1.4595L18.3348 7H0.875C0.392 7 0 7.392 0 7.875V11.375C0 11.858 0.392 12.25 0.875 12.25H18.3348L13.349 17.7887C13.118 18.046 13.0585 18.4153 13.2003 18.7302C13.3403 19.047 13.6535 19.25 14 19.25H19.25C19.4985 19.25 19.733 19.1432 19.901 18.9613L27.776 10.2113C28.0752 9.87875 28.0752 9.37125 27.776 9.0405Z"
-                        className="fill-[#212121] dark:fill-white transition-colors duration-300"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          ))}
-          {otherLeaders.map((item, id) => (
-            <div className="w-1/2 md:w-1/3 p-[5px] lg:p-[10px]" key={id}>
-              <Link
-                href={item.link ? `/leadership/${item.link}` : "/about"}
-                className=" flex flex-wrap items-center p-[20px_10px] lg:p-[8px_12px] xl:p-[10px_15px] 2xl:p-[12px_20px] 3xl:p-[15px_25px] bg-white dark:bg-[#18191B] dark:border dark:border-white/10 w-full h-full rounded-[10px] hover:bg-gradient-to-b hover:from-[#FFF8EE] hover:to-[#FFF3E0] dark:hover:from-white/10 dark:hover:to-white/5
-                            max-sm:text-center transition-colors duration-300"
-              >
-                <div className="w-[115px] xl:w-[145px] 2xl:w-[175px] 3xl:w-[215px] max-sm:m-auto  max-sm:mb-[10px] ">
-                  <div className="w-full h-full overflow-hidden rounded-[25px] lg:rounded-[35px] xl:rounded-[45px] 2xl:rounded-[55px] 3xl:rounded-[65px] pb-[10px] border-b-[2px] border-[#DC2626]">
-                    {item?.image?.url && (
-                      <Image
-                        src={item.image.url}
-                        width="250"
-                        height="250"
-                        className="w-full h-full object-cover rounded-[25px] lg:rounded-[35px] xl:rounded-[45px] 2xl:rounded-[55px] 3xl:rounded-[65px]"
-                        alt={item.image.alternativeText || item.name || "Leader"}
-                      />
-                    )}
-                  </div>
-                </div>
-                <div className="w-full sm:w-[calc(100%-115px)] xl:w-[calc(100%-145px)] 2xl:w-[calc(100%-175px)] 3xl:w-[calc(100%-215px)] sm:pl-[30px]">
-                  <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black dark:text-white font-bold mb-[6px]">
-                    {item.name}
-                  </div>
-                  {item.designation && (
-                  <div className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-[#4A5565] dark:text-[#9CA3AF] font-normal relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px]  ">
-                    {item.designation}
-                  </div>
-                  )}
-                  {hasContent(item.description) && (
-                    Array.isArray(item.description) ? (
-                      <BlocksRenderer content={item.description} />
-                    ) : (
-                      <p>{item.description}</p>
-                    )
-                  )}
-                  <div className="w-[22px] xl:w-[28px] h-[15px] xl:h-[20px] max-sm:m-auto !mt-[30px]">
-                    <svg
-                      viewBox="0 0 28 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M27.776 9.0405L19.901 0.2905C19.733 0.105 19.4967 0 19.25 0H14C13.6535 0 13.3403 0.203 13.2003 0.518C13.0603 0.83475 13.118 1.204 13.349 1.4595L18.3348 7H0.875C0.392 7 0 7.392 0 7.875V11.375C0 11.858 0.392 12.25 0.875 12.25H18.3348L13.349 17.7887C13.118 18.046 13.0585 18.4153 13.2003 18.7302C13.3403 19.047 13.6535 19.25 14 19.25H19.25C19.4985 19.25 19.733 19.1432 19.901 18.9613L27.776 10.2113C28.0752 9.87875 28.0752 9.37125 27.776 9.0405Z"
-                        className="fill-[#212121] dark:fill-white transition-colors duration-300"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </Link>
-            </div>
+            <LeaderCard key={id} item={item} featured />
           ))}
         </div>
+        {otherLeaders.length > 0 && (
+          <div className="mt-[12px] grid gap-[12px] sm:grid-cols-2 lg:mt-[20px] lg:grid-cols-3 lg:gap-[20px] 3xl:mt-[28px] 3xl:gap-[28px]">
+            {otherLeaders.map((item, id) => (
+              <LeaderCard key={id} item={item} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

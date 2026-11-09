@@ -36,7 +36,7 @@ export default async function page({ searchParams }) {
       <Suspense fallback={null}>
         <ApplyForm job={job} />
       </Suspense>
-      <FloatingContactRail />
+      {/* <FloatingContactRail /> */}
     </>
   );
 }

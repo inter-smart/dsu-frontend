@@ -12,6 +12,8 @@ export default function StudentSuccessStories({ data, variant }) {
 
     const [otherPrevDisabled, setOtherPrevDisabled] = useState(true);
     const [otherNextDisabled, setOtherNextDisabled] = useState(false);
+    // ADDED: false when every slide already fits on screen, so the arrows are hidden instead of both disabled
+    const [otherCanSlide, setOtherCanSlide] = useState(false);
 
     const [activeVideoModal, setActiveVideoModal] = useState(null);
 
@@ -33,6 +35,7 @@ export default function StudentSuccessStories({ data, variant }) {
 
     const syncOtherSwiper = (swiper) => {
         if (!swiper || swiper.destroyed) return;
+        setOtherCanSlide(!swiper.isLocked); // ADDED
         setOtherPrevDisabled(swiper.isBeginning);
         setOtherNextDisabled(swiper.isEnd);
     };
@@ -45,10 +48,12 @@ export default function StudentSuccessStories({ data, variant }) {
                 {/* --- Section 2: Other (Testimonials) --- */}
                 <div>
                     {/* Header Row */}
-                    <div className="flex items-center justify-between mb-[18px] sm:mb-[22px] lg:mb-[26px]">
+                    {/* ADDED: stacked on mobile (arrows under the text), side by side from sm and up */}
+                    <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between mb-[18px] sm:mb-[22px] lg:mb-[26px]">
                         
                         {/* Main Heading */}
-                        <div>
+                        {/* ADDED: min-w-0 so the heading text wraps instead of pushing the arrows off or squeezing them */}
+                        <div className="min-w-0 w-full sm:w-auto sm:flex-1">
                             <h2 className="text-[28px] sm:text-[36px] lg:text-[42px] xl:text-[46px] font-bold text-[#1F1F1F] dark:text-white tracking-tight">
                                 {heading}
                             </h2>
@@ -65,15 +70,16 @@ export default function StudentSuccessStories({ data, variant }) {
                         </div>
 
                         {/* Orange Arrow Navigation Buttons */}
-                        <div className="flex items-center gap-2 2xl:gap-1">
+                        {/* ADDED: relative z-10 so no other layer can sit on top of the buttons and swallow the tap */}
+                        <div className={`relative z-10 flex items-center gap-2 2xl:gap-1 shrink-0 ml-0 sm:ml-4 ${otherCanSlide ? "" : "hidden"}`}>
                             <button
                                 type="button"
                                 aria-label="Previous stories"
                                 onClick={() => otherSwiperRef.current?.slidePrev()}
                                 disabled={otherPrevDisabled}
-                                className="w-3 h-3 2xl:w-[30px] 2xl:h-[30px] flex items-center justify-center border border-black/10 text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+                                className="shrink-0 w-[40px] h-[40px] sm:w-[32px] sm:h-[32px] 2xl:w-[30px] 2xl:h-[30px] flex items-center justify-center border border-black/10 dark:border-white/10 text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer touch-manipulation select-none"
                             >
-                                <svg className="w-full h-[16px] max-w-[15px]" viewBox="0 0 16 29" fill="none"  >
+                                <svg className="w-full h-[16px] max-w-[15px] pointer-events-none" viewBox="0 0 16 29" fill="none"  >
                                     <path d="M15.1855 2.32715C15.6012 1.91269 15.6054 1.23886 15.1943 0.819336C14.7809 0.39766 14.1041 0.392766 13.6846 0.808594L13.6826 0.811523L0.832032 13.7363L0.833008 13.7373C0.62052 13.9389 0.50025 14.2184 0.500977 14.5117L0.500001 14.5107L0.500977 14.5127L0.500001 14.5137L0.500977 14.5137C0.501149 14.7939 0.610929 15.0631 0.808594 15.2627L0.808594 15.2637L13.6592 28.1885L13.6611 28.1914L14.0137 27.8359L13.6621 28.1914C14.0817 28.6071 14.7577 28.6021 15.1709 28.1807C15.5828 27.7604 15.5781 27.0842 15.1602 26.6699L15.1592 26.6709L3.07227 14.5127L15.1855 2.32715Z" fill="#F97316" stroke="#F97316" />
                                 </svg>
 
@@ -83,9 +89,9 @@ export default function StudentSuccessStories({ data, variant }) {
                                 aria-label="Next stories"
                                 onClick={() => otherSwiperRef.current?.slideNext()}
                                 disabled={otherNextDisabled}
-                                className="w-3 h-3 2xl:w-[30px] 2xl:h-[30px] border border-black/10 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+                                className="shrink-0 w-[40px] h-[40px] sm:w-[32px] sm:h-[32px] 2xl:w-[30px] 2xl:h-[30px] border border-black/10 dark:border-white/10 flex items-center justify-center text-[#F97316] hover:text-[#EA580C] disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer touch-manipulation select-none"
                             >
-                                <svg className="w-full h-[16px] max-w-[15px]" viewBox="0 0 16 29" fill="none"  >
+                                <svg className="w-full h-[16px] max-w-[15px] pointer-events-none" viewBox="0 0 16 29" fill="none"  >
                                     <path d="M0.814452 2.32715C0.398848 1.91269 0.394622 1.23886 0.805663 0.819336C1.21905 0.39766 1.89592 0.392766 2.31543 0.808594L2.31738 0.811523L15.168 13.7363L15.167 13.7373C15.3795 13.9389 15.4998 14.2184 15.499 14.5117L15.5 14.5107L15.499 14.5127L15.5 14.5137L15.499 14.5137C15.4989 14.7939 15.3891 15.0631 15.1914 15.2627L15.1914 15.2637L2.34082 28.1885L2.33887 28.1914L1.98633 27.8359L2.33789 28.1914C1.91834 28.6071 1.24231 28.6021 0.829102 28.1807C0.417212 27.7604 0.421942 27.0842 0.839844 26.6699L0.84082 26.6709L12.9277 14.5127L0.814452 2.32715Z" fill="#F97316" stroke="#F97316" />
                                 </svg>
 
@@ -102,6 +108,11 @@ export default function StudentSuccessStories({ data, variant }) {
                             }}
                             onSlideChange={(swiper) => syncOtherSwiper(swiper)}
                             onResize={(swiper) => syncOtherSwiper(swiper)}
+                            onBreakpoint={(swiper) => syncOtherSwiper(swiper)}
+                            onUpdate={(swiper) => syncOtherSwiper(swiper)}
+                            onReachBeginning={(swiper) => syncOtherSwiper(swiper)}
+                            onReachEnd={(swiper) => syncOtherSwiper(swiper)}
+                            watchOverflow
                             slidesPerView={1.1}
                             spaceBetween={10}
                             breakpoints={{
@@ -128,7 +139,7 @@ export default function StudentSuccessStories({ data, variant }) {
                             }}
                             className="w-full"
                         >
-                            {stories.map((story, idx) => (
+                            {stories?.map((story, idx) => (
                                 <SwiperSlide key={story.id || idx} className="!h-auto flex">
                                     <div className={`w-full h-full ${variant === "bg-gradient" ? "bg-white": "bg-[#F8FAFC]"}  dark:bg-[#151618] rounded-[4px] p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-md`}>
                                         {/* Top Content */}

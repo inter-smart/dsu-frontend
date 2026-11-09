@@ -84,12 +84,12 @@ export default function GovernanceFinancecommittte({ data, title, governancePage
                                                     )}
 
                                                     <div className={`${item.image ? "w-[calc(100%-50px)] xl:w-[calc(100%-61px)] 2xl:w-[calc(100%-73px)] 3xl:w-[calc(100%-92px)] pl-[15px] xl:pl-[25px] 2xl:pl-[35px] 3xl:pl-[45px]" : "w-full"}`}>
-                                                        <div className="text_1 font-semibold text-[#212121]">
+                                                        <div className="text-[12px] xl:text_1 font-semibold text-[#212121]">
                                                             {item.name}
                                                         </div>
 
                                                         {item.note && (
-                                                            <div className="mt-[0px] text_1 text-[#4A5565]">
+                                                            <div className="mt-[0px] text-[12px] xl:text_1 text-[#4A5565]">
                                                                 {item.note}
                                                             </div>
                                                         )}
@@ -97,7 +97,7 @@ export default function GovernanceFinancecommittte({ data, title, governancePage
                                                 </div>
                                             </td>
 
-                                            <td className="p-[12px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px] text-center text_1 font-semibold text-[#4A5565] relative  after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last-of-type:after:hidden">
+                                            <td className="p-[12px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px] text-center text-[12px] xl:text_1 font-semibold text-[#4A5565] relative  after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last-of-type:after:hidden">
                                                 <div className="max-w-[320px] m-auto text-center">
                                                     {item.designation}
                                                 </div>

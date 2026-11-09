@@ -97,15 +97,25 @@ export default function ScrollReveal() {
     // An element reveals once its top is ~25% of the viewport height above the bottom edge, and hides
     // again when it leaves, so the animation replays on each scroll pass.
     const OPTIONS = { rootMargin: "0px 0px -25% 0px", threshold: 0 };
+    // Blocks that start inside the first screen of the page (the first sections under the banner) are
+    // visible whenever any part is on screen, including the strip under the trigger line, so they never
+    // open or return hidden. Everything lower down keeps the trigger line and replay.
+    let scrolled = false;
+    const inView = (el) => {
+      const r = el.getBoundingClientRect();
+      return r.top < vh() && r.bottom > 0;
+    };
+    const inFold = (el) => el.getBoundingClientRect().top + window.scrollY < vh();
+    const eager = (el) => inFold(el) && inView(el);
     const io = new IntersectionObserver((entries) => {
-      for (const e of entries) e.target.classList.toggle("is-revealed", e.isIntersecting);
+      for (const e of entries) e.target.classList.toggle("is-revealed", e.isIntersecting || eager(e.target));
     }, OPTIONS);
     // Tall card grids: reveal each card when it arrives (staggered within the batch that arrives together).
     const ioEach = new IntersectionObserver((entries) => {
       let n = 0;
       for (const e of entries) {
         if (e.isIntersecting) e.target.style.setProperty("--reveal-delay", `${n++ * 140}ms`);
-        e.target.classList.toggle("is-revealed", e.isIntersecting);
+        e.target.classList.toggle("is-revealed", e.isIntersecting || eager(e.target));
       }
     }, OPTIONS);
 
@@ -115,12 +125,13 @@ export default function ScrollReveal() {
         if (observed.has(el)) return;
         observed.add(el);
         const { top, bottom, height } = el.getBoundingClientRect();
-        const onScreen = top < vh() * 0.75 && bottom > 0;
+        const line = inFold(el) ? vh() : vh() * 0.75;
+        const onScreen = top < line && bottom > 0;
         if (el.hasAttribute("data-reveal-stagger") && height > vh() * 0.85) {
           el.setAttribute("data-reveal-each", "");
           [...el.children].forEach((c) => {
             c.style.setProperty("--reveal-delay", "0ms");
-            if (c.getBoundingClientRect().top < vh() * 0.75 && c.getBoundingClientRect().bottom > 0) c.classList.add("is-revealed");
+            if (c.getBoundingClientRect().top < line && c.getBoundingClientRect().bottom > 0) c.classList.add("is-revealed");
             ioEach.observe(c);
           });
           return;
@@ -146,12 +157,24 @@ export default function ScrollReveal() {
     scan();
     root.classList.add("reveal-ready");
 
+    // Images/fonts can shift layout after the first scan, and the visitor can return to the top: re-reveal first-screen blocks that are in view.
+    // wipe images keep their entrance animation on first load; after the first scroll they are re-revealed like the rest.
+    const revealInView = () => {
+      document.querySelectorAll("[data-reveal], [data-reveal-stagger]:not([data-reveal-each]), [data-reveal-each] > *").forEach((el) => {
+        if ((scrolled || el.getAttribute("data-reveal") !== "wipe") && eager(el)) el.classList.add("is-revealed");
+      });
+    };
+    revealInView();
+    window.addEventListener("load", revealInView);
+    const settle = setTimeout(revealInView, 600);
+
     // At the very bottom of the page the last blocks can never reach the trigger line: show what is on screen.
     let frame = 0;
     const onScroll = () => {
       if (frame) return;
       frame = requestAnimationFrame(() => {
         frame = 0;
+        revealInView();
         if (window.scrollY + vh() < document.documentElement.scrollHeight - 4) return;
         document.querySelectorAll("[data-reveal]:not(.is-revealed), [data-reveal-stagger]:not([data-reveal-each]):not(.is-revealed), [data-reveal-each] > :not(.is-revealed)").forEach((el) => {
           const r = el.getBoundingClientRect();
@@ -160,6 +183,8 @@ export default function ScrollReveal() {
       });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    const onInput = () => (scrolled = true);
+    ["wheel", "touchmove", "keydown"].forEach((t) => window.addEventListener(t, onInput, { passive: true, once: true }));
 
     // Content rendered after the first pass (streamed or client-rendered sections) is picked up too.
     let timer = 0;
@@ -172,8 +197,11 @@ export default function ScrollReveal() {
 
     return () => {
       clearTimeout(timer);
+      clearTimeout(settle);
       if (frame) cancelAnimationFrame(frame);
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("load", revealInView);
+      ["wheel", "touchmove", "keydown"].forEach((t) => window.removeEventListener(t, onInput));
       mo.disconnect();
       io.disconnect();
       ioEach.disconnect();
