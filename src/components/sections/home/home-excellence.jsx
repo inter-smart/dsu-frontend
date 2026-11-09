@@ -3,7 +3,7 @@ import Image from "@/components/ui/safe-image";
 import Link from "next/link";
 import { safeHref } from "@/lib/utils";
 import { Text } from "@/components/ui/text";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Heading } from "@/components/ui/heading";
 import { buttonVariants } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
@@ -17,6 +17,21 @@ const subscribePin = (cb) => {
 };
 // Viewport heights of scrolling per card while the section is pinned.
 const SCRUB_VH_PER_CARD = 60;
+// How quickly the cards catch up to the scroll position (0-1, higher = snappier).
+const EASE = 0.14;
+// Each card holds still until this fraction of its scroll range, swaps, then holds again.
+const DWELL_START = 0.3;
+const DWELL_END = 0.7;
+
+// Maps raw progress (0..count-1) so that cards rest on whole numbers instead of in-between blends.
+const withDwell = (raw) => {
+  const base = Math.floor(raw);
+  const frac = raw - base;
+  if (frac <= DWELL_START) return base;
+  if (frac >= DWELL_END) return base + 1;
+  const u = (frac - DWELL_START) / (DWELL_END - DWELL_START);
+  return base + u * u * (3 - 2 * u);
+};
 
 export default function HomeExcellence({ data }) {
   const pinned = useSyncExternalStore(
@@ -25,7 +40,7 @@ export default function HomeExcellence({ data }) {
     () => false,
   );
   const trackRef = useRef(null);
-  const [scrub, setScrub] = useState(0);
+  const cardRefs = useRef([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
@@ -46,31 +61,70 @@ export default function HomeExcellence({ data }) {
     return () => clearInterval(interval);
   }, [pinned, count, isDragging]);
 
-  // Scrub: scroll progress through the pinned track drives the card stack.
-  useEffect(() => {
+  // Scrub: scroll progress drives the card stack directly on the DOM (no React re-render per frame).
+  useLayoutEffect(() => {
     if (!pinned || count < 2) return;
-    let frame = 0;
-    const update = () => {
-      frame = 0;
+    let raf = 0;
+    let current = 0;
+    let target = 0;
+    let lastIndex = -1;
+
+    const getTarget = () => {
       const el = trackRef.current;
-      if (!el) return;
+      if (!el) return 0;
       const { top, height } = el.getBoundingClientRect();
-      const total = height - window.innerHeight;
+      const pin = el.firstElementChild?.offsetHeight || window.innerHeight;
+      const total = height - pin;
       const progress = total > 0 ? Math.min(1, Math.max(0, -top / total)) : 0;
-      const t = Math.round(progress * (count - 1) * 100) / 100;
-      setScrub(t);
-      setActiveIndex(Math.round(t));
+      return withDwell(progress * (count - 1));
     };
+
+    const paint = (t) => {
+      const nodes = cardRefs.current;
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
+        if (!node) continue;
+        const pos = i - t;
+        const stackIndex = Math.max(0, pos);
+        const isVisible = stackIndex < 5;
+        const passed = pos < 0;
+        node.style.transform = passed
+          ? `translate3d(0, ${-pos * 24}px, 0) scale(${1 - pos * 0.1})`
+          : isVisible
+            ? `translate3d(0, calc(-1 * ${stackIndex} * var(--stack-gap)), 0) scale(${1 - stackIndex * 0.08})`
+            : `translate3d(0, calc(-5 * var(--stack-gap)), 0) scale(${1 - 5 * 0.08})`;
+        node.style.zIndex = passed ? count + 1 : Math.round((count - stackIndex) * 100);
+        node.style.opacity = passed ? Math.max(0, 1 + pos * 1.8) : 1;
+      }
+      // Only touch React state when the active card actually changes.
+      const idx = Math.round(t);
+      if (idx !== lastIndex) {
+        lastIndex = idx;
+        setActiveIndex(idx);
+      }
+    };
+
+    const tick = () => {
+      raf = 0;
+      current += (target - current) * EASE;
+      if (Math.abs(target - current) < 0.001) current = target;
+      paint(current);
+      if (current !== target) raf = requestAnimationFrame(tick);
+    };
+
     const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
+      target = getTarget();
+      if (!raf) raf = requestAnimationFrame(tick);
     };
-    update();
+
+    current = target = getTarget();
+    paint(current);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      if (frame) cancelAnimationFrame(frame);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, [pinned, count]);
 
@@ -106,10 +160,32 @@ export default function HomeExcellence({ data }) {
     setDragOffset(0);
   };
 
+  // While pinned, the scroll position is the source of truth, so the arrows
+  // scroll the page to the target card instead of changing activeIndex directly.
+  const goToPinned = (next) => {
+    const el = trackRef.current;
+    if (!el || count < 2) return;
+    const pin = el.firstElementChild?.offsetHeight || window.innerHeight;
+    const total = el.offsetHeight - pin;
+    const start = el.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({
+      top: start + (next / (count - 1)) * total,
+      behavior: "smooth",
+    });
+  };
+
   const scrollPrev = () => {
+    if (pinned) {
+      goToPinned((activeIndex - 1 + items.length) % items.length);
+      return;
+    }
     setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
   };
   const scrollNext = () => {
+    if (pinned) {
+      goToPinned((activeIndex + 1) % items.length);
+      return;
+    }
     setActiveIndex((prev) => (prev + 1) % items.length);
   };
   return (
@@ -174,25 +250,29 @@ export default function HomeExcellence({ data }) {
             >
               <div className="[--navigation-btn-size:35px] sm:[--navigation-btn-size:45px] w-full h-full aspect-875/450 relative z-0">
                 {items?.map((item, index) => {
-                  // Pinned: fractional position from scroll (negative = already passed, fades out forward).
-                  const pos = pinned ? index - scrub : getStackIndex(index);
-                  const stackIndex = Math.max(0, pos);
+                  // Pinned: transform/opacity/zIndex are written straight to the DOM by the scrub effect.
+                  // Not pinned: the stack is driven by activeIndex as before.
+                  const stackIndex = Math.max(0, getStackIndex(index));
                   const isVisible = stackIndex < 5;
-                  const passed = pinned && pos < 0;
                   return (
                     <div
                       key={item?.id}
-                      className={`[--stack-gap:15px] sm:[--stack-gap:25px] 2xl:[--stack-gap:30px] 3xl:[--stack-gap:35px] w-full h-full rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden absolute z-1 inset-0 ${pinned ? "" : "transition-all duration-1000"}`}
-                      style={{
-                        transform: passed
-                          ? `translateY(${-pos * 24}px) scale(${1 - pos * 0.1})`
-                          : isVisible
-                            ? `translateY(calc(-1 * ${stackIndex} * var(--stack-gap))) scale(${1 - stackIndex * 0.08})`
-                            : `translateY(calc(-5 * var(--stack-gap))) scale(${1 - 5 * 0.08})`,
-                        zIndex: passed ? items.length + 1 : Math.round((items.length - stackIndex) * 100),
-                        opacity: passed ? Math.max(0, 1 + pos * 1.8) : 1,
-                        pointerEvents: "none",
+                      ref={(el) => {
+                        cardRefs.current[index] = el;
                       }}
+                      className={`[--stack-gap:15px] sm:[--stack-gap:25px] 2xl:[--stack-gap:30px] 3xl:[--stack-gap:35px] w-full h-full rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden absolute z-1 inset-0 ${pinned ? "" : "transition-all duration-1000"}`}
+                      style={
+                        pinned
+                          ? { pointerEvents: "none", willChange: "transform, opacity" }
+                          : {
+                              transform: isVisible
+                                ? `translateY(calc(-1 * ${stackIndex} * var(--stack-gap))) scale(${1 - stackIndex * 0.08})`
+                                : `translateY(calc(-5 * var(--stack-gap))) scale(${1 - 5 * 0.08})`,
+                              zIndex: Math.round((items.length - stackIndex) * 100),
+                              opacity: 1,
+                              pointerEvents: "none",
+                            }
+                      }
                     >
                       <Image
                         src={item?.excellenceImage?.url}

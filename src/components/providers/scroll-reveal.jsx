@@ -94,18 +94,25 @@ export default function ScrollReveal() {
     const autoZoomed = (zoomed = []);
     const observed = new WeakSet();
     const vh = () => window.innerHeight;
-    // An element reveals once its top is ~25% of the viewport height above the bottom edge, and hides
-    // again when it leaves, so the animation replays on each scroll pass.
-    const OPTIONS = { rootMargin: "0px 0px -25% 0px", threshold: 0 };
+    // Elements reveal smoothly when entering the viewport, and stay revealed to avoid layout shifts or scroll jerking.
+    const OPTIONS = { rootMargin: "0px 0px -15% 0px", threshold: 0.05 };
     const io = new IntersectionObserver((entries) => {
-      for (const e of entries) e.target.classList.toggle("is-revealed", e.isIntersecting);
+      for (const e of entries) {
+        if (e.isIntersecting || e.boundingClientRect.top < vh()) {
+          e.target.classList.add("is-revealed");
+          io.unobserve(e.target);
+        }
+      }
     }, OPTIONS);
     // Tall card grids: reveal each card when it arrives (staggered within the batch that arrives together).
     const ioEach = new IntersectionObserver((entries) => {
       let n = 0;
       for (const e of entries) {
-        if (e.isIntersecting) e.target.style.setProperty("--reveal-delay", `${n++ * 140}ms`);
-        e.target.classList.toggle("is-revealed", e.isIntersecting);
+        if (e.isIntersecting || e.boundingClientRect.top < vh()) {
+          e.target.style.setProperty("--reveal-delay", `${n++ * 100}ms`);
+          e.target.classList.add("is-revealed");
+          ioEach.unobserve(e.target);
+        }
       }
     }, OPTIONS);
 

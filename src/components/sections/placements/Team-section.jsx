@@ -1,5 +1,6 @@
 import { Text } from "@/components/ui/text";
-import { Heading } from "@/components/ui/heading";
+import { Heading } from "@/components/ui/heading"; 
+import TableScrollBox from "@/components/layout/common/TableScrollBox";
 
 export default function TeamSection({ data }) {
   return (
@@ -18,15 +19,15 @@ export default function TeamSection({ data }) {
         </div>
         {data?.table?.rows?.length > 0 && (
         <div>
-          <div className="w-full overflow-x-auto">
-            <table className="[--padding:10px] sm:[--padding:15px] 2xl:[--padding:20px] text-[13px] sm:text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.2] text-left text-[#212121] dark:text-white w-full min-w-170 border-collapse">
+          <TableScrollBox className="w-full overflow-auto max-h-[450px]">
+            <table className="[--padding:10px] sm:[--padding:11px_13px] 3xl:[--padding:20px] text-[13px] sm:text-[15px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] text-left text-[#212121] dark:text-white w-full min-w-170 border-collapse">
               <thead>
                 <tr className="bg-(--basecolor2) text-white">
                   {data?.table?.columns?.map((column) => (
                     <th
                       key={column}
                       scope="col"
-                      className="font-medium text-left text-white p-(--padding) border border-[#E5E7EB] dark:border-white/20"
+                      className="sticky top-0 z-10 bg-(--basecolor2) font-medium text-left text-white p-(--padding) border border-[#E5E7EB] dark:border-white/20"
                     >
                       {column}
                     </th>
@@ -56,7 +57,7 @@ export default function TeamSection({ data }) {
                 ))}
               </tbody>
             </table>
-          </div>
+          </TableScrollBox>
 
           {data?.reservation && (
             <div className="mt-10 sm:mt-15 lg:mt-15 2xl:mt-17.5 3xl:mt-22.5 border-t border-black/10 dark:border-white/10 pt-10 sm:pt-10 lg:pt-12.5 2xl:pt-15 3xl:pt-20">

@@ -176,7 +176,7 @@ export default function HomeTestimonials({ data }) {
               {data?.successStories?.map((item) => (
                 <div
                   key={item?.id}
-                  className="min-w-0 flex-[0_0_calc(100%/1.3)] sm:flex-[0_0_calc(100%/2.5)] lg:flex-[0_0_calc(100%/3)] xl:flex-[0_0_calc(100%/4)] pl-(--slide-gap)"
+                  className="min-w-0 flex-[0_0_calc(100%/1.2)] sm:flex-[0_0_calc(100%/2.3)] lg:flex-[0_0_calc(100%/3)] xl:flex-[0_0_calc(100%/4)] pl-(--slide-gap)"
                 >
                   <Link
                     data-fancybox="testimonials"
@@ -222,13 +222,13 @@ export default function HomeTestimonials({ data }) {
                             />
                           </div>
                           <div className="w-[calc(100%-(var(--avatar-size))] pl-2.5">
-                            <h3 className="text-sm 2xl:text-base 3xl:text-xl leading-[1] font-medium text-white mb-1.25">
+                            <h3 className="text-sm md:text-[15px] 3xl:text-xl leading-[1] font-medium text-white mb-1.25">
                               {item?.name}
                             </h3>
-                            <div className="text-[10px] 2xl:text-xs 3xl:text-sm leading-[1] font-normal text-white mb-1.25 3xl:mb-2.5">
+                            <div className="text-[11px] md:text-[13px] 3xl:text-sm leading-[1] font-normal text-white mb-1.25 3xl:mb-2.5">
                               {item?.designation}
                             </div>
-                            <div className="text-[10px] 2xl:text-xs 3xl:text-sm leading-[1] font-normal text-white/50">
+                            <div className="text-[11px] md:text-[12px] 3xl:text-sm leading-[1] font-normal text-white/50">
                               {item?.education}
                             </div>
                           </div>
@@ -247,7 +247,7 @@ export default function HomeTestimonials({ data }) {
                               className="w-full h-full object-contain"
                             />
                           </div>
-                          <div className="text-[10px] 2xl:text-[11px] leading-[1] font-normal text-white">
+                          <div className="text-[13px] 2xl:text-[11px] leading-[1] font-normal text-white">
                             {item?.badge?.title}
                           </div>
                         </div>

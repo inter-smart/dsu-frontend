@@ -3,6 +3,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import Image from "next/image";
+import Link from "next/link";
 import Marquee from "react-fast-marquee";
 
 import "swiper/css";
@@ -20,28 +21,63 @@ export default function Announcement({ data }) {
                             speed={45}
                             className="overflow-hidden"
                         >
-                            {data.marquee.map((item, index) => (
-                                <div key={item?.id || index} className="flex items-center">
+                            {data.marquee.map((item, index) => {
+                                // Link support: accepts item.url, item.link (string or { url }), or item.href
+                                const rawLink =
+                                    item && typeof item === "object"
+                                        ? item?.url || item?.href || item?.link?.url || item?.link
+                                        : null;
+                                const href = typeof rawLink === "string" ? rawLink.trim() : "";
+                                const isAbsolute = /^https?:\/\//i.test(href);
+                                const openInNewTab = isAbsolute || item?.newTab === true || item?.isExternal === true;
+
+                                const text = (
                                     <span className="text_1 font-normal text-[#374151] dark:text-[#E5E7EB] tracking-[-0.01em] whitespace-nowrap">
                                         {item?.label || item?.title || item}
                                     </span>
-                                    <span className="mx-4 md:mx-6 flex items-center justify-center shrink-0">
-                                        <svg
-                                            width="12"
-                                            height="12"
-                                            viewBox="0 0 12 12"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="w-[10px] h-[10px] 2xl:w-[12px] 2xl:h-[12px]"
-                                        >
-                                            <path
-                                                d="M6.49517 2.35386L6 0L5.50483 2.35386C5.34195 3.12816 4.95733 3.83835 4.39784 4.39784C3.83835 4.95733 3.12816 5.34195 2.35386 5.50483L0 6L2.35386 6.49517C3.12815 6.65805 3.83835 7.0427 4.39784 7.60218C4.95733 8.16166 5.34195 8.87183 5.50483 9.64616L6 12L6.49517 9.64616C6.65805 8.87183 7.04265 8.16166 7.60213 7.60218C8.16166 7.0427 8.87183 6.65805 9.64616 6.49517L12 6L9.64616 5.50483C8.87183 5.34195 8.16161 4.95733 7.60213 4.39784C7.04265 3.83835 6.65805 3.12816 6.49517 2.35386Z"
-                                                fill="#F37021"
-                                            />
-                                        </svg>
-                                    </span>
-                                </div>
-                            ))}
+                                );
+
+                                const linkClass =
+                                    "transition-colors hover:[&>span]:!text-[#F37021] hover:[&>span]:underline hover:[&>span]:underline-offset-4";
+
+                                return (
+                                    <div key={item?.id || index} className="flex items-center">
+                                        {href ? (
+                                            openInNewTab ? (
+                                                <a
+                                                    href={href}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className={linkClass}
+                                                >
+                                                    {text}
+                                                </a>
+                                            ) : (
+                                                <Link href={href} className={linkClass}>
+                                                    {text}
+                                                </Link>
+                                            )
+                                        ) : (
+                                            text
+                                        )}
+                                        <span className="mx-4 md:mx-6 flex items-center justify-center shrink-0">
+                                            <svg
+                                                width="12"
+                                                height="12"
+                                                viewBox="0 0 12 12"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="w-[10px] h-[10px] 2xl:w-[12px] 2xl:h-[12px]"
+                                            >
+                                                <path
+                                                    d="M6.49517 2.35386L6 0L5.50483 2.35386C5.34195 3.12816 4.95733 3.83835 4.39784 4.39784C3.83835 4.95733 3.12816 5.34195 2.35386 5.50483L0 6L2.35386 6.49517C3.12815 6.65805 3.83835 7.0427 4.39784 7.60218C4.95733 8.16166 5.34195 8.87183 5.50483 9.64616L6 12L6.49517 9.64616C6.65805 8.87183 7.04265 8.16166 7.60213 7.60218C8.16166 7.0427 8.87183 6.65805 9.64616 6.49517L12 6L9.64616 5.50483C8.87183 5.34195 8.16161 4.95733 7.60213 4.39784C7.04265 3.83835 6.65805 3.12816 6.49517 2.35386Z"
+                                                    fill="#F37021"
+                                                />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                );
+                            })}
                         </Marquee>
                     </div>
                 )}
