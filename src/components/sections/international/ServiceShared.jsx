@@ -15,7 +15,7 @@ export function NumberBadge({ number }) {
 export function Eyebrow({ children }) {
     if (!children) return null;
     return (
-        <p className="text-[13px] uppercase leading-tight tracking-[0.08em] text-[#E8402A] lg:text-[15px] 2xl:text-[18px]">
+        <p className="text-[13px] uppercase leading-tight tracking-[0.08em] text-[#E8402A] lg:text-[17px] xl:text-[17px] 2xl:text-[18px]">
             {children}
         </p>
     );
@@ -23,7 +23,7 @@ export function Eyebrow({ children }) {
 
 export const sectionTitleClass =
     "text-[22px] font-semibold leading-tight tracking-[-0.03em] text-[#1a1a1a] lg:text-[28px] 2xl:text-[32px]";
-export const bodyClass = "text-[14px] leading-[1.6] text-[#444] lg:text-[16px] 2xl:text-[18px] 2xl:leading-[29px]";
+export const bodyClass = "text-[14px] leading-[1.6] text-[#444] lg:text-[18px] 2xl:text-[18px] 2xl:leading-[29px]";
 
 export default function SectionHeader({ number, eyebrow, title, description }) {
     return (

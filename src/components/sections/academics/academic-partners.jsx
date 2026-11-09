@@ -20,7 +20,7 @@ export default function AcademicPartners({ data, varient }) {
                         </div>
                     )}
                     {data?.description && (
-                        <p className="text-center mb-[30px] dark:text-[#9CA3AF]">{data.description}</p>
+                        <p className="text-center mb-[30px] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
                     )}
                     <div className={`w-full relative ${varient === "home" ? "hidden" : ""} `}>
                         <Swiper

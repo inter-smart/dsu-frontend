@@ -26,7 +26,7 @@ function Description({ value, className }) {
             </div>
         ) : null;
     }
-    return value ? <p className={className}>{value}</p> : null;
+    return value ? <p className={`${className} lg:text-[14px] 2xl:text-[14.4px]`}>{value}</p> : null;
 }
 
 export default function AcademicVisionMission({ data }) {

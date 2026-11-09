@@ -116,7 +116,7 @@ export default function InternshipOpportunities({ data }) {
                                     {tab.title}
                                 </h3>
                                 {tab.description && (
-                                    <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[15px] xl:mb-[20px]">
+                                    <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[15px] xl:mb-[20px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                         {tab.description}
                                     </p>
                                 )}
@@ -141,7 +141,7 @@ export default function InternshipOpportunities({ data }) {
                                                 {(programme.description || programme.internships?.length > 0 || programme.cta) && (
                                                     <AccordionContent className="p-0 pt-[8px] xl:pt-[12px]">
                                                         {programme.description && (
-                                                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] lg:max-w-[60%] mb-[15px]">
+                                                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] lg:max-w-[60%] mb-[15px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                                 {programme.description}
                                                             </p>
                                                         )}
@@ -187,7 +187,7 @@ export default function InternshipOpportunities({ data }) {
                                         ))}
                                     </Accordion>
                                 ) : (
-                                    <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF]">
+                                    <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                         Details coming soon.
                                     </p>
                                 )}

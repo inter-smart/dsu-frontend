@@ -13,11 +13,6 @@ export async function generateMetadata() {
         description: apiData?.seo?.metaDescription || undefined,
     };
 }
-
-
-
-
-
 const local_data = {
     id: 24,
     documentId: "a67zp5r21a35cb8qlzrjp54s",

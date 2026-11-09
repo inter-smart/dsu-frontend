@@ -145,7 +145,7 @@ export default function NotFound() {
                         This page took a different path
                     </h1>
 
-                    <p className="mt-3 max-w-[560px] text-[14px] leading-[1.7] text-[#555] lg:text-[16px] 2xl:mt-[18px] 2xl:max-w-[620px] 2xl:text-[18px] 2xl:leading-[29px]">
+                    <p className="mt-3 max-w-[560px] text-[14px] leading-[1.7] text-[#555] 2xl:mt-[18px] 2xl:max-w-[620px] 2xl:leading-[29px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
                         The page you are looking for may have moved, been renamed or no longer exists. Check the
                         address, or continue from one of the links below.
                     </p>

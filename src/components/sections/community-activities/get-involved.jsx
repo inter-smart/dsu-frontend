@@ -6,7 +6,7 @@ export default function GetInvolved({ data }) {
       <div className="container">
         <div className="w-full h-auto mb-6.25 lg:mb-7.5 2xl:mb-10">
           <h2 className="title_1 mb-2.5 xl:mb-3 2xl:mb-3.5">{data?.title}</h2>
-          {data?.description && <p className="text_1 max-w-[820px]">{data.description}</p>}
+          {data?.description && <p className="text_1 max-w-[820px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>}
         </div>
         <div className="relative z-0 w-full h-auto rounded-md 2xl:rounded-[10px] border border-[#ECE3DA] overflow-hidden">
           {data?.backgroundImage && (

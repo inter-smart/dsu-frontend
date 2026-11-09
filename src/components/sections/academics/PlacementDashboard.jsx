@@ -144,7 +144,7 @@ export default function PlacementSections({ data }) {
                                 </div>
                             )}
                             {section.note && (
-                                <p className="text_1 font-semibold text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[40px]">
+                                <p className="text_1 font-semibold text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[40px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                     Note: <span className="font-normal">{section.note}</span>
                                 </p>
                             )}

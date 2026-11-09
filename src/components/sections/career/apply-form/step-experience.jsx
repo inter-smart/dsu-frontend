@@ -60,7 +60,7 @@ export default function StepExperience({ formData, setFormData }) {
             CURRENT SALARY
           </Label>
           <Input
-            placeholder="Eg., 50000"
+            placeholder="eg., 50000"
             className={inputStyle}
             value={formData.currentSalary || ""}
             onChange={(e) => update("currentSalary", e.target.value)}
@@ -71,7 +71,7 @@ export default function StepExperience({ formData, setFormData }) {
             CURRENT LOCATION
           </Label>
           <Input
-            placeholder="Eg., Bengaluru"
+            placeholder="eg., Bengaluru"
             className={inputStyle}
             value={formData.currentLocation || ""}
             onChange={(e) => update("currentLocation", e.target.value)}
@@ -95,7 +95,7 @@ export default function StepExperience({ formData, setFormData }) {
                   <Input
                     type="number"
                     min="0"
-                    placeholder="Eg., 2"
+                    placeholder="eg., 2"
                     className={inputStyle}
                     value={values.years || ""}
                     onChange={(e) => updateExperience(type.key, "years", e.target.value)}
@@ -109,7 +109,7 @@ export default function StepExperience({ formData, setFormData }) {
                     type="number"
                     min="0"
                     max="11"
-                    placeholder="Eg., 0"
+                    placeholder="eg., 0"
                     className={inputStyle}
                     value={values.months || ""}
                     onChange={(e) => updateExperience(type.key, "months", e.target.value)}
@@ -140,7 +140,7 @@ export default function StepExperience({ formData, setFormData }) {
             <Input
               type="number"
               min="0"
-              placeholder="Eg., 1"
+              placeholder="eg., 1"
               className={inputStyle}
               value={formData.publications?.journals || ""}
               onChange={(e) => updatePublication("journals", e.target.value)}
@@ -153,7 +153,7 @@ export default function StepExperience({ formData, setFormData }) {
             <Input
               type="number"
               min="0"
-              placeholder="Eg., 0"
+              placeholder="eg., 0"
               className={inputStyle}
               value={formData.publications?.conferences || ""}
               onChange={(e) => updatePublication("conferences", e.target.value)}
@@ -167,7 +167,7 @@ export default function StepExperience({ formData, setFormData }) {
           <Input
             type="number"
             min="0"
-            placeholder="Eg., 1"
+            placeholder="eg., 1"
             className={inputStyle}
             value={formData.publications?.patents || ""}
             onChange={(e) => updatePublication("patents", e.target.value)}

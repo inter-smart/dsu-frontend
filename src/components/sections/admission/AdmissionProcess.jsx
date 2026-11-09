@@ -31,14 +31,14 @@ export default function AdmissionProcess({ data }) {
                                     content={description}
                                     blocks={{
                                         paragraph: ({ children }) => (
-                                            <p className="text_1 !my-0 !text-inherit leading-relaxed">
+                                            <p className="text_1 !my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                 {children}
                                             </p>
                                         ),
                                     }}
                                 />
                             ) : (
-                                <p className="text_1 !my-0 !text-inherit leading-relaxed">
+                                <p className="text_1 !my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                     {description}
                                 </p>
                             )}
@@ -86,7 +86,7 @@ export default function AdmissionProcess({ data }) {
                                         </h3>
                                     )}
                                     {step?.description && (
-                                        <p className="mt-1 sm:mt-1.5 text-[13px] sm:text-[14px] xl:text-[15px] 3xl:text-[18px] text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed">
+                                        <p className="mt-1 sm:mt-1.5 text-[13px] sm:text-[14px] 3xl:text-[18px] text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed lg:text-[16px] xl:text-[17px] 2xl:text-[15px]">
                                             {step.description}
                                         </p>
                                     )}

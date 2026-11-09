@@ -19,7 +19,7 @@ export default function InternationalTeam({ data }) {
                             </h3>
                         )}
                         {card.text && (
-                            <p className="mt-2 text-[14px] text-[#444] lg:text-[16px] 2xl:mt-[18px] 2xl:text-[18px]">{card.text}</p>
+                            <p className="mt-2 text-[14px] text-[#444] 2xl:mt-[18px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">{card.text}</p>
                         )}
 
                         <ul className="mt-5 flex flex-wrap gap-x-12 gap-y-4 2xl:mt-[26px]">
@@ -38,7 +38,7 @@ export default function InternationalTeam({ data }) {
                                     )}
                                     <div>
                                         {contact.label && (
-                                            <p className="text-[15px] font-medium text-[#111] 2xl:text-[18px]">{contact.label}</p>
+                                            <p className="text-[15px] font-medium text-[#111] lg:text-[17px] xl:text-[17px] 2xl:text-[18px]">{contact.label}</p>
                                         )}
                                         <Link
                                             href={contact.href}

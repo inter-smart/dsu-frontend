@@ -46,7 +46,7 @@ export default function NewsEventsDetail({
             </div>
             <div className="w-full h-auto block">
               <div className="w-full h-auto mb-5 sm:mb-6.25 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5">
-                <Heading className="mb-3.75 sm:mb-5 lg:mb-6.25 2xl:mb-8.75">
+                <Heading as="h2" className="mb-3.75 sm:mb-5 lg:mb-6.25 2xl:mb-8.75">
                   {data?.title}
                 </Heading>
                 <div className="w-full h-auto space-y-2.5 block">

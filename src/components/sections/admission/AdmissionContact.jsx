@@ -54,14 +54,14 @@ export default function AdmissionContact({ data }) {
                   content={description}
                   blocks={{
                     paragraph: ({ children }) => (
-                      <p className="!my-0 !text-inherit leading-relaxed">
+                      <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                         {children}
                       </p>
                     ),
                   }}
                 />
               ) : (
-                <p className="!my-0 !text-inherit leading-relaxed">
+                <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                   {description}
                 </p>
               )}
@@ -78,7 +78,7 @@ export default function AdmissionContact({ data }) {
                 {mainOffice.heading}
               </h3>
               {mainOffice.subtitle && (
-                <p className="text-[13px] 2xl:text-[15px] 3xl:text-[18px] leading-[1.1] font-normal text-[#4A5565] dark:text-[#9CA3AF] mt-1.5 sm:mt-2">
+                <p className="text-[13px] 3xl:text-[18px] leading-[1.1] font-normal text-[#4A5565] dark:text-[#9CA3AF] mt-1.5 sm:mt-2 lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
                   {mainOffice.subtitle}
                 </p>
               )}
@@ -246,7 +246,7 @@ export default function AdmissionContact({ data }) {
                         viewBox="0 0 17 17"
                         fill="none"
                       >
-                        <g clip-path="url(#clip0_5987_109481)">
+                        <g clipPath="url(#clip0_5987_109481)">
                           <path
                             d="M0.337077 16.1797C0.247414 16.1797 0.160449 16.144 0.096404 16.0779C0.00404493 15.9835 -0.0249437 15.8446 0.0229212 15.7213L1.27887 12.455C0.440896 11.1532 0 9.64781 0 8.08984C0 3.62897 3.62897 0 8.08984 0C12.5507 0 16.1797 3.62897 16.1797 8.08984C16.1797 12.5507 12.5507 16.1797 8.08984 16.1797C6.57704 16.1797 5.10402 15.7577 3.82043 14.9568L0.450335 16.1601C0.413256 16.1736 0.375504 16.1797 0.337077 16.1797ZM3.8629 14.2469C3.92762 14.2469 3.99166 14.2651 4.04694 14.3015C5.25368 15.0896 6.65187 15.5062 8.08984 15.5062C12.1786 15.5062 15.5055 12.1793 15.5055 8.09052C15.5055 4.00178 12.1786 0.674828 8.08984 0.674828C4.0011 0.674828 0.674154 4.00178 0.674154 8.09052C0.674154 9.57231 1.10966 11.0029 1.93482 12.2271C1.99617 12.3181 2.00898 12.4341 1.96988 12.5366L0.915501 15.2783L3.74964 14.2664C3.78605 14.2536 3.82447 14.2469 3.8629 14.2469Z"
                             fill="#212121"
@@ -450,7 +450,7 @@ export default function AdmissionContact({ data }) {
                   </h2>
                 )}
                 {visitCampus?.description && (
-                  <p className="mt-2 sm:mt-2.5 text-[13px] 2xl:text-[15px] 3xl:text-lg leading-relaxed text-[#4A5565] dark:text-[#9CA3AF]">
+                  <p className="mt-2 sm:mt-2.5 text-[13px] 3xl:text-lg leading-relaxed text-[#4A5565] dark:text-[#9CA3AF] lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
                     {visitCampus.description}
                   </p>
                 )}

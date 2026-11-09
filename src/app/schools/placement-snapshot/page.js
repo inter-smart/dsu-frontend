@@ -165,7 +165,7 @@ const local_data = {
                 logo: {
                     alternativeText: "NatWest Group logo",
                     mime: "image/svg+xml",
-                    url: "/images/logos/natwest.svg",
+                    url: "/images/logos/NatWest.svg",
                 },
             },
             {
@@ -268,3 +268,7 @@ export default function Page() {
     )
 }
 
+export const metadata = {
+    title: "Placement Snapshot | Schools | Dayananda Sagar University",
+    description: "Placement Snapshot – Schools at Dayananda Sagar University.",
+};

@@ -36,7 +36,12 @@ export default async function page({ searchParams }) {
       <Suspense fallback={null}>
         <ApplyForm job={job} />
       </Suspense>
-      <FloatingContactRail />
+      {/* <FloatingContactRail /> */}
     </>
   );
 }
+
+export const metadata = {
+    title: "Apply | Career | Dayananda Sagar University",
+    description: "Apply – Career at Dayananda Sagar University.",
+};

@@ -49,7 +49,7 @@ export default function CampusFacility({ data }) {
                                             <h3 className="font-bold cmn_Txt font-semibold text-[#212121] dark:text-white mb-[8px] leading-[1.3]">
                                                 {facility.title}
                                             </h3>
-                                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.55]">
+                                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.55] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                 {facility.description}
                                             </p>
                                         </div>
@@ -86,7 +86,7 @@ export default function CampusFacility({ data }) {
                                         </h3>
                                     )}
                                     {data.media.overlay.description && (
-                                        <p className="text-white/90 text_1 leading-[1.5]  ">
+                                        <p className="text-white/90 text_1 leading-[1.5] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                             {data.media.overlay.description}
                                         </p>
                                     )}

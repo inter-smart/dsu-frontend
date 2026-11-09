@@ -105,7 +105,7 @@ export default function AlumniEvents({ data }) {
                             {item?.title}
                           </div>
                           <Link
-                            href={`/alumni/events/${item?.link}`}
+                            href={item?.link?.startsWith("/") ? item.link : `/alumni/events/${item?.link}`}
                             className="text-sm 2xl:text-[15px] leading-[1.1] font-bold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-400 hover:opacity-70"
                           >
                             Read More {">"}

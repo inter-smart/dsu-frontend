@@ -53,7 +53,7 @@ export default function AdmissionDining({ data }) {
                                     <div className="text-[15px] lg:text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[31px] font-semibold text-[#212121] dark:text-black mb-[8px]">
                                         {item.title}
                                     </div>
-                                    <p className="dark:text-black">{item.description}</p>
+                                    <p className="dark:text-black lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.description}</p>
                                 </div>
                             </SwiperSlide>
                         ))}

@@ -74,13 +74,13 @@ export default function NBAAccreditedProgram({ data }) {
                                     </div>
                                 </AccordionTrigger>
 
-                                <AccordionContent className="p-0 border-t border-[#E5E9EE]  text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:xl:text-[12px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] text-[#797979] pt-[25px]">
+                                <AccordionContent className="p-0 border-t border-[#E5E9EE]  text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:lg:text-[14px] [&_p]:xl:text-[14px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] text-[#797979] pt-[25px]">
                                     {item.keyHighlights && (
                                         <>
                                             <div className="text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] text-black font-bold mb-[8px]">
                                                 Key Highlights
                                             </div>
-                                            <p className="text_1">
+                                            <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                 {item.keyHighlights}
                                             </p>
                                         </>

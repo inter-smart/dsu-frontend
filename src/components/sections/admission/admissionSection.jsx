@@ -22,7 +22,7 @@ export default function AdmissionSection({data}) {
                                         </div>
                                     )}
                                     {item?.description && (
-                                        <p className="dark:text-black">{item.description}</p>
+                                        <p className="dark:text-black lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.description}</p>
                                     )}
                                     {item?.button?.label && (
                                      <Link

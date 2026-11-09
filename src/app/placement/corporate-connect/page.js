@@ -345,3 +345,8 @@ export default function page() {
         </>
     )
 }
+
+export const metadata = {
+    title: "Corporate Connect | Placement | Dayananda Sagar University",
+    description: "Corporate Connect – Placement at Dayananda Sagar University.",
+};

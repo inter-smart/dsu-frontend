@@ -120,7 +120,7 @@ export default function ExaminationOpening({ data }) {
                                 <div className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-bold text-[#4A5565] mb-2.5 2xl:mb-3.75">
                                   Job Description
                                 </div>
-                                <p className="text-sm 2xl:text-base 3xl:text-xl leading-[1.8] font-normal text-[#4A5565]">
+                                <p className="text-sm 3xl:text-xl leading-[1.8] font-normal text-[#4A5565] lg:text-[16px] xl:text-[16px] 2xl:text-[16px]">
                                   {item?.jobDescription}
                                 </p>
                               </div>

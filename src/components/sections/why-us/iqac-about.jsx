@@ -25,7 +25,7 @@ export default function IQACAbout({ data }) {
                                     <BlocksRenderer content={data?.description} />
                                 </div>
                             ) : typeof data?.description === "string" ? (
-                                <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[30px] max-w-[95%]">
+                                <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[30px] max-w-[95%] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                     {data?.description}
                                 </p>
                             ) : null
@@ -111,7 +111,7 @@ export default function IQACAbout({ data }) {
                                                 {card.title}
                                             </h3>
                                             {/* Description */}
-                                            <p className="text_1 leading-[1.65] text-[#4A5565] dark:text-[#9CA3AF]">
+                                            <p className="text_1 leading-[1.65] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                 {card.description}
                                             </p>
                                         </div>
@@ -142,7 +142,7 @@ export default function IQACAbout({ data }) {
                                                 <span className="shrink-0 w-[40px] h-[40px] xl:w-[48px] xl:h-[48px] rounded-full flex items-center justify-center font-bold text-[#F97316] border border-[#F97316]/30 bg-gradient-to-r from-[rgba(220,38,38,0.1)] to-[rgba(249,115,22,0.1)] dark:from-[rgba(220,38,38,0.2)] dark:to-[rgba(249,115,22,0.2)] group-hover:from-[#DC2626] group-hover:to-[#F97316] group-hover:text-white transition-all duration-300">
                                                     {String(i + 1).padStart(2, "0")}
                                                 </span>
-                                                <p className="text_1 leading-[1.65] text-[#4A5565] dark:text-[#9CA3AF]">{item}</p>
+                                                <p className="text_1 leading-[1.65] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item}</p>
                                             </div>
                                         ))}
                                     </div>
@@ -159,7 +159,7 @@ export default function IQACAbout({ data }) {
                                         </h3>
                                     </div>
                                     {data.functions.intro && (
-                                        <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[20px] xl:mb-[28px] pl-[17px]">
+                                        <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[20px] xl:mb-[28px] pl-[17px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                             {data.functions.intro}
                                         </p>
                                     )}
@@ -170,7 +170,7 @@ export default function IQACAbout({ data }) {
                                                 className="group flex items-start gap-[14px] bg-white dark:bg-[#1A1A1A] border border-[rgba(33,33,33,0.1)] dark:border-white/10 rounded-[8px] xl:rounded-[10px] px-[16px] xl:px-[20px] py-[14px] xl:py-[18px] hover:border-[#F97316]/50 hover:shadow-[0_8px_30px_rgba(249,115,22,0.10)] hover:-translate-y-[2px] transition-all duration-300"
                                             >
                                                 <span className="shrink-0 mt-[8px] w-[8px] h-[8px] rounded-[2px] bg-gradient-to-r from-[#DC2626] to-[#F97316]" />
-                                                <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF]">{item}</p>
+                                                <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item}</p>
                                             </div>
                                         ))}
                                     </div>

@@ -73,3 +73,7 @@ export default function page() {
     )
 }
 
+export const metadata = {
+    title: "Contact | AI-Enabled | Dayananda Sagar University",
+    description: "Contact – AI-Enabled at Dayananda Sagar University.",
+};

@@ -12,13 +12,13 @@ export default function PoPsoSection({ data }) {
                 {data.po && (
                     <div className="mb-[50px] lg:mb-[70px]">
                         <h2 className="cmn_Title mb-[10px] xl:mb-[15px]">{data.po.heading}</h2>
-                        <p className="text_1 dark:text-white mb-[30px] lg:mb-[40px]">{data.po.subtitle}</p>
+                        <p className="text_1 dark:text-white mb-[30px] lg:mb-[40px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.po.subtitle}</p>
 
                         <div className="flex flex-col gap-[20px] lg:gap-[25px]">
                             {data.po.items?.map((item, index) => (
                                 <div key={index}>
                                     <h3 className="cmn_Txt mb-[5px] xl:mb-[10px]">{item.title}</h3>
-                                    <p className="text_1 text-[#4A5565] dark:text-white">{item.description}</p>
+                                    <p className="text_1 text-[#4A5565] dark:text-white lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.description}</p>
                                 </div>
                             ))}
                         </div>
@@ -63,13 +63,13 @@ export default function PoPsoSection({ data }) {
                 {data.pso && (
                     <div>
                         <h2 className="cmn_Title mb-[8px] xl:mb-[10px]">{data.pso.heading}</h2>
-                        <p className="text_1 text-[#4A5565] dark:text-white  mb-[30px] lg:mb-[40px]">{data.pso.subtitle}</p>
+                        <p className="text_1 text-[#4A5565] dark:text-white mb-[30px] lg:mb-[40px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.pso.subtitle}</p>
 
                         <div className="flex flex-col gap-[20px] lg:gap-[25px]">
                             {data.pso.items?.map((item, index) => (
                                 <div key={index}>
                                     <h3 className="cmn_Txt mb-[5px] xl:mb-[10px]">{item.title}</h3>
-                                    <p className="text_1">{item.description}</p>
+                                    <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.description}</p>
                                 </div>
                             ))}
                         </div>
@@ -114,13 +114,13 @@ export default function PoPsoSection({ data }) {
                 {data.peo && (
                     <div>
                         <h2 className="cmn_Title mb-[10px] xl:mb-[15px]">{data.peo.heading}</h2>
-                        <p className="text_1 text-[#4A5565] dark:text-white  mb-[30px] lg:mb-[40px]">{data.peo.subtitle}</p>
+                        <p className="text_1 text-[#4A5565] dark:text-white mb-[30px] lg:mb-[40px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.peo.subtitle}</p>
 
                         <div className="flex flex-col gap-[20px] lg:gap-[25px]">
                             {data.peo.items?.map((item, index) => (
                                 <div key={index}>
                                     <h3 className="cmn_Txt mb-[5px] xl:mb-[10px]">{item.title}</h3>
-                                    <p className="text_1">{item.description}</p>
+                                    <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.description}</p>
                                 </div>
                             ))}
                         </div>

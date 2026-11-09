@@ -52,7 +52,7 @@ export default function StepAddressResume({ formData, setFormData }) {
           />
         </div>
         {formData.resume && (
-          <p className="text-xs xl:text-sm text-[#4A5565] dark:text-gray-300 mt-2">
+          <p className="text-xs text-[#4A5565] dark:text-gray-300 mt-2 lg:text-[14px] xl:text-[16px] 2xl:text-[14px]">
             Selected: {formData.resume.name}
           </p>
         )}

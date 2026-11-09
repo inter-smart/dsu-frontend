@@ -52,7 +52,7 @@ const INSTANT_FIELDS = ["country", "schoolId", "programId", "courseId", "consent
 const fieldClass =
     "h-[44px] w-full rounded-[3px] border border-black/15 bg-white px-4 text-[14px] text-[#222] shadow-none placeholder:text-[#9a9a9a] focus-visible:border-(--basecolor) focus-visible:ring-0 2xl:h-[45px] 2xl:text-[15px]";
 const labelClass = "text-[10px] font-normal uppercase  text-[#222] 2xl:text-[11px] 3xl:text-[12px] !mb-[1px]";
-const hintClass = "text-[12px] leading-snug text-[#666]";
+const hintClass = "text-[12px] lg:text-[14px] 2xl:text-[12px] leading-snug text-[#666]";
 
 // The message for one field, or "" when it is valid
 function validateField(name, values) {
@@ -513,12 +513,12 @@ export default function EnquiryForm({ data, className = "" }) {
                     </Button>
 
                     {status === "success" && (
-                        <p role="status" className="text-[14px] text-green-700">
+                        <p role="status" className="text-[14px] text-green-700 lg:text-[16px] xl:text-[16px] 2xl:text-[14px]">
                             Thank you. We will contact you shortly.
                         </p>
                     )}
                     {status === "error" && (
-                        <p role="alert" className="text-[14px] text-red-600">
+                        <p role="alert" className="text-[14px] text-red-600 lg:text-[16px] xl:text-[16px] 2xl:text-[14px]">
                             {serverMessage}
                         </p>
                     )}

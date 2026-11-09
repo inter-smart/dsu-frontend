@@ -106,7 +106,7 @@ export default function IndustryPartnerships({ data }) {
         </div>
 
         {partners.length === 0 ? (
-          <p className="py-[40px] text-center">{data?.emptyText}</p>
+          <p className="py-[40px] text-center lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data?.emptyText}</p>
         ) : (
           <div className="relative">
             <SliderArrow
@@ -154,7 +154,7 @@ export default function IndustryPartnerships({ data }) {
                         <div className="text-[13px] 2xl:text-[15px] 3xl:text-[18px] font-semibold text-[#4A5565] dark:text-[#CBD5E1] mt-[4px] pb-[16px] 3xl:pb-[24px] mb-[16px] 3xl:mb-[24px] border-b border-black/10 dark:border-white/10">
                           {item?.school_label}
                         </div>
-                        <p className="mb-[16px] 3xl:mb-[24px]">
+                        <p className="mb-[16px] 3xl:mb-[24px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                           {item?.description}
                         </p>
                         <ul className="flex flex-wrap gap-[10px] 3xl:gap-[18px]">

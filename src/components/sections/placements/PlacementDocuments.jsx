@@ -64,7 +64,7 @@ export default function PlacementDocuments({ data }) {
                                         <div className="text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[28px] 3xl:text-[35px] font-semibold leading-[1.2] text-[#212121] dark:text-white mb-[6px] xl:mb-[8px]">
                                             {card.title}
                                         </div>
-                                        <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.5] mb-[10px] xl:mb-[12px]">
+                                        <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.5] mb-[10px] xl:mb-[12px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                             {card.description}
                                         </p>
                                         {card.cta?.file?.url && (

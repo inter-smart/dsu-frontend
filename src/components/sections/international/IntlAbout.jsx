@@ -7,7 +7,7 @@ function Paragraph({ content }) {
     const parts = Array.isArray(content) ? content : [content];
 
     return (
-        <p className="text-[14px] leading-[1.7] text-[#555] lg:text-[15px] 2xl:text-[18px] 2xl:leading-[29px]">
+        <p className="text-[14px] leading-[1.7] text-[#555] 2xl:leading-[29px] lg:text-[17px] xl:text-[17px] 2xl:text-[18px]">
             {parts.map((part, i) =>
                 typeof part === "string" ? (
                     <Fragment key={i}>{part}</Fragment>

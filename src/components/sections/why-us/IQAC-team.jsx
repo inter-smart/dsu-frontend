@@ -61,7 +61,7 @@ export default function IQACTeam({ data }) {
                 )}
 
                 {description && (
-                    <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] sm:mb-[30px] xl:mb-[35px] 2xl:mb-[40px] max-w-[95%]">
+                    <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] sm:mb-[30px] xl:mb-[35px] 2xl:mb-[40px] max-w-[95%] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                         {description}
                     </p>
                 )}

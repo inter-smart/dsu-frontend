@@ -155,14 +155,14 @@ export default function BuildSection({ data }) {
                                     content={description}
                                     blocks={{
                                         paragraph: ({ children }) => (
-                                            <p className="!my-0 !text-inherit leading-relaxed">
+                                            <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                 {children}
                                             </p>
                                         ),
                                     }}
                                 />
                             ) : (
-                                <p className="!my-0 !text-inherit leading-relaxed">
+                                <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                     {description}
                                 </p>
                             )}
@@ -324,7 +324,7 @@ export default function BuildSection({ data }) {
                                                 {renderCardTitle(project.title)}
                                             </h3>
 
-                                            <p className="text_1 text-white line-clamp-2 font-normal  !my-0">
+                                            <p className="text_1 text-white line-clamp-2 font-normal !my-0 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                                 {project.description}
                                             </p>
                                         </div>

@@ -189,7 +189,7 @@ export default function AiFaculty({ data }) {
                             {Array.isArray(description) ? (
                                 <BlocksRenderer content={description} />
                             ) : (
-                                <p className="text-[#4A5565] dark:text-[#9CA3AF]">{description}</p>
+                                <p className="text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{description}</p>
                             )}
                         </div>
                     )}

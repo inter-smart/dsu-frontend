@@ -24,7 +24,7 @@ export default function ReadyCta({ data }) {
           </h2>
         )}
         {data?.description && (
-          <p className="mb-8 xl:max-w-[45%] text-[14px] leading-relaxed text-[#fff2f2] sm:text-[16px] xl:text-[18px]">
+          <p className="mb-8 xl:max-w-[45%] text-[14px] leading-relaxed text-[#fff2f2] sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[18px]">
             {data.description}
           </p>
         )}

@@ -133,3 +133,8 @@ export default async function Page() {
         </>
     );
 }
+
+export const metadata = {
+    title: "Committee | Why Us | Dayananda Sagar University",
+    description: "Committee – Why Us at Dayananda Sagar University.",
+};

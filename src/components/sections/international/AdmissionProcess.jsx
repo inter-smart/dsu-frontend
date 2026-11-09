@@ -22,7 +22,7 @@ export default function AdmissionProcess({ data }) {
                         <h2 className="text-[28px] font-bold leading-tight tracking-[-0.03em] text-[#1a1a1a] lg:text-[40px] 2xl:text-[56px]">
                             {title}
                         </h2>
-                        <p className="mt-2 text-[14px] text-[#444] lg:text-[16px] 2xl:mt-[14px] 2xl:text-[18px]">
+                        <p className="mt-2 text-[14px] text-[#444] 2xl:mt-[14px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
                             {subtitle}
                         </p>
                     </div>
@@ -62,7 +62,7 @@ export default function AdmissionProcess({ data }) {
                                 <h3 className="mt-3 whitespace-pre-line text-[16px] font-semibold leading-[1.15] tracking-[-0.02em] text-[#1a1a1a] lg:mt-4 xl:text-[20px] 2xl:text-[24px] 3xl:text-[30px]">
                                     {step.title}
                                 </h3>
-                                <p className="mt-2 whitespace-pre-line text-[14px] leading-[1.6] text-[#555] lg:text-[16px] 2xl:text-[18px] 2xl:leading-[29px]">
+                                <p className="mt-2 whitespace-pre-line text-[14px] leading-[1.6] text-[#555] 2xl:leading-[29px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
                                     {step.description}
                                 </p>
 

@@ -3,12 +3,29 @@ import Image from "@/components/ui/safe-image";
 import Link from "next/link";
 import { safeHref } from "@/lib/utils";
 import { Text } from "@/components/ui/text";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Heading } from "@/components/ui/heading";
 import { buttonVariants } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
 
+// Pinned scroll-scrub needs room to pin (desktop-size viewport) and is skipped for reduced motion.
+const PIN_QUERY = "(min-width: 1024px) and (min-height: 530px) and (prefers-reduced-motion: no-preference)";
+const subscribePin = (cb) => {
+  const mql = window.matchMedia(PIN_QUERY);
+  mql.addEventListener("change", cb);
+  return () => mql.removeEventListener("change", cb);
+};
+// Viewport heights of scrolling per card while the section is pinned.
+const SCRUB_VH_PER_CARD = 60;
+
 export default function HomeExcellence({ data }) {
+  const pinned = useSyncExternalStore(
+    subscribePin,
+    () => window.matchMedia(PIN_QUERY).matches,
+    () => false,
+  );
+  const trackRef = useRef(null);
+  const [scrub, setScrub] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
@@ -17,19 +34,52 @@ export default function HomeExcellence({ data }) {
   const items = data?.excellence || [];
   const activeItem = items?.[activeIndex] ?? items?.[0] ?? {};
   const activeSpecifications = activeItem?.specifications ?? [];
+  const count = items.length;
+
+  // Autoplay only where the scroll-scrub is off (and never for reduced motion).
   useEffect(() => {
-    if (!items?.length || isDragging) return;
+    if (pinned || count < 2 || isDragging) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % items.length);
+      setActiveIndex((prev) => (prev + 1) % count);
     }, 5000);
     return () => clearInterval(interval);
-  }, [items?.length, isDragging]);
+  }, [pinned, count, isDragging]);
+
+  // Scrub: scroll progress through the pinned track drives the card stack.
+  useEffect(() => {
+    if (!pinned || count < 2) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const el = trackRef.current;
+      if (!el) return;
+      const { top, height } = el.getBoundingClientRect();
+      const total = height - window.innerHeight;
+      const progress = total > 0 ? Math.min(1, Math.max(0, -top / total)) : 0;
+      const t = Math.round(progress * (count - 1) * 100) / 100;
+      setScrub(t);
+      setActiveIndex(Math.round(t));
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [pinned, count]);
 
   const getStackIndex = (itemIndex) => {
     return (itemIndex - activeIndex + items.length) % items.length;
   };
 
   const handleMouseDown = (e) => {
+    if (pinned) return;
     setIsDragging(true);
     setDragStart(e.clientX);
     setDragOffset(0);
@@ -63,7 +113,18 @@ export default function HomeExcellence({ data }) {
     setActiveIndex((prev) => (prev + 1) % items.length);
   };
   return (
-    <section className="w-full h-auto py-[40px_50px] sm:py-[50px_70px] lg:py-[70px_90px] 2xl:py-[80px_110px] 3xl:py-[100px_140px] dark:bg-[#101010] overflow-hidden block">
+    <section
+      ref={trackRef}
+      style={pinned ? { height: `calc(100vh + ${(count - 1) * SCRUB_VH_PER_CARD}vh)` } : undefined}
+      className="w-full h-auto dark:bg-[#101010] block"
+    >
+      <div
+        className={`w-full overflow-hidden ${
+          pinned
+            ? "sticky top-0 h-screen py-5 flex items-center"
+            : "h-auto block py-[40px_50px] sm:py-[50px_70px] lg:py-[70px_90px] 2xl:py-[80px_110px] 3xl:py-[100px_140px]"
+        }`}
+      >
       <div className="container">
         <div data-reveal className="w-full h-auto mb-12.5 sm:mb-17.5 lg:mb-20 2xl:mb-25 3xl:mb-30">
           <Heading
@@ -113,18 +174,23 @@ export default function HomeExcellence({ data }) {
             >
               <div className="[--navigation-btn-size:35px] sm:[--navigation-btn-size:45px] w-full h-full aspect-875/450 relative z-0">
                 {items?.map((item, index) => {
-                  const stackIndex = getStackIndex(index);
+                  // Pinned: fractional position from scroll (negative = already passed, fades out forward).
+                  const pos = pinned ? index - scrub : getStackIndex(index);
+                  const stackIndex = Math.max(0, pos);
                   const isVisible = stackIndex < 5;
+                  const passed = pinned && pos < 0;
                   return (
                     <div
                       key={item?.id}
-                      className="[--stack-gap:15px] sm:[--stack-gap:25px] 2xl:[--stack-gap:30px] 3xl:[--stack-gap:35px] w-full h-full rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden absolute z-1 inset-0 transition-all duration-1000"
+                      className={`[--stack-gap:15px] sm:[--stack-gap:25px] 2xl:[--stack-gap:30px] 3xl:[--stack-gap:35px] w-full h-full rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden absolute z-1 inset-0 ${pinned ? "" : "transition-all duration-1000"}`}
                       style={{
-                        transform: isVisible
-                          ? `translateY(calc(-1 * ${stackIndex} * var(--stack-gap))) scale(${1 - stackIndex * 0.08})`
-                          : `translateY(calc(-5 * var(--stack-gap))) scale(${1 - 5 * 0.08})`,
-                        zIndex: items.length - stackIndex,
-                        opacity: isVisible ? 1 - stackIndex * 0 : 1,
+                        transform: passed
+                          ? `translateY(${-pos * 24}px) scale(${1 - pos * 0.1})`
+                          : isVisible
+                            ? `translateY(calc(-1 * ${stackIndex} * var(--stack-gap))) scale(${1 - stackIndex * 0.08})`
+                            : `translateY(calc(-5 * var(--stack-gap))) scale(${1 - 5 * 0.08})`,
+                        zIndex: passed ? items.length + 1 : Math.round((items.length - stackIndex) * 100),
+                        opacity: passed ? Math.max(0, 1 + pos * 1.8) : 1,
                         pointerEvents: "none",
                       }}
                     >
@@ -242,6 +308,7 @@ export default function HomeExcellence({ data }) {
             </Link>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

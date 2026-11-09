@@ -43,7 +43,7 @@ export default function IndustryProjects({ data }) {
                             {data.heading}
                         </h2>
                         {data?.subheading && (
-                            <p className="text_1 font-semibold text-[#4A5565] dark:text-white leading-[1.6] mb-[12px] xl:mb-[18px]">
+                            <p className="text_1 font-semibold text-[#4A5565] dark:text-white leading-[1.6] mb-[12px] xl:mb-[18px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                 {data.subheading}
                             </p>
                         )}

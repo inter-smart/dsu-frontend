@@ -101,7 +101,7 @@ export default function AdmissionAccomodation({ data }) {
                                     <h4 className="text-[15px] sm:text-[16px] 2xl:text-[18px] 3xl:text-[22px] font-bold text-[#1E1E1E] dark:text-white max-w-[50%] leading-[1.3] mb-1.5 2xl:mb-4">
                                         {highlight.title}
                                     </h4>
-                                    <p className="text-[12px] sm:text-[13px] 2xl:text-[14px] 3xl:text-[16px] text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6]">
+                                    <p className="text-[12px] sm:text-[13px] 3xl:text-[16px] text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6] lg:text-[15px] xl:text-[15px] 2xl:text-[14px]">
                                         {highlight.description}
                                     </p>
                                 </div>
@@ -210,7 +210,7 @@ export default function AdmissionAccomodation({ data }) {
                                         </h3>
 
                                         {/* Description */}
-                                        <p className="text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6] mb-4 sm:mb-5 xl:mb-6 flex-1">
+                                        <p className="text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6] mb-4 sm:mb-5 xl:mb-6 flex-1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                             {room.description}
                                         </p>
 

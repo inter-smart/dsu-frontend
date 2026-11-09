@@ -12,7 +12,7 @@ export default function WhyusAQAR({ data }) {
             <div className="container">
                 <div className="mb-[45px]">
                     <h2 className="cmn_Title">{data.heading}</h2>
-                    <p className="text_1">{data.description}</p>
+                    <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
                 </div>
                 <Tabs defaultValue={defaultTab} className="w-full">
                     <TabsList className="gap-[8px] bg-transparent p-0 mb-[25px] xl:mb-[40px]">
@@ -70,7 +70,7 @@ export default function WhyusAQAR({ data }) {
                                     ))}
                                 </div>
                             ) : (
-                                <p className="text_1 text-gray-400 py-[14px]">
+                                <p className="text_1 text-gray-400 py-[14px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
                                     No reports available for this year yet.
                                 </p>
                             )}

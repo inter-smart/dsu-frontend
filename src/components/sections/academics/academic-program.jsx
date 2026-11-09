@@ -39,7 +39,7 @@ export default function AcademicProgram({ data, variant }) {
                                 </div>
                             )}
                             {item.description && (
-                                <p className="lg:max-w-[98%] text-[#4A5565] dark:text-[#9CA3AF]">{item.description}</p>
+                                <p className="lg:max-w-[98%] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.description}</p>
                             )}
                             <div className={`flex flex-wrap ${item.badge || item.label || item.description ? "mt-[30px]" : ""}`}>
                                 {item.programs?.map((program, idx) => (

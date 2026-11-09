@@ -34,7 +34,7 @@ export default function MediaCoverage({ data }) {
         <div className="w-full h-auto mb-6.25 lg:mb-7.5 2xl:mb-10">
           <h2 className="title_1 mb-2.5 xl:mb-3 2xl:mb-3.5">{data?.title}</h2>
           {data?.description && (
-            <p className="text_1 max-w-[820px]">{data.description}</p>
+            <p className="text_1 max-w-[820px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
           )}
         </div>
         <div className="w-full h-auto gap-3.75 sm:gap-[15px_10px] lg:gap-[20px_15px] 2xl:gap-[25px_15px] 3xl:gap-[30px_20px] grid sm:grid-cols-2 lg:grid-cols-3">

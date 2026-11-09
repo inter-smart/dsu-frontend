@@ -204,4 +204,8 @@ export default function page() {
         </>
     )
 }
- 
+
+export const metadata = {
+    title: "Statistics | Placement | Dayananda Sagar University",
+    description: "Statistics – Placement at Dayananda Sagar University.",
+};

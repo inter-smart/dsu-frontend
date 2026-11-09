@@ -27,7 +27,7 @@ function ItemGrid({ items }) {
                 const body = (
                     <>
                         <div className="font-bold">{item.title}</div>
-                        {item.meta && <p className="mt-[6px] text-[#4A5565] dark:text-white/80">{item.meta}</p>}
+                        {item.meta && <p className="mt-[6px] text-[#4A5565] dark:text-white/80 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.meta}</p>}
                     </>
                 );
                 return (

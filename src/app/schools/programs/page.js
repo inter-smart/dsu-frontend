@@ -144,3 +144,7 @@ export default function Page() {
     )
 }
 
+export const metadata = {
+    title: "Programs | Schools | Dayananda Sagar University",
+    description: "Programs – Schools at Dayananda Sagar University.",
+};

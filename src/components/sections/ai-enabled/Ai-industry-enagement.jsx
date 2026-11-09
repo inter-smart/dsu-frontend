@@ -18,7 +18,7 @@ export default function AiIndustryEngagement({ data }) {
                         </div>
                     )}
                     {data?.description && (
-                        <p className="mb-[30px]">{data.description}</p>
+                        <p className="mb-[30px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
                     )}
 
                     <div className={`w-full relative  `}>

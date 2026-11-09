@@ -7,11 +7,11 @@ export default function CtaBanner({ data }) {
         <section className="w-full bg-white py-8 lg:py-10 2xl:py-[60px]">
             <div className="container">
                 <div className="rounded-[10px] bg-linear-to-b from-[#FFF7EB] to-[#FEF3E4] px-5 py-8 text-center lg:px-10 lg:py-12 2xl:px-[60px] 2xl:py-[62px]">
-                    <p className="mx-auto text-[14px] leading-[1.7] text-[#444] lg:text-[16px] 2xl:text-[18px] 2xl:leading-[29px]">
+                    <p className="mx-auto text-[14px] leading-[1.7] text-[#444] 2xl:leading-[29px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
                         {text}
                     </p>
 
-                    <p className="mt-3 text-[14px] leading-[1.7] text-[#444] lg:text-[16px] 2xl:mt-[9px] 2xl:text-[18px] 2xl:leading-[29px]">
+                    <p className="mt-3 text-[14px] leading-[1.7] text-[#444] 2xl:mt-[9px] 2xl:leading-[29px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
                         {prompt}{" "}
                         <Link
                             href={link.href}

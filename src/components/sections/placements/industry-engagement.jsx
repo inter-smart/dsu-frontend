@@ -37,7 +37,7 @@ export default function IndustryEngagement({ data }) {
                 </div>
 
                 {items.length === 0 ? (
-                    <p className="py-[40px] text-center">{data?.emptyText}</p>
+                    <p className="py-[40px] text-center lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data?.emptyText}</p>
                 ) : (
                     <div className="relative">
                         <SliderArrow dir="prev" label="Previous engagement" onClick={() => emblaApi?.scrollPrev()} className="max-xl:hidden absolute z-1 top-1/2 -translate-y-1/2 -left-[45px] 3xl:-left-[56px]" />

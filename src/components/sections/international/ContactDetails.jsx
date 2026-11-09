@@ -29,10 +29,10 @@ export default function ContactDetails({ data }) {
                                 </span>
 
                                 <div className="min-w-0">
-                                    <p className="text-[15px] font-medium leading-tight text-[#111] lg:text-[16px] 2xl:text-[18px]">
+                                    <p className="text-[15px] font-medium leading-tight text-[#111] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
                                         {item.label}
                                     </p>
-                                    <p className="mt-1.5 break-words text-[14px] leading-[1.5] text-[#444] lg:text-[16px] 2xl:mt-[8px] 2xl:text-[18px]">
+                                    <p className="mt-1.5 break-words text-[14px] leading-[1.5] text-[#444] 2xl:mt-[8px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
                                         {item.values.map((value, i) => (
                                             <Fragment key={value.text}>
                                                 {i > 0 && " or "}
