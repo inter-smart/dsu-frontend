@@ -4,18 +4,15 @@ import { ReactLenis } from "lenis/react";
 
 const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
 
-function isScrollable(node) {
-  if (!(node instanceof HTMLElement)) return false;
-  const { overflowY } = window.getComputedStyle(node);
-  const canScroll =
-    /(auto|scroll|overlay)/.test(overflowY) && node.scrollHeight > node.clientHeight;
-  return canScroll;
-}
-
 function isInsideNativeScrollable(node) {
+  if (!node || !(node instanceof Element)) return false;
+  if (node === document.documentElement || node === document.body) return false;
+
   return Boolean(
     node.closest(
       [
+        "[data-lenis-prevent]",
+        "[data-lenis-prevent-wheel]",
         '[data-slot="select-content"]',
         '[role="listbox"]',
         '[role="menu"]',
@@ -38,7 +35,7 @@ export default function SmoothScrollProvider({ children }) {
       touchMultiplier: 1,
       syncTouch: false,
       autoRaf: true,
-      prevent: (node) => isInsideNativeScrollable(node) || isScrollable(node),
+      prevent: (node) => isInsideNativeScrollable(node),
     }),
     []
   );

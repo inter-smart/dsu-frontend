@@ -235,7 +235,7 @@ export default function AdmissionContact({ data }) {
                   rel={whatsappBtn.isExternal ? "noopener noreferrer" : undefined}
                   className="group relative flex h-[36px] sm:h-[40px] xl:h-[44px] 3xl:h-[50px]  w-fit items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] p-[1px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                 >
-                  <div className="w-full bg-white h-full overflow-hidden rounded-[4px] flex items-center gap-[10px] px-6">
+                  <div className="w-full bg-[#FFF7EE] h-full overflow-hidden rounded-[4px] flex items-center gap-[10px] px-6">
                     <span className="relative z-[1] text-black transition-transform duration-300 w-full  ">
                       {whatsappBtn.label}
                     </span>

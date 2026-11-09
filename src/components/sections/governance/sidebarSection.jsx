@@ -124,7 +124,7 @@ export default function SidebarSection({ menu = [],isOpen = false, onClose, titl
                                                 />
                                             </div>
 
-                                            <div className={`text_1 font-semibold transition-colors duration-300 xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] ${
+                                            <div className={`text-[13px] font-semibold transition-colors duration-300 xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] ${
                                                 isActive
                                                     ? "!text-[#F97316]"
                                                     : "text-[#212121] group-hover:text-[#F97316]"

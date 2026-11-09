@@ -41,6 +41,7 @@ const local_data = {
     },
     programOverviewSection:
     {
+        eyeBrow: "Recruit @ DSU",
         heading: "Why Recruit from DSU",
         description: [
             {

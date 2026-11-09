@@ -51,7 +51,7 @@ export default function StepEducation({ formData, setFormData }) {
                     SPECIALIZATION
                   </Label>
                   <Input
-                    placeholder="Eg., Science /Commerce"
+                    placeholder="eg., Science /Commerce"
                     className={inputStyle}
                     value={values.specialization || ""}
                     onChange={(e) => update(level.key, "specialization", e.target.value)}
@@ -63,7 +63,7 @@ export default function StepEducation({ formData, setFormData }) {
                   </Label>
                   <Input
                     type="number"
-                    placeholder="Eg., 2010"
+                    placeholder="eg., 2010"
                     className={inputStyle}
                     value={values.yearOfPassing || ""}
                     onChange={(e) => update(level.key, "yearOfPassing", e.target.value)}
@@ -76,7 +76,7 @@ export default function StepEducation({ formData, setFormData }) {
                     % OBTAINED
                   </Label>
                   <Input
-                    placeholder="Eg., 78.5"
+                    placeholder="eg., 78.5"
                     className={inputStyle}
                     value={values.percentage || ""}
                     onChange={(e) => update(level.key, "percentage", e.target.value)}
@@ -87,7 +87,7 @@ export default function StepEducation({ formData, setFormData }) {
                     UNIVERSITY/BOARD
                   </Label>
                   <Input
-                    placeholder="Eg., state board/University"
+                    placeholder="eg., state board/University"
                     className={inputStyle}
                     value={values.universityBoard || ""}
                     onChange={(e) => update(level.key, "universityBoard", e.target.value)}

@@ -81,7 +81,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                                         {item.heading}
                                     </h2>
                                     {Array.isArray(item.description) && item.description.length > 0 && (
-                                        <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
+                                        <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] typography  mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
                                          w-full  ">
                                             <BlocksRenderer content={item.description} />
                                         </div>

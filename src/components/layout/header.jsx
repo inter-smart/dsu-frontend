@@ -38,7 +38,7 @@ const proViceChancellorSubMenu = [
 // ADDED: on the 404 page (which carries data-not-found) the header gets a brand gradient background.
 // Menu text stays white. Change the from/to colors here to adjust the gradient.
 const NOT_FOUND_HEADER_GRADIENT =
-  "[body:has([data-not-found])_&]:bg-linear-to-r [body:has([data-not-found])_&]:from-(--basecolor)/50 [body:has([data-not-found])_&]:to-(--basecolor2)/50";
+  "[body:has([data-not-found])_&]:bg-linear-to-r [body:has([data-not-found])_&]:from-(--basecolor)/80 [body:has([data-not-found])_&]:to-(--basecolor2)/80";
 
 // ADDED: max height of the mega menu panel = screen height minus the header (top bar + logo row + menu row).
 // Taller lists scroll inside the panel. Increase the px values if the panel touches the bottom of the screen.
@@ -1218,6 +1218,11 @@ function MegaMenuPanel({
   const hasChildMenu = children.length > 0;
   const itemIndex = items?.findIndex((i) => i?.id === itemId) ?? -1;
   const alignRight = itemIndex >= 0 && itemIndex >= (items?.length || 0) / 2;
+  // ADDED: the last menu item that has a submenu (Admissions) opens with its row reversed:
+  // the orange sidebar on the right, the cream list on the left
+  const lastSubmenuIndex =
+    items?.reduce((last, i, idx) => (i?.children?.length ? idx : last), -1) ?? -1;
+  const reverseRow = itemIndex >= 0 && itemIndex === lastSubmenuIndex;
 
   useEffect(() => {
     if (!hasChildMenu) return;
@@ -1314,7 +1319,7 @@ function MegaMenuPanel({
         `}</style>
         <div className="w-fit overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.22)] rounded-b-[8px]">
           {/* ADDED: max height on the row; the sidebar and the right panel each scroll on their own */}
-          <div className={cn("w-fit flex items-stretch", MEGA_MENU_MAX_HEIGHT)}>
+          <div className={cn("w-fit flex items-stretch", MEGA_MENU_MAX_HEIGHT, reverseRow && "flex-row-reverse")}>
             {/* ─── Vibrant Orange/Red Gradient Sidebar ─── */}
             <nav className="w-[260px] 2xl:w-[280px] 3xl:w-[320px] shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-5 flex flex-col justify-start overflow-y-auto overscroll-contain">
               {children.map((child) => {

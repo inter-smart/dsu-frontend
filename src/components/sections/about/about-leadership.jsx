@@ -6,8 +6,7 @@ import { hasContent } from "@/lib/has-content";
 
 const EASE = "ease-[cubic-bezier(0.22,1,0.36,1)]";
 
-// One leader card. `featured` = the two large cards; the rest are compact. The bio opens on hover / focus
-// on hover-capable devices (always visible on touch) and the arrow button only shows when there is a bio.
+ 
 function LeaderCard({ item, featured }) {
   const hasBio = hasContent(item.description);
   const photoBox = featured
@@ -37,8 +36,8 @@ function LeaderCard({ item, featured }) {
         <div
           className={`font-bold leading-[1.25] text-black dark:text-white ${
             featured
-              ? "text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[26px]"
-              : "text-[13px] xl:text-[15px] 2xl:text-[17px] 3xl:text-[22px]"
+              ? "text-[16px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[26px]"
+              : "text-[15px] xl:text-[15px] 2xl:text-[17px] 3xl:text-[22px]"
           }`}
         >
           {item.name}
@@ -47,8 +46,8 @@ function LeaderCard({ item, featured }) {
           <div
             className={`mt-[4px] leading-[1.3] ${
               featured
-                ? "font-semibold text-[#DC2626] text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px]"
-                : "text-[#4A5565] dark:text-[#9CA3AF] text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px]"
+                ? "font-semibold text-[#DC2626] text-[14px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px]"
+                : "text-[#4A5565] dark:text-[#9CA3AF] text-[13px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px]"
             }`}
           >
             {item.designation}

@@ -63,7 +63,7 @@ export default function ChancellorMessage({ data }) {
                                                 </defs>
                                             </svg>
                                         </div>
-                                        <div className="text_1 font-semibold text-[#212121] dark:text-white w-[calc(100%-18px)] 2xl:w-[calc(100%-20px)] 3xl:w-[calc(100%-22px)] transition-all group-hover:text-[#DC2626]">
+                                        <div className="text_1 font-semibold text-[#212121] dark:text-white w-[calc(100%-18px)] 2xl:w-[calc(100%-20px)] 3xl:w-[calc(100%-22px)] transition-all group-hover:text-[#DC2626] word-break-all">
                                             {email}
                                         </div>
                                     </Link>
@@ -140,12 +140,12 @@ export default function ChancellorMessage({ data }) {
                         ? "md:w-[calc(100%-200px)] lg:w-[calc(100%-225px)] xl:w-[calc(100%-280px)] 2xl:w-[calc(100%-335px)] 3xl:w-[calc(100%-420px)] md:pl-[40px] lg:pl-[60px] xl:pl-[80px] 2xl:pl-[100px] 3xl:pl-[120px]"
                         : "w-full"}>
                         {data?.name && (
-                        <div className="text-[13px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold mb-[6px]">
+                        <div className="text-[13px] md:text-[18px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold mb-[6px]">
                             {data.name}
                         </div>
                         )}
                         {data?.designation && (
-                        <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#DC2626] font-semibold relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px]
+                        <div className="text-[12px] md:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#DC2626] font-semibold relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px]
                                      after:w-[30px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316] ">
                             {data.designation}
                         </div>

@@ -74,7 +74,7 @@ export default function AboutVision({ data }) {
                         after:bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,white_51.44%,rgba(153,153,153,0)_100%)] max-md:after:hidden">
                         <div className="w-full md:pt-[30px] xl:pt-[40px] 2xl:pt-[60px] 3xl:pt-[80px]">
                             {data.label && (
-                                <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#F57F2A] uppercase relative pl-[40px] mb-[22px] before:absolute before:content-[''] 
+                                <div className="text-[12px] md:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#F57F2A] uppercase relative pl-[40px] mb-[22px] before:absolute before:content-[''] 
                                         before:top-0 before:left-0 before:bottom-0 before:m-auto before:h-[4px] 
                                         before:w-[30px] before:bg-gradient-to-r before:from-[#DC2626]
                                         before:to-[#F97316] ">
@@ -98,7 +98,7 @@ export default function AboutVision({ data }) {
                                             </div>
                                         )}
                                         <div className="w-full">
-                                            <div className="text-[13px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-white font-bold mb-[8px] [transform:translateZ(28px)]">
+                                            <div className="text-[14px] md:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-white font-bold mb-[8px] [transform:translateZ(28px)]">
                                                 {item.title}
                                             </div>
                                             <div className="[transform:translateZ(14px)]">
@@ -128,7 +128,7 @@ export default function AboutVision({ data }) {
                             )}
                             <div className="w-full max-w-[95%]">
                                 {values?.title && (
-                                    <div className="text-[13px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px]   text-white font-bold mb-[15px] md:mb-[20px] xl:mb-[25px] 2xl:mb-[35px] 3xl:mb-[40px]">
+                                    <div className="text-[14px] md:text-[16px] 2xl:text-[20px] 3xl:text-[25px]   text-white font-bold mb-[15px] md:mb-[20px] xl:mb-[25px] 2xl:mb-[35px] 3xl:mb-[40px]">
                                         {values.title}
                                     </div>
                                 )}
@@ -160,7 +160,7 @@ export default function AboutVision({ data }) {
                                             >
                                                 <span
                                                     aria-hidden="true"
-                                                    className={`flex h-[28px] w-[28px] xl:h-[34px] xl:w-[34px] 2xl:h-[38px] 2xl:w-[38px] shrink-0 items-center justify-center rounded-full border text-[11px] xl:text-[13px] 2xl:text-[14px] font-bold transition-all duration-300 ${
+                                                    className={`flex h-[28px] w-[28px] md:h-[34px] md:w-[34px] 2xl:h-[38px] 2xl:w-[38px] shrink-0 items-center justify-center rounded-full border text-[14px] xl:text-[13px] 2xl:text-[14px] font-bold transition-all duration-300 ${
                                                         open
                                                             ? "border-transparent bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white"
                                                             : "border-white/40 text-white/80 group-hover/acc:border-white"

@@ -13,7 +13,7 @@ export default function AdmissionSection({data}) {
                 <div className="flex flex-wrap -m-[5px] 3xl:-m-[10px]">
                     {data.cards.map((item, id) => (
                         <div className="w-full sm:w-1/2" key={id}>
-                            <div className="p-[5px] 3xl:p-[10px]">
+                            <div className="p-[5px] 3xl:p-[10px] h-full">
                                 <div className="w-full h-full bg-[linear-gradient(180deg,#FFF8EE_0%,#FFF3E0_100%)] border border-black/10 rounded-[8px] p-[15px] xl:p-[20px_25px] 2xl:p-[30px_35px] 3xl:p-[40px_45px]">
 
                                     {item?.heading && (
