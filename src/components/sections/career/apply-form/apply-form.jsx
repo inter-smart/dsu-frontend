@@ -216,14 +216,14 @@ export default function ApplyForm({ job }) {
               onClick={() => setCurrentStep(step.id)}
               className={`h-12 xl:h-14 px-3.75 xl:px-5 flex items-center gap-2.5 rounded-md 2xl:rounded-[10px] border transition-colors duration-300 ${
                 currentStep === step.id
-                  ? "border-(--basecolor) text-[#212121] dark:text-white"
-                  : "border-black/10 text-[#9CA3AF] hover:text-[#212121] dark:hover:text-white"
+                  ? "border-(--basecolor)  dark:text-white"
+                  : "border-black/10 hover:text-[#212121] dark:hover:text-white"
               }`}
             >
-              <span className="text-lg xl:text-xl font-bold">
+              <span className="text-lg xl:text-xl font-bold text-[#212121]/20">
                 {String(step.id).padStart(2, "0")}
               </span>
-              <span className="text-xs xl:text-sm font-semibold">{step.label}</span>
+              <span className="text-xs xl:text-sm font-medium text-[#212121]">{step.label}</span>
             </button>
           ))}
         </div>
