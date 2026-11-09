@@ -438,6 +438,19 @@ body {
     pointer-events: none;
 }
 
+/* Pinned desktop menubar (see components/layout/common/StickyMenubar.jsx): drops the in-hero spacing and
+   the half-height page-colour strip, and slides in from the top. */
+.menubar-stuck > nav { margin-top: 0; }
+.menubar-stuck > nav::after { display: none; }
+.menubar-stuck nav .flex-wrap { padding-block: 12px; }
+@keyframes menubarIn {
+  from { opacity: 0; transform: translateY(-100%); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .menubar-stuck { animation: menubarIn 0.3s var(--reveal-ease, ease-out) both; }
+}
+
 /* Select box arrow upward rotation on dropdown open */
 [data-slot="select-trigger"] svg:last-child {
   transition: transform 0.2s ease-in-out;
