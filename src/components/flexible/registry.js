@@ -128,6 +128,10 @@ import RecruiteDsu from "@/components/sections/placements/recruteDsu";
 import RecruitmentGallery from "@/components/sections/placements/recruitment-gallery";
 import StudentSuccess from "@/components/sections/placements/student-success";
 import StudentSuccessStories from "@/components/sections/placements/student-success-stories";
+import IntlTextSection from "@/components/sections/international/intl-text-section";
+import IntlButtonSection from "@/components/sections/international/intl-button-section";
+import IntlVideoSection from "@/components/sections/international/intl-video-section";
+import IntlLinkCardsSection from "@/components/sections/international/intl-link-cards-section";
 import TeamSection from "@/components/sections/placements/Team-section";
 
 // Alumni components read the sidebar from their data
@@ -336,6 +340,12 @@ const flexibleRegistry = {
   "academic-quality.quality-section": { Component: AcademicQualitySection },
   "aqar.reports-section": { Component: WhyusAQAR },
   "governance.finance-committee-data": { Component: GovernanceFinancecommittte },
+
+  // International flexible pages (/international/<slug>)
+  "international.text-section": { Component: IntlTextSection },
+  "international.button-section": { Component: IntlButtonSection },
+  "international.video-section": { Component: IntlVideoSection },
+  "international.link-cards-section": { Component: IntlLinkCardsSection },
 
   // Pdf Reports pages: one PDF in an iframe, or a list of PDFs
   "pdf-report.reports-section": { Component: PdfReports },
