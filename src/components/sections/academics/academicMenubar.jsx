@@ -98,11 +98,12 @@ export default function AcademicMenubar({
   return (
     <div className={className}>
       {/* Mobile Menu Button (under md) */}
+      <StickyMenubar>
       <div className="container">
         <div className="md:hidden mt-[15px] mb-[10px]">
           <button
             onClick={() => setIsMobileSidebarOpen((prev) => !prev)}
-            className="bg-gradient-to-r from-[rgba(220,38,38,0.8)] to-[rgba(249,115,22,0.8)] text-white rounded-[5px] px-[15px] flex items-center gap-2 text-[13px] h-[35px] font-medium hover:opacity-90 transition-opacity focus:outline-none cursor-pointer"
+            className="w-full justify-start bg-gradient-to-r from-[rgba(220,38,38,0.8)] to-[rgba(249,115,22,0.8)] text-white rounded-[5px] px-[15px] flex items-center gap-2 text-[13px] h-[35px] font-medium hover:opacity-90 transition-opacity focus:outline-none cursor-pointer"
             aria-label="Toggle menu"
           >
             <div className="w-[16px] flex items-center">
@@ -125,6 +126,7 @@ export default function AcademicMenubar({
           </button>
         </div>
       </div>
+      </StickyMenubar>
 
       {/* Mobile Backdrop Overlay */}
       {isMobileSidebarOpen && (

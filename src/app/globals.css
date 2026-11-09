@@ -437,6 +437,7 @@ body {
    the half-height page-colour strip, and slides in from the top. */
 .menubar-stuck > nav { margin-top: 0; }
 .menubar-stuck > nav::after { display: none; }
+.menubar-stuck > .container > * { margin-block: 0; }
 .menubar-stuck nav .flex-wrap { padding-block: 12px; }
 @keyframes menubarIn {
   from { opacity: 0; transform: translateY(-100%); }
