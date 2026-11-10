@@ -12,3 +12,4 @@ export * from "./examination";
 export * from "./gallery";
 export * from "./admission";
 export * from "./layout";
+export * from "./search";

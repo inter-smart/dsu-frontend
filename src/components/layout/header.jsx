@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
 import { useEffect, useState, useRef } from "react";
@@ -500,6 +500,33 @@ export default function Header({ data = local_data }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
+  const searchInputRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const mobileSearchInputRef = useRef(null);
+  const [mobileSearchQuery, setMobileSearchQuery] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const router = useRouter();
+  // Enter in a search box -> /search?q=<keyword>; an empty box keeps focus instead
+  const goToSearch = (event, query, inputRef) => {
+    event.preventDefault();
+    const q = query.trim();
+    if (!q) {
+      inputRef.current?.focus();
+      return;
+    }
+    setIsSearchOpen(false);
+    setIsMobileMenuOpen(false);
+    router.push(`/search?q=${encodeURIComponent(q)}`);
+  };
+  const submitSearch = (event) => goToSearch(event, searchQuery, searchInputRef);
+  const submitMobileSearch = (event) =>
+    goToSearch(event, mobileSearchQuery, mobileSearchInputRef);
+  // Focus the box once the panel has become visible (it is `invisible` until this render is painted)
+  useEffect(() => {
+    if (!isSearchOpen) return;
+    const timer = setTimeout(() => searchInputRef.current?.focus(), 50);
+    return () => clearTimeout(timer);
+  }, [isSearchOpen]);
   const [openMenuId, setOpenMenuId] = useState(null);
   const [activeChildId, setActiveChildId] = useState(null);
   const closeMenuTimer = useRef(null);
@@ -766,7 +793,7 @@ export default function Header({ data = local_data }) {
                 ))}
                 <ApplyButtons buttons={data?.applyButtons} variant="desktop" />
                 <div className="w-auto h-auto pl-0.75 max-lg:flex hidden">
-                  <Sheet>
+                  <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                     <SheetTrigger aria-label="Open menu" className="w-7.5 h-full aspect-square bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] border border-[#D1D5DC80]/50 overflow-hidden flex items-center justify-center">
                       <div className="w-full h-3 flex flex-col items-center justify-between">
                         <span className="w-1/2 h-0.5 bg-white block"></span>
@@ -901,6 +928,41 @@ export default function Header({ data = local_data }) {
                             </Link>
                           </div>
                         </div>
+
+                        {/* Search */}
+                        <form
+                          role="search"
+                          action="/search"
+                          onSubmit={submitMobileSearch}
+                          className="relative mx-2.5 mb-3"
+                        >
+                          <input
+                            ref={mobileSearchInputRef}
+                            type="search"
+                            name="q"
+                            value={mobileSearchQuery}
+                            onChange={(e) => setMobileSearchQuery(e.target.value)}
+                            placeholder="Search..."
+                            aria-label="Search the site"
+                            autoComplete="off"
+                            enterKeyHint="search"
+                            maxLength={100}
+                            className="w-full h-11 pl-4 pr-11 text-sm text-black dark:text-white bg-white dark:bg-white/5 border border-black/15 dark:border-white/15 rounded-[3px] outline-none placeholder:text-black/40 dark:placeholder:text-white/40 focus:border-(--basecolor2) transition-colors"
+                          />
+                          <button
+                            type="submit"
+                            aria-label="Submit search"
+                            className="absolute right-1 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center"
+                          >
+                            <Image
+                              src="/images/header-search-icon.svg"
+                              alt=""
+                              width={16}
+                              height={16}
+                              className="w-4 h-4 object-contain invert dark:invert-0"
+                            />
+                          </button>
+                        </form>
                       </div>
                       {/* SCROLLABLE NAVIGATION MENU LIST */}
                       <div className="w-full flex-1 overflow-y-auto bg-[#fff7eb] dark:bg-[#18181b] border-t border-black/8 dark:border-white/0 pb-12">
@@ -979,23 +1041,38 @@ export default function Header({ data = local_data }) {
                   : "opacity-0 invisible pointer-events-none translate-x-4 absolute",
               )}
             >
-              <div className="w-full h-auto relative">
+              <form
+                role="search"
+                action="/search"
+                onSubmit={submitSearch}
+                className="w-full h-auto relative"
+              >
                 <input
+                  ref={searchInputRef}
                   type="search"
-                  autoFocus={isSearchOpen}
+                  name="q"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search..."
+                  aria-label="Search the site"
+                  autoComplete="off"
+                  maxLength={100}
                   className="w-full h-12.5 px-5 pr-12 text-base text-white bg-white/10 border border-white/20 rounded-[5px] outline-none placeholder:text-white/50 focus:border-(--basecolor2) transition-colors duration-300"
                 />
-                <span className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none">
+                <button
+                  type="submit"
+                  aria-label="Submit search"
+                  className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center cursor-pointer"
+                >
                   <Image
                     src="/images/header-search-icon.svg"
-                    alt="Search"
+                    alt=""
                     width={20}
                     height={20}
                     className="w-full h-full object-contain"
                   />
-                </span>
-              </div>
+                </button>
+              </form>
               <button
                 type="button"
                 aria-label="Close search"
