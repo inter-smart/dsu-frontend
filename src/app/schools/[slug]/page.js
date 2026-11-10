@@ -40,7 +40,7 @@ export default async function Page({ params }) {
         }}
       />
       <AcademicMenubar
-        className="md:!hidden block"
+        className="lg:!hidden block"
         slug={slug}
         hasDepartments={hasDepartments}
       />
