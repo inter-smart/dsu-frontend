@@ -50,13 +50,13 @@ function AccreditationCard({ item }) {
             {item?.name && !failed && (
                 <div
                     title={item.name}
-                    className="text_1 mt-[12px] w-fit max-w-full mx-auto text-center font-semibold leading-tight whitespace-nowrap overflow-hidden text-ellipsis bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-black dark:text-white transition-colors duration-300 group-hover:text-transparent"
+                    className="text_1 mt-[12px] w-fit max-w-full mx-auto text-center font-normal leading-tight whitespace-nowrap overflow-hidden text-ellipsis bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-black dark:text-white transition-colors duration-300 group-hover:text-transparent"
                 >
                     {item.name}
                 </div>
             )}
             {pdfUrl && (
-                <div className="mt-[15px] flex items-center justify-center gap-[6px] whitespace-nowrap text-[11px] xl:text-[12px] 3xl:text-[15px] font-medium text-black dark:text-white opacity-70 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="mt-[15px] flex items-center justify-center gap-[6px] whitespace-nowrap text-[13px] xl:text-[12px] 3xl:text-[15px] font-normal text-black dark:text-white opacity-70 transition-opacity duration-300 group-hover:opacity-100">
                     {/* Icon: solid by default, gradient on hover (two layers cross-fade) */}
                     <svg width="12" height="14" viewBox="0 0 12 14" fill="none" aria-hidden="true" className="shrink-0">
                         <defs>
