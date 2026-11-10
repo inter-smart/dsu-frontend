@@ -1,0 +1,66 @@
+{
+  "heading": "Ranking & Accreditations",
+  "description": "Recognised for quality, outcomes and academic excellence.",
+  "items": [
+    {
+      "id": 1,
+      "name": "NAAC A+",
+      "logo": {
+        "url": "/images/accredition/AICTE.jpeg",
+        "alternativeText": "NAAC A+ accreditation logo"
+      },
+      "pdf": {
+        "url": "/pdf/naac-certificate.pdf"
+      }
+    },
+    {
+      "id": 2,
+      "name": "NIRF Ranking",
+      "logo": {
+        "url": "/images/accredition/NAACA+.jpeg",
+        "alternativeText": "NIRF ranking logo"
+      },
+      "pdf": {
+        "url": "/pdf/nirf-ranking.pdf"
+      }
+    },
+    {
+      "id": 3,
+      "name": "UGC Approved",
+      "logo": {
+        "url": "/images/accredition/UGC.jpeg",
+        "alternativeText": "UGC logo"
+      },
+      "pdf": {
+        "url": "/pdf/ugc-approval.pdf"
+      }
+    },
+    {
+      "id": 4,
+      "name": "AICTE Approved",
+      "logo": {
+        "url": "/images/accredition/QS.jpeg",
+        "alternativeText": "AICTE logo"
+      },
+      "pdf": null
+    },
+    {
+      "id": 4,
+      "name": "AICTE Approved",
+      "logo": {
+        "url": "/images/accredition/THE.jpeg",
+        "alternativeText": "AICTE logo"
+      },
+      "pdf": null
+    },
+    {
+      "id": 4,
+      "name": "AICTE Approved",
+      "logo": {
+        "url": "/images/accredition/accred-5.png",
+        "alternativeText": "AICTE logo"
+      },
+      "pdf": null
+    }
+  ]
+}
