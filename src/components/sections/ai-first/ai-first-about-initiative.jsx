@@ -28,7 +28,7 @@ export default function AboutInitiative({ data }) {
                 <video
                   src={data?.media?.url}
                   autoPlay
-                  
+                  muted
                   loop
                   controls
                   playsInline
