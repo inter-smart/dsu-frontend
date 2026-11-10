@@ -53,7 +53,7 @@ export default function AboutHistory({ data }) {
                                 <Swiper
                                     direction="vertical"
                                     modules={[Autoplay]}
-                                    slidesPerView={2}
+                                    slidesPerView="auto"
                                     spaceBetween={0}
                                     speed={500}
                                     loop={true}
@@ -62,11 +62,11 @@ export default function AboutHistory({ data }) {
                                         disableOnInteraction: false,
                                         pauseOnMouseEnter: true,
                                     }}
-                                    className="h-[400px] sm:h-[320px] lg:h-[540px] xl:h-[540px] 2xl:h-[484px] 3xl:h-[610px] !w-[calc(100%+32px)] !-ml-[16px] !px-[16px]"
+                                    className="h-[400px] sm:h-[320px] lg:h-[600px] xl:h-[620px] 2xl:h-[640px] 3xl:h-[800px] !w-[calc(100%+32px)] !-ml-[16px] !px-[16px]"
                                 >
                                     {timeline.map((itemList, idx) => (
-                                        <SwiperSlide key={idx} className="relative before:absolute before:content-[''] before:left-[22px] before:xl:left-[27px] before:2xl:left-[32px] before:3xl:left-[40px] before:top-0 before:h-[calc(100%-40px)] before:bottom-0 before:m-auto before:-z-1 before:w-[1px] before:bg-black/20 dark:before:bg-white/20">
-                                            <div className="group/tl w-full flex pb-[30px] xl:pb-[40px] 2xl:pb-[60px] 3xl:pb-[80px]">
+                                        <SwiperSlide key={idx} className="!h-auto relative before:absolute before:content-[''] before:left-[22px] before:xl:left-[27px] before:2xl:left-[32px] before:3xl:left-[40px] before:top-0 before:h-[calc(100%-40px)] before:bottom-0 before:m-auto before:-z-1 before:w-[1px] before:bg-black/20 dark:before:bg-white/20">
+                                            <div className="group/tl w-full flex pb-[30px] xl:pb-[40px] 2xl:pb-[40px] 3xl:pb-[50px]">
                                                 <div className="w-[55px] xl:w-[55px] 2xl:w-[65px] 3xl:w-[83px] h-[45px] xl:h-[55px] 2xl:h-[65px] 3xl:h-[85px] mt-[10px] bg-[#FFF8EE] dark:bg-[#18191B] rounded-full border border-[#FF6D00] dark:border-[#F97316]/50 transition-[box-shadow,border-color,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/tl:bg-gradient-to-r group-hover/tl:from-[#DC2626] group-hover/tl:to-[#F97316] group-hover/tl:border-transparent group-hover/tl:shadow-[0_0_0_5px_rgba(249,115,22,0.18),0_8px_20px_rgba(249,115,22,0.35)] p-[10px] lg:p-[15px] 2xl:p-[20px] 3xl:p-[25px]
                                              flex items-center justify-center relative after:absolute after:content-[''] before:left-[22px] before:xl:left-[27px] before:2xl:left-[32px] before:3xl:left-[39px] after:top-0 after:bottom-0 after:m-auto after:bg-white dark:after:bg-[#101010] after:h-[calc(100%+20px)] after:lg:h-[calc(100%+30px)] after:w-[1px] after:-z-1">
                                                     <svg className="w-full h-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/tl:rotate-[-6deg] group-hover/tl:scale-[1.12]" viewBox="0 0 32 31" fill="none" >
