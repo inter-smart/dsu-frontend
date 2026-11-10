@@ -30,7 +30,7 @@ function AccreditationCard({ item }) {
 
     const content = (
         <>
-            <div className="relative flex w-full h-[70px] sm:h-[80px] xl:h-[90px] 3xl:h-[120px] items-center justify-center">
+            <div className="relative flex w-full h-[60px] sm:h-[70px] xl:h-[80px] 3xl:h-[110px] items-center justify-center">
                 {failed ? (
                     // Fallback when the image file is missing or fails to load
                     <span className="text_1 text-center font-bold leading-tight bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
@@ -43,7 +43,7 @@ function AccreditationCard({ item }) {
                         fill
                         sizes="(max-width: 768px) 40vw, 200px"
                         onError={() => setFailed(true)}
-                        className="object-contain transition-all duration-500 sm:grayscale sm:opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                        className="object-contain transition-all duration-500 group-hover:scale-105"
                     />
                 )}
             </div>
@@ -147,9 +147,9 @@ export default function AccreditationSlider({ data }) {
                         }}
                         breakpoints={{
                             480: { slidesPerView: 3, spaceBetween: 14 },
-                            768: { slidesPerView: 4, spaceBetween: 16 },
-                            1024: { slidesPerView: 6, spaceBetween: 20 },
-                            1536: { slidesPerView: 6, spaceBetween: 25 },
+                            768: { slidesPerView: 4, spaceBetween: 10 },
+                            1024: { slidesPerView: 6, spaceBetween: 15 },
+                            1536: { slidesPerView: 6, spaceBetween: 20 },
                         }}
                         onSwiper={(s) => {
                             swiperRef.current = s;
