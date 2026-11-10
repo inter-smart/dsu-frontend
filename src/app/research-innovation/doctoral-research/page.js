@@ -1,7 +1,33 @@
+import InnerHero from "@/components/layout/common/InnerHero";
 import PhdProgrammes from "@/components/sections/reseach-innovation/PhdProgrammes";
 
 
 export const local_data = {
+    hero: {
+        id: 25,
+        heroMedia: {
+            alternativeText: "Industry Collaborations page title",
+            mime: "image/jpg",
+            // if video - mime: "video/mp4",
+            url: "/images/academic-banner.jpg",
+        },
+        title: "Doctoral Research",
+        breadcrumb: [
+            {
+                label: "Home",
+                href: "/",
+            },
+            {
+                label: "Research & innovations",
+                href: "/",
+            },
+            {
+                label: "Doctoral Research",
+                href: "/",
+            },
+           
+        ],
+    },
     PhdProgrammes: {
 
         heading: "Ph.D. Programmes",
@@ -35,7 +61,7 @@ export const local_data = {
             },
         ],
         media: {
-            url: "/images/phd-lab.jpg",
+            url: "/images/research/phd-program.jpg",
             alternativeText: "Researcher working in a lab",
         },
         programmesHeading: "Programmes Offered",
@@ -110,6 +136,9 @@ export const local_data = {
 
 export default function page() {
     return (
-        <PhdProgrammes data={local_data.PhdProgrammes } />
+        <>
+            <InnerHero data={local_data.hero} />
+            <PhdProgrammes data={local_data.PhdProgrammes} />
+        </>
     )
 }

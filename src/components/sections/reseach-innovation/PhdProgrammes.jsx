@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { ctaLinkProps } from "@/lib/schools/link-props";
 import { hasContent } from "@/lib/has-content";
+import TableScrollBox from "@/components/layout/common/TableScrollBox";
 
 
 const renderText = (value) =>
@@ -73,17 +74,22 @@ export default function PhdProgrammes({ data }) {
                     )}
 
                     {programmes.length > 0 && (
-                        <div className="w-full overflow-x-auto">
-                            <table className="w-full min-w-[720px] border-collapse border border-black/80 dark:border-white/30 text-left">
+                        <TableScrollBox className="w-full overflow-auto max-h-[450px]">
+                            <table className="w-full min-w-[720px] table-fixed border-collapse border border-[#333] dark:border-white/30 text-left">
+                                <colgroup>
+                                    <col className="w-[60px] xl:w-[5%]" />
+                                    <col className="w-[47%]" />
+                                    <col />
+                                </colgroup>
                                 <thead>
                                     <tr className="bg-[#F97316] text-white">
-                                        <th className="w-[60px] xl:w-[80px] border-r border-black/40 px-[10px] py-[14px] text-center text_1 font-medium">
+                                        <th className=" sticky top-0 z-10 border-r border-[#333]/60 dark:border-white/30 px-[10px] py-[14px] xl:py-[16px] text-center text_1 text-white font-medium">
                                             {headers.number}
                                         </th>
-                                        <th className="w-[45%] border-r border-black/40 px-[16px] py-[14px] text-center text_1 font-medium">
+                                        <th className=" sticky top-0 z-10 border-r border-[#333]/60 dark:border-white/30 px-[16px] py-[14px] xl:py-[16px] text-center text_1 text-white font-medium">
                                             {headers.course}
                                         </th>
-                                        <th className="px-[16px] py-[14px] text-center text_1 font-medium">
+                                        <th className="sticky top-0 z-10 px-[16px] py-[14px] xl:py-[16px] text-center text_1 text-white font-medium">
                                             {headers.department}
                                         </th>
                                     </tr>
@@ -92,33 +98,31 @@ export default function PhdProgrammes({ data }) {
                                     {programmes.map((item, idx) => (
                                         <tr
                                             key={idx}
-                                            className="group border-t border-black/80 dark:border-white/30 transition-colors duration-300 hover:bg-[#FFF8EE] dark:hover:bg-[#18191B]"
+                                            className="group border-t border-[#333] dark:border-white/30 transition-colors duration-300 hover:bg-[#FFF8EE] dark:hover:bg-[#18191B]"
                                         >
-                                            <td className="border-r border-black/80 dark:border-white/30 px-[10px] py-[16px] text-center text_1 text-black dark:text-white">
+                                            <td className="border-r border-[#333] dark:border-white/30 px-[10px] py-[14px] text-center align-middle text_1 text-black dark:text-white">
                                                 {idx + 1}
                                             </td>
-                                            <td className="border-r border-black/80 dark:border-white/30 px-[16px] py-[16px] text_1 text-black dark:text-white transition-colors duration-300 group-hover:text-[#F97316]">
+                                            <td className="border-r border-[#333] dark:border-white/30 pl-[12px] pr-[16px] py-[14px] align-middle text_1 text-black dark:text-white">
                                                 {item.course}
                                             </td>
-                                            <td className="px-[16px] py-[12px]">
+                                            <td className="pl-[24px] xl:pl-[32px] pr-[16px] py-[10px] align-middle">
                                                 <div className="flex items-center justify-between gap-[16px]">
                                                     <div>
                                                         {item.department && (
-                                                            <div className="text_1 text-black dark:text-white">{item.department}</div>
+                                                            <div className="text_1 leading-[1.6] text-black dark:text-white">{item.department}</div>
                                                         )}
                                                         {item.area && (
-                                                            <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF]">{item.area}</div>
+                                                            <div className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF]">{item.area}</div>
                                                         )}
                                                     </div>
                                                     {item?.cta?.url && item?.cta?.label && (
                                                         <Link
                                                             href={item.cta.url}
                                                             {...ctaLinkProps(item.cta)}
-                                                            className="group/cta flex shrink-0 items-center gap-[6px] text_1 font-medium text-[#F97316] pr-[10px] xl:pr-[30px]"
+                                                            className="group/cta flex shrink-0 items-center gap-[6px] text_1 font-medium text-[#F97316] pr-[10px] xl:pr-[30px] opacity-0 -translate-x-[8px] transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0 focus-visible:opacity-100 focus-visible:translate-x-0 [@media(hover:none)]:opacity-100 [@media(hover:none)]:translate-x-0"
                                                         >
-                                                            <span className="transition-transform duration-300 group-hover/cta:translate-x-[-2px]">
-                                                                {item.cta.label}
-                                                            </span>
+                                                            <span>{item.cta.label}</span>
                                                             <svg
                                                                 width="16"
                                                                 height="16"
@@ -141,7 +145,8 @@ export default function PhdProgrammes({ data }) {
                                     ))}
                                 </tbody>
                             </table>
-                        </div>
+                        </TableScrollBox>
+
                     )}
                 </div>
 
