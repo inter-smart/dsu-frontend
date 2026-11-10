@@ -38,10 +38,8 @@ export default function AboutHistory({ data }) {
     const founders = (Array.isArray(data?.founders) ? data.founders : []).filter(
         (item) => item?.name,
     );
-    // YouTube: add a Text field (e.g. youtubeUrl) in Strapi for this section.
-    const youtubeHref = getYouTubeHref(
-        data?.youtubeUrl || data?.youtube || data?.videoUrl || data?.media?.youtubeUrl,
-    );
+    // About Page > Our History > "youtubeUrl" in Strapi (a YouTube link or video id)
+    const youtubeHref = getYouTubeHref(data?.youtubeUrl);
     return (
         <section className='relative py-[40px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[75px] dark:bg-[#101010] transition-colors duration-300'>
             <div className="container">
@@ -94,7 +92,7 @@ export default function AboutHistory({ data }) {
                             {data?.media?.url && (
                                 <div className="group relative w-full h-full rounded-[10px] overflow-hidden after:absolute after:inset-0 after:pointer-events-none after:content-[''] after:bg-gradient-to-t after:from-black/35 after:to-transparent after:opacity-0 after:transition-opacity after:duration-500 hover:after:opacity-100">
                                     <Image src={data.media.url} width={550} height={600} alt={data.media.alternativeText || "History"} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
-                                    
+                                    {youtubeHref && (
                                         <a
                                             href={youtubeHref}
                                             target="_blank"
@@ -109,7 +107,8 @@ export default function AboutHistory({ data }) {
                                                 />
                                                 <path d="M9.6 12.1V4.9L15.8 8.5l-6.2 3.6z" fill="#fff" />
                                             </svg>
-                                        </a> 
+                                        </a>
+                                    )}
                                 </div>
                             )}
                         </div>
@@ -147,7 +146,10 @@ export default function AboutHistory({ data }) {
                                                             )}
                                                         </div>
                                                     </div>
-                                                    <p>A distinguished educationist and Barrister-at-Law who established the educational trust in the 1960s with a vision of making education accessible to all.</p>
+                                                    {/* Founder Item > Description in Strapi; hidden when empty */}
+                                                    {item.description?.trim() && (
+                                                        <p className="w-full text_1 text-[#4A5565] dark:text-[#9CA3AF]">{item.description}</p>
+                                                    )}
                                                 </div>
                                             ))}
                                         </div>

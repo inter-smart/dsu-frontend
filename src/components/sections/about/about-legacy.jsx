@@ -36,10 +36,10 @@ function LegacyCard({ item, index, active, onToggle, className }) {
             />
             {/* front face (number, icon, title): fades out while the description shows */}
             <div className={cn("flex flex-col items-center transition-opacity duration-500", hasText && "group-hover:opacity-0 group-data-[active=true]:opacity-0")}>
-            {/* big faint index number */}
+            {/* big faint index number — TEMPORARILY HIDDEN: remove "hidden" below to show it again */}
             <span
                 aria-hidden="true"
-                className="pointer-events-none absolute right-[14px] top-[8px] text-[38px] font-extrabold leading-none text-[#F97316]/15 transition-colors duration-500 group-hover:text-white/25 group-data-[active=true]:text-white/25 xl:right-[18px] xl:top-[10px] xl:text-[46px] 2xl:text-[56px] 3xl:text-[72px]"
+                className="hidden pointer-events-none absolute right-[14px] top-[8px] text-[38px] font-extrabold leading-none text-[#F97316]/15 transition-colors duration-500 group-hover:text-white/25 group-data-[active=true]:text-white/25 xl:right-[18px] xl:top-[10px] xl:text-[46px] 2xl:text-[56px] 3xl:text-[72px]"
             >
                 {String(index + 1).padStart(2, "0")}
             </span>
