@@ -1,5 +1,7 @@
 import InnerHero from "@/components/layout/common/InnerHero";
+import DoctoralResearch from "@/components/sections/reseach-innovation/DoctoralResearch";
 import PhdProgrammes from "@/components/sections/reseach-innovation/PhdProgrammes";
+import PostDoctoralCta from "@/components/sections/reseach-innovation/PostDoctoralCta";
 
 
 export const local_data = {
@@ -25,7 +27,7 @@ export const local_data = {
                 label: "Doctoral Research",
                 href: "/",
             },
-           
+
         ],
     },
     PhdProgrammes: {
@@ -131,6 +133,41 @@ export const local_data = {
                 cta: null,
             },
         ],
+    },
+    doctoralResearchData: {
+        heading: "Doctoral Research",
+        cards: [
+            {
+                title: "Ph.D\nAdmissions",
+                image: { url: "/images/research/reaseach-1.jpg", alternativeText: "Ph.D Admissions" },
+                cta: { url: "/phd/admissions", newTab: false },
+            },
+            {
+                title: "Research\nSupervisors",
+                image: { url: "/images/research/reaseach-2.jpg", alternativeText: "Research Supervisors" },
+                cta: { url: "/phd/research-supervisors", newTab: false },
+            },
+            {
+                title: "Ph.D\nRegulations",
+                image: { url: "/images/research/reaseach-3.jpg", alternativeText: "Ph.D Regulations" },
+                cta: { url: "/phd/regulations", newTab: false },
+            },
+            {
+                title: "Ph.D Course\nWork Syllabus",
+                image: { url: "/images/research/reaseach-4.jpg", alternativeText: "Ph.D Course Work Syllabus" },
+                cta: { url: "/phd/course-work-syllabus", newTab: false },
+            },
+        ],
+    },
+    postDoctoralCtaData: {
+        heading: "Apply for the Post Doctoral Fellowship",
+        description:
+            "Eligible researchers can submit their details through the Google Form provided by Dayananda Sagar University.",
+        cta: {
+            label: "Apply Now",
+            url: "https://forms.gle/your-form-id",
+            newTab: true,
+        },
     }
 };
 
@@ -139,6 +176,8 @@ export default function page() {
         <>
             <InnerHero data={local_data.hero} />
             <PhdProgrammes data={local_data.PhdProgrammes} />
+            <DoctoralResearch data={local_data.doctoralResearchData} />
+            <PostDoctoralCta data={local_data.postDoctoralCtaData} />
         </>
     )
 }
