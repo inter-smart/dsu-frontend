@@ -53,7 +53,7 @@ export default function GovernanceFinancecommittte({ data, title, governancePage
                                         {["Name", "Address/Designation", "Status in the Authority"].map((item, idx) => (
                                             <th
                                                 key={idx}
-                                                className={`whitespace-nowrap text-[13px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[20px] font-normal uppercase text-white first:rounded-l-[10px] last:rounded-r-[10px] ${idx === 0 && !hasImages
+                                                className={`whitespace-nowrap text-[13px] lg:text-[16px] 2xl:text-[18px] 3xl:text-[20px] font-normal uppercase text-white first:rounded-l-[10px] last:rounded-r-[10px] ${idx === 0 && !hasImages
                                                     ? "text-left p-[10px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px]"
                                                     : "text-center p-[10px_15px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px]"}`}
                                             >
@@ -84,12 +84,12 @@ export default function GovernanceFinancecommittte({ data, title, governancePage
                                                     )}
 
                                                     <div className={`${item.image ? "w-[calc(100%-50px)] xl:w-[calc(100%-61px)] 2xl:w-[calc(100%-73px)] 3xl:w-[calc(100%-92px)] pl-[15px] xl:pl-[25px] 2xl:pl-[35px] 3xl:pl-[45px]" : "w-full"}`}>
-                                                        <div className="text-[12px] xl:text_1 font-semibold text-[#212121]">
+                                                        <div className="text-[12px] md:text-[16px] font-semibold text-[#212121]">
                                                             {item.name}
                                                         </div>
 
                                                         {item.note && (
-                                                            <div className="mt-[0px] text-[12px] xl:text_1 text-[#4A5565]">
+                                                            <div className="mt-[0px] text-[12px] md:text-[16px] text-[#4A5565]">
                                                                 {item.note}
                                                             </div>
                                                         )}
@@ -97,7 +97,7 @@ export default function GovernanceFinancecommittte({ data, title, governancePage
                                                 </div>
                                             </td>
 
-                                            <td className="p-[12px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px] text-center text-[12px] xl:text_1 font-semibold text-[#4A5565] relative  after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last-of-type:after:hidden">
+                                            <td className="p-[12px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px] text-center text-[14px] md:text-[16px]  font-semibold text-[#4A5565] relative  after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last-of-type:after:hidden">
                                                 <div className="max-w-[320px] m-auto text-center">
                                                     {item.designation}
                                                 </div>
