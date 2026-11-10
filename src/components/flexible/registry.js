@@ -3,6 +3,7 @@ import AdmissionDatesTemplate from "@/components/sections/admission/templates/da
 import AdmissionDownloadTemplate from "@/components/sections/admission/templates/download-template";
 import AdmissionEligibilityTemplate from "@/components/sections/admission/templates/eligibility-template";
 import AdmissionFaqTemplate from "@/components/sections/admission/templates/faq-template";
+import AdmissionFaqCategories from "@/components/sections/admission/AdmissionFaqCategories";
 import AdmissionFeeTemplate from "@/components/sections/admission/templates/fee-template";
 import AdmissionHostelTemplate from "@/components/sections/admission/templates/hostel-template";
 import AdmissionOverviewTemplate from "@/components/sections/admission/templates/overview-template";
@@ -218,6 +219,7 @@ const flexibleRegistry = {
   "admission.dates-template": { Component: AdmissionDatesTemplate },
   "admission.download-template": { Component: AdmissionDownloadTemplate },
   "admission.admission-faq": { Component: AdmissionFaqTemplate },
+  "admission.faq-categories-section": { Component: AdmissionFaqCategories },
   "admission.contact-template": { Component: AdmissionContactTemplate },
   "admission.programme-template": { Component: AdmissionProgrammeTemplate },
 
