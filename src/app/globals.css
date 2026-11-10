@@ -186,10 +186,10 @@ html.lenis body {
     @apply text-[28px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] leading-tight font-bold tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
   .text_1 {
-    @apply text-[12px] md:text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#4A5565] dark:text-[#F9FAFB];
+    @apply text-[14px] md:text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#4A5565] dark:text-[#F9FAFB];
   }
   p {
-    @apply text-[12px] md:text-[15px] lg:text-[14px] 2xl:text-[15px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#4A5565] dark:text-[#F9FAFB];
+    @apply text-[14px] md:text-[15px] lg:text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#4A5565] dark:text-[#F9FAFB];
   }
   .cmnFlx {
     @apply flex flex-wrap;
@@ -263,7 +263,7 @@ html.lenis body {
     }
 
     h6 {
-      @apply text-[13px] 2xl:text-[14px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
+      @apply text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
     }
 
     &[dir="ltr"] ul,
@@ -442,6 +442,7 @@ body {
    the half-height page-colour strip, and slides in from the top. */
 .menubar-stuck > nav { margin-top: 0; }
 .menubar-stuck > nav::after { display: none; }
+.menubar-stuck > .container > * { margin-block: 0; }
 .menubar-stuck nav .flex-wrap { padding-block: 12px; }
 @keyframes menubarIn {
   from { opacity: 0; transform: translateY(-100%); }

@@ -46,8 +46,8 @@ function LeaderCard({ item, featured }) {
           <div
             className={`mt-[4px] leading-[1.3] ${
               featured
-                ? "font-semibold text-[#DC2626] text-[14px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px]"
-                : "text-[#4A5565] dark:text-[#9CA3AF] text-[13px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[18px]"
+                ? "font-semibold text-[#DC2626] text-[15px] xl:text-[16px] 2xl:text-[16px] 3xl:text-[20px]"
+                : "text-[#4A5565] dark:text-[#9CA3AF] text-[15px] xl:text-[15px] 2xl:text-[15px] 3xl:text-[18px]"
             }`}
           >
             {item.designation}
@@ -73,7 +73,7 @@ function LeaderCard({ item, featured }) {
       {hasBio && (
         <span
           aria-hidden="true"
-          className={`absolute right-[14px] top-1/2 flex h-[30px] w-[30px] -translate-y-1/2 items-center justify-center rounded-full border border-[#DC2626]/25 bg-[#DC2626]/5 text-[#DC2626] transition-all duration-500 ${EASE} group-hover:translate-x-[6px] group-hover:border-transparent group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316] group-hover:text-white max-sm:top-auto max-sm:bottom-[12px] max-sm:translate-y-0 xl:right-[20px] xl:h-[36px] xl:w-[36px] 2xl:right-[26px] 2xl:h-[40px] 2xl:w-[40px] 3xl:right-[32px] 3xl:h-[50px] 3xl:w-[50px]`}
+          className={`sm:absolute right-[14px] top-1/2 flex h-[30px] w-[30px] -translate-y-1/2 items-center justify-center rounded-full border border-[#DC2626]/25 bg-[#DC2626]/5 text-[#DC2626] transition-all duration-500 ${EASE} group-hover:translate-x-[6px] group-hover:border-transparent group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316] group-hover:text-white max-sm:top-auto max-sm:bottom-[12px] max-sm:translate-y-0 xl:right-[20px] xl:h-[36px] xl:w-[36px] 2xl:right-[26px] 2xl:h-[40px] 2xl:w-[40px] 3xl:right-[32px] 3xl:h-[50px] 3xl:w-[50px]`}
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="h-[14px] w-[14px] xl:h-[16px] xl:w-[16px] 2xl:h-[18px] 2xl:w-[18px] 3xl:h-[22px] 3xl:w-[22px]">
             <path d="M5 12h14M13 6l6 6-6 6" />
