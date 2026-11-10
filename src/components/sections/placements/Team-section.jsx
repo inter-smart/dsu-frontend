@@ -1,164 +1,85 @@
-"use client";
-
-import Image from "next/image";
-import Link from "next/link";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
-import { ctaLinkProps } from "@/lib/schools/link-props";
-import { hasContent } from "@/lib/has-content"; 
+import { Text } from "@/components/ui/text";
+import { Heading } from "@/components/ui/heading"; 
 import TableScrollBox from "@/components/layout/common/TableScrollBox";
 
-
-const renderText = (value) =>
-    Array.isArray(value) ? <BlocksRenderer content={value} /> : value;
-
-
-export default function PhdProgrammes({ data }) {
-    if (!data) return null;
-
-    const programmes = (Array.isArray(data?.programmes) ? data.programmes : []).filter(
-        (item) => item?.course,
-    );
-    const headers = {
-        number: data?.tableHeaders?.number || "#",
-        course: data?.tableHeaders?.course || "PhD Course",
-        department: data?.tableHeaders?.department || "Department and Area of Research",
-    };
-
-    return (
-        <section className='relative py-[40px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[75px] dark:bg-[#101010] transition-colors duration-300'>
-            <div className="container">
-
-                {/* Hero */}
-                <div className="flex max-sm:gap-[20px] lg:gap-[25px] 2xl:gap-[35px] 3xl:gap-[45px] max-lg:flex-wrap mb-[40px] xl:mb-[60px] 3xl:mb-[80px]">
-                    <div className="w-full lg:w-1/2 flex items-center">
-                        <div className="w-full">
-                            {data?.heading && (
-                                <h1 className="text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white">
-                                    {data.heading}
-                                </h1>
-                            )}
-                            {Array.isArray(data?.description) && hasContent(data.description) && (
-                                <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_p]:mb-[16px] typography">
-                                    <BlocksRenderer content={data.description} />
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="w-full lg:w-[calc(50%-25px)] 2xl:w-[calc(50%-35px)] 3xl:w-[calc(50%-45px)]">
-                        {data?.media?.url && (
-                            <div className="group relative w-full h-full rounded-[10px] overflow-hidden after:absolute after:inset-0 after:pointer-events-none after:content-[''] after:bg-gradient-to-t after:from-black/35 after:to-transparent after:opacity-0 after:transition-opacity after:duration-500 hover:after:opacity-100">
-                                <Image
-                                    src={data.media.url}
-                                    width={770}
-                                    height={460}
-                                    alt={data.media.alternativeText || data?.heading || "Ph.D. Programmes"}
-                                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                                />
-                            </div>
-                        )}
-                    </div>
-                </div>
-
-                {/* Programmes Offered */}
-                <div className="w-full">
-                    {data?.programmesHeading && (
-                        <h2 className="text-[22px] xl:text-[28px] 2xl:text-[32px] 3xl:text-[40px] font-bold leading-[1.2] mb-[10px] text-black dark:text-white">
-                            {data.programmesHeading}
-                        </h2>
-                    )}
-                    {Array.isArray(data?.programmesDescription) && hasContent(data.programmesDescription) && (
-                        <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] mb-[20px] xl:mb-[25px] typography">
-                            <BlocksRenderer content={data.programmesDescription} />
-                        </div>
-                    )}
-
-                    {programmes.length > 0 && (
-                        <TableScrollBox className="w-full overflow-auto max-h-[450px]">
-                            <table className="[--padding:10px] sm:[--padding:11px_13px] 3xl:[--padding:20px] text-[13px] sm:text-[15px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] text-left text-[#212121] dark:text-white w-full min-w-170 border-collapse">
-                                <colgroup>
-                                    <col className="w-[60px] xl:w-[5%]" />
-                                    <col className="w-[47%]" />
-                                    <col />
-                                </colgroup>
-                                <thead>
-                                    <tr className="bg-(--basecolor2) text-white">
-                                        <th
-                                            scope="col"
-                                            className="sticky top-0 z-10 bg-(--basecolor2) font-medium text-left text-white p-(--padding) border border-[#E5E7EB] dark:border-white/20"
-                                        >
-                                            {headers.number}
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="sticky top-0 z-10 bg-(--basecolor2) font-medium text-left text-white p-(--padding) border border-[#E5E7EB] dark:border-white/20"
-                                        >
-                                            {headers.course}
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="sticky top-0 z-10 bg-(--basecolor2) font-medium text-left text-white p-(--padding) border border-[#E5E7EB] dark:border-white/20"
-                                        >
-                                            {headers.department}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody data-reveal-stagger>
-                                    {programmes.map((item, idx) => (
-                                        <tr
-                                            key={idx}
-                                            className="group transition-colors duration-300 hover:bg-[#FFF8EE] dark:hover:bg-[#18191B]"
-                                        >
-                                            <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
-                                                {idx + 1}
-                                            </td>
-                                            <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
-                                                {item.course}
-                                            </td>
-                                            <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
-                                                <div className="flex items-center justify-between gap-[16px]">
-                                                    <div>
-                                                        {item.department && (
-                                                            <div className="leading-[2] text-[#212121] dark:text-white">{item.department}</div>
-                                                        )}
-                                                        {item.area && (
-                                                            <div className="leading-[2] text-[#4A5565] dark:text-[#9CA3AF]">{item.area}</div>
-                                                        )}
-                                                    </div>
-                                                    {item?.cta?.url && item?.cta?.label && (
-                                                        <Link
-                                                            href={item.cta.url}
-                                                            {...ctaLinkProps(item.cta)}
-                                                            className="group/cta flex shrink-0 items-center gap-[6px] font-medium text-[#F97316] pr-[10px] xl:pr-[30px] opacity-0 -translate-x-[8px] transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0 focus-visible:opacity-100 focus-visible:translate-x-0 [@media(hover:none)]:opacity-100 [@media(hover:none)]:translate-x-0"
-                                                        >
-                                                            <span>{item.cta.label}</span>
-                                                            <svg
-                                                                width="16"
-                                                                height="16"
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                strokeWidth="2.5"
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                className="transition-transform duration-300 group-hover/cta:translate-x-[4px]"
-                                                                aria-hidden="true"
-                                                            >
-                                                                <path d="M5 12h14M13 6l6 6-6 6" />
-                                                            </svg>
-                                                        </Link>
-                                                    )}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </TableScrollBox>
-                    )}
-                </div>
-
+export default function TeamSection({ data }) {
+  return (
+    <section className="w-full h-auto py-10 sm:py-15 lg:py-20 2xl:py-25 3xl:py-30 block dark:bg-[#000]">
+      <div className="container">
+        <div className="w-full h-auto mb-6.25 2xl:mb-7.5 3xl:mb-10">
+          {data?.subTitle && (
+            <div className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mb-2.5 2xl:mb-3.75 3xl:mb-5 relative z-0 [--size:15px] 2xl:[--size:20px] 3xl:[--size:25px] before:content-[''] before:w-(--size) before:h-0.5 2xl:before:h-0.75 pl-[calc(var(--size)+8px)] before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:inline-block before:absolute before:z-1 before:inset-[0_auto_0_0]">
+              {data.subTitle}
             </div>
-        </section>
-    )
+          )}
+          <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-5 dark:text-white">
+            {data?.title}
+          </Heading>
+          <Text className="dark:text-[#9CA3AF]">{data?.description}</Text>
+        </div>
+        {data?.table?.rows?.length > 0 && (
+        <div>
+          <TableScrollBox className="w-full overflow-auto max-h-[450px]">
+            <table className="[--padding:10px] sm:[--padding:11px_13px] 3xl:[--padding:20px] text-[13px] sm:text-[15px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] text-left text-[#212121] dark:text-white w-full min-w-170 border-collapse">
+              <thead>
+                <tr className="bg-(--basecolor2) text-white">
+                  {data?.table?.columns?.map((column) => (
+                    <th
+                      key={column}
+                      scope="col"
+                      className="sticky top-0 z-10 bg-(--basecolor2) font-medium text-left text-white p-(--padding) border border-[#E5E7EB] dark:border-white/20"
+                    >
+                      {column}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {data?.table?.rows?.map((row) => (
+                  <tr key={row?.id}>
+                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                      {row?.designation}
+                    </td>
+                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                      {row?.name}
+                    </td>
+                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                      {row?.area}
+                    </td>
+                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                      {row?.contact?.map((line, i) => (
+                        <div key={i} className="leading-[2]">
+                          {line}
+                        </div>
+                      ))}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </TableScrollBox>
+
+          {data?.reservation && (
+            <div className="mt-10 sm:mt-15 lg:mt-15 2xl:mt-17.5 3xl:mt-22.5 border-t border-black/10 dark:border-white/10 pt-10 sm:pt-10 lg:pt-12.5 2xl:pt-15 3xl:pt-20">
+              <div className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mb-2.5 2xl:mb-3.75 3xl:mb-5 relative z-0 [--size:15px] 2xl:[--size:20px] 3xl:[--size:25px] before:content-[''] before:w-(--size) before:h-0.5 2xl:before:h-0.75 pl-[calc(var(--size)+8px)] before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:inline-block before:absolute before:z-1 before:inset-[0_auto_0_0]">
+                {data.reservation.subTitle}
+              </div>
+              <Heading className="mb-3.75 3xl:mb-5 dark:text-white">
+                {data.reservation.title}
+              </Heading>
+              <div className="w-full h-auto p-3.75 sm:p-5 2xl:p-6.25 3xl:p-8.75 rounded-md 2xl:rounded-[10px] bg-linear-to-r from-[#FFF8EE] to-[#FFF3E0] dark:from-[#F97316]/15 dark:to-[#F97316]/10">
+                <h3 className="text-base 2xl:text-lg 3xl:text-[22px] font-semibold text-[#212121] dark:text-white mb-2.5 3xl:mb-3.75">
+                  {data.reservation.policyTitle}
+                </h3>
+                <Text className={"text-[#4A5565] dark:text-[#9CA3AF]"}>
+                  {data.reservation.description}
+                </Text>
+              </div>
+            </div>
+          )}
+        </div>
+        )}
+      </div>
+    </section>
+  );
 }

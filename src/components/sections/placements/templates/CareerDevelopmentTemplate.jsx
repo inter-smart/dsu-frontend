@@ -1,6 +1,5 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import CareerPlacement from "@/components/sections/placements/Career-Placement";
-import KeyFocus from "@/components/sections/placements/Key-Focus";
 import CareerGoal from "@/components/sections/placements/Career-Goal";
 import CampusDrives from "@/components/sections/placements/placement-campusdrive";
 import ProfessionalCertification from "@/components/sections/placements/profeesional-section";
@@ -14,7 +13,6 @@ export default function CareerDevelopmentTemplate({ data }) {
     const career = data?.careerDevelopment || {};
 
     const overview = career.programOverviewSection;
-    const keyFocus = career.KeyFocus;
     const careerGoal = career.careerGoal;
     const campusDrive = career.campusDrive;
     const professional = career.professional;
@@ -26,7 +24,6 @@ export default function CareerDevelopmentTemplate({ data }) {
             {hasContent(data?.hero) && <InnerHero data={data.hero} placementMenuItems={data?.sidebar} />}
             <PlacementmenuBar items={data?.sidebar} className="lg:!hidden block" />
             {hasContent(overview) && <CareerPlacement data={overview} />}
-            {hasContent(keyFocus) && <KeyFocus data={keyFocus} />}
             {hasContent(careerGoal) && <CareerGoal data={careerGoal} />}
             {hasContent(campusDrive) && <CampusDrives data={campusDrive} />}
             {hasContent(professional) && <ProfessionalCertification data={professional} />}

@@ -7,6 +7,7 @@ import CILsection from "@/components/sections/placements/CILSection";
 import Recruiters from "@/components/sections/placements/recruiters";
 import PlacementContact from "@/components/sections/placements/placementcontact";
 import DirectorMessage from "@/components/sections/placements/directors-message";
+import KeyFocus from "@/components/sections/placements/Key-Focus";
 import TeamSection from "@/components/sections/placements/Team-section";
 import { hasContent } from "@/lib/has-content";
 
@@ -19,6 +20,7 @@ export default function AboutPlacementTemplate({ data }) {
     const announcements = about.announcemntSection;
     const director = about.chairmanMessage;
     const team = about.placementTeam;
+    const keyFocus = about.KeyFocus;
     const cil = about.CILSection;
     const contact = about.placemntContact;
     const recruiters = about.recruterSection;
@@ -32,6 +34,7 @@ export default function AboutPlacementTemplate({ data }) {
             {hasContent(announcements) && <Announcement data={announcements} />}
             {hasContent(director) && <DirectorMessage data={director} />}
             {hasContent(team) && <TeamSection data={team} />}
+            {hasContent(keyFocus) && <KeyFocus data={keyFocus} />}
             {hasContent(cil) && <CILsection data={cil} />}
             {hasContent(contact) && <PlacementContact data={contact} />}
             {hasContent(recruiters) && <Recruiters data={recruiters} />}
