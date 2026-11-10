@@ -32,7 +32,7 @@ export default function IntlButtonSection({ data }) {
     const buttons = data.buttons || [data];
 
     return (
-        <section className="py-[15px] xl:py-[25px] 3xl:py-[35px]">
+        <section className="py-[10px] xl:py-[14px] 3xl:py-[20px]">
             <div className={`container flex flex-wrap gap-[12px] xl:gap-[18px] ${ALIGN[data.alignment] || ALIGN.left}`}>
                 {buttons.map((button, i) => <IntlButton key={i} button={button} />)}
             </div>

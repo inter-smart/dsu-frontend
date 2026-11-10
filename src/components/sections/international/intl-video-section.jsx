@@ -75,7 +75,7 @@ function Carousel({ videos }) {
 export default function IntlVideoSection({ data }) {
     const single = data.videos.length === 1;
     return (
-        <section className="py-[30px] xl:py-[45px] 2xl:py-[60px] 3xl:py-[80px]">
+        <section className="py-[15px] xl:py-[22px] 2xl:py-[28px] 3xl:py-[40px]">
             <div className="container">
                 {data.title && <h2 className="cmn_Title mb-[20px] xl:mb-[35px]">{data.title}</h2>}
                 {data.layout === "carousel" && !single ? (
