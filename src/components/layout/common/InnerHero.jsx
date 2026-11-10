@@ -71,6 +71,15 @@ export default function InnerHero({ data, placementMenuItems, className }) {
             className="pointer-events-none absolute inset-0 overflow-hidden"
             style={{ containerType: "size" }}
           >
+            {/* poster / banner image shown behind the video while it loads */}
+            {(data?.posterImage?.url || (!isVideo && data?.heroMedia?.url)) && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={data?.posterImage?.url || data.heroMedia.url}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            )}
             <iframe
               src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3`}
               title={data?.heroMedia?.alternativeText || data?.title || "Hero video"}
@@ -86,7 +95,14 @@ export default function InnerHero({ data, placementMenuItems, className }) {
             />
           </div>
         ) : isVideo ? (
-          <video autoPlay muted loop playsInline className="h-full w-full object-cover">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={data?.posterImage?.url || undefined}
+            className="h-full w-full object-cover"
+          >
             <source src={data?.heroMedia?.url} type={data?.heroMedia?.mime} />
           </video>
         ) : (

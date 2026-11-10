@@ -11,14 +11,13 @@ function PartnerCard({ partner }) {
                 {partner.logo?.url ? (
                     <Image
                         src={partner.logo.url}
-                        alt={partner.logo.alternativeText || partner.name}
+                        alt={partner.logo.alternativeText || partner.name || "Partner logo"}
                         fill
                         sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
                         className="object-contain"
                     />
                 ) : null}
             </div>
-            <p className="mt-[10px] text-center text-[13px] font-medium text-black xl:text-[15px] 3xl:text-[20px]">{partner.name}</p>
         </>
     );
     const cls = "group flex flex-col justify-between rounded-[10px] border border-black/10 bg-white p-[14px] transition-shadow hover:shadow-lg xl:p-[18px]";
