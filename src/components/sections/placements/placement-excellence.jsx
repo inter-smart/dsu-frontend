@@ -158,7 +158,7 @@ export default function Achievements({ data }) {
           </Swiper>
 
           {/* Arrows */}
-          <div className="flex items-center justify-end gap-[8px] mt-[12px]">
+          <div className="flex items-center justify-center md:justify-end gap-[8px] mt-[12px]">
             <button
               type="button"
               aria-label="Previous"

@@ -30,6 +30,7 @@ export default function AboutInitiative({ data }) {
                   autoPlay
                   muted
                   loop
+                  controls
                   playsInline
                   className="w-full h-full object-cover"
                 />

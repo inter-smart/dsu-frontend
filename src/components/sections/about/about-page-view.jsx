@@ -6,6 +6,8 @@ import AboutRecognition from "@/components/sections/about/about-recognition";
 import AboutVision from "@/components/sections/about/about-vision";
 import AboutWelcome from "@/components/sections/about/about-welcome";
 import { hasContent } from "@/lib/has-content";
+import AccreditationSlider from "./AccreditationSlider";
+import accreditation from "@/data/about/accreditation.json";
 
 // InnerHero is shared with other pages, so only pass it what it can render safely
 function cleanHero(hero) {
@@ -33,6 +35,7 @@ export default function AboutPageView({ pageData }) {
       {hasContent(pageData.historySection) && <AboutHistory data={pageData.historySection} />}
       {hasContent(pageData.leadershipSection) && <AboutLeadership data={pageData.leadershipSection} />}
       {hasContent(pageData.recognitionSection) && <AboutRecognition data={pageData.recognitionSection} />}
+      {hasContent(accreditation) && <AccreditationSlider data={accreditation} />}
     </>
   );
 }

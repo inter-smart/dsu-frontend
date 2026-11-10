@@ -198,7 +198,7 @@ export default function HomeCollaborations({ data }) {
                           {item?.description}
                         </div>
                       </div>
-                      <div className="w-full h-auto p-3.75 sm:p-5 lg:p-4                    .5 3xl:p-10 bg-black/20 sm:rounded-[10px] overflow-hidden block relative z-0">
+                      <div className="w-full h-auto p-3.75 sm:p-5 lg:p-4.5 3xl:p-10 bg-black/20 sm:rounded-[10px] overflow-hidden block relative z-0">
                         <ShineBorder
                           borderWidth={1.5}
                           shineColor={["#909191"]}

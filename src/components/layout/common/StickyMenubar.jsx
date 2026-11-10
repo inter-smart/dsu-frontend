@@ -60,7 +60,7 @@ export default function StickyMenubar({ children }) {
     <div ref={holder} className="flow-root" style={stuck ? { height } : undefined}>
       {stuck ? (
         createPortal(
-          <div className="menubar-stuck fixed inset-x-0 z-[9998]" style={{ top }}>
+          <div className="menubar-stuck fixed inset-x-0 z-[45]" style={{ top }}>
             {children}
           </div>,
           document.body,
