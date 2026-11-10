@@ -77,7 +77,7 @@ export default function IntlVideoSection({ data }) {
     return (
         <section className="py-[15px] xl:py-[22px] 2xl:py-[28px] 3xl:py-[40px]">
             <div className="container">
-                {data.title && <h2 className="cmn_Title mb-[20px] xl:mb-[35px]">{data.title}</h2>}
+                {data.title && <h2 className="text-[22px] font-bold leading-[1.25] text-black dark:text-white xl:text-[28px] 2xl:text-[32px] 3xl:text-[40px] mb-[16px] xl:mb-[24px]">{data.title}</h2>}
                 {data.layout === "carousel" && !single ? (
                     <Carousel videos={data.videos} />
                 ) : (

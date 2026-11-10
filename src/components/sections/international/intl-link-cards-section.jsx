@@ -7,7 +7,7 @@ export default function IntlLinkCardsSection({ data }) {
     return (
         <section className="py-[15px] xl:py-[22px] 2xl:py-[28px] 3xl:py-[40px]">
             <div className="container">
-                {data.title && <h2 className="cmn_Title mb-[20px] xl:mb-[35px]">{data.title}</h2>}
+                {data.title && <h2 className="text-[22px] font-bold leading-[1.25] text-black dark:text-white xl:text-[28px] 2xl:text-[32px] 3xl:text-[40px] mb-[16px] xl:mb-[24px]">{data.title}</h2>}
                 <div className="grid grid-cols-1 gap-[15px] sm:grid-cols-2 lg:grid-cols-3 xl:gap-[25px] 3xl:gap-[35px]">
                     {data.items.map((item) => {
                         const card = (
