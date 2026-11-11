@@ -144,7 +144,7 @@ export default function HomeCollaborations({ data }) {
                           {item?.title}
                         </div>
                       )}
-                      <div className="text_1 font-normal text-white">
+                      <div className="text_1 2xl:text-[17px] font-normal text-white">
                         {item?.label}
                       </div>
                     </div>

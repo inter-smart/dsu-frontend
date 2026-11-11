@@ -29,7 +29,7 @@ export default function PhdProgrammes({ data }) {
             <div className="container">
 
                 {/* Hero */}
-                <div className="flex max-sm:gap-[20px] lg:gap-[25px] 2xl:gap-[35px] 3xl:gap-[45px] max-lg:flex-wrap mb-[40px] xl:mb-[60px] 3xl:mb-[80px]">
+                <div className="flex max-sm:gap-[20px] lg:gap-[25px] 2xl:gap-[35px] 3xl:gap-[45px] max-lg:flex-wrap lg:mb-[40px] xl:mb-[60px] 3xl:mb-[80px]">
                     <div className="w-full lg:w-1/2 flex items-center">
                         <div className="w-full">
                             {data?.heading && (
