@@ -87,7 +87,7 @@ export default function AboutHistory({ data }) {
 
                         </div>
                     )}
-                    <div className="flex gap-[40px]   xl:w-[calc(100%-330px)] 2xl:w-[calc(100%-400px)] 3xl:w-[calc(100%-500px)] max-sm:flex-wrap">
+                    <div className="flex gap-[40px]  xl:w-[calc(100%-330px)] 2xl:w-[calc(100%-400px)] 3xl:w-[calc(100%-500px)] max-sm:flex-wrap">
                         <div className="w-full sm:w-1/2 lg:w-1/2">
                             {data?.media?.url && (
                                 <div className="group relative w-full h-full rounded-[10px] overflow-hidden after:absolute after:inset-0 after:pointer-events-none after:content-[''] after:bg-gradient-to-t after:from-black/35 after:to-transparent after:opacity-0 after:transition-opacity after:duration-500 hover:after:opacity-100">
