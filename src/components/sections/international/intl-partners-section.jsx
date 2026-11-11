@@ -59,7 +59,8 @@ export default function IntlPartnersSection({ data }) {
                     </div>
                 )}
 
-                <div className="flex flex-col gap-[25px] xl:gap-[40px]">
+                {/* filtered client-side: scroll-reveal must not hide the groups when the list height changes */}
+                <div data-no-reveal className="flex flex-col gap-[25px] xl:gap-[40px]">
                     {groups.map((g) => (
                         <div key={g.id}>
                             {g.country && <h3 className="mb-[12px] border-b border-black/10 pb-[8px] text-[16px] font-semibold text-[#DC2626] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px]">{g.country}</h3>}
