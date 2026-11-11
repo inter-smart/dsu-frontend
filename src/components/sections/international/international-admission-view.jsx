@@ -9,6 +9,7 @@ import IntlInnovation from "@/components/sections/international/IntlInnovation";
 import InstructionsAccordion from "@/components/sections/international/InstructionsAccordion";
 import IntlGallery from "@/components/sections/international/IntlGallery";
 import IntlAdmissionProcess from "@/components/sections/international/IntlAdmissionProcess";
+ 
 
 // The "International Admission" template of an International entry
 export default function InternationalAdmissionView({ page }) {
@@ -44,7 +45,7 @@ export default function InternationalAdmissionView({ page }) {
     return (
         <>
             {showHero && <IntlBanner data={page.hero} formData={formData} />}
-            {!showHero && formData && (
+            {!showHero && formData && ( 
                 <section className="container pb-10 pt-[130px] lg:pt-[240px]">
                     <EnquiryForm data={formData} />
                 </section>
@@ -56,7 +57,7 @@ export default function InternationalAdmissionView({ page }) {
             {showInnovation && <IntlInnovation data={page.innovation} />}
             {showInstructions && <InstructionsAccordion data={page.instructions} />}
             {showGallery && <IntlGallery data={page.gallery} />}
-            {showProcess && <IntlAdmissionProcess data={page.admissionProcess} />}
+            {showProcess && <IntlAdmissionProcess data={page.admissionProcess} />} 
         </>
     );
 }
