@@ -96,6 +96,9 @@ import GovernanceFinancecommittte from "@/components/sections/governance/governa
 import AcademicQualitySection from "@/components/sections/why-us/AcademicQualitySection";
 import WhyusAQAR from "@/components/sections/why-us/Whyus-AQAR";
 import PdfReports from "@/components/sections/why-us/PdfReports";
+import PhdProgrammes from "@/components/sections/reseach-innovation/PhdProgrammes";
+import DoctoralResearchCards from "@/components/sections/reseach-innovation/DoctoralResearch";
+import PostDoctoralCta from "@/components/sections/reseach-innovation/PostDoctoralCta";
 import PlacementSections from "@/components/sections/academics/PlacementDashboard";
 import AlumniWorld from "@/components/sections/placements/alumni-world";
 import Announcement from "@/components/sections/placements/announcement";
@@ -353,6 +356,11 @@ const flexibleRegistry = {
 
   // Pdf Reports pages: one PDF in an iframe, or a list of PDFs
   "pdf-report.reports-section": { Component: PdfReports },
+
+  // Innovation (Research & Innovation pages)
+  "innovation.phd-programmes-section": { Component: PhdProgrammes },
+  "innovation.doctoral-cards-section": { Component: DoctoralResearchCards },
+  "innovation.post-doctoral-cta-section": { Component: PostDoctoralCta },
 };
 
 export default flexibleRegistry;
