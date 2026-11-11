@@ -48,13 +48,13 @@ export default function AdmissionFaqCategories({ data }) {
                     </div>
                 )}
 
-                <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:gap-8 xl:gap-10">
-                    {/* category pills: a scrollable row on small screens, a side list from lg */}
+                <div className="flex flex-col gap-5 xl:gap-8">
+                    {/* category pills: a row above the questions (scrolls sideways on phones, wraps from sm) */}
                     <div
                         role="tablist"
                         aria-label={heading || "FAQ categories"}
                         onKeyDown={onKeyDown}
-                        className="-mx-[16px] flex shrink-0 gap-2 overflow-x-auto px-[16px] pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 lg:w-[240px] lg:flex-col lg:flex-nowrap xl:w-[280px] 3xl:w-[340px]"
+                        className="-mx-[16px] flex shrink-0 gap-2 overflow-x-auto px-[16px] pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 xl:gap-3"
                     >
                         {categories.map((category, idx) => {
                             const selected = idx === current;
@@ -69,7 +69,7 @@ export default function AdmissionFaqCategories({ data }) {
                                     tabIndex={selected ? 0 : -1}
                                     onClick={() => setActiveIdx(idx)}
                                     className={cn(
-                                        "shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-[13px] font-semibold transition-colors duration-200 sm:text-[14px] lg:whitespace-normal lg:rounded-[8px] lg:px-5 lg:py-3 lg:text-left xl:text-[15px] 3xl:text-[17px]",
+                                        "shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-[13px] font-semibold transition-colors duration-200 sm:text-[14px] xl:px-5 xl:py-2.5 xl:text-[15px] 3xl:text-[17px]",
                                         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F97316]",
                                         selected
                                             ? "border-transparent bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white"

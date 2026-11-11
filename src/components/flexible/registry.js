@@ -355,7 +355,8 @@ const flexibleRegistry = {
   "international.partners-section": { Component: IntlPartnersSection },
   "international.gallery": { Component: IntlTabbedGallery },
   "international.accordion-section": { Component: IntlAccordionSection },
-  "international.IntlTextCTASection": { Component: IntlTextCTASection },
+  "international.text-cta-section": { Component: IntlTextCTASection },
+  "international.IntlTextCTASection": { Component: IntlTextCTASection }, // legacy key
 
   // Pdf Reports pages: one PDF in an iframe, or a list of PDFs
   "pdf-report.reports-section": { Component: PdfReports },

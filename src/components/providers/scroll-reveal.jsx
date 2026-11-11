@@ -119,8 +119,21 @@ export default function ScrollReveal() {
       }
     }, OPTIONS);
 
+    // Per-card grids: watch each card once, including cards React adds later (tab/filter changes).
+    const watchCards = (grid, line) => {
+      [...grid.children].forEach((c) => {
+        if (observed.has(c)) return;
+        observed.add(c);
+        c.style.setProperty("--reveal-delay", "0ms");
+        const { top, bottom } = c.getBoundingClientRect();
+        if (top < line && bottom > 0) c.classList.add("is-revealed");
+        ioEach.observe(c);
+      });
+    };
+
     const scan = () => {
       document.querySelectorAll(AUTO).forEach((el) => tag(el, 0));
+      document.querySelectorAll("[data-reveal-each]").forEach((grid) => watchCards(grid, vh() * 0.75));
       document.querySelectorAll("[data-reveal], [data-reveal-stagger]").forEach((el) => {
         if (observed.has(el)) return;
         observed.add(el);
@@ -129,11 +142,7 @@ export default function ScrollReveal() {
         const onScreen = top < line && bottom > 0;
         if (el.hasAttribute("data-reveal-stagger") && height > vh() * 0.85) {
           el.setAttribute("data-reveal-each", "");
-          [...el.children].forEach((c) => {
-            c.style.setProperty("--reveal-delay", "0ms");
-            if (c.getBoundingClientRect().top < line && c.getBoundingClientRect().bottom > 0) c.classList.add("is-revealed");
-            ioEach.observe(c);
-          });
+          watchCards(el, line);
           return;
         }
         if (onScreen && el.getAttribute("data-reveal") === "wipe") {
