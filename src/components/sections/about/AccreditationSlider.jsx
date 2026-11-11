@@ -55,32 +55,6 @@ function AccreditationCard({ item }) {
                     {item.name}
                 </div>
             )}
-            {pdfUrl && (
-                <div className="mt-[15px] flex items-center justify-center gap-[6px] whitespace-nowrap text-[13px] xl:text-[12px] 3xl:text-[15px] font-normal text-black dark:text-white opacity-70 transition-opacity duration-300 group-hover:opacity-100">
-                    {/* Icon: solid by default, gradient on hover (two layers cross-fade) */}
-                    <svg width="12" height="14" viewBox="0 0 12 14" fill="none" aria-hidden="true" className="shrink-0">
-                        <defs>
-                            <linearGradient id="accPdfGradient" x1="0" y1="0" x2="1" y2="0">
-                                <stop offset="0%" stopColor="#DC2626" />
-                                <stop offset="100%" stopColor="#F97316" />
-                            </linearGradient>
-                        </defs>
-                        <path
-                            className="transition-opacity duration-300 group-hover:opacity-0"
-                            d="M7 0H1.5A1.5 1.5 0 0 0 0 1.5v11A1.5 1.5 0 0 0 1.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5L7 0zm0 1.7L10.3 5H7V1.7zM3 8h6v1H3V8zm0 2.5h6v1H3v-1z"
-                            fill="currentColor"
-                        />
-                        <path
-                            className="opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                            d="M7 0H1.5A1.5 1.5 0 0 0 0 1.5v11A1.5 1.5 0 0 0 1.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5L7 0zm0 1.7L10.3 5H7V1.7zM3 8h6v1H3V8zm0 2.5h6v1H3v-1z"
-                            fill="url(#accPdfGradient)"
-                        />
-                    </svg>
-                    <span className="bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text transition-colors duration-300 group-hover:text-transparent">
-                        View PDF
-                    </span>
-                </div>
-            )}
         </>
     );
 
