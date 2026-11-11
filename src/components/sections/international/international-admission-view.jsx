@@ -1,7 +1,6 @@
 import { hasContent } from "@/lib/has-content";
 import IntlBanner from "@/components/sections/international/IntlBanner";
 import EnquiryForm from "@/components/sections/international/EnquiryForm";
-import InternationalMenu from "@/components/sections/international/InternationalMenu";
 import TopMenu from "@/components/sections/international/TopMenu";
 import IntlAbout from "@/components/sections/international/IntlAbout";
 import AwardsSlider from "@/components/sections/international/AwardsSlider";
@@ -50,7 +49,6 @@ export default function InternationalAdmissionView({ page }) {
                     <EnquiryForm data={formData} />
                 </section>
             )}
-            <InternationalMenu />
             {tabs.length > 0 && <TopMenu data={tabs} />}
             {showAbout && <IntlAbout data={page.about} />}
             {showAwards && <AwardsSlider data={page.awards} />}
