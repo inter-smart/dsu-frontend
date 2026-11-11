@@ -15,7 +15,7 @@ export default function DoctoralResearch({ data }) {
     );
 
     return (
-        <section className="relative py-[40px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[75px] bg-[#F8FAFC] dark:bg-[#101010] transition-colors duration-300">
+        <section className="relative py-[40px_15px] xl:py-[55px_20px] 2xl:py-[65px_30px] 3xl:py-[75px_40px] bg-[#F8FAFC] dark:bg-[#101010] transition-colors duration-300">
             <div className="container">
                 {data?.heading && (
                     <h2 className="text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] mb-[25px] xl:mb-[35px] 3xl:mb-[45px] text-black dark:text-white">
