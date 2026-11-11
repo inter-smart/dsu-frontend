@@ -247,7 +247,7 @@ const flexibleRegistry = {
   "iqac.iqac-template": { Component: IQAC },
   "iqac.reports-template": { Component: IQACReport },
 
-  // national ranking (src/app/national-Ranking/[slug]/[[...category]]/page.js)
+  // national ranking (src/app/national-ranking/[slug]/[[...category]]/page.js)
   "rankings.nirf-template": { Component: NIRFRanking },
   "rankings.sdg-template": { Component: SdgIntroduction },
 

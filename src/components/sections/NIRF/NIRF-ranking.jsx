@@ -8,7 +8,7 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link";
 import { fileLinkProps } from "@/lib/schools/link-props";
 
-export default function NIRFRanking({ data, menu = [], basePath = "/national-Ranking", activeSlug }) {
+export default function NIRFRanking({ data, menu = [], basePath = "/national-ranking", activeSlug }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     return (
