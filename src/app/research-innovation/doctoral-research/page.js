@@ -140,22 +140,22 @@ export const local_data = {
             {
                 title: "Ph.D\nAdmissions",
                 image: { url: "/images/research/reaseach-1.jpg", alternativeText: "Ph.D Admissions" },
-                cta: { url: "/phd/admissions", newTab: false },
+                cta: { url: "/research-innovation/doctoral-research/phd-admission", newTab: false },
             },
             {
                 title: "Research\nSupervisors",
                 image: { url: "/images/research/reaseach-2.jpg", alternativeText: "Research Supervisors" },
-                cta: { url: "/phd/research-supervisors", newTab: false },
+                cta: { url: "/research-innovation/doctoral-research/supervisor-directory", newTab: false },
             },
             {
                 title: "Ph.D\nRegulations",
                 image: { url: "/images/research/reaseach-3.jpg", alternativeText: "Ph.D Regulations" },
-                cta: { url: "/phd/regulations", newTab: false },
+                cta: { url: "/research-innovation/doctoral-research/phd-regulations", newTab: false },
             },
             {
                 title: "Ph.D Course\nWork Syllabus",
                 image: { url: "/images/research/reaseach-4.jpg", alternativeText: "Ph.D Course Work Syllabus" },
-                cta: { url: "/phd/course-work-syllabus", newTab: false },
+                cta: { url: "/research-innovation/doctoral-research/phd-admission#research-coursework", newTab: false },
             },
         ],
     },
