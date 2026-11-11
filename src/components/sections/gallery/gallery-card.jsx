@@ -47,13 +47,24 @@ export default function GalleryCard({ item }) {
                   data-type={item?.isVideo && item?.videoUrl ? "html5video" : "image"}
                   className="block w-full h-full cursor-zoom-in"
                 >
-                  <Image
-                    src={image}
-                    width={562}
-                    height={370}
-                    alt={item?.title || "Gallery"}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-                  />
+                  {image ? (
+                    <Image
+                      src={image}
+                      width={562}
+                      height={370}
+                      alt={item?.title || "Gallery"}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
+                    />
+                  ) : (
+                    // a video without a poster image: its first frame is the thumbnail
+                    <video
+                      src={`${item?.videoUrl}#t=0.1`}
+                      preload="metadata"
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500 pointer-events-none"
+                    />
+                  )}
                 </a>
               </div>
             ))}

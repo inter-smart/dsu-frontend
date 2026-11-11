@@ -23,9 +23,14 @@ export default function IntlLinkCardsSection({ data }) {
                                         />
                                     </div>
                                 )}
-                                <h3 className="p-[15px] text-[16px] font-semibold text-black xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px]">
-                                    {item.title}
-                                </h3>
+                                <div className="p-[15px]">
+                                    <h3 className="text-[16px] font-semibold text-black xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px]">
+                                        {item.title}
+                                    </h3>
+                                    {item.description && (
+                                        <p className="mt-[8px] text-[14px] leading-[1.6] text-black/70 2xl:text-[16px]">{item.description}</p>
+                                    )}
+                                </div>
                             </>
                         );
                         const cls = "group block overflow-hidden rounded-[10px] border border-black/10 bg-white transition-shadow hover:shadow-lg";

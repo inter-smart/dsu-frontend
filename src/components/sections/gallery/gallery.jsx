@@ -9,10 +9,13 @@ const FILTERS = ["All", "Events", "Campus", "Sports", "Videos"];
 
 export default function Gallery({ data }) {
   const [activeFilter, setActiveFilter] = useState("All");
+  // a page can pass its own tabs (data.filters); the Gallery page keeps the default ones
+  const filters = data?.filters?.length ? data.filters : FILTERS;
 
   const filteredItems = useMemo(() => {
     if (activeFilter === "All") return data?.items || [];
     if (activeFilter === "Videos") return data?.items?.filter((item) => item?.isVideo) || [];
+    if (activeFilter === "Photos") return data?.items?.filter((item) => !item?.isVideo) || [];
     return data?.items?.filter((item) => item?.category === activeFilter) || [];
   }, [data?.items, activeFilter]);
 
@@ -36,7 +39,7 @@ export default function Gallery({ data }) {
             {data?.description && <p className="text_1 max-w-[820px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>}
           </div>
           <div className="flex flex-wrap gap-2 xl:gap-2.5">
-            {FILTERS.map((filter) => (
+            {filters.map((filter) => (
               <button
                 key={filter}
                 type="button"
