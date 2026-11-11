@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -58,6 +59,8 @@ const defaultDownloadData = {
 export default function AdmissionDownload({ data }) {
   const downloadData = data || defaultDownloadData;
   const heading = downloadData?.heading || "Downloads";
+  // optional Rich Text (Blocks) shown under the heading
+  const hasDescription = Array.isArray(downloadData?.description) && downloadData.description.length > 0;
   // Keep only the tabs the backend marked as active
   const tabs = useMemo(() => {
     const source =
@@ -135,6 +138,11 @@ export default function AdmissionDownload({ data }) {
           <h2 className="text-2xl sm:text-3xl lg:text-[36px] 2xl:text-[42px] 3xl:text-[48px] leading-[1.15] font-bold text-[#1E1E1E] dark:text-white tracking-tight">
             {heading}
           </h2>
+          {hasDescription && (
+            <div className="text_1 mt-[10px] xl:mt-[15px] text-[#4A5565] dark:text-[#9CA3AF] typography">
+              <BlocksRenderer content={downloadData.description} />
+            </div>
+          )}
         </div>
 
         {/* Filter / Category Tabs Swiper Slider with Responsive Navigation Buttons */}
