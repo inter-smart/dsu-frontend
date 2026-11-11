@@ -1,7 +1,6 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import FlexibleSections from "@/components/flexible/FlexibleSections";
 import InternationalAdmissionView from "@/components/sections/international/international-admission-view";
-import { getInternationalMenuItems } from "@/components/sections/international/InternationalMenu";
 import { hasContent } from "@/lib/has-content";
 
 // Renders an International entry by its `template`.
@@ -9,8 +8,7 @@ import { hasContent } from "@/lib/has-content";
 // in the same design as the Admission / Placement menu bars.
 export default async function InternationalPageView({ page }) {
     if (["flexible-page", "undergraduate-masters", "global-partnerships"].includes(page.template)) {
-        const menuItems = await getInternationalMenuItems();
-        const hero = hasContent(page.hero) ? { ...page.hero, internationalMenuItems: menuItems } : null;
+        const hero = hasContent(page.hero) ? page.hero : null;
         const sidebar = page.sidebar || [];
 
         return (

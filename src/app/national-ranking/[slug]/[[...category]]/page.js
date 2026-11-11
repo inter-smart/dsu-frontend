@@ -8,6 +8,10 @@ import { getRankingBySlug, getRankings } from "@/lib/api";
 
 
 
+// fetchAPI uses no-store fetches; without this the prerendered route throws
+// "Page changed from static to dynamic at runtime" (500) in production
+export const dynamic = "force-dynamic";
+
 export async function generateStaticParams() {
   const menu = (await getRankings()) || [];
   return menu
@@ -46,7 +50,7 @@ export default async function Page({ params }) {
   const { slug, category } = await params;
   const [pageData, menu] = await Promise.all([
     getPageData(slug, category),
-    getRankings(),
+    getRankings({ sidebar: true }),
   ]);
 
   if (!pageData) notFound();

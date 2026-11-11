@@ -6,8 +6,9 @@ export async function getNationalRankingPage() {
 }
 
 // Sidebar menu: [{ id, label, slug, order, subItems: [{ label, slug }] }]
-export async function getRankings() {
-  return fetchAPI("/api/rankings");
+// `sidebar: true` leaves out the flexible-page entries that are not switched on for the sidebar
+export async function getRankings({ sidebar = false } = {}) {
+  return fetchAPI("/api/rankings", sidebar ? { sidebar: true } : {});
 }
 
 // Full page: { seo, hero, collegeRanking, sdgInitiative, sdgGoal, sdgGoalMenu }

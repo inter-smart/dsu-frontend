@@ -278,7 +278,7 @@ const local_data = {
                     description: "Recognised with prestigious Diamond and Gold ratings across academic excellence, facilities, and graduate employability.",
                     logo: "/images/rank-2.png",
                     type: "rankings",
-                    linkUrl: "/national-Ranking",
+                    linkUrl: "/national-ranking",
                 },
                 {
                     id: 103,
@@ -286,7 +286,7 @@ const local_data = {
                     description: "Top ranked among leading engineering institutions in Karnataka and nationwide for innovation and industry connect.",
                     logo: "/images/rank-3.png",
                     type: "rankings",
-                    linkUrl: "/national-Ranking",
+                    linkUrl: "/national-ranking",
                 },
                 {
                     id: 104,
@@ -294,7 +294,7 @@ const local_data = {
                     description: "Consistently ranked among the best emerging universities in India for high quality multidisciplinary education.",
                     logo: "/images/rank-4.png",
                     type: "rankings",
-                    linkUrl: "/national-Ranking",
+                    linkUrl: "/national-ranking",
                 }
             ]
         },
