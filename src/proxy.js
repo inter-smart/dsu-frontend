@@ -48,6 +48,15 @@ async function getPaths(preview) {
 }
 
 export async function proxy(request) {
+  // /national-Ranking/... was the old URL; send it (and bookmarks / links) to /national-ranking/...
+  // Checked here, not in next.config redirects, because those match case-insensitively and would loop.
+  const rawPath = request.nextUrl.pathname;
+  if (/^\/national-Ranking(\/|$)/.test(rawPath)) {
+    const url = request.nextUrl.clone();
+    url.pathname = rawPath.replace(/^\/national-Ranking/, "/national-ranking");
+    return NextResponse.redirect(url, 308);
+  }
+
   const path = decodeURIComponent(request.nextUrl.pathname).replace(/\/+$/, "") || "/";
   const preview = request.cookies.has("__prerender_bypass");
   if (!(await getPaths(preview)).includes(path)) return NextResponse.next();

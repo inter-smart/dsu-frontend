@@ -13,7 +13,7 @@ const clean = (v = "") => String(v).toLowerCase().replace(/^\/+|\/+$/g, "");
 // `menu`: [{ label, slug, subItems: [{ label, slug }] }] - links are `${basePath}/${slug}[/${sub.slug}]`
 export default function NIRFSidebar({
     menu = [],
-    basePath = "/national-Ranking",
+    basePath = "/national-ranking",
     activeSlug,
     isOpen = false,
     onClose,

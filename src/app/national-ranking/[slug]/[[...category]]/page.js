@@ -50,7 +50,7 @@ export default async function Page({ params }) {
   const { slug, category } = await params;
   const [pageData, menu] = await Promise.all([
     getPageData(slug, category),
-    getRankings(),
+    getRankings({ sidebar: true }),
   ]);
 
   if (!pageData) notFound();

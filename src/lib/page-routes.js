@@ -14,7 +14,7 @@ export const PAGE_ROUTES = {
   "community-activities": { route: "community-activities", load: () => import("@/app/community-activities/page") },
   "regulatory-approval": { route: "regulatory-approval", load: () => import("@/app/regulatory-approval/page") },
   "news-events": { route: "news-events", load: () => import("@/app/news-events/page") },
-  "national-ranking": { route: "national-Ranking", load: () => import("@/app/national-Ranking/page") },
+  "national-ranking": { route: "national-ranking", load: () => import("@/app/national-ranking/page") },
   "international-ranking": { route: "international-Ranking", load: () => import("@/app/international-Ranking/page") },
   announcements: { route: "announcements", load: () => import("@/app/announcements/page") },
 };
