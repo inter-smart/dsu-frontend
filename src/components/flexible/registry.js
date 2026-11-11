@@ -135,6 +135,7 @@ import IntlVideoSection from "@/components/sections/international/intl-video-sec
 import IntlLinkCardsSection from "@/components/sections/international/intl-link-cards-section";
 import IntlPartnersSection from "@/components/sections/international/intl-partners-section";
 import TeamSection from "@/components/sections/placements/Team-section";
+import IntlTextCTASection from "../sections/international/IntlTextCTASection";
 
 // Alumni components read the sidebar from their data
 function withSidebar(Component) {
@@ -350,6 +351,7 @@ const flexibleRegistry = {
   "international.video-section": { Component: IntlVideoSection },
   "international.link-cards-section": { Component: IntlLinkCardsSection },
   "international.partners-section": { Component: IntlPartnersSection },
+  "international.IntlTextCTASection": { Component: IntlTextCTASection },
 
   // Pdf Reports pages: one PDF in an iframe, or a list of PDFs
   "pdf-report.reports-section": { Component: PdfReports },
