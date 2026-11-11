@@ -134,6 +134,8 @@ import IntlButtonSection from "@/components/sections/international/intl-button-s
 import IntlVideoSection from "@/components/sections/international/intl-video-section";
 import IntlLinkCardsSection from "@/components/sections/international/intl-link-cards-section";
 import IntlPartnersSection from "@/components/sections/international/intl-partners-section";
+import IntlTabbedGallery from "@/components/sections/gallery/gallery";
+import IntlAccordionSection from "@/components/sections/international/intl-accordion-section";
 import TeamSection from "@/components/sections/placements/Team-section";
 import IntlTextCTASection from "../sections/international/IntlTextCTASection";
 
@@ -351,6 +353,8 @@ const flexibleRegistry = {
   "international.video-section": { Component: IntlVideoSection },
   "international.link-cards-section": { Component: IntlLinkCardsSection },
   "international.partners-section": { Component: IntlPartnersSection },
+  "international.gallery": { Component: IntlTabbedGallery },
+  "international.accordion-section": { Component: IntlAccordionSection },
   "international.IntlTextCTASection": { Component: IntlTextCTASection },
 
   // Pdf Reports pages: one PDF in an iframe, or a list of PDFs

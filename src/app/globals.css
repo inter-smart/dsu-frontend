@@ -286,6 +286,12 @@ html.lenis body {
     ul > li {
       @apply list-disc;
     }
+    ol {
+      @apply !ml-4;
+    }
+    ol > li {
+      @apply list-decimal;
+    }
   }
 }
 
