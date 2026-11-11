@@ -1171,7 +1171,9 @@ const isValidButton = (b) => Boolean(b?.label?.trim() && b?.url?.trim());
 
 const externalProps = (b) =>
   b?.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
-
+// NRI/Foreigners + Others + "Apply Here" badge. Each one only shows with a label and url.
+// NRI/Foreigners + Others + "Apply Here" badge. Each one only shows with a label and url.
+// NRI/Foreigners + Others + "Apply Here" badge. Each one only shows with a label and url.
 // NRI/Foreigners + Others + "Apply Here" badge. Each one only shows with a label and url.
 function ApplyButtons({ buttons, variant = "desktop" }) {
   const { applyHere, nri, others } = buttons || {};
@@ -1185,15 +1187,45 @@ function ApplyButtons({ buttons, variant = "desktop" }) {
     ? "text-[15px] sm:text-[11px]"
     : "text-[10px] sm:text-[11px]";
 
+  // --nw / --nh = width / height of the notch tab, --nf = size of the curved shoulders.
+  // mobile variant = the menu sheet (one size). desktop variant = the header row, sized per breakpoint.
+  const notchSize = isMobile
+    ? "[--nw:76px] [--nh:15px] [--nf:5px]"
+    : "[--nw:54px] [--nh:12px] [--nf:4px] sm:[--nw:65px] sm:[--nh:12px] sm:[--nf:5px] 2xl:[--nw:75px] 2xl:[--nh:14px] 3xl:[--nw:85px] 3xl:[--nh:19px] 3xl:[--nf:6px]";
+
   return (
     <div
       className={cn(
-        "w-auto ml-1.25 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] overflow-x-clip flex items-center relative z-0 transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)",
+        "group w-auto ml-1.25 rounded-[3px] 2xl:rounded-[5px] flex items-center relative z-0",
+        // the gradient lives on the notched layer below, so the notch can be see-through
+        "bg-none pt-[calc(var(--nh)*0.6)]",
+        notchSize,
         isMobile
-          ? "h-11.25 2xl:h-10 3xl:h-12.5"
-          : "2xl:h-10 3xl:h-12.5",
+          ? "h-11.25"
+          : "min-h-9 sm:min-h-10 lg:min-h-0 lg:h-10 3xl:h-12.5",
       )}
     >
+      {/* Gradient layer with a transparent notch cut from the top centre.
+          The notch has curved shoulders at the top and rounded bottom corners. */}
+      <style>{`
+        .apply-notch {
+          -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 86 15' preserveAspectRatio='none'%3E%3Cpath d='M0 0H86Q81 0 81 5V10Q81 15 76 15H10Q5 15 5 10V5Q5 0 0 0Z'/%3E%3C/svg%3E"), linear-gradient(#000, #000);
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 86 15' preserveAspectRatio='none'%3E%3Cpath d='M0 0H86Q81 0 81 5V10Q81 15 76 15H10Q5 15 5 10V5Q5 0 0 0Z'/%3E%3C/svg%3E"), linear-gradient(#000, #000);
+          -webkit-mask-size: calc(var(--nw) + var(--nf) * 2) var(--nh), 100% 100%;
+          mask-size: calc(var(--nw) + var(--nf) * 2) var(--nh), 100% 100%;
+          -webkit-mask-position: 50% 0, 0 0;
+          mask-position: 50% 0, 0 0;
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+        }
+      `}</style>
+      <span
+        aria-hidden="true"
+        className="apply-notch pointer-events-none absolute inset-0 -z-10 block rounded-[inherit] bg-linear-to-r from-(--basecolor) to-(--basecolor2) transition-colors duration-500 group-hover:from-(--basecolor2) group-hover:to-(--basecolor)"
+      />
+
       {showNri && (
         <div className="w-auto h-full">
           <Link
@@ -1202,17 +1234,16 @@ function ApplyButtons({ buttons, variant = "desktop" }) {
             {...externalProps(nri)}
             className={cn(
               textSize,
-              "2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center relative z-0",
+              "2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center relative z-0",
               showOthers &&
-                "before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:translate-y-0.75 2xl:before:translate-y-1.25 before:absolute before:z-1 before:inset-[0_0_0_auto]",
+                "before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:absolute before:z-1 before:inset-[0_0_0_auto]",
             )}
           >
-            <span className="translate-y-0.75 2xl:translate-y-1.25">
-              {nri.label}
-            </span>
+            <span>{nri.label}</span>
           </Link>
         </div>
       )}
+
       {showOthers && (
         <div className="w-auto h-full">
           <Link
@@ -1221,25 +1252,26 @@ function ApplyButtons({ buttons, variant = "desktop" }) {
             {...externalProps(others)}
             className={cn(
               textSize,
-              "2xl:text-sm 3xl:text-lg leading-[1.1] font-medium text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center",
+              "2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center",
             )}
           >
-            <span className="translate-y-0.75 2xl:translate-y-1.25">
-              {others.label}
-            </span>
+            <span>{others.label}</span>
           </Link>
         </div>
       )}
+
       {showApply && (
         <Link
           href={applyHere.url}
           aria-label={applyHere.label}
           {...externalProps(applyHere)}
           className={cn(
-            "text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold w-fit h-auto min-h-6 p-[3px_5px] mx-auto rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0]",
+            // transparent tab sitting exactly over the cut-out, at every screen size
+            "absolute left-1/2 top-0 z-10 flex h-(--nh) w-(--nw) -translate-x-1/2 items-center justify-center whitespace-nowrap bg-transparent font-bold leading-none  -top-[3px]",
             isMobile
-              ? "text-black dark:text-white bg-[#fff7eb] dark:bg-[#18181b]"
-              : "text-black bg-white",
+              ? // menu sheet: cream (light) / dark (dark) background behind the notch
+                "text-[11px] text-black dark:text-white"
+              : "text-[9px] sm:text-[11px] 2xl:text-xs 3xl:text-sm text-white",
           )}
         >
           {applyHere.label}
@@ -1248,7 +1280,6 @@ function ApplyButtons({ buttons, variant = "desktop" }) {
     </div>
   );
 }
-
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {

@@ -137,6 +137,7 @@ import IntlPartnersSection from "@/components/sections/international/intl-partne
 import IntlTabbedGallery from "@/components/sections/gallery/gallery";
 import IntlAccordionSection from "@/components/sections/international/intl-accordion-section";
 import TeamSection from "@/components/sections/placements/Team-section";
+import IntlTextCTASection from "../sections/international/IntlTextCTASection";
 
 // Alumni components read the sidebar from their data
 function withSidebar(Component) {
@@ -354,6 +355,7 @@ const flexibleRegistry = {
   "international.partners-section": { Component: IntlPartnersSection },
   "international.gallery": { Component: IntlTabbedGallery },
   "international.accordion-section": { Component: IntlAccordionSection },
+  "international.IntlTextCTASection": { Component: IntlTextCTASection },
 
   // Pdf Reports pages: one PDF in an iframe, or a list of PDFs
   "pdf-report.reports-section": { Component: PdfReports },

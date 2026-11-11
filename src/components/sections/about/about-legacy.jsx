@@ -18,7 +18,7 @@ function LegacyCard({ item, index, active, onToggle, className }) {
             onClick={hasText ? onToggle : undefined}
             className={cn(
                 "group relative z-0 flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-[16px] border border-black/[0.06] bg-white px-[16px] py-[18px] text-center shadow-[0_6px_20px_rgba(120,70,20,0.07)] xl:rounded-[20px] xl:px-[22px] 2xl:px-[28px]",
-                "transition-[border-color,box-shadow] duration-500 hover:border-transparent hover:shadow-[0_18px_40px_rgba(220,38,38,0.25)]",
+                "transition-[border-color,box-shadow] duration-500 hover:border-transparent hover:md:shadow-[0_18px_40px_rgba(220,38,38,0.25)]",
                 "data-[active=true]:border-transparent data-[active=true]:shadow-[0_18px_40px_rgba(220,38,38,0.25)]",
                 "dark:border-white/10 dark:bg-[#18191B] dark:shadow-none",
                 hasText && "cursor-pointer",
@@ -85,7 +85,7 @@ function LegacyCard({ item, index, active, onToggle, className }) {
                     inert={!active}
                     className="absolute inset-0 flex items-center justify-center px-[18px] py-[22px] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-data-[active=true]:opacity-100 xl:px-[26px] xl:py-[26px] 3xl:px-[36px] 3xl:py-[34px]"
                 >
-                    <div className="max-h-full w-full overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&_p]:text-[13px] [&_p]:leading-[1.5] [&_p]:text-white xl:[&_p]:text-[14px] 2xl:[&_p]:text-[15px] 3xl:[&_p]:text-[18px]">
+                    <div className="max-h-full w-full overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&_p]:text-[15px] [&_p]:leading-[1.5] [&_p]:text-white lg:[&_p]:text-[16px] 2xl:[&_p]:text-[16px] 3xl:[&_p]:text-[18px]">
                         <BlocksRenderer content={item.description} />
                     </div>
                 </div>
