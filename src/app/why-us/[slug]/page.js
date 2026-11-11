@@ -93,7 +93,16 @@ export default async function Page({ params }) {
             return (
                 <>
                     {iqacPage.hero && <InnerHero data={iqacPage.hero} className="leadership-detail-hero" />}
-                    {iqacPage.iqacSection && <IQAC data={iqacPage.iqacSection} />}
+                    {iqacPage.iqacSection && <IQAC data={iqacPage.iqacSection} view="about" />}
+                </>
+            );
+        }
+
+        if (iqacPage.template === "IQAC-activities") {
+            return (
+                <>
+                    {iqacPage.hero && <InnerHero data={iqacPage.hero} className="leadership-detail-hero" />}
+                    {iqacPage.activitiesSection && <IQAC data={iqacPage.activitiesSection} view="activities" />}
                 </>
             );
         }

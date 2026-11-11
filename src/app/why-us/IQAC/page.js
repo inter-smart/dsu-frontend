@@ -1,5 +1,6 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import IQAC from "@/components/sections/why-us/IQAC";
+import { getIqacPageBySlug } from "@/lib/api";
 
 const local_data = {
     id: 24,
@@ -9,8 +10,8 @@ const local_data = {
     publishedAt: "2026-06-11T06:26:08.337Z",
     seo: {
         id: 21,
-        metaTitle: "IQAC Activities - Dayananda Sagar University",
-        metaDescription: "Internal Quality Assurance Cell (IQAC) activities, seminars, workshops, and quality enhancement initiatives at Dayananda Sagar University.",
+        metaTitle: "IQAC - Dayananda Sagar University",
+        metaDescription: "About the Internal Quality Assurance Cell (IQAC) at Dayananda Sagar University.",
         canonicalUrl: null,
     },
     hero: {
@@ -20,7 +21,7 @@ const local_data = {
             mime: "image/jpg",
             url: "/images/ugc/ugc-banner.jpg",
         },
-        title: "IQAC Activities",
+        title: "IQAC",
         breadcrumb: [
             {
                 label: "Home",
@@ -36,10 +37,6 @@ const local_data = {
             },
             {
                 label: "IQAC",
-                href: "/why-us/IQAC",
-            },
-            {
-                label: "IQAC Activities",
                 href: "/why-us/IQAC",
             },
         ],
@@ -577,11 +574,17 @@ const local_data = {
     },
 };
 
-export default function page() {
+export const revalidate = 60;
+
+export default async function page() {
+    // CMS entry (slug "iqac", template "IQAC") when published, otherwise local_data
+    const cms = await getIqacPageBySlug("iqac");
+    const apiPage = cms?.template === "IQAC" && cms.iqacSection ? cms : null;
+
     return (
         <>
-            <InnerHero data={local_data.hero} className="leadership-detail-hero" />
-            <IQAC data={local_data.iqacSection} />
+            <InnerHero data={apiPage?.hero || local_data.hero} className="leadership-detail-hero" />
+            <IQAC data={apiPage?.iqacSection || local_data.iqacSection} view="about" />
         </>
     );
 }
