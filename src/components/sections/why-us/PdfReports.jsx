@@ -1,18 +1,25 @@
 import Link from "next/link";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { fileLinkProps } from "@/lib/schools/link-props";
 
 // PDF Reports section: one PDF shown in an iframe, or a plain list of PDFs (no year tabs).
 export default function PdfReports({ data }) {
     const isIframe = data.displayMode === "iframe" && data.iframePdf?.url;
     const documents = data.documents || [];
+    // description is Rich Text (Blocks)
+    const hasDescription = Array.isArray(data.description) && data.description.length > 0;
 
     return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[120px]">
             <div className="container">
-                {(data.heading || data.description) && (
+                {(data.heading || hasDescription) && (
                     <div className="mb-[25px] xl:mb-[45px]">
                         {data.heading && <h2 className="cmn_Title">{data.heading}</h2>}
-                        {data.description && <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>}
+                        {hasDescription && (
+                            <div className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px] typography">
+                                <BlocksRenderer content={data.description} />
+                            </div>
+                        )}
                     </div>
                 )}
 
