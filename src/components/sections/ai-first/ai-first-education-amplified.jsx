@@ -105,7 +105,7 @@ export default function EducationAmplified({ data }) {
                       key={pill.title}
                       className="min-w-0 translate-x-0 translate-y-0 flex-[0_0_calc(100%/1.4)] sm:flex-[0_0_calc(100%/2)] md:flex-[0_0_calc(100%/3)] pl-(--slide-gap)"
                     >
-                      <div className="w-full h-full p-3.75 sm:p-5 lg:p-[20px_15px] 2xl:p-[20px_30px] rounded-[15px] sm:rounded-[20px] lg:rounded-[25px] 2xl:rounded-[30px] 3xl:rounded-[40px] backdrop-blur-[10px] gap-5 sm:gap-7.5 2xl:gap-10 3xl:gap-12.5 relative z-0 flex flex-col justify-between transition-colors duration-500 hover:bg-black/50">
+                      <div className="w-full h-full p-3.75 sm:p-5 lg:p-[20px_15px] 2xl:p-[20px_30px] rounded-[15px] sm:rounded-[20px] lg:rounded-[25px] 2xl:rounded-[30px] 3xl:rounded-[40px] backdrop-blur-[10px] gap-4 sm:gap-5.5 2xl:gap-6 3xl:gap-8.5 relative z-0 flex flex-col  transition-colors duration-500 hover:bg-black/50">
                         <ShineBorder borderWidth={1} shineColor={["#909191"]} />
                         {pill.icon && (
                           <div className="mb-2 flex size-9 items-center justify-center rounded-full bg-[#F97316] 2xl:size-10 3xl:size-12.5">

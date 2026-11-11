@@ -35,7 +35,7 @@ export default function AiLeadership({ data }) {
                 {data.cards.map((card) => (
                   <div
                     key={card.title}
-                    className="group w-full h-full rounded-md 2xl:rounded-[10px] bg-white p-[20px_15px] shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_50px_rgba(0,0,0,0.15)] dark:bg-[#1a1a1a] lg:p-[30px_15px] 2xl:p-9 flex flex-col gap-7.5 sm:gap-10 lg:gap-12.5 xl:gap-17.5 2xl:gap-22.5 3xl:gap-27.5"
+                    className="group w-full h-full rounded-md 2xl:rounded-[10px] bg-white p-[20px_15px] shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_50px_rgba(0,0,0,0.15)] dark:bg-[#1a1a1a] lg:p-[30px_15px] 2xl:p-9 flex flex-col gap-7.5 "
                   >
                     <div className="size-8.75 sm:size-10 2xl:size-12.5 3xl:size-15 h-auto aspect-square flex items-center justify-center">
                       {card.icon && (
