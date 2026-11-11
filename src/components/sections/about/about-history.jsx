@@ -60,7 +60,7 @@ export default function AboutHistory({ data }) {
                                         disableOnInteraction: false,
                                         pauseOnMouseEnter: true,
                                     }}
-                                    className="h-[400px] sm:h-[320px] lg:h-[600px] xl:h-[620px] 2xl:h-[640px] 3xl:h-[800px] !w-[calc(100%+32px)] !-ml-[16px] !px-[16px]"
+                                    className="h-[400px] sm:h-[320px] lg:h-[600px] xl:h-[620px] 2xl:h-[640px] 3xl:h-[700px] !w-[calc(100%+32px)] !-ml-[16px] !px-[16px]"
                                 >
                                     {timeline.map((itemList, idx) => (
                                         <SwiperSlide key={idx} className="!h-auto relative before:absolute before:content-[''] before:left-[22px] before:xl:left-[27px] before:2xl:left-[32px] before:3xl:left-[40px] before:top-0 before:h-[calc(100%-40px)] before:bottom-0 before:m-auto before:-z-1 before:w-[1px] before:bg-black/20 dark:before:bg-white/20">
