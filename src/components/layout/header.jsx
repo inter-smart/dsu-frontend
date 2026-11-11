@@ -241,7 +241,7 @@ const local_data = {
               children: [
                 {
                   id: 1,
-                  url: "#!",
+                  url: "/why-us/IQAC",
                   label: "IQAC",
                 },
                 {
@@ -251,7 +251,7 @@ const local_data = {
                 },
                 {
                   id: 3,
-                  url: "#!",
+                  url: "/why-us/IQAC-activities",
                   label: "IQAC Activities",
                 },
                 {
