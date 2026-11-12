@@ -79,6 +79,46 @@ export default function AcademicMenubar({
       }))
     : legacyMenuItems;
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+
+  // Scroll-spy: items that link to a section of the current page ("/path#id") are active while that section is in view
+  const [activeHash, setActiveHash] = useState("");
+  const hrefKey = items.map((item) => item.href).join("|");
+  useEffect(() => {
+    const ids = hrefKey
+      .split("|")
+      .map((href) => href.split("#"))
+      .filter(([path, hash]) => hash && path === pathname)
+      .map(([, hash]) => hash);
+    if (!ids.length) return;
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const line = window.innerHeight * 0.35;
+      let current = "";
+      for (const id of ids) {
+        const rect = document.getElementById(id)?.getBoundingClientRect();
+        if (rect && rect.top <= line && rect.bottom > line) current = id;
+      }
+      setActiveHash(current);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, [hrefKey, pathname]);
+  const isItemActive = (item) => {
+    const [path, hash] = item.href.split("#");
+    return hash ? path === pathname && hash === activeHash : pathname === item.href;
+  };
     const lenis = useLenis();
 
     useEffect(() => {
@@ -211,7 +251,7 @@ export default function AcademicMenubar({
 
             {/* Menu Items */}
             {items.map((item, idx) => {
-              const isActive = pathname === item.href;
+              const isActive = isItemActive(item);
 
               return (
                 <li
@@ -329,7 +369,7 @@ export default function AcademicMenubar({
 
               {/* Menu items */}
               {items.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive = isItemActive(item);
 
                 return (
                   <Link
