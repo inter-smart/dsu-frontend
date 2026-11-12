@@ -5,7 +5,9 @@ import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
 export default function GalleryCard({ item }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, watchDrag: (item?.images?.length || 0) > 1 });
+
+  const hasMany = (item?.images?.length || 0) > 1;
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -73,34 +75,39 @@ export default function GalleryCard({ item }) {
 
         <div className="absolute z-1 inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 pointer-events-none" />
 
-        <button
-          type="button"
-          onClick={scrollPrev}
-          aria-label="Previous image"
-          className="absolute z-2 top-1/2 left-2.5 xl:left-3.5 -translate-y-1/2 opacity-70 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100"
-        >
-          <Image
-            src="/images/icon-gallery-arrow-left.svg"
-            alt=""
-            width={18}
-            height={27}
-            className="w-2.5 h-auto xl:w-3"
-          />
-        </button>
-        <button
-          type="button"
-          onClick={scrollNext}
-          aria-label="Next image"
-          className="absolute z-2 top-1/2 right-2.5 xl:right-3.5 -translate-y-1/2 opacity-70 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100"
-        >
-          <Image
-            src="/images/icon-gallery-arrow-right.svg"
-            alt=""
-            width={18}
-            height={27}
-            className="w-2.5 h-auto xl:w-3"
-          />
-        </button>
+        {/* arrows only when the card has more than one image to move between */}
+        {hasMany && (
+          <>
+          <button
+            type="button"
+            onClick={scrollPrev}
+            aria-label="Previous image"
+            className="absolute z-2 top-1/2 left-2.5 xl:left-3.5 -translate-y-1/2 opacity-70 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100"
+          >
+            <Image
+              src="/images/icon-gallery-arrow-left.svg"
+              alt=""
+              width={18}
+              height={27}
+              className="w-2.5 h-auto xl:w-3"
+            />
+          </button>
+          <button
+            type="button"
+            onClick={scrollNext}
+            aria-label="Next image"
+            className="absolute z-2 top-1/2 right-2.5 xl:right-3.5 -translate-y-1/2 opacity-70 group-hover:opacity-100 transition-opacity duration-300 hover:!opacity-100"
+          >
+            <Image
+              src="/images/icon-gallery-arrow-right.svg"
+              alt=""
+              width={18}
+              height={27}
+              className="w-2.5 h-auto xl:w-3"
+            />
+          </button>
+          </>
+        )}
       </div>
       <div className="text-base 2xl:text-lg 3xl:text-[23px] leading-normal font-bold text-[#212121] dark:text-white pt-4 xl:pt-5 3xl:pt-6">
         {item?.title}

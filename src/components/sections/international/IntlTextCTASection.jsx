@@ -4,8 +4,6 @@ import Link from "next/link";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { ctaLinkProps } from "@/lib/schools/link-props";
 import { hasContent } from "@/lib/has-content";
-import ctaData from "@/data/research/intl-text-cta.json"; // adjust the path to where you saved the JSON
-
 
 const renderText = (value) =>
     Array.isArray(value) ? <BlocksRenderer content={value} /> : value;
@@ -20,16 +18,19 @@ const whatsappHref = (whatsapp) => {
 };
 
 
-export default function IntlTextCTASection({ data = ctaData }) {
-    if (!data) return null;
+// Shown only when it has a heading and something to read or click; there is no built-in fallback content.
+export default function IntlTextCTASection({ data }) {
+    if (!data?.heading?.trim()) return null;
 
-    const hasDescription = Array.isArray(data?.description)
+    const hasDescription = Array.isArray(data.description)
         ? hasContent(data.description)
-        : Boolean(data?.description);
+        : Boolean(data.description);
 
-    const showCta = Boolean(data?.cta?.url && data?.cta?.label);
-    const whatsappUrl = whatsappHref(data?.whatsapp);
-    const showWhatsapp = Boolean(whatsappUrl && data?.whatsapp?.label);
+    const showCta = Boolean(data.cta?.url && data.cta?.label);
+    const whatsappUrl = whatsappHref(data.whatsapp);
+    const showWhatsapp = Boolean(whatsappUrl && data.whatsapp?.label);
+
+    if (!hasDescription && !showCta && !showWhatsapp) return null;
 
     return (
         <section className="relative py-[40px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[75px] bg-white dark:bg-[#101010] transition-colors duration-300">
