@@ -546,3 +546,6 @@ body {
   [data-zoom] { transition: scale 0.5s ease-in-out; }
   [data-zoom-card]:hover [data-zoom] { scale: 1.1; }
 }
+body:has(.balckHeader) header {
+  background: #533232;
+}

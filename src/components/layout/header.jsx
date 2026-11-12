@@ -711,8 +711,8 @@ export default function Header({ data = local_data }) {
       </div>
       <div className="w-full h-auto max-lg:py-[15px_20px] lg:border-b border-white/10">
         <div className="container">
-          <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex flex-wrap items-center">
-            <div className="w-full lg:w-[45%] max-lg:mb-6.25">
+          <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex flex-wrap items-center justify-between">
+            <div className="w-full lg:w-[38%] max-lg:mb-6.25">
               <div className="w-full h-auto -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 flex items-center">
                 {data?.logo?.mainlogo?.url && (
                   <div className="w-auto h-auto">
