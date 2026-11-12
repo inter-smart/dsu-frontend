@@ -286,13 +286,15 @@ function FeatureCard({ item, className }) {
       </div>
       <div className="[--icon-size:20px] 2xl:[--icon-size:25px] 3xl:[--icon-size:30px] w-full h-auto p-2.5 sm:p-5 3xl:p-6.25 flex items-center absolute z-1 inset-[auto_auto_0_0]">
         <div className="w-(--icon-size) h-auto aspect-square flex items-center justify-center">
-          <Image
-            src={item?.icon?.url}
-            alt={item?.icon?.alt || "Campus Life Icon"}
-            width={30}
-            height={30}
-            className="w-full h-full object-contain"
-          />
+          {item?.icon?.url && (
+            <Image
+              src={item?.icon?.url}
+              alt={item?.icon?.alt || "Campus Life Icon"}
+              width={30}
+              height={30}
+              className="w-full h-full object-contain"
+            />
+          )}
         </div>
         <h3 className="text-sm sm:text-base 2xl:text-xl 3xl:text-[25px] leading-normal font-medium text-white w-[calc(100%-var(--icon-size))] pl-1.25 2xl:pl-2.5">
           {item?.title}

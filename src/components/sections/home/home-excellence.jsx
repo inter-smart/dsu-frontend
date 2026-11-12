@@ -274,14 +274,16 @@ export default function HomeExcellence({ data }) {
                             }
                       }
                     >
-                      <Image
-                        src={item?.excellenceImage?.url}
-                        alt={item?.excellenceImage?.alternativeText || "Excellence Image"}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 875px"
-                        className="h-full w-full object-cover select-none"
-                        draggable={false}
-                      />
+                      {item?.excellenceImage?.url && (
+                        <Image
+                          src={item.excellenceImage.url}
+                          alt={item.excellenceImage.alternativeText || "Excellence Image"}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 875px"
+                          className="h-full w-full object-cover select-none"
+                          draggable={false}
+                        />
+                      )}
                     </div>
                   );
                 })}
@@ -328,23 +330,26 @@ export default function HomeExcellence({ data }) {
                         {activeItem?.excellenceContent?.heading?.highlightTxt}
                       </span>
                     </div>
-                    <div className="text-base leading-normal font-bold tracking-[-2%] text-black dark:text-white w-full h-auto mb-2.5 sm:mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5 gap-1.25 flex items-center">
-                      Powered By
-                      <span className="w-17.5 sm:w-27.5 2xl:w-32.5 3xl:w-40 h-auto aspect-160/30 overflow-hidden block">
-                        <Image
-                          src={activeItem?.excellenceContent?.poweredImage?.url}
-                          alt={
-                            activeItem?.excellenceContent?.poweredImage
-                              ?.alternativeTxt || "Powered By"
-                          }
-                          width={160}
-                          height={30}
-                          className="w-full h-full object-contain"
-                        />
-                      </span>
-                    </div>
+                    {activeItem?.excellenceContent?.poweredImage?.url && (
+                      <div className="text-base leading-normal font-bold tracking-[-2%] text-black dark:text-white w-full h-auto mb-2.5 sm:mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5 gap-1.25 flex items-center">
+                        Powered By
+                        <span className="w-17.5 sm:w-27.5 2xl:w-32.5 3xl:w-40 h-auto aspect-160/30 overflow-hidden block">
+                          <Image
+                            src={activeItem.excellenceContent.poweredImage.url}
+                            alt={
+                              activeItem.excellenceContent.poweredImage
+                                .alternativeTxt || "Powered By"
+                            }
+                            width={160}
+                            height={30}
+                            className="w-full h-full object-contain"
+                          />
+                        </span>
+                      </div>
+                    )}
                     <Text>{activeItem?.excellenceContent?.description}</Text>
                   </div>
+                  {activeItem?.excellenceContent?.button?.label?.trim() && (
                   <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25 max-lg:hidden">
                     <Link
                       href={safeHref(activeItem?.excellenceContent?.button?.link, "/NVIDIA")}
@@ -364,10 +369,12 @@ export default function HomeExcellence({ data }) {
                       />
                     </Link>
                   </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
+          {activeItem?.excellenceContent?.button?.label?.trim() && (
           <div className="mt-5 max-lg:block hidden max-lg:order-4">
             <Link
               href={safeHref(activeItem?.excellenceContent?.button?.link, "/NVIDIA")}
@@ -387,6 +394,7 @@ export default function HomeExcellence({ data }) {
               />
             </Link>
           </div>
+          )}
         </div>
       </div>
       </div>

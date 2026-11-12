@@ -1,6 +1,8 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import PhdProgrammes from "@/components/sections/reseach-innovation/PhdProgrammes";
 import IndustryCentres from "@/components/sections/reseach-innovation/IndustryCentres";
+import { redirect } from "next/navigation";
+import { DEFAULT_INNOVATION_SLUG, getInnovationPage, innovationListingPath } from "@/lib/api/innovation";
 
 
 export const local_data = {
@@ -129,12 +131,38 @@ export const local_data = {
 
 };
 
-export default function page() {
+// The "Innovation Page" single type + a card per published "Innovation" entry; the static content
+// above for whatever is not published yet.
+const loadPage = async () => {
+    const cms = await getInnovationPage();
+    return {
+        slug: cms?.slug || DEFAULT_INNOVATION_SLUG,
+        seo: cms?.seo || null,
+        hero: cms?.hero || local_data.hero,
+        intro: cms?.intro || local_data.PhdProgrammes,
+        industryCentres: cms?.industryCentres?.cards?.length ? cms.industryCentres : local_data.industryCentres,
+    };
+};
+
+export async function generateMetadata() {
+    const page = await loadPage();
+    return {
+        title: page.seo?.metaTitle || "Innovation | Dayananda Sagar University",
+        description: page.seo?.metaDescription || "Innovation",
+    };
+}
+
+// The listing lives at /research-innovation/<slug set in the CMS>: this folder sends the visitor there
+// when the slug was changed. viaSlug is set when it is already served from that path.
+export default async function page({ viaSlug } = {}) {
+    const cms = await loadPage();
+    if (!viaSlug && cms.slug !== DEFAULT_INNOVATION_SLUG) redirect(innovationListingPath(cms.slug));
+
     return (
         <>
-            <InnerHero data={local_data.hero} />
-            <PhdProgrammes data={local_data.PhdProgrammes} />
-            <IndustryCentres data={local_data.industryCentres} />
+            <InnerHero data={cms.hero} />
+            <PhdProgrammes data={cms.intro} />
+            <IndustryCentres data={cms.industryCentres} />
         </>
     )
 }

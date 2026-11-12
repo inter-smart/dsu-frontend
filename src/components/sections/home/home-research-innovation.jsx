@@ -302,13 +302,15 @@ export default function HomeResearch({ data }) {
                               className="hidden dark:block"
                             />
                             <div className="w-(--icon-size) h-auto aspect-square shrink-0 flex items-center justify-center">
-                              <Image
-                                src={item?.icon?.url}
-                                alt={item?.icon?.alternativeText || "Icon"}
-                                width={40}
-                                height={40}
-                                className="w-full h-full object-contain"
-                              />
+                              {item?.icon?.url && (
+                                <Image
+                                  src={item?.icon?.url}
+                                  alt={item?.icon?.alternativeText || "Icon"}
+                                  width={40}
+                                  height={40}
+                                  className="w-full h-full object-contain"
+                                />
+                              )}
                             </div>
                             <div className="pl-2.5 2xl:pl-3.75 3xl:pl-5">
                               <div className="text-[25px] 2xl:text-[32px] 3xl:text-[40px] leading-snug font-bold text-[#212121] w-auto h-auto mb-0.5 sm:mb-1.25 dark:bg-linear-to-r dark:from-(--basecolor) dark:to-(--basecolor2) dark:bg-clip-text dark:text-transparent dark:w-fit">

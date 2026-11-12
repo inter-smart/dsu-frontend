@@ -96,6 +96,14 @@ import GovernanceFinancecommittte from "@/components/sections/governance/governa
 import AcademicQualitySection from "@/components/sections/why-us/AcademicQualitySection";
 import WhyusAQAR from "@/components/sections/why-us/Whyus-AQAR";
 import PdfReports from "@/components/sections/why-us/PdfReports";
+import PhdProgrammes from "@/components/sections/reseach-innovation/PhdProgrammes";
+import DoctoralResearchCards from "@/components/sections/reseach-innovation/DoctoralResearch";
+import PostDoctoralCta from "@/components/sections/reseach-innovation/PostDoctoralCta";
+import InnovationDetail from "@/components/sections/reseach-innovation/InnovationDetail";
+import InnovationContent from "@/components/sections/reseach-innovation/InnovationContent";
+import InnovationCourses from "@/components/sections/reseach-innovation/InnovationCourses";
+import InnovationObjectives from "@/components/sections/reseach-innovation/InnovationObjectives";
+import InnovationGallery from "@/components/sections/reseach-innovation/InnovationGallery";
 import PlacementSections from "@/components/sections/academics/PlacementDashboard";
 import AlumniWorld from "@/components/sections/placements/alumni-world";
 import Announcement from "@/components/sections/placements/announcement";
@@ -360,6 +368,17 @@ const flexibleRegistry = {
 
   // Pdf Reports pages: one PDF in an iframe, or a list of PDFs
   "pdf-report.reports-section": { Component: PdfReports },
+
+  // Innovation (Research & Innovation pages)
+  "innovation.phd-programmes-section": { Component: PhdProgrammes },
+  "innovation.doctoral-cards-section": { Component: DoctoralResearchCards },
+  "innovation.post-doctoral-cta-section": { Component: PostDoctoralCta },
+  // Innovation detail pages (/research-innovation/innovation/<slug>)
+  "innovation.detail-section": { Component: InnovationDetail },
+  "innovation.content-section": { Component: InnovationContent },
+  "innovation.courses-section": { Component: InnovationCourses },
+  "innovation.objectives-section": { Component: InnovationObjectives },
+  "innovation.gallery-section": { Component: InnovationGallery },
 };
 
 export default flexibleRegistry;

@@ -1,23 +1,14 @@
 import { notFound } from "next/navigation";
-import InnerHero from "@/components/layout/common/InnerHero";
-import FlexibleSections from "@/components/flexible/FlexibleSections";
+import CmsPageView from "@/components/flexible/CmsPageView";
 import { getFlexiblePageBySlug } from "@/lib/api/flexible-page";
 import { getPdfReportPageBySlug } from "@/lib/api/pdf-report-page";
 import { getAboutPage, getAccreditationBySlug } from "@/lib/api";
 import AccreditationPage, { generateMetadata as accreditationMetadata } from "../accreditions/[slug]/page";
 import AboutPageView from "@/components/sections/about/about-page-view";
-import { hasContent } from "@/lib/has-content";
 import { getPageModuleBySlug } from "@/lib/page-routes";
 
-// "Top Menu Bar" choice of the entry -> the flag InnerHero reads to show that menu bar
-const TOP_BAR_FLAGS = {
-    placement: "PlacementmenuBar",
-    admission: "admissionMenubar",
-    "ai-enabled": "AimenuBar",
-    "nursing-bsc": "AiBscmenuBar",
-};
-
 // A Pdf Reports entry is built like a Flexible Page and shown at /<slug> too
+// (Doctoral Research entries live at /research-innovation/<slug>)
 async function getCmsPageBySlug(slug) {
     return (await getFlexiblePageBySlug(slug)) ?? (await getPdfReportPageBySlug(slug));
 }
@@ -67,15 +58,5 @@ export default async function page({ params }) {
         return <AboutPageView pageData={about} />;
     }
 
-    const topBarFlag = TOP_BAR_FLAGS[apiData.topBar];
-    const hero = hasContent(apiData.hero) ? { ...apiData.hero, ...(topBarFlag ? { [topBarFlag]: true } : {}) } : null;
-    // the entry's own sidebar links are what the sections read as their sidebar / menu
-    const sidebar = apiData.sidebar || [];
-
-    return (
-        <>
-            {hero && <InnerHero data={hero} />}
-            <FlexibleSections sections={apiData.sections} sidebar={sidebar} menu={sidebar} slug={apiData.slug} />
-        </>
-    );
+    return <CmsPageView page={apiData} />;
 }
