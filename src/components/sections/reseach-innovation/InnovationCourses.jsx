@@ -17,8 +17,13 @@ const buttonClass =
 export default function InnovationCourses({ data }) {
     if (!data) return null;
 
+    // title is optional: keep a course while it has a title, text, image or button
     const items = (Array.isArray(data?.items) ? data.items : []).filter(
-        (item) => item?.title,
+        (item) =>
+            item?.title ||
+            item?.image?.url ||
+            item?.cta?.url ||
+            (Array.isArray(item?.description) ? hasContent(item.description) : item?.description),
     );
     if (items.length === 0) return null;
 
@@ -50,7 +55,7 @@ export default function InnovationCourses({ data }) {
                                         <div className="group relative w-full h-full aspect-[562/326] overflow-hidden rounded-[8px] xl:rounded-[10px] bg-[#f3f4f6] dark:bg-[#18191B]">
                                             <Image
                                                 src={item.image.url}
-                                                alt={item.image.alternativeText || item.title}
+                                                alt={item.image.alternativeText || item.title || data?.heading || ""}
                                                 fill
                                                 sizes="(max-width: 1024px) 100vw, 33vw"
                                                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -61,9 +66,11 @@ export default function InnovationCourses({ data }) {
 
                                 {/* text */}
                                 <div className="w-full lg:flex-1 min-w-0">
-                                    <h3 className="text-[16px] sm:text-[18px] xl:text-[19px] 2xl:text-[20px] 3xl:text-[24px] font-medium uppercase leading-[1.3] mb-[12px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px] text-[#212121] dark:text-white">
-                                        {item.title}
-                                    </h3>
+                                    {item?.title && (
+                                        <h3 className="text-[16px] sm:text-[18px] xl:text-[19px] 2xl:text-[20px] 3xl:text-[24px] font-medium uppercase leading-[1.3] mb-[12px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px] text-[#212121] dark:text-white">
+                                            {item.title}
+                                        </h3>
+                                    )}
 
                                     {hasBody && (
                                         <div
