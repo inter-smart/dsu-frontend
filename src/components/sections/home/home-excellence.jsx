@@ -349,6 +349,7 @@ export default function HomeExcellence({ data }) {
                     )}
                     <Text>{activeItem?.excellenceContent?.description}</Text>
                   </div>
+                  {activeItem?.excellenceContent?.button?.label?.trim() && (
                   <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25 max-lg:hidden">
                     <Link
                       href={safeHref(activeItem?.excellenceContent?.button?.link, "/NVIDIA")}
@@ -368,10 +369,12 @@ export default function HomeExcellence({ data }) {
                       />
                     </Link>
                   </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
+          {activeItem?.excellenceContent?.button?.label?.trim() && (
           <div className="mt-5 max-lg:block hidden max-lg:order-4">
             <Link
               href={safeHref(activeItem?.excellenceContent?.button?.link, "/NVIDIA")}
@@ -391,6 +394,7 @@ export default function HomeExcellence({ data }) {
               />
             </Link>
           </div>
+          )}
         </div>
       </div>
       </div>
