@@ -625,7 +625,7 @@ export default function Header({ data = local_data }) {
         NOT_FOUND_HEADER_GRADIENT,
       )}
     >
-      <div className="w-full h-11.25 lg:h-7.5 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block">
+      <div className="w-full h-11.25 lg:h-7.5 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block transition-all">
         <div className="container h-full flex items-center justify-between lg:justify-end">
           <div className="w-auto h-auto gap-1.25 sm:gap-1.75 2xl:gap-2.5 flex">
             {data?.topBar?.topBarButtons?.map((item) => (
@@ -712,10 +712,15 @@ export default function Header({ data = local_data }) {
           </div>
         </div>
       </div>
-      <div className="w-full h-auto max-lg:py-[15px_20px] lg:border-b border-white/10">
+      <div
+        className={cn(
+          "w-full h-auto max-lg:py-[15px_20px] lg:border-b border-white/10",
+          isScrolled && "lg:hidden", // hide the logo/action-links row on desktop once the header is sticky
+        )}
+      >
         <div className="container">
           <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex flex-wrap items-center justify-between">
-            <div className="w-full lg:w-[38%] max-lg:mb-6.25">
+            <div className=" w-full sm:w-[60%] lg:w-[38%] max-lg:mb-6.25">
               <div className="w-full h-auto -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 flex items-center">
                 {data?.logo?.mainlogo?.url && (
                   <div className="w-auto h-auto">
@@ -1239,7 +1244,7 @@ function ApplyButtons({ buttons, variant = "desktop" }) {
               textSize,
               "2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center relative z-0",
               showOthers &&
-                "before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:absolute before:z-1 before:inset-[0_0_0_auto]",
+              "before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:absolute before:z-1 before:inset-[0_0_0_auto]",
             )}
           >
             <span>{nri.label}</span>
@@ -1273,7 +1278,7 @@ function ApplyButtons({ buttons, variant = "desktop" }) {
             "absolute left-1/2 top-0 z-10 flex h-(--nh) w-(--nw) -translate-x-1/2 items-center justify-center whitespace-nowrap bg-transparent font-bold leading-none  -top-[3px]",
             isMobile
               ? // menu sheet: cream (light) / dark (dark) background behind the notch
-                "text-[11px] text-black dark:text-white"
+              "text-[11px] text-black dark:text-white"
               : "text-[9px] sm:text-[11px] 2xl:text-xs 3xl:text-sm text-white",
           )}
         >
@@ -1303,7 +1308,7 @@ function isActiveUrl(url, pathname) {
   let path = url;
   try {
     path = new URL(url, "http://x").pathname;
-  } catch {}
+  } catch { }
   const clean = (p) => (p.length > 1 ? p.replace(/\/+$/, "") : p);
   return clean(path) === clean(pathname);
 }
@@ -1730,7 +1735,7 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
                       className={cn(
                         "w-full inline-flex items-start gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium",
                         isActiveUrl(sub?.url, pathname) &&
-                          "bg-[#FFE8D6] font-medium",
+                        "bg-[#FFE8D6] font-medium",
                       )}
                     >
                       <span className="w-[8px] h-[8px] mt-[5px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
