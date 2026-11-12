@@ -141,20 +141,22 @@ export default function HomeHero({ data }) {
                       }}
                       className="w-full md:w-1/2 max-md:mb-5"
                     >
-                      <div className="w-full h-auto mb-3.75 lg:mb-5 3xl:mb-7.5 gap-2 flex items-center">
+                      {item?.poweredBy?.url && (
+                        <div className="w-full h-auto mb-3.75 lg:mb-5 3xl:mb-7.5 gap-2 flex items-center">
                         <span className="text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-bold text-white">
                           Powered by :
                         </span>
                         <span className="w-20 lg:w-22.5 2xl:w-30 3xl:w-37.5 h-auto aspect-150/30 overflow-hidden flex items-center justify-center">
-                          <Image
-                            src={item?.poweredBy?.url}
-                            alt={item?.poweredBy?.alternativeText || "Powered By"}
-                            width={150}
-                            height={30}
-                            className="w-full h-full object-contain"
-                          />
+                            <Image
+                              src={item?.poweredBy?.url}
+                              alt={item?.poweredBy?.alternativeText || "Powered By"}
+                              width={150}
+                              height={30}
+                              className="w-full h-full object-contain"
+                            />
                         </span>
                       </div>
+                      )}
                       <SlideTitle first={slideIndex === 0} className="text-3xl sm:text-[34px] lg:text-[40px] 2xl:text-5xl 3xl:text-6xl leading-[1.1] font-bold text-white mb-5 sm:mb-3.75 2xl:mb-5 3xl:mb-6.25">
                         {item?.title}
                       </SlideTitle>
@@ -213,13 +215,15 @@ export default function HomeHero({ data }) {
                                   duration={8 + index * 4}
                                 />
                                 <div className="w-5 sm:w-7.5 lg:w-8.75 2xl:w-10 3xl:w-12.5 h-auto aspect-square mx-auto sm:mb-3.75 3xl:mb-5 overflow-hidden flex items-center justify-center">
-                                  <Image
-                                    src={item?.icon?.url}
-                                    width={50}
-                                    height={50}
-                                    alt={item?.icon?.alternativeText || "Icon"}
-                                    className="w-full h-full object-contain"
-                                  />
+                                  {item?.icon?.url && (
+                                    <Image
+                                      src={item?.icon?.url}
+                                      width={50}
+                                      height={50}
+                                      alt={item?.icon?.alternativeText || "Icon"}
+                                      className="w-full h-full object-contain"
+                                    />
+                                  )}
                                 </div>
                                 <div className="text-xs lg:text-sm 2xl:text-base 3xl:text-xl leading-[1.2] font-normal text-white max-sm:w-[calc(100%-20px)] max-sm:pl-1.25">
                                   {item?.title}

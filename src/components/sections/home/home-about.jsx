@@ -80,13 +80,15 @@ export default function HomeAbout({ data }) {
                       className="hidden dark:block"
                     />
                     <div className="w-7.5 sm:w-8.75 2xl:w-10 3xl:w-12.5 h-auto aspect-square mb-1.25 2xl:mb-2.5 block">
-                      <Image
-                        src={item?.icon?.url}
-                        alt={item?.icon?.alternativeText || "icon"}
-                        width={50}
-                        height={50}
-                        className="w-full h-full object-contain transition-[filter] duration-400 group-hover:brightness-0 group-hover:invert"
-                      />
+                      {item?.icon?.url && (
+                        <Image
+                          src={item?.icon?.url}
+                          alt={item?.icon?.alternativeText || "icon"}
+                          width={50}
+                          height={50}
+                          className="w-full h-full object-contain transition-[filter] duration-400 group-hover:brightness-0 group-hover:invert"
+                        />
+                      )}
                     </div>
                     <div className="text-[25px] xl:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.2] font-bold text-[#212121] dark:text-white mb-1.25 transition-colors duration-400 group-hover:text-white">
                       <ClientCountUp
@@ -167,16 +169,18 @@ export default function HomeAbout({ data }) {
                             />
                             <div className="[--avatarWidth:85px] sm:[--avatarWidth:70px] 2xl:[--avatarWidth:80px] 3xl:[--avatarWidth:110px] w-full h-auto relative z-0">
                               <div className="w-(--avatarWidth) h-auto aspect-square mb-5 sm:mb-3.75 2xl:mb-5 3xl:mb-6.25 rounded-full overflow-hidden block">
-                                <Image
-                                  src={item?.avatarImage?.url}
-                                  alt={
-                                    item?.avatarImage?.alternativeText ||
-                                    "Avatar"
-                                  }
-                                  width={110}
-                                  height={110}
-                                  className="w-full h-full object-cover"
-                                />
+                                {item?.avatarImage?.url && (
+                                  <Image
+                                    src={item?.avatarImage?.url}
+                                    alt={
+                                      item?.avatarImage?.alternativeText ||
+                                      "Avatar"
+                                    }
+                                    width={110}
+                                    height={110}
+                                    className="w-full h-full object-cover"
+                                  />
+                                )}
                               </div>
                               <Text
                                 className={

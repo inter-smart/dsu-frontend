@@ -102,13 +102,15 @@ export default function HomeCollaborations({ data }) {
                         animation: `collab-breathe ${[1.8, 2.4, 1.5, 2.9, 2.1, 1.6, 2.7, 2.3][index % 8]}s ease-in-out infinite`,
                       }}
                     >
-                      <img
-                        src={item?.flagImage?.url}
-                        alt={item?.flagImage?.alternativeText}
-                        width={40}
-                        height={40}
-                        className="w-full h-full object-cover"
-                      />
+                      {item?.flagImage?.url && (
+                        <img
+                          src={item?.flagImage?.url}
+                          alt={item?.flagImage?.alternativeText}
+                          width={40}
+                          height={40}
+                          className="w-full h-full object-cover"
+                        />
+                      )}
                     </div>
                     <div
                       className={`w-auto h-auto mb-2 absolute bottom-full left-1/2 -translate-x-1/2 opacity-0 whitespace-nowrap pointer-events-none transition-opacity duration-200 group-hover:opacity-100 ${activeIndex === index && "hidden"}`}
@@ -182,13 +184,15 @@ export default function HomeCollaborations({ data }) {
                       <div className="w-full h-auto max-sm:mb-2.5 max-lg:mb-10 block">
                         <div className="[--flag-icon-size:25px] sm:[--flag-icon-size:35px] 2xl:[--flag-icon-size:40px] 3xl:[--flag-icon-size:50px] w-full h-auto mb-2.5 2xl:mb-3.75 flex items-center">
                           <div className="w-(--flag-icon-size) h-auto aspect-square border-2 border-[#FDC72F] rounded-full overflow-hidden block">
-                            <Image
-                              src={item?.flagImage?.url}
-                              alt={item?.flagImage?.alternativeText || "Flag"}
-                              width={40}
-                              height={40}
-                              className="w-full h-full object-cover"
-                            />
+                            {item?.flagImage?.url && (
+                              <Image
+                                src={item?.flagImage?.url}
+                                alt={item?.flagImage?.alternativeText || "Flag"}
+                                width={40}
+                                height={40}
+                                className="w-full h-full object-cover"
+                              />
+                            )}
                           </div>
                           <h3 className="text-[21px] lg:text-2xl 2xl:text-[28px] 3xl:text-[35px] leading-[1.1] font-bold text-white w-[clac(100%-var(--flag-icon-size))] pl-1.75 sm:pl-2.5 2xl:pl-3.75">
                             {item?.title}
