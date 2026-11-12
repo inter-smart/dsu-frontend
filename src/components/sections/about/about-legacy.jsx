@@ -36,56 +36,58 @@ function LegacyCard({ item, index, active, onToggle, className }) {
             />
             {/* front face (number, icon, title): fades out while the description shows */}
             <div className={cn("flex flex-col items-center transition-opacity duration-500", hasText && "group-hover:opacity-0 group-data-[active=true]:opacity-0")}>
-            {/* big faint index number — TEMPORARILY HIDDEN: remove "hidden" below to show it again */}
-            <span
-                aria-hidden="true"
-                className="hidden pointer-events-none absolute right-[14px] top-[8px] text-[38px] font-extrabold leading-none text-[#F97316]/15 transition-colors duration-500 group-hover:text-white/25 group-data-[active=true]:text-white/25 xl:right-[18px] xl:top-[10px] xl:text-[46px] 2xl:text-[56px] 3xl:text-[72px]"
-            >
-                {String(index + 1).padStart(2, "0")}
-            </span>
+                {/* big faint index number — TEMPORARILY HIDDEN: remove "hidden" below to show it again */}
+                <span
+                    aria-hidden="true"
+                    className="hidden pointer-events-none absolute right-[14px] top-[8px] text-[38px] font-extrabold leading-none text-[#F97316]/15 transition-colors duration-500 group-hover:text-white/25 group-data-[active=true]:text-white/25 xl:right-[18px] xl:top-[10px] xl:text-[46px] 2xl:text-[56px] 3xl:text-[72px]"
+                >
+                    {String(index + 1).padStart(2, "0")}
+                </span>
 
-            <div className="relative flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full bg-[#FFF1E0] ring-1 ring-[#F97316]/25 transition-all duration-500 group-hover:h-[40px] group-hover:w-[40px] group-hover:bg-white group-hover:ring-white/60 group-data-[active=true]:h-[40px] group-data-[active=true]:w-[40px] group-data-[active=true]:bg-white group-data-[active=true]:ring-white/60 xl:group-hover:h-[44px] xl:group-hover:w-[44px] xl:group-data-[active=true]:h-[44px] xl:group-data-[active=true]:w-[44px] 2xl:group-hover:h-[48px] 2xl:group-hover:w-[48px] 2xl:group-data-[active=true]:h-[48px] 2xl:group-data-[active=true]:w-[48px] 3xl:group-hover:h-[60px] 3xl:group-hover:w-[60px] 3xl:group-data-[active=true]:h-[60px] 3xl:group-data-[active=true]:w-[60px] dark:bg-white/10 dark:ring-white/15 xl:h-[58px] xl:w-[58px] 2xl:h-[66px] 2xl:w-[66px] 3xl:h-[84px] 3xl:w-[84px]">
-                {item.icon && (
-                    <Image
-                        src={item.icon}
-                        width={78}
-                        height={65}
-                        alt=""
-                        className="max-w-[22px] object-contain transition-[filter] duration-500 dark:brightness-200 dark:invert group-hover:brightness-100 group-hover:invert-0 group-data-[active=true]:brightness-100 group-data-[active=true]:invert-0 xl:max-w-[26px] 2xl:max-w-[30px] 3xl:max-w-[40px]"
-                    />
-                )}
-            </div>
-            <h3 className="mt-[12px] text-[15px] font-bold leading-[1.25] text-[#212121] transition-colors duration-500 group-hover:text-white group-data-[active=true]:text-white dark:text-white xl:mt-[14px] xl:text-[17px] 2xl:mt-[16px] 2xl:text-[20px] 3xl:mt-[20px] 3xl:text-[26px]">
-                {hasText ? (
-                    <button
-                        type="button"
-                        aria-expanded={active}
-                        aria-controls={`legacy-desc-${uid}`}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onToggle();
-                        }}
-                        className="rounded-[4px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F97316]"
-                    >
-                        {item.title}
-                    </button>
-                ) : (
-                    item.title
-                )}
-            </h3>
-            {/* accent dash under the title; stretches while the card is open */}
-            <span
-                aria-hidden="true"
-                className="mt-[10px] h-[3px] w-[26px] rounded-full bg-gradient-to-r from-[#DC2626] to-[#F97316] transition-all duration-500 group-hover:w-[44px] group-hover:bg-white group-hover:bg-none group-data-[active=true]:w-[44px] group-data-[active=true]:bg-white group-data-[active=true]:bg-none"
-            />
+                <div className="relative flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full bg-[#FFF1E0] ring-1 ring-[#F97316]/25 transition-all duration-500 group-hover:h-[40px] group-hover:w-[40px] group-hover:bg-white group-hover:ring-white/60 group-data-[active=true]:h-[40px] group-data-[active=true]:w-[40px] group-data-[active=true]:bg-white group-data-[active=true]:ring-white/60 xl:group-hover:h-[44px] xl:group-hover:w-[44px] xl:group-data-[active=true]:h-[44px] xl:group-data-[active=true]:w-[44px] 2xl:group-hover:h-[48px] 2xl:group-hover:w-[48px] 2xl:group-data-[active=true]:h-[48px] 2xl:group-data-[active=true]:w-[48px] 3xl:group-hover:h-[60px] 3xl:group-hover:w-[60px] 3xl:group-data-[active=true]:h-[60px] 3xl:group-data-[active=true]:w-[60px] dark:bg-white/10 dark:ring-white/15 xl:h-[58px] xl:w-[58px] 2xl:h-[66px] 2xl:w-[66px] 3xl:h-[84px] 3xl:w-[84px]">
+                    {item.icon && (
+                        <Image
+                            src={item.icon}
+                            width={78}
+                            height={65}
+                            alt=""
+                            className="max-w-[22px] object-contain transition-[filter] duration-500 dark:brightness-200 dark:invert group-hover:brightness-100 group-hover:invert-0 group-data-[active=true]:brightness-100 group-data-[active=true]:invert-0 xl:max-w-[26px] 2xl:max-w-[30px] 3xl:max-w-[40px]"
+                        />
+                    )}
+                </div>
+                <h3 className="mt-[12px] text-[15px] font-bold leading-[1.25] text-[#212121] transition-colors duration-500 group-hover:text-white group-data-[active=true]:text-white dark:text-white xl:mt-[14px] xl:text-[17px] 2xl:mt-[16px] 2xl:text-[20px] 3xl:mt-[20px] 3xl:text-[26px]">
+                    {hasText ? (
+                        <button
+                            type="button"
+                            aria-expanded={active}
+                            aria-controls={`legacy-desc-${uid}`}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onToggle();
+                            }}
+                            className="rounded-[4px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F97316]"
+                        >
+                            {item.title}
+                        </button>
+                    ) : (
+                        item.title
+                    )}
+                </h3>
+                {/* accent dash under the title; stretches while the card is open */}
+                <span
+                    aria-hidden="true"
+                    className="mt-[10px] h-[3px] w-[26px] rounded-full bg-gradient-to-r from-[#DC2626] to-[#F97316] transition-all duration-500 group-hover:w-[44px] group-hover:bg-white group-hover:bg-none group-data-[active=true]:w-[44px] group-data-[active=true]:bg-white group-data-[active=true]:bg-none"
+                />
             </div>
             {hasText && (
                 <div
                     id={`legacy-desc-${uid}`}
-                    inert={!active}
-                    className="absolute inset-0 flex items-center justify-center px-[18px] py-[22px] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-data-[active=true]:opacity-100 xl:px-[26px] xl:py-[26px] 3xl:px-[36px] 3xl:py-[34px]"
+                    className="pointer-events-none absolute inset-0 flex items-center justify-center px-[18px] py-[22px] opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 group-data-[active=true]:pointer-events-auto group-data-[active=true]:opacity-100 xl:px-[26px] xl:py-[26px] 3xl:px-[36px] 3xl:py-[34px]"
                 >
-                    <div className="max-h-full w-full overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&_p]:text-[15px] [&_p]:leading-[1.5] [&_p]:text-white lg:[&_p]:text-[16px] 2xl:[&_p]:text-[16px] 3xl:[&_p]:text-[18px]">
+                    <div
+                        data-lenis-prevent
+                        className="min-h-0 max-h-full w-full touch-pan-y overflow-y-auto overscroll-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&_p]:text-[15px] [&_p]:leading-[1.5] [&_p]:text-white lg:[&_p]:text-[16px] 2xl:[&_p]:text-[16px] 3xl:[&_p]:text-[18px]"
+                    >
                         <BlocksRenderer content={item.description} />
                     </div>
                 </div>
