@@ -74,6 +74,7 @@ export default function HomeHero({ data }) {
   );
   return (
     <section className="lg:[--navigation-btn-size:30px] 3xl:[--navigation-btn-size:40px]  w-full h-auto block relative z-0">
+      {data?.hero?.length > 1 && (
       <button
         onClick={scrollPrev}
         aria-label="Previous slide"
@@ -87,6 +88,8 @@ export default function HomeHero({ data }) {
           className="w-full h-full object-contain"
         />
       </button>
+      )}
+      {data?.hero?.length > 1 && (
       <button
         onClick={scrollNext}
         aria-label="Next slide"
@@ -100,6 +103,7 @@ export default function HomeHero({ data }) {
           className="w-full h-full object-contain scale-x-[-1]"
         />
       </button>
+      )}
       <div ref={heroEmblaRef} className="w-full h-full overflow-hidden">
         <div className="touch-pan-y touch-pinch-zoom flex">
           {data?.hero?.map((item, slideIndex) => (
