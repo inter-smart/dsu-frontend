@@ -15,14 +15,21 @@ export default function InnovationDetail({ data }) {
     const hasDescription = Array.isArray(data?.description) && hasContent(data.description);
     const hasPdf = data?.pdf?.url && data?.pdf?.label;
     const hasVideo = data?.video?.url && data?.video?.label;
+    const hasMedia = Boolean(data?.media?.url);
 
     return (
         <section className="relative py-[40px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[80px] bg-white dark:bg-[#101010] transition-colors duration-300">
             <div className="container">
                 <div className="flex max-sm:gap-[25px] gap-[30px] lg:gap-[40px] 2xl:gap-[60px] 3xl:gap-[80px] max-lg:flex-wrap items-center">
 
-                    {/* Left: text */}
-                    <div className="w-full lg:w-[calc(50%-20px)] 2xl:w-[calc(50%-30px)] 3xl:w-[calc(50%-40px)]">
+                    {/* Left: text (full width when there is no image) */}
+                    <div
+                        className={
+                            hasMedia
+                                ? "w-full lg:w-[calc(50%-20px)] 2xl:w-[calc(50%-30px)] 3xl:w-[calc(50%-40px)]"
+                                : "w-full"
+                        }
+                    >
                         {data?.heading && (
                             <h1 className="text-[26px] sm:text-[32px] xl:text-[44px] 2xl:text-[54px] 3xl:text-[64px] font-bold leading-[1.15] mb-[15px] xl:mb-[20px] 3xl:mb-[28px] text-[#212121] dark:text-white">
                                 {data.heading}
@@ -92,7 +99,7 @@ export default function InnovationDetail({ data }) {
                     </div>
 
                     {/* Right: image */}
-                    {data?.media?.url && (
+                    {hasMedia && (
                         <div className="w-full lg:w-[calc(50%-20px)] 2xl:w-[calc(50%-30px)] 3xl:w-[calc(50%-40px)]">
                             <div className="group relative w-full aspect-[770/458] overflow-hidden rounded-[10px] xl:rounded-[12px] bg-[#f3f4f6] dark:bg-[#18191B]">
                                 <Image
