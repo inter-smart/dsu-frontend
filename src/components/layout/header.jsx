@@ -4,7 +4,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useLayoutEffect, useState, useRef } from "react"; // CHANGED: added useLayoutEffect
 import { createPortal } from "react-dom"; // ADDED 
 import { ChevronRight, ChevronDown, X, User, LogOut } from "lucide-react";
 import {
@@ -44,6 +44,9 @@ const NOT_FOUND_HEADER_GRADIENT =
 // Taller lists scroll inside the panel. Increase the px values if the panel touches the bottom of the screen.
 const MEGA_MENU_MAX_HEIGHT =
   "max-h-[calc(100vh-200px)] 2xl:max-h-[calc(100vh-230px)] 3xl:max-h-[calc(100vh-260px)]";
+
+// ADDED: minimum gap (px) kept between the mega menu panel and the screen edges
+const MEGA_MENU_EDGE_GAP = 16;
 
 const local_data = {
   // topBar: {
@@ -1321,6 +1324,7 @@ function MegaMenuPanel({
   onLeave,
 }) {
   const pathname = usePathname();
+  const panelRef = useRef(null); // ADDED: used to keep the panel inside the screen
   const item = items?.find((i) => i?.id === itemId);
   const children = item?.children || [];
   const hasChildMenu = children.length > 0;
@@ -1339,6 +1343,33 @@ function MegaMenuPanel({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemId]);
+
+  // ADDED: keep the whole panel inside the viewport. The panel is `w-max` and anchored to its nav item,
+  // so wide menus (e.g. Research & Innovation with Innovation Labs + Incubation columns) could run past
+  // the right edge. We measure the panel without any shift, then nudge it left/right just enough to fit.
+  // Re-runs when the active sidebar item changes (the panel width changes with it) and on resize.
+  useLayoutEffect(() => {
+    const el = panelRef.current;
+    if (!el) return;
+
+    const fit = () => {
+      el.style.transform = "";
+      const viewportWidth = document.documentElement.clientWidth;
+      const rect = el.getBoundingClientRect();
+      let dx = 0;
+      if (rect.right > viewportWidth - MEGA_MENU_EDGE_GAP) {
+        dx = viewportWidth - MEGA_MENU_EDGE_GAP - rect.right;
+      }
+      if (rect.left + dx < MEGA_MENU_EDGE_GAP) {
+        dx = MEGA_MENU_EDGE_GAP - rect.left;
+      }
+      if (dx) el.style.transform = `translateX(${dx}px)`;
+    };
+
+    fit();
+    window.addEventListener("resize", fit);
+    return () => window.removeEventListener("resize", fit);
+  }, [itemId, activeChildId]);
 
   if (!item || !hasChildMenu) return null;
 
@@ -1403,16 +1434,19 @@ function MegaMenuPanel({
 
   return (
     <div
+      ref={panelRef}
       onMouseEnter={onKeepOpen}
       onMouseLeave={onLeave}
       className={cn(
         "w-max h-auto absolute top-full z-50 pt-1",
         alignRight ? "right-0" : "left-0",
       )}
+      // ADDED: never wider than the screen; the cream panel scrolls if it still doesn't fit
+      style={{ maxWidth: `calc(100vw - ${MEGA_MENU_EDGE_GAP * 2}px)` }}
     >
       {/* Smooth entrance animation */}
       <div
-        className="w-auto h-auto"
+        className="w-auto h-auto max-w-full"
         style={{
           animation: "megaMenuIn 0.18s cubic-bezier(0.16,1,0.3,1) both",
         }}
@@ -1423,11 +1457,15 @@ function MegaMenuPanel({
             to   { opacity: 1; transform: translateY(0) scale(1); }
           }
         `}</style>
-        <div className="w-fit overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.22)] rounded-b-[8px]">
+        <div className="w-fit max-w-full overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.22)] rounded-b-[8px]">
           {/* ADDED: max height on the row; the sidebar and the right panel each scroll on their own */}
-          <div className={cn("w-fit flex items-stretch", MEGA_MENU_MAX_HEIGHT, reverseRow && "flex-row-reverse")}>
+          <div className={cn("w-fit max-w-full flex items-stretch", MEGA_MENU_MAX_HEIGHT, reverseRow && "flex-row-reverse")}>
             {/* ─── Vibrant Orange/Red Gradient Sidebar ─── */}
-            <nav className="w-[260px] 2xl:w-[280px] 3xl:w-[320px] shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-5 flex flex-col justify-start overflow-y-auto overscroll-contain">
+            {/* CHANGED: data-lenis-prevent so Lenis smooth scroll doesn't hijack the wheel over this list */}
+            <nav
+              data-lenis-prevent
+              className="w-[260px] 2xl:w-[280px] 3xl:w-[320px] shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-5 flex flex-col justify-start overflow-y-auto overscroll-contain"
+            >
               {children.map((child) => {
                 const isActive = child?.id === activeChild?.id;
                 if (!child?.children?.length) {
@@ -1481,7 +1519,11 @@ function MegaMenuPanel({
             {/* ─── Warm Cream / Ivory Right Panel ─── */}
             {activeChild?.children?.length > 0 && (
 
-              <div className="bg-[#FFF8EE] py-7 px-8 2xl:px-10 flex-1 min-w-0 text-[#262626] overflow-y-auto overscroll-contain">
+              // CHANGED: data-lenis-prevent so Lenis smooth scroll doesn't hijack the wheel over this panel
+              <div
+                data-lenis-prevent
+                className="bg-[#FFF8EE] py-7 px-8 2xl:px-10 flex-1 min-w-0 text-[#262626] overflow-y-auto overscroll-contain"
+              >
                 {hasColumnGroups ? (
                   <div className="flex items-start gap-x-8 2xl:gap-x-10 3xl:gap-x-12">
                     {columns.map((colGroups, colIdx) => (
@@ -1673,7 +1715,9 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
               />
 
               {/* ADDED: the list scrolls (not the card) so the notch is never clipped. Height = space below the card top */}
+              {/* CHANGED: data-lenis-prevent so Lenis smooth scroll doesn't hijack the wheel over the flyout */}
               <ul
+                data-lenis-prevent
                 className="flex flex-col gap-[3px] p-0 m-0 overflow-y-auto overscroll-contain"
                 style={{ maxHeight: `calc(100vh - ${pos.top + FLYOUT_VERTICAL_SPACE}px)` }}
               >

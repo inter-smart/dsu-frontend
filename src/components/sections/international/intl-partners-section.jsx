@@ -7,14 +7,14 @@ import { safeHref } from "@/lib/utils";
 function PartnerCard({ partner }) {
     const body = (
         <>
-            <div className="relative flex h-[90px] w-full items-center justify-center xl:h-[110px] 3xl:h-[150px]">
+            <div className="relative flex h-[60px] w-full items-center justify-center xl:h-[80px] 3xl:h-[100px]">
                 {partner.logo?.url ? (
                     <Image
                         src={partner.logo.url}
                         alt={partner.logo.alternativeText || partner.name || "Partner logo"}
                         fill
                         sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
-                        className="object-contain"
+                        className="object-contain   "
                     />
                 ) : null}
             </div>
@@ -64,7 +64,7 @@ export default function IntlPartnersSection({ data }) {
                     {groups.map((g) => (
                         <div key={g.id}>
                             {g.country && <h3 className="mb-[12px] border-b border-black/10 pb-[8px] text-[16px] font-semibold text-[#DC2626] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px]">{g.country}</h3>}
-                            <div className="grid grid-cols-2 gap-[12px] sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:gap-[18px]">
+                            <div className="grid grid-cols-2 gap-[12px] sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 xl:gap-[18px]">
                                 {g.partners.map((p) => <PartnerCard key={p.id} partner={p} />)}
                             </div>
                         </div>
