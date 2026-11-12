@@ -1,10 +1,17 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import InnerHero from "@/components/layout/common/InnerHero";
 import InnovationDetail from "@/components/sections/reseach-innovation/InnovationDetail";
 import InnovationContent from "@/components/sections/reseach-innovation/InnovationContent";
 import InnovationCourses from "@/components/sections/reseach-innovation/InnovationCourses";
 import InnovationObjectives from "@/components/sections/reseach-innovation/InnovationObjectives";
 import InnovationGallery from "@/components/sections/reseach-innovation/InnovationGallery";
+import CmsPageView from "@/components/flexible/CmsPageView";
+import {
+    DEFAULT_INNOVATION_SLUG,
+    getInnovationBySlug,
+    getInnovationListingSlug,
+    innovationDetailPath,
+} from "@/lib/api/innovation";
 
 
 const blocks = (text) => [
@@ -374,12 +381,27 @@ export const local_data = [
     },
 ];
 
-export function generateStaticParams() {
-    return local_data.map((item) => ({ slug: item.slug }));
+export async function generateMetadata({ params }) {
+    const { slug } = await params;
+    const cms = await getInnovationBySlug(slug);
+    if (cms) return { title: cms.seo?.metaTitle || cms.title, description: cms.seo?.metaDescription };
+    const page = local_data.find((item) => item.slug === slug);
+    return page ? { title: `${page.detail?.heading || "Innovation"} | Dayananda Sagar University` } : {};
 }
 
-export default async function Page({ params }) {
+// A published "Innovation" entry with this slug; the static page above while there is none.
+// It lives at /research-innovation/<listing slug>/<slug>: this folder sends the visitor there when the
+// listing slug was changed in the CMS. viaSlug is set when it is already served from that path.
+export default async function Page({ params, viaSlug }) {
     const { slug } = await params;
+    if (!viaSlug) {
+        const listingSlug = await getInnovationListingSlug();
+        if (listingSlug !== DEFAULT_INNOVATION_SLUG) redirect(innovationDetailPath(listingSlug, slug));
+    }
+
+    const cms = await getInnovationBySlug(slug);
+    if (cms) return <CmsPageView page={cms} />;
+
     const page = local_data.find((item) => item.slug === slug);
     if (!page) notFound();
 
