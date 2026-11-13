@@ -239,7 +239,7 @@ html.lenis body {
 
     /* paragraphs: +2px between lg and 2xl (1024px to 1407px) */
     p {
-      @apply lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px] text-(--text-color);
+      @apply lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px] text-(--text-color) not-last-of-type:mb-3;
     }
 
     h1 {
@@ -294,7 +294,7 @@ html.lenis body {
     }
         /* ---------- Tables ---------- */
     table {
-      @apply my-[18px] block w-full max-w-full overflow-x-auto border-collapse text-[12px] md:text-[13px] xl:text-[14px] 3xl:text-[16px];
+      @apply my-[18px] block w-full max-w-full overflow-x-auto border-collapse text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px];
     }
 
     th,

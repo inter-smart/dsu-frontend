@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "@/components/ui/safe-image";
 import { safeHref } from "@/lib/utils";
+import { IntlButton } from "./intl-button-section";
 
 function PartnerCard({ partner }) {
     const body = (
@@ -41,10 +42,17 @@ export default function IntlPartnersSection({ data }) {
     return (
         <section className="py-[15px] xl:py-[22px] 2xl:py-[28px] 3xl:py-[40px]">
             <div className="container">
-                {data.title && (
-                    <div className="mb-[16px] xl:mb-[22px]">
-                        <h2 className="text-[19px] font-semibold uppercase tracking-[0.04em] text-black dark:text-white xl:text-[22px] 2xl:text-[24px] 3xl:text-[30px]">{data.title}</h2>
-                        <span className="base-gradient mt-[8px] block h-[3px] w-[60px] rounded-full xl:w-[80px]" />
+                {(data.title || data.buttons?.length > 0) && (
+                    <div className="mb-[16px] xl:mb-[22px] flex flex-wrap items-center justify-between gap-x-[20px] gap-y-[10px]">
+                        <div>
+                            {data.title && <h2 className="text-[19px] font-semibold uppercase tracking-[0.04em] text-black dark:text-white xl:text-[22px] 2xl:text-[24px] 3xl:text-[30px]">{data.title}</h2>}
+                            {data.title && <span className="base-gradient mt-[8px] block h-[3px] w-[60px] rounded-full xl:w-[80px]" />}
+                        </div>
+                        {data.buttons?.length > 0 && (
+                            <div className="ml-auto flex flex-wrap justify-end gap-[12px] xl:gap-[18px]">
+                                {data.buttons.map((button, i) => <IntlButton key={i} button={button} />)}
+                            </div>
+                        )}
                     </div>
                 )}
 

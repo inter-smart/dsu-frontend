@@ -139,6 +139,7 @@ import StudentSuccess from "@/components/sections/placements/student-success";
 import StudentSuccessStories from "@/components/sections/placements/student-success-stories";
 import IntlTextSection from "@/components/sections/international/intl-text-section";
 import IntlButtonSection from "@/components/sections/international/intl-button-section";
+import IntlTextButtonSection from "@/components/sections/international/intl-text-button-section";
 import IntlVideoSection from "@/components/sections/international/intl-video-section";
 import IntlLinkCardsSection from "@/components/sections/international/intl-link-cards-section";
 import IntlPartnersSection from "@/components/sections/international/intl-partners-section";
@@ -358,6 +359,7 @@ const flexibleRegistry = {
   // International flexible pages (/international/<slug>)
   "international.text-section": { Component: IntlTextSection },
   "international.button-section": { Component: IntlButtonSection },
+  "international.text-button-section": { Component: IntlTextButtonSection },
   "international.video-section": { Component: IntlVideoSection },
   "international.link-cards-section": { Component: IntlLinkCardsSection },
   "international.partners-section": { Component: IntlPartnersSection },

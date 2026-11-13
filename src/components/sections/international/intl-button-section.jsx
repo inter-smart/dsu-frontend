@@ -3,9 +3,7 @@ import Image from "@/components/ui/safe-image";
 import { buttonVariants } from "@/components/ui/button";
 import { safeHref } from "@/lib/utils";
 
-const ALIGN = { left: "justify-start", center: "justify-center", right: "justify-end" };
-
-function IntlButton({ button }) {
+export function IntlButton({ button }) {
     const newTab = button.isExternal || button.isFile;
     return (
         <Link
@@ -33,7 +31,7 @@ export default function IntlButtonSection({ data }) {
 
     return (
         <section className="py-[10px] xl:py-[14px] 3xl:py-[20px]">
-            <div className={`container flex flex-wrap gap-[12px] xl:gap-[18px] ${ALIGN[data.alignment] || ALIGN.left}`}>
+            <div className={`container flex flex-wrap gap-[12px] xl:gap-[18px]`}>
                 {buttons.map((button, i) => <IntlButton key={i} button={button} />)}
             </div>
         </section>
