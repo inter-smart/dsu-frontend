@@ -3,7 +3,7 @@ import Image from "@/components/ui/safe-image";
 import Link from "next/link";
 import { safeHref } from "@/lib/utils";
 import { Text } from "@/components/ui/text";
-import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
+import { startTransition, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react"; // CHANGED: added startTransition
 import { Heading } from "@/components/ui/heading";
 import { buttonVariants } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
@@ -18,6 +18,7 @@ const subscribePin = (cb) => {
 // Viewport heights of scrolling per card while the section is pinned.
 const SCRUB_VH_PER_CARD = 60;
 // How quickly the cards catch up to the scroll position (0-1, higher = snappier).
+// CHANGED: this is now applied per 16.67ms of real time (not per frame), so it feels the same on 60/120/144Hz screens.
 const EASE = 0.14;
 // Each card holds still until this fraction of its scroll range, swaps, then holds again.
 const DWELL_START = 0.3;
@@ -68,6 +69,7 @@ export default function HomeExcellence({ data }) {
     let current = 0;
     let target = 0;
     let lastIndex = -1;
+    let lastTime = 0; // ADDED: timestamp of the previous frame, for time-based easing
 
     const getTarget = () => {
       const el = trackRef.current;
@@ -100,16 +102,25 @@ export default function HomeExcellence({ data }) {
       const idx = Math.round(t);
       if (idx !== lastIndex) {
         lastIndex = idx;
-        setActiveIndex(idx);
+        // CHANGED: non-urgent update, so the re-render doesn't block the card animation frame
+        startTransition(() => setActiveIndex(idx));
       }
     };
 
-    const tick = () => {
+    // CHANGED: time-based easing (same feel at any refresh rate)
+    const tick = (now) => {
       raf = 0;
-      current += (target - current) * EASE;
+      const dt = lastTime ? Math.min(now - lastTime, 50) : 16.67;
+      lastTime = now;
+      const factor = 1 - Math.pow(1 - EASE, dt / 16.67);
+      current += (target - current) * factor;
       if (Math.abs(target - current) < 0.001) current = target;
       paint(current);
-      if (current !== target) raf = requestAnimationFrame(tick);
+      if (current !== target) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        lastTime = 0;
+      }
     };
 
     const onScroll = () => {
@@ -121,9 +132,20 @@ export default function HomeExcellence({ data }) {
     paint(current);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+
+    // ADDED: when fonts/images/content above the section change the page height, the section moves
+    // without a scroll event. Re-sync the cards so the pin never looks out of step.
+    let resizeObserver;
+    if (typeof ResizeObserver !== "undefined") {
+      resizeObserver = new ResizeObserver(onScroll);
+      resizeObserver.observe(document.documentElement);
+      if (trackRef.current) resizeObserver.observe(trackRef.current);
+    }
+
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      resizeObserver?.disconnect();
       if (raf) cancelAnimationFrame(raf);
     };
   }, [pinned, count]);
@@ -168,8 +190,14 @@ export default function HomeExcellence({ data }) {
     const pin = el.firstElementChild?.offsetHeight || window.innerHeight;
     const total = el.offsetHeight - pin;
     const start = el.getBoundingClientRect().top + window.scrollY;
+    const top = start + (next / (count - 1)) * total;
+    // CHANGED: use Lenis when it is available (native smooth scroll fights with Lenis), else fall back
+    if (typeof window.lenis?.scrollTo === "function") {
+      window.lenis.scrollTo(top, { duration: 1.2 });
+      return;
+    }
     window.scrollTo({
-      top: start + (next / (count - 1)) * total,
+      top,
       behavior: "smooth",
     });
   };

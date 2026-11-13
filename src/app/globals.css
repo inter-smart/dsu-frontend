@@ -186,10 +186,10 @@ html.lenis body {
     @apply text-[28px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] leading-tight font-bold tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
   .text_1 {
-    @apply text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#4A5565] dark:text-[#F9FAFB];
+    @apply text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
   p {
-    @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#4A5565] dark:text-[#F9FAFB];
+    @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
   .cmnFlx {
     @apply flex flex-wrap;
@@ -229,7 +229,7 @@ html.lenis body {
     p,
     &,
     li {
-      @apply text-[14px] lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-normal  ;
+      @apply text-[14px] lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-normal text-(--text-color) ;
     }
 
     /* images inserted from the Strapi blocks editor */
@@ -239,7 +239,7 @@ html.lenis body {
 
     /* paragraphs: +2px between lg and 2xl (1024px to 1407px) */
     p {
-      @apply lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px];
+      @apply lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px] text-(--text-color);
     }
 
     h1 {
@@ -278,19 +278,19 @@ html.lenis body {
 
     ul > li,
     ol > li {
-      @apply my-1 lg:my-1.5 font-medium;
-    }
+      @apply my-1 lg:my-1.5 
+        }
     ul{
       @apply  !ml-4
     }
     ul > li {
-      @apply list-disc;
+      @apply list-disc text-(--text-color);
     }
     ol {
       @apply !ml-4;
     }
     ol > li {
-      @apply list-decimal;
+      @apply list-decimal text-(--text-color);
     }
   }
 }
@@ -545,4 +545,7 @@ body {
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   [data-zoom] { transition: scale 0.5s ease-in-out; }
   [data-zoom-card]:hover [data-zoom] { scale: 1.1; }
+}
+body:has(.balckHeader) header {
+  background: #533232;
 }
