@@ -54,9 +54,52 @@ export default function KeyFocus({ data }) {
                                         </div>
                                     </AccordionTrigger>
                                     {item?.answer?.length > 0 && (
-                                        <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text_1 [&_p]:text_1 [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] ">
+                                        <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text_1 [&_p]:text_1 [&_p]:3xl:text-[20px] [&_p]:text-[#212121] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] ">
                                             <div className="w-full  typography">
                                                 <BlocksRenderer content={item.answer} />
+                                                <p>
+                                                    Our engineering career-readiness framework follows a progressive, semester-wise
+                                                    approach, moving from foundational knowledge to specialised technical skills and
+                                                    recruitment readiness.
+                                                </p>
+
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Academic stage</th>
+                                                            <th>Technical development</th>
+                                                            <th>Aptitude and professional skills</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>Semesters 1–2: Foundations</strong></td>
+                                                            <td>C programming, followed by Java and object-oriented programming; database fundamentals and SQL.</td>
+                                                            <td>Number systems, logical reasoning, communication, teamwork and professional etiquette.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Semesters 3–4: Build</strong></td>
+                                                            <td>Data structures, trees and graphs; full-stack project development, including testing and deployment.</td>
+                                                            <td>Data interpretation, verbal ability, presentations and group discussions.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Semesters 5–6: Specialise</strong></td>
+                                                            <td>Algorithm design, dynamic programming, system design fundamentals and capstone projects.</td>
+                                                            <td>Company-pattern aptitude mock tests, personal branding and interview communication.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Semester 7: Launch</strong></td>
+                                                            <td>Core technical revision, competitive coding and interview preparation.</td>
+                                                            <td>Placement-focused aptitude practice, mock assessments and final interview readiness.</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                                <p>
+                                                    This structured progression is intended to help students develop their capabilities
+                                                    systematically, apply their learning through practical work and approach recruitment
+                                                    processes with greater confidence.
+                                                </p>
                                             </div>
                                         </AccordionContent>
                                     )}
