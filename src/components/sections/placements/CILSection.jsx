@@ -1,7 +1,7 @@
 "use client";
 
 import "swiper/css";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import {
     Accordion,
     AccordionContent,

@@ -7,7 +7,7 @@ import { hasContent } from "@/lib/has-content";
 // Every International page shows the International menu bar (one pill per International entry),
 // in the same design as the Admission / Placement menu bars.
 export default async function InternationalPageView({ page }) {
-    if (["flexible-page", "undergraduate-masters", "global-partnerships", "study-abroad", "student-exchange", "semester-exchange", "masters-abroad", "international-immersion", "scholars-in-residence"].includes(page.template)) {
+    if (["flexible-page", "undergraduate-masters", "global-partnerships", "study-abroad", "student-exchange", "semester-exchange", "masters-abroad", "international-immersion", "scholars-in-residence", "international-initiatives", "international-robotics-initiative"].includes(page.template)) {
         const hero = hasContent(page.hero) ? page.hero : null;
         const sidebar = page.sidebar || [];
 

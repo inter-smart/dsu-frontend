@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 export default function JobDetailModal({ job, open, onOpenChange }) {

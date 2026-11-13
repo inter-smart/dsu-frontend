@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 const DocIcon = () => (
     <svg width="18" height="22" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">

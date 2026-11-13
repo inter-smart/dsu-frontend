@@ -1,4 +1,4 @@
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { IntlButton } from "./intl-button-section";
 
 // International flexible section: a title with one button at the far right of it, and a description below.

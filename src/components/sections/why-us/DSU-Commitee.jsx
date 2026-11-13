@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import Image from "next/image";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link";
 import StudentSupportSidebar from "./StudentSupportSidebar";
 

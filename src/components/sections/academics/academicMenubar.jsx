@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useLenis } from "lenis/react";
 import StickyMenubar from "@/components/layout/common/StickyMenubar";
 import { getSchoolTabs } from "@/lib/schools/tabs";
+import { useSchoolTabs } from "./SchoolTabsContext";
 
 const legacyMenuItems = [
   {
@@ -68,14 +69,15 @@ export default function AcademicMenubar({
 }) {
 
   const pathname = usePathname();
+  const cmsTabs = useSchoolTabs();
   // slug-driven tabs when a school is known, otherwise the legacy static list
   // (department / programme pages pass their own `items` and `homeHref`)
   const items = itemsProp
     ? itemsProp
     : slug
-    ? getSchoolTabs(hasDepartments).map((t) => ({
+    ? (cmsTabs ?? getSchoolTabs(hasDepartments)).map((t) => ({
         label: t.label,
-        href: t.anchor ? `/schools/${slug}#${t.anchor}` : `/schools/${slug}/${t.key}`,
+        href: t.href ?? (t.anchor ? `/schools/${slug}#${t.anchor}` : `/schools/${slug}/${t.key}`),
       }))
     : legacyMenuItems;
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);

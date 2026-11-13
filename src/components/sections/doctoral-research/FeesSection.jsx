@@ -1,4 +1,4 @@
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { hasContent } from "@/lib/has-content";
 import { Bullets, CARD, DoctoralSection, FACT, GRAD, H3_BIG, LABEL, PAD, TEXT } from "./ui";
 

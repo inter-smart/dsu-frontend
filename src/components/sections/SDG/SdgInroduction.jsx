@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 export default function SdgIntroduction({ data }) {
     return (
