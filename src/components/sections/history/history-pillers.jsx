@@ -140,7 +140,7 @@ export default function HistoryPillers({ data }) {
                                                 alt={itemList.name || ""}
                                                 className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                                             />
-                                        </div>
+                                        </div>      
                                     </div>
                                 )}
 
@@ -157,7 +157,7 @@ export default function HistoryPillers({ data }) {
                                     )}
 
                                     {hasText && (
-                                        <div className="mt-[14px] border-t border-[#F97316]/25 pt-[14px] text-left xl:mt-[18px] xl:pt-[18px] 3xl:mt-[24px] 3xl:pt-[24px] dark:border-white/10 [&_p]:mb-[10px] [&_p]:text-[13px] [&_p]:leading-[1.6] [&_p]:text-[#4A5565] xl:[&_p]:mb-[14px] xl:[&_p]:text-[14px] 2xl:[&_p]:text-[15px] 3xl:[&_p]:text-[18px] dark:[&_p]:text-[#9CA3AF] [&_p:last-child]:mb-0">
+                                        <div className="mt-[14px] border-t border-[#F97316]/25 pt-[14px]   xl:mt-[18px] xl:pt-[18px] 3xl:mt-[24px] 3xl:pt-[24px] dark:border-white/10 [&_p]:mb-[10px] [&_p]:text-[13px] [&_p]:leading-[1.6] [&_p]:text-[#4A5565] xl:[&_p]:mb-[14px] xl:[&_p]:text-[14px] 2xl:[&_p]:text-[15px] 3xl:[&_p]:text-[18px] dark:[&_p]:text-[#9CA3AF] [&_p:last-child]:mb-0">
                                             <BlocksRenderer content={itemList.description} />
                                         </div>
                                     )}
