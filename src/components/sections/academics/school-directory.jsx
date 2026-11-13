@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 // Shared list for the school Programs and Departments tabs: departments (each with its
 // programmes), or programmes grouped UG / PG / other. Items with an `href` link to their page.

@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
 
 import Image from "next/image";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link";
 import { ctaLinkProps } from "@/lib/schools/link-props";
 import { hasContent } from "@/lib/has-content";

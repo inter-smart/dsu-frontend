@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Plus, Minus } from "lucide-react";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { safeHref } from "@/lib/utils";
 
