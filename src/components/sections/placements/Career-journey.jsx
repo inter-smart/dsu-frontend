@@ -18,7 +18,7 @@ export default function CareerJourney({ data }) {
             <div className="container">
                 {data?.heading && <div className="cmn_Title dark:text-white">{data.heading}</div>}
                 {data?.description?.length > 0 && (
-                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px] mb-[10px]  typography">
+                    <div className="text_1 text-[#212121] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px] mb-[10px]  typography">
                         <BlocksRenderer content={data.description} />
                     </div>
                 )}
@@ -31,7 +31,7 @@ export default function CareerJourney({ data }) {
                             {data?.faqSection?.accordion?.map((item) => (
                                 <AccordionItem key={item.id} value={`item-${item.id}`} className="p-[8px_10px] md:p-[15px] xl:p-[18px] 3xl:p-[20px_25px] border-b border-[#E5E9EE] dark:border-white/10 rounded-[0px] mb-[10px] xl:mb-[20px] last-of-type:mb-0 last-of-type:border-none">
                                     <AccordionTrigger
-                                        className="relative p-0 font-medium !text-black dark:!text-white text-[11px] hover:no-underline md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-semibold after:text-base2 dark:after:text-white data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden"
+                                        className="relative p-0 font-medium !text-black dark:!text-white hover:no-underline text_1 3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-semibold after:text-base2 dark:after:text-white data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden"
                                     >
                                         <div className="w-full">
                                             <div className="cmn_Txt text-[#212121] dark:text-white font-semibold">
@@ -40,7 +40,7 @@ export default function CareerJourney({ data }) {
                                         </div>
                                     </AccordionTrigger>
                                     {item?.answer?.length > 0 && (
-                                        <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:lg:text-[14px] [&_p]:xl:text-[14px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] text-[#797979] dark:text-[#9CA3AF]">
+                                        <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text_1 [&_p]:text_1 [&_p]:3xl:text-[20px]  dark:[&_p]:text-[#9CA3AF] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px]  dark:text-[#9CA3AF]">
                                             <div className="w-full  typography">
                                                 <BlocksRenderer content={item.answer} />
                                             </div>
@@ -60,7 +60,7 @@ export default function CareerJourney({ data }) {
                                     <Link
                                         href={item?.href || "#"}
                                         {...fileLinkProps()}
-                                        className="group relative flex items-center !no-underline justify-between  py-[15px] 2xl:py-[18px] 3xl:py-[20px] border-b border-black/10 dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
+                                        className="group relative flex items-center !no-underline justify-between py-[15px] 2xl:py-[18px] 3xl:py-[20px] border-b border-black/10 dark:border-white/10 hover:text-[#DC2626] transition-colors duration-300 overflow-hidden hover:border-[#DC2626]/40"
                                     >
                                         {/* Sliding background highlight on hover — scaleX instead of width */}
                                         <span className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 bg-gradient-to-r from-[#DC2626]/5 to-[#F97316]/5 !no-underline transition-transform duration-500 ease-out -z-10" />
@@ -74,7 +74,7 @@ export default function CareerJourney({ data }) {
                                                     <path d="M14.6316 27.5023H8.77889C8.00277 27.5023 7.25844 27.1547 6.70965 26.5358C6.16085 25.9169 5.85254 25.0776 5.85254 24.2023C5.85254 23.3271 6.16085 22.4878 6.70965 21.8689C7.25844 21.25 8.00277 20.9023 8.77889 20.9023H14.6316C15.4077 20.9023 16.152 21.25 16.7008 21.8689C17.2496 22.4878 17.5579 23.3271 17.5579 24.2023C17.5579 25.0776 17.2496 25.9169 16.7008 26.5358C16.152 27.1547 15.4077 27.5023 14.6316 27.5023ZM8.77889 23.0989C8.53687 23.1254 8.31226 23.2525 8.14883 23.4556C7.98541 23.6586 7.89487 23.923 7.89487 24.1972C7.89487 24.4714 7.98541 24.7358 8.14883 24.9388C8.31226 25.1418 8.53687 25.269 8.77889 25.2955H14.6316C14.8736 25.269 15.0982 25.1418 15.2616 24.9388C15.4251 24.7358 15.5156 24.4714 15.5156 24.1972C15.5156 23.923 15.4251 23.6586 15.2616 23.4556C15.0982 23.2525 14.8736 23.1254 14.6316 23.0989H8.77889Z" />
                                                 </svg>
                                             </div>
-                                            <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black dark:text-white group-hover:text-[#DC2626]">{item.label}</div>
+                                            <div className="text_1 text-black dark:text-white group-hover:text-[#DC2626]">{item.label}</div>
 
                                         </div>
                                         <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex group-hover:translate-x-[-6px] transition-transform duration-300">

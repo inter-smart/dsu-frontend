@@ -1,9 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import EnquiryForm from "./EnquiryForm";
+import EnquiryForm from "./EnquiryForm"; 
 
-// Banner of /international only. The Strapi builder guarantees title and image; button, scholarship and
-// the breadcrumb links are optional and simply not rendered when empty.
 export default function IntlBanner({ data, formData }) {
     const { image, subtitle, title, button, scholarship } = data;
     const breadcrumb = data.breadcrumb || [];

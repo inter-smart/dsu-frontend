@@ -4,7 +4,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useLayoutEffect, useState, useRef } from "react"; // CHANGED: added useLayoutEffect
 import { createPortal } from "react-dom"; // ADDED 
 import { ChevronRight, ChevronDown, X, User, LogOut } from "lucide-react";
 import {
@@ -44,6 +44,9 @@ const NOT_FOUND_HEADER_GRADIENT =
 // Taller lists scroll inside the panel. Increase the px values if the panel touches the bottom of the screen.
 const MEGA_MENU_MAX_HEIGHT =
   "max-h-[calc(100vh-200px)] 2xl:max-h-[calc(100vh-230px)] 3xl:max-h-[calc(100vh-260px)]";
+
+// ADDED: minimum gap (px) kept between the mega menu panel and the screen edges
+const MEGA_MENU_EDGE_GAP = 16;
 
 const local_data = {
   // topBar: {
@@ -622,7 +625,7 @@ export default function Header({ data = local_data }) {
         NOT_FOUND_HEADER_GRADIENT,
       )}
     >
-      <div className="w-full h-11.25 lg:h-7.5 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block">
+      <div className="w-full h-11.25 lg:h-7.5 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block transition-all">
         <div className="container h-full flex items-center justify-between lg:justify-end">
           <div className="w-auto h-auto gap-1.25 sm:gap-1.75 2xl:gap-2.5 flex">
             {data?.topBar?.topBarButtons?.map((item) => (
@@ -709,10 +712,26 @@ export default function Header({ data = local_data }) {
           </div>
         </div>
       </div>
-      <div className="w-full h-auto max-lg:py-[15px_20px] lg:border-b border-white/10">
+      {/* MIDDLE SECTION (logos / action links / apply buttons / mobile hamburger).
+          Desktop: collapses smoothly when the header becomes sticky (isScrolled).
+          Mobile: untouched, the hamburger must stay available. */}
+      <div
+        className={cn(
+          "w-full h-auto max-lg:py-[15px_20px] lg:border-b border-white/10",
+          // desktop only: animate the collapse with grid rows instead of display:none
+          "lg:grid lg:transition-[grid-template-rows] lg:duration-300 lg:ease-out",
+          isScrolled ? "lg:grid-rows-[0fr] lg:border-b-0" : "lg:grid-rows-[1fr]",
+        )}
+      >
+        <div
+          className={cn(
+            "lg:min-h-0 lg:overflow-hidden transition-opacity duration-300",
+            isScrolled ? "lg:opacity-0" : "lg:opacity-100",
+          )}
+        >
         <div className="container">
-          <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex flex-wrap items-center">
-            <div className="w-full lg:w-[45%] max-lg:mb-6.25">
+          <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex flex-wrap items-center justify-between">
+            <div className=" w-full sm:w-[60%] lg:w-[38%] max-lg:mb-6.25">
               <div className="w-full h-auto -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 flex items-center">
                 {data?.logo?.mainlogo?.url && (
                   <div className="w-auto h-auto">
@@ -981,6 +1000,7 @@ export default function Header({ data = local_data }) {
             </div>
           </div>
         </div>
+        </div>
       </div>
       {!isMobile && (
         <div className="container relative">
@@ -1236,7 +1256,7 @@ function ApplyButtons({ buttons, variant = "desktop" }) {
               textSize,
               "2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center relative z-0",
               showOthers &&
-                "before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:absolute before:z-1 before:inset-[0_0_0_auto]",
+              "before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:absolute before:z-1 before:inset-[0_0_0_auto]",
             )}
           >
             <span>{nri.label}</span>
@@ -1270,7 +1290,7 @@ function ApplyButtons({ buttons, variant = "desktop" }) {
             "absolute left-1/2 top-0 z-10 flex h-(--nh) w-(--nw) -translate-x-1/2 items-center justify-center whitespace-nowrap bg-transparent font-bold leading-none  -top-[3px]",
             isMobile
               ? // menu sheet: cream (light) / dark (dark) background behind the notch
-                "text-[11px] text-black dark:text-white"
+              "text-[11px] text-black dark:text-white"
               : "text-[9px] sm:text-[11px] 2xl:text-xs 3xl:text-sm text-white",
           )}
         >
@@ -1300,7 +1320,7 @@ function isActiveUrl(url, pathname) {
   let path = url;
   try {
     path = new URL(url, "http://x").pathname;
-  } catch {}
+  } catch { }
   const clean = (p) => (p.length > 1 ? p.replace(/\/+$/, "") : p);
   return clean(path) === clean(pathname);
 }
@@ -1321,6 +1341,7 @@ function MegaMenuPanel({
   onLeave,
 }) {
   const pathname = usePathname();
+  const panelRef = useRef(null); // ADDED: used to keep the panel inside the screen
   const item = items?.find((i) => i?.id === itemId);
   const children = item?.children || [];
   const hasChildMenu = children.length > 0;
@@ -1339,6 +1360,33 @@ function MegaMenuPanel({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemId]);
+
+  // ADDED: keep the whole panel inside the viewport. The panel is `w-max` and anchored to its nav item,
+  // so wide menus (e.g. Research & Innovation with Innovation Labs + Incubation columns) could run past
+  // the right edge. We measure the panel without any shift, then nudge it left/right just enough to fit.
+  // Re-runs when the active sidebar item changes (the panel width changes with it) and on resize.
+  useLayoutEffect(() => {
+    const el = panelRef.current;
+    if (!el) return;
+
+    const fit = () => {
+      el.style.transform = "";
+      const viewportWidth = document.documentElement.clientWidth;
+      const rect = el.getBoundingClientRect();
+      let dx = 0;
+      if (rect.right > viewportWidth - MEGA_MENU_EDGE_GAP) {
+        dx = viewportWidth - MEGA_MENU_EDGE_GAP - rect.right;
+      }
+      if (rect.left + dx < MEGA_MENU_EDGE_GAP) {
+        dx = MEGA_MENU_EDGE_GAP - rect.left;
+      }
+      if (dx) el.style.transform = `translateX(${dx}px)`;
+    };
+
+    fit();
+    window.addEventListener("resize", fit);
+    return () => window.removeEventListener("resize", fit);
+  }, [itemId, activeChildId]);
 
   if (!item || !hasChildMenu) return null;
 
@@ -1403,16 +1451,19 @@ function MegaMenuPanel({
 
   return (
     <div
+      ref={panelRef}
       onMouseEnter={onKeepOpen}
       onMouseLeave={onLeave}
       className={cn(
         "w-max h-auto absolute top-full z-50 pt-1",
         alignRight ? "right-0" : "left-0",
       )}
+      // ADDED: never wider than the screen; the cream panel scrolls if it still doesn't fit
+      style={{ maxWidth: `calc(100vw - ${MEGA_MENU_EDGE_GAP * 2}px)` }}
     >
       {/* Smooth entrance animation */}
       <div
-        className="w-auto h-auto"
+        className="w-auto h-auto max-w-full"
         style={{
           animation: "megaMenuIn 0.18s cubic-bezier(0.16,1,0.3,1) both",
         }}
@@ -1423,11 +1474,15 @@ function MegaMenuPanel({
             to   { opacity: 1; transform: translateY(0) scale(1); }
           }
         `}</style>
-        <div className="w-fit overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.22)] rounded-b-[8px]">
+        <div className="w-fit max-w-full overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.22)] rounded-b-[8px]">
           {/* ADDED: max height on the row; the sidebar and the right panel each scroll on their own */}
-          <div className={cn("w-fit flex items-stretch", MEGA_MENU_MAX_HEIGHT, reverseRow && "flex-row-reverse")}>
+          <div className={cn("w-fit max-w-full flex items-stretch", MEGA_MENU_MAX_HEIGHT, reverseRow && "flex-row-reverse")}>
             {/* ─── Vibrant Orange/Red Gradient Sidebar ─── */}
-            <nav className="w-[260px] 2xl:w-[280px] 3xl:w-[320px] shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-5 flex flex-col justify-start overflow-y-auto overscroll-contain">
+            {/* CHANGED: data-lenis-prevent so Lenis smooth scroll doesn't hijack the wheel over this list */}
+            <nav
+              data-lenis-prevent
+              className="w-[260px] 2xl:w-[280px] 3xl:w-[320px] shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) py-5 flex flex-col justify-start overflow-y-auto overscroll-contain"
+            >
               {children.map((child) => {
                 const isActive = child?.id === activeChild?.id;
                 if (!child?.children?.length) {
@@ -1481,7 +1536,11 @@ function MegaMenuPanel({
             {/* ─── Warm Cream / Ivory Right Panel ─── */}
             {activeChild?.children?.length > 0 && (
 
-              <div className="bg-[#FFF8EE] py-7 px-8 2xl:px-10 flex-1 min-w-0 text-[#262626] overflow-y-auto overscroll-contain">
+              // CHANGED: data-lenis-prevent so Lenis smooth scroll doesn't hijack the wheel over this panel
+              <div
+                data-lenis-prevent
+                className="bg-[#FFF8EE] py-7 px-8 2xl:px-10 flex-1 min-w-0 text-[#262626] overflow-y-auto overscroll-contain"
+              >
                 {hasColumnGroups ? (
                   <div className="flex items-start gap-x-8 2xl:gap-x-10 3xl:gap-x-12">
                     {columns.map((colGroups, colIdx) => (
@@ -1673,7 +1732,9 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
               />
 
               {/* ADDED: the list scrolls (not the card) so the notch is never clipped. Height = space below the card top */}
+              {/* CHANGED: data-lenis-prevent so Lenis smooth scroll doesn't hijack the wheel over the flyout */}
               <ul
+                data-lenis-prevent
                 className="flex flex-col gap-[3px] p-0 m-0 overflow-y-auto overscroll-contain"
                 style={{ maxHeight: `calc(100vh - ${pos.top + FLYOUT_VERTICAL_SPACE}px)` }}
               >
@@ -1686,7 +1747,7 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
                       className={cn(
                         "w-full inline-flex items-start gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium",
                         isActiveUrl(sub?.url, pathname) &&
-                          "bg-[#FFE8D6] font-medium",
+                        "bg-[#FFE8D6] font-medium",
                       )}
                     >
                       <span className="w-[8px] h-[8px] mt-[5px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
