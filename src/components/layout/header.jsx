@@ -712,12 +712,23 @@ export default function Header({ data = local_data }) {
           </div>
         </div>
       </div>
+      {/* MIDDLE SECTION (logos / action links / apply buttons / mobile hamburger).
+          Desktop: collapses smoothly when the header becomes sticky (isScrolled).
+          Mobile: untouched, the hamburger must stay available. */}
       <div
         className={cn(
           "w-full h-auto max-lg:py-[15px_20px] lg:border-b border-white/10",
-          isScrolled && "lg:hidden", // hide the logo/action-links row on desktop once the header is sticky
+          // desktop only: animate the collapse with grid rows instead of display:none
+          "lg:grid lg:transition-[grid-template-rows] lg:duration-300 lg:ease-out",
+          isScrolled ? "lg:grid-rows-[0fr] lg:border-b-0" : "lg:grid-rows-[1fr]",
         )}
       >
+        <div
+          className={cn(
+            "lg:min-h-0 lg:overflow-hidden transition-opacity duration-300",
+            isScrolled ? "lg:opacity-0" : "lg:opacity-100",
+          )}
+        >
         <div className="container">
           <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex flex-wrap items-center justify-between">
             <div className=" w-full sm:w-[60%] lg:w-[38%] max-lg:mb-6.25">
@@ -988,6 +999,7 @@ export default function Header({ data = local_data }) {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
       {!isMobile && (

@@ -229,7 +229,7 @@ html.lenis body {
     p,
     &,
     li {
-      @apply text-[14px] lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-normal  ;
+      @apply text-[14px] lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-normal text-[#212121] ;
     }
 
     /* images inserted from the Strapi blocks editor */
@@ -239,7 +239,7 @@ html.lenis body {
 
     /* paragraphs: +2px between lg and 2xl (1024px to 1407px) */
     p {
-      @apply lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px];
+      @apply lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px] text-[#212121];
     }
 
     h1 {
@@ -278,19 +278,19 @@ html.lenis body {
 
     ul > li,
     ol > li {
-      @apply my-1 lg:my-1.5 font-medium;
-    }
+      @apply my-1 lg:my-1.5 
+        }
     ul{
       @apply  !ml-4
     }
     ul > li {
-      @apply list-disc;
+      @apply list-disc text-(--text-color);
     }
     ol {
       @apply !ml-4;
     }
     ol > li {
-      @apply list-decimal;
+      @apply list-decimal text-(--text-color);
     }
   }
 }
