@@ -26,8 +26,8 @@ export default function IntlAccordionSection({ data }) {
                             <AccordionTrigger className="group min-h-[56px] items-center gap-4 rounded-none px-4 py-3 text-[16px] font-semibold leading-snug text-[#111] hover:no-underline focus-visible:ring-inset lg:px-5 2xl:min-h-[72px] 2xl:px-6 2xl:text-[20px] [&>svg]:!hidden">
                                 {item.title}
                                 <span className="mr-1 shrink-0 text-[#333]" aria-hidden="true">
-                                    <Plus className="size-4 group-data-[state=open]:hidden" strokeWidth={4} />
-                                    <Minus className="hidden size-3.5 group-data-[state=open]:block" strokeWidth={4} />
+                                    <Plus className="size-4 group-data-[panel-open]:hidden" strokeWidth={4} />
+                                    <Minus className="hidden size-3.5 group-data-[panel-open]:block" strokeWidth={4} />
                                 </span>
                             </AccordionTrigger>
                             <AccordionContent className="px-4 pb-5 pt-1 text-[14px] leading-[1.7] text-[#4B5563] lg:px-5 2xl:px-6 2xl:pb-8 2xl:text-[16px]">
