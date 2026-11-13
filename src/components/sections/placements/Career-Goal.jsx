@@ -34,7 +34,7 @@ export default function CareerGoal({ data }) {
 
                 {/* Description */}
                 {data?.description && (
-                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography">
+                    <div className="text_1   dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography">
                         <BlocksRenderer content={data.description} />
                     </div>
                 )}
@@ -46,7 +46,7 @@ export default function CareerGoal({ data }) {
                             <div className="text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[22px] font-semibold text-[#212121] dark:text-white italic leading-snug">
                                 {data.highlight.title}
                             </div>
-                            <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mt-[4px] xl:mt-[6px]">
+                            <div className="text_1   dark:text-[#9CA3AF] mt-[4px] xl:mt-[6px]">
                                 {data.highlight.description}
                             </div>
                         </div>
@@ -76,11 +76,11 @@ export default function CareerGoal({ data }) {
                                     </div>
                                 </AccordionTrigger>
                                 {(item.description || (item.tags && item.tags.length > 0) || item.note || item.media) && (
-                                    <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:lg:text-[14px] [&_p]:xl:text-[14px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] text-[#797979] ">
+                                    <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text_1 [&_p]:text_1 [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px]  ">
                                         <div className="w-full ">
                                             {/* Description */}
                                             {item.description && (
-                                                <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] !mb-[15px] xl:!mb-[20px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                                <p className="text_1   dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] !mb-[15px] xl:!mb-[20px] ">
                                                     {item.description}
                                                 </p>
                                             )}
@@ -91,7 +91,7 @@ export default function CareerGoal({ data }) {
                                                     {item.tags.map((tag) => (
                                                         <span
                                                             key={tag.id}
-                                                            className="inline-block px-[14px] xl:px-[18px] 2xl:px-[20px] py-[6px] xl:py-[8px] 2xl:py-[9px] text-[11px] xl:text-[12px] 2xl:text-[13px] 3xl:text-[15px] font-medium text-[#212121] dark:text-white bg-transparent dark:bg-white/10 border border-[#E5E9EE] dark:border-white/15 rounded-[6px]"
+                                                            className="inline-block px-[14px] xl:px-[18px] 2xl:px-[20px] py-[6px] xl:py-[8px] 2xl:py-[9px] text_1 font-medium text-[#212121] dark:text-white bg-transparent dark:bg-white/10 border border-[#E5E9EE] dark:border-white/15 rounded-[6px]"
                                                         >
                                                             {tag.label}
                                                         </span>
@@ -101,7 +101,7 @@ export default function CareerGoal({ data }) {
 
                                             {/* Note */}
                                             {item.note && (
-                                                <p className="!text-[11px] lg:!text-[13px] xl:!text-[14px] 2xl:!text-[13px] 3xl:!text-[15px] !text-[#6B7280] dark:!text-[#9CA3AF] leading-[1.5] !mb-[15px] xl:!mb-[20px]">
+                                                <p className="!text_1 dark:!text-[#9CA3AF] leading-[1.5] !mb-[15px] xl:!mb-[20px]">
                                                     {item.note}
                                                 </p>
                                             )}
