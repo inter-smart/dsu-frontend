@@ -54,9 +54,23 @@ export default function KeyFocus({ data }) {
                                         </div>
                                     </AccordionTrigger>
                                     {item?.answer?.length > 0 && (
-                                        <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text_1 [&_p]:text_1 [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] ">
+                                        <AccordionContent className="p-0 pt-[10px] 2xl:pt-[12px] 3xl:pt-[15px] text_1 [&_p]:text_1 [&_p]:3xl:text-[20px] [&_p]:text-[#212121] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px] ">
                                             <div className="w-full  typography">
                                                 <BlocksRenderer content={item.answer} />
+                                                <table>
+                                                    <tr>
+                                                        <th>fgdf</th>
+                                                        <th>fgdf</th>
+                                                        <th>fgdf</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>fsf</td>
+                                                        <td>fsf</td>
+                                                        <td>fsf</td>
+                                                        <td>fsf</td>
+                                                        <td>fsf</td>
+                                                    </tr>
+                                                </table>
                                             </div>
                                         </AccordionContent>
                                     )}

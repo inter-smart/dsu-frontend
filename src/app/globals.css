@@ -292,6 +292,33 @@ html.lenis body {
     ol > li {
       @apply list-decimal text-(--text-color);
     }
+        /* ---------- Tables ---------- */
+    table {
+      @apply my-[18px] block w-full max-w-full overflow-x-auto border-collapse text-[12px] md:text-[13px] xl:text-[14px] 3xl:text-[16px];
+    }
+
+    th,
+    td {
+      @apply min-w-[110px] border border-[#9fa2a76b] px-3 py-2 text-left align-top;
+    }
+
+    th {
+      @apply font-semibold text-white;
+      background: linear-gradient(to right, var(--basecolor2), var(--basecolor2));
+    }
+
+    tbody tr:nth-child(even) {
+      @apply bg-black/[0.03] dark:bg-white/[0.04];
+    }
+
+    td p,
+    th p {
+      @apply mb-0;
+    }
+
+    caption {
+      @apply pb-2 text-left text-[13px] font-medium opacity-80;
+    }
   }
 }
 
