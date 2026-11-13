@@ -21,7 +21,7 @@ export async function loadSchoolTabData(slug, tab) {
     if (!school?.slug) notFound();
 
     const hasDepartments = usesDepartments(school);
-    const entry = getSchoolTabs(hasDepartments).find((t) => t.key === tab && !t.anchor);
+    const entry = (school.tabs ?? getSchoolTabs(hasDepartments)).find((t) => t.key === tab && !t.anchor);
     if (!entry) notFound();
 
     const data = school.tab ?? {};
@@ -41,7 +41,7 @@ export async function loadSchoolTabData(slug, tab) {
 export async function schoolTabMetadata(slug, tab) {
     const school = await getSchoolTab(slug, tab);
     if (!school?.slug) return {};
-    const label = getSchoolTabs(usesDepartments(school)).find((t) => t.key === tab)?.label;
+    const label = (school.tabs ?? getSchoolTabs(usesDepartments(school))).find((t) => t.key === tab)?.label;
     // the API lays the tab's own SEO over the school's; add the tab label only when the title does not already carry it
     const base = school.seo?.metaTitle || school.name;
     const title = label && !base.toLowerCase().includes(label.toLowerCase()) ? `${label} | ${base}` : base;
