@@ -17,6 +17,16 @@ import Examination from "@/components/sections/examination/examination";
 import ExaminationContact from "@/components/sections/examination/examination-contact";
 import ExaminationResult from "@/components/sections/examination/examination-result";
 import ExaminationTimeTable from "@/components/sections/examination/examination-time-table";
+import DoctoralProgrammesSection from "@/components/sections/doctoral-research/ProgrammesSection";
+import DoctoralEligibilitySection from "@/components/sections/doctoral-research/EligibilitySection";
+import DoctoralProcessSection from "@/components/sections/doctoral-research/ProcessSection";
+import DoctoralDurationSection from "@/components/sections/doctoral-research/DurationSection";
+import DoctoralDatesSection from "@/components/sections/doctoral-research/DatesSection";
+import DoctoralApplicationSection from "@/components/sections/doctoral-research/ApplicationSection";
+import DoctoralFeesSection from "@/components/sections/doctoral-research/FeesSection";
+import DoctoralCourseworkSection from "@/components/sections/doctoral-research/CourseworkSection";
+import DoctoralFormsSection from "@/components/sections/doctoral-research/FormsSection";
+import DoctoralContactSection from "@/components/sections/doctoral-research/ContactSection";
 import NIRFRanking from "@/components/sections/NIRF/NIRF-ranking";
 import OtherApproval from "@/components/sections/regulatory-approval/other-approval";
 import UgcRecognition from "@/components/sections/regulatory-approval/ugc-recognition";
@@ -381,6 +391,17 @@ const flexibleRegistry = {
   "innovation.courses-section": { Component: InnovationCourses },
   "innovation.objectives-section": { Component: InnovationObjectives },
   "innovation.gallery-section": { Component: InnovationGallery },
+  // Doctoral Research sections (e.g. the Ph.D. Admission page)
+  "doctoral-research.programmes-section": { Component: DoctoralProgrammesSection },
+  "doctoral-research.eligibility-section": { Component: DoctoralEligibilitySection },
+  "doctoral-research.process-section": { Component: DoctoralProcessSection },
+  "doctoral-research.duration-section": { Component: DoctoralDurationSection },
+  "doctoral-research.dates-section": { Component: DoctoralDatesSection },
+  "doctoral-research.application-section": { Component: DoctoralApplicationSection },
+  "doctoral-research.fees-section": { Component: DoctoralFeesSection },
+  "doctoral-research.coursework-section": { Component: DoctoralCourseworkSection },
+  "doctoral-research.forms-section": { Component: DoctoralFormsSection },
+  "doctoral-research.contact-section": { Component: DoctoralContactSection },
 };
 
 export default flexibleRegistry;
