@@ -731,7 +731,7 @@ export default function Header({ data = local_data }) {
         >
         <div className="container">
           <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex flex-wrap items-center justify-between">
-            <div className=" w-full sm:w-[60%] lg:w-[38%] max-lg:mb-6.25">
+            <div className=" w-auto lg:w-[38%] max-lg:mb-6.25">
               <div className="w-full h-auto -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 flex items-center">
                 {data?.logo?.mainlogo?.url && (
                   <div className="w-auto h-auto">
@@ -786,7 +786,7 @@ export default function Header({ data = local_data }) {
                 )}
                 <div className="w-auto h-auto m-auto">
                   <div
-                    className="max-sm:text-[9px] text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white"
+                    className="max-sm:text-[9px] text-[14px] 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white min-w-[ 65px] md:min-w-[130px]"
                     dangerouslySetInnerHTML={{
                       __html: data?.logo?.logoText,
                     }}

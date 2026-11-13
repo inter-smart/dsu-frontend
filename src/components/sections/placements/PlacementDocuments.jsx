@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import Link from "next/link";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -64,9 +65,20 @@ export default function PlacementDocuments({ data }) {
                                         <div className="text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[28px] 3xl:text-[35px] font-semibold leading-[1.2] text-[#212121] dark:text-white mb-[6px] xl:mb-[8px]">
                                             {card.title}
                                         </div>
-                                        <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.5] mb-[10px] xl:mb-[12px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                            {card.description}
-                                        </p>
+                                        {/* rich text (blocks) on the Placement page; plain text on Recruit */}
+                                        {Array.isArray(card.description) ? (
+                                            card.description.length > 0 && (
+                                                <div className="typography mb-[10px] xl:mb-[12px] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_li]:text-[#4A5565] dark:[&_li]:text-[#9CA3AF] [&_p]:leading-[1.5] [&_p]:lg:text-[14px] [&_p]:2xl:text-[14.4px] [&_p:not(:last-child)]:mb-[8px]">
+                                                    <BlocksRenderer content={card.description} />
+                                                </div>
+                                            )
+                                        ) : (
+                                            card.description && (
+                                                <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.5] mb-[10px] xl:mb-[12px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                                    {card.description}
+                                                </p>
+                                            )
+                                        )}
                                         {card.cta?.file?.url && (
                                             <Link
                                                 href={card.cta.file.url}

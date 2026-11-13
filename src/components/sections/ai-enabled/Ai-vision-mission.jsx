@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Image from "next/image";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 /* Grid + list reset live in plain CSS so the global `typography` class and
    Tailwind breakpoint config can't interfere. */

@@ -2,7 +2,7 @@
 
 
 import Link from "next/link";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 import AcademicCta from "./academic-cta";
 export default function AcademicProgram({ data, variant }) {

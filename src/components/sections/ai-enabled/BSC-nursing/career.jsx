@@ -1,7 +1,7 @@
 
 
 "use client";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 
 // Bullet lists inside the description render as the same dotted rows the separate opportunity list uses.

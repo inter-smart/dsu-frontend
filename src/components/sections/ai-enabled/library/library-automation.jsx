@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import LibrarySidebar from "./library-sidemenubar";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { MenuItem } from "@base-ui/react";
 
 export default function LibraryAutomation({ data, menu }) {

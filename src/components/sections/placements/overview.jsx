@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 export default function PlacementOverview({ data }) {
     if (!data) return null;
