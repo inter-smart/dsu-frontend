@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import CmsPageView from "@/components/flexible/CmsPageView";
 import { getFlexiblePageBySlug } from "@/lib/api/flexible-page";
 import { getPdfReportPageBySlug } from "@/lib/api/pdf-report-page";
@@ -56,6 +56,17 @@ export default async function page({ params }) {
             return <PageView viaSlug />;
         }
         return <AboutPageView pageData={about} />;
+    }
+
+    // a school's page lives under the school
+    if (apiData.school?.slug) redirect(`/schools/${apiData.school.slug}/${apiData.slug}`);
+
+    if (apiData.department?.slug && apiData.department.school?.slug) {
+        redirect(`/ai-enabled/${apiData.department.school.slug}/${apiData.department.slug}/${apiData.slug}`);
+    }
+
+    if (apiData.programme?.slug) {
+        redirect(`/ai-enabled/${apiData.programme.school.slug}/programs/${apiData.programme.slug}/${apiData.slug}`);
     }
 
     return <CmsPageView page={apiData} />;
