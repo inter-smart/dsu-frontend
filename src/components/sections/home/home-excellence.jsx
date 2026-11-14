@@ -22,6 +22,8 @@ const STEP_MS = 1000;
 // Wheel events closer together than this belong to the same gesture (trackpad inertia included).
 const GESTURE_GAP_MS = 120;
 const SWIPE_PX = 24;
+// Windows trackpad inertia tails are jittery and can pause 100-200ms mid-tail, so a gesture ends only after this much silence.
+const QUIET_MS = 300;
 // Cards visible in the stack at once; the next one fades in behind them as the front card leaves.
 const VISIBLE_CARDS = 3;
 // How quickly the cards catch up to the scroll position (0-1, higher = snappier).
@@ -78,13 +80,19 @@ export default function HomeExcellence({ data }) {
     let lastIndex = -1;
     let lastTime = 0; // ADDED: timestamp of the previous frame, for time-based easing
 
-    const getRaw = () => {
+    // Geometry is measured once (and on resize), never during scroll: reading layout right after the
+    // card styles were written forced a reflow every frame and delayed wheel events on slow machines.
+    let startY = 0; // document offset where the pin begins
+    let total = 0; // scroll distance of the pin
+    const measure = () => {
       const el = trackRef.current;
-      if (!el) return 0;
-      const { top, height } = el.getBoundingClientRect();
+      if (!el) return;
       const pin = el.firstElementChild?.offsetHeight || window.innerHeight;
-      const total = height - pin;
-      const progress = total > 0 ? Math.min(1, Math.max(0, -top / total)) : 0;
+      startY = el.getBoundingClientRect().top + window.scrollY;
+      total = el.offsetHeight - pin;
+    };
+    const getRaw = () => {
+      const progress = total > 0 ? Math.min(1, Math.max(0, (window.scrollY - startY) / total)) : 0;
       return progress * (count - 1);
     };
     const getTarget = () => withDwell(getRaw());
@@ -137,17 +145,22 @@ export default function HomeExcellence({ data }) {
       if (!raf) raf = requestAnimationFrame(tick);
     };
 
+    measure();
     current = target = getTarget();
     paint(current);
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    const onResize = () => {
+      measure();
+      onScroll();
+    };
+    window.addEventListener("resize", onResize);
 
     // Gesture stepping: while the section is pinned, one wheel gesture / swipe scrolls to exactly the next
     // (or previous) card. At the first/last card the gesture is released so the page scrolls on normally.
     let dead = false;
     let busy = false; // a step animation is running
     let locked = false; // current wheel gesture already handled (swallow its remaining/inertia events)
-    let quiet = true; // no wheel events for GESTURE_GAP_MS
+    let quiet = true; // no wheel events for QUIET_MS
     let settle = false; // gesture started outside the pin: snap to the nearest card when it ends
     let lastWheel = 0;
     let quietTimer = 0;
@@ -155,17 +168,14 @@ export default function HomeExcellence({ data }) {
     let touchDone = false;
 
     const inRange = () => {
-      const r = trackRef.current?.getBoundingClientRect();
-      return !!r && r.top <= 2 && r.bottom >= window.innerHeight - 2;
+      const y = window.scrollY;
+      return total > 0 && y >= startY - 2 && y <= startY + total + 2;
     };
     const tryUnlock = () => {
       if (!busy && quiet) locked = false;
     };
     const go = (i) => {
-      const el = trackRef.current;
-      if (!el) return;
-      const pin = el.firstElementChild?.offsetHeight || window.innerHeight;
-      const y = el.getBoundingClientRect().top + window.scrollY + (i / (count - 1)) * (el.offsetHeight - pin);
+      const y = startY + (i / (count - 1)) * total;
       busy = true;
       const done = () => {
         busy = false;
@@ -200,7 +210,14 @@ export default function HomeExcellence({ data }) {
       const gap = now - lastWheel;
       lastWheel = now;
       const dir = Math.sign(e.deltaY);
+      const abs = Math.abs(e.deltaY);
       if (!dir || e.ctrlKey || !inRange()) return;
+      // After a step, only a big isolated mouse-wheel notch may start another before the gesture goes quiet.
+      // Everything else is the trackpad's inertia tail and stays swallowed.
+      if (locked && !busy && abs >= 50 && gap >= 60) {
+        locked = false;
+        settle = false;
+      }
       if (!locked && !canStep(dir)) return; // first/last card: let the page scroll on
       swallow(e);
       quiet = false;
@@ -213,7 +230,7 @@ export default function HomeExcellence({ data }) {
           if (Math.abs(raw - Math.round(raw)) > 0.02) go(Math.round(raw));
         }
         tryUnlock();
-      }, GESTURE_GAP_MS);
+      }, QUIET_MS);
       if (locked) return;
       locked = true;
       if (gap < GESTURE_GAP_MS) {
@@ -244,14 +261,14 @@ export default function HomeExcellence({ data }) {
     // without a scroll event. Re-sync the cards so the pin never looks out of step.
     let resizeObserver;
     if (typeof ResizeObserver !== "undefined") {
-      resizeObserver = new ResizeObserver(onScroll);
+      resizeObserver = new ResizeObserver(onResize);
       resizeObserver.observe(document.documentElement);
       if (trackRef.current) resizeObserver.observe(trackRef.current);
     }
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", onResize);
       resizeObserver?.disconnect();
       dead = true;
       clearTimeout(quietTimer);
