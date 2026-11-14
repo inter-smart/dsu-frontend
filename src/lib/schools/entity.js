@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getDepartmentLibraryPage, getDepartmentTab, getProgrammeTab } from "@/lib/api";
+import { getFlexiblePageBySlug } from "@/lib/api/flexible-page";
 import { departmentHref, libraryHref, librarySidebarItems, programmeBase, programmeHref } from "@/lib/schools/items";
 
 // Department and programme pages, resolved from the real hierarchy:
@@ -76,6 +77,29 @@ function buildHero(apiHero, trail, title) {
   };
 }
 
+// Shell data for a Flexible Page that belongs to a department (/ai-enabled/[school]/[department]/[slug]).
+export async function loadDepartmentFlexPage(schoolSlug, departmentSlug, pageSlug) {
+  const page = await getFlexiblePageBySlug(pageSlug);
+  if (page?.department?.slug !== departmentSlug || page.department.school?.slug !== schoolSlug) notFound();
+
+  const res = await getDepartmentTab(departmentSlug, "overview");
+  if (!res?.slug || res.school?.slug !== schoolSlug) notFound();
+
+  const base = departmentHref(schoolSlug, departmentSlug);
+  const trail = [
+    { label: res.school.name, href: `/schools/${schoolSlug}` },
+    { label: res.name, href: base },
+    { label: page.title, href: `${base}/${pageSlug}` },
+  ];
+  return {
+    school: res.school,
+    page,
+    hero: { ...buildHero(page.hero, trail, page.hero?.title || page.title), heroMedia: page.hero?.heroMedia },
+    menuItems: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs),
+    menuHome: base,
+  };
+}
+
 export async function loadDepartmentPage(schoolSlug, departmentSlug, tab) {
   const entry = DEPARTMENT_TABS.find((t) => t.key === tab);
   if (!entry) notFound();
@@ -136,6 +160,30 @@ export async function loadDepartmentLibraryPage(schoolSlug, departmentSlug, page
     },
     menuItems: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs),
     menuHome: base,
+  };
+}
+
+// Shell data for a Flexible Page that belongs to a programme (/ai-enabled/[school]/programs/[programme]/[slug]).
+export async function loadProgramFlexPage(schoolSlug, programmeSlug, pageSlug) {
+  const page = await getFlexiblePageBySlug(pageSlug);
+  if (page?.programme?.slug !== programmeSlug || page.programme.school?.slug !== schoolSlug) notFound();
+
+  const res = await getProgrammeTab(programmeSlug, "overview");
+  if (!res?.slug || res.school?.slug !== schoolSlug) notFound();
+
+  const base = programmeBase(schoolSlug, programmeSlug);
+  const owner = res.department;
+  const trail = [
+    { label: res.school.name, href: `/schools/${schoolSlug}` },
+    ...(owner ? [{ label: owner.name, href: departmentHref(schoolSlug, owner.slug) }] : []),
+    { label: res.title, href: programmeHref(schoolSlug, programmeSlug) },
+    { label: page.title, href: `${base}/${pageSlug}` },
+  ];
+  return {
+    school: res.school,
+    page,
+    hero: { ...buildHero(page.hero, trail, page.hero?.title || page.title), heroMedia: page.hero?.heroMedia },
+    menuItems: menuFor(shownTabs(PROGRAM_TABS, res), base, res.extraTabs),
   };
 }
 
