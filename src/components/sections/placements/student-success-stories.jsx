@@ -169,7 +169,7 @@ export default function StudentSuccessStories({ data, variant }) {
                                             </h4>
 
                                             {/* Story Quote Text */}
-                                            <p className="text_1 text-[#64748B] dark:text-[#94A3B8] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                            <p className="text_1 text-[#64748B] dark:text-[#94A3B8]  ">
                                                 {story.quote}
                                             </p>
                                         </div>
