@@ -2,7 +2,7 @@ import CeadcTemplate from "@/components/sections/why-us/templates/ceadc-template
 import { getCeadcPage } from "@/lib/api/ceadc";
 import { getStudentSupportMenu } from "@/lib/api/women-redressal";
 
-// export const revalidate = 60;
+export const revalidate = 60;
 
 export async function generateMetadata() {
   const apiData = await getCeadcPage();
@@ -47,7 +47,7 @@ const local_data = {
         href: "/",
       },
       {
-        label: "CEDCC",
+        label: "CEADC",
         href: "/",
       },
     ],
