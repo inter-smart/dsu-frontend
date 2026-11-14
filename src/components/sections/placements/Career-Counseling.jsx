@@ -24,20 +24,7 @@ export default function CareerCounselling({ data }) {
 
                         </div>
                     )}
-                    <table>
-                        <tr>
-                            <th>czxczxc</th>
-                            <th>czxczxc</th>
-                            <th>czxczxc</th>
-                            <th>czxczxc</th>
-                        </tr>
-                        <tr>
-                            <td>fdffd</td>
-                            <td>fdffd</td>
-                            <td>fdffd</td>
-                            <td>fdffd</td>
-                        </tr>
-                    </table>
+                  
                 </div>
             </div>
         </section>
