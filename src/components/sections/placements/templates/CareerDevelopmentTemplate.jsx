@@ -62,7 +62,6 @@ const careerCounsellingData = {
     },
   ],
 };
-
 // 2.4 Professional Certifications + 2.5 Career Resources (headings are inside `content`).
 // Plain const, used as a fallback until the API returns `careerSections`.
 const careerSectionsData = {
@@ -154,7 +153,6 @@ const careerSectionsData = {
     },
   ],
 };
-
 // data: the page API response ({ hero, sidebar, careerDevelopment, ... })
 export default function CareerDevelopmentTemplate({ data }) {
   const career = data?.careerDevelopment || {};
