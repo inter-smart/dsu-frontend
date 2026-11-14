@@ -5,7 +5,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
 import { useEffect, useLayoutEffect, useState, useRef } from "react"; // CHANGED: added useLayoutEffect
-import { createPortal } from "react-dom"; // ADDED 
+import { createPortal } from "react-dom"; // ADDED
+import { useLenis } from "lenis/react";
 import { ChevronRight, ChevronDown, X, User, LogOut } from "lucide-react";
 import {
   DropdownMenu,
@@ -552,6 +553,13 @@ export default function Header({ data = local_data }) {
     setOpenMenuId(null);
     setActiveChildId(null);
   }
+  // Lock page scroll while a desktop dropdown is open so wheel scrolling doesn't hide the header and close it.
+  const lenis = useLenis();
+  useEffect(() => {
+    if (!openMenuId) return undefined;
+    lenis?.stop();
+    return () => lenis?.start();
+  }, [openMenuId, lenis]);
   useEffect(() => {
     document.body.classList.toggle("header-visible", isHeaderVisible);
 
@@ -611,7 +619,8 @@ export default function Header({ data = local_data }) {
   }, [isSearchOpen]);
   const isMobile = useIsMobile();
   const TopHeaderTextStyle =
-    "text-[9px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] lg:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] lg:gap-2.5 flex items-center";
+    // max-lg:after:* = invisible 48px-tall touch target on mobile (no visual change)
+    "text-[10px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] lg:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] lg:gap-2.5 flex items-center max-lg:relative max-lg:after:absolute max-lg:after:inset-x-0 max-lg:after:-inset-y-3.5 max-lg:after:content-['']";
   return (
     <header
       className={cn(
@@ -637,7 +646,7 @@ export default function Header({ data = local_data }) {
                     target: "_blank",
                     rel: "noopener noreferrer",
                   })}
-                  className="text-[8px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full lg:h-auto p-2.5 sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
+                  className="text-[10px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full lg:h-auto p-2.5 max-lg:relative max-lg:after:absolute max-lg:after:inset-x-0 max-lg:after:-inset-y-1 max-lg:after:content-['']sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
                 >
                   {item?.label}
                 </Link>
@@ -919,7 +928,7 @@ export default function Header({ data = local_data }) {
                             <Link
                               key={index}
                               href={item?.url || "#"}
-                              className="px-3 py-2 rounded-[3px] border border-[#ea580c] dark:border-[#ea580c] text-[11.5px] font-bold text-black dark:text-white shrink-0 hover:bg-(--basecolor)/10 transition-colors"
+                              className="px-3 py-2 rounded-[3px] border border-[#ea580c] dark:border-[#ea580c] text-xs font-bold text-black dark:text-white shrink-0 hover:bg-(--basecolor)/10 transition-colors"
                             >
                               {item?.label}
                             </Link>
@@ -935,13 +944,13 @@ export default function Header({ data = local_data }) {
                           <div className="flex items-center gap-1.25">
                             <Link
                               href="/#"
-                              className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-[11px] font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
+                              className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
                             >
                               CDSIMER
                             </Link>
                             <Link
                               href="/#"
-                              className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-[11px] font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
+                              className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
                             >
                               DSU Online
                             </Link>
