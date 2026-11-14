@@ -1,3 +1,4 @@
+import { FALLBACK_HERO_MEDIA } from "@/lib/schools/entity";
 import { notFound } from "next/navigation";
 import SchoolTabShell from "@/components/sections/academics/school-tab-shell";
 import FlexibleSections from "@/components/flexible/FlexibleSections";
@@ -26,6 +27,7 @@ export default async function Page({ params }) {
 
     const hero = {
         ...page.hero,
+        heroMedia: page.hero?.heroMedia?.url ? page.hero.heroMedia : FALLBACK_HERO_MEDIA,
         breadcrumb: [
             { label: "Home", href: "/" },
             { label: "Schools", href: "/schools" },

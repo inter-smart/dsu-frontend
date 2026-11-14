@@ -45,32 +45,45 @@ const menuHref = (base, tab) => `${base}/${tab}`;
 const shownTabs = (tabs, res) =>
   tabs.filter((t) => (res.availableTabs ?? []).includes(t.key)).map((t) => ({ ...t, label: res.tabLabels?.[t.key] || t.label }));
 
-const menuFor = (tabs, base, extra = []) => [
-  ...tabs.map((t) => ({ label: t.label, href: menuHref(base, t.key) })),
-  ...extra.map((t) => ({ label: t.label, href: t.href })),
-];
+// Items sorted by the API's menuOrder (tab keys and "page-<slug>"); Vision & Mission follows Overview.
+const byMenuOrder = (items, order) => {
+  if (!order?.length) return items;
+  const rank = (i) => { const r = order.indexOf(i.key === "vision-mission" ? "overview" : i.key); return (r < 0 ? order.length : r) + (i.key === "vision-mission" ? 0.5 : 0); };
+  return items.map((i, n) => [i, n]).sort(([a, x], [b, y]) => rank(a) - rank(b) || x - y).map(([i]) => i);
+};
+const stripKey = ({ key, ...item }) => item;
+
+const menuFor = (tabs, base, extra = [], order) =>
+  byMenuOrder([
+    ...tabs.map((t) => ({ key: t.key, label: t.label, href: menuHref(base, t.key) })),
+    ...extra.map((t) => ({ key: t.key, label: t.label, href: t.href })),
+  ], order).map(stripKey);
 
 // Vision & Mission has no page of its own: it is the #vision-mission section of the department Overview.
 const VISION_MISSION_ITEM = { label: "Vision & Mission", anchor: "vision-mission" };
 
 // Department menu: the tabs the API has content for, with Vision & Mission right after Overview and the
 // Library's sub-pages (Overview + each published sub-page) as the Library item's sub-menu.
-function departmentMenu(tabs, base, schoolSlug, departmentSlug, librarySubpages = [], extra = []) {
-  return [...tabs.flatMap((t) => {
-    const item = { label: t.label, href: menuHref(base, t.key) };
+function departmentMenu(tabs, base, schoolSlug, departmentSlug, librarySubpages = [], extra = [], order) {
+  return byMenuOrder([...tabs.flatMap((t) => {
+    const item = { key: t.key, label: t.label, href: menuHref(base, t.key) };
     if (t.key === "library" && librarySubpages.length) {
       item.submenu = librarySidebarItems(schoolSlug, departmentSlug, librarySubpages).map(({ label, slug }) => ({ label, href: slug }));
     }
     return t.key === "overview"
-      ? [item, { label: VISION_MISSION_ITEM.label, href: `${menuHref(base, "overview")}#${VISION_MISSION_ITEM.anchor}` }]
+      ? [item, { key: "vision-mission", label: VISION_MISSION_ITEM.label, href: `${menuHref(base, "overview")}#${VISION_MISSION_ITEM.anchor}` }]
       : [item];
-  }), ...extra.map((t) => ({ label: t.label, href: t.href }))];
+  }), ...extra.map((t) => ({ key: t.key, label: t.label, href: t.href }))], order).map(stripKey);
 }
 
 // Hero for an entity page: the API hero (its own banner or the school's), full breadcrumb.
+// Banner shown when the page has none.
+export const FALLBACK_HERO_MEDIA = { url: "/images/media-coverage-hero-644103.png", alternativeText: "DSU campus", mime: "image/png" };
+const withBanner = (m) => (m?.url ? m : FALLBACK_HERO_MEDIA);
+
 function buildHero(apiHero, trail, title) {
   return {
-    heroMedia: apiHero?.heroMedia,
+    heroMedia: withBanner(apiHero?.heroMedia),
     title,
     menuBar: apiHero?.menuBar,
     breadcrumb: [{ label: "Home", href: "/" }, { label: "Schools", href: "/schools" }, ...trail],
@@ -94,8 +107,8 @@ export async function loadDepartmentFlexPage(schoolSlug, departmentSlug, pageSlu
   return {
     school: res.school,
     page,
-    hero: { ...buildHero(page.hero, trail, page.hero?.title || page.title), heroMedia: page.hero?.heroMedia },
-    menuItems: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs),
+    hero: { ...buildHero(page.hero, trail, page.hero?.title || page.title), heroMedia: withBanner(page.hero?.heroMedia) },
+    menuItems: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs, res.menuOrder),
     menuHome: base,
   };
 }
@@ -127,7 +140,7 @@ export async function loadDepartmentPage(schoolSlug, departmentSlug, tab) {
       // a breadcrumb set on the tab's own Hero wins over the generated trail
       ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
     },
-    menuItems: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs),
+    menuItems: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs, res.menuOrder),
     menuHome: base,
   };
 }
@@ -158,7 +171,7 @@ export async function loadDepartmentLibraryPage(schoolSlug, departmentSlug, page
       ...buildHero(res.hero, trail, res.hero?.title || res.page.title),
       ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
     },
-    menuItems: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs),
+    menuItems: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs, res.menuOrder),
     menuHome: base,
   };
 }
@@ -182,8 +195,8 @@ export async function loadProgramFlexPage(schoolSlug, programmeSlug, pageSlug) {
   return {
     school: res.school,
     page,
-    hero: { ...buildHero(page.hero, trail, page.hero?.title || page.title), heroMedia: page.hero?.heroMedia },
-    menuItems: menuFor(shownTabs(PROGRAM_TABS, res), base, res.extraTabs),
+    hero: { ...buildHero(page.hero, trail, page.hero?.title || page.title), heroMedia: withBanner(page.hero?.heroMedia) },
+    menuItems: menuFor(shownTabs(PROGRAM_TABS, res), base, res.extraTabs, res.menuOrder),
   };
 }
 
@@ -218,7 +231,7 @@ export async function loadProgramPage(schoolSlug, programmeSlug, tab, department
       // a breadcrumb set on the tab's own Hero wins over the generated trail
       ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
     },
-    menuItems: menuFor(shownTabs(PROGRAM_TABS, res), base, res.extraTabs),
+    menuItems: menuFor(shownTabs(PROGRAM_TABS, res), base, res.extraTabs, res.menuOrder),
   };
 }
 

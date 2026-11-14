@@ -47,6 +47,8 @@ import AcademicPartners from "@/components/sections/academics/academic-partners"
 import AcademicPlacementReport from "@/components/sections/academics/academic-placement-report";
 import AcademicProgram from "@/components/sections/academics/academic-program";
 import AcademicVisionMission from "@/components/sections/academics/academic-vision-mission";
+import WhyChoose from "@/components/sections/academics/why-choose";
+import AcademicFacilities from "@/components/sections/academics/academic-facilities";
 import AcademicWhychoose from "@/components/sections/academics/academic-whychoose";
 import DeanMessage from "@/components/sections/academics/dean-message";
 import AiAcademicChapters from "@/components/sections/ai-enabled/Ai-academicChapters";
@@ -281,6 +283,9 @@ const flexibleRegistry = {
   "school.vision-mission-section": { Component: AcademicVisionMission },
   "school.dean-message-section": { Component: DeanMessage },
   "school.why-choose-section": { Component: AcademicWhychoose },
+  "school.why-choose-home-section": { Component: AcademicWhychoose },
+  "school.why-choose-tab-section": { Component: WhyChoose },
+  "school.facilities-section": { Component: AcademicFacilities },
   "school.programs-section": { Component: AcademicProgram },
   "school.collaborations-section": { Component: AcademicCollaboration },
   "school.partners-section": { Component: AcademicPartners },
