@@ -41,7 +41,7 @@ export default function StudentSuccessStories({ data, variant }) {
     };
 
     return (
-        <section className={`relative w-full py-[45px] sm:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0c0d0e] transition-colors duration-300 ${variant=== "bg-gradient" ? "bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-none dark:bg-[#0c0d0e]": " bg-white"}`}>
+        <section className={`relative w-full py-[45px] sm:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0c0d0e] transition-colors duration-300 ${variant=== "bg-gradient" ? "bg-[linear-gradient(0deg,#EFF6FF_90%,#ffff_100%)] dark:bg-none dark:bg-[#0c0d0e]": " bg-white"}`}>
             <div className="container">
 
  

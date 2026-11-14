@@ -12,7 +12,7 @@ export default function NewsCard({ item }) {
           {item?.path && (
             <Image
               src={item.path}
-              width={560}
+              width={563}
               height={220}
               alt={item?.title || "News"}
               className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"

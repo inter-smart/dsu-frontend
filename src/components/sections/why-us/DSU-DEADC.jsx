@@ -21,7 +21,7 @@ export default function DSUDEADC({ data, menu }) {
         <section className="relative py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
             <div className="container">
                 <div className="cmnFlx">
-                    <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
+                    <div className="leftBx lg:sticky lg:top-[30px] lg:left-0 lg:h-full">
                         <StudentSupportSidebar
                             menu={menu}
                             isOpen={isMobileSidebarOpen}
@@ -50,7 +50,7 @@ export default function DSUDEADC({ data, menu }) {
                                 {data?.heading}
                             </h2>
 
-                            <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
+                            <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565]  
                                          w-full  ">
                                 {data?.description?.length > 0 && <BlocksRenderer content={data.description} />}
                             </div>
@@ -61,7 +61,7 @@ export default function DSUDEADC({ data, menu }) {
                                             className="relative p-0  font-medium !text-black text-[11px] hover:no-underline  md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]  3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold after:text-base2 data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden"
                                         >
                                             <div className="w-full">
-                                                <div className="text-[15px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[30px] text-[#212121] font-semibold mb-[4px]">
+                                                <div className="text-[15px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] text-[#212121] font-semibold mb-[4px]">
                                                     {item.title}
                                                 </div>
                                             </div>

@@ -134,7 +134,7 @@ export default function InternshipOpportunities({ data }) {
                                                 value={`${tab.id}-${programme.id}`}
                                                 className="border border-black/10 dark:border-white/10 rounded-[6px] p-[12px_15px] xl:p-[18px_22px] mb-[10px] xl:mb-[15px]"
                                             >
-                                                <AccordionTrigger className="relative p-0 pr-[30px] hover:no-underline !text-[#212121] dark:!text-white text-[18px] xl:text-[24px] 2xl:text-[28px] font-bold after:absolute after:right-[5px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[20px] after:font-bold data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden">
+                                                <AccordionTrigger className="relative p-0 pr-[30px] hover:no-underline !text-[#212121] dark:!text-white text-[18px] xl:text-[22px] 2xl:text-[25px] font-bold after:absolute after:right-[5px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[20px] after:font-bold data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden">
                                                     {programme.name}
                                                 </AccordionTrigger>
 
