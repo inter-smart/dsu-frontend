@@ -337,6 +337,14 @@ html.lenis body {
     .blocks-html tfoot td {
       @apply bg-black/5 font-semibold dark:bg-white/10;
     }
+    /* CKEditor wraps tables and images in <figure> */
+    .ck-content figure.table,
+    .ck-content figure.image {
+      @apply mx-0 my-3 w-full overflow-x-auto lg:my-4;
+    }
+    .ck-content img {
+      @apply h-auto max-w-full;
+    }
   }
 }
 }
