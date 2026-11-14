@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { hasContent } from "@/lib/has-content";
 
 

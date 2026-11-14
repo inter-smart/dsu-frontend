@@ -318,10 +318,28 @@ html.lenis body {
 
     caption {
       @apply pb-2 text-left text-[13px] font-medium opacity-80;
+
+    /* tables pasted as HTML into a Strapi "HTML" code block */
+    .blocks-html {
+      @apply my-3 lg:my-4;
+    }
+    .blocks-html table {
+      @apply w-full border-collapse text-left text-(--text-color);
+    }
+    .blocks-html caption {
+      @apply mb-2 text-left font-semibold;
+    }
+    .blocks-html th,
+    .blocks-html td {
+      @apply border border-[#9fa2a76b] px-3 py-2 align-top text-[13px] lg:text-[14px] 3xl:text-[16px];
+    }
+    .blocks-html thead th,
+    .blocks-html tfoot td {
+      @apply bg-black/5 font-semibold dark:bg-white/10;
     }
   }
 }
-
+}
 @keyframes spec-flip-in {
   0% {
     opacity: 0;

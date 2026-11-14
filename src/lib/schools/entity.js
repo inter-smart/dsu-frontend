@@ -40,15 +40,22 @@ const tabHref = (base, tab) => (tab === "overview" ? base : `${base}/${tab}`);
 // Menu links use /overview explicitly: the bare base path is a prefix of every tab URL, which would keep Overview active.
 const menuHref = (base, tab) => `${base}/${tab}`;
 
-const menuFor = (tabs, base) => tabs.map((t) => ({ label: t.label, href: menuHref(base, t.key) }));
+// Tabs the CMS enables, with the editor's tab title where set.
+const shownTabs = (tabs, res) =>
+  tabs.filter((t) => (res.availableTabs ?? []).includes(t.key)).map((t) => ({ ...t, label: res.tabLabels?.[t.key] || t.label }));
+
+const menuFor = (tabs, base, extra = []) => [
+  ...tabs.map((t) => ({ label: t.label, href: menuHref(base, t.key) })),
+  ...extra.map((t) => ({ label: t.label, href: t.href })),
+];
 
 // Vision & Mission has no page of its own: it is the #vision-mission section of the department Overview.
 const VISION_MISSION_ITEM = { label: "Vision & Mission", anchor: "vision-mission" };
 
 // Department menu: the tabs the API has content for, with Vision & Mission right after Overview and the
 // Library's sub-pages (Overview + each published sub-page) as the Library item's sub-menu.
-function departmentMenu(tabs, base, schoolSlug, departmentSlug, librarySubpages = []) {
-  return tabs.flatMap((t) => {
+function departmentMenu(tabs, base, schoolSlug, departmentSlug, librarySubpages = [], extra = []) {
+  return [...tabs.flatMap((t) => {
     const item = { label: t.label, href: menuHref(base, t.key) };
     if (t.key === "library" && librarySubpages.length) {
       item.submenu = librarySidebarItems(schoolSlug, departmentSlug, librarySubpages).map(({ label, slug }) => ({ label, href: slug }));
@@ -56,7 +63,7 @@ function departmentMenu(tabs, base, schoolSlug, departmentSlug, librarySubpages 
     return t.key === "overview"
       ? [item, { label: VISION_MISSION_ITEM.label, href: `${menuHref(base, "overview")}#${VISION_MISSION_ITEM.anchor}` }]
       : [item];
-  });
+  }), ...extra.map((t) => ({ label: t.label, href: t.href }))];
 }
 
 // Hero for an entity page: the API hero (its own banner or the school's), full breadcrumb.
@@ -76,7 +83,7 @@ export async function loadDepartmentPage(schoolSlug, departmentSlug, tab) {
   const res = await getDepartmentTab(departmentSlug, tab);
   if (!res?.slug || res.school?.slug !== schoolSlug) notFound();
 
-  const available = new Set(["overview", ...(res.availableTabs ?? [])]);
+  const available = new Set(res.availableTabs ?? []);
   if (!available.has(tab)) notFound();
 
   const base = departmentHref(schoolSlug, departmentSlug);
@@ -90,13 +97,13 @@ export async function loadDepartmentPage(schoolSlug, departmentSlug, tab) {
     school: res.school,
     department: res,
     data: res.tab ?? {},
-    label: entry.label,
+    label: res.tabLabels?.[tab] || entry.label,
     hero: {
       ...buildHero(res.hero, trail, res.hero?.title || res.name),
       // a breadcrumb set on the tab's own Hero wins over the generated trail
       ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
     },
-    menuItems: departmentMenu(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base, schoolSlug, departmentSlug, res.librarySubpages),
+    menuItems: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs),
     menuHome: base,
   };
 }
@@ -107,7 +114,7 @@ export async function loadDepartmentLibraryPage(schoolSlug, departmentSlug, page
   const res = await getDepartmentLibraryPage(departmentSlug, pageSlug);
   if (!res?.slug || res.school?.slug !== schoolSlug || !res.page?.slug) notFound();
 
-  const available = new Set(["overview", ...(res.availableTabs ?? [])]);
+  const available = new Set(res.availableTabs ?? []);
   if (!available.has("library")) notFound();
 
   const base = departmentHref(schoolSlug, departmentSlug);
@@ -127,7 +134,7 @@ export async function loadDepartmentLibraryPage(schoolSlug, departmentSlug, page
       ...buildHero(res.hero, trail, res.hero?.title || res.page.title),
       ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
     },
-    menuItems: departmentMenu(DEPARTMENT_TABS.filter((t) => available.has(t.key)), base, schoolSlug, departmentSlug, res.librarySubpages),
+    menuItems: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs),
     menuHome: base,
   };
 }
@@ -163,7 +170,7 @@ export async function loadProgramPage(schoolSlug, programmeSlug, tab, department
       // a breadcrumb set on the tab's own Hero wins over the generated trail
       ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
     },
-    menuItems: menuFor(PROGRAM_TABS, base),
+    menuItems: menuFor(shownTabs(PROGRAM_TABS, res), base, res.extraTabs),
   };
 }
 

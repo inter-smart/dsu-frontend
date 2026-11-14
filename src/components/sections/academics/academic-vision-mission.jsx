@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 // CHANGED: shared list styles so editor lists look like the points list
 const richTextLists = [
