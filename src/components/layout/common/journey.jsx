@@ -79,8 +79,8 @@ export default function Journey({ data }) {
                   <div className="w-8.75 sm:w-12.5 xl:w-15 2xl:w-21.25 h-auto aspect-85/25 overflow-hidden flex items-center justify-center">
                     <Image
                       src="/images/rating-star.svg"
-                      width={50}
-                      height={50}
+                      width={85}
+                      height={25}
                       alt="Accreditation"
                       className="w-full h-full object-contain"
                     />
