@@ -430,7 +430,7 @@ export default function HomeExcellence({ data }) {
                 <button
                   onClick={scrollPrev}
                   aria-label="Previous slide"
-                  className="w-(--navigation-btn-size) h-auto aspect-40/30 my-auto overflow-hidden translate-x-[10px] flex items-center justify-center absolute z-10 inset-[0_auto_0_0] transition-opacity duration-500 hover:opacity-50"
+                  className="w-(--navigation-btn-size) h-auto aspect-40/30 my-auto overflow-hidden translate-x-[10px] flex items-center justify-center absolute z-1000 inset-[0_auto_0_0] transition-opacity duration-500 hover:opacity-50"
                 >
                   <Image
                     src={"/images/testimonial-slider-btn-mobile.svg"}
@@ -443,7 +443,7 @@ export default function HomeExcellence({ data }) {
                 <button
                   onClick={scrollNext}
                   aria-label="Next slide"
-                  className="w-(--navigation-btn-size) h-auto aspect-40/30 my-auto overflow-hidden translate-x-[-10px] flex items-center justify-center absolute z-10 inset-[0_0_0_auto] transition-opacity duration-500 hover:opacity-50"
+                  className="w-(--navigation-btn-size) h-auto aspect-40/30 my-auto overflow-hidden translate-x-[-10px] flex items-center justify-center absolute z-1000 inset-[0_0_0_auto] transition-opacity duration-500 hover:opacity-50"
                 >
                   <Image
                     src={"/images/testimonial-slider-btn-mobile.svg"}
