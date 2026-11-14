@@ -79,6 +79,11 @@ export default function PlacementProcess({ data, variant }) {
                             </SwiperSlide>
                         ))}
                     </Swiper>
+                    {data?.note && (
+                        <p className="text_1 text-center text-[#4A5565] dark:text-[#9CA3AF] mt-[25px] xl:mt-[35px]">
+                            {data.note.startsWith("*") ? data.note : `* ${data.note}`}
+                        </p>
+                    )}
                 </div>
             </div>
         </section>
