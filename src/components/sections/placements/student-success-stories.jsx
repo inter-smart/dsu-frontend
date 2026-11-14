@@ -1,6 +1,6 @@
 "use client";
 
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -41,7 +41,7 @@ export default function StudentSuccessStories({ data, variant }) {
     };
 
     return (
-        <section className={`relative w-full py-[45px] sm:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0c0d0e] transition-colors duration-300 ${variant=== "bg-gradient" ? "bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-none dark:bg-[#0c0d0e]": " bg-white"}`}>
+        <section className={`relative w-full py-[45px] sm:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0c0d0e] transition-colors duration-300 ${variant=== "bg-gradient" ? "bg-[linear-gradient(0deg,#EFF6FF_90%,#ffff_100%)] dark:bg-none dark:bg-[#0c0d0e]": " bg-white"}`}>
             <div className="container">
 
  
@@ -169,7 +169,7 @@ export default function StudentSuccessStories({ data, variant }) {
                                             </h4>
 
                                             {/* Story Quote Text */}
-                                            <p className="text_1 text-[#64748B] dark:text-[#94A3B8] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                            <p className="text_1 text-[#64748B] dark:text-[#94A3B8]  ">
                                                 {story.quote}
                                             </p>
                                         </div>

@@ -201,7 +201,7 @@ html.lenis body {
     @apply w-full lg:w-[calc(100%-240px)] xl:w-[calc(100%-260px)] 2xl:w-[calc(100%-310px)] 3xl:w-[calc(100%-390px)] lg:pl-[20px] xl:pl-[30px] 2xl:pl-[40px] 3xl:pl-[50px];
   }
   .cmn_Title {
-    @apply text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white;
+    @apply text-[25px] xl:text-[32px] 2xl:text-[35px] 3xl:text-[40px] font-bold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white;
   }
   .cmn_Txt{
     @apply text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold
@@ -292,36 +292,31 @@ html.lenis body {
     ol > li {
       @apply list-decimal text-(--text-color);
     }
-        /* ---------- Tables ---------- */
-    table {
-      @apply my-[18px] block w-full max-w-full overflow-x-auto border-collapse text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px];
-    }
-
-    th,
-    td {
-      @apply min-w-[110px] border border-[#9fa2a76b] px-3 py-2 text-left align-top;
-    }
-
-    th {
-      @apply font-semibold text-white;
-      background: linear-gradient(to right, var(--basecolor2), var(--basecolor2));
-    }
-
-    tbody tr:nth-child(even) {
-      @apply bg-black/[0.03] dark:bg-white/[0.04];
-    }
-
-    td p,
-    th p {
-      @apply mb-0;
-    }
-
+   
     caption {
       @apply pb-2 text-left text-[13px] font-medium opacity-80;
+
+    /* tables pasted as HTML into a Strapi "HTML" code block */
+    .blocks-html {
+      @apply my-3 lg:my-4;
+    }
+    .blocks-html table {
+      @apply w-full border-collapse text-left text-(--text-color);
+    }
+    .blocks-html caption {
+      @apply mb-2 text-left font-semibold;
+    }
+    .blocks-html th,
+    .blocks-html td {
+      @apply border border-[#9fa2a76b] px-3 py-2 align-top text-[13px] lg:text-[14px] 3xl:text-[16px];
+    }
+    .blocks-html thead th,
+    .blocks-html tfoot td {
+      @apply bg-black/5 font-semibold dark:bg-white/10;
     }
   }
 }
-
+}
 @keyframes spec-flip-in {
   0% {
     opacity: 0;
@@ -465,7 +460,7 @@ body {
 }
 .header-visible .leftBx {
   
-  top: 260px !important;
+  top: 120px !important;
 }
 .swiper::after {
     pointer-events: none;
@@ -689,14 +684,14 @@ body:has(.balckHeader) header {
     background: rgb(255 255 255 / 0.04);
   }
   /* left accent bar */
-  .rich-card::before {
+  /* .rich-card::before {
     content: "";
     position: absolute;
     inset: 0 auto 0 0;
     width: 4px;
     background-image: linear-gradient(to bottom, #DC2626, #F97316);
     z-index: 1;
-  }
+  } */
   /* soft corner glow */
   .rich-card::after {
     content: "";
@@ -747,4 +742,27 @@ body:has(.balckHeader) header {
     .rich-subtitle { font-size: 17px; margin-top: 14px; }
     .rich-subtitle::before { width: 24px; }
   }
+}
+     /* ---------- Tables ---------- */
+table {
+  @apply my-[18px] w-full table-auto border-collapse text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px];
+}
+
+th,
+td {
+  @apply border border-[#9fa2a76b] px-3 py-2 text-left align-top break-words md:min-w-[110px];
+}
+
+th {
+  @apply font-semibold text-white;
+  background: linear-gradient(to right, var(--basecolor2), var(--basecolor2));
+}
+
+tbody tr:nth-child(even) {
+  @apply bg-black/[0.03] dark:bg-white/[0.04];
+}
+
+td p,
+th p {
+  @apply mb-0;
 }

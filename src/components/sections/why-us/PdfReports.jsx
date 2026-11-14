@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { fileLinkProps } from "@/lib/schools/link-props";
 
 // PDF Reports section: one PDF shown in an iframe, or a plain list of PDFs (no year tabs).

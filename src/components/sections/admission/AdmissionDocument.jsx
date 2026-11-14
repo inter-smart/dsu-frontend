@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 export default function AdmissionDocument({ data }) {
     if (!data) return null;

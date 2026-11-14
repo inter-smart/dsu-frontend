@@ -1,6 +1,6 @@
 "use client";
 
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 export default function AcademicAchievements({ data, variant }) {
     return (

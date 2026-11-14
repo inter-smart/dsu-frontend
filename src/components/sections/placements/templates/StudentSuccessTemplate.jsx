@@ -19,10 +19,10 @@ export default function StudentSuccessTemplate({ data }) {
         <>
             {hasContent(data?.hero) && <InnerHero data={data.hero} placementMenuItems={data?.sidebar} />}
             <PlacementmenuBar items={data?.sidebar} className="lg:hidden! block" />
+            {hasContent(stories) && <StudentSuccessStories data={stories} variant="bg-gradient" />}
             {hasContent(studentSuccess) && <StudentSuccess data={studentSuccess} />}
             {hasContent(alumniWorld) && <AlumniWorld data={alumniWorld} />}
             {hasContent(excellence) && <PlacementExcellence data={excellence} />}
-            {hasContent(stories) && <StudentSuccessStories data={stories} variant="bg-gradient" />}
         </>
     );
 }

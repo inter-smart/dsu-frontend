@@ -1,4 +1,4 @@
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 // International flexible section: a title with a description below it.
 export default function IntlTextSection({ data }) {

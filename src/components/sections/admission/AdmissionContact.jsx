@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import PhoneNumbers from "@/components/ui/phone-numbers";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 export default function AdmissionContact({ data }) {
   const contactData = data;

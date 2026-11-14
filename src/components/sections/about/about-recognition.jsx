@@ -1,5 +1,5 @@
 "use client";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { hasContent } from "@/lib/has-content";
 
 // an item is shown only with a label and a real url or file url

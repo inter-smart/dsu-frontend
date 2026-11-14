@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 // Static pages still pass the three named groups; fold them into the same list the CMS adapter returns.
 const legacyGroups = (d) => [

@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import Link from "next/link";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
@@ -116,7 +116,7 @@ export default function InternshipOpportunities({ data }) {
                                     {tab.title}
                                 </h3>
                                 {tab.description && (
-                                    <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[15px] xl:mb-[20px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                    <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[15px] xl:mb-[20px]  ">
                                         {tab.description}
                                     </p>
                                 )}
@@ -134,14 +134,14 @@ export default function InternshipOpportunities({ data }) {
                                                 value={`${tab.id}-${programme.id}`}
                                                 className="border border-black/10 dark:border-white/10 rounded-[6px] p-[12px_15px] xl:p-[18px_22px] mb-[10px] xl:mb-[15px]"
                                             >
-                                                <AccordionTrigger className="relative p-0 pr-[30px] hover:no-underline !text-[#212121] dark:!text-white text-[18px] xl:text-[24px] 2xl:text-[28px] font-bold after:absolute after:right-[5px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[20px] after:font-bold data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden">
+                                                <AccordionTrigger className="relative p-0 pr-[30px] hover:no-underline !text-[#212121] dark:!text-white text-[18px] xl:text-[22px] 2xl:text-[25px] font-bold after:absolute after:right-[5px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[20px] after:font-bold data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden">
                                                     {programme.name}
                                                 </AccordionTrigger>
 
                                                 {(programme.description || programme.internships?.length > 0 || programme.cta) && (
                                                     <AccordionContent className="p-0 pt-[8px] xl:pt-[12px]">
                                                         {programme.description && (
-                                                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] lg:max-w-[60%] mb-[15px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                                            <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] lg:max-w-[60%] mb-[15px] ">
                                                                 {programme.description}
                                                             </p>
                                                         )}
