@@ -1604,6 +1604,8 @@ const FLYOUT_NOTCH = 12; // same as size-3
 const FLYOUT_MAX_WIDTH = 360; // widest the flyout can grow, only used to decide whether to flip left
 // ADDED: card chrome that sits around the list (border 2 + pt-3.5 14 + pb-5 20) plus a 16px gap to the screen bottom
 const FLYOUT_VERTICAL_SPACE = 52;
+// ADDED: narrowest the flyout may shrink to on the right before it flips to the left of the panel
+const FLYOUT_MIN_FIT = 160;
 
 function SubMenuLeaf({ leaf, onKeepOpen }) {
   const rowRef = useRef(null);
@@ -1611,7 +1613,15 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
   const closeTimer = useRef(null);
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [pos, setPos] = useState({ top: 0, x: 0, flip: false, notchTop: 0, bridge: 0 });
+  // CHANGED: added maxWidth
+  const [pos, setPos] = useState({
+    top: 0,
+    x: 0,
+    flip: false,
+    notchTop: 0,
+    bridge: 0,
+    maxWidth: FLYOUT_MAX_WIDTH,
+  });
   // The row is current if its own page or any flyout page is the one being viewed
   const isCurrent =
     isActiveUrl(leaf?.url, pathname) ||
@@ -1630,10 +1640,12 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
       const panel = link.closest(".overflow-hidden");
       const panelRect = (panel || link).getBoundingClientRect();
       const viewportWidth = document.documentElement.clientWidth;
-      // Flip left when the panel sits in the right half of the screen, or the flyout would overflow
-      const flip =
-        panelRect.left + panelRect.width / 2 > viewportWidth / 2 ||
-        panelRect.right + FLYOUT_MAX_WIDTH > viewportWidth;
+      // CHANGED: stay on the right (shrinking to fit the free space); flip to the left only
+      // when the right side is too tight AND the left side has more room.
+      const rightSpace = viewportWidth - panelRect.right - 8;
+      const leftSpace = panelRect.left - 8;
+      const flip = rightSpace < FLYOUT_MIN_FIT && leftSpace > rightSpace;
+      const maxWidth = Math.min(FLYOUT_MAX_WIDTH, flip ? leftSpace : rightSpace);
 
       // 1px border + padding puts the first item exactly level with the parent row
       const top = Math.max(8, linkRect.top - FLYOUT_PAD_TOP - 1);
@@ -1643,6 +1655,7 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
         top,
         x: flip ? viewportWidth - panelRect.left : panelRect.right,
         flip,
+        maxWidth, // ADDED
         // Notch is centred on the parent row
         notchTop: rowCenter - (top + 1) - FLYOUT_NOTCH / 2,
         // Invisible hover bridge across the gap between the row and the card
@@ -1701,7 +1714,13 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
             }}
             onMouseLeave={closeSub}
             className="fixed z-[10000] w-max min-w-[245px] 2xl:min-w-[264px] 3xl:min-w-[300px] max-w-[360px]"
-            style={{ top: pos.top, [pos.flip ? "right" : "left"]: pos.x }}
+            // CHANGED: maxWidth follows the free space; minWidth is released when that space is below the min-w class
+            style={{
+              top: pos.top,
+              [pos.flip ? "right" : "left"]: pos.x,
+              maxWidth: pos.maxWidth,
+              ...(pos.maxWidth < 245 && { minWidth: 0 }),
+            }}
           >
             {/* Invisible bridge so the menu stays open while the mouse crosses the gap */}
             <span
