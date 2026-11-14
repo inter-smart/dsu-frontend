@@ -126,7 +126,7 @@ export default function HomeCollaborations({ data }) {
                 {data?.statistics?.map((item) => (
                   <div
                     key={item?.id}
-                    className="w-auto h-auto shrink-0 px-1.75 sm:px-2.5 3xl:px-3.75 border-r border-white/10 last:border-0 max-sm:flex-none max-lg:flex-1"
+                    className="w-auto h-auto shrink-0 px-1.75 sm:px-1 3xl:px-3.75 border-r border-white/10 last:border-0 max-sm:flex-none max-lg:flex-1"
                   >
                     <div className="w-auto h-full text-center flex flex-col justify-between">
                       {item?.value && (
@@ -142,11 +142,11 @@ export default function HomeCollaborations({ data }) {
                         </div>
                       )}
                       {item?.title && (
-                        <div className="text-[20px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[25px] font-medium text-white mb-1.25 lg:mb-2.5">
+                        <div className="text-[20px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[25px] font-medium text-white mb-1.25 lg:mb-1.5">
                           {item?.title}
                         </div>
                       )}
-                      <div className="text_1 2xl:text-[17px] font-normal text-white">
+                      <div className="text_1 lg:text-[10px] 3xl:text-[17px] font-normal text-white">
                         {item?.label}
                       </div>
                     </div>

@@ -28,7 +28,7 @@ export default function InnovationCourses({ data }) {
     if (items.length === 0) return null;
 
     return (
-        <section className="relative py-[40px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[80px] bg-white dark:bg-[#101010] transition-colors duration-300">
+        <section className="relative py-[20px] xl:py-[30px] 2xl:py-[30px] 3xl:py-[40px] bg-white dark:bg-[#101010] transition-colors duration-300">
             <div className="container">
 
                 {data?.heading && (
@@ -47,12 +47,12 @@ export default function InnovationCourses({ data }) {
                         return (
                             <div
                                 key={item.id ?? idx}
-                                className={`flex flex-col   gap-[20px] lg:gap-[40px] 2xl:gap-[60px] 3xl:gap-[75px] ${isImageRight ? "lg:flex-row-reverse" : "lg:flex-row"}`}
+                                className={`flex flex-col gap-[20px] lg:gap-[40px] 2xl:gap-[60px] 3xl:gap-[75px] ${isImageRight ? "lg:flex-row-reverse" : "lg:flex-row"}`}
                             >
                                 {/* image */}
                                 {item?.image?.url && (
                                     <div className="w-full lg:w-[32.5%] lg:shrink-0">
-                                        <div className="group relative w-full h-full aspect-[562/326] overflow-hidden rounded-[8px] xl:rounded-[10px] bg-[#f3f4f6] dark:bg-[#18191B]">
+                                        <div className="group relative w-full  aspect-[562/326] overflow-hidden rounded-[8px] xl:rounded-[10px] bg-[#f3f4f6] dark:bg-[#18191B]">
                                             <Image
                                                 src={item.image.url}
                                                 alt={item.image.alternativeText || item.title || data?.heading || ""}
