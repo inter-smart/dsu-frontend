@@ -21,8 +21,23 @@ export default function CareerCounselling({ data }) {
                     {hasBlocks && (
                         <div className="text_1 rich-text mt-[20px] xl:mt-[28px]">
                             <BlocksRenderer content={data.content} />
+
                         </div>
                     )}
+                    <table>
+                        <tr>
+                            <th>czxczxc</th>
+                            <th>czxczxc</th>
+                            <th>czxczxc</th>
+                            <th>czxczxc</th>
+                        </tr>
+                        <tr>
+                            <td>fdffd</td>
+                            <td>fdffd</td>
+                            <td>fdffd</td>
+                            <td>fdffd</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </section>
