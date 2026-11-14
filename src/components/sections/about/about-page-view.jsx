@@ -5,7 +5,6 @@ import AboutLegacy from "@/components/sections/about/about-legacy";
 import AboutRecognition from "@/components/sections/about/about-recognition";
 import AboutVision from "@/components/sections/about/about-vision";
 import AboutWelcome from "@/components/sections/about/about-welcome";
-import AboutContent from "@/components/sections/about/about-content";
 import { hasContent } from "@/lib/has-content";
 import AccreditationSlider from "./AccreditationSlider";
 
@@ -38,7 +37,6 @@ export default function AboutPageView({ pageData }) {
       {hasContent(pageData.accreditationSection) && (
         <AccreditationSlider data={pageData.accreditationSection} />
       )}
-      {pageData.cnt && <AboutContent html={pageData.cnt} />}
     </>
   );
 }

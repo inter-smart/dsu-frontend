@@ -195,7 +195,18 @@ export default function CampusDrives({ data }) {
                             ✕
                         </button>
                         <div className="aspect-video w-full">
-                            <video src={activeVideo.url} controls autoPlay className="w-full h-full object-cover" />
+                            {activeVideo.embedUrl ? (
+                                // YouTube / Vimeo link pasted in Strapi
+                                <iframe
+                                    src={activeVideo.embedUrl}
+                                    title={activeVideo.alternativeText || "Campus drive video"}
+                                    allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                                    allowFullScreen
+                                    className="w-full h-full border-0"
+                                />
+                            ) : (
+                                <video src={activeVideo.url} controls autoPlay className="w-full h-full object-cover" />
+                            )}
                         </div>
                     </div>
                 </div>

@@ -4,11 +4,23 @@ import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 const getText = (block) => (block?.children || []).map((c) => c.text).join("");
 
-// Builds cards from either shape:
-// 1. Top-level heading/subheading + content blocks   -> one card
-// 2. Flat blocks containing H2 headings              -> one card per H2
+// Builds cards from any of these shapes:
+// 1. `cards` from Strapi                             -> one card per item
+// 2. Top-level heading/subheading + content blocks   -> one card
+// 3. Flat blocks containing H2 headings              -> one card per H2
 // Both shapes can be mixed: blocks before the first H2 stay in the first card.
 function buildSections(data) {
+    // Strapi shape: repeatable cards, each with its own heading, subheading and content
+    if (Array.isArray(data?.cards)) {
+        return data.cards
+            .filter((card) => card?.heading || card?.content?.length)
+            .map((card) => ({
+                heading: card.heading,
+                subheading: card.subheading,
+                blocks: Array.isArray(card.content) ? card.content : [],
+            }));
+    }
+
     const sections = [];
     let current = null;
 
@@ -39,9 +51,7 @@ function buildSections(data) {
 }
 
 export default function CareerCounselling({ data }) {
-    if (!data || !Array.isArray(data?.content) || data.content.length === 0) {
-        return null;
-    }
+    if (!data) return null;
 
     const sections = buildSections(data);
     if (sections.length === 0) return null;

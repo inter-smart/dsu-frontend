@@ -5,6 +5,7 @@ import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { SliderArrow, FilterPill } from "@/components/sections/placements/slider-controls";
 
 export default function IndustryEngagement({ data }) {
@@ -26,7 +27,13 @@ export default function IndustryEngagement({ data }) {
                 <Heading as="h2" className="text-[25px] leading-[1.1] mb-[8px] 3xl:mb-[16px] dark:text-white">
                     {data?.title}
                 </Heading>
-                <Text>{data?.description}</Text>
+                {Array.isArray(data?.description) ? (
+                    <div className="text_1 typography">
+                        <BlocksRenderer content={data.description} />
+                    </div>
+                ) : (
+                    data?.description && <Text>{data.description}</Text>
+                )}
 
                 <div className="flex gap-[10px] 3xl:gap-[16px] mt-[20px] 2xl:mt-[30px] 3xl:mt-[47px] mb-[25px] 3xl:mb-[55px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     {data?.categories?.map((c) => (
