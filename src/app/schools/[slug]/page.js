@@ -1,3 +1,4 @@
+import { FALLBACK_HERO_MEDIA } from "@/lib/schools/entity";
 ﻿import InnerHero from "@/components/layout/common/InnerHero";
 import AcademicCollaboration from "@/components/sections/academics/academic-collaboration";
 import AcademicHomeOverview from "@/components/sections/academics/academic-home-overview";
@@ -34,6 +35,7 @@ export default async function Page({ params }) {
       <InnerHero
         data={{
           ...data.hero,
+          heroMedia: data.hero?.heroMedia?.url ? data.hero.heroMedia : FALLBACK_HERO_MEDIA,
           slug,
           hasDepartments,
           menuBar: true,

@@ -8,6 +8,7 @@ import { Fancybox } from "@fancyapps/ui";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import CtaButton from "@/components/ui/cta-button";
+import LazyVideo from "@/components/ui/lazy-video";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 export default function HomeCampusLife({ data }) {
@@ -267,12 +268,14 @@ function FeatureCard({ item, className }) {
     >
       <div className="w-full h-full aspect-425/400 overflow-hidden">
         {item?.media?.type === "video" ? (
-          <video
+          <LazyVideo
             src={item?.media?.url}
             poster={item?.media?.poster}
             className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-            playsInline
+            autoPlay
+            loop
             muted
+            playsInline
           />
         ) : (
           <Image

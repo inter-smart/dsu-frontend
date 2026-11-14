@@ -16,9 +16,9 @@ const local_data = {
     subtitle:
       "Invitation To Experience India's First AI-Native Research Ecosystem.",
     heroMedia: {
-      url: "/images/ai-first/hero-bg.jpg",
+      url: "/images/ai-first/media-coverage-hero-644103.png",
       alternativeText: "DSU campus at night with AI network overlay",
-      mime: "image/jpg",
+      mime: "image/png",
     },
     ctas: [{ label: "Explore the Stack", href: "#", variant: "gradient" }],
   },
