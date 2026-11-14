@@ -761,7 +761,7 @@ export default function Header({ data = local_data }) {
                             data?.logo?.mainlogo?.alt ||
                             "Logo"
                           }
-                          width={110}
+                          width={240}
                           height={80}
                           className="w-full h-full object-contain"
                         />
@@ -787,7 +787,7 @@ export default function Header({ data = local_data }) {
                           data?.logo?.alternativelogo?.alternativeTxt || "Logo"
                         }
                         width={110}
-                        height={80}
+                        height={50}
                         className="w-full h-full object-contain"
                       />
                     </Link>
