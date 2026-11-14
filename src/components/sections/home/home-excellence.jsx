@@ -17,12 +17,19 @@ const subscribePin = (cb) => {
 };
 // Viewport heights of scrolling per card while the section is pinned.
 const SCRUB_VH_PER_CARD = 60;
+// One wheel gesture / swipe moves exactly one card; this is how long that move takes (ms).
+const STEP_MS = 1000;
+// Wheel events closer together than this belong to the same gesture (trackpad inertia included).
+const GESTURE_GAP_MS = 120;
+const SWIPE_PX = 24;
+// Cards visible in the stack at once; the next one fades in behind them as the front card leaves.
+const VISIBLE_CARDS = 3;
 // How quickly the cards catch up to the scroll position (0-1, higher = snappier).
 // CHANGED: this is now applied per 16.67ms of real time (not per frame), so it feels the same on 60/120/144Hz screens.
 const EASE = 0.14;
 // Each card holds still until this fraction of its scroll range, swaps, then holds again.
-const DWELL_START = 0.3;
-const DWELL_END = 0.7;
+const DWELL_START = 0.1;
+const DWELL_END = 0.9;
 
 // Maps raw progress (0..count-1) so that cards rest on whole numbers instead of in-between blends.
 const withDwell = (raw) => {
@@ -71,15 +78,16 @@ export default function HomeExcellence({ data }) {
     let lastIndex = -1;
     let lastTime = 0; // ADDED: timestamp of the previous frame, for time-based easing
 
-    const getTarget = () => {
+    const getRaw = () => {
       const el = trackRef.current;
       if (!el) return 0;
       const { top, height } = el.getBoundingClientRect();
       const pin = el.firstElementChild?.offsetHeight || window.innerHeight;
       const total = height - pin;
       const progress = total > 0 ? Math.min(1, Math.max(0, -top / total)) : 0;
-      return withDwell(progress * (count - 1));
+      return progress * (count - 1);
     };
+    const getTarget = () => withDwell(getRaw());
 
     const paint = (t) => {
       const nodes = cardRefs.current;
@@ -88,15 +96,16 @@ export default function HomeExcellence({ data }) {
         if (!node) continue;
         const pos = i - t;
         const stackIndex = Math.max(0, pos);
-        const isVisible = stackIndex < 5;
+        const isVisible = stackIndex < VISIBLE_CARDS;
         const passed = pos < 0;
         node.style.transform = passed
-          ? `translate3d(0, ${-pos * 24}px, 0) scale(${1 - pos * 0.1})`
+          ? `translate3d(0, ${-pos * 140}%, 0)`
           : isVisible
             ? `translate3d(0, calc(-1 * ${stackIndex} * var(--stack-gap)), 0) scale(${1 - stackIndex * 0.08})`
-            : `translate3d(0, calc(-5 * var(--stack-gap)), 0) scale(${1 - 5 * 0.08})`;
-        node.style.zIndex = passed ? count + 1 : Math.round((count - stackIndex) * 100);
-        node.style.opacity = passed ? Math.max(0, 1 + pos * 1.8) : 1;
+            : `translate3d(0, calc(-${VISIBLE_CARDS} * var(--stack-gap)), 0) scale(${1 - VISIBLE_CARDS * 0.08})`;
+        // Exiting card must sit above the whole stack (stack z tops out at count * 100).
+        node.style.zIndex = passed ? (count + 1) * 100 : Math.round((count - stackIndex) * 100);
+        node.style.opacity = passed ? Math.min(1, Math.max(0, (1 + pos) * 6)) : Math.min(1, Math.max(0, VISIBLE_CARDS - pos));
       }
       // Only touch React state when the active card actually changes.
       const idx = Math.round(t);
@@ -133,6 +142,104 @@ export default function HomeExcellence({ data }) {
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
 
+    // Gesture stepping: while the section is pinned, one wheel gesture / swipe scrolls to exactly the next
+    // (or previous) card. At the first/last card the gesture is released so the page scrolls on normally.
+    let dead = false;
+    let busy = false; // a step animation is running
+    let locked = false; // current wheel gesture already handled (swallow its remaining/inertia events)
+    let quiet = true; // no wheel events for GESTURE_GAP_MS
+    let settle = false; // gesture started outside the pin: snap to the nearest card when it ends
+    let lastWheel = 0;
+    let quietTimer = 0;
+    let touchY = 0;
+    let touchDone = false;
+
+    const inRange = () => {
+      const r = trackRef.current?.getBoundingClientRect();
+      return !!r && r.top <= 2 && r.bottom >= window.innerHeight - 2;
+    };
+    const tryUnlock = () => {
+      if (!busy && quiet) locked = false;
+    };
+    const go = (i) => {
+      const el = trackRef.current;
+      if (!el) return;
+      const pin = el.firstElementChild?.offsetHeight || window.innerHeight;
+      const y = el.getBoundingClientRect().top + window.scrollY + (i / (count - 1)) * (el.offsetHeight - pin);
+      busy = true;
+      const done = () => {
+        busy = false;
+        tryUnlock();
+      };
+      if (typeof window.lenis?.scrollTo === "function") {
+        window.lenis.scrollTo(y, { duration: STEP_MS / 1000, easing: (t) => t, force: true, onComplete: done });
+        return;
+      }
+      const from = window.scrollY;
+      const t0 = performance.now();
+      const step = (now) => {
+        const p = Math.min(1, (now - t0) / STEP_MS);
+        window.scrollTo(0, from + (y - from) * p);
+        if (p < 1 && !dead) requestAnimationFrame(step);
+        else done();
+      };
+      requestAnimationFrame(step);
+    };
+    const swallow = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation?.();
+    };
+    const canStep = (dir) => {
+      const next = Math.round(getRaw()) + dir;
+      return next >= 0 && next <= count - 1;
+    };
+
+    const onWheel = (e) => {
+      const now = performance.now();
+      const gap = now - lastWheel;
+      lastWheel = now;
+      const dir = Math.sign(e.deltaY);
+      if (!dir || e.ctrlKey || !inRange()) return;
+      if (!locked && !canStep(dir)) return; // first/last card: let the page scroll on
+      swallow(e);
+      quiet = false;
+      clearTimeout(quietTimer);
+      quietTimer = setTimeout(() => {
+        quiet = true;
+        if (settle && !busy) {
+          settle = false;
+          const raw = getRaw();
+          if (Math.abs(raw - Math.round(raw)) > 0.02) go(Math.round(raw));
+        }
+        tryUnlock();
+      }, GESTURE_GAP_MS);
+      if (locked) return;
+      locked = true;
+      if (gap < GESTURE_GAP_MS) {
+        settle = true; // momentum carried us in from outside: don't start a step, just settle
+        return;
+      }
+      go(Math.round(getRaw()) + dir);
+    };
+    const onTouchStart = (e) => {
+      touchY = e.touches[0].clientY;
+      touchDone = false;
+    };
+    const onTouchMove = (e) => {
+      if (!inRange()) return;
+      const dy = touchY - e.touches[0].clientY;
+      const dir = Math.sign(dy);
+      if (!dir || (!touchDone && !busy && !canStep(dir))) return;
+      if (e.cancelable) e.preventDefault();
+      if (touchDone || busy || Math.abs(dy) < SWIPE_PX) return;
+      touchDone = true;
+      go(Math.round(getRaw()) + dir);
+    };
+    window.addEventListener("wheel", onWheel, { passive: false, capture: true });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false, capture: true });
+
     // ADDED: when fonts/images/content above the section change the page height, the section moves
     // without a scroll event. Re-sync the cards so the pin never looks out of step.
     let resizeObserver;
@@ -146,6 +253,11 @@ export default function HomeExcellence({ data }) {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       resizeObserver?.disconnect();
+      dead = true;
+      clearTimeout(quietTimer);
+      window.removeEventListener("wheel", onWheel, { capture: true });
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove, { capture: true });
       if (raf) cancelAnimationFrame(raf);
     };
   }, [pinned, count]);
@@ -281,7 +393,7 @@ export default function HomeExcellence({ data }) {
                   // Pinned: transform/opacity/zIndex are written straight to the DOM by the scrub effect.
                   // Not pinned: the stack is driven by activeIndex as before.
                   const stackIndex = Math.max(0, getStackIndex(index));
-                  const isVisible = stackIndex < 5;
+                  const isVisible = stackIndex < VISIBLE_CARDS;
                   return (
                     <div
                       key={item?.id}
@@ -295,9 +407,9 @@ export default function HomeExcellence({ data }) {
                           : {
                               transform: isVisible
                                 ? `translateY(calc(-1 * ${stackIndex} * var(--stack-gap))) scale(${1 - stackIndex * 0.08})`
-                                : `translateY(calc(-5 * var(--stack-gap))) scale(${1 - 5 * 0.08})`,
+                                : `translateY(calc(-${VISIBLE_CARDS} * var(--stack-gap))) scale(${1 - VISIBLE_CARDS * 0.08})`,
                               zIndex: Math.round((items.length - stackIndex) * 100),
-                              opacity: 1,
+                              opacity: isVisible ? 1 : 0,
                               pointerEvents: "none",
                             }
                       }
