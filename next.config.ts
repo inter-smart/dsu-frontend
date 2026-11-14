@@ -33,6 +33,8 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    // Serve uploaded images as-is: the optimizer's resize/re-encode made some of them look soft.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "http",
