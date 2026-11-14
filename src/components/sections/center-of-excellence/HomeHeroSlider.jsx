@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "@/components/ui/safe-image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, A11y } from "swiper/modules"; // CHANGED: Navigation module removed (buttons call the Swiper instance directly)
+import { Autoplay, EffectFade, A11y } from "swiper/modules";
 import { cn, safeHref } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import "swiper/css";
@@ -13,6 +13,11 @@ import "swiper/css/effect-fade";
 // Text animates in when its slide becomes the active one
 const reveal =
     "opacity-0 translate-y-6 transition-all duration-700 ease-out group-[.swiper-slide-active]:opacity-100 group-[.swiper-slide-active]:translate-y-0";
+
+// Secondary button: gradient border, transparent fill, gradient fill on hover.
+// Replace the two colors (in both places) with your primary button's gradient.
+const secondaryButtonClass =
+    "bg-transparent text-white border border-transparent [border-image:linear-gradient(90deg,#e32b1f,#f97316)_1] hover:text-white hover:bg-[linear-gradient(90deg,#e32b1f,#f97316)]";
 
 // slide helpers (image | video | youtube)
 const getSlideType = (slide) => {
@@ -39,6 +44,32 @@ const getSlideDelay = (slide, hasMany) => {
     if (slide.type === "youtube") return (slide.duration ?? 15) * 1000;
     return slide.duration ? slide.duration * 1000 : undefined;
 };
+
+// Reusable CTA button (primary or secondary). Renders nothing without a label.
+function SlideButton({ button, variant = "default", className }) {
+    if (!button?.label?.trim()) return null;
+
+    return (
+        <Link
+            href={safeHref(button.link, "#")}
+            {...(button.isExternal && {
+                target: "_blank",
+                rel: "noopener noreferrer",
+            })}
+            className={cn(buttonVariants({ variant, size: "default" }), className)}
+        >
+            {button.label}
+            <Image
+                src="/images/icon-btn.svg"
+                alt=""
+                width={15}
+                height={15}
+                className="size-3.75"
+                data-icon="inline-end"
+            />
+        </Link>
+    );
+}
 
 // Uploaded video background. Plays only while its slide is active.
 function SlideVideo({ src, mime, active, loop, onDone }) {
@@ -95,7 +126,6 @@ function SlideYouTube({ id, title }) {
 }
 
 export default function HomeHeroSlider({ data }) {
-    // CHANGED: no prevEl/nextEl state any more, the buttons call swiperRef directly
     const swiperRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -120,16 +150,14 @@ export default function HomeHeroSlider({ data }) {
     const hasMany = slides.length > 1;
 
     return (
-        <section className="relative w-full h-[100svh] min-h-[560px]   overflow-hidden">
+        <section className="relative w-full h-[100svh] min-h-[560px] overflow-hidden">
             <Swiper
                 modules={[Autoplay, EffectFade, A11y]}
                 effect="fade"
                 fadeEffect={{ crossFade: true }}
                 speed={900}
                 loop={hasMany}
-                // CHANGED: clicks/swipes during a running transition are no longer ignored
                 loopPreventsSliding={false}
-                // CHANGED: explicit touch + mouse swipe settings
                 allowTouchMove={hasMany}
                 simulateTouch
                 grabCursor={hasMany}
@@ -209,6 +237,9 @@ export default function HomeHeroSlider({ data }) {
                                     )}
                                 </div>
 
+                                {/* Bottom gradient: above the background, below the text */}
+                                <div className="absolute left-0 bottom-0 w-full h-[35%] pointer-events-none bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_0%,#000_100%)]" />
+
                                 {/* Content, bottom left */}
                                 <div className="relative z-10 h-full">
                                     <div className="container h-full flex items-end pb-[30px] sm:pb-[40px] lg:pb-[40px] 2xl:pb-[50px] 3xl:pb-[70px]">
@@ -233,26 +264,22 @@ export default function HomeHeroSlider({ data }) {
                                                     {slide.description}
                                                 </p>
                                             )}
-                                            {slide?.button?.label?.trim() && (
-                                                <div className={cn(reveal, "delay-500 ")}>
-                                                    <Link
-                                                        href={safeHref(slide.button.link, "#")}
-                                                        {...(slide.button.isExternal && {
-                                                            target: "_blank",
-                                                            rel: "noopener noreferrer",
-                                                        })}
-                                                        className={buttonVariants({ variant: "default", size: "default" })}
-                                                    >
-                                                        {slide.button.label}
-                                                        <Image
-                                                            src="/images/icon-btn.svg"
-                                                            alt=""
-                                                            width={15}
-                                                            height={15}
-                                                            className="size-3.75"
-                                                            data-icon="inline-end"
-                                                        />
-                                                    </Link>
+
+                                            {/* CTA buttons: primary + optional secondary */}
+                                            {(slide?.button?.label?.trim() ||
+                                                slide?.secondaryButton?.label?.trim()) && (
+                                                <div
+                                                    className={cn(
+                                                        reveal,
+                                                        "delay-500 flex flex-wrap items-center gap-[12px] sm:gap-[17px]",
+                                                    )}
+                                                >
+                                                    <SlideButton button={slide.button} />
+                                                    <SlideButton
+                                                        button={slide.secondaryButton}
+                                                        variant="outline"
+                                                        className={secondaryButtonClass}
+                                                    />
                                                 </div>
                                             )}
                                         </div>
@@ -270,7 +297,7 @@ export default function HomeHeroSlider({ data }) {
                     <button
                         type="button"
                         aria-label="Previous slide"
-                        onClick={() => swiperRef.current?.slidePrev()} // CHANGED: direct call, no module attach
+                        onClick={() => swiperRef.current?.slidePrev()}
                         className="absolute top-1/2 -translate-y-1/2 left-[2%] lg:left-[3%] 2xl:left-[4%] z-20 size-10 lg:size-12 2xl:size-14 flex items-center justify-center text-white transition-opacity duration-300 hover:opacity-60"
                     >
                         <svg width="19" height="36" viewBox="0 0 19 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -281,7 +308,7 @@ export default function HomeHeroSlider({ data }) {
                     <button
                         type="button"
                         aria-label="Next slide"
-                        onClick={() => swiperRef.current?.slideNext()} // CHANGED: direct call, no module attach
+                        onClick={() => swiperRef.current?.slideNext()}
                         className="absolute top-1/2 -translate-y-1/2 right-[2%] lg:right-[3%] 2xl:right-[4%] z-20 size-10 lg:size-12 2xl:size-14 flex items-center justify-center text-white transition-opacity duration-300 hover:opacity-60"
                     >
                         <svg width="19" height="36" viewBox="0 0 19 36" fill="none" xmlns="http://www.w3.org/2000/svg">
