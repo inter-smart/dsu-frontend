@@ -1,34 +1,36 @@
-import InnerHero from "@/components/layout/common/InnerHero"; 
+import HomeHeroSlider from "@/components/sections/center-of-excellence/HomeHeroSlider";
 
 const local_data = {
     heroSlider: {
-        autoplayDelay: 5000,  
+        autoplayDelay: 5000, // for image slides (ms)
         showPagination: false,
-        slides: [ 
+        slides: [
+            // 1) IMAGE slide
             {
                 id: 1,
                 mediaType: "image",
-                title: "DSU AI Factory & Centres of Excellence",
+                title: "AI Factory",
                 description:
-                    "Advanced computing and connected engineering capabilities from idea to execution.",
+                    "Develop, evaluate and advance AI solutions using one of the most advanced academic AI computing environments in South Asia and the Global South.",
                 image: {
                     alternativeText: "Centre for Artificial Intelligence & High Performance Computing",
                     mime: "image/jpeg",
-                    url: "/images/center-of-excellence/banner-1.jpg",
+                    url: "/images/center-of-excellence/ai-factory.jpg",
                 },
                 mobileImage: null,
-                button: { label: "Explore Our Centres", link: "/centres-of-excellence", isExternal: false },
-            },             
+                // Primary button (filled)
+                button: { label: "Discuss an AI Project", link: "/centres-of-excellence", isExternal: false },
+                // Secondary button (outline). Optional: remove it and the slide shows only the primary.
+                secondaryButton: { label: "Explore the Facilities", link: "/facilities", isExternal: false },
+            },
         ],
     },
-
-    
 };
 
 export default function page() {
     return (
         <>
-            <InnerHero data={local_data.hero} /> 
+            <HomeHeroSlider data={local_data.heroSlider} />
         </>
     );
 }

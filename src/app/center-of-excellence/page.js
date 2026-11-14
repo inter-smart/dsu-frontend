@@ -369,8 +369,7 @@ const local_data = {
 
 export default function page() {
     return (
-        <>
-            <InnerHero data={local_data.hero} />
+        <> 
             <HomeHeroSlider data={local_data.heroSlider} />
             <InnovationEcosystem data={local_data.innovationEcosystem} />
             <ExploreCentres data={local_data.exploreCentres} />
