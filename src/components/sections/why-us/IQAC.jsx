@@ -1,4 +1,3 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import IQACAbout from "./iqac-about";
 import IQACAccredition from "./IQAC-Accredition";
 import IQACChairmanMessage from "./IQAC-chairmanMessage";
@@ -7,8 +6,8 @@ import IQACContact from "./IQAC-contact";
 import IQACActivities from "./IQACActivities";
 import { hasContent } from "@/lib/has-content";
 
-// view: "about" | "activities" render a single page's content without the tab switcher;
-// omitted keeps the legacy tabbed layout (used by CMS-driven pages).
+// view "activities" renders the IQAC Activities page; anything else renders the About IQAC page.
+// (Each is its own route now, so there is no tab switcher.)
 export default function IQAC({ data, view }) {
     if (!data) return null;
 
@@ -23,85 +22,17 @@ export default function IQAC({ data, view }) {
         );
     }
 
-    if (view === "about") {
-        return (
-            <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[90px] !pb-0">
-                <div className="mt-[10px]">
-                    {hasContent(data.aboutIqacSection) && <IQACAbout data={data.aboutIqacSection} />}
-                    {(hasContent(data.accreditationsData?.cards) || hasContent(data.accreditationsData?.rankings)) && (
-                        <IQACAccredition data={data.accreditationsData} />
-                    )}
-                    {hasContent(data.chairmanMessage) && <IQACChairmanMessage data={data.chairmanMessage} />}
-                    {hasContent(data.teamData?.tabs) && <IQACTeam data={data.teamData} />}
-                    {hasContent(data.contactData) && <IQACContact data={data.contactData} />}
-                </div>
-            </section>
-        );
-    }
-
-    const hasAbout = hasContent(data.aboutIqacSection);
-    const hasActivities = hasContent(data.activities?.items);
-    const hasAccreditations =
-        hasContent(data.accreditationsData?.cards) || hasContent(data.accreditationsData?.rankings);
-    const hasChairman = hasContent(data.chairmanMessage);
-    const hasTeam = hasContent(data.teamData?.tabs);
-    const hasContact = hasContent(data.contactData);
-
-    // a tab is shown only when its panel has something to render
-    const hasAboutTab = hasAbout || hasAccreditations || hasChairman || hasTeam || hasContact;
-    const tabs = (data.tabs || []).filter((tab) =>
-        tab.value === "about-iqac" ? hasAboutTab : tab.value === "iqac-activities" ? hasActivities : true,
-    );
-    if (!tabs.length) return null;
-
-    const defaultTab = tabs.find((tab) => tab.active)?.value || tabs[0]?.value || "about-iqac";
-
     return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[90px] !pb-0">
-            <Tabs defaultValue={defaultTab} className="w-full">
-                {/* a single tab needs no switcher: its content is shown directly */}
-                {tabs.length > 1 && <div className="container">
-                    <TabsList
-                        variant="line"
-                        className="self-start inline-flex w-fit max-w-full p-0 mb-[25px] xl:mb-[35px] 2xl:mb-[45px] bg-white dark:bg-[#1A1A1A] rounded-[8px] lg:rounded-[10px] shadow-[0_2px_14px_rgba(0,0,0,0.06)] dark:shadow-[0_2px_14px_rgba(0,0,0,0.4)] border border-transparent dark:border-white/10 overflow-x-auto !h-auto"
-                    >
-                        {tabs.map((tab, index) => (
-                            <TabsTrigger
-                                key={tab.id || tab.value}
-                                value={tab.value}
-                                className={`relative h-[44px] md:h-[48px] xl:h-[54px] px-[20px] sm:px-[28px] xl:px-[36px] 2xl:px-[42px]
-                                rounded-none border-0 overflow-visible !no-underline flex items-center justify-center whitespace-nowrap !bg-transparent
-                                text-[13px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] font-medium text-[#374151] dark:text-[#D1D5DB] shrink-0
-                                transition-colors duration-150 bg-transparent
-                                hover:text-[#111827] dark:hover:text-white
-                                data-active:text-[#111827] dark:data-active:text-white data-active:font-semibold
-                                data-[state=active]:text-[#111827] dark:data-[state=active]:text-white data-[state=active]:font-semibold
-                                after:content-[''] after:absolute after:!bottom-0 after:!left-0 after:!right-0 after:!h-[3.5px] after:!bg-[#F97316] after:w-[100%] after:m-auto after:opacity-0 after:transition-opacity after:duration-150
-                                data-active:after:!opacity-100 data-[state=active]:after:!opacity-100
-                                ${index !== tabs.length - 1 ? "before:absolute before:content-[''] before:right-0 before:w-[1px] before:h-[70%] before:bg-[rgba(33,33,33,0.1)] dark:before:bg-white/10 before:top-0 before:bottom-0 before:m-auto" : ""}`}
-                            >
-                                {tab.label}
-                            </TabsTrigger>
-                        ))}
-                    </TabsList>
-                </div>}
-
-                {hasAboutTab && (
-                    <TabsContent value="about-iqac" className="mt-[10px]">
-                        {hasAbout && <IQACAbout data={data.aboutIqacSection} />}
-                        {hasAccreditations && <IQACAccredition data={data.accreditationsData} />}
-                        {hasChairman && <IQACChairmanMessage data={data.chairmanMessage} />}
-                        {hasTeam && <IQACTeam data={data.teamData} />}
-                        {hasContact && <IQACContact data={data.contactData} />}
-                    </TabsContent>
+            <div className="mt-[10px]">
+                {hasContent(data.aboutIqacSection) && <IQACAbout data={data.aboutIqacSection} />}
+                {(hasContent(data.accreditationsData?.cards) || hasContent(data.accreditationsData?.rankings)) && (
+                    <IQACAccredition data={data.accreditationsData} />
                 )}
-
-                {hasActivities && (
-                    <TabsContent value="iqac-activities" className="mt-[10px] pb-[50px]">
-                        <IQACActivities data={data.activities} />
-                    </TabsContent>
-                )}
-            </Tabs>
+                {hasContent(data.chairmanMessage) && <IQACChairmanMessage data={data.chairmanMessage} />}
+                {hasContent(data.teamData?.tabs) && <IQACTeam data={data.teamData} />}
+                {hasContent(data.contactData) && <IQACContact data={data.contactData} />}
+            </div>
         </section>
     );
 }

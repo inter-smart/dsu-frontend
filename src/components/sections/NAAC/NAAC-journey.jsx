@@ -2,7 +2,24 @@
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link"; 
 
+const hasBlocksText = (node) => {
+    if (!node) return false;
+    if (typeof node === "string") return node.trim().length > 0;
+    if (Array.isArray(node)) return node.some(hasBlocksText);
+    if (node.type === "image") return true;
+    if (typeof node.text === "string" && node.text.trim()) return true;
+    return hasBlocksText(node.children);
+};
+
 export default function NAACJourney({ data }) {
+    const cycles = (data?.certificateCycles || []).filter((c) => c?.label);
+    const hasContent =
+        Boolean(data?.title?.trim()) ||
+        hasBlocksText(data?.description) ||
+        cycles.length > 0;
+
+    if (!hasContent) return null;
+
     return (
         <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[100px]
               bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-none dark:bg-[#101010]">
@@ -15,7 +32,7 @@ export default function NAACJourney({ data }) {
                 </div>
                 <div className="flex flex-wrap gap-[10px] xl:gap-[20px]">
 
-                    {data?.certificateCycles.map((doc, id) => (
+                    {cycles.map((doc, id) => (
                         <Link
                             key={id}
                             href={doc?.url || "/"}
