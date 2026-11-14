@@ -31,8 +31,7 @@ function useInView(threshold = 0.2) {
 
 // fade + slide up
 const fadeUp = (inView) =>
-  `transition-all duration-700 ease-out motion-reduce:transition-none ${
-    inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+  `transition-all duration-700 ease-out motion-reduce:transition-none ${inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
   }`;
 
 // block array (Strapi) or HTML string (CKEditor)
@@ -117,22 +116,21 @@ export default function IdeaToExecution({ data }) {
             </div>
           )}
 
-          {/* ───────── media (stretches to the height of the steps) ───────── */}
+     
           {data?.media && (
-            <div
-              ref={bodyRef}
-              className={`relative min-h-[300px] overflow-hidden rounded-[8px] transition-[clip-path] duration-[1300ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:min-h-[420px] lg:min-h-0 xl:rounded-[10px] ${
-                bodyInView
-                  ? "[clip-path:inset(0_0_0_0)]"
-                  : "[clip-path:inset(0_100%_0_0)]"
-              }`}
-            >
+            <div ref={bodyRef} className="relative min-h-[300px] sm:min-h-[420px] lg:min-h-0">
               <div
-                className={`absolute inset-0 transition-transform duration-[1800ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
-                  bodyInView ? "scale-100" : "scale-[1.15]"
-                }`}
+                className={`absolute inset-0 overflow-hidden rounded-[8px] bg-black/5 transition-[clip-path] duration-[1300ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none xl:rounded-[10px] dark:bg-white/5 ${bodyInView
+                    ? "[clip-path:inset(0_0_0_0)]"
+                    : "[clip-path:inset(0_100%_0_0)]"
+                  }`}
               >
-                <Media media={data.media} alt={data.heading} />
+                <div
+                  className={`absolute inset-0 transition-transform duration-[1800ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${bodyInView ? "scale-100" : "scale-[1.15]"
+                    }`}
+                >
+                  <Media media={data.media} alt={data.heading} />
+                </div>
               </div>
             </div>
           )}
@@ -144,11 +142,10 @@ export default function IdeaToExecution({ data }) {
                 <li
                   key={step?.id ?? index}
                   style={{ transitionDelay: `${index * 110}ms` }}
-                  className={`group flex items-center gap-4 border-b border-[#E5E7EB] py-3 transition-all duration-700 ease-out last:border-b-0 motion-reduce:transition-none md:gap-6 xl:gap-[53px] xl:py-0 dark:border-white/15 lg:min-h-[100px] ${
-                    bodyInView
+                  className={`group flex items-center gap-4 border-b border-[#E5E7EB] py-3 transition-all duration-700 ease-out last:border-b-0 motion-reduce:transition-none md:gap-6 xl:gap-[53px] xl:py-0 dark:border-white/15 lg:min-h-[100px] ${bodyInView
                       ? "translate-x-0 opacity-100"
                       : "translate-x-10 opacity-0"
-                  }`}
+                    }`}
                 >
                   {/* number badge */}
                   <span className="flex h-[54px] w-[66px] shrink-0 items-center justify-center rounded-[6px] bg-linear-to-br from-[#F4601B] to-[#F97316] text-[26px] font-medium leading-none text-white shadow-sm transition-transform duration-300 group-hover:scale-105 md:h-[62px] md:w-[78px] md:text-[32px] xl:h-[70px] xl:w-[87px] xl:text-[36px]">

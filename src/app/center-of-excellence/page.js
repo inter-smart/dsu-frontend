@@ -3,6 +3,8 @@ import ExploreCentres from "@/components/sections/center-of-excellence/ExploreCe
 import HomeHeroSlider from "@/components/sections/center-of-excellence/HomeHeroSlider";
 import IdeaToExecution from "@/components/sections/center-of-excellence/IdeaToExecution";
 import InnovationEcosystem from "@/components/sections/center-of-excellence/InnovationEcosystem";
+import TakeIdeasForward from "@/components/sections/center-of-excellence/TakeIdeasForward";
+import WhoCanEngage from "@/components/sections/center-of-excellence/WhoCanEngage";
 
 const local_data = {
     heroSlider: {
@@ -254,12 +256,11 @@ const local_data = {
             },
         ],
         media: {
-            mediaType: "image", // "image" or "video"
+            mediaType: "image",
             image: {
                 alternativeText: "Students and faculty working on a drone prototype",
-                url: "/images/center-of-excellence/execution.jpg", // also the poster when mediaType is "video"
+                url: "/images/center-of-excellence/execution.jpg",
             },
-            // video: { mime: "video/mp4", url: "/videos/idea-to-execution.mp4" },
         },
         steps: [
             { id: 1, title: "Define", description: "Identify the problem and objectives." },
@@ -269,6 +270,99 @@ const local_data = {
             { id: 5, title: "Integrate", description: "Connect systems, devices and technologies." },
             { id: 6, title: "Validate & Secure", description: "Test performance and security." },
             { id: 7, title: "Demonstrate & Advance", description: "Present solutions and plan the next stage." },
+        ],
+    },
+    whoCanEngage: {
+        heading: "Who Can Engage?",
+        subheading: "Real projects with real impact, using real technology",
+        items: [
+            {
+                id: 1,
+                // option A: icon as an image (SVG or PNG), used when iconImage is present
+                iconImage: {
+                    alternativeText: "Graduation cap",
+                    url: "/images/center-of-excellence/icon_engage-1.svg",
+                },
+                title: "Students",
+                description: "Hands-on learning and projects.",
+                link: "#!",
+                isExternal: false,
+                mediaType: "image",
+                image: { alternativeText: "Students", url: "/images/center-of-excellence/engage-1.jpg" },
+            },
+            {
+                id: 2,
+                // option B: lucide icon by name (graduation, flask, rocket, factory, users)
+                iconImage: {
+                    alternativeText: "Graduation cap",
+                    url: "/images/center-of-excellence/icon_engage-2.svg",
+                },
+                title: "Researchers",
+                description: "Interdisciplinary research & sponsored programmes.",
+                link: "#!",
+                isExternal: false,
+                mediaType: "image",
+                image: { alternativeText: "Researchers", url: "/images/center-of-excellence/engage-2.jpg" },
+            },
+            {
+                id: 3,
+                // keep the icon's own colours instead of turning it white
+                iconImage: {
+                    alternativeText: "Rocket",
+                    url: "/images/center-of-excellence/icon_engage-3.svg",
+                },
+                iconKeepColor: true,
+                title: "Startups",
+                description: "Prototyping and product development.",
+                link: "#!",
+                isExternal: false,
+                mediaType: "image",
+                image: { alternativeText: "Startups", url: "/images/center-of-excellence/engage-3.jpg" },
+            },
+            {
+                id: 4,
+                iconImage: {
+                    alternativeText: "Factory",
+                    url: "/images/center-of-excellence/icon_engage-4.svg",
+                },
+                title: "Industry",
+                description: "Proofs of concept, training & collaborative projects.",
+                link: "#!",
+                isExternal: false,
+                mediaType: "image",
+                image: { alternativeText: "Industry", url: "/images/center-of-excellence/engage-4.jpg" },
+            },
+        ],
+    },
+    takeIdeasForward: {
+        heading: "Take Your Ideas Forward",
+        description: [
+            {
+                type: "paragraph",
+                children: [
+                    {
+                        type: "text",
+                        text: "Explore how DSU’s connected capabilities can support your next project, research initiative or collaboration.",
+                    },
+                ],
+            },
+        ],
+        buttons: [
+            {
+                id: 1,
+                label: "Discuss a Project",
+                link: "#!",
+                isExternal: false,
+                variant: "primary", // filled gradient
+            },
+            {
+                id: 2,
+                label: "Request a Guided Visit",
+                link: "#!",
+                isExternal: false,
+                variant: "outline", // outlined, fills on hover
+                // iconImage: { url: "/images/icons/dots.svg" }, // optional: replaces the built-in dots icon
+            },
         ],
     },
 };
@@ -281,6 +375,8 @@ export default function page() {
             <InnovationEcosystem data={local_data.innovationEcosystem} />
             <ExploreCentres data={local_data.exploreCentres} />
             <IdeaToExecution data={local_data.ideaToExecution} />
+            <WhoCanEngage data={local_data.whoCanEngage} />
+            <TakeIdeasForward data={local_data.takeIdeasForward} />
         </>
     );
 }
