@@ -153,6 +153,7 @@ import IntlTextSection from "@/components/sections/international/intl-text-secti
 import IntlButtonSection from "@/components/sections/international/intl-button-section";
 import IntlTextButtonSection from "@/components/sections/international/intl-text-button-section";
 import IntlVideoSection from "@/components/sections/international/intl-video-section";
+import IntlDocumentsSection from "@/components/sections/international/intl-documents-section";
 import IntlLinkCardsSection from "@/components/sections/international/intl-link-cards-section";
 import IntlPartnersSection from "@/components/sections/international/intl-partners-section";
 import IntlTabbedGallery from "@/components/sections/gallery/gallery";
@@ -376,6 +377,7 @@ const flexibleRegistry = {
   "international.button-section": { Component: IntlButtonSection },
   "international.text-button-section": { Component: IntlTextButtonSection },
   "international.video-section": { Component: IntlVideoSection },
+  "international.documents-section": { Component: IntlDocumentsSection },
   "international.link-cards-section": { Component: IntlLinkCardsSection },
   "international.partners-section": { Component: IntlPartnersSection },
   "international.gallery": { Component: IntlTabbedGallery },
