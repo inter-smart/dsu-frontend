@@ -186,10 +186,10 @@ html.lenis body {
     @apply text-[28px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] leading-tight font-bold tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
   .text_1 {
-    @apply text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
+    @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[18px] 3xl:text-[20px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
   p {
-    @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
+    @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[18px] 3xl:text-[20px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
   .cmnFlx {
     @apply flex flex-wrap;
@@ -221,7 +221,29 @@ html.lenis body {
     :is(.dark &) {
       --text-color: #f9fafb;
     }
+     /* ---------- Tables ---------- */
+    table {
+      @apply my-[18px] w-full table-auto border-collapse text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px];
+    }
 
+    th,
+    td {
+      @apply border border-[#9fa2a76b] px-3 py-2 text-left align-top break-words md:min-w-[110px];
+    }
+
+    th {
+      @apply font-semibold text-white;
+      background: linear-gradient(to right, var(--basecolor2), var(--basecolor2));
+    }
+
+    tbody tr:nth-child(even) {
+      @apply bg-black/[0.03] dark:bg-white/[0.04];
+    }
+
+    td p,
+    th p {
+      @apply mb-0;
+    }
     /* * {
       @apply my-2.5 lg:my-4;
     } */
@@ -742,27 +764,4 @@ body:has(.balckHeader) header {
     .rich-subtitle { font-size: 17px; margin-top: 14px; }
     .rich-subtitle::before { width: 24px; }
   }
-}
-     /* ---------- Tables ---------- */
-table {
-  @apply my-[18px] w-full table-auto border-collapse text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px];
-}
-
-th,
-td {
-  @apply border border-[#9fa2a76b] px-3 py-2 text-left align-top break-words md:min-w-[110px];
-}
-
-th {
-  @apply font-semibold text-white;
-  background: linear-gradient(to right, var(--basecolor2), var(--basecolor2));
-}
-
-tbody tr:nth-child(even) {
-  @apply bg-black/[0.03] dark:bg-white/[0.04];
-}
-
-td p,
-th p {
-  @apply mb-0;
 }
