@@ -620,7 +620,7 @@ export default function Header({ data = local_data }) {
   const isMobile = useIsMobile();
   const TopHeaderTextStyle =
     // max-lg:after:* = invisible 48px-tall touch target on mobile (no visual change)
-    "text-[11px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] lg:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] lg:gap-2.5 flex items-center max-lg:relative max-lg:after:absolute max-lg:after:inset-x-0 max-lg:after:-inset-y-3.5 max-lg:after:content-['']";
+    "text-[12px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] lg:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] lg:gap-2.5 flex items-center max-lg:relative max-lg:after:absolute max-lg:after:inset-x-0 max-lg:after:-inset-y-3.5 max-lg:after:content-['']";
   return (
     <header
       className={cn(
@@ -639,7 +639,7 @@ export default function Header({ data = local_data }) {
         <div className="container h-full flex items-center justify-between lg:justify-end">
           {/* CHANGED (mobile only): "India's AI-First University" tagline shown in the top bar */}
           <div
-            className="sm:hidden shrink-0 pr-2 text-[10px] sm:text-[10px] leading-[1.2] font-medium text-white"
+            className="sm:hidden shrink-0 pr-2 text-[11px] sm:text-[10px] leading-[1.2] font-medium text-white text-center"
             dangerouslySetInnerHTML={{
               __html: data?.logo?.logoText,
             }}
@@ -698,7 +698,7 @@ export default function Header({ data = local_data }) {
               button={data?.topBar?.loginButton}
               className={TopHeaderTextStyle}
               iconSrc="/images/header-login.svg"
-              iconClassName="w-4 sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center"
+              iconClassName="w-4 sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center mx-1"
             />
             {/* <div className="w-auto h-auto px-1.25 sm:px-2.5 2xl:px-2.5 border-r border-white/20">
               <Select className="w-full h-auto">
@@ -753,7 +753,7 @@ export default function Header({ data = local_data }) {
             {/* CHANGED: allowed to shrink on mobile */}
             <div className="w-auto lg:w-[38%] max-lg:flex-1 max-lg:min-w-0">
               {/* CHANGED: tighter spacing on mobile, and no divider after the last visible logo (tagline is hidden on mobile) */}
-              <div className="w-full h-auto -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 max-lg:-mx-2 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 max-lg:[&>div]:px-2 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 max-lg:[&>div]:border-r-0! flex items-center">
+              <div className="w-full h-auto gap-3 -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 max-lg:-mx-2 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 max-lg:[&>div]:px-2 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 max-lg:[&>div]:border-r-0! flex items-center">
                 {data?.logo?.mainlogo?.url && (
                   <div className="w-auto h-auto">
                     <Link
@@ -763,7 +763,7 @@ export default function Header({ data = local_data }) {
                         rel: "noopener noreferrer",
                       })}
                       aria-label={data?.logo?.mainlogo?.alternativeTxt}
-                      className="w-40   2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-105"
+                      className="w-40 sm:w-45  2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-105"
                     >
                       {data?.logo?.mainlogo?.url &&
                         <Image
@@ -791,7 +791,7 @@ export default function Header({ data = local_data }) {
                         rel: "noopener noreferrer",
                       })}
                       aria-label={data?.logo?.alternativelogo?.alternativeTxt}
-                      className="w-18 sm:w-22   2xl:w-22.5 3xl:w-27.5 h-auto aspect-110/50 overflow-hidden flex items-center justify-center"
+                      className="w-18 sm:w-22 2xl:w-22.5 3xl:w-27.5 h-auto aspect-110/50 overflow-hidden flex items-center justify-center"
                     >
                       <Image
                         src={data?.logo?.alternativelogo?.url}
@@ -806,7 +806,7 @@ export default function Header({ data = local_data }) {
                   </div>
                 )}
                 {/* CHANGED: max-lg:hidden -> the tagline now lives in the top bar on mobile */}
-                <div className="w-auto h-auto m-auto max-sm:hidden">
+                <div className="w-auto h-auto lg:m-auto max-sm:hidden">
                   <div
                     className="max-sm:text-[9px] text-[14px] 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white min-w-[ 65px] md:min-w-[130px]"
                     dangerouslySetInnerHTML={{
@@ -947,12 +947,12 @@ export default function Header({ data = local_data }) {
                         </div>
 
                         {/* Action Links Pills */}
-                        <div className="w-full bg-[#FFFBF7] dark:bg-[#18181b] px-3 pt-2.5 pb-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+                        <div className="w-full bg-[#FFFBF7] dark:bg-[#18181b] px-3 pt-2.5 pb-2 flex flex-wrap items-center gap-1.5 overflow-x-auto no-scrollbar">
                           {data?.actionLinks?.map((item, index) => (
                             <Link
                               key={index}
                               href={item?.url || "#"}
-                              className="px-3 py-2 rounded-[3px] border border-[#ea580c] dark:border-[#ea580c] text-xs font-bold text-black dark:text-white shrink-0 hover:bg-(--basecolor)/10 transition-colors"
+                              className="px-3 py-2 rounded-[3px] border text-center flex-grow-1  border-[#ea580c] dark:border-[#ea580c] text-xs font-bold text-black dark:text-white shrink-0 hover:bg-(--basecolor)/10 transition-colors"
                             >
                               {item?.label}
                             </Link>
