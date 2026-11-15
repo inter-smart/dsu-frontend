@@ -620,7 +620,7 @@ export default function Header({ data = local_data }) {
   const isMobile = useIsMobile();
   const TopHeaderTextStyle =
     // max-lg:after:* = invisible 48px-tall touch target on mobile (no visual change)
-    "text-[10px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] lg:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] lg:gap-2.5 flex items-center max-lg:relative max-lg:after:absolute max-lg:after:inset-x-0 max-lg:after:-inset-y-3.5 max-lg:after:content-['']";
+    "text-[11px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] lg:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] lg:gap-2.5 flex items-center max-lg:relative max-lg:after:absolute max-lg:after:inset-x-0 max-lg:after:-inset-y-3.5 max-lg:after:content-['']";
   return (
     <header
       className={cn(
@@ -635,8 +635,17 @@ export default function Header({ data = local_data }) {
       )}
     >
       <div className="w-full h-11.25 lg:h-7.5 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block transition-all">
+        {/* CHANGED: justify-between on mobile (tagline left, links right), justify-end on desktop */}
         <div className="container h-full flex items-center justify-between lg:justify-end">
-          <div className="w-auto h-auto gap-1.25 sm:gap-1.75 2xl:gap-2.5 flex">
+          {/* CHANGED (mobile only): "India's AI-First University" tagline shown in the top bar */}
+          <div
+            className="sm:hidden shrink-0 pr-2 text-[10px] sm:text-[10px] leading-[1.2] font-medium text-white"
+            dangerouslySetInnerHTML={{
+              __html: data?.logo?.logoText,
+            }}
+          />
+          {/* CHANGED: max-lg:hidden -> CDSIMER and DSU Online are hidden on mobile (they live in the hamburger menu) */}
+          <div className="w-auto h-auto gap-1.25 sm:gap-1.75 2xl:gap-2.5 flex max-sm:hidden">
             {data?.topBar?.topBarButtons?.map((item) => (
               <div key={item?.id} className="w-auto h-auto">
                 <Link
@@ -653,9 +662,9 @@ export default function Header({ data = local_data }) {
               </div>
             ))}
           </div>
-          <div className="w-auto h-auto lg:gap-2.5 3xl:gap-2.5 flex items-center">
+          <div className="w-auto h-auto lg:gap-2.5 3xl:gap-2.5 flex items-center " >
             {data?.topBar?.topBarLinkIcons?.map((item, index) => (
-              <div key={item?.id} className="w-auto h-auto">
+              <div key={item?.id} className="w-auto h-auto max-sm:hidden">
                 <Link
                   href={item?.url || "#"}
                   aria-label={item?.label}
@@ -689,7 +698,7 @@ export default function Header({ data = local_data }) {
               button={data?.topBar?.loginButton}
               className={TopHeaderTextStyle}
               iconSrc="/images/header-login.svg"
-              iconClassName="w-2.5 sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center"
+              iconClassName="w-4 sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center"
             />
             {/* <div className="w-auto h-auto px-1.25 sm:px-2.5 2xl:px-2.5 border-r border-white/20">
               <Select className="w-full h-auto">
@@ -723,7 +732,7 @@ export default function Header({ data = local_data }) {
       </div>
       {/* MIDDLE SECTION (logos / action links / apply buttons / mobile hamburger).
           Desktop: collapses smoothly when the header becomes sticky (isScrolled).
-          Mobile: untouched, the hamburger must stay available. */}
+          Mobile: logos on the left, hamburger on the right. */}
       <div
         className={cn(
           "w-full h-auto max-lg:py-[15px_20px] lg:border-b border-white/10",
@@ -739,9 +748,12 @@ export default function Header({ data = local_data }) {
           )}
         >
         <div className="container">
-          <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex flex-wrap items-center justify-between">
-            <div className=" w-auto lg:w-[38%] max-lg:mb-6.25">
-              <div className="w-full h-auto -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 flex items-center">
+          {/* CHANGED: no wrapping on mobile, so the hamburger stays on the same row as the logos */}
+          <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex max-lg:flex-nowrap lg:flex-wrap items-center justify-between max-lg:gap-2">
+            {/* CHANGED: allowed to shrink on mobile */}
+            <div className="w-auto lg:w-[38%] max-lg:flex-1 max-lg:min-w-0">
+              {/* CHANGED: tighter spacing on mobile, and no divider after the last visible logo (tagline is hidden on mobile) */}
+              <div className="w-full h-auto -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 max-lg:-mx-2 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 max-lg:[&>div]:px-2 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 max-lg:[&>div]:border-r-0! flex items-center">
                 {data?.logo?.mainlogo?.url && (
                   <div className="w-auto h-auto">
                     <Link
@@ -751,7 +763,7 @@ export default function Header({ data = local_data }) {
                         rel: "noopener noreferrer",
                       })}
                       aria-label={data?.logo?.mainlogo?.alternativeTxt}
-                      className="w-40 2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-105"
+                      className="w-40   2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-105"
                     >
                       {data?.logo?.mainlogo?.url &&
                         <Image
@@ -779,7 +791,7 @@ export default function Header({ data = local_data }) {
                         rel: "noopener noreferrer",
                       })}
                       aria-label={data?.logo?.alternativelogo?.alternativeTxt}
-                      className="w-18.75 2xl:w-22.5 3xl:w-27.5 h-auto aspect-110/50 overflow-hidden flex items-center justify-center"
+                      className="w-18 sm:w-22   2xl:w-22.5 3xl:w-27.5 h-auto aspect-110/50 overflow-hidden flex items-center justify-center"
                     >
                       <Image
                         src={data?.logo?.alternativelogo?.url}
@@ -793,7 +805,8 @@ export default function Header({ data = local_data }) {
                     </Link>
                   </div>
                 )}
-                <div className="w-auto h-auto m-auto">
+                {/* CHANGED: max-lg:hidden -> the tagline now lives in the top bar on mobile */}
+                <div className="w-auto h-auto m-auto max-sm:hidden">
                   <div
                     className="max-sm:text-[9px] text-[14px] 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white min-w-[ 65px] md:min-w-[130px]"
                     dangerouslySetInnerHTML={{
@@ -803,12 +816,14 @@ export default function Header({ data = local_data }) {
                 </div>
               </div>
             </div>
-            <div className="w-full lg:w-[55%]">
+            {/* CHANGED: w-auto + shrink-0 on mobile so the hamburger always stays visible on the right, opposite the logos */}
+            <div className="w-auto lg:w-[55%] max-lg:shrink-0">
               <div className="w-full h-auto -mx-[2.5px] flex lg:justify-end">
                 {data?.actionLinks?.map((item, index) => (
                   <div
                     key={index}
-                    className="w-auto h-auto px-[2.5px] max-lg:flex-1"
+                    // CHANGED: max-lg:flex-1 -> max-lg:hidden (action pills are inside the hamburger menu on mobile)
+                    className="w-auto h-auto px-[2.5px] max-lg:hidden"
                   >
                     <Link
                       href={item?.url || "#"}
@@ -819,14 +834,23 @@ export default function Header({ data = local_data }) {
                     </Link>
                   </div>
                 ))}
-                <ApplyButtons buttons={data?.applyButtons} variant="desktop" />
+                {/* CHANGED: className="max-lg:hidden" (the Apply buttons are inside the hamburger menu on mobile) */}
+                <ApplyButtons
+                  buttons={data?.applyButtons}
+                  variant="desktop"
+                  className="max-lg:hidden"
+                />
+                {/* CHANGED: hamburger is back here (mobile only), on the right side opposite the logos */}
                 <div className="w-auto h-auto pl-0.75 max-lg:flex hidden">
                   <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-                    <SheetTrigger aria-label="Open menu" className="w-7.5 h-full aspect-square bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] border border-[#D1D5DC80]/50 overflow-hidden flex items-center justify-center">
-                      <div className="w-full h-3 flex flex-col items-center justify-between">
-                        <span className="w-1/2 h-0.5 bg-white block"></span>
-                        <span className="w-[25%] h-0.5 bg-white block"></span>
-                        <span className="w-1/2 h-0.5 bg-white block"></span>
+                    <SheetTrigger
+                      aria-label="Open menu"
+                      className="w-10 h-10 shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[5px] border border-[#D1D5DC80]/50 overflow-hidden flex items-center justify-center"
+                    >
+                      <div className="w-5 h-3.5 flex flex-col items-end justify-between">
+                        <span className="w-full h-0.5 rounded-full bg-white block"></span>
+                        <span className="w-3 h-0.5 rounded-full bg-white block"></span>
+                        <span className="w-full h-0.5 rounded-full bg-white block"></span>
                       </div>
                     </SheetTrigger>
                     <SheetContent className="!w-full !max-w-full h-full max-h-screen bg-[#fff7eb] dark:bg-[#18181b] p-0 border-0 flex flex-col overflow-hidden [&>button]:hidden z-[100]">
@@ -1201,10 +1225,8 @@ const isValidButton = (b) => Boolean(b?.label?.trim() && b?.url?.trim());
 const externalProps = (b) =>
   b?.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
 // NRI/Foreigners + Others + "Apply Here" badge. Each one only shows with a label and url.
-// NRI/Foreigners + Others + "Apply Here" badge. Each one only shows with a label and url.
-// NRI/Foreigners + Others + "Apply Here" badge. Each one only shows with a label and url.
-// NRI/Foreigners + Others + "Apply Here" badge. Each one only shows with a label and url.
-function ApplyButtons({ buttons, variant = "desktop" }) {
+// CHANGED: added a className prop so the header can hide this on mobile (max-lg:hidden)
+function ApplyButtons({ buttons, variant = "desktop", className }) {
   const { applyHere, nri, others } = buttons || {};
   const showApply = isValidButton(applyHere);
   const showNri = isValidButton(nri);
@@ -1232,6 +1254,7 @@ function ApplyButtons({ buttons, variant = "desktop" }) {
         isMobile
           ? "h-11.25"
           : "min-h-9 sm:min-h-10 lg:min-h-0 lg:h-10 3xl:h-12.5",
+        className,
       )}
     >
       {/* Gradient layer with a transparent notch cut from the top centre.
