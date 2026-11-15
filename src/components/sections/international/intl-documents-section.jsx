@@ -29,7 +29,7 @@ export default function IntlDocumentsSection({ data }) {
             <div className="container">
                 {title && <h2 className="cmn_Title mb-[16px] xl:mb-[24px]">{title}</h2>}
                 {display === "embed" ? (
-                    <div className="grid gap-[15px] lg:grid-cols-2 xl:gap-[25px]">
+                    <div className={`grid gap-[15px] xl:gap-[25px] ${items.length > 1 ? "lg:grid-cols-2" : ""}`}>
                         {items.map((d) => (
                             <div key={d.id} className="overflow-hidden rounded-[8px] bg-white p-[12px] dark:border dark:border-white/10 dark:bg-[#18191B] xl:p-[16px]">
                                 <p className="mb-[10px] text-[14px] font-semibold text-black dark:text-white xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px]">{d.title}</p>
