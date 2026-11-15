@@ -247,7 +247,7 @@ export default function HomeResearch({ data }) {
                                   "Publication Media"
                                 }
                                 width={270}
-                                height={480}
+                                height={479}
                                 className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
                               />
                             </div>

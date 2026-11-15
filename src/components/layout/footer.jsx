@@ -630,7 +630,7 @@ export default function Footer({ data = local_data }) {
                           <Link
                             href={item?.url || "#"}
                             {...ctaLinkProps(item)}
-                            className="text-[15px] lg:text-xs 2xl:text-[13px] 3xl:text-[15px] leading-[1.2] font-normal text-black dark:text-[#FFFF] py-1.25 3xl:py-2 transition-colors duration-300 block hover:text-(--basecolor) dark:hover:text-(--basecolor)"
+                            className="text-[15px] lg:text-xs 2xl:text-[13px] 3xl:text-[15px] leading-[1.2] font-normal text-black dark:text-[#FFFF] py-2.5 lg:py-1.25 3xl:py-2 transition-colors duration-300 block hover:text-(--basecolor) dark:hover:text-(--basecolor)"
                           >
                             {item?.label}
                           </Link>

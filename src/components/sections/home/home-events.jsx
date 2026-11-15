@@ -238,7 +238,7 @@ export default function Events({ data }) {
                             <Image
                               src={item?.announcement_image?.url}
                               width={220}
-                              height={120}
+                              height={127}
                               alt={item?.announcement_image?.alternativeText || "Announcement"}
                               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             />

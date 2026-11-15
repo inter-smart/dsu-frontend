@@ -17,12 +17,23 @@ const subscribePin = (cb) => {
 };
 // Viewport heights of scrolling per card while the section is pinned.
 const SCRUB_VH_PER_CARD = 60;
+// One wheel gesture / swipe moves exactly one card; this is how long that move takes (ms).
+const STEP_MS = 1000;
+const SWIPE_PX = 24;
+// Windows trackpad inertia tails are jittery and can pause 100-200ms mid-tail, so a gesture ends only after this much silence.
+const QUIET_MS = 300;
+// A lone wheel event followed by nothing for this long is a single mouse notch, not a trackpad stream.
+const NOTCH_WAIT_MS = 45;
+// Smaller deltas than this are never a mouse-wheel notch (notches are ~100, lower on scaled displays).
+const NOTCH_MIN_DELTA = 40;
+// Cards visible in the stack at once; the next one fades in behind them as the front card leaves.
+const VISIBLE_CARDS = 3;
 // How quickly the cards catch up to the scroll position (0-1, higher = snappier).
 // CHANGED: this is now applied per 16.67ms of real time (not per frame), so it feels the same on 60/120/144Hz screens.
 const EASE = 0.14;
 // Each card holds still until this fraction of its scroll range, swaps, then holds again.
-const DWELL_START = 0.3;
-const DWELL_END = 0.7;
+const DWELL_START = 0.2;
+const DWELL_END = 0.8;
 
 // Maps raw progress (0..count-1) so that cards rest on whole numbers instead of in-between blends.
 const withDwell = (raw) => {
@@ -71,15 +82,22 @@ export default function HomeExcellence({ data }) {
     let lastIndex = -1;
     let lastTime = 0; // ADDED: timestamp of the previous frame, for time-based easing
 
-    const getTarget = () => {
+    // Geometry is measured once (and on resize), never during scroll: reading layout right after the
+    // card styles were written forced a reflow every frame and delayed wheel events on slow machines.
+    let startY = 0; // document offset where the pin begins
+    let total = 0; // scroll distance of the pin
+    const measure = () => {
       const el = trackRef.current;
-      if (!el) return 0;
-      const { top, height } = el.getBoundingClientRect();
+      if (!el) return;
       const pin = el.firstElementChild?.offsetHeight || window.innerHeight;
-      const total = height - pin;
-      const progress = total > 0 ? Math.min(1, Math.max(0, -top / total)) : 0;
-      return withDwell(progress * (count - 1));
+      startY = el.getBoundingClientRect().top + window.scrollY;
+      total = el.offsetHeight - pin;
     };
+    const getRaw = () => {
+      const progress = total > 0 ? Math.min(1, Math.max(0, (window.scrollY - startY) / total)) : 0;
+      return progress * (count - 1);
+    };
+    const getTarget = () => withDwell(getRaw());
 
     const paint = (t) => {
       const nodes = cardRefs.current;
@@ -88,15 +106,16 @@ export default function HomeExcellence({ data }) {
         if (!node) continue;
         const pos = i - t;
         const stackIndex = Math.max(0, pos);
-        const isVisible = stackIndex < 5;
+        const isVisible = stackIndex < VISIBLE_CARDS;
         const passed = pos < 0;
         node.style.transform = passed
-          ? `translate3d(0, ${-pos * 24}px, 0) scale(${1 - pos * 0.1})`
+          ? `translate3d(0, ${-pos * 140}%, 0)`
           : isVisible
             ? `translate3d(0, calc(-1 * ${stackIndex} * var(--stack-gap)), 0) scale(${1 - stackIndex * 0.08})`
-            : `translate3d(0, calc(-5 * var(--stack-gap)), 0) scale(${1 - 5 * 0.08})`;
-        node.style.zIndex = passed ? count + 1 : Math.round((count - stackIndex) * 100);
-        node.style.opacity = passed ? Math.max(0, 1 + pos * 1.8) : 1;
+            : `translate3d(0, calc(-${VISIBLE_CARDS} * var(--stack-gap)), 0) scale(${1 - VISIBLE_CARDS * 0.08})`;
+        // Exiting card must sit above the whole stack (stack z tops out at count * 100).
+        node.style.zIndex = passed ? (count + 1) * 100 : Math.round((count - stackIndex) * 100);
+        node.style.opacity = passed ? Math.min(1, Math.max(0, (1 + pos) * 6)) : Math.min(1, Math.max(0, VISIBLE_CARDS - pos));
       }
       // Only touch React state when the active card actually changes.
       const idx = Math.round(t);
@@ -128,24 +147,154 @@ export default function HomeExcellence({ data }) {
       if (!raf) raf = requestAnimationFrame(tick);
     };
 
+    measure();
     current = target = getTarget();
     paint(current);
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    const onResize = () => {
+      measure();
+      onScroll();
+    };
+    window.addEventListener("resize", onResize);
+
+    // Gesture stepping: while the section is pinned, one wheel gesture / swipe scrolls to exactly the next
+    // (or previous) card. At the first/last card the gesture is released so the page scrolls on normally.
+    let dead = false;
+    let busy = false; // a step animation is running
+    let locked = false; // current wheel gesture already handled (swallow its remaining/inertia events)
+    let quiet = true; // no wheel events for QUIET_MS
+    let freeScroll = false; // current wheel gesture is a trackpad swipe: scroll normally, no stepping
+    let pendingTimer = 0; // waiting to see whether a lone wheel event is a single notch
+    let lastWheel = 0;
+    let quietTimer = 0;
+    let touchY = 0;
+    let touchDone = false;
+
+    const inRange = () => {
+      const y = window.scrollY;
+      return total > 0 && y >= startY - 2 && y <= startY + total + 2;
+    };
+    const tryUnlock = () => {
+      if (!busy && quiet) locked = false;
+    };
+    const go = (i) => {
+      const y = startY + (i / (count - 1)) * total;
+      busy = true;
+      const done = () => {
+        busy = false;
+        tryUnlock();
+      };
+      if (typeof window.lenis?.scrollTo === "function") {
+        window.lenis.scrollTo(y, { duration: STEP_MS / 1000, easing: (t) => t, force: true, onComplete: done });
+        return;
+      }
+      const from = window.scrollY;
+      const t0 = performance.now();
+      const step = (now) => {
+        const p = Math.min(1, (now - t0) / STEP_MS);
+        window.scrollTo(0, from + (y - from) * p);
+        if (p < 1 && !dead) requestAnimationFrame(step);
+        else done();
+      };
+      requestAnimationFrame(step);
+    };
+    const swallow = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation?.();
+    };
+    const canStep = (dir) => {
+      const next = Math.round(getRaw()) + dir;
+      return next >= 0 && next <= count - 1;
+    };
+
+    // Trackpads (and fast wheel spins) send a stream of small, closely spaced events: those scroll the pinned
+    // section normally and the cards follow the scroll position. Only a lone mouse-wheel notch steps one card.
+    const armQuiet = () => {
+      quiet = false;
+      clearTimeout(quietTimer);
+      quietTimer = setTimeout(() => {
+        quiet = true;
+        tryUnlock();
+      }, QUIET_MS);
+    };
+    const onWheel = (e) => {
+      const now = performance.now();
+      const gap = now - lastWheel;
+      lastWheel = now;
+      const dir = Math.sign(e.deltaY);
+      if (!dir || e.ctrlKey || !inRange()) return;
+      if (locked) {
+        // Mid-step (or its tail): swallow, except a fresh isolated notch after the step finished.
+        if (!busy && Math.abs(e.deltaY) >= 50 && gap >= 60) locked = false;
+        else {
+          swallow(e);
+          armQuiet();
+          return;
+        }
+      }
+      if (gap >= QUIET_MS) freeScroll = false; // a new gesture begins
+      if (freeScroll) return;
+      if (Math.abs(e.deltaY) < NOTCH_MIN_DELTA) {
+        // Trackpad swipes start small and ramp up; a mouse notch is ~100.
+        clearTimeout(pendingTimer);
+        pendingTimer = 0;
+        freeScroll = true;
+        return;
+      }
+      if (pendingTimer) {
+        // A second event right after the first: a trackpad swipe or fast spin, not a single notch.
+        clearTimeout(pendingTimer);
+        pendingTimer = 0;
+        freeScroll = true;
+        return;
+      }
+      if (!canStep(dir)) return; // first/last card: let the page scroll on
+      swallow(e);
+      pendingTimer = setTimeout(() => {
+        pendingTimer = 0;
+        locked = true;
+        armQuiet();
+        go(Math.round(getRaw()) + dir);
+      }, NOTCH_WAIT_MS);
+    };
+    const onTouchStart = (e) => {
+      touchY = e.touches[0].clientY;
+      touchDone = false;
+    };
+    const onTouchMove = (e) => {
+      if (!inRange()) return;
+      const dy = touchY - e.touches[0].clientY;
+      const dir = Math.sign(dy);
+      if (!dir || (!touchDone && !busy && !canStep(dir))) return;
+      if (e.cancelable) e.preventDefault();
+      if (touchDone || busy || Math.abs(dy) < SWIPE_PX) return;
+      touchDone = true;
+      go(Math.round(getRaw()) + dir);
+    };
+    window.addEventListener("wheel", onWheel, { passive: false, capture: true });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false, capture: true });
 
     // ADDED: when fonts/images/content above the section change the page height, the section moves
     // without a scroll event. Re-sync the cards so the pin never looks out of step.
     let resizeObserver;
     if (typeof ResizeObserver !== "undefined") {
-      resizeObserver = new ResizeObserver(onScroll);
+      resizeObserver = new ResizeObserver(onResize);
       resizeObserver.observe(document.documentElement);
       if (trackRef.current) resizeObserver.observe(trackRef.current);
     }
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", onResize);
       resizeObserver?.disconnect();
+      dead = true;
+      clearTimeout(quietTimer);
+      clearTimeout(pendingTimer);
+      window.removeEventListener("wheel", onWheel, { capture: true });
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove, { capture: true });
       if (raf) cancelAnimationFrame(raf);
     };
   }, [pinned, count]);
@@ -223,208 +372,207 @@ export default function HomeExcellence({ data }) {
       className="w-full h-auto dark:bg-[#101010] block"
     >
       <div
-        className={`w-full overflow-hidden ${
-          pinned
+        className={`w-full overflow-hidden ${pinned
             ? "sticky top-0 h-screen py-5 flex items-center"
             : "h-auto block py-[40px_50px] sm:py-[50px_70px] lg:py-[70px_90px] 2xl:py-[80px_110px] 3xl:py-[100px_140px]"
-        }`}
+          }`}
       >
-      <div className="container">
-        <div data-reveal className="w-full h-auto mb-12.5 sm:mb-17.5 lg:mb-20 2xl:mb-25 3xl:mb-30">
-          <Heading
-            as="h2"
-            aurora
-            speed={2}
-            align="center"
-            className="mb-1.25 lg:mb-2.5"
-          >
-            {data?.title}
-          </Heading>
-          <Text className="text-center">{data?.description}</Text>
-        </div>
-        <div data-reveal="fade" className="w-full h-auto lg:-mx-2.5 2xl:-mx-3.75 3xl:-mx-5 lg:[&>*]:px-2.5 2xl:[&>*]:px-3.75 3xl:[&>*]:px-5 flex flex-wrap">
-          <div className="w-full lg:w-[25%] max-lg:order-3">
-            <div className="w-full h-full gap-2.5 lg:gap-3.75 2xl:gap-5 3xl:gap-7.5 max-lg:grid max-lg:grid-cols-2 lg:flex flex-col justify-between">
-              {activeSpecifications?.map((item, index) => (
-                <div
-                  key={`${activeItem?.id ?? activeIndex}-spec-${item?.title ?? index}`}
-                  style={{ animationDelay: `${index * 120}ms` }}
-                  className="cardFlip w-full lg:w-auto h-auto ml-auto"
-                >
-                  <div className="w-full lg:w-auto h-full lg:h-auto lg:text-right p-[15px_10px] lg:p-[15px_25px_15px_10px] 3xl:p-[20px_25px_20px_10px] bg-[#D9D9D91A] max-sm:rounded-[10px] rounded-[4px] lg:rounded-[8px] 3xl:rounded-[10px] border border-black/10 dark:border-white/10 overflow-hidden relative z-0 inline-flex flex-col">
-                    <ShineBorder
-                      shineColor={["#909191"]}
-                      duration={8 + index * 4}
-                      className="hidden dark:block"
-                    />
-                    <div className="text-sm sm:text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-bold text-[#212121] dark:text-white mb-0.75 2xl:mb-1.25">
-                      {item?.title}
-                    </div>
-                    <div className="text-xs sm:text-[13px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] dark:text-white">
-                      {item?.description ?? item?.text}
+        <div className="container">
+          <div data-reveal className="w-full h-auto mb-12.5 sm:mb-17.5 lg:mb-20 2xl:mb-25 3xl:mb-30">
+            <Heading
+              as="h2"
+              aurora
+              speed={2}
+              align="center"
+              className="mb-1.25 lg:mb-2.5"
+            >
+              {data?.title}
+            </Heading>
+            <Text className="text-center">{data?.description}</Text>
+          </div>
+          <div data-reveal="fade" className="w-full h-auto lg:-mx-2.5 2xl:-mx-3.75 3xl:-mx-5 lg:[&>*]:px-2.5 2xl:[&>*]:px-3.75 3xl:[&>*]:px-5 flex flex-wrap">
+            <div className="w-full lg:w-[25%] max-lg:order-3">
+              <div className="w-full h-full gap-2.5 lg:gap-3.75 2xl:gap-5 3xl:gap-7.5 max-lg:grid max-lg:grid-cols-2 lg:flex flex-col justify-between">
+                {activeSpecifications?.map((item, index) => (
+                  <div
+                    key={`${activeItem?.id ?? activeIndex}-spec-${item?.title ?? index}`}
+                    style={{ animationDelay: `${index * 120}ms` }}
+                    className="cardFlip w-full lg:w-auto h-auto ml-auto"
+                  >
+                    <div className="w-full lg:w-auto h-full lg:h-auto lg:text-right p-[15px_10px] lg:p-[15px_25px_15px_10px] 3xl:p-[20px_25px_20px_10px] bg-[#D9D9D91A] max-sm:rounded-[10px] rounded-[4px] lg:rounded-[8px] 3xl:rounded-[10px] border border-black/10 dark:border-white/10 overflow-hidden relative z-0 inline-flex flex-col">
+                      <ShineBorder
+                        shineColor={["#909191"]}
+                        duration={8 + index * 4}
+                        className="hidden dark:block"
+                      />
+                      <div className="text-sm sm:text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-bold text-[#212121] dark:text-white mb-0.75 2xl:mb-1.25">
+                        {item?.title}
+                      </div>
+                      <div className="text-xs sm:text-[13px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] dark:text-white">
+                        {item?.description ?? item?.text}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="w-full lg:w-[50%] max-lg:mb-3.75 max-lg:order-1">
-            <div
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseUp}
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              className="w-full min-w-0 h-full block"
-            >
-              <div className="[--navigation-btn-size:35px] sm:[--navigation-btn-size:45px] w-full h-full aspect-875/450 relative z-0">
-                {items?.map((item, index) => {
-                  // Pinned: transform/opacity/zIndex are written straight to the DOM by the scrub effect.
-                  // Not pinned: the stack is driven by activeIndex as before.
-                  const stackIndex = Math.max(0, getStackIndex(index));
-                  const isVisible = stackIndex < 5;
-                  return (
-                    <div
-                      key={item?.id}
-                      ref={(el) => {
-                        cardRefs.current[index] = el;
-                      }}
-                      className={`[--stack-gap:15px] sm:[--stack-gap:25px] 2xl:[--stack-gap:30px] 3xl:[--stack-gap:35px] w-full h-full rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden absolute z-1 inset-0 ${pinned ? "" : "transition-all duration-1000"}`}
-                      style={
-                        pinned
-                          ? { pointerEvents: "none", willChange: "transform, opacity" }
-                          : {
+            <div className="w-full lg:w-[50%] max-lg:mb-3.75 max-lg:order-1">
+              <div
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                className="w-full min-w-0 h-full block"
+              >
+                <div className="[--navigation-btn-size:35px] sm:[--navigation-btn-size:45px] w-full h-full aspect-875/450 relative z-0">
+                  {items?.map((item, index) => {
+                    // Pinned: transform/opacity/zIndex are written straight to the DOM by the scrub effect.
+                    // Not pinned: the stack is driven by activeIndex as before.
+                    const stackIndex = Math.max(0, getStackIndex(index));
+                    const isVisible = stackIndex < VISIBLE_CARDS;
+                    return (
+                      <div
+                        key={item?.id}
+                        ref={(el) => {
+                          cardRefs.current[index] = el;
+                        }}
+                        className={`[--stack-gap:15px] sm:[--stack-gap:25px] 2xl:[--stack-gap:30px] 3xl:[--stack-gap:35px] w-full h-full rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden absolute z-1 inset-0 ${pinned ? "" : "transition-all duration-1000"}`}
+                        style={
+                          pinned
+                            ? { pointerEvents: "none", willChange: "transform, opacity" }
+                            : {
                               transform: isVisible
                                 ? `translateY(calc(-1 * ${stackIndex} * var(--stack-gap))) scale(${1 - stackIndex * 0.08})`
-                                : `translateY(calc(-5 * var(--stack-gap))) scale(${1 - 5 * 0.08})`,
+                                : `translateY(calc(-${VISIBLE_CARDS} * var(--stack-gap))) scale(${1 - VISIBLE_CARDS * 0.08})`,
                               zIndex: Math.round((items.length - stackIndex) * 100),
-                              opacity: 1,
+                              opacity: isVisible ? 1 : 0,
                               pointerEvents: "none",
                             }
-                      }
-                    >
-                      {item?.excellenceImage?.url && (
-                        <Image
-                          src={item.excellenceImage.url}
-                          alt={item.excellenceImage.alternativeText || "Excellence Image"}
-                          fill
-                          sizes="(max-width: 1024px) 100vw, 875px"
-                          className="h-full w-full object-cover select-none"
-                          draggable={false}
-                        />
-                      )}
-                    </div>
-                  );
-                })}
-                <button
-                  onClick={scrollPrev}
-                  aria-label="Previous slide"
-                  className="w-(--navigation-btn-size) h-auto aspect-40/30 my-auto overflow-hidden translate-x-[10px] flex items-center justify-center absolute z-10 inset-[0_auto_0_0] transition-opacity duration-500 hover:opacity-50"
-                >
-                  <Image
-                    src={"/images/testimonial-slider-btn-mobile.svg"}
-                    alt="left-btn"
-                    width={40}
-                    height={30}
-                    className="w-full h-full object-contain block lg:hidden"
-                  />
-                </button>
-                <button
-                  onClick={scrollNext}
-                  aria-label="Next slide"
-                  className="w-(--navigation-btn-size) h-auto aspect-40/30 my-auto overflow-hidden translate-x-[-10px] flex items-center justify-center absolute z-10 inset-[0_0_0_auto] transition-opacity duration-500 hover:opacity-50"
-                >
-                  <Image
-                    src={"/images/testimonial-slider-btn-mobile.svg"}
-                    alt="right-btn"
-                    width={40}
-                    height={30}
-                    className="w-full h-full object-contain scale-x-[-1] block lg:hidden"
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="w-full lg:w-[25%] max-lg:mb-3.75 max-lg:order-2">
-            <div className="w-full h-full flex">
-              <div
-                key={activeItem?.id}
-                className="animate-in fade-in slide-in-from-right-3 w-auto h-auto"
-              >
-                <div className="w-full h-full flex flex-col justify-between">
-                  <div className="w-full h-auto">
-                    <div className="text-sm sm:text-xl 2xl:text-[25px] 3xl:text-[32px] leading-[1.2] font-normal text-[#212121] dark:text-white mb-2.5 2xl:mb-3.75">
-                      {activeItem?.excellenceContent?.heading?.title}
-                      <span className="text-[21px] sm:text-[28px] 2xl:text-[34px] 3xl:text-[42px] font-bold block">
-                        {activeItem?.excellenceContent?.heading?.highlightTxt}
-                      </span>
-                    </div>
-                    {activeItem?.excellenceContent?.poweredImage?.url && (
-                      <div className="text-base leading-normal font-bold tracking-[-2%] text-black dark:text-white w-full h-auto mb-2.5 sm:mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5 gap-1.25 flex items-center">
-                        Powered By
-                        <span className="w-17.5 sm:w-27.5 2xl:w-32.5 3xl:w-40 h-auto aspect-160/30 overflow-hidden block">
+                        }
+                      >
+                        {item?.excellenceImage?.url && (
                           <Image
-                            src={activeItem.excellenceContent.poweredImage.url}
-                            alt={
-                              activeItem.excellenceContent.poweredImage
-                                .alternativeTxt || "Powered By"
-                            }
-                            width={160}
-                            height={30}
-                            className="w-full h-full object-contain"
+                            src={item.excellenceImage.url}
+                            alt={item.excellenceImage.alternativeText || "Excellence Image"}
+                            fill
+                            sizes="(max-width: 1024px) 100vw, 875px"
+                            className="h-full w-full object-cover select-none"
+                            draggable={false}
                           />
-                        </span>
+                        )}
                       </div>
-                    )}
-                    <Text>{activeItem?.excellenceContent?.description}</Text>
-                  </div>
-                  {activeItem?.excellenceContent?.button?.label?.trim() && (
-                  <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25 max-lg:hidden">
-                    <Link
-                      href={safeHref(activeItem?.excellenceContent?.button?.link, "/NVIDIA")}
-                      className={buttonVariants({
-                        variant: "default",
-                        size: "default",
-                      })}
-                    >
-                      {activeItem?.excellenceContent?.button?.label}
-                      <Image
-                        src="/images/icon-btn.svg"
-                        alt="home-btn"
-                        width={15}
-                        height={15}
-                        className="size-3.75"
-                        data-icon="inline-end"
-                      />
-                    </Link>
-                  </div>
-                  )}
+                    );
+                  })}
+                  <button
+                    onClick={scrollPrev}
+                    aria-label="Previous slide"
+                    className="w-(--navigation-btn-size) h-auto aspect-40/30 my-auto overflow-hidden translate-x-[10px] flex items-center justify-center absolute z-1000 inset-[0_auto_0_0] transition-opacity duration-500 hover:opacity-50"
+                  >
+                    <Image
+                      src={"/images/testimonial-slider-btn-mobile.svg"}
+                      alt="left-btn"
+                      width={40}
+                      height={30}
+                      className="w-full h-full object-contain block lg:hidden"
+                    />
+                  </button>
+                  <button
+                    onClick={scrollNext}
+                    aria-label="Next slide"
+                    className="w-(--navigation-btn-size) h-auto aspect-40/30 my-auto overflow-hidden translate-x-[-10px] flex items-center justify-center absolute z-1000 inset-[0_0_0_auto] transition-opacity duration-500 hover:opacity-50"
+                  >
+                    <Image
+                      src={"/images/testimonial-slider-btn-mobile.svg"}
+                      alt="right-btn"
+                      width={40}
+                      height={30}
+                      className="w-full h-full object-contain scale-x-[-1] block lg:hidden"
+                    />
+                  </button>
                 </div>
               </div>
             </div>
+            <div className="w-full lg:w-[25%] max-lg:mb-3.75 max-lg:order-2">
+              <div className="w-full h-full flex">
+                <div
+                  key={activeItem?.id}
+                  className="animate-in fade-in slide-in-from-right-3 w-auto h-auto"
+                >
+                  <div className="w-full h-full flex flex-col justify-between">
+                    <div className="w-full h-auto">
+                      <div className="text-sm sm:text-xl 2xl:text-[25px] 3xl:text-[32px] leading-[1.2] font-normal text-[#212121] dark:text-white mb-2.5 2xl:mb-3.75">
+                        {activeItem?.excellenceContent?.heading?.title}
+                        <span className="text-[21px] sm:text-[28px] 2xl:text-[34px] 3xl:text-[42px] font-bold block">
+                          {activeItem?.excellenceContent?.heading?.highlightTxt}
+                        </span>
+                      </div>
+                      {activeItem?.excellenceContent?.poweredImage?.url && (
+                        <div className="text-base leading-normal font-bold tracking-[-2%] text-black dark:text-white w-full h-auto mb-2.5 sm:mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5 gap-1.25 flex items-center">
+                          Powered By
+                          <span className="w-17.5 sm:w-27.5 2xl:w-32.5 3xl:w-40 h-auto aspect-160/30 overflow-hidden block">
+                            <Image
+                              src={activeItem.excellenceContent.poweredImage.url}
+                              alt={
+                                activeItem.excellenceContent.poweredImage
+                                  .alternativeTxt || "Powered By"
+                              }
+                              width={160}
+                              height={30}
+                              className="w-full h-full object-contain"
+                            />
+                          </span>
+                        </div>
+                      )}
+                      <Text>{activeItem?.excellenceContent?.description}</Text>
+                    </div>
+                    {activeItem?.excellenceContent?.button?.label?.trim() && (
+                      <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25 max-lg:hidden">
+                        <Link
+                          href={safeHref(activeItem?.excellenceContent?.button?.link, "/NVIDIA")}
+                          className={buttonVariants({
+                            variant: "default",
+                            size: "default",
+                          })}
+                        >
+                          {activeItem?.excellenceContent?.button?.label}
+                          <Image
+                            src="/images/icon-btn.svg"
+                            alt="home-btn"
+                            width={15}
+                            height={15}
+                            className="size-3.75"
+                            data-icon="inline-end"
+                          />
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {activeItem?.excellenceContent?.button?.label?.trim() && (
+              <div className="mt-5 max-lg:block hidden max-lg:order-4">
+                <Link
+                  href={safeHref(activeItem?.excellenceContent?.button?.link, "/NVIDIA")}
+                  className={buttonVariants({
+                    variant: "default",
+                    size: "default",
+                  })}
+                >
+                  {activeItem?.excellenceContent?.button?.label}
+                  <Image
+                    src="/images/icon-btn.svg"
+                    alt="home-btn"
+                    width={15}
+                    height={15}
+                    className="size-3.75"
+                    data-icon="inline-end"
+                  />
+                </Link>
+              </div>
+            )}
           </div>
-          {activeItem?.excellenceContent?.button?.label?.trim() && (
-          <div className="mt-5 max-lg:block hidden max-lg:order-4">
-            <Link
-              href={safeHref(activeItem?.excellenceContent?.button?.link, "/NVIDIA")}
-              className={buttonVariants({
-                variant: "default",
-                size: "default",
-              })}
-            >
-              {activeItem?.excellenceContent?.button?.label}
-              <Image
-                src="/images/icon-btn.svg"
-                alt="home-btn"
-                width={15}
-                height={15}
-                className="size-3.75"
-                data-icon="inline-end"
-              />
-            </Link>
-          </div>
-          )}
         </div>
-      </div>
       </div>
     </section>
   );

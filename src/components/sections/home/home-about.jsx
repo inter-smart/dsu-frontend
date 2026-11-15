@@ -86,7 +86,7 @@ export default function HomeAbout({ data }) {
                           alt={item?.icon?.alternativeText || "icon"}
                           width={50}
                           height={50}
-                          className="w-full h-full object-contain transition-[filter] duration-400 group-hover:brightness-0 group-hover:invert"
+                          className="w-full aspect-square object-contain transition-[filter] duration-400 group-hover:brightness-0 group-hover:invert"
                         />
                       )}
                     </div>
@@ -247,7 +247,7 @@ export default function HomeAbout({ data }) {
                     src={data?.leadership?.leaderShipImage?.url}
                     alt={data?.leadership?.leaderShipImage?.alternativeText || "Leadership"}
                     width={375}
-                    height={470}
+                    height={495}
                     className="w-full h-full object-cover"
                   />
                 </div>
