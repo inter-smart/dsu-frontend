@@ -163,6 +163,31 @@ import IntlTabbedGallery from "@/components/sections/gallery/gallery";
 import IntlAccordionSection from "@/components/sections/international/intl-accordion-section";
 import TeamSection from "@/components/sections/placements/Team-section";
 import IntlTextCTASection from "../sections/international/IntlTextCTASection";
+import AccreditationSlider from "@/components/sections/about/AccreditationSlider";
+import InternationalBanner from "@/components/sections/international/InternationalBanner";
+import InternationalHero from "@/components/sections/international/InternationalHero";
+import IntlCourses from "@/components/sections/international/IntlCourses";
+import CtaBanner from "@/components/sections/international/CtaBanner";
+import ContactDetails from "@/components/sections/international/ContactDetails";
+import ServiceBanner from "@/components/sections/international/ServiceBanner";
+import ServiceIntro from "@/components/sections/international/ServiceIntro";
+import ServiceFeature from "@/components/sections/international/ServiceFeature";
+import CampusLife from "@/components/sections/international/CampusLife";
+import SupportServices from "@/components/sections/international/SupportServices";
+import InternationalTeam from "@/components/sections/international/InternationalTeam";
+import ServiceFaq from "@/components/sections/international/ServiceFaq";
+import CtaSection from "@/components/sections/international/CtaSection";
+import IntlBanner from "@/components/sections/international/IntlBanner";
+import IntlAbout from "@/components/sections/international/IntlAbout";
+import AwardsSlider from "@/components/sections/international/AwardsSlider";
+import IntlInnovation from "@/components/sections/international/IntlInnovation";
+import InstructionsAccordion from "@/components/sections/international/InstructionsAccordion";
+import IntlAdmissionProcess from "@/components/sections/international/IntlAdmissionProcess";
+import EnquiryForm from "@/components/sections/international/EnquiryForm";
+import NBABoard from "@/components/sections/NBA/NBA-board";
+import NAACJourney from "@/components/sections/NAAC/NAAC-journey";
+import AiIndustryEngagement from "@/components/sections/ai-enabled/Ai-industry-enagement";
+import { hasContent } from "@/lib/has-content";
 
 // Alumni components read the sidebar from their data
 function withSidebar(Component) {
@@ -183,6 +208,36 @@ function adapted(Component, adapter) {
 function libraryOverview({ data }) {
     const props = adapt.librarySection(data);
     return props ? <LibraryOverview data={props} menu={[]} /> : null;
+}
+
+
+// Course sections carry their course list: { title, subtitle, catalog }
+function coursesSection({ data }) {
+    return <IntlCourses data={data} catalog={data.catalog} />;
+}
+
+// The "Support Areas" section holds the numbered support areas, shown one below the other
+function serviceFeatures({ data }) {
+    return (data.items || []).map((feature) => <ServiceFeature key={feature.id} data={feature} />);
+}
+
+// The enquiry form stands alone in a section; its School / Program / Course choices come from the Courses Offered section
+function enquiryFormSection({ data }) {
+    return (
+        <section className="container py-10">
+            <EnquiryForm data={data} />
+        </section>
+    );
+}
+
+// NAAC accreditation: the intro board and the DSU & NAAC journey
+function naacSection({ data }) {
+    return (
+        <>
+            {hasContent(data.accreditation) && <NBABoard data={data.accreditation} />}
+            {hasContent(data.journey) && <NAACJourney data={data.journey} />}
+        </>
+    );
 }
 
 // Dynamic zone component uid -> the React component the fixed page uses for it,
@@ -421,6 +476,45 @@ const flexibleRegistry = {
   "doctoral-research.coursework-section": { Component: DoctoralCourseworkSection },
   "doctoral-research.forms-section": { Component: DoctoralFormsSection },
   "doctoral-research.contact-section": { Component: DoctoralContactSection },
+  // about page (src/app/about/page.js): logo slider
+  "about.accreditation-section": { Component: AccreditationSlider },
+
+  // Study in India page (src/app/study-in-india/page.js)
+  "sii.banner": { Component: InternationalBanner },
+  "sii.hero": { Component: InternationalHero },
+  "sii.courses": { Component: coursesSection },
+  "sii.cta": { Component: CtaBanner },
+  "sii.contact": { Component: ContactDetails },
+
+  // International Student Services page (src/app/international-services/page.js)
+  "isv.hero": { Component: ServiceBanner },
+  "isv.intro": { Component: ServiceIntro },
+  "isv.features": { Component: serviceFeatures },
+  "isv.campus": { Component: CampusLife },
+  "isv.support": { Component: SupportServices },
+  "isv.team": { Component: InternationalTeam },
+  "isv.faq": { Component: ServiceFaq },
+  "isv.cta": { Component: CtaSection },
+
+  // International Admission page (src/components/sections/international/international-admission-view.jsx)
+  "international.hero": { Component: IntlBanner },
+  "international.about": { Component: IntlAbout },
+  "international.awards": { Component: AwardsSlider },
+  "international.courses": { Component: coursesSection },
+  "international.innovation": { Component: IntlInnovation },
+  "international.instructions": { Component: InstructionsAccordion },
+  "international.admission-process": { Component: IntlAdmissionProcess },
+  "international.enquiry-form": { Component: enquiryFormSection },
+
+  // IQAC Activities page (src/app/why-us/IQAC-activities/page.js)
+  "iqac.activities-section": { Component: IQAC },
+
+  // accreditation pages (src/app/accreditions/[slug]/page.js)
+  "accredition.naac": { Component: naacSection },
+  "accredition.nba": { Component: NBABoard },
+
+  // department industry connect (src/components/sections/academics/department-page.jsx)
+  "department.industry-engagement-section": { Component: AiIndustryEngagement },
 };
 
 export default flexibleRegistry;
