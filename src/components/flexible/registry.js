@@ -61,6 +61,7 @@ import AiPartnerwithus from "@/components/sections/ai-enabled/Ai-partnerwithus";
 import AiRecentClinic from "@/components/sections/ai-enabled/Ai-recent-clinic";
 import AiVisionMission from "@/components/sections/ai-enabled/Ai-vision-mission";
 import NewsEvents from "@/components/sections/news-events/news-events";
+import LibraryOverview from "@/components/sections/ai-enabled/library/library-overview";
 import * as adapt from "@/lib/schools/department-adapters";
 import AboutHistory from "@/components/sections/about/about-history";
 import AboutLeadership from "@/components/sections/about/about-leadership";
@@ -154,6 +155,7 @@ import IntlButtonSection from "@/components/sections/international/intl-button-s
 import IntlTextButtonSection from "@/components/sections/international/intl-text-button-section";
 import IntlVideoSection from "@/components/sections/international/intl-video-section";
 import IntlDocumentsSection from "@/components/sections/international/intl-documents-section";
+import IntlImageSection from "@/components/sections/international/intl-image-section";
 import IntlLinkCardsSection from "@/components/sections/international/intl-link-cards-section";
 import IntlPartnersSection from "@/components/sections/international/intl-partners-section";
 import IntlTabbedGallery from "@/components/sections/gallery/gallery";
@@ -174,6 +176,12 @@ function adapted(Component, adapter) {
         const props = adapter(data);
         return props ? <Component data={props} /> : null;
     };
+}
+
+// Library landing section; no department context here, so the sidebar menu is left empty
+function libraryOverview({ data }) {
+    const props = adapt.librarySection(data);
+    return props ? <LibraryOverview data={props} menu={[]} /> : null;
 }
 
 // Dynamic zone component uid -> the React component the fixed page uses for it,
@@ -309,6 +317,7 @@ const flexibleRegistry = {
   "department.engagement-section": { Component: adapted(AiRecentClinic, adapt.recentEngagementSection) },
   "department.partner-with-us-section": { Component: adapted(AiPartnerwithus, adapt.partnerWithUsSection) },
   "department.chapters-section": { Component: adapted(AiAcademicChapters, adapt.chaptersSection) },
+  "department.library-section": { Component: libraryOverview },
   "department.placement-collaborations-section": { Component: AcademicCollaboration },
   "department.placement-partners-section": { Component: AcademicPartners },
 
@@ -378,6 +387,7 @@ const flexibleRegistry = {
   "international.text-button-section": { Component: IntlTextButtonSection },
   "international.video-section": { Component: IntlVideoSection },
   "international.documents-section": { Component: IntlDocumentsSection },
+  "international.image-section": { Component: IntlImageSection },
   "international.link-cards-section": { Component: IntlLinkCardsSection },
   "international.partners-section": { Component: IntlPartnersSection },
   "international.gallery": { Component: IntlTabbedGallery },
