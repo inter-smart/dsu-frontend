@@ -59,7 +59,7 @@ function LeaderCard({ item, featured }) {
             className={`grid grid-rows-[1fr] transition-[grid-template-rows,opacity] duration-700 ${EASE} [@media(hover:hover)]:grid-rows-[0fr] [@media(hover:hover)]:opacity-0 group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-visible:grid-rows-[1fr] group-focus-visible:opacity-100`}
           >
             <div className="min-h-0 overflow-hidden">
-              <div className="pt-[8px] xl:pt-[10px]">
+              <div className="typography pt-[8px] xl:pt-[10px]">
                 {Array.isArray(item.description) ? (
                   <BlocksRenderer content={item.description} />
                 ) : (
@@ -104,7 +104,7 @@ export default function AboutLeadership({ data }) {
           </h2>
         )}
         {hasContent(data.description) && (
-          <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] text-center mb-[30px] 3xl:mb-[50px]">
+          <div className="typography text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] text-center mb-[30px] 3xl:mb-[50px]">
             {Array.isArray(data.description) ? (
               <BlocksRenderer content={data.description} />
             ) : (

@@ -48,7 +48,7 @@ export default function AdmissionContact({ data }) {
           </h2>
 
           {description && (
-            <div className="mt-2.5 2xl:mt-3 text-[13px] 2xl:text-[15px] 3xl:text-[18px] leading-relaxed text-[#4A5565] dark:text-[#9CA3AF] max-w-4xl">
+            <div className="typography mt-2.5 2xl:mt-3 text-[13px] 2xl:text-[15px] 3xl:text-[18px] leading-relaxed text-[#4A5565] dark:text-[#9CA3AF] max-w-4xl">
               {Array.isArray(description) ? (
                 <BlocksRenderer
                   content={description}

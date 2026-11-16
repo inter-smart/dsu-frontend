@@ -41,7 +41,7 @@ export default function WhysetupSection({ data }) {
                             {data?.heading}
                         </div>
                         {data?.description && (
-                            <div className="text_1 ">
+                            <div className="typography text_1 ">
                                 {Array.isArray(data?.description) ? (
                                     <BlocksRenderer
                                         content={data?.description}

@@ -51,7 +51,7 @@ export default function AlumniWorld({ data }) {
       <div className="container">
         <div className="w-full h-auto mb-7.5 lg:mb-10 2xl:mb-12.5 3xl:mb-15 flex flex-wrap items-end">
           <div className="w-full sm:w-[60%] sm:pr-5 max-sm:mb-3.75">
-            <div className="[--before-size:20px] 2xl:[--before-size:25px] text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit h-auto pl-[calc(var(--before-size)+5px)] 2xl:pl-[calc(var(--before-size)+10px)] mb-2.5 relative z-0 before:content-[''] before:w-(--before-size) before:h-0.5 2xl:before:h-0.75 before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:absolute before:z-1 before:inset-[0_auto_0_0]">
+            <div className="typography [--before-size:20px] 2xl:[--before-size:25px] text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit h-auto pl-[calc(var(--before-size)+5px)] 2xl:pl-[calc(var(--before-size)+10px)] mb-2.5 relative z-0 before:content-[''] before:w-(--before-size) before:h-0.5 2xl:before:h-0.75 before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:absolute before:z-1 before:inset-[0_auto_0_0]">
               {data?.label}
             </div>
             <Heading className="dark:!text-white" dangerouslySetInnerHTML={{ __html: data?.title || "" }} />
@@ -126,7 +126,7 @@ export default function AlumniWorld({ data }) {
                           {item?.title}
                         </div>
                         <div
-                          className="text-xs 2xl:text-[13px] 3xl:text-sm leading-[1.6] font-normal text-[#4A5565] dark:text-white"
+                          className="typography text-xs 2xl:text-[13px] 3xl:text-sm leading-[1.6] font-normal text-[#4A5565] dark:text-white"
                           dangerouslySetInnerHTML={{
                             __html: item?.description || "",
                           }}

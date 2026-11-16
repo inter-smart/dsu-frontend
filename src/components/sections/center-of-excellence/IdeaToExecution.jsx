@@ -38,7 +38,7 @@ const fadeUp = (inView) =>
 function RichText({ content }) {
   if (!content) return null;
   return typeof content === "string" ? (
-    <div dangerouslySetInnerHTML={{ __html: content }} />
+    <div className="typography" dangerouslySetInnerHTML={{ __html: content }} />
   ) : (
     <BlocksRenderer content={content} />
   );

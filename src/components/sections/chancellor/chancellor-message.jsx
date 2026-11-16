@@ -159,7 +159,7 @@ export default function ChancellorMessage({ data }) {
                         </div>
                         )}
                         {hasContent(data?.closingNote) && (
-                            <div className="text-[15px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[28px] text-[#212121] dark:text-white font-semibold uppercase">
+                            <div className="typography text-[15px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[28px] text-[#212121] dark:text-white font-semibold uppercase">
                                 {Array.isArray(data.closingNote) ? (
                                     <BlocksRenderer content={data.closingNote} />
                                 ) : (

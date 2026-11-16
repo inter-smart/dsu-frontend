@@ -50,7 +50,7 @@ export default function Examination({ data, sidebar }) {
                   {data?.unversity?.universityList?.map((item, index) => (
                     <div
                       key={index}
-                      className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-normal text-[#4A5565] gap-1.5 2xl:gap-2.5 flex relative z-0 before:content-[''] before:size-2.75 2xl:before:size-3.75 before:shrink-0 before:border-[1.5px] before:border-transparent before:[background:linear-gradient(white,white)_padding-box,linear-gradient(to_right,#DC2626,#F97316)_border-box] before:rounded-full before:translate-y-[1.5px] 3xl:before:translate-y-0.5 before:inline-block"
+                      className="typography text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-normal text-[#4A5565] gap-1.5 2xl:gap-2.5 flex relative z-0 before:content-[''] before:size-2.75 2xl:before:size-3.75 before:shrink-0 before:border-[1.5px] before:border-transparent before:[background:linear-gradient(white,white)_padding-box,linear-gradient(to_right,#DC2626,#F97316)_border-box] before:rounded-full before:translate-y-[1.5px] 3xl:before:translate-y-0.5 before:inline-block"
                       dangerouslySetInnerHTML={{ __html: item }}
                     />
                   ))}
