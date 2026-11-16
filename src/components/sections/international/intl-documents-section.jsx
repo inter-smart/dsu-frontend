@@ -25,7 +25,7 @@ export default function IntlDocumentsSection({ data }) {
     if (!items.length) return null;
 
     return (
-        <section className="py-[15px] xl:py-[22px] 2xl:py-[28px] 3xl:py-[40px]">
+        <section className="py-[45px] xl:py-[55px] 2xl:py-[40px] 3xl:py-[60px]">
             <div className="container">
                 {title && <h2 className="cmn_Title mb-[16px] xl:mb-[24px]">{title}</h2>}
                 {display === "embed" ? (
@@ -45,12 +45,12 @@ export default function IntlDocumentsSection({ data }) {
                                 href={safeHref(d.url)}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group flex items-center gap-[15px] rounded-[8px] border border-transparent bg-white p-[18px] transition-all duration-300 hover:border-[#F97316]/40 hover:shadow-lg dark:border-white/10 dark:bg-[#18191B] xl:gap-[22px] xl:p-[24px] 3xl:p-[32px]"
+                                className="group  flex items-center flex-grow-1 gap-[15px] rounded-[8px] border border-black/20 bg-white p-[12px] transition-all duration-300 hover:border-[#F97316]/40 hover:shadow-lg dark:border-white/10 dark:bg-[#18191B] xl:gap-[15px] xl:p-[15px] 3xl:p-[20px]"
                             >
-                                <span className="size-[34px] shrink-0 text-[#4A5565] transition-colors group-hover:text-[#DC2626] dark:text-white/70 xl:size-[42px] 3xl:size-[60px]">
+                                <span className="size-[20px] shrink-0 text-[#4A5565] transition-colors group-hover:text-[#DC2626] dark:text-white/70 xl:size-[32px] 3xl:size-[40px]">
                                     <DocIcon />
                                 </span>
-                                <span className="min-w-0 flex-1 text-[15px] font-semibold leading-[1.3] text-black dark:text-white xl:text-[17px] 2xl:text-[19px] 3xl:text-[26px]">{d.title}</span>
+                                <span className="min-w-0 flex-1 text-[15px] font-semibold leading-[1.3] text-black dark:text-white xl:text-[17px] 2xl:text-[18px] 3xl:text-[20px]">{d.title}</span>
                                 <span className="flex size-[30px] shrink-0 items-center justify-center rounded-full border border-[#F97316]/40 p-[7px] text-[#F97316] transition-all duration-300 group-hover:border-transparent group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316] group-hover:text-white xl:size-[34px]">
                                     <ArrowIcon />
                                 </span>

@@ -269,11 +269,11 @@ html.lenis body {
     }
 
     h2 {
-      @apply text-[20px] sm:text-[24px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-tight font-bold text-(--text-color);
+      @apply text-[20px] sm:text-[24px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[35px] leading-tight font-semibold text-(--text-color);
     }
 
     h3 {
-      @apply text-[18px] sm:text-[18px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[30px] leading-tight font-bold text-(--text-color);
+      @apply text-[18px] sm:text-[18px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[30px] leading-tight font-semibold text-(--text-color);
     }
 
     h4 {
@@ -303,7 +303,7 @@ html.lenis body {
       @apply my-1 lg:my-1.5 
         }
     ul{
-      @apply  !ml-4
+      @apply  !ml-4 my-5
     }
     ul > li {
       @apply list-disc text-(--text-color);
@@ -772,4 +772,7 @@ body:has(.balckHeader) header {
     .rich-subtitle { font-size: 17px; margin-top: 14px; }
     .rich-subtitle::before { width: 24px; }
   }
+}
+strong, b{
+  font-weight: 600;
 }

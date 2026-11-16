@@ -6,7 +6,7 @@ export default function IntlTextSection({ data }) {
     const [name, ...role] = data.profile && data.title ? data.title.split(/\s+-\s+/) : [];
     return (
         // A text block without a title continues the block above it, so it has no top padding
-        <section className={`pb-[15px] xl:pb-[22px] 2xl:pb-[28px] 3xl:pb-[40px] ${data.title && !data.profile ? "pt-[15px] xl:pt-[22px] 2xl:pt-[28px] 3xl:pt-[40px]" : "pt-0"}`}>
+        <section className={`pb-[15px] xl:pb-[22px] 2xl:pb-[28px] 3xl:pb-[40px] ${data.title && !data.profile ? "pt-[30px] xl:pt-[22px] 2xl:pt-[40px] 3xl:pt-[60px]" : "pt-0"}`}>
             <div className="container">
                 {data.profile && data.title ? (
                     <div className="mb-[12px] text-center">
