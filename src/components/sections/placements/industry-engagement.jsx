@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react"; // CHANGED: added useRef
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay"; // ADDED
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
@@ -10,7 +11,18 @@ import { SliderArrow, FilterPill } from "@/components/sections/placements/slider
 
 export default function IndustryEngagement({ data }) {
     const [category, setCategory] = useState(data?.categories?.[0]?.value);
-    const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", containScroll: "trimSnaps" });
+    // ADDED: auto scroll every 3s. Kept in a ref so the plugin instance stays the same between renders.
+    // stopOnInteraction: false -> keeps playing after the arrows/drag are used.
+    // stopOnMouseEnter: true -> pauses while the mouse is over the slider, resumes on leave.
+    const autoplay = useRef(
+        Autoplay({
+            delay: 3000,
+            stopOnInteraction: false,
+            stopOnMouseEnter: true,
+        }),
+    );
+    // CHANGED: added the autoplay plugin as the second argument
+    const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", containScroll: "trimSnaps" }, [autoplay.current]);
 
     const items = (data?.items || []).filter((item) => item?.category === category);
     const categoryLabel = data?.categories?.find((c) => c?.value === category)?.label;

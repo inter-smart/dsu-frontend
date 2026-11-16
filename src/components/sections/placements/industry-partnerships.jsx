@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay"; // ADDED
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { Heading } from "@/components/ui/heading";
 import {
@@ -13,10 +14,24 @@ import {
 export default function IndustryPartnerships({ data }) {
   const [school, setSchool] = useState("all");
   const tabsRef = useRef(null);
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
-    containScroll: "trimSnaps",
-  });
+  // ADDED: auto scroll every 3s. Kept in a ref so the plugin instance stays the same between renders.
+  // stopOnInteraction: false -> keeps playing after the arrows/drag are used.
+  // stopOnMouseEnter: true -> pauses while the mouse is over the slider, resumes on leave.
+  const autoplay = useRef(
+    Autoplay({
+      delay: 3000,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+    }),
+  );
+  // CHANGED: added the autoplay plugin as the second argument
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      align: "start",
+      containScroll: "trimSnaps",
+    },
+    [autoplay.current],
+  );
 
   const partners = (data?.partners || []).filter(
     (p) => school === "all" || p?.school === school,
