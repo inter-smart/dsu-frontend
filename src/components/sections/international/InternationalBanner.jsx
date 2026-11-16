@@ -57,7 +57,7 @@ export default function InternationalBanner({ data, formData }) {
                         <p className="w-fit bg-linear-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-[17px] font-medium leading-tight text-transparent 3xl:text-[30px] lg:text-[19px] xl:text-[24px] 2xl:text-[28px]">
                             {subtitle}
                         </p>
-                        <h1 className="mt-1 max-w-[750px] text-[34px] font-bold leading-tight lg:text-[44px] xl:text-[48px] 2xl:text-[45px] 3xl:text-[60.9px]">
+                        <h1 className="mt-1 max-w-[750px]   font-bold leading-tight cmn_Title">
                             {title}
                         </h1>
 
