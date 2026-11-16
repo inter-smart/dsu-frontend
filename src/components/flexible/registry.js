@@ -62,6 +62,11 @@ import AiRecentClinic from "@/components/sections/ai-enabled/Ai-recent-clinic";
 import AiVisionMission from "@/components/sections/ai-enabled/Ai-vision-mission";
 import NewsEvents from "@/components/sections/news-events/news-events";
 import LibraryOverview from "@/components/sections/ai-enabled/library/library-overview";
+import LibraryServices from "@/components/sections/ai-enabled/library/library-services";
+import LibraryDownloads from "@/components/sections/ai-enabled/library/library-download";
+import LibraryAutomation from "@/components/sections/ai-enabled/library/library-automation";
+import LibraryFaq from "@/components/sections/ai-enabled/library/library-Faq";
+import LibraryGallery from "@/components/sections/ai-enabled/library/library-gallery";
 import * as adapt from "@/lib/schools/department-adapters";
 import AboutHistory from "@/components/sections/about/about-history";
 import AboutLeadership from "@/components/sections/about/about-leadership";
@@ -204,10 +209,19 @@ function adapted(Component, adapter) {
     };
 }
 
-// Library landing section; no department context here, so the sidebar menu is left empty
-function libraryOverview({ data }) {
+// Library landing section; the side menu is the flexible page's own Sidebar links
+function libraryOverview({ data, menu }) {
     const props = adapt.librarySection(data);
-    return props ? <LibraryOverview data={props} menu={[]} /> : null;
+    return props ? <LibraryOverview data={props} menu={menu || []} /> : null;
+}
+
+// Library sub-page templates as sections (same components as the Library sub-pages); the side menu is the
+// flexible page's own Sidebar links
+function libraryTemplate(Component, adapter) {
+    return function LibraryTemplate({ data, menu }) {
+        const props = adapter(data);
+        return props ? <Component data={props} menu={menu || []} /> : null;
+    };
 }
 
 
@@ -374,6 +388,11 @@ const flexibleRegistry = {
   "department.partner-with-us-section": { Component: adapted(AiPartnerwithus, adapt.partnerWithUsSection) },
   "department.chapters-section": { Component: adapted(AiAcademicChapters, adapt.chaptersSection) },
   "department.library-section": { Component: libraryOverview },
+  "department.library-services-template": { Component: libraryTemplate(LibraryServices, adapt.libraryServicesContent) },
+  "department.library-files-template": { Component: libraryTemplate(LibraryDownloads, adapt.libraryFilesContent) },
+  "department.library-automation-template": { Component: libraryTemplate(LibraryAutomation, adapt.libraryAutomationContent) },
+  "department.library-faqs-template": { Component: libraryTemplate(LibraryFaq, adapt.libraryFaqsContent) },
+  "department.library-gallery-template": { Component: libraryTemplate(LibraryGallery, adapt.libraryGalleryContent) },
   "department.placement-collaborations-section": { Component: AcademicCollaboration },
   "department.placement-partners-section": { Component: AcademicPartners },
 
