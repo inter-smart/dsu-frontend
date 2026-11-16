@@ -104,7 +104,7 @@ export default function AboutVision({ data }) {
                                             <div className="[transform:translateZ(14px)]">
                                                 {typeof item.description === "string" && item.description.trim() && (
                                                     item.description.startsWith("<") ? (
-                                                        <div dangerouslySetInnerHTML={{ __html: item.description }} />
+                                                        <div className="typography" dangerouslySetInnerHTML={{ __html: item.description }} />
                                                     ) : (
                                                         <p>{item.description}</p>
                                                     )
@@ -195,7 +195,7 @@ export default function AboutVision({ data }) {
                                                     <div className="overflow-hidden">
                                                         <div className="mx-[14px] xl:mx-[18px] 2xl:mx-[22px] border-t border-white/15 pt-[10px] xl:pt-[12px] pb-[14px] xl:pb-[16px] [&_p]:text-white/90 [&_p]:leading-[1.5]">
                                                             {item.description.startsWith("<") ? (
-                                                                <div dangerouslySetInnerHTML={{ __html: item.description }} />
+                                                                <div className="typography" dangerouslySetInnerHTML={{ __html: item.description }} />
                                                             ) : (
                                                                 <p>{item.description}</p>
                                                             )}
