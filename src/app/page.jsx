@@ -830,7 +830,7 @@ const homePageData = {
           "In the five decades since the establishment of Dayananda Sagar Institutions in 1960, the group has grown into one of India's leading educational institutions today. This growth is the result of the institutions focused effort to advance knowledge and educate students in..",
         button: {
           label: "Explore More",
-          link: "/academics",
+          link: "/research-innovation/doctoral-research",
         },
       },
       featuredCards: [
@@ -841,7 +841,7 @@ const homePageData = {
             url: "/images/researchItem-1.jpg",
             alt: "Media-1",
           },
-          link: "/",
+          link: "/research-innovation/doctoral-research/phd-admission",
         },
         {
           id: 2,
@@ -850,7 +850,7 @@ const homePageData = {
             url: "/images/researchItem-2.jpg",
             alt: "Media-2",
           },
-          link: "/",
+          link: "/research-innovation/doctoral-research/supervisor-directory",
         },
         {
           id: 3,
@@ -859,7 +859,7 @@ const homePageData = {
             url: "/images/researchItem-3.jpg",
             alt: "Media-3",
           },
-          link: "/",
+          link: "/research-innovation/doctoral-research/phd-regulations",
         },
         {
           id: 4,
@@ -868,7 +868,7 @@ const homePageData = {
             url: "/images/researchItem-4.jpg",
             alt: "Media-4",
           },
-          link: "/",
+          link: "/research-innovation/doctoral-research/phd-admission#research-coursework",
         },
       ],
       statistics: [
@@ -1918,6 +1918,37 @@ export default async function Home() {
     button: cms?.latestNews?.button,
   };
 
+  // Research & Innovation: each tab (research, incubation, innovation) comes from the CMS once it has
+  // a heading or cards there (incubation / innovation cards are filled from their collections), else local.
+  const riCms = cms?.researchInnovation;
+  const riBlock = (key) => {
+    const block = riCms?.[key];
+    const fallback = local.researchInnovation[key];
+    if (!block?.header?.title && !hasContent(block?.featuredCards)) return fallback;
+    // cards from the CMS but no heading yet: keep the local heading
+    return block?.header?.title ? block : { ...block, header: fallback.header };
+  };
+  const researchInnovation = {
+    title: riCms?.title || local.researchInnovation.title,
+    description: riCms?.description || local.researchInnovation.description,
+    research: riBlock("research"),
+    incubation: riBlock("incubation"),
+    innovation: riBlock("innovation"),
+  };
+
+  // Industry Collaboration: every field from the CMS, the local content for whatever is empty there.
+  const industryCms = cms?.industryCollaboration;
+  const industryLocal = local.industryCollaboration;
+  const industryCollaboration = {
+    sectionBackgroundImage: industryCms?.sectionBackgroundImage || industryLocal.sectionBackgroundImage,
+    title: industryCms?.title || industryLocal.title,
+    description: industryCms?.description || industryLocal.description,
+    // null while the CMS button is switched off
+    button: industryCms ? industryCms.button : industryLocal.button,
+    collaborations: pickList(industryCms?.collaborations, industryLocal.collaborations),
+    industryPartners: pickList(industryCms?.industryPartners, industryLocal.industryPartners),
+  };
+
   // The CMS sends { showSection: false } for a section switched off with "Show This Section".
   const hidden = (key) => cms?.[key]?.showSection === false;
 
@@ -1926,8 +1957,8 @@ export default async function Home() {
       <HomeHero data={heroSlides} />
       {!hidden("centresOfExcellence") && <HomeExcellence data={pick(cms?.centresOfExcellence, local.centresOfExcellence, "excellence")} />}
       {!hidden("academicPrograms") && <HomeAcademic data={pick(cms?.academicPrograms, local.academicPrograms, "academics")} />}
-      {!hidden("researchInnovation") && <HomeResearch data={local.researchInnovation} />}
-      {!hidden("industryCollaboration") && <HomeIndustry data={{ ...local.industryCollaboration, button: cms?.industryCollaboration?.button ?? local.industryCollaboration.button }} />}
+      {!hidden("researchInnovation") && <HomeResearch data={researchInnovation} />}
+      {!hidden("industryCollaboration") && <HomeIndustry data={industryCollaboration} />}
       {!hidden("homeAbout") && <HomeAbout data={homeAbout} />}
       {!hidden("studentSuccess") && <HomeTestimonials data={pick(cms?.studentSuccess, local.studentSuccess, "successStories")} />}
       {!hidden("campusLife") && <HomeCampusLife data={pick(cms?.campusLife, local.campusLife, "featureCards")} />}
