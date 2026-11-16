@@ -2,6 +2,10 @@
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 export default function Aieligibility({ data }) {
+    const hasTable =
+        (data?.seatsSection?.tableHeaders?.length ?? 0) > 0 &&
+        (data?.seatsSection?.tableRows?.length ?? 0) > 0;
+
     return (
         <section className="realtive py-[10px_0px] xl:py-[50px_0] 2xl:py-[70px_0] 3xl:py-[90px_0] dark:bg-[#101010]">
             <div className="container">
@@ -16,6 +20,7 @@ export default function Aieligibility({ data }) {
                         <BlocksRenderer content={data.description} />
                     </div>
                 )}
+                {hasTable && (
                 <div className="w-full overflow-x-auto mt-[25px] pb-[10px]">
                     <div className="min-w-[700px] rounded-[8px] border border-[#707070] dark:border-white/20 dark:bg-[#18191B] overflow-hidden">
                         <table className="w-full border-collapse">
@@ -56,6 +61,7 @@ export default function Aieligibility({ data }) {
                         </table>
                     </div>
                 </div>
+                )}
             </div>
         </section>
     )
