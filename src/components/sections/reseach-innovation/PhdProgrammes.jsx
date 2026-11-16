@@ -120,7 +120,7 @@ export default function PhdProgrammes({ data }) {
                                                         <Link
                                                             href={item.cta.url}
                                                             {...ctaLinkProps(item.cta)}
-                                                            className="group/cta flex shrink-0 items-center gap-[6px] text_1 font-medium text-[#F97316] pr-[10px] xl:pr-[30px] opacity-0 -translate-x-[8px] transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0 focus-visible:opacity-100 focus-visible:translate-x-0 [@media(hover:none)]:opacity-100 [@media(hover:none)]:translate-x-0"
+                                                            className="group/cta flex shrink-0 items-center gap-[6px] text_1 font-medium text-[#F97316] pr-[10px] xl:pr-[30px] md:opacity-0 -translate-x-[8px] transition-all duration-300 ease-out md:group-hover:opacity-100 md:group-hover:translate-x-0 md:focus-visible:opacity-100 md:focus-visible:translate-x-0 md:[@media(hover:none)]:opacity-100 [@media(hover:none)]:translate-x-0"
                                                         >
                                                             <span>{item.cta.label}</span>
                                                             <svg
