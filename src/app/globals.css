@@ -245,6 +245,9 @@ html.lenis body {
       --text-color: #f9fafb;
     }
      /* ---------- Tables ---------- */
+    figure{
+      width: 100% !important;
+    }
     table {
       @apply my-[18px] w-full table-auto border-collapse text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px];
     }
@@ -254,6 +257,14 @@ html.lenis body {
       @apply border border-[#9fa2a76b] px-3 py-2 text-left align-top break-words md:min-w-[110px];
     }
 
+    td a {
+      color: var(--basecolor2);
+      letter-spacing: 0.6px
+    }
+    td a:hover {
+      color: green important;
+      letter-spacing: 0.6px
+    }
     th {
       @apply font-semibold text-white;
       background: linear-gradient(to right, var(--basecolor2), var(--basecolor2));

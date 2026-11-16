@@ -9,7 +9,7 @@ export default function IntlTextSection({ data }) {
         <section className={`pb-[15px] xl:pb-[22px] 2xl:pb-[28px] 3xl:pb-[40px] ${data.title && !data.profile ? "pt-[30px] xl:pt-[22px] 2xl:pt-[40px] 3xl:pt-[60px]" : "pt-0"}`}>
             <div className="container">
                 {data.profile && data.title ? (
-                    <div className="mb-[12px] text-center">
+                    <div className="mb-[25px] text-center ">
                         <h2 className="cmn_Title">{name}</h2>
                         {role.length > 0 && <p className="mt-[4px] text-[14px] font-semibold uppercase tracking-wide text-[#DC2626] xl:text-[16px] 3xl:text-[22px]">{role.join(" - ")}</p>}
                     </div>

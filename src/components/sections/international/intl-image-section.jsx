@@ -37,7 +37,7 @@ export default function IntlImageSection({ data }) {
     return (
         <section
             ref={ref}
-            className={size === "small" ? "pb-0 pt-[15px] xl:pt-[22px] 3xl:pt-[40px]" : "py-[15px] xl:py-[22px] 2xl:py-[28px] 3xl:py-[40px]"}
+            className={size === "small" ? "pb-0 py-[40px_15px] xl:py-[50px_22px] 3xl:py-[60px_40px]" : "py-[30px_15px] xl:py-[30px_22px] 2xl:py-[40px_28px] 3xl:py-[60px_40px]"}
         >
             {/* ADDED: keeps the popup image inside the screen even if global img styles (Tailwind) interfere */}
             <style>{`
@@ -53,7 +53,7 @@ export default function IntlImageSection({ data }) {
                     href={image.url}
                     data-fancybox="intl-image"
                     data-caption={image.alt || ""}
-                    className="block w-fit cursor-zoom-in"
+                    className="block w-fit cursor-zoom-in mx-auto"
                 >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
