@@ -69,7 +69,7 @@ export default function Gallery({ data }) {
             <div className="container" ref={containerRef}>
                 {/* Heading + arrows */}
                 <div className="mb-6 flex items-center justify-between lg:mb-8 2xl:mb-[48px]">
-                    <h2 className="text-[28px] font-bold leading-tight tracking-[-0.03em] text-[#1a1a1a] lg:text-[36px] 2xl:text-[48px]">
+                    <h2 className="text-[22px] font-bold leading-tight tracking-[-0.03em] text-[#1a1a1a] lg:text-[36px] 2xl:text-[48px]">
                         {title}
                     </h2>
 

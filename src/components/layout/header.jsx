@@ -1054,7 +1054,7 @@ export default function Header({ data = local_data }) {
                 keepMenuOpen={keepMenuOpen}
                 scheduleCloseMenu={scheduleCloseMenu}
                 className={cn(
-                  "w-auto h-auto lg:p-[20px_10px] xl:p-[20px_20px] 2xl:p-5 3xl:p-7.5 first:pl-0 last:pr-0 transition-opacity duration-400 relative hover:before:lg:w-[calc(100%-40px)] hover:before:2xl:w-[calc(100%-50px)] hover:before:3xl:w-[calc(100%-70px)] before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
+                  "w-auto h-auto lg:p-[15px_10px] xl:p-[15px_20px] 2xl:p-4 3xl:p-5 first:pl-0 last:pr-0 transition-opacity duration-400 relative hover:before:lg:w-[calc(100%-40px)] hover:before:2xl:w-[calc(100%-50px)] hover:before:3xl:w-[calc(100%-70px)] before:content-[''] before:w-0 sm:before:h-0.5 2xl:before:h-0.75 before:mx-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:transition-all before:duration-400 before:absolute before:z-1 before:inset-[auto_0_0_0]",
                   openMenuId === item?.id
                     ? "z-50 before:lg:w-[calc(100%-40px)] before:2xl:w-[calc(100%-50px)] before:3xl:w-[calc(100%-70px)]"
                     : "z-0",
@@ -1569,8 +1569,10 @@ function MegaMenuPanel({
             {activeChild?.children?.length > 0 && (
 
               // CHANGED: data-lenis-prevent so Lenis smooth scroll doesn't hijack the wheel over this panel
+              // CHANGED: data-mega-submenu marks this cream list so the flyout anchors to it (see SubMenuLeaf.openSub)
               <div
                 data-lenis-prevent
+                data-mega-submenu
                 className="bg-[#FFF8EE] py-7 px-8 2xl:px-10 flex-1 min-w-0 text-[#262626] overflow-y-auto overscroll-contain"
               >
                 {hasColumnGroups ? (
@@ -1668,15 +1670,26 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
     const link = linkRef.current;
     if (link) {
       const linkRect = link.getBoundingClientRect();
-      // The flyout sits flush against the mega panel's right edge
-      const panel = link.closest(".overflow-hidden");
+      // CHANGED: anchor to the cream submenu list this row belongs to (not the whole mega panel).
+      // Falls back to the old behaviour if the marker is missing.
+      const panel =
+        link.closest("[data-mega-submenu]") || link.closest(".overflow-hidden");
       const panelRect = (panel || link).getBoundingClientRect();
+      // ADDED: find the orange sidebar next to the list, to know which side is "away" from it
+      const sidebar = panel?.parentElement?.querySelector("nav");
+      const sidebarRect = sidebar?.getBoundingClientRect();
       const viewportWidth = document.documentElement.clientWidth;
-      // CHANGED: stay on the right (shrinking to fit the free space); flip to the left only
-      // when the right side is too tight AND the left side has more room.
       const rightSpace = viewportWidth - panelRect.right - 8;
       const leftSpace = panelRect.left - 8;
-      const flip = rightSpace < FLYOUT_MIN_FIT && leftSpace > rightSpace;
+
+      // CHANGED: open on the side away from the sidebar (right when the sidebar is on the left,
+      // left when the sidebar is on the right, i.e. right-aligned menus). Use the other side
+      // only when the preferred side is too tight and the other side has more room.
+      const preferLeft = !!sidebarRect && sidebarRect.left > panelRect.left;
+      const preferSpace = preferLeft ? leftSpace : rightSpace;
+      const otherSpace = preferLeft ? rightSpace : leftSpace;
+      const useOther = preferSpace < FLYOUT_MIN_FIT && otherSpace > preferSpace;
+      const flip = useOther ? !preferLeft : preferLeft;
       const maxWidth = Math.min(FLYOUT_MAX_WIDTH, flip ? leftSpace : rightSpace);
 
       // 1px border + padding puts the first item exactly level with the parent row

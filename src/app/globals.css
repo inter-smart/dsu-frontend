@@ -201,7 +201,7 @@ html.lenis body {
     @apply w-full lg:w-[calc(100%-240px)] xl:w-[calc(100%-260px)] 2xl:w-[calc(100%-310px)] 3xl:w-[calc(100%-390px)] lg:pl-[20px] xl:pl-[30px] 2xl:pl-[40px] 3xl:pl-[50px];
   }
   .cmn_Title {
-    @apply text-[25px] xl:text-[32px] 2xl:text-[35px] 3xl:text-[55px] font-bold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white;
+    @apply text-[25px] xl:text-[32px] 2xl:text-[35px] 3xl:text-[50px] font-semibold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white;
   }
   .cmn_Txt{
     @apply text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold
@@ -655,11 +655,11 @@ body:has(.balckHeader) header {
 
   /* headings inside the editor */
   .rich-text h1,
-  .rich-text h2 { font-size: 20px; font-weight: 700; line-height: 1.25; color: #212121; }
-  .rich-text h3 { font-size: 17px; font-weight: 700; line-height: 1.25; color: #212121; }
+  .rich-text h2 {  font-weight: 700; line-height: 1.25; color: #212121; }
+  .rich-text h3 {  font-weight: 700; line-height: 1.25; color: #212121; }
   .rich-text h4,
   .rich-text h5,
-  .rich-text h6 { font-size: 15px; font-weight: 700; line-height: 1.3; color: #212121; }
+  .rich-text h6 {   font-weight: 700; line-height: 1.3; color: #212121; }
   .dark .rich-text h1,
   .dark .rich-text h2,
   .dark .rich-text h3,
@@ -676,7 +676,7 @@ body:has(.balckHeader) header {
     font-style: italic;
   }
 
-  @media (min-width: 640px) {
+  /* @media (min-width: 640px) {
     .rich-text h1,
     .rich-text h2 { font-size: 24px; }
     .rich-text h3 { font-size: 19px; }
@@ -696,7 +696,7 @@ body:has(.balckHeader) header {
     .rich-text h6 { font-size: 18px; }
     .rich-text ul + p,
     .rich-text ol + p { margin-top: 10px; }
-  }
+  } */
 
   /* ───────── .rich-card : optional cream card around a section ───────── */
   .rich-card {
@@ -704,8 +704,8 @@ body:has(.balckHeader) header {
     isolation: isolate;
     overflow: hidden;
     padding: 25px 20px;
-    border: 1px solid rgb(0 0 0 / 0.1);
-    border-radius: 12px;
+    /* border: 1px solid rgb(0 0 0 / 0.1); */
+    /* border-radius: 12px; */
     background: #FFF8EE;
     box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
   }
@@ -740,7 +740,7 @@ body:has(.balckHeader) header {
     .rich-card { padding: 35px 30px; }
   }
   @media (min-width: 1280px) {
-    .rich-card { padding: 40px 45px; border-radius: 16px; }
+    .rich-card { padding: 40px 45px;  }
     .rich-card::before { width: 5px; }
   }
   @media (min-width: 1536px) {
