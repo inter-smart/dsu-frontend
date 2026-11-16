@@ -67,7 +67,7 @@ export default function InnovationCourses({ data }) {
                                 {/* text */}
                                 <div className="w-full lg:flex-1 min-w-0">
                                     {item?.title && (
-                                        <h3 className="text-[16px] sm:text-[18px] xl:text-[19px] 2xl:text-[20px] 3xl:text-[24px] font-medium uppercase leading-[1.3] mb-[12px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px] text-[#212121] dark:text-white">
+                                        <h3 className="font-medium uppercase leading-[1.3] mb-[12px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px] text-[#212121] dark:text-white">
                                             {item.title}
                                         </h3>
                                     )}

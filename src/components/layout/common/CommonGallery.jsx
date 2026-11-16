@@ -153,7 +153,7 @@ export default function CommonGallery({ data }) {
                 )}
 
                 {/* Desktop / tablet: grid */}
-                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-[15px] 3xl:gap-[28px] mt-[25px] 2xl:mt-[35px] 3xl:mt-[50px]">
+                <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-3 gap-[15px] 3xl:gap-[28px] mt-[25px] 2xl:mt-[35px] 3xl:mt-[50px]">
                     {items.map((item) => (
                         <GalleryCard key={item.id} item={item} group="gallery-grid" />
                     ))}
@@ -164,7 +164,7 @@ export default function CommonGallery({ data }) {
                     <Swiper
                         modules={[Pagination]}
                         pagination={{ clickable: true }}
-                        slidesPerView={1.15}
+                        slidesPerView={1.35}
                         spaceBetween={12}
                         className="gallery-swiper !pb-[35px]"
                     >

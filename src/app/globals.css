@@ -191,29 +191,29 @@ html.lenis body {
   p {
     @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[18px] 3xl:text-[20px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
-   h1 {
-      @apply text-[30px] sm:text-[40px] lg:text-[54px] 2xl:text-[65px] 3xl:text-[80px] leading-tight font-normal text-(--text-color);
-    }
+  h1 {
+    @apply text-[30px] sm:text-[40px] lg:text-[54px] 2xl:text-[65px] 3xl:text-[80px] leading-tight font-normal text-(--text-color) mb-[10px];
+  }
 
-    h2 {
-      @apply text-[20px] sm:text-[24px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[35px] leading-tight font-semibold text-(--text-color);
-    }
+  h2 {
+    @apply text-[20px] sm:text-[24px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[35px] leading-tight font-semibold text-(--text-color) mb-[10px];
+  }
 
-    h3 {
-      @apply text-[18px] sm:text-[18px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[30px] leading-tight font-semibold text-(--text-color);
-    }
+  h3 {
+    @apply text-[18px] sm:text-[22px] lg:text-[24px] 2xl:text-[26px] 3xl:text-[30px] leading-tight font-semibold text-(--text-color) mb-[10px];
+  }
 
-    h4 {
-      @apply text-[17px] sm:text-[12px] lg:text-[12px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
-    }
+  h4 {
+    @apply text-[17px] sm:text-[20px] lg:text-[22px] xl:text-[26px] 2xl:text-[28px] 3xl:text-[28px] leading-tight font-normal text-(--text-color) mb-[10px];
+  }
 
-    h5 {
-      @apply text-[16px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal text-(--text-color);
-    }
+  h5 {
+    @apply text-[16px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal text-(--text-color) mb-[10px];
+  }
 
-    h6 {
-      @apply text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
-    }
+  h6 {
+    @apply text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-tight font-normal text-(--text-color) mb-[10px];
+  }
   .cmnFlx {
     @apply flex flex-wrap;
   }
@@ -288,27 +288,27 @@ html.lenis body {
     }
 
     h1 {
-      @apply text-[30px] sm:text-[40px] lg:text-[54px] 2xl:text-[65px] 3xl:text-[80px] leading-tight font-normal text-(--text-color);
+      @apply text-[30px] sm:text-[40px] lg:text-[54px] 2xl:text-[65px] 3xl:text-[80px] leading-tight font-normal text-(--text-color) mb-[10px];
     }
 
     h2 {
-      @apply text-[20px] sm:text-[24px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[35px] leading-tight font-semibold text-(--text-color);
+      @apply text-[20px] sm:text-[24px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[35px] leading-tight font-semibold text-(--text-color) mb-[10px];
     }
 
     h3 {
-      @apply text-[18px] sm:text-[18px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[30px] leading-tight font-semibold text-(--text-color);
+      @apply text-[18px] sm:text-[18px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[30px] leading-tight font-semibold text-(--text-color) mb-[10px];
     }
 
     h4 {
-      @apply text-[17px] sm:text-[12px] lg:text-[12px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
+      @apply text-[17px] sm:text-[12px] lg:text-[12px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-tight font-normal text-(--text-color) mb-[10px];
     }
 
     h5 {
-      @apply text-[16px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal text-(--text-color);
+      @apply text-[16px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal text-(--text-color) mb-[10px];
     }
 
     h6 {
-      @apply text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
+      @apply text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-tight font-normal text-(--text-color) mb-[10px];
     }
 
     &[dir="ltr"] ul,
@@ -799,3 +799,5 @@ body:has(.balckHeader) header {
 strong, b{
   font-weight: 600;
 }
+
+ 
