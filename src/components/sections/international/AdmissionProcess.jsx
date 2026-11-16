@@ -19,7 +19,7 @@ export default function AdmissionProcess({ data }) {
                 {/* Heading + CTA */}
                 <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
                     <div>
-                        <h2 className="text-[28px] font-bold leading-tight tracking-[-0.03em] text-[#1a1a1a] lg:text-[40px] 2xl:text-[56px]">
+                        <h2 className="  font-bold leading-tight tracking-[-0.03em] text-[#1a1a1a] cmn_Title">
                             {title}
                         </h2>
                         <p className="mt-2 text-[14px] text-[#444] 2xl:mt-[14px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">

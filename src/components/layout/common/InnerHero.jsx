@@ -39,6 +39,8 @@ export default function InnerHero({ data, placementMenuItems, className }) {
   const youtubeId = getYouTubeId(
     data?.youtubeUrl || data?.youtube || data?.heroYoutube || data?.heroVideoUrl || data?.heroMedia?.url
   );
+  // A YouTube banner has no heroMedia file (the CMS sends heroMedia: null), so a video id counts as media too.
+  const hasHeroMedia = Boolean(data?.heroMedia || youtubeId);
   const breadcrumb =
     Array.isArray(data.breadcrumb) && data.breadcrumb.length > 0
       ? data.breadcrumb
@@ -60,8 +62,8 @@ export default function InnerHero({ data, placementMenuItems, className }) {
 
   return (
     // height only applies when there is hero media; the plain breadcrumb row sizes itself
-    <section className={cn("relative z-0 block w-full", data?.heroMedia && heightClass, className)}>
-      {data?.heroMedia ? (
+    <section className={cn("relative z-0 block w-full", hasHeroMedia && heightClass, className)}>
+      {hasHeroMedia ? (
         <>
           {/* Background Media */}
           <div className="absolute inset-0 z-0 h-full w-full">

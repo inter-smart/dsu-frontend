@@ -8,7 +8,7 @@ export default function HistoryDetails({ data }) {
             <div className="container">
                 <div className="lg:w-[calc(100%-350px)] xl:w-[calc(100%-440px)] 2xl:w-[calc(100%-530px)] 3xl:w-[calc(100%-660px)] py-[40px] xl:py-[50px] 2xl:py-[70px] 3xl:py-[95px]">
                     <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[20px] [&_p]:xl:mb-[25px] [&_p]:2xl:mb-[30px] [&_p]:3xl:mb-[40px] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_strong]:font-semibold [&_strong]:italic [&_strong]:!text-[#F97316]">
-                        <div dangerouslySetInnerHTML={{ __html: data?.description || "" }} />
+                        <div className="typography" dangerouslySetInnerHTML={{ __html: data?.description || "" }} />
                     </div>
                 </div>
             </div>

@@ -3,9 +3,7 @@ import FlexibleSections from "@/components/flexible/FlexibleSections";
 import InternationalAdmissionView from "@/components/sections/international/international-admission-view";
 import { hasContent } from "@/lib/has-content";
 
-// Renders an International entry by its `template`.
-// Every International page shows the International menu bar (one pill per International entry),
-// in the same design as the Admission / Placement menu bars.
+ 
 export default async function InternationalPageView({ page }) {
     if (["flexible-page", "undergraduate-masters", "global-partnerships", "study-abroad", "student-exchange", "semester-exchange", "masters-abroad", "international-immersion", "scholars-in-residence", "international-initiatives", "international-robotics-initiative", "bootcamp-for-innovators", "tedx", "immersionx", "events", "drive-embed", "news-release", "achievements", "testimonials", "social-media", "maps", "leadership", "team"].includes(page.template)) {
         const hero = hasContent(page.hero) ? page.hero : null;

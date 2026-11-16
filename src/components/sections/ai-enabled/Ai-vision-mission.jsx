@@ -78,7 +78,7 @@ export default function AiVisionMission({ data }) {
                                     {Array.isArray(item.description) ? (
                                         item.description.length > 0 && (
                                             <div className="text_1 w-full max-w-none leading-relaxed text-[#4A5565] dark:text-[#9CA3AF] [&_p]:!text-[#4A5565] dark:[&_p]:!text-[#9CA3AF] [&_p]:!max-w-none xl:[&_p]:!text-[17px] [&_p:not(:last-child)]:mb-[12px] typography">
-                                                <div className="vm-blocks">
+                                                <div className="typography vm-blocks">
                                                     <BlocksRenderer content={item.description} blocks={blocksStyle} />
                                                 </div>
                                             </div>

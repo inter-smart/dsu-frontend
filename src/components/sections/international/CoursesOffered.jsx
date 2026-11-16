@@ -17,7 +17,7 @@ export default function CoursesOffered({ data }) {
             <div className="container">
                 {/* Heading */}
                 <div className="text-center">
-                    <h2 className="text-[28px] font-bold leading-tight text-[#1a1a1a] lg:text-[40px] 2xl:text-[56px]">
+                    <h2 className="cmn_Title font-bold leading-tight text-[#1a1a1a]  ">
                         {title}
                     </h2>
                     <p className="mt-2 text-[14px] text-[#555] 2xl:mt-[12px] lg:text-[17px] xl:text-[17px] 2xl:text-[18px]">

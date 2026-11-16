@@ -64,7 +64,7 @@ export default function IntlAbout({ data }) {
                 <div className="grid  gap-8 lg:grid-cols-2 lg:gap-10 2xl:gap-[35px]">
                     {/* Text */}
                     <div className="2xl:pr-[40px]">
-                        <h2 className="text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[#1a1a1a] sm:text-[34px] lg:text-[35px] 2xl:text-[40px] 3xl:text-[53px] 3xl:leading-[60px]">
+                        <h2 className="  font-bold leading-[1.12] tracking-[-0.01em] text-[#1a1a1a] cmn_Title">
                             {title}
                         </h2>
 

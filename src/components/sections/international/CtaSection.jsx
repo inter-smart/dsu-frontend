@@ -48,7 +48,7 @@ export default function CtaBanner({ data }) {
 
             <div className="container relative z-10">
                 <div className="mx-auto flex flex-col items-center text-center">
-                    <h2 className="text-[28px] font-bold leading-tight text-white md:text-[34px] lg:text-[42px] 2xl:text-[52px] 3xl:text-[55px]">
+                    <h2 className="cmn_Title font-bold leading-tight text-white  ">
                         {title}
                     </h2>
 

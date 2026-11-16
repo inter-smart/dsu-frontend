@@ -149,7 +149,7 @@ export default function BuildSection({ data }) {
                     </h2>
 
                     {description && (
-                        <div className="text_1 text-center max-w-[650px] mx-auto">
+                        <div className="typography text_1 text-center max-w-[650px] mx-auto">
                             {Array.isArray(description) ? (
                                 <BlocksRenderer
                                     content={description}

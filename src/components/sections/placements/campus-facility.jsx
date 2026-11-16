@@ -29,7 +29,7 @@ export default function CampusFacility({ data }) {
                             )}
 
                             {data?.description && (
-                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] max-w-[620px]">
+                                <div className="typography text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] max-w-[620px]">
                                     {Array.isArray(data.description) ? (
                                         <BlocksRenderer content={data.description} />
                                     ) : (

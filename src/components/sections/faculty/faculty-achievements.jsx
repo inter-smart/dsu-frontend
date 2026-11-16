@@ -6,7 +6,7 @@ export default function FacultyAchievements({ data }) {
     <section className="w-full h-auto py-10 lg:py-15 2xl:py-20 3xl:py-25 block">
       <div className="container">
         <div className="w-full h-auto p-[20px_15px] sm:p-[30px_20px] lg:p-[40px_30px] 2xl:p-[60px_40px] 3xl:p-[70px_50px] border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden">
-          <div className="w-full h-auto mb-5 3xl:mb-7.5 space-y-2.5 lg:space-y-3.75 3xl:space-y-5">
+          <div className="typography w-full h-auto mb-5 3xl:mb-7.5 space-y-2.5 lg:space-y-3.75 3xl:space-y-5">
             <Heading>{data?.title}</Heading>
           </div>
           {/* rich text: paragraphs in the description style, bullet lists as achievements */}

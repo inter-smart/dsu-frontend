@@ -43,27 +43,27 @@ export default function IntlLinkCardsSection({ data }) {
                         ))}
                     </ul>
                 ) : (
-                <div className="grid grid-cols-1 gap-[15px] sm:grid-cols-2 lg:grid-cols-3 xl:gap-[25px] 3xl:gap-[35px]">
+                <div className="grid grid-cols-1 gap-[15px] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-[25px] 3xl:gap-[35px]">
                     {data.items.map((item) => {
                         const card = (
                             <>
                                 {item.image?.url && (
-                                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                                    <div className="relative aspect-square w-full overflow-hidden bg-black/5">
                                         <Image
                                             src={item.image.url}
                                             alt={item.image.alternativeText || item.title}
                                             fill
-                                            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                            sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                                            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                                         />
                                     </div>
                                 )}
-                                <div className="p-[15px]">
-                                    <h3 className="text-[16px] font-semibold text-black xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px]">
+                                <div className="p-[12px] xl:p-[15px]">
+                                    <h3 className="text-[15px] font-semibold text-black xl:text-[16px] 2xl:text-[18px] 3xl:text-[22px]">
                                         {item.title}
                                     </h3>
                                     {item.description && (
-                                        <p className="mt-[8px] text-[14px] leading-[1.6] text-black/70 2xl:text-[16px]">{item.description}</p>
+                                        <p className="mt-[6px] text-[13px] leading-[1.5] text-black/70 2xl:text-[14px]">{item.description}</p>
                                     )}
                                 </div>
                             </>

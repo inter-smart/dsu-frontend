@@ -25,7 +25,7 @@ export default function InstructionsAccordion({ data }) {
             />
 
             <div className="container relative z-10">
-                <h2 className="text-[28px] font-bold leading-tight text-[#1a1a1a] md:text-[30px] lg:text-[35px] 2xl:text-[42px] 3xl:text-[52px]">
+                <h2 className="font-bold leading-tight text-[#1a1a1a] cmn_Title">
                     {title}
                 </h2>
 
