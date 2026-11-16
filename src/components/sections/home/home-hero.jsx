@@ -161,7 +161,7 @@ export default function HomeHero({ data }) {
                         </span>
                       </div>
                       )}
-                      <SlideTitle first={slideIndex === 0} className="text-3xl sm:text-[34px] lg:text-[40px] 2xl:text-5xl 3xl:text-6xl leading-[1.1] font-bold text-white mb-5 sm:mb-3.75 2xl:mb-5 3xl:mb-6.25">
+                      <SlideTitle first={slideIndex === 0} className="text-3xl sm:text-[34px] lg:text-[40px] 2xl:text-5xl 3xl:text-6xl max-w-[500px] 2xl:max-w-[615px] leading-[1.1] font-bold text-white mb-5 sm:mb-3.75 2xl:mb-5 3xl:mb-6.25">
                         {item?.title}
                       </SlideTitle>
                       <div className="text-sm lg:text-base 2xl:text-lg 3xl:text-2xl leading-[1.1] font-normal text-white">

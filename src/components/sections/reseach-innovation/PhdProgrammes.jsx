@@ -74,11 +74,11 @@ export default function PhdProgrammes({ data }) {
                     )}
 
                     {programmes.length > 0 && (
-                        <TableScrollBox className="w-full overflow-auto max-h-[450px]">
+                        <div className="w-full overflow-x-auto">
                             <table className="w-full min-w-[720px] table-fixed border-collapse border border-[#333] dark:border-white/30 text-left">
                                 <colgroup>
-                                    <col className="w-[60px] xl:w-[5%]" />
-                                    <col className="w-[47%]" />
+                                    <col className="w-[50px] xl:w-[5%]" />
+                                    <col className="w-[30%] xl:w-[40%]" />
                                     <col />
                                 </colgroup>
                                 <thead>
@@ -106,7 +106,7 @@ export default function PhdProgrammes({ data }) {
                                             <td className="border-r border-[#333] dark:border-white/30 pl-[12px] pr-[16px] py-[14px] align-middle text_1 text-black dark:text-white">
                                                 {item.course}
                                             </td>
-                                            <td className="pl-[24px] xl:pl-[32px] pr-[16px] py-[10px] align-middle">
+                                            <td className="pl-[24px] xl:pl-[32px] pr-[12px] py-[10px] align-middle">
                                                 <div className="flex items-center justify-between gap-[16px]">
                                                     <div>
                                                         {item.department && (
@@ -116,36 +116,36 @@ export default function PhdProgrammes({ data }) {
                                                             <div className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF]">{item.area}</div>
                                                         )}
                                                     </div>
-                                                    {item?.cta?.url && item?.cta?.label && (
-                                                        <Link
-                                                            href={item.cta.url}
-                                                            {...ctaLinkProps(item.cta)}
-                                                            className="group/cta flex shrink-0 items-center gap-[6px] text_1 font-medium text-[#F97316] pr-[10px] xl:pr-[30px] opacity-0 -translate-x-[8px] transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0 focus-visible:opacity-100 focus-visible:translate-x-0 [@media(hover:none)]:opacity-100 [@media(hover:none)]:translate-x-0"
+                                                    {/* {item?.cta?.url && item?.cta?.label && ( */}
+                                                    <Link
+                                                        href=""
+                                                        {...ctaLinkProps(item.cta)}
+                                                        className="group/cta flex shrink-0 items-center gap-[6px] text_1 font-medium text-[#F97316] pr-[10px] xl:pr-[30px] md:opacity-0 -translate-x-[8px] transition-all duration-300 ease-out md:group-hover:opacity-100 md:group-hover:translate-x-0 md:focus-visible:opacity-100 md:focus-visible:translate-x-0 md:[@media(hover:none)]:opacity-100 [@media(hover:none)]:translate-x-0"
+                                                    >
+                                                        <span>knowmore</span>
+                                                        <svg
+                                                            width="16"
+                                                            height="16"
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            strokeWidth="2.5"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            className="transition-transform duration-300 group-hover/cta:translate-x-[4px]"
+                                                            aria-hidden="true"
                                                         >
-                                                            <span>{item.cta.label}</span>
-                                                            <svg
-                                                                width="16"
-                                                                height="16"
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                strokeWidth="2.5"
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                className="transition-transform duration-300 group-hover/cta:translate-x-[4px]"
-                                                                aria-hidden="true"
-                                                            >
-                                                                <path d="M5 12h14M13 6l6 6-6 6" />
-                                                            </svg>
-                                                        </Link>
-                                                    )}
+                                                            <path d="M5 12h14M13 6l6 6-6 6" />
+                                                        </svg>
+                                                    </Link>
+                                                    {/* )} */}
                                                 </div>
                                             </td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
-                        </TableScrollBox>
+                        </div>
 
                     )}
                 </div>

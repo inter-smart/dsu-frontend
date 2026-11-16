@@ -186,10 +186,10 @@ html.lenis body {
     @apply text-[28px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] leading-tight font-bold tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
   .text_1 {
-    @apply text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
+    @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[18px] 3xl:text-[20px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
   p {
-    @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
+    @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[18px] 3xl:text-[20px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
   .cmnFlx {
     @apply flex flex-wrap;
@@ -201,7 +201,7 @@ html.lenis body {
     @apply w-full lg:w-[calc(100%-240px)] xl:w-[calc(100%-260px)] 2xl:w-[calc(100%-310px)] 3xl:w-[calc(100%-390px)] lg:pl-[20px] xl:pl-[30px] 2xl:pl-[40px] 3xl:pl-[50px];
   }
   .cmn_Title {
-    @apply text-[25px] xl:text-[32px] 2xl:text-[35px] 3xl:text-[40px] font-bold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white;
+    @apply text-[25px] xl:text-[32px] 2xl:text-[35px] 3xl:text-[55px] font-bold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white;
   }
   .cmn_Txt{
     @apply text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold
@@ -221,7 +221,29 @@ html.lenis body {
     :is(.dark &) {
       --text-color: #f9fafb;
     }
+     /* ---------- Tables ---------- */
+    table {
+      @apply my-[18px] w-full table-auto border-collapse text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px];
+    }
 
+    th,
+    td {
+      @apply border border-[#9fa2a76b] px-3 py-2 text-left align-top break-words md:min-w-[110px];
+    }
+
+    th {
+      @apply font-semibold text-white;
+      background: linear-gradient(to right, var(--basecolor2), var(--basecolor2));
+    }
+
+    tbody tr:nth-child(even) {
+      @apply bg-black/[0.03] dark:bg-white/[0.04];
+    }
+
+    td p,
+    th p {
+      @apply mb-0;
+    }
     /* * {
       @apply my-2.5 lg:my-4;
     } */
@@ -251,15 +273,15 @@ html.lenis body {
     }
 
     h3 {
-      @apply text-[16px] sm:text-[18px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[30px] leading-tight font-bold text-(--text-color);
+      @apply text-[18px] sm:text-[18px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[30px] leading-tight font-bold text-(--text-color);
     }
 
     h4 {
-      @apply text-[12px] sm:text-[12px] lg:text-[12px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
+      @apply text-[17px] sm:text-[12px] lg:text-[12px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
     }
 
     h5 {
-      @apply text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal text-(--text-color);
+      @apply text-[16px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal text-(--text-color);
     }
 
     h6 {
@@ -750,27 +772,4 @@ body:has(.balckHeader) header {
     .rich-subtitle { font-size: 17px; margin-top: 14px; }
     .rich-subtitle::before { width: 24px; }
   }
-}
-     /* ---------- Tables ---------- */
-table {
-  @apply my-[18px] w-full table-auto border-collapse text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px];
-}
-
-th,
-td {
-  @apply border border-[#9fa2a76b] px-3 py-2 text-left align-top break-words md:min-w-[110px];
-}
-
-th {
-  @apply font-semibold text-white;
-  background: linear-gradient(to right, var(--basecolor2), var(--basecolor2));
-}
-
-tbody tr:nth-child(even) {
-  @apply bg-black/[0.03] dark:bg-white/[0.04];
-}
-
-td p,
-th p {
-  @apply mb-0;
 }

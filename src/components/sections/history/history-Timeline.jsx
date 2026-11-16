@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react"; // CHANGED: added useEffect, useRef
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useLenis } from "lenis/react"; // ADDED
 
 import "swiper/css";
 import "swiper/css/thumbs";
@@ -14,6 +15,39 @@ export default function HistoryTimeline({ data }) {
     const decades = data?.decades || [];
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [activeIndex, setActiveIndex] = useState(0);
+    const timelineRef = useRef(null); // ADDED
+    const lenis = useLenis(); // ADDED
+
+    // ADDED: when the timeline list is already at its top (scrolling up) or bottom (scrolling down),
+    // pass the wheel to the page so the page keeps scrolling instead of getting stuck.
+    // Inside the list, the wheel scrolls the list as before.
+    useEffect(() => {
+        const wrapper = timelineRef.current;
+        if (!wrapper) return;
+
+        const handleWheel = (e) => {
+            const box = e.target.closest?.("[data-timeline-scroll]");
+            if (!box) return;
+
+            const { scrollTop, scrollHeight, clientHeight } = box;
+            const atTop = scrollTop <= 0;
+            const atBottom = scrollTop + clientHeight >= scrollHeight - 1;
+            const goingDown = e.deltaY > 0;
+
+            if ((goingDown && atBottom) || (!goingDown && atTop)) {
+                e.preventDefault();
+                if (lenis) {
+                    lenis.scrollTo(lenis.scroll + e.deltaY, { immediate: true });
+                } else {
+                    window.scrollBy(0, e.deltaY);
+                }
+            }
+        };
+
+        // passive: false is needed so preventDefault works
+        wrapper.addEventListener("wheel", handleWheel, { passive: false });
+        return () => wrapper.removeEventListener("wheel", handleWheel);
+    }, [lenis]);
 
     // Dynamic baseline color logic based on active index
     const getSegmentBg = (idx, activeIdx) => {
@@ -160,7 +194,8 @@ export default function HistoryTimeline({ data }) {
                 </div>
 
                 {/* Vertical Main Timeline Swiper */}
-                <div className="relative lg:max-w-[75%] mx-auto h-[340px] sm:h-[400px] md:h-[900px]">
+                {/* CHANGED: added ref={timelineRef} (used by the wheel handler above) */}
+                <div ref={timelineRef} className="relative lg:max-w-[75%] mx-auto h-[340px] sm:h-[400px] md:h-[900px]">
                     <Swiper
                         direction="vertical"
                         slidesPerView={1}
@@ -175,9 +210,14 @@ export default function HistoryTimeline({ data }) {
                     >
                         {decades.map((decade, dIdx) => (
                             <SwiperSlide key={decade.id || dIdx} className="h-full w-full">
-                                <div className="relative w-full h-full overflow-y-auto  [&::-webkit-scrollbar]:w-[0px] ">
+                                {/* CHANGED: data-timeline-scroll marks the scroll box for the wheel handler; swiper-no-swiping + touch-pan-y keep touch scrolling working (touch scroll passes to the page at the top/bottom by itself) */}
+                                <div
+                                    data-lenis-prevent
+                                    data-timeline-scroll
+                                    className="swiper-no-swiping touch-pan-y relative w-full h-full overflow-y-auto  [&::-webkit-scrollbar]:w-[0px] "
+                                >
                                     {/* Timeline Event Cards List */}
-                                    <div className="relative z-10 py-4 pb-12">
+                                    <div className="relative z-10 py-4 pb-24">
                                         {decade.events?.map((event, index) => {
                                             const isEven = index % 2 === 1;
                                             const totalEvents = decade.events.length;

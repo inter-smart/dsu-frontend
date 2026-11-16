@@ -11,13 +11,13 @@ export function ThemeToggle({ className, iconClassName }) {
   return (
     <button
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className={cn("p-[4.5px] -m-[1.5px] rounded text-black dark:bg-white dark:text-white", className)}
+      className={cn("max-sm:p-[10px] p-[4.5px] -m-[1.5px] rounded text-black dark:bg-white dark:text-white", className)}
     >
       <Image
         src="/images/icon-lang.svg"
         alt="Language"
         className={cn(
-          "size-[15px] sm:size-[24px] object-contain hover:scale-110 transition-transform rotate-0 scale-100 transition-all dark:invert",
+          "size-[25px] sm:size-[24px] object-contain hover:scale-110 transition-transform rotate-0 scale-100 transition-all dark:invert",
           iconClassName
         )}
         width={24}
