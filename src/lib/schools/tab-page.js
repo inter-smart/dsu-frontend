@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { FALLBACK_HERO_MEDIA } from "./entity";
 import { getSchoolTab } from "@/lib/api";
 import { getSchoolTabs } from "@/lib/schools/tabs";
 import { seoMetadata } from "@/lib/seo";
@@ -27,6 +28,7 @@ export async function loadSchoolTabData(slug, tab) {
     const data = school.tab ?? {};
 
     const hero = { ...(school.hero ?? {}) };
+    if (!hero.heroMedia?.url) hero.heroMedia = FALLBACK_HERO_MEDIA;
     const cmsCrumbs = school.hero?.breadcrumb;
     if (cmsCrumbs?.length) {
         const href = `/schools/${slug}/${tab}`;

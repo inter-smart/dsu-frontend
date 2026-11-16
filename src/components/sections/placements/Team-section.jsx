@@ -1,6 +1,7 @@
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading"; 
 import TableScrollBox from "@/components/layout/common/TableScrollBox";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 export default function TeamSection({ data }) {
   return (
@@ -15,7 +16,15 @@ export default function TeamSection({ data }) {
           <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-5 dark:text-white">
             {data?.title}
           </Heading>
-          <Text className="dark:text-[#9CA3AF]">{data?.description}</Text>
+          {Array.isArray(data?.description) ? (
+            <div className="typography dark:text-[#9CA3AF] [&_p]:dark:text-[#9CA3AF]">
+              <BlocksRenderer content={data.description} />
+            </div>
+          ) : (
+            data?.description && (
+              <Text className="dark:text-[#9CA3AF]">{data.description}</Text>
+            )
+          )}
         </div>
         {data?.table?.rows?.length > 0 && (
         <div>

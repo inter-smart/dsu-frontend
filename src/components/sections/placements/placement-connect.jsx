@@ -1,11 +1,13 @@
 import React from "react";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 export default function PlacementConnect({ data }) {
     if (!data) return null;
 
     const {
         heading = "Contact us",
-        subheading = "Dayananda Sagar Placements | Contact us for placement queries at Dayananda Sagar University, Bangalore",
+        description,
+        subheading,
         contactGroups = [],
     } = data;
 
@@ -19,9 +21,13 @@ export default function PlacementConnect({ data }) {
                             {heading}
                         </h1>
                     )}
-                    {subheading && (
+                    {Array.isArray(description) && description.length > 0 ? (
+                        <div className="text_1 dark:text-[#9CA3AF] [&_p]:dark:text-[#9CA3AF] mt-2 leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px] typography">
+                            <BlocksRenderer content={description} />
+                        </div>
+                    ) : (description || subheading) && (
                         <p className="text_1 dark:text-[#9CA3AF] mt-2 leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                            {subheading}
+                            {description || subheading}
                         </p>
                     )}
                 </div>

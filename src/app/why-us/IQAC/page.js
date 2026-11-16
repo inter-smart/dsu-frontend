@@ -42,10 +42,6 @@ const local_data = {
         ],
     },
     iqacSection: {
-        tabs: [
-            { id: 1, label: "About IQAC", value: "about-iqac", active: false },
-            { id: 2, label: "IQAC Activities", value: "iqac-activities", active: true },
-        ],
         aboutIqacSection: {
             heading: "About IQAC",
             description: [
@@ -114,96 +110,6 @@ const local_data = {
                 ],
             },
         },
-        aboutIqac: {
-            aboutIqacSection: {
-                heading: "About IQAC",
-                description: [
-                    {
-                        type: "paragraph",
-                        children: [
-                            {
-                                type: "text",
-                                text: "The Internal Quality Assurance Cell (IQAC) at Dayananda Sagar University is committed to fostering a culture of quality, innovation, and continuous improvement across academic and administrative functions. Established in line with the guidelines of the National Assessment and Accreditation Council (NAAC), IQAC serves as the University's central quality assurance mechanism, promoting excellence through strategic planning, regular assessment, stakeholder engagement, and the adoption of best practices. Its initiatives support institutional growth while ensuring high standards in teaching, learning, research, governance, and student development.",
-                            },
-                        ],
-                    },
-                ],
-                cta: {
-                    label: "Download IQAC Brochure",
-                    file: {
-                        alternativeText: "IQAC Brochure PDF",
-                        mime: "application/pdf",
-                        url: "/documents/iqac-brochure.pdf",
-                    },
-                },
-                cards: [
-                    {
-                        id: 1,
-                        icon: {
-                            alternativeText: "Vision eye icon",
-                            mime: "image/svg+xml",
-                            url: "/icons/vision.svg",
-                        },
-                        title: "Vision",
-                        description: "To be a catalyst for continuous quality enhancement by promoting excellence in teaching, learning, research, innovation, governance, and institutional development.",
-                    },
-                    {
-                        id: 2,
-                        icon: {
-                            alternativeText: "Mission target icon",
-                            mime: "image/svg+xml",
-                            url: "/icons/mission.svg",
-                        },
-                        title: "Mission",
-                        description: "Cultivate a culture of quality and improvement by enhancing academic and administrative processes, encouraging innovation, and ensuring excellence in teaching, learning, and research.",
-                    },
-                ],
-            },
-        },
-        activities: {
-            heading: "IQAC Activities",
-            description: "The Internal Quality Assurance Cell (IQAC) organizes and supports a wide range of academic, research, and quality enhancement initiatives throughout the year. These activities, including workshops, seminars, faculty development programmes, conferences, and awareness sessions, foster continuous improvement, innovation, and excellence across the University.",
-            items: [
-                {
-                    id: 1,
-                    title: "Interaction Meeting on NAAC Criteria.",
-                    poster: "/images/iqac-activity-1.jpg",
-                    description: "Dayananda Sagar University In association with Board for IT Education Standards (BITES) cordially invites parents and DSU students to the Interaction Meeting on NAAC Criteria. Join us to interact with our eminent speakers Dr. K.N.B Murthy, Vice Chancellor, Dayananda Sagar University, Bangalore , Dr. B.V. Ravishankar, Principal, BMS College of Engineering (BMSCE) and Dr. Mangala Keshava, Associate Professor, Department of Civil Engineering BMS College of Engineering (BMSCE).",
-                    date: "2026-11-24",
-                    endDate: "2026-11-25",
-                    startTime: "14:30:00.000",
-                    endTime: "16:00:00.000",
-                    readMoreUrl: "/why-us/IQAC",
-                    zoomUrl: "https://zoom.us",
-                    youtubeUrl: "https://youtube.com",
-                },
-                {
-                    id: 2,
-                    title: '"NAAC- IQAC Seminar on "NAAC Pathway for Quality Assurance in Higher Educational Institutions (HEIs)".',
-                    poster: "/images/iqac-activity-2.jpg",
-                    description: 'Dayananda Sagar University invites parents and DSU students to the "NAAC- IQAC Seminar on "NAAC Pathway for Quality Assurance in Higher Educational Institutions (HEIs)". Join us to interact with our eminent speakers Dr. K.N.B Murthy, Vice Chancellor, Dayananda Sagar University, Bangalore, India., and Dr. Ganesh A. Hegde, Adviser- National Assessment and Accreditation Council (NAAC).',
-                    date: "2020-10-21",
-                    startTime: "15:00:00.000",
-                    endTime: "16:00:00.000",
-                    readMoreUrl: "/why-us/IQAC",
-                    zoomUrl: "https://zoom.us",
-                    youtubeUrl: "https://youtube.com",
-                },
-                {
-                    id: 3,
-                    title: 'NAAC- IQAC Seminar on" Green/ Energy audit and its importance in energy management".',
-                    poster: "/images/iqac-activity-3.jpg",
-                    description: 'Dayananda Sagar University invites parents and DSU students to the "NAAC- IQAC Seminar on" Green/ Energy audit and its importance in energy management". Join us to interact with our eminent Guest speakers Mr. Ramesh Dharmaraj, Senior Fellow – Industrial Efficiency Group - TERI.',
-                    date: "2020-10-21",
-                    startTime: "15:00:00.000",
-                    endTime: "16:00:00.000",
-                    readMoreUrl: "/why-us/IQAC",
-                    zoomUrl: "https://zoom.us",
-                    youtubeUrl: "https://youtube.com",
-                },
-            ],
-        },
-
         accreditationsData: {
             title: "Recognised for\nMeasured Excellence",
             tabs: [

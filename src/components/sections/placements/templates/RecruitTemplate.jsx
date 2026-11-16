@@ -1,6 +1,8 @@
 import InnerHero from "@/components/layout/common/InnerHero";
 import CorporateConnect from "@/components/sections/placements/corporate-connect";
 import PlacementProcess from "@/components/sections/placements/placement-process";
+import CareerCounselling from "@/components/sections/placements/Career-Counseling";
+import CareerGoal from "@/components/sections/placements/Career-Goal";
 import CampusFacility from "@/components/sections/placements/campus-facility";
 import PlacementDocuments from "@/components/sections/placements/PlacementDocuments";
 import PlacementTeam from "@/components/sections/placements/placement-team";
@@ -14,6 +16,8 @@ export default function RecruitTemplate({ data }) {
 
     const overview = recruit.programOverviewSection;
     const process = recruit.placementProcess;
+    const hiring = recruit.hiringSection;
+    const jobPosting = recruit.jobPostingSection;
     const campus = recruit.campusSection;
     const documents = recruit.documentSection;
     const team = recruit.placementTeam;
@@ -25,6 +29,8 @@ export default function RecruitTemplate({ data }) {
             <PlacementmenuBar items={data?.sidebar} className="lg:!hidden block" />
             {hasContent(overview) && <CorporateConnect data={overview} />}
             {hasContent(process) && <PlacementProcess data={process} variant="corporate" />}
+            {hasContent(hiring) && <CareerCounselling data={hiring} />}
+            {hasContent(jobPosting) && <CareerGoal data={jobPosting} />}
             {hasContent(campus) && <CampusFacility data={campus} />}
             {hasContent(documents) && <PlacementDocuments data={documents} />}
             {hasContent(team) && <PlacementTeam data={team} />}

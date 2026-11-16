@@ -47,7 +47,7 @@ const local_data = {
         href: "/",
       },
       {
-        label: "CEDCC",
+        label: "CEADC",
         href: "/",
       },
     ],
