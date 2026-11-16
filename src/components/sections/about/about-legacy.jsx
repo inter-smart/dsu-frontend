@@ -86,7 +86,7 @@ function LegacyCard({ item, index, active, onToggle, className }) {
                 >
                     <div
                         data-lenis-prevent
-                        className="min-h-0 max-h-full w-full touch-pan-y overflow-y-auto overscroll-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&_p]:text-[15px] [&_p]:leading-[1.5] [&_p]:text-white lg:[&_p]:text-[16px] 2xl:[&_p]:text-[16px] 3xl:[&_p]:text-[18px]"
+                        className="typography min-h-0 max-h-full w-full touch-pan-y overflow-y-auto overscroll-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&_p]:text-[15px] [&_p]:leading-[1.5] [&_p]:text-white lg:[&_p]:text-[16px] 2xl:[&_p]:text-[16px] 3xl:[&_p]:text-[18px]"
                     >
                         <BlocksRenderer content={item.description} />
                     </div>

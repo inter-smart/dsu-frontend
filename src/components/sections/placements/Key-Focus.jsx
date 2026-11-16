@@ -67,7 +67,7 @@ export default function KeyFocus({ data }) {
                                                 {/* CKEditor HTML from Strapi; older entries may still send blocks */}
                                                 {typeof item.answer === "string" ? (
                                                     <div
-                                                        className="ck-content blocks-html w-full overflow-x-auto"
+                                                        className="typography ck-content blocks-html w-full overflow-x-auto"low-x-auto"
                                                         dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.answer) }}
                                                     />
                                                 ) : (

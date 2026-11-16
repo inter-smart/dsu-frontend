@@ -62,7 +62,7 @@ export default function LibraryServices({ data, menu }) {
                                     </h2>
 
                                     {section.content ? (
-                                        <div><BlocksRenderer content={section.content} blocks={sectionBlocks} /></div>
+                                        <div className="typography"><BlocksRenderer content={section.content} blocks={sectionBlocks} /></div>
                                     ) : (
                                         <>
                                     {(section.intro || section.description) && (

@@ -37,7 +37,7 @@ export default function Alumni({ data }) {
                 )}
               </div>
               <div
-                className="w-full h-auto [&_p:last-child]:mb-0 [&_p]:mb-2.5 sm:[&_p]:mb-3.75 2xl:[&_p]:mb-5 3xl:[&_p]:mb-7.5"
+                className="typography w-full h-auto [&_p:last-child]:mb-0 [&_p]:mb-2.5 sm:[&_p]:mb-3.75 2xl:[&_p]:mb-5 3xl:[&_p]:mb-7.5"
                 dangerouslySetInnerHTML={{ __html: data?.alumniContent || "" }}
               />
               {data?.button?.label && (
@@ -66,7 +66,7 @@ export default function Alumni({ data }) {
               )}
               <div className="w-full h-auto block">
                 <div
-                  className="[&_li]:text-xs 2xl:[&_li]:text-sm 3xl:[&_li]:text-lg text-[#4A5565] w-full h-auto mb-3.75 sm:mb-5 2xl:mb-7.5 [&_ul]:pl-3.75 3xl:[&_ul]:pl-5 [&_ul]:space-y-1.25 [&_li]:list-disc sm:gap-3.75 gap-3.75 lg:gap-5 2xl:gap-6.25 3xl:gap-8.75 flex flex-col"
+                  className="typography [&_li]:text-xs 2xl:[&_li]:text-sm 3xl:[&_li]:text-lg text-[#4A5565] w-full h-auto mb-3.75 sm:mb-5 2xl:mb-7.5 [&_ul]:pl-3.75 3xl:[&_ul]:pl-5 [&_ul]:space-y-1.25 [&_li]:list-disc sm:gap-3.75 gap-3.75 lg:gap-5 2xl:gap-6.25 3xl:gap-8.75 flex flex-col"
                   dangerouslySetInnerHTML={{
                     __html: data?.alumniContentList || "",
                   }}
@@ -105,7 +105,7 @@ export default function Alumni({ data }) {
                             {item?.title}
                           </div>
                           <div
-                            className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.4] font-normal text-white"
+                            className="typography text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.4] font-normal text-white"
                             dangerouslySetInnerHTML={{ __html: item?.description || "" }}
                           />
                         </div>

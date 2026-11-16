@@ -324,7 +324,7 @@ export default function HomeResearch({ data }) {
                                 />
                               </div>
                               <div
-                                className="text_1 leading-[1.1] font-normal text-[#4A5565] dark:text-white"
+                                className="typography text_1 leading-[1.1] font-normal text-[#4A5565] dark:text-white"
                                 dangerouslySetInnerHTML={{
                                   __html: item?.label || "",
                                 }}

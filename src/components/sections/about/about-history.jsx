@@ -76,7 +76,7 @@ export default function AboutHistory({ data }) {
                                                         {itemList.period}
                                                     </div>
                                                     {hasContent(itemList.description) && (
-                                                        <div className="dark:text-[#9CA3AF]">{renderText(itemList.description)}</div>
+                                                        <div className="typography dark:text-[#9CA3AF]">{renderText(itemList.description)}</div>
                                                     )}
                                                 </div>
                                             </div>

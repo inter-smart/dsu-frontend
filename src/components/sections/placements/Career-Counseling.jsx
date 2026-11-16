@@ -82,7 +82,7 @@ export default function CareerCounselling({ data }) {
                                     <p className="rich-subtitle">{section.subheading}</p>
                                 )}
                                 {section.blocks.length > 0 && (
-                                    <div className="text_1 rich-text mt-[20px] xl:mt-[28px]">
+                                    <div className="typography text_1 rich-text mt-[20px] xl:mt-[28px]">
                                         <BlocksRenderer content={section.blocks} />
                                     </div>
                                 )}
