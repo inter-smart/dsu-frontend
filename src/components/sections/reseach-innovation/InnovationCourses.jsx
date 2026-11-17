@@ -28,11 +28,11 @@ export default function InnovationCourses({ data }) {
     if (items.length === 0) return null;
 
     return (
-        <section className="relative py-[20px] xl:py-[30px] 2xl:py-[30px] 3xl:py-[40px] bg-white dark:bg-[#101010] transition-colors duration-300">
+        <section className="relative py-[40px] xl:py-[40px] 2xl:py-[50px] 3xl:py-[60px] bg-white dark:bg-[#101010] transition-colors duration-300">
             <div className="container">
 
                 {data?.heading && (
-                    <h2 className="text-[20px] sm:text-[22px] xl:text-[26px] 2xl:text-[26px] 3xl:text-[32px] font-semibold leading-[1.3] mb-[30px] xl:mb-[45px] 2xl:mb-[55px] 3xl:mb-[70px] text-[#212121] dark:text-white">
+                    <h2 className="cmn_Title font-semibold leading-[1.3] mb-[30px] xl:mb-[45px] 2xl:mb-[55px] text-[#212121] dark:text-white">
                         {data.heading}
                     </h2>
                 )}
@@ -67,7 +67,7 @@ export default function InnovationCourses({ data }) {
                                 {/* text */}
                                 <div className="w-full lg:flex-1 min-w-0">
                                     {item?.title && (
-                                        <h3 className="text-[16px] sm:text-[18px] xl:text-[19px] 2xl:text-[20px] 3xl:text-[24px] font-medium uppercase leading-[1.3] mb-[12px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px] text-[#212121] dark:text-white">
+                                        <h3 className="font-medium uppercase leading-[1.3] mb-[12px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px] text-[#212121] dark:text-white">
                                             {item.title}
                                         </h3>
                                     )}

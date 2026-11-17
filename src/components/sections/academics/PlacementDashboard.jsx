@@ -41,7 +41,7 @@ function AccordionGroup({ sectionId, group, variant = "default" }) {
                         value={`${sectionId}-${group.id}-${item.id}`}
                         className="p-[10px_15px] xl:p-[18px_22px] border border-black/10 dark:border-white/10 bg-transparent dark:bg-[#18191B] rounded-[6px] mb-[10px] xl:mb-[15px]"
                     >
-                        <AccordionTrigger className="relative p-0 pr-[30px] font-medium !text-black !bg-transparent dark:!text-white text-[13px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[25px] hover:no-underline after:absolute after:right-[5px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden">
+                        <AccordionTrigger className="relative p-0 pr-[30px] font-medium !text-black !bg-transparent dark:!text-white text-[13px] xl:text-[15px] 2xl:text-[18px] 3xl:text-[20px] hover:no-underline after:absolute after:right-[5px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden">
                             {item.question}
                         </AccordionTrigger>
 

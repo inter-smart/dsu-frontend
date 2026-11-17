@@ -30,7 +30,7 @@ export default function IntlButtonSection({ data }) {
     const buttons = data.buttons || [data];
 
     return (
-        <section className="py-[10px] xl:py-[14px] 3xl:py-[20px]">
+        <section className="py-[10px_30px] xl:py-[14px_40px] 3xl:py-[20px_60px]">
             <div className={`container flex flex-wrap gap-[12px] xl:gap-[18px]`}>
                 {buttons.map((button, i) => <IntlButton key={i} button={button} />)}
             </div>

@@ -1,3 +1,4 @@
+import CommonGallery from "@/components/layout/common/CommonGallery";
 import InnerHero from "@/components/layout/common/InnerHero";
 import ExploreCentres from "@/components/sections/center-of-excellence/ExploreCentres";
 import HomeHeroSlider from "@/components/sections/center-of-excellence/HomeHeroSlider";
@@ -365,17 +366,30 @@ const local_data = {
             },
         ],
     },
+    gallery: {
+        title: "Gallery",
+        description: "Moments from our campus",   // plain text, or Strapi blocks array
+        items: [
+            { id: 1, type: "image", image: { url: "/images/center-of-excellence/explore-1.jpg", alternativeText: "Campus" }, title: "Campus" },
+            { id: 2, type: "video", video: { url: "/videos/ai-first-about.mp4" }, thumbnail: { url: "/images/center-of-excellence/explore-2.jpg" }, title: "Campus tour" },
+            { id: 3, type: "youtube", youtubeUrl: "https://www.youtube.com/shorts/5qgoFC_kmwk", title: "Convocation" },
+            { id: 1, type: "image", image: { url: "/images/center-of-excellence/explore-1.jpg", alternativeText: "Campus" }, title: "Campus" },
+            { id: 2, type: "video", video: { url: "/videos/ai-first-about.mp4" }, thumbnail: { url: "/images/center-of-excellence/explore-2.jpg" }, title: "Campus tour" },
+            { id: 3, type: "youtube", youtubeUrl: "https://www.youtube.com/shorts/5qgoFC_kmwk", title: "Convocation" },
+        ],
+    }
 };
 
 export default function page() {
     return (
-        <> 
+        <>
             <HomeHeroSlider data={local_data.heroSlider} />
             <InnovationEcosystem data={local_data.innovationEcosystem} />
             <ExploreCentres data={local_data.exploreCentres} />
             <IdeaToExecution data={local_data.ideaToExecution} />
             <WhoCanEngage data={local_data.whoCanEngage} />
             <TakeIdeasForward data={local_data.takeIdeasForward} />
+            <CommonGallery data={local_data.gallery} />
         </>
     );
 }
