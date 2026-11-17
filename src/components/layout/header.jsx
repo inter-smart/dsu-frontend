@@ -1712,7 +1712,10 @@ function SubMenuLeaf({ leaf, onKeepOpen, preferLeft = false }) {
       const flip = preferLeft
         ? leftSpace >= FLYOUT_MIN_FIT || leftSpace > rightSpace
         : rightSpace < FLYOUT_MIN_FIT && leftSpace > rightSpace;
-      const maxWidth = Math.min(FLYOUT_MAX_WIDTH, flip ? leftSpace : rightSpace);
+      const maxWidth = Math.min(
+        FLYOUT_MAX_WIDTH,
+        flip ? leftSpace : rightSpace,
+      );
 
       // 1px border + padding puts the first item exactly level with the parent row
       const top = Math.max(8, linkRect.top - FLYOUT_PAD_TOP - 1);
