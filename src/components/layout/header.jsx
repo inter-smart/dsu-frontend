@@ -1479,6 +1479,7 @@ function MegaMenuPanel({
           key={leaf?.id || leaf?.label}
           leaf={leaf}
           onKeepOpen={onKeepOpen}
+          preferLeft={reverseRow}
         />
       );
     }
@@ -1669,7 +1670,9 @@ const FLYOUT_VERTICAL_SPACE = 52;
 // ADDED: narrowest the flyout may shrink to on the right before it flips to the left of the panel
 const FLYOUT_MIN_FIT = 160;
 
-function SubMenuLeaf({ leaf, onKeepOpen }) {
+// preferLeft: right-half menus keep the list on the left of the orange sidebar, so the flyout opens
+// on the left (next to the list) instead of past the sidebar, far from the hovered row
+function SubMenuLeaf({ leaf, onKeepOpen, preferLeft = false }) {
   const rowRef = useRef(null);
   const linkRef = useRef(null);
   const closeTimer = useRef(null);
@@ -1706,11 +1709,10 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
       // when the right side is too tight AND the left side has more room.
       const rightSpace = viewportWidth - panelRect.right - 8;
       const leftSpace = panelRect.left - 8;
-      const flip = rightSpace < FLYOUT_MIN_FIT && leftSpace > rightSpace;
-      const maxWidth = Math.min(
-        FLYOUT_MAX_WIDTH,
-        flip ? leftSpace : rightSpace,
-      );
+      const flip = preferLeft
+        ? leftSpace >= FLYOUT_MIN_FIT || leftSpace > rightSpace
+        : rightSpace < FLYOUT_MIN_FIT && leftSpace > rightSpace;
+      const maxWidth = Math.min(FLYOUT_MAX_WIDTH, flip ? leftSpace : rightSpace);
 
       // 1px border + padding puts the first item exactly level with the parent row
       const top = Math.max(8, linkRect.top - FLYOUT_PAD_TOP - 1);
