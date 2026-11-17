@@ -80,7 +80,7 @@ export default function Events({ data }) {
                     size="h2"
                     className="pr-2.5 2xl:pr-3.75 3xl:pr-5 dark:bg-none dark:text-white"
                   >
-                    Latest Happenings
+                    {data?.latestTitle || "Latest Happenings"}
                   </Heading>
                   <div className="[--size:30px] gap-1.25 flex justify-end">
                     <button
