@@ -128,7 +128,7 @@ export default function AboutVision({ data }) {
                             )}
                             <div className="w-full max-w-[95%]">
                                 {values?.title && (
-                                    <div className="text-[14px] md:text-[16px] 2xl:text-[20px] 3xl:text-[25px]   text-white font-bold mb-[15px] md:mb-[20px] xl:mb-[25px] 2xl:mb-[35px] 3xl:mb-[40px]">
+                                    <div className="text-[14px] md:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-white font-bold mb-[15px] md:mb-[20px] xl:mb-[25px] 2xl:mb-[35px] 3xl:mb-[40px]">
                                         {values.title}
                                     </div>
                                 )}

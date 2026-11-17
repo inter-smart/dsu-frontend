@@ -6,7 +6,7 @@ export default function IntlTextButtonSection({ data }) {
     const hasDescription = data.description?.length > 0;
 
     return (
-        <section className="pt-[15px] pb-[8px] xl:pt-[20px] xl:pb-[10px] 3xl:pt-[30px] 3xl:pb-[14px]">
+        <section className="pt-[40px] pb-[8px] xl:pt-[50px] xl:pb-[10px] 3xl:pt-[60px] 3xl:pb-[14px]">
             <div className="container">
                 {(data.title || data.button) && (
                     <div className={`flex flex-wrap items-center justify-between gap-x-[20px] gap-y-[10px] ${hasDescription ? "mb-[10px]" : ""}`}>

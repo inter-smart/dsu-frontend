@@ -41,7 +41,7 @@ function VideoCard({ video }) {
                     </button>
                 )}
             </div>
-            {video.title && <p className="mt-[10px] text-[14px] font-semibold text-black xl:text-[16px] 3xl:text-[22px]">{video.title}</p>}
+            {video.title && <p className="mt-[10px] text-[14px] font-medium text-[#212121] xl:text-[16px] 3xl:text-[22px] leading-relaxed">{video.title}</p>}
         </div>
     );
 }
@@ -75,9 +75,9 @@ function Carousel({ videos }) {
 export default function IntlVideoSection({ data }) {
     const single = data.videos.length === 1;
     return (
-        <section className="py-[15px] xl:py-[22px] 2xl:py-[28px] 3xl:py-[40px]">
+        <section className="py-[30px] xl:py-[40px] 2xl:py-[50px] 3xl:py-[60px]">
             <div className="container">
-                {data.title && <h2 className="text-[22px] font-bold leading-[1.25] text-black dark:text-white xl:text-[28px] 2xl:text-[32px] 3xl:text-[40px] mb-[16px] xl:mb-[24px]">{data.title}</h2>}
+                {data.title && <h2 className="text-[22px] font-bold leading-[1.25] text-black dark:text-white xl:text-[28px] 2xl:text-[32px] 3xl:text-[40px] mb-[20px] xl:mb-[24px]">{data.title}</h2>}
                 {data.layout === "carousel" && !single ? (
                     <Carousel videos={data.videos} />
                 ) : (

@@ -4,8 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { ctaLinkProps } from "@/lib/schools/link-props";
-import { hasContent } from "@/lib/has-content";
-import TableScrollBox from "@/components/layout/common/TableScrollBox";
+import { hasContent } from "@/lib/has-content"; 
 
 
 const renderText = (value) =>
