@@ -364,7 +364,7 @@ const flexibleRegistry = {
   "school.overview-section": { Component: AcademicOverview },
   "school.vision-mission-section": { Component: AcademicVisionMission },
   "school.dean-message-section": { Component: DeanMessage },
-  "school.why-choose-section": { Component: AcademicWhychoose },
+  "school.why-choose-section": { Component: WhyChoose }, // points have a title and a description: the Why Choose tab design
   "school.why-choose-home-section": { Component: AcademicWhychoose },
   "school.why-choose-tab-section": { Component: WhyChoose },
   "school.facilities-section": { Component: AcademicFacilities },

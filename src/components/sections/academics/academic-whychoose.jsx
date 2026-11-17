@@ -31,14 +31,7 @@ export default function AcademicWhychoose({ data }) {
                         <div className="break-inside-avoid" key={id}>
                             <div className="text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[17px] 3xl:text-[20px] text-[#212121] dark:text-white font-normal relative pb-[15px] xl:pb-[20px] 2xl:pb-[25px] border-b border-black/20 dark:border-white/10 mb-[15px] pl-[25px] 2xl:pl-[30px]  
                                     before:absolute before:content-[''] before:top-0 before:left-0 before:w-[15px] before:h-[15px] before:lg:w-[18px] before:lg:h-[18px] before:2xl:w-[22px] before:2xl:h-[22px] before:bg-[url(/images/tick.svg)] before:bg-contain before:bg-no-repeat">
-                                {item.description ? (
-                                    <>
-                                        <span className="block font-semibold mb-[6px]">{item.title}</span>
-                                        <span className="block text-[#212121]/80 dark:text-white/70">{item.description}</span>
-                                    </>
-                                ) : (
-                                    item.title
-                                )}
+                                {item.title}
                             </div>
                         </div>
                     ))}
