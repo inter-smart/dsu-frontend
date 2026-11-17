@@ -507,7 +507,8 @@ body {
   to { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .menubar-stuck { animation: menubarIn 0.3s var(--reveal-ease, ease-out) both; }
+  /* 0.5s delay: wait for the site header's 0.8s slide-up so the two never overlap */
+  .menubar-stuck { animation: menubarIn 0.3s var(--reveal-ease, ease-out) 0.5s both; }
 }
 
 /* Select box arrow upward rotation on dropdown open */

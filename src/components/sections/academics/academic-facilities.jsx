@@ -20,9 +20,9 @@ export default function AcademicFacilities({ data }) {
                         {data?.description && <BlocksRenderer content={data.description} />}
                     </div>
                 </div>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap gap-x-[15px] lg:gap-x-0">
                     {data?.points?.map((item, id) => (
-                        <div key={id} className="w-full sm:w-1/2 lg:w-full bg-gradient-to-r from-[#EFF6FF] to-[#F9FAFB] dark:bg-none dark:bg-[#18191B] rounded-[12px] xl:rounded-[16px] p-[15px] lg:p-[20px] xl:p-[25px] 2xl:p-[28px] 3xl:p-[30px] mb-[15px] lg:mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[35px]">
+                        <div key={id} className="w-full sm:w-[calc(50%-7.5px)] lg:w-full bg-gradient-to-r from-[#EFF6FF] to-[#F9FAFB] dark:bg-none dark:bg-[#18191B] rounded-[12px] xl:rounded-[16px] p-[15px] lg:p-[20px] xl:p-[25px] 2xl:p-[28px] 3xl:p-[30px] mb-[15px] lg:mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[35px]">
                             <div className={`flex flex-wrap lg:flex-nowrap items-stretch ${id % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}>
 
                                 {/* Image with Swiper */}
