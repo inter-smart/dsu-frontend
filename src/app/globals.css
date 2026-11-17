@@ -191,6 +191,29 @@ html.lenis body {
   p {
     @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[18px] 3xl:text-[20px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
+  h1 {
+    @apply text-[30px] sm:text-[40px] lg:text-[54px] 2xl:text-[65px] 3xl:text-[80px] leading-tight font-normal text-(--text-color) mb-[10px];
+  }
+
+  h2 {
+    @apply text-[20px] sm:text-[24px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[35px] leading-tight font-semibold text-(--text-color) mb-[10px];
+  }
+
+  h3 {
+    @apply text-[18px] sm:text-[22px] lg:text-[24px] 2xl:text-[26px] 3xl:text-[30px] leading-tight font-semibold text-(--text-color) mb-[10px];
+  }
+
+  h4 {
+    @apply text-[17px] sm:text-[20px] lg:text-[22px] xl:text-[26px] 2xl:text-[28px] 3xl:text-[28px] leading-tight font-normal text-(--text-color) mb-[10px];
+  }
+
+  h5 {
+    @apply text-[16px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal text-(--text-color) mb-[10px];
+  }
+
+  h6 {
+    @apply text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-tight font-normal text-(--text-color) mb-[10px];
+  }
   .cmnFlx {
     @apply flex flex-wrap;
   }
@@ -206,8 +229,9 @@ html.lenis body {
   .cmn_Txt{
     @apply text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold
   }
+  /* FIXED: bg-gradient-to-r (Tailwind v3 name) -> bg-linear-to-r (Tailwind v4 name) */
   .base-gradient{
-    @apply bg-gradient-to-r from-[#DC2626] to-[#F97316]
+    @apply bg-linear-to-r from-[#DC2626] to-[#F97316]
   }
   .cardFlip {
     transform-origin: right center;
@@ -222,6 +246,9 @@ html.lenis body {
       --text-color: #f9fafb;
     }
      /* ---------- Tables ---------- */
+    figure{
+      width: 100% !important;
+    }
     table {
       @apply my-[18px] w-full table-auto border-collapse text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px];
     }
@@ -231,6 +258,15 @@ html.lenis body {
       @apply border border-[#9fa2a76b] px-3 py-2 text-left align-top break-words md:min-w-[110px];
     }
 
+    td a {
+      color: var(--basecolor2);
+      letter-spacing: 0.6px
+    }
+    /* FIXED: "important" -> "!important" (without the ! the whole declaration was ignored) */
+    td a:hover {
+      color: green !important;
+      letter-spacing: 0.6px
+    }
     th {
       @apply font-semibold text-white;
       background: linear-gradient(to right, var(--basecolor2), var(--basecolor2));
@@ -265,27 +301,27 @@ html.lenis body {
     }
 
     h1 {
-      @apply text-[30px] sm:text-[40px] lg:text-[54px] 2xl:text-[65px] 3xl:text-[80px] leading-tight font-normal text-(--text-color);
+      @apply text-[30px] sm:text-[40px] lg:text-[54px] 2xl:text-[65px] 3xl:text-[80px] leading-tight font-normal text-(--text-color) mb-[10px];
     }
 
     h2 {
-      @apply text-[20px] sm:text-[24px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-tight font-bold text-(--text-color);
+      @apply text-[20px] sm:text-[24px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[35px] leading-tight font-semibold text-(--text-color) mb-[10px];
     }
 
     h3 {
-      @apply text-[18px] sm:text-[18px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[30px] leading-tight font-bold text-(--text-color);
+      @apply text-[18px] sm:text-[18px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[30px] leading-tight font-semibold text-(--text-color) mb-[10px];
     }
 
     h4 {
-      @apply text-[17px] sm:text-[12px] lg:text-[12px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
+      @apply text-[17px] sm:text-[12px] lg:text-[12px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-tight font-normal text-(--text-color) mb-[10px];
     }
 
     h5 {
-      @apply text-[16px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal text-(--text-color);
+      @apply text-[16px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal text-(--text-color) mb-[10px];
     }
 
     h6 {
-      @apply text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
+      @apply text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-tight font-normal text-(--text-color) mb-[10px];
     }
 
     &[dir="ltr"] ul,
@@ -303,10 +339,13 @@ html.lenis body {
       @apply my-1 lg:my-1.5 
         }
     ul{
-      @apply  !ml-4
+      @apply  !ml-4 my-5
     }
     ul > li {
       @apply list-disc text-(--text-color);
+    }
+    ul > li a {
+      @apply  block hover:text-[#f97316];
     }
     ol {
       @apply !ml-4;
@@ -314,9 +353,15 @@ html.lenis body {
     ol > li {
       @apply list-decimal text-(--text-color);
     }
-   
+    /* FIXED: hover:#f97316 is not a valid utility -> hover:text-[#f97316] */
+    ol > li a {
+      @apply  block hover:text-[#f97316];
+    }
+
+    /* FIXED: this rule was never closed, so everything below was nested inside "caption" */
     caption {
       @apply pb-2 text-left text-[13px] font-medium opacity-80;
+    }
 
     /* tables pasted as HTML into a Strapi "HTML" code block */
     .blocks-html {
@@ -346,7 +391,7 @@ html.lenis body {
     }
   }
 }
-}
+/* FIXED: one extra "}" removed here (it only existed to close the unclosed caption rule) */
 @keyframes spec-flip-in {
   0% {
     opacity: 0;
@@ -413,6 +458,8 @@ body {
 :root {
   --base-color: #dc2626;
   --base-color-2: #f97316;
+  /* FIXED: --track-bg was used by the scrollbar rules but never defined */
+  --track-bg: transparent;
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -514,9 +561,10 @@ body {
 [data-slot="select-trigger"] svg:last-child {
   transition: transform 0.2s ease-in-out;
 }
+/* FIXED: rotate(0deg) did nothing -> rotate(180deg) so the arrow points up when open */
 [data-slot="select-trigger"][data-popup-open] svg:last-child,
 [data-slot="select-trigger"][aria-expanded="true"] svg:last-child {
-  transform: rotate(0deg);
+  transform: rotate(180deg);
 }
 
 /* Scroll reveal (see components/providers/scroll-reveal.jsx).
@@ -772,4 +820,7 @@ body:has(.balckHeader) header {
     .rich-subtitle { font-size: 17px; margin-top: 14px; }
     .rich-subtitle::before { width: 24px; }
   }
+}
+strong, b{
+  font-weight: 600;
 }
