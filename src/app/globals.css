@@ -670,6 +670,8 @@ body:has(.balckHeader) header {
     gap: 10px;
   }
   .rich-text ul > li {
+    /* .typography sets list-disc on ul > li; hide it so only the gradient dot shows */
+    list-style: none;
     position: relative;
     margin: 0;
     padding-left: 19px;
