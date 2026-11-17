@@ -85,7 +85,10 @@ export default function HomeTestimonials({ data }) {
             className="w-full h-full object-contain dark:sm:block light:hidden"
           />
         </div>
-        <div data-reveal className="w-full h-auto mb-3.75 sm:mb-5 lg:mb-7.5 3xl:mb-10 text-center">
+        <div
+          data-reveal
+          className="w-full h-auto mb-3.75 sm:mb-5 lg:mb-7.5 3xl:mb-10 text-center"
+        >
           <Heading
             as="h2"
             aurora
@@ -97,7 +100,10 @@ export default function HomeTestimonials({ data }) {
           </Heading>
           <Text>{data?.description}</Text>
         </div>
-        <div data-reveal-stagger className="w-full h-auto mb-6.25 2xl:mb-7.5 3xl:mb-8.75 gap-1.25 sm:gap-2.5 lg:gap-3.75 2xl:gap-5 3xl:gap-6.25 grid grid-cols-2 lg:grid-cols-4">
+        <div
+          data-reveal-stagger
+          className="w-full h-auto mb-6.25 2xl:mb-7.5 3xl:mb-8.75 gap-1.25 sm:gap-2.5 lg:gap-3.75 2xl:gap-5 3xl:gap-6.25 grid grid-cols-2 lg:grid-cols-4"
+        >
           {data?.statistics?.map((item, index) => (
             <div key={item?.id} className="w-full h-auto">
               <div className="group w-full h-full text-center p-[15px_10px] lg:p-[20px_10px] 3xl:p-[30px_10px] bg-white dark:bg-black/10 border border-black/10 dark:border-white/10 rounded-[15px] sm:rounded-[10px] 2xl:rounded-[15px] dark:backdrop-blur-[2px] overflow-hidden block relative z-0 transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2)">
@@ -123,7 +129,10 @@ export default function HomeTestimonials({ data }) {
             </div>
           ))}
         </div>
-        <div data-reveal className="[--navigation-btn-size:40px] sm:[--navigation-btn-size:25px] xl:[--navigation-btn-size:30px] 2xl:[--navigation-btn-size:40px] w-full h-auto block relative z-0">
+        <div
+          data-reveal
+          className="[--navigation-btn-size:40px] sm:[--navigation-btn-size:25px] xl:[--navigation-btn-size:30px] 2xl:[--navigation-btn-size:40px] w-full h-auto block relative z-0"
+        >
           {!prevBtnDisabled && (
             <button
               onClick={scrollPrev}
@@ -212,9 +221,7 @@ export default function HomeTestimonials({ data }) {
                         <div className="[--avatar-size:45px] 2xl:[--avatar-size:55px] 3xl:[--avatar-size:70px] w-full h-auto flex items-center">
                           <div className="w-(--avatar-size) h-auto aspect-square rounded-md 2xl:rounded-lg 3xl:rounded-[10px] overflow-hidden block">
                             <Image
-                              src={
-                                item?.avatar?.url
-                              }
+                              src={item?.avatar?.url}
                               width={70}
                               height={70}
                               alt={item?.name || "Testimonial Avatar"}
@@ -238,9 +245,7 @@ export default function HomeTestimonials({ data }) {
                         <div className="w-auto h-full aspect-80/65 p-1.25 2xl:p-2.5 border border-white/10 rounded-[6px] 2xl:rounded-[10px] overflow-hidden flex flex-col items-center justify-center">
                           <div className="w-5 2xl:w-6.25 h-auto aspect-square mb-1.25 2xl:mb-2.5 overflow-hidden block">
                             <Image
-                              src={
-                                item?.badge?.url
-                              }
+                              src={item?.badge?.url}
                               width={20}
                               height={20}
                               alt={item?.badge?.alternativeText || "Badge Icon"}
@@ -259,7 +264,10 @@ export default function HomeTestimonials({ data }) {
             </div>
           </div>
         </div>
-        <div data-reveal className="w-full h-auto sm:mt-7.5 lg:mt-10 2xl:mt-12.5 3xl:mt-15 hidden sm:flex items-center justify-center">
+        <div
+          data-reveal
+          className="w-full h-auto sm:mt-7.5 lg:mt-10 2xl:mt-12.5 3xl:mt-15 hidden sm:flex items-center justify-center"
+        >
           <CtaButton button={data?.button} />
         </div>
       </div>

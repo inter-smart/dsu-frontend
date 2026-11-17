@@ -65,7 +65,10 @@ export default function HomeAcademic({ data }) {
   return (
     <section className="w-full h-auto py-12.5 2xl:py-15 3xl:py-20 bg-linear-to-t from-[#FFF3E0] to-[#FFF8EE] dark:bg-none dark:bg-black overflow-hidden block">
       <div className="container">
-        <div data-reveal className="w-full h-auto mb-6.25 lg:mb-7.5 3xl:mb-10 text-center">
+        <div
+          data-reveal
+          className="w-full h-auto mb-6.25 lg:mb-7.5 3xl:mb-10 text-center"
+        >
           <Heading
             as="h2"
             aurora
@@ -77,7 +80,10 @@ export default function HomeAcademic({ data }) {
           </Heading>
           <Text>{data?.description}</Text>
         </div>
-        <div data-reveal-stagger className="w-full h-auto hidden lg:grid grid-cols-5 lg:gap-[15px_10px] 2xl:gap-[20px_10px] 3xl:gap-[25px_15px]">
+        <div
+          data-reveal-stagger
+          className="w-full h-auto hidden lg:grid grid-cols-5 lg:gap-[15px_10px] 2xl:gap-[20px_10px] 3xl:gap-[25px_15px]"
+        >
           {data?.academics?.map((item) => (
             <div key={item?.id} className="w-full h-auto">
               <AcademicCard item={item} />
@@ -86,7 +92,7 @@ export default function HomeAcademic({ data }) {
         </div>
         <div className="[--navigation-btn-size:40px] w-full h-auto block relative z-0">
           <div
-            className="[--slide-gap:10px] 3xl:[--slide-gap:25px] w-full h-auto sm:overflow-hidden"
+            className="[--slide-gap:10px] 3xl:[--slide-gap:25px] w-full h-auto overflow-hidden"
             ref={academicEmblaRef}
           >
             <div className="ml-[calc(var(--slide-gap)*-1)] touch-pan-y touch-pinch-zoom max-lg:flex hidden">
@@ -130,31 +136,73 @@ export default function HomeAcademic({ data }) {
               />
             </button>
           )}
-          <div className="w-full h-auto mt-5 gap-1.25 max-sm:flex hidden items-center justify-center">
-            {Array.from({ length: slidesCount }).map((_, index) => (
-              <button
-                key={index}
-                type="button"
-                onClick={() => academicEmblaApi?.scrollTo(index)}
-                aria-label={`Go to slide ${index + 1}`}
-                className="flex h-6 min-w-6 items-center justify-center px-0.75"
-              >
-                <span
-                  className={`block h-1.25 rounded-full transition-all duration-300 ${
-                    selectedIndex === index
-                      ? "w-12.5 bg-[#EA580C]"
-                      : "w-3 bg-[#D3D6DB]"
-                  }`}
-                />
-              </button>
-            ))}
-          </div>
+          <DotPagination
+            total={slidesCount}
+            current={selectedIndex}
+            onDotClick={(i) => academicEmblaApi?.scrollTo(i)}
+          />
         </div>
-        <div data-reveal className="w-full h-auto mt-3.75 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center">
+        <div
+          data-reveal
+          className="w-full h-auto mt-3.75 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center"
+        >
           <CtaButton button={data?.button} />
         </div>
       </div>
     </section>
+  );
+}
+
+const VISIBLE_DOTS = 5; // max dots visible at once
+
+function DotPagination({ total, current, onDotClick }) {
+  if (total <= 1) return null;
+
+  // Calculate a window of VISIBLE_DOTS around the current index
+  const half = Math.floor(VISIBLE_DOTS / 2);
+  let start = Math.max(0, current - half);
+  let end = start + VISIBLE_DOTS - 1;
+
+  if (end >= total) {
+    end = total - 1;
+    start = Math.max(0, end - VISIBLE_DOTS + 1);
+  }
+
+  const visibleIndices = Array.from(
+    { length: end - start + 1 },
+    (_, i) => start + i,
+  );
+
+  // Dot size category based on distance from active
+  const getDotStyle = (index) => {
+    const dist = Math.abs(index - current);
+    if (dist === 0) return { width: "w-12.5", bg: "bg-[#EA580C]", scale: "" };
+    if (dist === 1)
+      return { width: "w-3", bg: "bg-[#D3D6DB]", scale: "scale-100" };
+    if (dist === 2)
+      return { width: "w-2", bg: "bg-[#D3D6DB]", scale: "scale-75 opacity-70" };
+    return { width: "w-1.5", bg: "bg-[#D3D6DB]", scale: "scale-50 opacity-40" };
+  };
+
+  return (
+    <div className="w-full h-auto mt-5 max-sm:flex hidden items-center justify-center gap-1.25">
+      {visibleIndices.map((index) => {
+        const { width, bg, scale } = getDotStyle(index);
+        return (
+          <button
+            key={index}
+            type="button"
+            onClick={() => onDotClick(index)}
+            aria-label={`Go to slide ${index + 1}`}
+            className="flex h-6 min-w-4 items-center justify-center px-0.5"
+          >
+            <span
+              className={`block h-1.25 rounded-full transition-all duration-300 ${width} ${bg} ${scale}`}
+            />
+          </button>
+        );
+      })}
+    </div>
   );
 }
 
@@ -171,15 +219,15 @@ function AcademicCard({ item }) {
         />
       </div>
       {item?.icon?.url && (
-      <div className="w-12.5 lg:w-10 2xl:w-12.5 3xl:w-13.75 h-auto aspect-square p-2.5 lg:p-2 2xl:p-2.5 m-(--gap) rounded-[7px] 2xl:rounded-[10px] backdrop-blur-[45px] absolute z-1 inset-[0_auto_auto_0] flex items-center justify-center">
-        <Image
-          src={item?.icon?.url}
-          alt={item?.icon?.alternativeTxt || "Icon"}
-          width={55}
-          height={55}
-          className="w-full h-full object-contain"
-        />
-      </div>
+        <div className="w-12.5 lg:w-10 2xl:w-12.5 3xl:w-13.75 h-auto aspect-square p-2.5 lg:p-2 2xl:p-2.5 m-(--gap) rounded-[7px] 2xl:rounded-[10px] backdrop-blur-[45px] absolute z-1 inset-[0_auto_auto_0] flex items-center justify-center">
+          <Image
+            src={item?.icon?.url}
+            alt={item?.icon?.alternativeTxt || "Icon"}
+            width={55}
+            height={55}
+            className="w-full h-full object-contain"
+          />
+        </div>
       )}
       <h3 className="text-base lg:text-sm 2xl:text-base 3xl:text-xl leading-[1.2] font-bold text-white w-full h-auto m-(--gap) max-w-[85%] absolute z-1 inset-[auto_0_0_0]">
         {item?.link ? (
@@ -190,31 +238,33 @@ function AcademicCard({ item }) {
           item?.title
         )}
       </h3>
-      <div className="w-full h-full p-[20px_10px] 2xl:p-[35px_15px] bg-[#CDBF8D] opacity-0 pointer-events-none transition-opacity duration-500 block absolute z-1 inset-0 overflow-y-auto [scrollbar-width:thin] [scrollbar-color:rgba(8,12,21,0.35)_transparent] group-hover:opacity-100 group-hover:pointer-events-auto">
-        <div className="w-full h-auto block">
-          {item?.courses_list?.map((item) => (
-            <div
-              key={item?.id}
-              className="w-full h-auto not-last:pb-2.5 2xl:not-last:pb-3.75 not-last:mb-2.5 2xl:not-last:mb-3.75 not-last:border-b border-[#080C15]/20 block"
-            >
-              <div className="text-sm 2xl:text-lg 3xl:text-xl leading-[1.1] font-semibold text-[#080C15] mb-2.5 2xl:mb-3.75">
-                {item?.title}
+      <div className="w-full h-full max-lg:hidden bg-black/50 backdrop-blur-[10px] opacity-0 pointer-events-none transition-opacity duration-500 block absolute z-1 inset-0 overflow-hidden group-hover:opacity-100 group-hover:pointer-events-auto">
+        <div className="w-full h-[90%] p-[20px_10px_40px_10px] 2xl:p-[35px_15px_40px_15px] overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(8,12,21,0.35)_transparent] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_88%,transparent_100%)] [mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_88%,transparent_100%)]">
+          <div className="w-full h-auto block">
+            {item?.courses_list?.map((item) => (
+              <div
+                key={item?.id}
+                className="w-full h-auto not-last:pb-2.5 2xl:not-last:pb-3.75 not-last:mb-2.5 2xl:not-last:mb-3.75 not-last:border-b border-white/20 block"
+              >
+                <div className="text-sm 2xl:text-lg 3xl:text-xl leading-[1.1] font-semibold text-white mb-2.5 2xl:mb-3.75">
+                  {item?.title}
+                </div>
+                <div className="w-full h-auto gap-1.25 2xl:gap-2.5 3xl:gap-3.75 flex flex-wrap">
+                  {item?.courses?.map((course) => (
+                    <div key={course?.id} className="w-auto h-auto inline">
+                      <Link
+                        href={safeHref(course?.link, "/academics")}
+                        aria-label={course?.label}
+                        className="text-[13px] 2xl:text-[15px] leading-[1.25] font-normal text-white w-auto h-auto max-w-full p-[5px_10px] bg-black/10 rounded-[16px] border border-white/20 transition duration-500 inline-block hover:text-white hover:bg-(--basecolor2) hover:border-(--basecolor2)"
+                      >
+                        {course?.label}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="w-full h-auto gap-1.25 2xl:gap-2.5 3xl:gap-3.75 flex flex-wrap">
-                {item?.courses?.map((course) => (
-                  <div key={course?.id} className="w-auto h-auto inline">
-                    <Link
-                      href={safeHref(course?.link, "/academics")}
-                      aria-label={course?.label}
-                      className="text-[13px] 2xl:text-[15px] leading-[1.25] font-normal text-[#080C15] w-auto h-auto max-w-full p-[5px_10px] bg-[#080C15]/10 rounded-[16px] border border-black/20 transition duration-500 inline-block hover:text-white hover:bg-(--basecolor2) hover:border-(--basecolor2)"
-                    >
-                      {course?.label}
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>

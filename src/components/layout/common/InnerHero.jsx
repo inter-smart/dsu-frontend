@@ -25,7 +25,7 @@ function getYouTubeId(input) {
   const text = value.trim();
   if (/^[\w-]{11}$/.test(text)) return text;
   const match = text.match(
-    /(?:youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/|v\/)|youtu\.be\/)([\w-]{11})/i
+    /(?:youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/|v\/)|youtu\.be\/)([\w-]{11})/i,
   );
   return match ? match[1] : "";
 }
@@ -37,19 +37,26 @@ export default function InnerHero({ data, placementMenuItems, className }) {
   const isVideo = data?.heroMedia?.mime?.includes("video");
   // YouTube: add a text field (e.g. youtubeUrl) in Strapi. A YouTube link in heroMedia.url also works.
   const youtubeId = getYouTubeId(
-    data?.youtubeUrl || data?.youtube || data?.heroYoutube || data?.heroVideoUrl || data?.heroMedia?.url
+    data?.youtubeUrl ||
+      data?.youtube ||
+      data?.heroYoutube ||
+      data?.heroVideoUrl ||
+      data?.heroMedia?.url,
   );
   const breadcrumb =
     Array.isArray(data.breadcrumb) && data.breadcrumb.length > 0
       ? data.breadcrumb
-      : [{ label: "Home", href: "/" }, ...(data.title ? [{ label: data.title }] : [])];
+      : [
+          { label: "Home", href: "/" },
+          ...(data.title ? [{ label: data.title }] : []),
+        ];
   const hasMenubar = Boolean(
     data?.menuBar ||
-      data?.AimenuBar ||
-      data?.AiBscmenuBar ||
-      data?.PlacementmenuBar ||
-      data?.admissionMenubar || // was missing
-      data?.internationalMenuItems?.length > 1
+    data?.AimenuBar ||
+    data?.AiBscmenuBar ||
+    data?.PlacementmenuBar ||
+    data?.admissionMenubar || // was missing
+    data?.internationalMenuItems?.length > 1,
   );
 
   // Full class strings so Tailwind can detect them.
@@ -60,7 +67,13 @@ export default function InnerHero({ data, placementMenuItems, className }) {
 
   return (
     // height only applies when there is hero media; the plain breadcrumb row sizes itself
-    <section className={cn("relative z-0 block w-full", data?.heroMedia && heightClass, className)}>
+    <section
+      className={cn(
+        "relative z-0 block w-full",
+        data?.heroMedia && heightClass,
+        className,
+      )}
+    >
       {data?.heroMedia ? (
         <>
           {/* Background Media */}
@@ -75,7 +88,8 @@ export default function InnerHero({ data, placementMenuItems, className }) {
                 style={{ containerType: "size" }}
               >
                 {/* poster / banner image shown behind the video while it loads */}
-                {(data?.posterImage?.url || (!isVideo && data?.heroMedia?.url)) && (
+                {(data?.posterImage?.url ||
+                  (!isVideo && data?.heroMedia?.url)) && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={data?.posterImage?.url || data.heroMedia.url}
@@ -85,7 +99,11 @@ export default function InnerHero({ data, placementMenuItems, className }) {
                 )}
                 <iframe
                   src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3`}
-                  title={data?.heroMedia?.alternativeText || data?.title || "Hero video"}
+                  title={
+                    data?.heroMedia?.alternativeText ||
+                    data?.title ||
+                    "Hero video"
+                  }
                   tabIndex={-1}
                   allow="autoplay; encrypted-media; picture-in-picture"
                   referrerPolicy="strict-origin-when-cross-origin"
@@ -106,13 +124,20 @@ export default function InnerHero({ data, placementMenuItems, className }) {
                 poster={data?.posterImage?.url || undefined}
                 className="h-full w-full object-cover"
               >
-                <source src={data?.heroMedia?.url} type={data?.heroMedia?.mime} />
+                <source
+                  src={data?.heroMedia?.url}
+                  type={data?.heroMedia?.mime}
+                />
               </video>
             ) : (
               data?.heroMedia?.url && (
                 <Image
                   src={data.heroMedia.url}
-                  alt={data?.heroMedia?.alternativeText || data?.title || "Hero image"}
+                  alt={
+                    data?.heroMedia?.alternativeText ||
+                    data?.title ||
+                    "Hero image"
+                  }
                   width={1920}
                   height={750}
                   priority
@@ -137,7 +162,6 @@ export default function InnerHero({ data, placementMenuItems, className }) {
                   <BreadcrumbList className="gap-2">
                     {breadcrumb.map((item, index) => {
                       const isLast = index === breadcrumb.length - 1;
-
                       return (
                         <Fragment key={`${item.label}-${index}`}>
                           <BreadcrumbItem>
@@ -169,7 +193,7 @@ export default function InnerHero({ data, placementMenuItems, className }) {
 
               {/* Title */}
               {data?.title && (
-                <h1 className="w-full text-[18px] font-bold leading-tight text-white sm:text-[22px] md:text-[26px] lg:text-[32px] xl:text-[40px] 3xl:text-[60px]">
+                <h1 className="w-full text-[18px] font-bold leading-tight text-white sm:text-[22px] md:text-[26px] lg:text-[32px] xl:text-[40px] 3xl:text-[60px] max-w-70 sm:max-w-87.5 md:max-w-112.5 lg:max-w-137.5 xl:max-w-175 3xl:max-w-225">
                   {data.title}
                 </h1>
               )}
@@ -185,7 +209,9 @@ export default function InnerHero({ data, placementMenuItems, className }) {
                 />
               )}
               {data?.AimenuBar && <AiAcademicMenubar data={data.menuItems} />}
-              {data?.AiBscmenuBar && <AiBSCMenubar items={data.menuItems} title={data.title} />}
+              {data?.AiBscmenuBar && (
+                <AiBSCMenubar items={data.menuItems} title={data.title} />
+              )}
               {data?.PlacementmenuBar && <PlacementmenuBar />}
               {data?.admissionMenubar && <AdmissionMenubar />}
               {data?.internationalMenuItems?.length > 1 && (
@@ -195,15 +221,13 @@ export default function InnerHero({ data, placementMenuItems, className }) {
           </div>
         </>
       ) : (
-        <div className="border-t border-black/10 pt-[230px] lg:pt-[200px] xl:pt-[200px] 2xl:pt-[250px] 3xl:pt-[300px] balckHeader">
+        <div className="border-t border-black/10 pt-[160px] lg:pt-[160px] xl:pt-[200px] 2xl:pt-[250px] 3xl:pt-[300px] balckHeader">
           <div className="container">
-            {/* Breadcrumb */}
             {data?.breadcrumb?.length > 0 && (
               <Breadcrumb className="mb-0">
                 <BreadcrumbList className="gap-2">
                   {data.breadcrumb.map((item, index) => {
                     const isLast = index === data.breadcrumb.length - 1;
-
                     return (
                       <Fragment key={`${item.label}-${index}`}>
                         <BreadcrumbItem>
@@ -220,7 +244,6 @@ export default function InnerHero({ data, placementMenuItems, className }) {
                             </BreadcrumbLink>
                           )}
                         </BreadcrumbItem>
-
                         {!isLast && (
                           <BreadcrumbSeparator>
                             <span className="block h-[7px] w-[7px] rounded-full bg-gradient-to-r from-[#DC2626] to-[#F97316]" />

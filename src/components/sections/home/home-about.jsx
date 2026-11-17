@@ -184,14 +184,14 @@ export default function HomeAbout({ data }) {
                               </div>
                               <Text
                                 className={
-                                  "text-sm 3xl:text-lg font-semibold text-[#003463]"
+                                  "text-base! 3xl:text-lg! font-semibold text-[#003463]"
                                 }
                               >
                                 {item?.name}
                               </Text>
                               <Text
                                 className={
-                                  "text-sm 3xl:text-lg text-[#003463] mb-3.75 sm:mb-2.5 3xl:mb-3.75"
+                                  "text-sm! 3xl:text-lg! text-[#003463] mb-3.75 sm:mb-2.5 3xl:mb-3.75"
                                 }
                               >
                                 {item?.designation}

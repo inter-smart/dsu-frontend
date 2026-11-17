@@ -139,7 +139,7 @@ html.lenis body {
     }
   }
   ::-webkit-scrollbar {
-    width: 2px;
+    width: 5px;
     height: 5px;
   }
 
@@ -186,7 +186,7 @@ html.lenis body {
     @apply text-[28px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] leading-tight font-bold tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
   .text_1 {
-    @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[18px] 3xl:text-[20px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
+    @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[16px] 3xl:text-[18px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
   p {
     @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[18px] 3xl:text-[20px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];

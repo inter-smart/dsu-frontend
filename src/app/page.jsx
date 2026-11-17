@@ -35,7 +35,11 @@ const homePageData = {
             " AI Factory and Multidisciplinary Centers of Excellence",
         },
         buttons: [
-          { label: "Explore Centres of Excellence", url: "/NVIDIA", isExternal: false },
+          {
+            label: "Explore Centres of Excellence",
+            url: "/NVIDIA",
+            isExternal: false,
+          },
           { label: "Apply Now", url: "/admission", isExternal: false },
         ],
         featuredItems: [
@@ -86,7 +90,11 @@ const homePageData = {
             " AI Factory and Multidisciplinary Centers of Excellence 2",
         },
         buttons: [
-          { label: "Explore Centres of Excellence", url: "/NVIDIA", isExternal: false },
+          {
+            label: "Explore Centres of Excellence",
+            url: "/NVIDIA",
+            isExternal: false,
+          },
           { label: "Apply Now", url: "/admission", isExternal: false },
         ],
         featuredItems: [
@@ -1843,11 +1851,19 @@ const homePageData = {
 };
 
 // Use the CMS section when its list has content, otherwise the local_data section.
-const pick = (cms, local, listKey) => (hasContent(cms?.[listKey]) ? cms : local);
+const pick = (cms, local, listKey) =>
+  hasContent(cms?.[listKey]) ? cms : local;
 const pickList = (cms, local) => (hasContent(cms) ? cms : local);
 
 // A CMS hero slide missing a field (media, logo, buttons, ...) takes it from the local slide at the same position.
-const HERO_SLIDE_FIELDS = ["poweredBy", "media", "title", "description", "buttons", "featuredItems"];
+const HERO_SLIDE_FIELDS = [
+  "poweredBy",
+  "media",
+  "title",
+  "description",
+  "buttons",
+  "featuredItems",
+];
 const mergeHeroSlide = (slide, fallback) => {
   const merged = { ...slide };
   HERO_SLIDE_FIELDS.forEach((key) => {
@@ -1882,18 +1898,25 @@ export default async function Home() {
       ? cmsHero
           .filter(hasContent)
           .map((slide, i) =>
-            mergeHeroSlide(slide, local.heroSlides.hero[i] ?? local.heroSlides.hero[0]),
+            mergeHeroSlide(
+              slide,
+              local.heroSlides.hero[i] ?? local.heroSlides.hero[0],
+            ),
           )
       : local.heroSlides.hero,
-    heroMarquee: pickList(cms?.heroSlides?.heroMarquee, local.heroSlides.heroMarquee).filter(
-      (item) => item?.label,
-    ),
+    heroMarquee: pickList(
+      cms?.heroSlides?.heroMarquee,
+      local.heroSlides.heroMarquee,
+    ).filter((item) => item?.label),
   };
   // The CMS fills the text, tour and about info with defaults; its two lists and the leaders fall back on their own.
   const aboutCms = cms?.homeAbout ?? local.homeAbout;
   const homeAbout = {
     ...aboutCms,
-    statistics: pickList(cms?.homeAbout?.statistics, local.homeAbout.statistics),
+    statistics: pickList(
+      cms?.homeAbout?.statistics,
+      local.homeAbout.statistics,
+    ),
     leadership: {
       ...aboutCms.leadership,
       leaders: pickList(
@@ -1908,7 +1931,10 @@ export default async function Home() {
     latest_list: local.events.latest_list,
     announcements_list: pickList(
       announcementList,
-      pickList(cms?.events?.announcements_list, local.events.announcements_list),
+      pickList(
+        cms?.events?.announcements_list,
+        local.events.announcements_list,
+      ),
     ),
   };
   // The News & Events section lists every News & Events entry (cards: path, title, date, year, link).
@@ -1924,17 +1950,66 @@ export default async function Home() {
   return (
     <main className="flex flex-col min-h-screen">
       <HomeHero data={heroSlides} />
-      {!hidden("centresOfExcellence") && <HomeExcellence data={pick(cms?.centresOfExcellence, local.centresOfExcellence, "excellence")} />}
-      {!hidden("academicPrograms") && <HomeAcademic data={pick(cms?.academicPrograms, local.academicPrograms, "academics")} />}
-      {!hidden("researchInnovation") && <HomeResearch data={local.researchInnovation} />}
-      {!hidden("industryCollaboration") && <HomeIndustry data={{ ...local.industryCollaboration, button: cms?.industryCollaboration?.button ?? local.industryCollaboration.button }} />}
+      {!hidden("centresOfExcellence") && (
+        <HomeExcellence
+          data={pick(
+            cms?.centresOfExcellence,
+            local.centresOfExcellence,
+            "excellence",
+          )}
+        />
+      )}
+      {!hidden("academicPrograms") && (
+        <HomeAcademic
+          data={pick(
+            cms?.academicPrograms,
+            local.academicPrograms,
+            "academics",
+          )}
+        />
+      )}
+      {!hidden("researchInnovation") && (
+        <HomeResearch data={local.researchInnovation} />
+      )}
+      {!hidden("industryCollaboration") && (
+        <HomeIndustry
+          data={{
+            ...local.industryCollaboration,
+            button:
+              cms?.industryCollaboration?.button ??
+              local.industryCollaboration.button,
+          }}
+        />
+      )}
       {!hidden("homeAbout") && <HomeAbout data={homeAbout} />}
-      {!hidden("studentSuccess") && <HomeTestimonials data={pick(cms?.studentSuccess, local.studentSuccess, "successStories")} />}
-      {!hidden("campusLife") && <HomeCampusLife data={pick(cms?.campusLife, local.campusLife, "featureCards")} />}
-      {!hidden("internationalCollaboration") && <HomeCollaborations data={pick(cms?.internationalCollaboration, local.internationalCollaboration, "countries")} />}
+      {!hidden("studentSuccess") && (
+        <HomeTestimonials
+          data={pick(
+            cms?.studentSuccess,
+            local.studentSuccess,
+            "successStories",
+          )}
+        />
+      )}
+      {!hidden("campusLife") && (
+        <HomeCampusLife
+          data={pick(cms?.campusLife, local.campusLife, "featureCards")}
+        />
+      )}
+      {!hidden("internationalCollaboration") && (
+        <HomeCollaborations
+          data={pick(
+            cms?.internationalCollaboration,
+            local.internationalCollaboration,
+            "countries",
+          )}
+        />
+      )}
       {!hidden("events") && <Events data={events} />}
       {!hidden("latestNews") && <News data={news} />}
-      {!hidden("journey") && <Journey data={pick(cms?.journey, local.journey, "ctaLinks")} />}
+      {!hidden("journey") && (
+        <Journey data={pick(cms?.journey, local.journey, "ctaLinks")} />
+      )}
     </main>
   );
 }

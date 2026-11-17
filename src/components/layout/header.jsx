@@ -426,7 +426,7 @@ const local_data = {
           url: "#!",
           label: "Undergraduate Admissions",
         },
-      ]
+      ],
     },
     {
       id: 6,
@@ -522,7 +522,8 @@ export default function Header({ data = local_data }) {
     setIsMobileMenuOpen(false);
     router.push(`/search?q=${encodeURIComponent(q)}`);
   };
-  const submitSearch = (event) => goToSearch(event, searchQuery, searchInputRef);
+  const submitSearch = (event) =>
+    goToSearch(event, searchQuery, searchInputRef);
   const submitMobileSearch = (event) =>
     goToSearch(event, mobileSearchQuery, mobileSearchInputRef);
   // Focus the box once the panel has become visible (it is `invisible` until this render is painted)
@@ -619,24 +620,30 @@ export default function Header({ data = local_data }) {
   }, [isSearchOpen]);
   const isMobile = useIsMobile();
   const TopHeaderTextStyle =
-    // max-lg:after:* = invisible 48px-tall touch target on mobile (no visual change)
-    "text-[12px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] lg:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] lg:gap-2.5 flex items-center max-lg:relative max-lg:after:absolute max-lg:after:inset-x-0 max-lg:after:-inset-y-3.5 max-lg:after:content-['']";
+    // max-[1279px]:after:* = invisible 48px-tall touch target on mobile
+    "text-[12px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] min-[1280px]:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] min-[1280px]:gap-2.5 flex items-center max-[1279px]:relative max-[1279px]:after:absolute max-[1279px]:after:inset-x-0 max-[1279px]:after:-inset-y-3.5 max-[1279px]:after:content-['']";
   return (
     <header
       className={cn(
-        "w-full h-auto block transition-all duration-800 fixed z-20 lg:z-[9999] inset-[0_0_auto_0]",
+        "w-full h-auto block transition-all duration-800 fixed z-20 min-[1280px]:z-[9999] inset-[0_0_auto_0]",
         isHeaderVisible ? "translate-y-0" : "-translate-y-full",
         isScrolled
-          ? ["bg-black/70 backdrop-blur-xl transition-all duration-800 shadow-md"]
+          ? [
+              "bg-black/70 backdrop-blur-xl transition-all duration-800 shadow-md",
+            ]
           : isHome
-            ? ["bg-linear-to-r", "from-(--basecolor)/10", "to-(--basecolor2)/10"]
+            ? [
+                "bg-black/50 xl:bg-linear-to-r",
+                "from-(--basecolor)/10",
+                "to-(--basecolor2)/10",
+              ]
             : ["backdrop-blur-md shadow-md border-b border-white/10"],
         NOT_FOUND_HEADER_GRADIENT,
       )}
     >
-      <div className="w-full h-11.25 lg:h-7.5 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block transition-all">
+      <div className="w-full h-11.25 min-[1280px]:h-7.5 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block transition-all">
         {/* CHANGED: justify-between on mobile (tagline left, links right), justify-end on desktop */}
-        <div className="container h-full flex items-center justify-between lg:justify-end">
+        <div className="container h-full flex items-center justify-between min-[1280px]:justify-end">
           {/* CHANGED (mobile only): "India's AI-First University" tagline shown in the top bar */}
           <div
             className="sm:hidden shrink-0 pr-2 text-[11px] sm:text-[10px] leading-[1.2] font-medium text-white text-center"
@@ -644,7 +651,7 @@ export default function Header({ data = local_data }) {
               __html: data?.logo?.logoText,
             }}
           />
-          {/* CHANGED: max-lg:hidden -> CDSIMER and DSU Online are hidden on mobile (they live in the hamburger menu) */}
+          {/* CDSIMER and DSU Online are hidden on small screens (they live in the hamburger menu). */}
           <div className="w-auto h-auto gap-1.25 sm:gap-1.75 2xl:gap-2.5 flex max-sm:hidden">
             {data?.topBar?.topBarButtons?.map((item) => (
               <div key={item?.id} className="w-auto h-auto">
@@ -655,14 +662,14 @@ export default function Header({ data = local_data }) {
                     target: "_blank",
                     rel: "noopener noreferrer",
                   })}
-                  className="text-[10px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full lg:h-auto p-2.5 max-lg:relative max-lg:after:absolute max-lg:after:inset-x-0 max-lg:after:-inset-y-1 max-lg:after:content-['']sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
+                  className="text-[10px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full min-[1280px]:h-auto p-2.5 max-[1279px]:relative max-[1279px]:after:absolute max-[1279px]:after:inset-x-0 max-[1279px]:after:-inset-y-1 max-[1279px]:after:content-[''] sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
                 >
                   {item?.label}
                 </Link>
               </div>
             ))}
           </div>
-          <div className="w-auto h-auto lg:gap-2.5 3xl:gap-2.5 flex items-center " >
+          <div className="w-auto h-auto min-[1280px]:gap-2.5 3xl:gap-2.5 flex items-center ">
             {data?.topBar?.topBarLinkIcons?.map((item, index) => (
               <div key={item?.id} className="w-auto h-auto max-sm:hidden">
                 <Link
@@ -705,7 +712,7 @@ export default function Header({ data = local_data }) {
                 <SelectTrigger
                   className={cn(
                     TopHeaderTextStyle,
-                    "w-full !h-auto !p-0 border-0 gap-1.25 [&>svg]:text-bold [&>svg]:text-white max-lg:[&>svg]:translate-y-[-1px]",
+                    "w-full !h-auto !p-0 border-0 gap-1.25 [&>svg]:text-bold [&>svg]:text-white max-[1279px]:[&>svg]:translate-y-[-1px]",
                   )}
                 >
                   <SelectValue
@@ -735,304 +742,314 @@ export default function Header({ data = local_data }) {
           Mobile: logos on the left, hamburger on the right. */}
       <div
         className={cn(
-          "w-full h-auto max-lg:py-[15px_20px] lg:border-b border-white/10",
+          "w-full h-auto max-[1279px]:py-[15px_20px] min-[1280px]:border-b border-white/10",
           // desktop only: animate the collapse with grid rows instead of display:none
-          "lg:grid lg:transition-[grid-template-rows] lg:duration-300 lg:ease-out",
-          isScrolled ? "lg:grid-rows-[0fr] lg:border-b-0" : "lg:grid-rows-[1fr]",
+          "min-[1280px]:grid min-[1280px]:transition-[grid-template-rows] min-[1280px]:duration-300 min-[1280px]:ease-out",
+          isScrolled
+            ? "min-[1280px]:grid-rows-[0fr] min-[1280px]:border-b-0"
+            : "min-[1280px]:grid-rows-[1fr]",
         )}
       >
         <div
           className={cn(
-            "lg:min-h-0 lg:overflow-hidden transition-opacity duration-300",
-            isScrolled ? "lg:opacity-0" : "lg:opacity-100",
+            "min-[1280px]:min-h-0 min-[1280px]:overflow-hidden transition-opacity duration-300",
+            isScrolled ? "min-[1280px]:opacity-0" : "min-[1280px]:opacity-100",
           )}
         >
-        <div className="container">
-          {/* CHANGED: no wrapping on mobile, so the hamburger stays on the same row as the logos */}
-          <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex max-lg:flex-nowrap lg:flex-wrap items-center justify-between max-lg:gap-2">
-            {/* CHANGED: allowed to shrink on mobile */}
-            <div className="w-auto lg:w-[38%] max-lg:flex-1 max-lg:min-w-0">
-              {/* CHANGED: tighter spacing on mobile, and no divider after the last visible logo (tagline is hidden on mobile) */}
-              <div className="w-full h-auto gap-3 -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 max-lg:-mx-2 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 max-lg:[&>div]:px-2 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 max-lg:[&>div]:border-r-0! flex items-center">
-                {data?.logo?.mainlogo?.url && (
-                  <div className="w-auto h-auto">
-                    <Link
-                      href={data?.logo?.mainlogo?.link || "/"}
-                      {...(data?.logo?.mainlogo?.isExternal && {
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                      })}
-                      aria-label={data?.logo?.mainlogo?.alternativeTxt}
-                      className="w-40 sm:w-45  2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-105"
-                    >
-                      {data?.logo?.mainlogo?.url &&
+          <div className="container">
+            {/* CHANGED: no wrapping on mobile, so the hamburger stays on the same row as the logos */}
+            <div className="w-full h-auto min-[1280px]:py-3.75 2xl:py-5 flex max-[1279px]:flex-nowrap min-[1280px]:flex-wrap items-center justify-between max-[1279px]:gap-2">
+              {/* CHANGED: allowed to shrink on mobile */}
+              <div className="w-auto min-[1280px]:w-[38%] max-[1279px]:flex-1 max-[1279px]:min-w-0">
+                {/* CHANGED: tighter spacing on mobile, and no divider after the last visible logo (tagline is hidden on mobile) */}
+                <div className="w-full h-auto gap-3 -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 max-[1279px]:-mx-2 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 max-[1279px]:[&>div]:px-2 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 max-[1279px]:[&>div]:border-r-0! flex items-center">
+                  {data?.logo?.mainlogo?.url && (
+                    <div className="w-auto h-auto">
+                      <Link
+                        href={data?.logo?.mainlogo?.link || "/"}
+                        {...(data?.logo?.mainlogo?.isExternal && {
+                          target: "_blank",
+                          rel: "noopener noreferrer",
+                        })}
+                        aria-label={data?.logo?.mainlogo?.alternativeTxt}
+                        className="w-40 sm:w-45  2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-105"
+                      >
+                        {data?.logo?.mainlogo?.url && (
+                          <Image
+                            src={data?.logo?.mainlogo?.url}
+                            alt={
+                              data?.logo?.mainlogo?.alternativeTxt ||
+                              data?.logo?.mainlogo?.alt ||
+                              "Logo"
+                            }
+                            width={240}
+                            height={80}
+                            className="w-full h-full object-contain"
+                          />
+                        )}
+                      </Link>
+                    </div>
+                  )}
+
+                  {data?.logo?.alternativelogo?.url && (
+                    <div className="w-auto h-auto">
+                      <Link
+                        href={data?.logo?.alternativelogo?.link || "/"}
+                        {...(data?.logo?.alternativelogo?.isExternal && {
+                          target: "_blank",
+                          rel: "noopener noreferrer",
+                        })}
+                        aria-label={data?.logo?.alternativelogo?.alternativeTxt}
+                        className="w-18 sm:w-22 2xl:w-22.5 3xl:w-27.5 h-auto aspect-110/50 overflow-hidden flex items-center justify-center"
+                      >
                         <Image
-                          src={data?.logo?.mainlogo?.url}
+                          src={data?.logo?.alternativelogo?.url}
                           alt={
-                            data?.logo?.mainlogo?.alternativeTxt ||
-                            data?.logo?.mainlogo?.alt ||
+                            data?.logo?.alternativelogo?.alternativeTxt ||
                             "Logo"
                           }
-                          width={240}
-                          height={80}
+                          width={110}
+                          height={50}
                           className="w-full h-full object-contain"
                         />
-                      }
-                    </Link>
+                      </Link>
+                    </div>
+                  )}
+                  {/* The tagline moves to the top bar on small screens. */}
+                  <div className="w-auto h-auto min-[1280px]:m-auto max-sm:hidden">
+                    <div
+                      className="max-sm:text-[9px] text-[14px] 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white min-w-[ 65px] md:min-w-[130px]"
+                      dangerouslySetInnerHTML={{
+                        __html: data?.logo?.logoText,
+                      }}
+                    />
                   </div>
-                )}
-
-                {data?.logo?.alternativelogo?.url && (
-                  <div className="w-auto h-auto">
-                    <Link
-                      href={data?.logo?.alternativelogo?.link || "/"}
-                      {...(data?.logo?.alternativelogo?.isExternal && {
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                      })}
-                      aria-label={data?.logo?.alternativelogo?.alternativeTxt}
-                      className="w-18 sm:w-22 2xl:w-22.5 3xl:w-27.5 h-auto aspect-110/50 overflow-hidden flex items-center justify-center"
-                    >
-                      <Image
-                        src={data?.logo?.alternativelogo?.url}
-                        alt={
-                          data?.logo?.alternativelogo?.alternativeTxt || "Logo"
-                        }
-                        width={110}
-                        height={50}
-                        className="w-full h-full object-contain"
-                      />
-                    </Link>
-                  </div>
-                )}
-                {/* CHANGED: max-lg:hidden -> the tagline now lives in the top bar on mobile */}
-                <div className="w-auto h-auto lg:m-auto max-sm:hidden">
-                  <div
-                    className="max-sm:text-[9px] text-[14px] 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white min-w-[ 65px] md:min-w-[130px]"
-                    dangerouslySetInnerHTML={{
-                      __html: data?.logo?.logoText,
-                    }}
-                  />
                 </div>
               </div>
-            </div>
-            {/* CHANGED: w-auto + shrink-0 on mobile so the hamburger always stays visible on the right, opposite the logos */}
-            <div className="w-auto lg:w-[55%] max-lg:shrink-0">
-              <div className="w-full h-auto -mx-[2.5px] flex lg:justify-end">
-                {data?.actionLinks?.map((item, index) => (
-                  <div
-                    key={index}
-                    // CHANGED: max-lg:flex-1 -> max-lg:hidden (action pills are inside the hamburger menu on mobile)
-                    className="w-auto h-auto px-[2.5px] max-lg:hidden"
-                  >
-                    <Link
-                      href={item?.url || "#"}
-                      aria-label={item?.label}
-                      className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-[15px] border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
+              {/* CHANGED: w-auto + shrink-0 on mobile so the hamburger always stays visible on the right, opposite the logos */}
+              <div className="w-auto min-[1280px]:w-[55%] max-[1279px]:shrink-0">
+                <div className="w-full h-auto -mx-[2.5px] flex min-[1280px]:justify-end">
+                  {data?.actionLinks?.map((item, index) => (
+                    <div
+                      key={index}
+                      // Action pills are inside the hamburger menu below 1280px.
+                      className="w-auto h-auto px-[2.5px] max-[1279px]:hidden"
                     >
-                      {item?.label}
-                    </Link>
-                  </div>
-                ))}
-                {/* CHANGED: className="max-lg:hidden" (the Apply buttons are inside the hamburger menu on mobile) */}
-                <ApplyButtons
-                  buttons={data?.applyButtons}
-                  variant="desktop"
-                  className="max-lg:hidden"
-                />
-                {/* CHANGED: hamburger is back here (mobile only), on the right side opposite the logos */}
-                <div className="w-auto h-auto pl-0.75 max-lg:flex hidden">
-                  <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-                    <SheetTrigger
-                      aria-label="Open menu"
-                      className="w-10 h-10 shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[5px] border border-[#D1D5DC80]/50 overflow-hidden flex items-center justify-center"
+                      <Link
+                        href={item?.url || "#"}
+                        aria-label={item?.label}
+                        className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full min-[1280px]:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-[15px] border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
+                      >
+                        {item?.label}
+                      </Link>
+                    </div>
+                  ))}
+                  {/* Apply buttons are inside the hamburger menu below 1280px. */}
+                  <ApplyButtons
+                    buttons={data?.applyButtons}
+                    variant="desktop"
+                    className="max-[1279px]:hidden"
+                  />
+                  {/* CHANGED: hamburger is back here (mobile only), on the right side opposite the logos */}
+                  <div className="w-auto h-auto pl-0.75 max-[1279px]:flex hidden">
+                    <Sheet
+                      open={isMobileMenuOpen}
+                      onOpenChange={setIsMobileMenuOpen}
                     >
-                      <div className="w-5 h-3.5 flex flex-col items-end justify-between">
-                        <span className="w-full h-0.5 rounded-full bg-white block"></span>
-                        <span className="w-3 h-0.5 rounded-full bg-white block"></span>
-                        <span className="w-full h-0.5 rounded-full bg-white block"></span>
-                      </div>
-                    </SheetTrigger>
-                    <SheetContent className="!w-full !max-w-full h-full max-h-screen bg-[#fff7eb] dark:bg-[#18181b] p-0 border-0 flex flex-col overflow-hidden [&>button]:hidden z-[100]">
-                      {/* STICKY TOP HEADER SECTION */}
-                      <div className="w-full shrink-0 bg-[#fff7eb] dark:bg-[#18181b]">
-                        {/* Top Red-Orange Banner Bar */}
-                        <div className="w-full bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-3 py-2.5 flex items-center justify-between text-white shrink-0">
-                          <div className="flex items-center gap-2 min-w-0">
-                            <Link
-                              href="/"
-                              className="w-30 flex items-center gap-1.5 shrink-0"
-                            >
-                              <Image
-                                src="/images/dsu-logo.svg"
-                                alt="DSU Logo"
-                                width={32}
-                                height={32}
-                                className="size-full object-contain"
-                              />
-                            </Link>
-                            <div className="h-6 w-[1px] bg-white/30 shrink-0" />
-                            <div className="w-15 flex items-center shrink-0">
-                              <Image
-                                src="/images/header-logo-2.svg"
-                                alt="NAAC A+"
-                                width={32}
-                                height={22}
-                                className="size-full object-contain"
-                              />
-                            </div>
-                            <div className="h-6 w-[1px] bg-white/30 shrink-0" />
-                            <span className="text-[9.5px] leading-tight font-medium opacity-95 shrink-0">
-                              India&apos;s AI-First
-                              <br />
-                              University
-                            </span>
-                          </div>
-                          <SheetClose className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors text-white shrink-0 ml-1">
-                            <X size={18} />
-                          </SheetClose>
+                      <SheetTrigger
+                        aria-label="Open menu"
+                        className="w-10 h-10 shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[5px] border border-[#D1D5DC80]/50 overflow-hidden flex items-center justify-center"
+                      >
+                        <div className="w-5 h-3.5 flex flex-col items-end justify-between">
+                          <span className="w-full h-0.5 rounded-full bg-white block"></span>
+                          <span className="w-3 h-0.5 rounded-full bg-white block"></span>
+                          <span className="w-full h-0.5 rounded-full bg-white block"></span>
                         </div>
-
-                        {/* Utility Bar */}
-                        <div className="w-full bg-[#FFF4E8] dark:bg-[#232427] border-b border-black/8 dark:border-white/0 px-3 py-2 flex items-center justify-between text-[11px] font-medium text-[#333] dark:text-white/90 overflow-x-auto">
-                          <div className="flex items-center gap-1.5 shrink-0 text-black dark:text-white">
-                            <Link
-                              href="#!"
-                              className="flex items-center gap-1 hover:text-(--basecolor)"
-                            >
-                              <span className="dark:text-white">
-                                Virtual Tour
-                              </span>
-                              <Image
-                                src="/images/header-360-icon-black.svg"
-                                alt="Tour"
-                                width={13}
-                                height={13}
-                                className="w-3.5 h-3.5 dark:invert"
-                              />
-                            </Link>
-                            <span className="text-black/20 dark:text-white/20">
-                              |
-                            </span>
-                            <Link
-                              href="#!"
-                              className="flex items-center gap-1 hover:text-(--basecolor)"
-                            >
-                              <span>E-Brochure</span>
-                              <Image
-                                src="/images/header-brochure-icon-black.svg"
-                                alt="Brochure"
-                                width={13}
-                                height={13}
-                                className="w-3.5 h-3.5 dark:invert"
-                              />
-                            </Link>
-                            {isValidLoginButton(data?.topBar?.loginButton) && (
-                              <>
-                                <span className="text-black/20 dark:text-white/20">
-                                  |
-                                </span>
-                                <LoginButton
-                                  button={data?.topBar?.loginButton}
-                                  className="flex items-center gap-1 hover:text-(--basecolor) cursor-pointer"
-                                  iconSrc="/images/header-login-black.svg"
-                                  iconClassName="w-3.5 h-3.5 flex items-center justify-center dark:invert"
+                      </SheetTrigger>
+                      <SheetContent className="!w-full !max-w-full h-full max-h-screen bg-[#fff7eb] dark:bg-[#18181b] p-0 border-0 flex flex-col overflow-hidden [&>button]:hidden z-[100]">
+                        {/* STICKY TOP HEADER SECTION */}
+                        <div className="w-full shrink-0 bg-[#fff7eb] dark:bg-[#18181b]">
+                          {/* Top Red-Orange Banner Bar */}
+                          <div className="w-full bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-3 py-2.5 flex items-center justify-between text-white shrink-0">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <Link
+                                href="/"
+                                className="w-30 flex items-center gap-1.5 shrink-0"
+                              >
+                                <Image
+                                  src="/images/dsu-logo.svg"
+                                  alt="DSU Logo"
+                                  width={32}
+                                  height={32}
+                                  className="size-full object-contain"
                                 />
-                              </>
-                            )}
+                              </Link>
+                              <div className="h-6 w-[1px] bg-white/30 shrink-0" />
+                              <div className="w-15 flex items-center shrink-0">
+                                <Image
+                                  src="/images/header-logo-2.svg"
+                                  alt="NAAC A+"
+                                  width={32}
+                                  height={22}
+                                  className="size-full object-contain"
+                                />
+                              </div>
+                              <div className="h-6 w-[1px] bg-white/30 shrink-0" />
+                              <span className="text-[9.5px] leading-tight font-medium opacity-95 shrink-0">
+                                India&apos;s AI-First
+                                <br />
+                                University
+                              </span>
+                            </div>
+                            <SheetClose className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors text-white shrink-0 ml-1">
+                              <X size={18} />
+                            </SheetClose>
                           </div>
-                          <div className="flex items-center gap-1.5 shrink-0 ml-2">
-                            <ThemeToggle iconClassName="max-lg:invert" />
-                          </div>
-                        </div>
 
-                        {/* Action Links Pills */}
-                        <div className="w-full bg-[#FFFBF7] dark:bg-[#18181b] px-3 pt-2.5 pb-2 flex flex-wrap items-center gap-1.5 overflow-x-auto no-scrollbar">
-                          {data?.actionLinks?.map((item, index) => (
-                            <Link
-                              key={index}
-                              href={item?.url || "#"}
-                              className="px-3 py-2 rounded-[3px] border text-center flex-grow-1  border-[#ea580c] dark:border-[#ea580c] text-xs font-bold text-black dark:text-white shrink-0 hover:bg-(--basecolor)/10 transition-colors"
+                          {/* Utility Bar */}
+                          <div className="w-full bg-[#FFF4E8] dark:bg-[#232427] border-b border-black/8 dark:border-white/0 px-3 py-2 flex items-center justify-between text-[11px] font-medium text-[#333] dark:text-white/90 overflow-x-auto">
+                            <div className="flex items-center gap-1.5 shrink-0 text-black dark:text-white">
+                              <Link
+                                href="#!"
+                                className="flex items-center gap-1 hover:text-(--basecolor)"
+                              >
+                                <span className="dark:text-white">
+                                  Virtual Tour
+                                </span>
+                                <Image
+                                  src="/images/header-360-icon-black.svg"
+                                  alt="Tour"
+                                  width={13}
+                                  height={13}
+                                  className="w-3.5 h-3.5 dark:invert"
+                                />
+                              </Link>
+                              <span className="text-black/20 dark:text-white/20">
+                                |
+                              </span>
+                              <Link
+                                href="#!"
+                                className="flex items-center gap-1 hover:text-(--basecolor)"
+                              >
+                                <span>E-Brochure</span>
+                                <Image
+                                  src="/images/header-brochure-icon-black.svg"
+                                  alt="Brochure"
+                                  width={13}
+                                  height={13}
+                                  className="w-3.5 h-3.5 dark:invert"
+                                />
+                              </Link>
+                              {isValidLoginButton(
+                                data?.topBar?.loginButton,
+                              ) && (
+                                <>
+                                  <span className="text-black/20 dark:text-white/20">
+                                    |
+                                  </span>
+                                  <LoginButton
+                                    button={data?.topBar?.loginButton}
+                                    className="flex items-center gap-1 hover:text-(--basecolor) cursor-pointer"
+                                    iconSrc="/images/header-login-black.svg"
+                                    iconClassName="w-3.5 h-3.5 flex items-center justify-center dark:invert"
+                                  />
+                                </>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                              <ThemeToggle iconClassName="max-[1279px]:invert" />
+                            </div>
+                          </div>
+
+                          {/* Action Links Pills */}
+                          <div className="w-full bg-[#FFFBF7] dark:bg-[#18181b] px-3 pt-2.5 pb-2 flex flex-wrap items-center gap-1.5 overflow-x-auto no-scrollbar">
+                            {data?.actionLinks?.map((item, index) => (
+                              <Link
+                                key={index}
+                                href={item?.url || "#"}
+                                className="px-3 py-2 rounded-[3px] border text-center flex-grow-1  border-[#ea580c] dark:border-[#ea580c] text-xs font-bold text-black dark:text-white shrink-0 hover:bg-(--basecolor)/10 transition-colors"
+                              >
+                                {item?.label}
+                              </Link>
+                            ))}
+                          </div>
+
+                          {/* Main Buttons (Apply Here, CDSIMER, DSU Online) */}
+                          <div className="w-full px-2.5 pb-3 pt-2 flex items-center justify-between gap-2">
+                            <ApplyButtons
+                              buttons={data?.applyButtons}
+                              variant="mobile"
+                            />
+                            <div className="flex items-center gap-1.25">
+                              <Link
+                                href="/#"
+                                className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
+                              >
+                                CDSIMER
+                              </Link>
+                              <Link
+                                href="/#"
+                                className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
+                              >
+                                DSU Online
+                              </Link>
+                            </div>
+                          </div>
+
+                          {/* Search */}
+                          <form
+                            role="search"
+                            action="/search"
+                            onSubmit={submitMobileSearch}
+                            className="relative mx-2.5 mb-3"
+                          >
+                            <input
+                              ref={mobileSearchInputRef}
+                              type="search"
+                              name="q"
+                              value={mobileSearchQuery}
+                              onChange={(e) =>
+                                setMobileSearchQuery(e.target.value)
+                              }
+                              placeholder="Search..."
+                              aria-label="Search the site"
+                              autoComplete="off"
+                              enterKeyHint="search"
+                              maxLength={100}
+                              className="w-full h-11 pl-4 pr-11 text-sm text-black dark:text-white bg-white dark:bg-white/5 border border-black/15 dark:border-white/15 rounded-[3px] outline-none placeholder:text-black/40 dark:placeholder:text-white/40 focus:border-(--basecolor2) transition-colors"
+                            />
+                            <button
+                              type="submit"
+                              aria-label="Submit search"
+                              className="absolute right-1 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center"
                             >
-                              {item?.label}
-                            </Link>
+                              <Image
+                                src="/images/header-search-icon.svg"
+                                alt=""
+                                width={16}
+                                height={16}
+                                className="w-4 h-4 object-contain invert dark:invert-0"
+                              />
+                            </button>
+                          </form>
+                        </div>
+                        {/* SCROLLABLE NAVIGATION MENU LIST */}
+                        <div className="w-full flex-1 overflow-y-auto bg-[#fff7eb] dark:bg-[#18181b] border-t border-black/8 dark:border-white/0 pb-12">
+                          {data?.navigationLinks?.map((item) => (
+                            <NavigationMenu
+                              key={item?.id}
+                              item={item}
+                              level={0}
+                            />
                           ))}
                         </div>
-
-                        {/* Main Buttons (Apply Here, CDSIMER, DSU Online) */}
-                        <div className="w-full px-2.5 pb-3 pt-2 flex items-center justify-between gap-2">
-                          <ApplyButtons
-                            buttons={data?.applyButtons}
-                            variant="mobile"
-                          />
-                          <div className="flex items-center gap-1.25">
-                            <Link
-                              href="/#"
-                              className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
-                            >
-                              CDSIMER
-                            </Link>
-                            <Link
-                              href="/#"
-                              className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
-                            >
-                              DSU Online
-                            </Link>
-                          </div>
-                        </div>
-
-                        {/* Search */}
-                        <form
-                          role="search"
-                          action="/search"
-                          onSubmit={submitMobileSearch}
-                          className="relative mx-2.5 mb-3"
-                        >
-                          <input
-                            ref={mobileSearchInputRef}
-                            type="search"
-                            name="q"
-                            value={mobileSearchQuery}
-                            onChange={(e) => setMobileSearchQuery(e.target.value)}
-                            placeholder="Search..."
-                            aria-label="Search the site"
-                            autoComplete="off"
-                            enterKeyHint="search"
-                            maxLength={100}
-                            className="w-full h-11 pl-4 pr-11 text-sm text-black dark:text-white bg-white dark:bg-white/5 border border-black/15 dark:border-white/15 rounded-[3px] outline-none placeholder:text-black/40 dark:placeholder:text-white/40 focus:border-(--basecolor2) transition-colors"
-                          />
-                          <button
-                            type="submit"
-                            aria-label="Submit search"
-                            className="absolute right-1 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center"
-                          >
-                            <Image
-                              src="/images/header-search-icon.svg"
-                              alt=""
-                              width={16}
-                              height={16}
-                              className="w-4 h-4 object-contain invert dark:invert-0"
-                            />
-                          </button>
-                        </form>
-                      </div>
-                      {/* SCROLLABLE NAVIGATION MENU LIST */}
-                      <div className="w-full flex-1 overflow-y-auto bg-[#fff7eb] dark:bg-[#18181b] border-t border-black/8 dark:border-white/0 pb-12">
-                        {data?.navigationLinks?.map((item) => (
-                          <NavigationMenu
-                            key={item?.id}
-                            item={item}
-                            level={0}
-                          />
-                        ))}
-                      </div>
-                    </SheetContent>
-                  </Sheet>
+                      </SheetContent>
+                    </Sheet>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
       {!isMobile && (
@@ -1176,7 +1193,12 @@ function LoginButton({ button, className, iconSrc, iconClassName }) {
       <div className="w-auto h-auto">
         <DropdownMenu>
           <DropdownMenuTrigger
-            render={<button type="button" className={cn(className, "cursor-pointer")} />}
+            render={
+              <button
+                type="button"
+                className={cn(className, "cursor-pointer")}
+              />
+            }
           >
             {content}
           </DropdownMenuTrigger>
@@ -1212,7 +1234,10 @@ function LoginButton({ button, className, iconSrc, iconClassName }) {
           target: "_blank",
           rel: "noopener noreferrer",
         })}
-        className={cn(className, "transition-opacity duration-300 hover:opacity-70")}
+        className={cn(
+          className,
+          "transition-opacity duration-300 hover:opacity-70",
+        )}
       >
         {content}
       </Link>
@@ -1225,7 +1250,7 @@ const isValidButton = (b) => Boolean(b?.label?.trim() && b?.url?.trim());
 const externalProps = (b) =>
   b?.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
 // NRI/Foreigners + Others + "Apply Here" badge. Each one only shows with a label and url.
-// CHANGED: added a className prop so the header can hide this on mobile (max-lg:hidden)
+// The header hides desktop apply buttons below 1280px.
 function ApplyButtons({ buttons, variant = "desktop", className }) {
   const { applyHere, nri, others } = buttons || {};
   const showApply = isValidButton(applyHere);
@@ -1253,7 +1278,7 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
         notchSize,
         isMobile
           ? "h-11.25"
-          : "min-h-9 sm:min-h-10 lg:min-h-0 lg:h-10 3xl:h-12.5",
+          : "min-h-9 sm:min-h-10 min-[1280px]:min-h-0 min-[1280px]:h-10 3xl:h-12.5",
         className,
       )}
     >
@@ -1286,9 +1311,9 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
             {...externalProps(nri)}
             className={cn(
               textSize,
-              "2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center relative z-0",
+              "2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-white w-full h-full px-1.25 sm:px-2.5 xl:px-3.75 flex items-center justify-center relative z-0",
               showOthers &&
-              "before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:absolute before:z-1 before:inset-[0_0_0_auto]",
+                "before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:absolute before:z-1 before:inset-[0_0_0_auto]",
             )}
           >
             <span>{nri.label}</span>
@@ -1304,7 +1329,7 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
             {...externalProps(others)}
             className={cn(
               textSize,
-              "2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-white w-full h-full px-1.25 sm:px-2.5 lg:px-3.75 flex items-center justify-center",
+              "2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-white w-full h-full px-1.25 sm:px-2.5 xl:px-3.75 flex items-center justify-center",
             )}
           >
             <span>{others.label}</span>
@@ -1322,7 +1347,7 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
             "absolute left-1/2 top-0 z-10 flex h-(--nh) w-(--nw) -translate-x-1/2 items-center justify-center whitespace-nowrap bg-transparent font-bold leading-none  -top-[3px]",
             isMobile
               ? // menu sheet: cream (light) / dark (dark) background behind the notch
-              "text-[11px] text-black dark:text-white"
+                "text-[11px] text-black dark:text-white"
               : "text-[9px] sm:text-[11px] 2xl:text-xs 3xl:text-sm text-white",
           )}
         >
@@ -1335,7 +1360,7 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1024px)");
+    const mediaQuery = window.matchMedia("(max-width: 1279px)");
     const update = () => setIsMobile(mediaQuery.matches);
     update();
     mediaQuery.addEventListener("change", update);
@@ -1352,7 +1377,7 @@ function isActiveUrl(url, pathname) {
   let path = url;
   try {
     path = new URL(url, "http://x").pathname;
-  } catch { }
+  } catch {}
   const clean = (p) => (p.length > 1 ? p.replace(/\/+$/, "") : p);
   return clean(path) === clean(pathname);
 }
@@ -1508,7 +1533,13 @@ function MegaMenuPanel({
         `}</style>
         <div className="w-fit max-w-full overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.22)] rounded-b-[8px]">
           {/* ADDED: max height on the row; the sidebar and the right panel each scroll on their own */}
-          <div className={cn("w-fit max-w-full flex items-stretch", MEGA_MENU_MAX_HEIGHT, reverseRow && "flex-row-reverse")}>
+          <div
+            className={cn(
+              "w-fit max-w-full flex items-stretch",
+              MEGA_MENU_MAX_HEIGHT,
+              reverseRow && "flex-row-reverse",
+            )}
+          >
             {/* ─── Vibrant Orange/Red Gradient Sidebar ─── */}
             {/* CHANGED: data-lenis-prevent so Lenis smooth scroll doesn't hijack the wheel over this list */}
             <nav
@@ -1567,7 +1598,6 @@ function MegaMenuPanel({
 
             {/* ─── Warm Cream / Ivory Right Panel ─── */}
             {activeChild?.children?.length > 0 && (
-
               // CHANGED: data-lenis-prevent so Lenis smooth scroll doesn't hijack the wheel over this panel
               <div
                 data-lenis-prevent
@@ -1677,7 +1707,10 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
       const rightSpace = viewportWidth - panelRect.right - 8;
       const leftSpace = panelRect.left - 8;
       const flip = rightSpace < FLYOUT_MIN_FIT && leftSpace > rightSpace;
-      const maxWidth = Math.min(FLYOUT_MAX_WIDTH, flip ? leftSpace : rightSpace);
+      const maxWidth = Math.min(
+        FLYOUT_MAX_WIDTH,
+        flip ? leftSpace : rightSpace,
+      );
 
       // 1px border + padding puts the first item exactly level with the parent row
       const top = Math.max(8, linkRect.top - FLYOUT_PAD_TOP - 1);
@@ -1693,7 +1726,9 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
         // Invisible hover bridge across the gap between the row and the card
         bridge: Math.max(
           0,
-          flip ? linkRect.left - panelRect.left : panelRect.right - linkRect.right,
+          flip
+            ? linkRect.left - panelRect.left
+            : panelRect.right - linkRect.right,
         ),
       });
     }
@@ -1787,7 +1822,9 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
               <ul
                 data-lenis-prevent
                 className="flex flex-col gap-[3px] p-0 m-0 overflow-y-auto overscroll-contain"
-                style={{ maxHeight: `calc(100vh - ${pos.top + FLYOUT_VERTICAL_SPACE}px)` }}
+                style={{
+                  maxHeight: `calc(100vh - ${pos.top + FLYOUT_VERTICAL_SPACE}px)`,
+                }}
               >
                 {getFlyoutItems(leaf).map((sub) => (
                   <li key={sub?.id || sub?.label} className="w-full list-none">
@@ -1798,11 +1835,13 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
                       className={cn(
                         "w-full inline-flex items-start gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium",
                         isActiveUrl(sub?.url, pathname) &&
-                        "bg-[#FFE8D6] font-medium",
+                          "bg-[#FFE8D6] font-medium",
                       )}
                     >
                       <span className="w-[8px] h-[8px] mt-[5px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
-                      <span className="min-w-0 flex-1 break-words">{sub?.label}</span>
+                      <span className="min-w-0 flex-1 break-words">
+                        {sub?.label}
+                      </span>
                     </Link>
                   </li>
                 ))}
@@ -1868,7 +1907,10 @@ function NavigationMenu({
             <span className="w-[7px] h-[7px] mt-[6px] shrink-0 rounded-full border-[1.5px] border-(--basecolor) flex-none" />
             <span className="min-w-0 break-words flex-1">{item?.label}</span>
             {isOpen ? (
-              <ChevronDown size={15} className="mt-0.5 shrink-0 text-(--basecolor)" />
+              <ChevronDown
+                size={15}
+                className="mt-0.5 shrink-0 text-(--basecolor)"
+              />
             ) : (
               <ChevronRight
                 size={15}
@@ -1976,18 +2018,18 @@ function NavigationMenu({
             className={cn(
               level === 0
                 ? cn(
-                  "text-sm font-medium transition-colors",
-                  isOpen
-                    ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent font-bold"
-                    : "text-[#212121] dark:text-white",
-                )
-                : level === 1
-                  ? cn(
-                    "text-[13.5px] font-semibold transition-colors",
+                    "text-sm font-medium transition-colors",
                     isOpen
-                      ? "text-(--basecolor)"
+                      ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent font-bold"
                       : "text-[#212121] dark:text-white",
                   )
+                : level === 1
+                  ? cn(
+                      "text-[13.5px] font-semibold transition-colors",
+                      isOpen
+                        ? "text-(--basecolor)"
+                        : "text-[#212121] dark:text-white",
+                    )
                   : "text-xs font-bold uppercase tracking-wider text-[#ea580c]",
             )}
           >
@@ -2005,9 +2047,7 @@ function NavigationMenu({
                 className="text-(--basecolor)"
               />
             ) : (
-              <ChevronRight
-                size={level === 0 ? 18 : 15}
-              />
+              <ChevronRight size={level === 0 ? 18 : 15} />
             )}
           </button>
         </div>
