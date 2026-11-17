@@ -116,6 +116,7 @@ import GovernanceFinancecommittte from "@/components/sections/governance/governa
 import AcademicQualitySection from "@/components/sections/why-us/AcademicQualitySection";
 import WhyusAQAR from "@/components/sections/why-us/Whyus-AQAR";
 import PdfReports from "@/components/sections/why-us/PdfReports";
+import CommonGallery from "@/components/layout/common/CommonGallery";
 import PhdProgrammes from "@/components/sections/reseach-innovation/PhdProgrammes";
 import DoctoralResearchCards from "@/components/sections/reseach-innovation/DoctoralResearch";
 import PostDoctoralCta from "@/components/sections/reseach-innovation/PostDoctoralCta";
@@ -364,7 +365,7 @@ const flexibleRegistry = {
   "school.overview-section": { Component: AcademicOverview },
   "school.vision-mission-section": { Component: AcademicVisionMission },
   "school.dean-message-section": { Component: DeanMessage },
-  "school.why-choose-section": { Component: AcademicWhychoose },
+  "school.why-choose-section": { Component: WhyChoose }, // points have a title and a description: the Why Choose tab design
   "school.why-choose-home-section": { Component: AcademicWhychoose },
   "school.why-choose-tab-section": { Component: WhyChoose },
   "school.facilities-section": { Component: AcademicFacilities },
@@ -470,6 +471,8 @@ const flexibleRegistry = {
   "international.link-cards-section": { Component: IntlLinkCardsSection },
   "international.partners-section": { Component: IntlPartnersSection },
   "international.gallery": { Component: IntlTabbedGallery },
+  // standalone gallery page (src/app/gallery/page.js)
+  "gallery.gallery-section": { Component: IntlTabbedGallery },
   "international.accordion-section": { Component: IntlAccordionSection },
   "international.text-cta-section": { Component: IntlTextCTASection },
   "international.IntlTextCTASection": { Component: IntlTextCTASection }, // legacy key
@@ -479,6 +482,8 @@ const flexibleRegistry = {
 
   // Common sections (every flexible page)
   "common.title-description": { Component: TitleDescription },
+  // centres of excellence listing (src/app/center-of-excellence/page.js)
+  "coe.gallery-section": { Component: CommonGallery },
 
   // Innovation (Research & Innovation pages)
   "innovation.phd-programmes-section": { Component: PhdProgrammes },

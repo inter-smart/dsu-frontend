@@ -1,4 +1,5 @@
 import Image from "next/image";
+import RichText from "@/components/ui/rich-text";
 import Link from "next/link";
 import { CalendarDays, Clock3 } from "lucide-react";
 
@@ -88,9 +89,7 @@ export default function IQACActivities({ data }) {
                     </h2>
                 )}
                 {data.description && (
-                    <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] mb-[30px] xl:mb-[45px] 2xl:mb-[55px] max-w-[95%] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                        {data.description}
-                    </p>
+                    <RichText value={data.description} className="mb-[30px] xl:mb-[45px] 2xl:mb-[55px] max-w-[95%]" />
                 )}
 
                 <div className="flex flex-col">
@@ -123,9 +122,7 @@ export default function IQACActivities({ data }) {
                                     {item.title}
                                 </h3>
                                 {item.description && (
-                                    <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] mb-[18px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                        {item.description}
-                                    </p>
+                                    <RichText value={item.description} className="mb-[18px]" />
                                 )}
                                 {(dateText || timeText) && (
                                     <div className="flex flex-col gap-[14px] xl:gap-[20px] mb-[22px] xl:mb-[28px] 2xl:mb-[35px]">

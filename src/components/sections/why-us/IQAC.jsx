@@ -14,10 +14,8 @@ export default function IQAC({ data, view }) {
     if (view === "activities") {
         if (!hasContent(data.activities?.items)) return null;
         return (
-            <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[90px] !pb-0">
-                <div className="mt-[10px] pb-[50px]">
-                    <IQACActivities data={data.activities} />
-                </div>
+            <section className="relative">
+                <IQACActivities data={data.activities} />
             </section>
         );
     }
