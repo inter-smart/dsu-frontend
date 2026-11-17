@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { getDepartmentLibraryPage, getDepartmentTab, getProgrammeTab } from "@/lib/api";
+import { getDepartmentLibraryPage, getDepartmentTab, getProgrammeTab, getSchoolBySlug } from "@/lib/api";
+import { getSchoolTabs } from "@/lib/schools/tabs";
 import { getFlexiblePageBySlug } from "@/lib/api/flexible-page";
 import { departmentHref, libraryHref, librarySidebarItems, programmeBase, programmeHref } from "@/lib/schools/items";
 
@@ -280,4 +281,55 @@ export function departmentProgramsSection(schoolSlug, department, programmes = d
     programs,
   }));
   return categories.length ? { heading: "Programs Offered", categories } : null;
+}
+
+// Tab menu for a tab page that the CMS serves with its own "flexible-page" layout (/custom-layout): such a page
+// has no tab component of its own, so the menu is rebuilt from the page URL. Returns
+// { kind: "programme" | "department" | "school", items, home, title, slug, hasDepartments } or null for any other page.
+async function firstTab(load, slug, tab, tabs) {
+  for (const key of new Set([tabs.some((t) => t.key === tab) ? tab : "overview", "overview"])) {
+    const res = await load(slug, key);
+    if (res?.slug) return res;
+  }
+  return null;
+}
+
+export async function loadEntityMenu(path) {
+  const clean = String(path || "").replace(/\/+$/, "");
+
+  let m = clean.match(/^\/ai-enabled\/([^/]+)\/programs\/([^/]+)(?:\/([^/]+))?$/);
+  if (m) {
+    const [, schoolSlug, programmeSlug, tab] = m;
+    const res = await firstTab(getProgrammeTab, programmeSlug, tab, PROGRAM_TABS);
+    if (!res || res.school?.slug !== schoolSlug) return null;
+    const base = programmeBase(schoolSlug, programmeSlug);
+    return { kind: "programme", title: res.title, items: menuFor(shownTabs(PROGRAM_TABS, res), base, res.extraTabs, res.menuOrder) };
+  }
+
+  m = clean.match(/^\/ai-enabled\/([^/]+)\/([^/]+)(?:\/([^/]+))?$/);
+  if (m) {
+    const [, schoolSlug, departmentSlug, tab] = m;
+    const res = await firstTab(getDepartmentTab, departmentSlug, tab, DEPARTMENT_TABS);
+    if (!res || res.school?.slug !== schoolSlug) return null;
+    const base = departmentHref(schoolSlug, departmentSlug);
+    return {
+      kind: "department",
+      home: base,
+      items: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs, res.menuOrder),
+    };
+  }
+
+  m = clean.match(/^\/schools\/([^/]+)(?:\/[^/]+)?$/);
+  if (m) {
+    const slug = m[1];
+    const school = await getSchoolBySlug(slug);
+    if (!school?.slug) return null;
+    const hasDepartments = school.template === "department";
+    const items = (Array.isArray(school.tabs) ? school.tabs : getSchoolTabs(hasDepartments)).map((t) => ({
+      label: t.label,
+      href: t.href ?? (t.anchor ? `/schools/${slug}#${t.anchor}` : `/schools/${slug}/${t.key}`),
+    }));
+    return { kind: "school", slug, hasDepartments, items };
+  }
+  return null;
 }
