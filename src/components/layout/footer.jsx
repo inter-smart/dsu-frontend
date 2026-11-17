@@ -464,8 +464,28 @@ const local_data = {
   ],
 };
 
-export default function Footer({ data = local_data }) {
+export default function Footer({ data = local_data, brochures = [] }) {
   const [openAccordion, setOpenAccordion] = useState(0);
+  const [brochureId, setBrochureId] = useState("");
+  const selectedBrochure = brochures.find((b) => b.id === brochureId);
+  const handleDownload = async () => {
+    if (!selectedBrochure) return;
+    const { url, title } = selectedBrochure;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("download failed");
+      const blobUrl = URL.createObjectURL(await res.blob());
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = `${title} Brochure${(url.match(/\.[a-z0-9]+(?=$|\?)/i) || [".pdf"])[0]}`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(blobUrl);
+    } catch {
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+  };
 
   const toggleAccordion = (index) => {
     setOpenAccordion(openAccordion === index ? null : index);
@@ -546,26 +566,33 @@ export default function Footer({ data = local_data }) {
                 );
               })}
             </div>
-            <div className="w-full h-auto block max-lg:max-w-100">
+            {brochures.length > 0 && (
+<div className="w-full h-auto block max-lg:max-w-100">
               <div className="text-lg lg:text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mb-3.75 lg:mb-2.5 3xl:mb-3.75">
                 DOWNLOAD BROCHURES
               </div>
               <div className="w-full h-auto mb-2.5">
-                <Select className="w-full h-auto">
+                <Select className="w-full h-auto" value={brochureId} onValueChange={setBrochureId}>
                   <SelectTrigger aria-label="Select program" className="!text-sm lg:!text-xs 2xl:!text-[13px] 3xl:!text-base !font-light !text-black dark:!text-white w-full !h-11.25 lg:!h-8.75 3xl:!h-11.25 rounded-[5px] border-[#C7C7C7] [&>svg]:text-black dark:[&>svg]:text-white">
-                    <SelectValue placeholder="Select Program" />
+                    <SelectValue placeholder="Select Program">{selectedBrochure?.title}</SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>Select Program</SelectLabel>
-                      <SelectItem value="apple">BE</SelectItem>
-                      <SelectItem value="banana">B.Tech</SelectItem>
-                      <SelectItem value="blueberry">Bcom</SelectItem>
+                      {brochures.map((b) => (
+                        <SelectItem key={b.id} value={b.id}>
+                          {b.title}
+                        </SelectItem>
+                      ))}
                     </SelectGroup>
                   </SelectContent>
                 </Select>
               </div>
-              <Button className="w-full !h-10 rounded-[5px] lg:gap-2.5 2xl:gap-3.75">
+              <Button
+                disabled={!selectedBrochure}
+                onClick={handleDownload}
+                className="w-full !h-10 rounded-[5px] lg:gap-2.5 2xl:gap-3.75"
+              >
                 <span className="w-4.25 h-auto aspect-square overflow-hidden block">
                   <Image
                     src={"/images/download-icon.svg"}
@@ -578,6 +605,7 @@ export default function Footer({ data = local_data }) {
                 Download PDF
               </Button>
             </div>
+)}
           </div>
           <div className="w-(--width) lg:w-[calc(100%-var(--width))] max-sm:p-[10px_10px_25px_10px] lg:pl-10 xl:pl-15 2xl:pl-17.5 3xl:pl-22.5">
             <div className="w-full h-auto pb-3.75 lg:pb-8.75 2xl:pb-10 3xl:pb-12.5 mb-3.75 lg:mb-7.5 3xl:mb-10 border-b border-[#D4D4D4] grid grid-cols-2 lg:grid-cols-3 gap-[25px_5px] sm:gap-5 lg:gap-7.5 2xl:gap-10 3xl:gap-17.5">

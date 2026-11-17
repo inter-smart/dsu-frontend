@@ -12,7 +12,16 @@ import Image from "next/image";
 const sanitizeHtml = (html) =>
     DOMPurify.sanitize(html || "", {
         USE_PROFILES: { html: true },
-        ADD_ATTR: ["target"],
+        ADD_TAGS: ["iframe"],
+        ADD_ATTR: [
+            "target",
+            "srcdoc",
+            "allow",
+            "allowfullscreen",
+            "frameborder",
+            "loading",
+            "referrerpolicy",
+        ],
         FORBID_TAGS: ["style", "form", "input", "button"],
     });
 

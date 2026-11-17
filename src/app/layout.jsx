@@ -5,6 +5,7 @@ import Header from "@/components/layout/header-new-copy";
 import Footer from "@/components/layout/footer";
 import SmoothScrollProvider from "@/components/providers/smooth-scroll-provider";
 import { getHeader, getFooter } from "@/lib/api/layout";
+import { getProgrammes } from "@/lib/api/academics";
 import FileLinkTarget from "@/components/providers/file-link-target";
 import PreviewBanner from "@/components/layout/common/preview-banner";
 import ScrollReveal from "@/components/providers/scroll-reveal";
@@ -28,7 +29,14 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const [header, footer] = await Promise.all([getHeader(), getFooter()]);
+  const [header, footer, programmes] = await Promise.all([
+    getHeader(),
+    getFooter(),
+    getProgrammes().catch(() => []),
+  ]);
+  const brochures = (Array.isArray(programmes) ? programmes : [])
+    .filter((p) => p?.brochure?.url)
+    .map((p) => ({ id: String(p.documentId || p.id), title: p.title, url: p.brochure.url }));
 
   return (
     <html
@@ -49,7 +57,7 @@ export default async function RootLayout({ children }) {
           <SmoothScrollProvider>
             <Header data={header ?? undefined} />
             <main className="flex-1">{children}</main>
-            <Footer data={footer ?? undefined} />
+            <Footer data={footer ?? undefined} brochures={brochures} />
             <ScrollReveal />
             <SidebarWidget />
             <FileLinkTarget />
