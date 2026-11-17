@@ -159,6 +159,7 @@ import RecruitmentGallery from "@/components/sections/placements/recruitment-gal
 import StudentSuccess from "@/components/sections/placements/student-success";
 import StudentSuccessStories from "@/components/sections/placements/student-success-stories";
 import IntlTextSection from "@/components/sections/international/intl-text-section";
+import TitleDescription from "@/components/sections/common/title-description";
 import IntlButtonSection from "@/components/sections/international/intl-button-section";
 import IntlTextButtonSection from "@/components/sections/international/intl-text-button-section";
 import IntlVideoSection from "@/components/sections/international/intl-video-section";
@@ -479,6 +480,8 @@ const flexibleRegistry = {
   // Pdf Reports pages: one PDF in an iframe, or a list of PDFs
   "pdf-report.reports-section": { Component: PdfReports },
 
+  // Common sections (every flexible page)
+  "common.title-description": { Component: TitleDescription },
   // centres of excellence listing (src/app/center-of-excellence/page.js)
   "coe.gallery-section": { Component: CommonGallery },
 
