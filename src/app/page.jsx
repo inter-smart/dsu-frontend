@@ -1902,10 +1902,11 @@ export default async function Home() {
       ),
     },
   };
-  // Announcements come from the announcement entries; the Latest Happenings list is still local_data.
+  // Announcements come from the announcement entries; Latest Happenings lists the News & Event entries
+  // marked "Show in Home Latest Happenings" (local_data only while Strapi returns no Events section).
   const events = {
     ...pick(cms?.events, local.events, "announcements_list"),
-    latest_list: local.events.latest_list,
+    latest_list: cms?.events ? cms.events.latest_list || [] : local.events.latest_list,
     announcements_list: pickList(
       announcementList,
       pickList(cms?.events?.announcements_list, local.events.announcements_list),
