@@ -7,7 +7,7 @@ import { ThemeToggle } from "../theme-toggle";
 import { useEffect, useLayoutEffect, useState, useRef } from "react"; // CHANGED: added useLayoutEffect
 import { createPortal } from "react-dom"; // ADDED
 import { useLenis } from "lenis/react";
-import { ChevronRight, ChevronDown, X, User, LogOut } from "lucide-react";
+import { Home, ChevronRight, ChevronDown, X, User, LogOut } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -1038,6 +1038,9 @@ export default function Header({ data = local_data }) {
       {!isMobile && (
         <div className="container relative">
           <div className="w-full h-auto flex items-center justify-between relative z-0">
+            <Link href="/" aria-label="Home" className="p-[15px_10px] xl:p-[15px_20px] 2xl:p-4 3xl:p-5 pl-0 text-white hover:opacity-80 transition-opacity">
+              <Home className="size-5" />
+            </Link>
             {data?.navigationLinks?.map((item) => (
               <NavigationMenu
                 key={item?.id}
