@@ -27,6 +27,8 @@ import DoctoralFeesSection from "@/components/sections/doctoral-research/FeesSec
 import DoctoralCourseworkSection from "@/components/sections/doctoral-research/CourseworkSection";
 import DoctoralFormsSection from "@/components/sections/doctoral-research/FormsSection";
 import DoctoralContactSection from "@/components/sections/doctoral-research/ContactSection";
+import DoctoralRegulationsSection from "@/components/sections/doctoral-research/RegulationsSection";
+import DoctoralSupervisorsSection from "@/components/sections/doctoral-research/SupervisorsSection";
 import NIRFRanking from "@/components/sections/NIRF/NIRF-ranking";
 import OtherApproval from "@/components/sections/regulatory-approval/other-approval";
 import UgcRecognition from "@/components/sections/regulatory-approval/ugc-recognition";
@@ -495,6 +497,8 @@ const flexibleRegistry = {
   "doctoral-research.coursework-section": { Component: DoctoralCourseworkSection },
   "doctoral-research.forms-section": { Component: DoctoralFormsSection },
   "doctoral-research.contact-section": { Component: DoctoralContactSection },
+  "doctoral-research.regulations-section": { Component: DoctoralRegulationsSection },
+  "doctoral-research.supervisors-section": { Component: DoctoralSupervisorsSection },
   // about page (src/app/about/page.js): logo slider
   "about.accreditation-section": { Component: AccreditationSlider },
 
