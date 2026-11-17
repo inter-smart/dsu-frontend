@@ -22,11 +22,11 @@ export default function AcademicProgram({ data, variant }) {
                     </div>
                     
                 </div>
-                <div className={`flex gap-[30px] lg:gap-[40px] mt-[30px] xl:gap-[60px] ${variant === "aiprogram" ? "w-full flex-wrap  " : "max-sm:flex-wrap gap-[15px] lg:max-w-[95%] w-full lg:w-1/2"}`}>
+                <div className={`flex mt-[30px] variant === "aiprogram" ? "w-full flex-wrap  " : " flex-wrap  lg:max-w-[90%] w-full"}`}>
                     {data.categories?.map((item, id) => (
                         <div
                             key={id}
-                            className={`${variant === "aiprogram" ? "w-full pb-[35px] lg:pb-[45px] xl:pb-[65px] last-of-type:pb-0 not-last-of-type:border-b border-black/10 dark:border-white/10" : "w-full sm:w-1/2"}`}
+                            className={`mb-[30px] ${variant === "aiprogram" ? "w-full pb-[35px] lg:pb-[45px] xl:pb-[65px] last-of-type:pb-0 not-last-of-type:border-b border-black/10 dark:border-white/10" : "w-full sm:w-1/2"}`}
                         >
                             {(item.badge || item.label) && (
                                 <div className="flex items-center gap-[10px] mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[40px]">
