@@ -3,8 +3,9 @@ import Image from "next/image";
 import AcademicCta from "./academic-cta";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
-export default function DeanMessage({ data, varient }) {
-  if (!data) return null;
+import AcademicCta from "./academic-cta";
+export default function DeanMessage({ data, varient, hideSignature }) {
+    if (!data) return null;
 
   const { heading, media, featuredPerson, quote, message, closing } = data;
 
@@ -119,15 +120,14 @@ export default function DeanMessage({ data, varient }) {
 
           <AcademicCta cta={data.cta} className="mb-[20px] xl:mb-[25px]" />
 
-          {/* Bottom Signature / Featured Person Block */}
-          {featuredPerson && (
-            <div
-              className={`items-stretch gap-3 xl:gap-3.5 mt-[20px] xl:mt-[25px] ${
-                varient === "home" ? "hidden" : "flex"
-              }`}
-            >
-              {/* Orange/Red Vertical Bar */}
-              <div className="w-[3px] 2xl:w-[4px] rounded-full bg-gradient-to-b from-[#DC2626] to-[#F97316] shrink-0" />
+                    {/* Bottom Signature / Featured Person Block */}
+                    {featuredPerson && (
+                        <div
+                            className={`items-stretch gap-3 xl:gap-3.5 mt-[20px] xl:mt-[25px] ${varient === "home" || hideSignature ? "hidden" : "flex"
+                                }`}
+                        >
+                            {/* Orange/Red Vertical Bar */}
+                            <div className="w-[3px] 2xl:w-[4px] rounded-full bg-gradient-to-b from-[#DC2626] to-[#F97316] shrink-0" />
 
               {/* Text Info */}
               <div>
