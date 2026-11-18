@@ -12,7 +12,7 @@ export default function WhyusAQAR({ data }) {
             <div className="container">
                 <div className="mb-[45px]">
                     <h2 className="cmn_Title">{data.heading}</h2>
-                    <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
+                    <p className="text_1  ">{data.description}</p>
                 </div>
                 <Tabs defaultValue={defaultTab} className="w-full">
                     <TabsList className="gap-[8px] bg-transparent p-0 mb-[25px] xl:mb-[40px]">
@@ -40,14 +40,15 @@ export default function WhyusAQAR({ data }) {
                     {data.yearFilters.map((item) => (
                         <TabsContent key={item.id} value={item.slug}>
                             {item.documents.length > 0 ? (
-                                <div className="flex flex-col">
+                                <div className="flex flex-wrap ">
                                     {item.documents.map((doc) => (
 
-                                        <Link
+                                      <div className="w-full sm:w-1/2 lg:w-1/3 ">
+                                          <Link
                                             key={doc.id}
                                             href={doc.file.url}
                                             {...fileLinkProps()}
-                                            className="group flex items-center justify-between py-[15px] 2xl:py-[18px] 3xl:py-[22px] border-b border-black/20 transition-colors duration-300  sm:max-w-[50%] lg:max-w-[30%]"
+                                            className="group text_1 flex items-center justify-between py-[15px] 2xl:py-[18px] 3xl:py-[22px] border-b border-black/20 transition-colors duration-300 sm:max-w-[93%] w-full"
                                         >
                                             <div className="flex items-center justify-between gap-[15px]">
                                                 <div className="w-[16px] xl:w-[18px] 2xl:w-[22px] 3xl:w-[30px] h-[12px] xl:h-[16px] 2xl:h-[18px] 3xl:h-[20px] flex items-center justify-center">
@@ -58,7 +59,7 @@ export default function WhyusAQAR({ data }) {
                                                         <path d="M14.6316 27.5023H8.77889C8.00277 27.5023 7.25844 27.1547 6.70965 26.5358C6.16085 25.9169 5.85254 25.0776 5.85254 24.2023C5.85254 23.3271 6.16085 22.4878 6.70965 21.8689C7.25844 21.25 8.00277 20.9023 8.77889 20.9023H14.6316C15.4077 20.9023 16.152 21.25 16.7008 21.8689C17.2496 22.4878 17.5579 23.3271 17.5579 24.2023C17.5579 25.0776 17.2496 25.9169 16.7008 26.5358C16.152 27.1547 15.4077 27.5023 14.6316 27.5023ZM8.77889 23.0989C8.53687 23.1254 8.31226 23.2525 8.14883 23.4556C7.98541 23.6586 7.89487 23.923 7.89487 24.1972C7.89487 24.4714 7.98541 24.7358 8.14883 24.9388C8.31226 25.1418 8.53687 25.269 8.77889 25.2955H14.6316C14.8736 25.269 15.0982 25.1418 15.2616 24.9388C15.4251 24.7358 15.5156 24.4714 15.5156 24.1972C15.5156 23.923 15.4251 23.6586 15.2616 23.4556C15.0982 23.2525 14.8736 23.1254 14.6316 23.0989H8.77889Z" fill="#4A5565" />
                                                     </svg>
                                                 </div>
-                                                <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black"> {doc.label}</div>
+                                                <div className="text_1 text-black"> {doc.label}</div>
 
                                             </div>
                                             <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex">
@@ -67,10 +68,11 @@ export default function WhyusAQAR({ data }) {
                                                 </svg>
                                             </div>
                                         </Link>
+                                      </div>
                                     ))}
                                 </div>
                             ) : (
-                                <p className="text_1 text-gray-400 py-[14px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                <p className="text_1 text-gray-400 py-[14px] ">
                                     No reports available for this year yet.
                                 </p>
                             )}

@@ -135,7 +135,7 @@ export default function AdmissionDownload({ data }) {
       <div className="container">
         {/* Heading */}
         <div className="mb-6 sm:mb-8">
-          <h2 className="text-2xl sm:text-3xl lg:text-[36px] 2xl:text-[42px] 3xl:text-[48px] leading-[1.15] font-bold text-[#1E1E1E] dark:text-white tracking-tight">
+          <h2 className="cmn_Title leading-[1.15] font-bold text-[#1E1E1E] dark:text-white tracking-tight">
             {heading}
           </h2>
           {hasDescription && (
