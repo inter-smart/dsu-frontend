@@ -620,12 +620,12 @@ export default function Header({ data = local_data }) {
   }, [isSearchOpen]);
   const isMobile = useIsMobile();
   const TopHeaderTextStyle =
-    // max-[1279px]:after:* = invisible 48px-tall touch target on mobile
-    "text-[12px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] min-[1280px]:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] min-[1280px]:gap-2.5 flex items-center max-[1279px]:relative max-[1279px]:after:absolute max-[1279px]:after:inset-x-0 max-[1279px]:after:-inset-y-3.5 max-[1279px]:after:content-['']";
+    // max-[1169px]:after:* = invisible 48px-tall touch target on mobile
+    "text-[12px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] min-[1170px]:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] min-[1170px]:gap-2.5 flex items-center max-[1169px]:relative max-[1169px]:after:absolute max-[1169px]:after:inset-x-0 max-[1169px]:after:-inset-y-3.5 max-[1169px]:after:content-['']";
   return (
     <header
       className={cn(
-        "w-full h-auto block transition-all duration-800 fixed z-20 min-[1280px]:z-[9999] inset-[0_0_auto_0]",
+        "w-full h-auto block transition-all duration-800 fixed z-20 min-[1170px]:z-[9999] inset-[0_0_auto_0]",
         isHeaderVisible ? "translate-y-0" : "-translate-y-full",
         isScrolled
           ? [
@@ -641,9 +641,9 @@ export default function Header({ data = local_data }) {
         NOT_FOUND_HEADER_GRADIENT,
       )}
     >
-      <div className="w-full h-11.25 min-[1280px]:h-7.5 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block transition-all">
+      <div className="w-full h-11.25 min-[1170px]:h-7.5 2xl:h-8.75 3xl:h-10 bg-linear-to-r from-[#450A03] via-[#7F1D1D] to-[#B91C1C] block transition-all">
         {/* CHANGED: justify-between on mobile (tagline left, links right), justify-end on desktop */}
-        <div className="container h-full flex items-center justify-between min-[1280px]:justify-end">
+        <div className="container h-full flex items-center justify-between min-[1170px]:justify-end">
           {/* CHANGED (mobile only): "India's AI-First University" tagline shown in the top bar */}
           <div
             className="sm:hidden shrink-0 pr-2 text-[11px] sm:text-[10px] leading-[1.2] font-medium text-white text-center"
@@ -662,14 +662,14 @@ export default function Header({ data = local_data }) {
                     target: "_blank",
                     rel: "noopener noreferrer",
                   })}
-                  className="text-[10px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full min-[1280px]:h-auto p-2.5 max-[1279px]:relative max-[1279px]:after:absolute max-[1279px]:after:inset-x-0 max-[1279px]:after:-inset-y-1 max-[1279px]:after:content-[''] sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
+                  className="text-[10px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full min-[1170px]:h-auto p-2.5 max-[1169px]:relative max-[1169px]:after:absolute max-[1169px]:after:inset-x-0 max-[1169px]:after:-inset-y-1 max-[1169px]:after:content-[''] sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
                 >
                   {item?.label}
                 </Link>
               </div>
             ))}
           </div>
-          <div className="w-auto h-auto min-[1280px]:gap-2.5 3xl:gap-2.5 flex items-center ">
+          <div className="w-auto h-auto min-[1170px]:gap-2.5 3xl:gap-2.5 flex items-center ">
             {data?.topBar?.topBarLinkIcons?.map((item, index) => (
               <div key={item?.id} className="w-auto h-auto max-sm:hidden">
                 <Link
@@ -712,7 +712,7 @@ export default function Header({ data = local_data }) {
                 <SelectTrigger
                   className={cn(
                     TopHeaderTextStyle,
-                    "w-full !h-auto !p-0 border-0 gap-1.25 [&>svg]:text-bold [&>svg]:text-white max-[1279px]:[&>svg]:translate-y-[-1px]",
+                    "w-full !h-auto !p-0 border-0 gap-1.25 [&>svg]:text-bold [&>svg]:text-white max-[1169px]:[&>svg]:translate-y-[-1px]",
                   )}
                 >
                   <SelectValue
@@ -742,27 +742,27 @@ export default function Header({ data = local_data }) {
           Mobile: logos on the left, hamburger on the right. */}
       <div
         className={cn(
-          "w-full h-auto max-[1279px]:py-[15px_20px] min-[1280px]:border-b border-white/10",
+          "w-full h-auto max-[1169px]:py-[15px_20px] min-[1170px]:border-b border-white/10",
           // desktop only: animate the collapse with grid rows instead of display:none
-          "min-[1280px]:grid min-[1280px]:transition-[grid-template-rows] min-[1280px]:duration-300 min-[1280px]:ease-out",
+          "min-[1170px]:grid min-[1170px]:transition-[grid-template-rows] min-[1170px]:duration-300 min-[1170px]:ease-out",
           isScrolled
-            ? "min-[1280px]:grid-rows-[0fr] min-[1280px]:border-b-0"
-            : "min-[1280px]:grid-rows-[1fr]",
+            ? "min-[1170px]:grid-rows-[0fr] min-[1170px]:border-b-0"
+            : "min-[1170px]:grid-rows-[1fr]",
         )}
       >
         <div
           className={cn(
-            "min-[1280px]:min-h-0 min-[1280px]:overflow-hidden transition-opacity duration-300",
-            isScrolled ? "min-[1280px]:opacity-0" : "min-[1280px]:opacity-100",
+            "min-[1170px]:min-h-0 min-[1170px]:overflow-hidden transition-opacity duration-300",
+            isScrolled ? "min-[1170px]:opacity-0" : "min-[1170px]:opacity-100",
           )}
         >
           <div className="container">
             {/* CHANGED: no wrapping on mobile, so the hamburger stays on the same row as the logos */}
-            <div className="w-full h-auto min-[1280px]:py-3.75 2xl:py-5 flex max-[1279px]:flex-nowrap min-[1280px]:flex-wrap items-center justify-between max-[1279px]:gap-2">
+            <div className="w-full h-auto min-[1170px]:py-3.75 2xl:py-5 flex max-[1169px]:flex-nowrap min-[1170px]:flex-wrap items-center justify-between max-[1169px]:gap-2">
               {/* CHANGED: allowed to shrink on mobile */}
-              <div className="w-auto min-[1280px]:w-[38%] max-[1279px]:flex-1 max-[1279px]:min-w-0">
+              <div className="w-auto min-[1170px]:w-[38%] max-[1169px]:flex-1 max-[1169px]:min-w-0">
                 {/* CHANGED: tighter spacing on mobile, and no divider after the last visible logo (tagline is hidden on mobile) */}
-                <div className="w-full h-auto gap-3 -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 max-[1279px]:-mx-2 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 max-[1279px]:[&>div]:px-2 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 max-[1279px]:[&>div]:border-r-0! flex items-center">
+                <div className="w-full h-auto gap-3 -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 max-[1169px]:-mx-2 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 max-[1169px]:[&>div]:px-2 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 max-[1169px]:[&>div]:border-r-0! flex items-center">
                   {data?.logo?.mainlogo?.url && (
                     <div className="w-auto h-auto">
                       <Link
@@ -816,7 +816,7 @@ export default function Header({ data = local_data }) {
                     </div>
                   )}
                   {/* The tagline moves to the top bar on small screens. */}
-                  <div className="w-auto h-auto min-[1280px]:m-auto max-sm:hidden">
+                  <div className="w-auto h-auto min-[1170px]:m-auto max-sm:hidden">
                     <div
                       className="max-sm:text-[9px] text-[14px] 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white min-w-[ 65px] md:min-w-[130px]"
                       dangerouslySetInnerHTML={{
@@ -827,18 +827,18 @@ export default function Header({ data = local_data }) {
                 </div>
               </div>
               {/* CHANGED: w-auto + shrink-0 on mobile so the hamburger always stays visible on the right, opposite the logos */}
-              <div className="w-auto min-[1280px]:w-[55%] max-[1279px]:shrink-0">
-                <div className="w-full h-auto -mx-[2.5px] flex min-[1280px]:justify-end">
+              <div className="w-auto min-[1170px]:w-[55%] max-[1169px]:shrink-0">
+                <div className="w-full h-auto -mx-[2.5px] flex min-[1170px]:justify-end">
                   {data?.actionLinks?.map((item, index) => (
                     <div
                       key={index}
                       // Action pills are inside the hamburger menu below 1280px.
-                      className="w-auto h-auto px-[2.5px] max-[1279px]:hidden"
+                      className="w-auto h-auto px-[2.5px] max-[1169px]:hidden"
                     >
                       <Link
                         href={item?.url || "#"}
                         aria-label={item?.label}
-                        className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full min-[1280px]:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-[15px] border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
+                        className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full min-[1170px]:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-[15px] border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
                       >
                         {item?.label}
                       </Link>
@@ -848,10 +848,10 @@ export default function Header({ data = local_data }) {
                   <ApplyButtons
                     buttons={data?.applyButtons}
                     variant="desktop"
-                    className="max-[1279px]:hidden"
+                    className="max-[1169px]:hidden"
                   />
                   {/* CHANGED: hamburger is back here (mobile only), on the right side opposite the logos */}
-                  <div className="w-auto h-auto pl-0.75 max-[1279px]:flex hidden">
+                  <div className="w-auto h-auto pl-0.75 max-[1169px]:flex hidden">
                     <Sheet
                       open={isMobileMenuOpen}
                       onOpenChange={setIsMobileMenuOpen}
@@ -957,7 +957,7 @@ export default function Header({ data = local_data }) {
                               )}
                             </div>
                             <div className="flex items-center gap-1.5 shrink-0 ml-2">
-                              <ThemeToggle iconClassName="max-[1279px]:invert" />
+                              <ThemeToggle iconClassName="max-[1169px]:invert" />
                             </div>
                           </div>
 
@@ -1278,7 +1278,7 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
         notchSize,
         isMobile
           ? "h-11.25"
-          : "min-h-9 sm:min-h-10 min-[1280px]:min-h-0 min-[1280px]:h-10 3xl:h-12.5",
+          : "min-h-9 sm:min-h-10 min-[1170px]:min-h-0 min-[1170px]:h-10 3xl:h-12.5",
         className,
       )}
     >
@@ -1360,7 +1360,7 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1279px)");
+    const mediaQuery = window.matchMedia("(max-width: 1169px)");
     const update = () => setIsMobile(mediaQuery.matches);
     update();
     mediaQuery.addEventListener("change", update);

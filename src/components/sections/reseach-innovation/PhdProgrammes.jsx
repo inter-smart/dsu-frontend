@@ -29,8 +29,8 @@ export default function PhdProgrammes({ data }) {
             <div className="container">
 
                 {/* Hero */}
-                <div className="flex max-sm:gap-[20px] lg:gap-[25px] 2xl:gap-[35px] 3xl:gap-[45px] max-lg:flex-wrap mb-[25px] lg:mb-[40px] xl:mb-[60px] 3xl:mb-[80px]">
-                    <div className="w-full lg:w-1/2 flex items-center flex-1">
+                <div className="flex max-sm:gap-[20px] md:gap-[25px] 2xl:gap-[35px] 3xl:gap-[45px] max-md:flex-wrap mb-[25px] lg:mb-[40px] xl:mb-[60px] 3xl:mb-[80px]">
+                    <div className="w-full md:w-1/2 flex items-center flex-1">
                         <div className="w-full">
                             {data?.heading && (
                                 <h1 className="text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white">
@@ -46,7 +46,7 @@ export default function PhdProgrammes({ data }) {
                     </div>
 
                     {data?.media?.url && (
-                        <div className="w-full lg:w-[calc(50%-25px)] 2xl:w-[calc(50%-35px)] 3xl:w-[calc(50%-45px)]">
+                        <div className="w-full md:w-[calc(50%-25px)] 2xl:w-[calc(50%-35px)] 3xl:w-[calc(50%-45px)]">
                             <div className="group relative w-full h-full rounded-[10px] overflow-hidden after:absolute after:inset-0 after:pointer-events-none after:content-[''] after:bg-gradient-to-t after:from-black/35 after:to-transparent after:opacity-0 after:transition-opacity after:duration-500 hover:after:opacity-100">
                                 <Image
                                     src={data.media.url}

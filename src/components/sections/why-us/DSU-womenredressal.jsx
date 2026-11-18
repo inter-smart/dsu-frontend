@@ -1,7 +1,5 @@
 "use client";
-
 import { useState } from "react";
-
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link";
 import { fileLinkProps } from "@/lib/schools/link-props";
@@ -97,7 +95,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                     item.description.length > 0 && (
                       <div
                         className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] typography  mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
-                                         w-full  "
+                                        w-full  "
                       >
                         <BlocksRenderer content={item.description} />
                       </div>

@@ -255,7 +255,7 @@ function AcademicCard({ item }) {
                       <Link
                         href={safeHref(course?.link, "/academics")}
                         aria-label={course?.label}
-                        className="text-[13px] 2xl:text-[15px] leading-[1.25] font-normal text-white w-auto h-auto max-w-full p-[5px_10px] bg-black/10 rounded-[16px] border border-white/20 transition duration-500 inline-block hover:text-white hover:bg-(--basecolor2) hover:border-(--basecolor2)"
+                        className="text-[13px] 2xl:text-[15px] leading-[1.25] font-normal text-white w-auto h-auto max-w-full p-[5px_10px] bg-black/10 rounded-[16px] border border-white/20 transition duration-500 inline-block hover:text-white hover:bg-[#ffffff4d] hover:border-[#ffffff4d]"
                       >
                         {course?.label}
                       </Link>
