@@ -8,7 +8,7 @@ export default function WhyusAQAR({ data }) {
     const defaultTab = data.yearFilters[0]?.slug;
 
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[120px]">
+        <section className="relative py-[30px] xl:py-[30px] 2xl:py-[40px] 3xl:py-[60px]">
             <div className="container">
                 <div className="mb-[45px]">
                     <h2 className="cmn_Title">{data.heading}</h2>
