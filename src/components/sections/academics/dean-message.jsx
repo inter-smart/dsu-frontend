@@ -3,7 +3,6 @@ import Image from "next/image";
 import AcademicCta from "./academic-cta";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
-import AcademicCta from "./academic-cta";
 export default function DeanMessage({ data, varient, hideSignature }) {
     if (!data) return null;
 
