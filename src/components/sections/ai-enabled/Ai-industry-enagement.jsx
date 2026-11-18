@@ -3,6 +3,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid, Autoplay } from "swiper/modules";
 import Image from "next/image";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 import "swiper/css";
 import "swiper/css/grid";
@@ -17,8 +18,16 @@ export default function AiIndustryEngagement({ data }) {
                             {data.heading}
                         </div>
                     )}
-                    {data?.description && (
-                        <p className="mb-[30px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
+                    {Array.isArray(data?.description) ? (
+                        data.description.length > 0 && (
+                            <div className="mb-[30px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                <BlocksRenderer content={data.description} />
+                            </div>
+                        )
+                    ) : (
+                        data?.description && (
+                            <p className="mb-[30px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
+                        )
                     )}
 
                     <div className={`w-full relative  `}>

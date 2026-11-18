@@ -1,6 +1,7 @@
 "use client";
 
 import { ctaLinkProps } from "@/lib/schools/link-props";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
  
 
@@ -35,7 +36,15 @@ export default function AcademicCollaboration({ data, varient }) {
                     </div>
                     <div className="w-full max-lg:mb-[20px]">
                         {data.heading && <div className="cmn_Title mb-[25px]">{data.heading}</div>}
-                        {data.description && <p className="dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>}
+                        {Array.isArray(data.description) ? (
+                            data.description.length > 0 && (
+                                <div className="dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                    <BlocksRenderer content={data.description} />
+                                </div>
+                            )
+                        ) : (
+                            data.description && <p className="dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
+                        )}
                         {cta?.url && (
                             <a
                                 href={cta.url}
