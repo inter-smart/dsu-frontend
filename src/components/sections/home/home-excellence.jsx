@@ -3,13 +3,21 @@ import Image from "@/components/ui/safe-image";
 import Link from "next/link";
 import { safeHref } from "@/lib/utils";
 import { Text } from "@/components/ui/text";
-import { startTransition, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react"; // CHANGED: added startTransition
+import {
+  startTransition,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react"; // CHANGED: added startTransition
 import { Heading } from "@/components/ui/heading";
 import { buttonVariants } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
 
 // Pinned scroll-scrub needs room to pin (desktop-size viewport) and is skipped for reduced motion.
-const PIN_QUERY = "(min-width: 1024px) and (min-height: 530px) and (prefers-reduced-motion: no-preference)";
+const PIN_QUERY =
+  "(min-width: 1024px) and (min-height: 530px) and (prefers-reduced-motion: no-preference)";
 const subscribePin = (cb) => {
   const mql = window.matchMedia(PIN_QUERY);
   mql.addEventListener("change", cb);
@@ -94,7 +102,10 @@ export default function HomeExcellence({ data }) {
       total = el.offsetHeight - pin;
     };
     const getRaw = () => {
-      const progress = total > 0 ? Math.min(1, Math.max(0, (window.scrollY - startY) / total)) : 0;
+      const progress =
+        total > 0
+          ? Math.min(1, Math.max(0, (window.scrollY - startY) / total))
+          : 0;
       return progress * (count - 1);
     };
     const getTarget = () => withDwell(getRaw());
@@ -114,8 +125,12 @@ export default function HomeExcellence({ data }) {
             ? `translate3d(0, calc(-1 * ${stackIndex} * var(--stack-gap)), 0) scale(${1 - stackIndex * 0.08})`
             : `translate3d(0, calc(-${VISIBLE_CARDS} * var(--stack-gap)), 0) scale(${1 - VISIBLE_CARDS * 0.08})`;
         // Exiting card must sit above the whole stack (stack z tops out at count * 100).
-        node.style.zIndex = passed ? (count + 1) * 100 : Math.round((count - stackIndex) * 100);
-        node.style.opacity = passed ? Math.min(1, Math.max(0, (1 + pos) * 6)) : Math.min(1, Math.max(0, VISIBLE_CARDS - pos));
+        node.style.zIndex = passed
+          ? (count + 1) * 100
+          : Math.round((count - stackIndex) * 100);
+        node.style.opacity = passed
+          ? Math.min(1, Math.max(0, (1 + pos) * 6))
+          : Math.min(1, Math.max(0, VISIBLE_CARDS - pos));
       }
       // Only touch React state when the active card actually changes.
       const idx = Math.round(t);
@@ -185,7 +200,12 @@ export default function HomeExcellence({ data }) {
         tryUnlock();
       };
       if (typeof window.lenis?.scrollTo === "function") {
-        window.lenis.scrollTo(y, { duration: STEP_MS / 1000, easing: (t) => t, force: true, onComplete: done });
+        window.lenis.scrollTo(y, {
+          duration: STEP_MS / 1000,
+          easing: (t) => t,
+          force: true,
+          onComplete: done,
+        });
         return;
       }
       const from = window.scrollY;
@@ -272,9 +292,15 @@ export default function HomeExcellence({ data }) {
       touchDone = true;
       go(Math.round(getRaw()) + dir);
     };
-    window.addEventListener("wheel", onWheel, { passive: false, capture: true });
+    window.addEventListener("wheel", onWheel, {
+      passive: false,
+      capture: true,
+    });
     window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: false, capture: true });
+    window.addEventListener("touchmove", onTouchMove, {
+      passive: false,
+      capture: true,
+    });
 
     // ADDED: when fonts/images/content above the section change the page height, the section moves
     // without a scroll event. Re-sync the cards so the pin never looks out of step.
@@ -368,17 +394,25 @@ export default function HomeExcellence({ data }) {
   return (
     <section
       ref={trackRef}
-      style={pinned ? { height: `calc(100vh + ${(count - 1) * SCRUB_VH_PER_CARD}vh)` } : undefined}
+      style={
+        pinned
+          ? { height: `calc(100vh + ${(count - 1) * SCRUB_VH_PER_CARD}vh)` }
+          : undefined
+      }
       className="w-full h-auto dark:bg-[#101010] block"
     >
       <div
-        className={`w-full overflow-hidden ${pinned
+        className={`w-full overflow-hidden ${
+          pinned
             ? "sticky top-0 h-screen py-5 flex items-center"
             : "h-auto block py-[40px_50px] sm:py-[50px_70px] lg:py-[70px_90px] 2xl:py-[80px_110px] 3xl:py-[100px_140px]"
-          }`}
+        }`}
       >
         <div className="container">
-          <div data-reveal className="w-full h-auto mb-12.5 sm:mb-17.5 lg:mb-20 2xl:mb-25 3xl:mb-30">
+          <div
+            data-reveal
+            className="w-full h-auto mb-12.5 sm:mb-17.5 lg:mb-20 2xl:mb-25 3xl:mb-30"
+          >
             <Heading
               as="h2"
               aurora
@@ -390,9 +424,12 @@ export default function HomeExcellence({ data }) {
             </Heading>
             <Text className="text-center">{data?.description}</Text>
           </div>
-          <div data-reveal="fade" className="w-full h-auto lg:-mx-2.5 2xl:-mx-3.75 3xl:-mx-5 lg:[&>*]:px-2.5 2xl:[&>*]:px-3.75 3xl:[&>*]:px-5 flex flex-wrap">
+          <div
+            data-reveal="fade"
+            className="w-full h-auto lg:-mx-2.5 2xl:-mx-3.75 3xl:-mx-5 lg:[&>*]:px-2.5 2xl:[&>*]:px-3.75 3xl:[&>*]:px-5 flex flex-wrap"
+          >
             <div className="w-full lg:w-[25%] max-lg:order-3">
-              <div className="w-full h-full gap-2.5 lg:gap-3.75 2xl:gap-5 3xl:gap-7.5 max-lg:grid max-lg:grid-cols-2 lg:flex flex-col justify-between">
+              <div className="w-full h-auto gap-2.5 lg:gap-3.75 2xl:gap-5 3xl:gap-7.5 max-lg:grid max-lg:grid-cols-2 lg:flex flex-col justify-between">
                 {activeSpecifications?.map((item, index) => (
                   <div
                     key={`${activeItem?.id ?? activeIndex}-spec-${item?.title ?? index}`}
@@ -422,7 +459,7 @@ export default function HomeExcellence({ data }) {
                 onMouseLeave={handleMouseUp}
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
-                className="w-full min-w-0 h-full block"
+                className="w-full min-w-0 h-auto block"
               >
                 <div className="[--navigation-btn-size:35px] sm:[--navigation-btn-size:45px] w-full h-full aspect-875/450 relative z-0">
                   {items?.map((item, index) => {
@@ -436,24 +473,32 @@ export default function HomeExcellence({ data }) {
                         ref={(el) => {
                           cardRefs.current[index] = el;
                         }}
-                        className={`[--stack-gap:15px] sm:[--stack-gap:25px] 2xl:[--stack-gap:30px] 3xl:[--stack-gap:35px] w-full h-full rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden absolute z-1 inset-0 ${pinned ? "" : "transition-all duration-1000"}`}
+                        className={`[--stack-gap:15px] sm:[--stack-gap:25px] 2xl:[--stack-gap:30px] 3xl:[--stack-gap:35px] w-full h-full aspect-875/450 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden absolute z-1 inset-0 ${pinned ? "" : "transition-all duration-1000"}`}
                         style={
                           pinned
-                            ? { pointerEvents: "none", willChange: "transform, opacity" }
+                            ? {
+                                pointerEvents: "none",
+                                willChange: "transform, opacity",
+                              }
                             : {
-                              transform: isVisible
-                                ? `translateY(calc(-1 * ${stackIndex} * var(--stack-gap))) scale(${1 - stackIndex * 0.08})`
-                                : `translateY(calc(-${VISIBLE_CARDS} * var(--stack-gap))) scale(${1 - VISIBLE_CARDS * 0.08})`,
-                              zIndex: Math.round((items.length - stackIndex) * 100),
-                              opacity: isVisible ? 1 : 0,
-                              pointerEvents: "none",
-                            }
+                                transform: isVisible
+                                  ? `translateY(calc(-1 * ${stackIndex} * var(--stack-gap))) scale(${1 - stackIndex * 0.08})`
+                                  : `translateY(calc(-${VISIBLE_CARDS} * var(--stack-gap))) scale(${1 - VISIBLE_CARDS * 0.08})`,
+                                zIndex: Math.round(
+                                  (items.length - stackIndex) * 100,
+                                ),
+                                opacity: isVisible ? 1 : 0,
+                                pointerEvents: "none",
+                              }
                         }
                       >
                         {item?.excellenceImage?.url && (
                           <Image
                             src={item.excellenceImage.url}
-                            alt={item.excellenceImage.alternativeText || "Excellence Image"}
+                            alt={
+                              item.excellenceImage.alternativeText ||
+                              "Excellence Image"
+                            }
                             fill
                             sizes="(max-width: 1024px) 100vw, 875px"
                             className="h-full w-full object-cover select-none"
@@ -493,7 +538,7 @@ export default function HomeExcellence({ data }) {
               </div>
             </div>
             <div className="w-full lg:w-[25%] max-lg:mb-3.75 max-lg:order-2">
-              <div className="w-full h-full flex">
+              <div className="w-full h-auto flex">
                 <div
                   key={activeItem?.id}
                   className="animate-in fade-in slide-in-from-right-3 w-auto h-auto"
@@ -511,7 +556,9 @@ export default function HomeExcellence({ data }) {
                           Powered By
                           <span className="w-17.5 sm:w-27.5 2xl:w-32.5 3xl:w-40 h-auto aspect-160/30 overflow-hidden block">
                             <Image
-                              src={activeItem.excellenceContent.poweredImage.url}
+                              src={
+                                activeItem.excellenceContent.poweredImage.url
+                              }
                               alt={
                                 activeItem.excellenceContent.poweredImage
                                   .alternativeTxt || "Powered By"
@@ -523,12 +570,21 @@ export default function HomeExcellence({ data }) {
                           </span>
                         </div>
                       )}
-                      <Text>{activeItem?.excellenceContent?.description}</Text>
+                      <Text
+                        className={
+                          "lg:text-[14px]! 2xl:text-[16px]! 3xl:text-[18px]!"
+                        }
+                      >
+                        {activeItem?.excellenceContent?.description}
+                      </Text>
                     </div>
                     {activeItem?.excellenceContent?.button?.label?.trim() && (
                       <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25 max-lg:hidden">
                         <Link
-                          href={safeHref(activeItem?.excellenceContent?.button?.link, "/NVIDIA")}
+                          href={safeHref(
+                            activeItem?.excellenceContent?.button?.link,
+                            "/NVIDIA",
+                          )}
                           className={buttonVariants({
                             variant: "default",
                             size: "default",
@@ -553,7 +609,10 @@ export default function HomeExcellence({ data }) {
             {activeItem?.excellenceContent?.button?.label?.trim() && (
               <div className="mt-5 max-lg:block hidden max-lg:order-4">
                 <Link
-                  href={safeHref(activeItem?.excellenceContent?.button?.link, "/NVIDIA")}
+                  href={safeHref(
+                    activeItem?.excellenceContent?.button?.link,
+                    "/NVIDIA",
+                  )}
                   className={buttonVariants({
                     variant: "default",
                     size: "default",

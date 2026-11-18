@@ -27,13 +27,27 @@ function cleanHero(hero) {
 export default function AboutPageView({ pageData }) {
   return (
     <>
-      {hasContent(pageData.hero) && <InnerHero data={cleanHero(pageData.hero)} />}
-      {hasContent(pageData.welcomeSection) && <AboutWelcome data={pageData.welcomeSection} />}
-      {hasContent(pageData.legacySection) && <AboutLegacy data={pageData.legacySection} />}
-      {hasContent(pageData.aboutVision) && <AboutVision data={pageData.aboutVision} />}
-      {hasContent(pageData.historySection) && <AboutHistory data={pageData.historySection} />}
-      {hasContent(pageData.leadershipSection) && <AboutLeadership data={pageData.leadershipSection} />}
-      {hasContent(pageData.recognitionSection) && <AboutRecognition data={pageData.recognitionSection} />}
+      {hasContent(pageData.hero) && (
+        <InnerHero data={cleanHero(pageData.hero)} />
+      )}
+      {hasContent(pageData.welcomeSection) && (
+        <AboutWelcome data={pageData.welcomeSection} />
+      )}
+      {hasContent(pageData.legacySection) && (
+        <AboutLegacy data={pageData.legacySection} />
+      )}
+      {hasContent(pageData.aboutVision) && (
+        <AboutVision data={pageData.aboutVision} />
+      )}
+      {hasContent(pageData.historySection) && (
+        <AboutHistory data={pageData.historySection} />
+      )}
+      {hasContent(pageData.leadershipSection) && (
+        <AboutLeadership data={pageData.leadershipSection} />
+      )}
+      {hasContent(pageData.recognitionSection) && (
+        <AboutRecognition data={pageData.recognitionSection} />
+      )}
       {hasContent(pageData.accreditationSection) && (
         <AccreditationSlider data={pageData.accreditationSection} />
       )}

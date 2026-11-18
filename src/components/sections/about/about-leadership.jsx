@@ -112,7 +112,7 @@ export default function AboutLeadership({ data }) {
             )}
           </div>
         )}
-        <div className="grid gap-[12px] md:grid-cols-2 lg:gap-[20px] 3xl:gap-[28px]">
+        <div className="grid gap-[12px] xl:grid-cols-2 lg:gap-[20px] 3xl:gap-[28px]">
           {featuredLeaders.map((item, id) => (
             <LeaderCard key={id} item={item} featured />
           ))}
