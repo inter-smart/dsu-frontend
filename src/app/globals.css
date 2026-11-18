@@ -68,6 +68,7 @@ html.lenis body {
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
   --animate-shine: shine var(--duration) infinite linear;
+
   @keyframes shine {
     0% {
       background-position: 0% 0%;
@@ -318,7 +319,15 @@ html.lenis body {
     ol > li {
       @apply list-decimal text-(--text-color);
     }
-
+    a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding-inline: 3px;
+      @apply text-(--basecolor);
+    }
+    a:hover {
+      @apply text-(--basecolor2);
+    }
     caption {
       @apply pb-2 text-left text-[13px] font-medium opacity-80;
 
