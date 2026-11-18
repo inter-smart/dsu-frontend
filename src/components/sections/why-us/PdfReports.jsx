@@ -3,7 +3,7 @@ import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { fileLinkProps } from "@/lib/schools/link-props";
 
 // PDF Reports section: one PDF shown in an iframe, or a plain list of PDFs (no year tabs).
-export default function PdfReports({ data }) {
+export default function PdfReports({ data, slug }) {
     const isIframe = data.displayMode === "iframe" && data.iframePdf?.url;
     const documents = data.documents || [];
     // description is Rich Text (Blocks)
@@ -24,7 +24,7 @@ export default function PdfReports({ data }) {
                 )}
 
                 {isIframe ? (
-                    <div className="w-full max-w-[60%] m-auto">
+                    <div className={`w-full max-w-[60%] ${slug === "research-update" ? "" : "m-auto"}`}>
                         <iframe
                             src={data.iframePdf.url}
                             title={data.heading || data.iframePdf.alternativeText || "PDF report"}

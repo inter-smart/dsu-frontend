@@ -4,7 +4,7 @@ import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 import AcademicCta from "./academic-cta";
-export default function DeanMessage({ data, varient }) {
+export default function DeanMessage({ data, varient, hideSignature }) {
     if (!data) return null;
 
     const {
@@ -117,7 +117,7 @@ export default function DeanMessage({ data, varient }) {
                     {/* Bottom Signature / Featured Person Block */}
                     {featuredPerson && (
                         <div
-                            className={`items-stretch gap-3 xl:gap-3.5 mt-[20px] xl:mt-[25px] ${varient === "home" ? "hidden" : "flex"
+                            className={`items-stretch gap-3 xl:gap-3.5 mt-[20px] xl:mt-[25px] ${varient === "home" || hideSignature ? "hidden" : "flex"
                                 }`}
                         >
                             {/* Orange/Red Vertical Bar */}
