@@ -26,7 +26,7 @@ export default function AcademicProgram({ data, variant }) {
                     {data.categories?.map((item, id) => (
                         <div
                             key={id}
-                            className={`mb-[30px] ${variant === "aiprogram" ? "w-full pb-[35px] lg:pb-[45px] xl:pb-[65px] last-of-type:pb-0 not-last-of-type:border-b border-black/10 dark:border-white/10" : "w-full sm:w-1/2"}`}
+                            className={`mb-[40px] ${variant === "aiprogram" ? "w-full pb-[35px] lg:pb-[45px] xl:pb-[65px] last-of-type:pb-0 not-last-of-type:border-b border-black/10 dark:border-white/10" : "w-full sm:w-1/2"}`}
                         >
                             {(item.badge || item.label) && (
                                 <div className="flex items-center gap-[10px] mb-[15px] xl:mb-[20px] 2xl:mb-[25px] 3xl:mb-[40px]">

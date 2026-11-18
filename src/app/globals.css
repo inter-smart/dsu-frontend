@@ -339,7 +339,7 @@ html.lenis body {
       @apply my-1 lg:my-1.5 
         }
     ul{
-      @apply  !ml-4 my-5
+      @apply  !ml-4 my-5 pl-[10px]
     }
     ul > li {
       @apply list-disc text-(--text-color);
@@ -348,7 +348,7 @@ html.lenis body {
       @apply  block hover:text-[#f97316];
     }
     ol {
-      @apply !ml-4;
+      @apply  !ml-4 my-5 pl-[10px]
     }
     ol > li {
       @apply list-decimal text-(--text-color);
@@ -823,4 +823,7 @@ body:has(.balckHeader) header {
 }
 strong, b{
   font-weight: 600;
+}
+a:hover{
+  color: #F97316;
 }
