@@ -2000,19 +2000,8 @@ export default async function Home() {
           )}
         />
       )}
-      {!hidden("researchInnovation") && (
-        <HomeResearch data={local.researchInnovation} />
-      )}
-      {!hidden("industryCollaboration") && (
-        <HomeIndustry
-          data={{
-            ...local.industryCollaboration,
-            button:
-              cms?.industryCollaboration?.button ??
-              local.industryCollaboration.button,
-          }}
-        />
-      )}
+      {!hidden("researchInnovation") && <HomeResearch data={researchInnovation} />}
+      {!hidden("industryCollaboration") && <HomeIndustry data={industryCollaboration} />}
       {!hidden("homeAbout") && <HomeAbout data={homeAbout} />}
       {!hidden("studentSuccess") && (
         <HomeTestimonials

@@ -72,11 +72,11 @@ export default function InnerHero({ data, placementMenuItems, className }) {
     <section
       className={cn(
         "relative z-0 block w-full",
-        data?.heroMedia && heightClass,
+        hasHeroMedia && heightClass,
         className,
       )}
     >
-      {data?.heroMedia ? (
+      {hasHeroMedia ? (
         <>
           {/* Background Media */}
           <div className="absolute inset-0 z-0 h-full w-full">
