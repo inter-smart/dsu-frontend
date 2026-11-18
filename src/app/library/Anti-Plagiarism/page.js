@@ -42,7 +42,7 @@ const local_data = {
         ],
     },
 
-    menu: [/* same menu data you pass to AboutLibrary */],
+    
 };
 
 export default function page() {
