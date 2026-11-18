@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "@/components/ui/safe-image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { ctaLinkProps } from "@/lib/schools/link-props";
 import { hasContent } from "@/lib/has-content";
@@ -33,18 +34,26 @@ export default function IntlTextCTASection({ data }) {
     if (!hasDescription && !showCta && !showWhatsapp) return null;
 
     return (
-        <section className="relative py-[40px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[75px] bg-white dark:bg-[#101010] transition-colors duration-300">
+        <section className="relative z-0 block h-auto w-full py-12.5 lg:py-15 xl:py-20 2xl:py-30">
+            <Image
+                src={data.backgroundImage?.url || "/images/home-journey.webp"}
+                fill
+                sizes="100vw"
+                alt=""
+                className="-z-2 object-cover"
+            />
+            <div className="pointer-events-none absolute inset-0 -z-1 bg-black/70 dark:bg-linear-to-r dark:from-(--basecolor)/60 dark:to-(--basecolor2)/60" />
             <div className="container">
-                <div className="relative w-full overflow-hidden rounded-[12px] xl:rounded-[16px] bg-gradient-to-b from-[#FFF8EE] to-[#FFF1E0] dark:from-[#18191B] dark:to-[#18191B] px-[20px] py-[40px] sm:px-[40px] xl:py-[70px] 2xl:py-[80px] 3xl:py-[100px] text-center">
+                <div className="relative w-full text-center">
                     <div className="mx-auto flex max-w-[1000px] 3xl:max-w-[1200px] flex-col items-center">
                         {data?.heading && (
-                            <h2 className="text-[26px] sm:text-[34px] xl:text-[46px] 2xl:text-[54px] 3xl:text-[66px] font-bold leading-[1.15] mb-[12px] xl:mb-[16px] text-[#212121] dark:text-white">
+                            <h2 className="text-[22px] sm:text-[26px] lg:text-3xl xl:text-[37px] 2xl:text-[55px] font-bold leading-normal mb-2.5 2xl:mb-3.75 text-white">
                                 {data.heading}
                             </h2>
                         )}
 
                         {hasDescription && (
-                            <div className="text_1 leading-[1.4] text-[#4A5565] dark:text-[#9CA3AF] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] mb-[25px] xl:mb-[30px] 3xl:mb-[40px] typography">
+                            <div className="text_1 leading-[1.4] text-[#FFF2F2] [&_p]:text-[#FFF2F2] [&_a]:text-white [&_a]:underline mb-3.75 2xl:mb-6.25 typography">
                                 {renderText(data.description)}
                             </div>
                         )}
@@ -55,7 +64,7 @@ export default function IntlTextCTASection({ data }) {
                                     <Link
                                         href={data.cta.url}
                                         {...ctaLinkProps(data.cta)}
-                                        className="group relative flex h-[40px] w-fit min-w-[140px] items-center justify-center gap-[12px] overflow-hidden rounded-[4px] bg-gradient-to-r from-[#DC2626] to-[#F97316] px-[20px] text_1 font-bold text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[46px] xl:min-w-[161px] 2xl:h-[50px] 3xl:h-[60px] 3xl:min-w-[200px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
+                                        className="group flex h-[40px] w-fit min-w-[140px] items-center justify-center gap-[12px] rounded-[3px] bg-white px-[20px] text_1 font-bold text-[#E05128] transition-all duration-500 hover:-translate-y-[2px] hover:bg-(--basecolor)/10 hover:shadow-[0_8px_25px_rgba(0,0,0,0.2)] xl:h-[46px] xl:min-w-[161px] xl:rounded-[5px] 2xl:h-[50px] 3xl:h-[60px] 3xl:min-w-[200px]"
                                     >
                                         <span className="relative z-[1] transition-transform duration-300 group-hover:translate-x-[-2px]">
                                             {data.cta.label}
@@ -71,11 +80,11 @@ export default function IntlTextCTASection({ data }) {
                                                 className="transition-transform duration-300 group-hover:rotate-180"
                                                 aria-hidden="true"
                                             >
-                                                <circle cx="5.12232" cy="0.919192" r="0.919192" fill="white" />
-                                                <circle cx="5.12232" cy="4.33325" r="0.919192" fill="white" />
-                                                <circle cx="5.12232" cy="7.74732" r="0.919192" fill="white" />
-                                                <circle cx="9.32349" cy="4.33325" r="0.919192" fill="white" />
-                                                <circle cx="0.919192" cy="4.33325" r="0.919192" fill="white" />
+                                                <circle cx="5.12232" cy="0.919192" r="0.919192" fill="currentColor" />
+                                                <circle cx="5.12232" cy="4.33325" r="0.919192" fill="currentColor" />
+                                                <circle cx="5.12232" cy="7.74732" r="0.919192" fill="currentColor" />
+                                                <circle cx="9.32349" cy="4.33325" r="0.919192" fill="currentColor" />
+                                                <circle cx="0.919192" cy="4.33325" r="0.919192" fill="currentColor" />
                                             </svg>
                                         </div>
                                     </Link>

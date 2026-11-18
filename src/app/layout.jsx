@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Roboto, Roboto_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import Header from "@/components/layout/header-new-copy";
+import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import SmoothScrollProvider from "@/components/providers/smooth-scroll-provider";
 import { getHeader, getFooter } from "@/lib/api/layout";

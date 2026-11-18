@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import TiltCard from "@/components/ui/tilt-card";
 
 // CHANGED: shared list styles so editor lists look like the points list
 const richTextLists = [
@@ -50,14 +51,14 @@ export default function AcademicVisionMission({ data }) {
                 </div>
             )}
             <div className="container relative z-20">
-                <div className={`relative  overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 min-h-[520px] max-lg:gap-[10px] ${richTextLists}`}>
+                <div className={`relative shadow-2xl grid grid-cols-1 lg:grid-cols-12 min-h-[520px] max-lg:gap-[10px] ${richTextLists}`}>
 
                     {/* LEFT COLUMN: Eyebrow, Heading & Mission */}
                     {/* CHANGED: added after:pointer-events-none */}
                     <div className="lg:col-span-5 flex flex-col justify-between relative z-10 py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px]
-                     max-lg:py-[30px]  max-lg:px-[15px] relative
-                    after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-full after:max-lg:bg-[rgba(0,0,0,0.3)] after:pointer-events-none">
-                        <div className="lg:max-w-[85%] w-full">
+                     max-lg:p-0! relative
+                    after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-full after:pointer-events-none">
+                        <div className="lg:max-w-[85%] w-full relative z-10">
                             <div>
                                 {/* Eyebrow */}
                                 {eyebrow && (
@@ -79,10 +80,11 @@ export default function AcademicVisionMission({ data }) {
 
                             {/* Mission Box */}
                             {mission && (
-                                <div className="mt-auto lg:pt-[20px] group">
+                                <div className="mt-auto lg:pt-[20px] [perspective:1100px]">
+                                  <TiltCard className="[&_p]:text-white">
                                     {/* Mission Icon */}
                                     {/* CHANGED: group-hover:bg-gradient-to-r -> group-hover:bg-linear-to-r */}
-                                    {(mission.icon?.url || mission.icon?.icon) && <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[65px] 3xl:w-[78px] bg-white/20 flex border border-white rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
+                                    {(mission.icon?.url || mission.icon?.icon) && <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[65px] 3xl:w-[78px] bg-white/20 flex border border-white rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] [transform:translateZ(40px)]
                                        group-hover:bg-linear-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316]">
                                         <Image src={mission.icon.url || mission.icon.icon} width={78} height={65} className="w-[19px] xl:w-[21px] 2xl:w-[25px] 3xl:w-[34px]" alt={mission.icon.alternativeText || mission.heading || ""} /></div>}
 
@@ -95,6 +97,7 @@ export default function AcademicVisionMission({ data }) {
 
                                     {/* Mission Description */}
                                     <Description value={mission.description} className="text_1 text-white font-normal" />
+                                  </TiltCard>
                                 </div>
                             )} 
                         </div>
@@ -102,17 +105,18 @@ export default function AcademicVisionMission({ data }) {
 
                     {/* RIGHT COLUMN: Vision & Points with Background Image Overlay */}
                     {/* CHANGED: added after:pointer-events-none */}
-                    <div className="lg:col-span-7 relative flex flex-col justify-center py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] px-[15px] md:px-[25px] lg:px-[35px] xl:px-[45px] 2xl:px-[55px] 3xl:px-[65px] relative
-                    after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-full after:bg-[rgba(0,0,0,0.3)] after:lg:bg-[rgba(132,132,132,0.1)] after:pointer-events-none">
+                    <div className="lg:col-span-7 relative flex flex-col justify-center py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] px-[15px] md:px-[25px] lg:px-[35px] xl:px-[45px] 2xl:px-[55px] 3xl:px-[65px] max-lg:p-0! relative
+                    after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-full after:lg:bg-[rgba(132,132,132,0.1)] after:pointer-events-none">
 
 
 
                         {/* Vision Content */}
                         {vision && (
-                            <div className="relative z-10 group">
+                            <div className="relative z-10 max-lg:[perspective:1100px]">
+                              <TiltCard maxLg className="[&_p]:text-white">
                                 {/* Vision Icon (Orange Gradient Box) */}
                                 {/* CHANGED: group-hover:bg-gradient-to-r -> group-hover:bg-linear-to-r */}
-                                {vision.icon?.url && <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[62px] 3xl:w-[78px] flex border border-white bg-white/20 rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px]
+                                {vision.icon?.url && <div className="w-[40px] h-[35px] xl:w-[52px] xl:h-[42px] 2xl:w-[62px] 2xl:h-[52px] 3xl:h-[62px] 3xl:w-[78px] flex border border-white bg-white/20 rounded-[6px] xl:rounded-[7px] 2xl:rounded-[8px] 3xl:rounded-[10px] flex items-center justify-center mb-[20px] 2xl:mb-[25px] 3xl:mb-[30px] max-lg:[transform:translateZ(40px)]
                                     group-hover:bg-linear-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316]">
                                     <Image src={vision.icon.url} width={78} height={65} alt={vision.icon.alternativeText || vision.heading || ""} className="max-w-[19px] xl:max-w-[21px] 2xl:max-w-[25px] 3xl:max-w-[34px] " /></div>}
 
@@ -144,7 +148,8 @@ export default function AcademicVisionMission({ data }) {
                                             </li>
                                         ))}
                                     </ul>
-                                )} 
+                                )}
+                              </TiltCard>
                             </div>
                         )}
 
