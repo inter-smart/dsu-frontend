@@ -8,6 +8,8 @@ import { FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 
+const MONTH_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
 export default function AcademicFacultyAchievements({ data }) {
     const [swiper, setSwiper] = useState(null);
     const [showNav, setShowNav] = useState(false);
@@ -52,27 +54,61 @@ export default function AcademicFacultyAchievements({ data }) {
         data?.tabToggle?.options?.find((opt) => opt.isActive)?.id || 1
     );
 
-    // Active Month Filter Pill
+    // Active Month Filter Pill (id for the static pages, value for CMS-driven pills)
     const defaultFilterId = (data?.monthFilters?.find((m) => m.isActive) ?? data?.monthFilters?.[0])?.id;
     const [selectedFilterId, setSelectedFilterId] = useState(defaultFilterId);
+    const [selectedValue, setSelectedValue] = useState(null);
 
     const activeTab = useMemo(() => {
         return data?.tabToggle?.options?.find((opt) => opt.id === activeTabId);
     }, [data, activeTabId]);
 
+    // Items of the active tab: Student tab shows category "student", the other tab everything else
+    const pool = useMemo(() => {
+        const studentTab = activeTab && activeTab.label.toLowerCase().includes("student");
+        return (data?.achievements ?? []).filter((item) =>
+            studentTab ? item.category === "student" : item.category !== "student"
+        );
+    }, [data, activeTab]);
+
+    // CMS items carry a monthKey ("YYYY-MM"): the pills come from the months the active tab
+    // actually has items for (newest 6 as "Mon YYYY", older ones grouped per year).
+    const cmsMode = useMemo(() => (data?.achievements ?? []).some((a) => a.monthKey), [data]);
+    const monthFilters = useMemo(() => {
+        if (!cmsMode) return data?.monthFilters ?? [];
+        const keys = [...new Set(pool.map((a) => a.monthKey).filter(Boolean))].sort().reverse();
+        const pills = keys.slice(0, 6).map((k) => {
+            const [y, m] = k.split("-");
+            return { value: k, label: `${MONTH_SHORT[Number(m) - 1]} ${y}` };
+        });
+        for (const k of keys.slice(6)) {
+            const y = k.slice(0, 4);
+            if (!pills.some((p) => p.value === y)) pills.push({ value: y, label: y });
+        }
+        return pills.map((p, i) => ({ ...p, id: i + 1 }));
+    }, [cmsMode, pool, data]);
+
     const selectedFilter = useMemo(() => {
-        return data?.monthFilters?.find((m) => m.id === selectedFilterId);
-    }, [data, selectedFilterId]);
+        if (cmsMode) return monthFilters.find((m) => m.value === selectedValue) ?? monthFilters[0];
+        return monthFilters.find((m) => m.id === selectedFilterId);
+    }, [cmsMode, monthFilters, selectedValue, selectedFilterId]);
+
+    // pills change with the tab: back to the first pill
+    useEffect(() => {
+        if (swiper && !swiper.destroyed && cmsMode) {
+            swiper.slideTo(0, 0);
+            swiper.update();
+            syncNav(swiper);
+        }
+    }, [monthFilters, swiper, cmsMode]);
 
     // Filter achievements dynamically based on selected tab and month/year
     const filteredAchievements = useMemo(() => {
         if (!data?.achievements) return [];
 
-        // Student tab shows items marked category "student", the other tab everything else
-        const studentTab = activeTab && activeTab.label.toLowerCase().includes("student");
-        const pool = data.achievements.filter((item) =>
-            studentTab ? item.category === "student" : item.category !== "student"
-        );
+        if (cmsMode) {
+            return selectedFilter ? pool.filter((item) => item.monthKey?.startsWith(selectedFilter.value)) : [];
+        }
 
         if (!selectedFilter) return pool;
 
@@ -98,7 +134,7 @@ export default function AcademicFacultyAchievements({ data }) {
                 return dateStr.includes(token);
             });
         });
-    }, [data, selectedFilter, activeTab]);
+    }, [data, selectedFilter, pool, cmsMode]);
 
     // Early return sits after all hooks (hooks must not be called conditionally)
     if (!data) return null;
@@ -135,7 +171,7 @@ export default function AcademicFacultyAchievements({ data }) {
                 </div>
 
                 {/* Filter Pills Swiper Row (June 2026 ... 2023) with Nav Buttons */}
-                {data?.monthFilters?.length > 0 && (
+                {monthFilters.length > 0 && (
                     <div className="relative mb-10 xl:mb-14 flex items-center gap-2 sm:gap-3">
                         {/* Prev Arrow Navigation Button */}
                         <button
@@ -164,12 +200,12 @@ export default function AcademicFacultyAchievements({ data }) {
                                 onTransitionEnd={syncNav}
                                 className="w-full !py-1"
                             >
-                                {data.monthFilters.map((filter) => {
-                                    const isCurrent = selectedFilterId === filter.id;
+                                {monthFilters.map((filter) => {
+                                    const isCurrent = selectedFilter?.id === filter.id;
                                     return (
                                         <SwiperSlide key={filter.id} className="!w-auto">
                                             <button
-                                                onClick={() => setSelectedFilterId(filter.id)}
+                                                onClick={() => { setSelectedFilterId(filter.id); setSelectedValue(filter.value ?? null); }}
                                                 className={`px-5 py-2 rounded-full text_1 font-medium whitespace-nowrap transition-all duration-300 ${isCurrent
                                                         ? "bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white shadow-sm cursor-pointer"
                                                         : "bg-transparent dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 text-[#374151] dark:text-gray-200 hover:border-gray-400 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
