@@ -16,13 +16,13 @@ export default function AcademicFacilities({ data }) {
             <div className="container">
                 <div className="flex flex-wrap [&>div]:lg:w-1/2  mb-[15px] lg:mb-[25px] 2xl:mb-[40px] 3xl:mb-[45px]">
                     {data.heading && <div className="cmn_Title mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] ">{data.heading}</div>}
-                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]  typography">
+                    <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]  typography [&_p]:text-[14px] [&_p]:md:text-[15px] [&_p]:lg:text-[16px] [&_p]:2xl:text-[18px] [&_p]:3xl:text-[20px] [&_p]:leading-[22px] [&_p]:2xl:leading-[25px] [&_p]:3xl:leading-[28px] [&_p]:tracking-tight [&_p]:text-[#212121] dark:[&_p]:text-[#F9FAFB]">
                         {data?.description && <BlocksRenderer content={data.description} />}
                     </div>
                 </div>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap gap-x-[15px] lg:gap-x-0">
                     {data?.points?.map((item, id) => (
-                        <div key={id} className="w-full sm:w-1/2 lg:w-full bg-gradient-to-r from-[#EFF6FF] to-[#F9FAFB] dark:bg-none dark:bg-[#18191B] rounded-[12px] xl:rounded-[16px] p-[15px] lg:p-[20px] xl:p-[25px] 2xl:p-[28px] 3xl:p-[30px] mb-[15px] lg:mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[35px]">
+                        <div key={id} className="w-full sm:w-[calc(50%-7.5px)] lg:w-full bg-gradient-to-r from-[#EFF6FF] to-[#F9FAFB] dark:bg-none dark:bg-[#18191B] rounded-[12px] xl:rounded-[16px] p-[15px] lg:p-[20px] xl:p-[25px] 2xl:p-[28px] 3xl:p-[30px] mb-[15px] lg:mb-[20px] xl:mb-[25px] 2xl:mb-[30px] 3xl:mb-[35px]">
                             <div className={`flex flex-wrap lg:flex-nowrap items-stretch ${id % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}>
 
                                 {/* Image with Swiper */}
@@ -85,9 +85,11 @@ export default function AcademicFacilities({ data }) {
                                             {item.title}
                                         </h3>
                                         <div className="w-[40px] xl:w-[50px] 2xl:w-[55px] 3xl:w-[65px] h-[3px] xl:h-[4px] bg-[#EA580C] mb-[12px] xl:mb-[16px] 2xl:mb-[20px] 3xl:mb-[25px] rounded-full" />
-                                        <p className="text_1 leading-[1.5] xl:leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                            {item.description}
-                                        </p>
+                                        <div className="text_1 leading-[1.5] xl:leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px] typography [&_p]:text-[14px] [&_p]:md:text-[15px] [&_p]:lg:text-[14px] [&_p]:xl:text-[14px] [&_p]:2xl:text-[14.4px] [&_p]:3xl:text-[18px] [&_p]:leading-[1.5] [&_p]:xl:leading-[1.6] [&_p]:tracking-tight [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF]">
+                                            {Array.isArray(item.description)
+                                                ? <BlocksRenderer content={item.description} />
+                                                : item.description && <p>{item.description}</p>}
+                                        </div>
                                     </div>
                                 </div>
 

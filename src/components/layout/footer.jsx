@@ -464,28 +464,10 @@ const local_data = {
   ],
 };
 
-export default function Footer({ data = local_data, brochures = [] }) {
-  const [openAccordion, setOpenAccordion] = useState(0);
-  const [brochureId, setBrochureId] = useState("");
-  const selectedBrochure = brochures.find((b) => b.id === brochureId);
-  const handleDownload = async () => {
-    if (!selectedBrochure) return;
-    const { url, title } = selectedBrochure;
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error("download failed");
-      const blobUrl = URL.createObjectURL(await res.blob());
-      const a = document.createElement("a");
-      a.href = blobUrl;
-      a.download = `${title} Brochure${(url.match(/\.[a-z0-9]+(?=$|\?)/i) || [".pdf"])[0]}`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(blobUrl);
-    } catch {
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
-  };
+export default function Footer({ data = local_data }) {
+  const [openAccordion, setOpenAccordion] = useState(null);
+
+  const [openGroup, setOpenGroup] = useState(null);
 
   const toggleAccordion = (index) => {
     setOpenAccordion(openAccordion === index ? null : index);
@@ -566,33 +548,26 @@ export default function Footer({ data = local_data, brochures = [] }) {
                 );
               })}
             </div>
-            {brochures.length > 0 && (
-<div className="w-full h-auto block max-lg:max-w-100">
+            <div className="w-full h-auto block max-2xl:max-w-full">
               <div className="text-lg lg:text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mb-3.75 lg:mb-2.5 3xl:mb-3.75">
                 DOWNLOAD BROCHURES
               </div>
               <div className="w-full h-auto mb-2.5">
-                <Select className="w-full h-auto" value={brochureId} onValueChange={setBrochureId}>
+                <Select className="w-full h-auto">
                   <SelectTrigger aria-label="Select program" className="!text-sm lg:!text-xs 2xl:!text-[13px] 3xl:!text-base !font-light !text-black dark:!text-white w-full !h-11.25 lg:!h-8.75 3xl:!h-11.25 rounded-[5px] border-[#C7C7C7] [&>svg]:text-black dark:[&>svg]:text-white">
-                    <SelectValue placeholder="Select Program">{selectedBrochure?.title}</SelectValue>
+                    <SelectValue placeholder="Select Program" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>Select Program</SelectLabel>
-                      {brochures.map((b) => (
-                        <SelectItem key={b.id} value={b.id}>
-                          {b.title}
-                        </SelectItem>
-                      ))}
+                      <SelectItem value="apple">BE</SelectItem>
+                      <SelectItem value="banana">B.Tech</SelectItem>
+                      <SelectItem value="blueberry">Bcom</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
               </div>
-              <Button
-                disabled={!selectedBrochure}
-                onClick={handleDownload}
-                className="w-full !h-10 rounded-[5px] lg:gap-2.5 2xl:gap-3.75"
-              >
+              <Button className="w-full !h-10 rounded-[5px] lg:gap-2.5 2xl:gap-3.75">
                 <span className="w-4.25 h-auto aspect-square overflow-hidden block">
                   <Image
                     src={"/images/download-icon.svg"}
@@ -605,19 +580,30 @@ export default function Footer({ data = local_data, brochures = [] }) {
                 Download PDF
               </Button>
             </div>
-)}
           </div>
           <div className="w-(--width) lg:w-[calc(100%-var(--width))] max-sm:p-[10px_10px_25px_10px] lg:pl-10 xl:pl-15 2xl:pl-17.5 3xl:pl-22.5">
-            <div className="w-full h-auto pb-3.75 lg:pb-8.75 2xl:pb-10 3xl:pb-12.5 mb-3.75 lg:mb-7.5 3xl:mb-10 border-b border-[#D4D4D4] grid grid-cols-2 lg:grid-cols-3 gap-[25px_5px] sm:gap-5 lg:gap-7.5 2xl:gap-10 3xl:gap-17.5">
-              {data?.topRow.length>0 && data?.topRow?.map((item, index) => (
+            {/* below lg: "Helpline" and "Contact" accordions with stacked cards; lg+: the original grids */}
+            <FooterGroup
+              title="Helpline"
+              open={openGroup === "helpline"}
+              onToggle={() => setOpenGroup(openGroup === "helpline" ? null : "helpline")}
+              className="max-lg:mb-2.5 lg:pb-8.75 2xl:pb-10 3xl:pb-12.5 lg:mb-7.5 3xl:mb-10 lg:border-b lg:border-[#D4D4D4]"
+              gridClassName="grid-cols-1 lg:grid-cols-3 gap-[25px] lg:gap-7.5 2xl:gap-10 3xl:gap-17.5"
+            >
+              {data?.topRow?.length > 0 && data.topRow.map((item, index) => (
                 <LinkCard key={`top-${index}`} items={item} />
               ))}
-            </div>
-            <div className="w-full h-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px_5px] sm:gap-5 lg:gap-7.5 2xl:gap-10 3xl:gap-17.5">
-              { data?.bottomRow.length>0 && data?.bottomRow?.map((item, index) => (
+            </FooterGroup>
+            <FooterGroup
+              title="Contact"
+              open={openGroup === "contact"}
+              onToggle={() => setOpenGroup(openGroup === "contact" ? null : "contact")}
+              gridClassName="grid-cols-1 lg:grid-cols-3 gap-[25px] lg:gap-7.5 2xl:gap-10 3xl:gap-17.5"
+            >
+              {data?.bottomRow?.length > 0 && data.bottomRow.map((item, index) => (
                 <LinkCard key={`bottom-${index}`} items={item} />
               ))}
-            </div>
+            </FooterGroup>
           </div>
         </div>
         <div className="w-full h-auto my-[40px_30px] lg:my-[20px_30px] 2xl:my-[20px_40px] 3xl:my-[30px_50px] lg:border border-[#D4D4D4] lg:rounded-[7px] 2xl:rounded-[10px] overflow-hidden">
@@ -699,6 +685,34 @@ export default function Footer({ data = local_data, brochures = [] }) {
         </div>
       </div>
     </footer>
+  );
+}
+
+// Accordion below lg (header button + collapsible); from lg up it is a plain wrapper around the grid
+function FooterGroup({ title, open, onToggle, className = "", gridClassName, children }) {
+  return (
+    <div className={`w-full h-auto max-lg:p-[10px_15px] max-lg:border max-lg:border-(--basecolor)/10 ${className}`}>
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        className="w-full h-auto flex items-center justify-between lg:hidden"
+      >
+        <span className={`text-base leading-[1.1] font-medium text-left bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit uppercase ${open ? "mb-3.75" : ""}`}>
+          {title}
+        </span>
+        <ChevronDown
+          className={`w-4 h-4 text-[#212121] dark:text-white transition-transform duration-300 ease-in-out ${open ? "rotate-180" : "rotate-0"}`}
+        />
+      </button>
+      <div
+        className={`max-lg:grid max-lg:transition-[grid-template-rows] max-lg:duration-500 max-lg:ease-[cubic-bezier(0.4,0,0.2,1)] ${open ? "max-lg:grid-rows-[1fr]" : "max-lg:grid-rows-[0fr]"}`}
+      >
+        <div className="max-lg:overflow-hidden">
+          <div className={`w-full h-auto grid ${gridClassName}`}>{children}</div>
+        </div>
+      </div>
+    </div>
   );
 }
 

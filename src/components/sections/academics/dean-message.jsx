@@ -74,7 +74,7 @@ export default function DeanMessage({ data, varient }) {
 
                     {/* Heading */}
                     {heading && (
-                        <h2 className={`text-[25px] sm:text-[28px] md:text-[32px] xl:text-[40px] 2xl:text-[46px] 3xl:text-[55px] font-bold leading-tight text-[#212121] dark:text-[#F9FAFB] 
+                        <h2 className={`cmn_Title font-bold leading-tight text-[#212121] dark:text-[#F9FAFB] 
                          mb-[12px] xl:mb-[16px] 2xl:mb-[20px] 
                          ${varient === "home"
                                 ? "pt-0 xl:pt-[10px] max-w-[85%]"
