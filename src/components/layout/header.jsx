@@ -620,7 +620,7 @@ export default function Header({ data = local_data }) {
   const isMobile = useIsMobile();
   const TopHeaderTextStyle =
     // max-lg:after:* = invisible 48px-tall touch target on mobile (no visual change)
-    "text-[12px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] lg:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] lg:gap-2.5 flex items-center max-lg:relative max-lg:after:absolute max-lg:after:inset-x-0 max-lg:after:-inset-y-3.5 max-lg:after:content-['']";
+    "text-[10px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] lg:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] lg:gap-2.5 flex items-center max-lg:relative max-lg:after:absolute max-lg:after:inset-x-0 max-lg:after:-inset-y-3.5 max-lg:after:content-['']";
   return (
     <header
       className={cn(
@@ -638,29 +638,31 @@ export default function Header({ data = local_data }) {
         {/* CHANGED: justify-between on mobile (tagline left, links right), justify-end on desktop */}
         <div className="container h-full flex items-center justify-between lg:justify-end">
           {/* CHANGED (mobile only): "India's AI-First University" tagline shown in the top bar */}
-          <div
-            className="sm:hidden shrink-0 pr-2 text-[11px] sm:text-[10px] leading-[1.2] font-medium text-white text-center"
-            dangerouslySetInnerHTML={{
-              __html: data?.logo?.logoText,
-            }}
-          />
-          {/* CHANGED: max-lg:hidden -> CDSIMER and DSU Online are hidden on mobile (they live in the hamburger menu) */}
-          <div className="w-auto h-auto gap-1.25 sm:gap-1.75 2xl:gap-2.5 flex max-sm:hidden">
-            {data?.topBar?.topBarButtons?.map((item) => (
-              <div key={item?.id} className="w-auto h-auto">
-                <Link
-                  href={item?.url || "#"}
-                  aria-label={item?.label}
-                  {...(item?.isExternal && {
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                  })}
-                  className="text-[10px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full lg:h-auto p-2.5 max-lg:relative max-lg:after:absolute max-lg:after:inset-x-0 max-lg:after:-inset-y-1 max-lg:after:content-['']sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
-                >
-                  {item?.label}
-                </Link>
-              </div>
-            ))}
+          <div className="w-auto flex items-center max-sm:gap-2">
+            <div
+              className="sm:hidden shrink-0 pr-2 text-[11px] sm:text-[10px] leading-[1.2] font-medium text-white text-center"
+              dangerouslySetInnerHTML={{
+                __html: data?.logo?.logoText,
+              }}
+            />
+            {/* CHANGED: max-lg:hidden -> CDSIMER and DSU Online are hidden on mobile (they live in the hamburger menu) */}
+            <div className="w-auto h-auto gap-1.25 sm:gap-1.75 2xl:gap-2.5 flex ">
+              {data?.topBar?.topBarButtons?.map((item) => (
+                <div key={item?.id} className="w-auto h-auto">
+                  <Link
+                    href={item?.url || "#"}
+                    aria-label={item?.label}
+                    {...(item?.isExternal && {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
+                    className="text-[10px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full lg:h-auto p-[7px_4px] sm:p-2 max-lg:relative max-lg:after:absolute max-lg:after:inset-x-0 max-lg:after:-inset-y-1 max-lg:after:content-['']sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
+                  >
+                    {item?.label}
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="w-auto h-auto lg:gap-2.5 3xl:gap-2.5 flex items-center " >
             {data?.topBar?.topBarLinkIcons?.map((item, index) => (
@@ -747,292 +749,292 @@ export default function Header({ data = local_data }) {
             isScrolled ? "lg:opacity-0" : "lg:opacity-100",
           )}
         >
-        <div className="container">
-          {/* CHANGED: no wrapping on mobile, so the hamburger stays on the same row as the logos */}
-          <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex max-lg:flex-nowrap lg:flex-wrap items-center justify-between max-lg:gap-2">
-            {/* CHANGED: allowed to shrink on mobile */}
-            <div className="w-auto lg:w-[38%] max-lg:flex-1 max-lg:min-w-0">
-              {/* CHANGED: tighter spacing on mobile, and no divider after the last visible logo (tagline is hidden on mobile) */}
-              <div className="w-full h-auto gap-3 -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 max-lg:-mx-2 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 max-lg:[&>div]:px-2 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 max-lg:[&>div]:border-r-0! flex items-center">
-                {data?.logo?.mainlogo?.url && (
-                  <div className="w-auto h-auto">
-                    <Link
-                      href={data?.logo?.mainlogo?.link || "/"}
-                      {...(data?.logo?.mainlogo?.isExternal && {
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                      })}
-                      aria-label={data?.logo?.mainlogo?.alternativeTxt}
-                      className="w-40 sm:w-45  2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-105"
-                    >
-                      {data?.logo?.mainlogo?.url &&
+          <div className="container">
+            {/* CHANGED: no wrapping on mobile, so the hamburger stays on the same row as the logos */}
+            <div className="w-full h-auto lg:py-3.75 2xl:py-5 flex max-lg:flex-nowrap lg:flex-wrap items-center justify-between max-lg:gap-2">
+              {/* CHANGED: allowed to shrink on mobile */}
+              <div className="w-auto lg:w-[38%] max-lg:flex-1 max-lg:min-w-0">
+                {/* CHANGED: tighter spacing on mobile, and no divider after the last visible logo (tagline is hidden on mobile) */}
+                <div className="w-full h-auto gap-3 -mx-3.75 2xl:-mx-5 3xl:-mx-6.25 max-lg:-mx-2 [&>div]:px-3.75 2xl:[&>div]:px-5 3xl:[&>div]:px-6.25 max-lg:[&>div]:px-2 [&>div]:border-r [&>div]:border-white/10 [&>div:last-child]:border-0 max-lg:[&>div]:border-r-0! flex items-center">
+                  {data?.logo?.mainlogo?.url && (
+                    <div className="w-auto h-auto">
+                      <Link
+                        href={data?.logo?.mainlogo?.link || "/"}
+                        {...(data?.logo?.mainlogo?.isExternal && {
+                          target: "_blank",
+                          rel: "noopener noreferrer",
+                        })}
+                        aria-label={data?.logo?.mainlogo?.alternativeTxt}
+                        className="w-40 sm:w-45  2xl:w-47.5 3xl:w-60 h-auto aspect-240/80 overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-105"
+                      >
+                        {data?.logo?.mainlogo?.url &&
+                          <Image
+                            src={data?.logo?.mainlogo?.url}
+                            alt={
+                              data?.logo?.mainlogo?.alternativeTxt ||
+                              data?.logo?.mainlogo?.alt ||
+                              "Logo"
+                            }
+                            width={240}
+                            height={80}
+                            className="w-full h-full object-contain"
+                          />
+                        }
+                      </Link>
+                    </div>
+                  )}
+
+                  {data?.logo?.alternativelogo?.url && (
+                    <div className="w-auto h-auto">
+                      <Link
+                        href={data?.logo?.alternativelogo?.link || "/"}
+                        {...(data?.logo?.alternativelogo?.isExternal && {
+                          target: "_blank",
+                          rel: "noopener noreferrer",
+                        })}
+                        aria-label={data?.logo?.alternativelogo?.alternativeTxt}
+                        className="w-18 sm:w-22 2xl:w-22.5 3xl:w-27.5 h-auto aspect-110/50 overflow-hidden flex items-center justify-center"
+                      >
                         <Image
-                          src={data?.logo?.mainlogo?.url}
+                          src={data?.logo?.alternativelogo?.url}
                           alt={
-                            data?.logo?.mainlogo?.alternativeTxt ||
-                            data?.logo?.mainlogo?.alt ||
-                            "Logo"
+                            data?.logo?.alternativelogo?.alternativeTxt || "Logo"
                           }
-                          width={240}
-                          height={80}
+                          width={110}
+                          height={50}
                           className="w-full h-full object-contain"
                         />
-                      }
-                    </Link>
+                      </Link>
+                    </div>
+                  )}
+                  {/* CHANGED: max-lg:hidden -> the tagline now lives in the top bar on mobile */}
+                  <div className="w-auto h-auto lg:m-auto max-sm:hidden">
+                    <div
+                      className="max-sm:text-[9px] text-[14px] 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white min-w-[ 65px] md:min-w-[130px]"
+                      dangerouslySetInnerHTML={{
+                        __html: data?.logo?.logoText,
+                      }}
+                    />
                   </div>
-                )}
-
-                {data?.logo?.alternativelogo?.url && (
-                  <div className="w-auto h-auto">
-                    <Link
-                      href={data?.logo?.alternativelogo?.link || "/"}
-                      {...(data?.logo?.alternativelogo?.isExternal && {
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                      })}
-                      aria-label={data?.logo?.alternativelogo?.alternativeTxt}
-                      className="w-18 sm:w-22 2xl:w-22.5 3xl:w-27.5 h-auto aspect-110/50 overflow-hidden flex items-center justify-center"
-                    >
-                      <Image
-                        src={data?.logo?.alternativelogo?.url}
-                        alt={
-                          data?.logo?.alternativelogo?.alternativeTxt || "Logo"
-                        }
-                        width={110}
-                        height={50}
-                        className="w-full h-full object-contain"
-                      />
-                    </Link>
-                  </div>
-                )}
-                {/* CHANGED: max-lg:hidden -> the tagline now lives in the top bar on mobile */}
-                <div className="w-auto h-auto lg:m-auto max-sm:hidden">
-                  <div
-                    className="max-sm:text-[9px] text-[14px] 2xl:text-[15px] 3xl:text-lg leading-[1.3] font-normal text-center text-white min-w-[ 65px] md:min-w-[130px]"
-                    dangerouslySetInnerHTML={{
-                      __html: data?.logo?.logoText,
-                    }}
-                  />
                 </div>
               </div>
-            </div>
-            {/* CHANGED: w-auto + shrink-0 on mobile so the hamburger always stays visible on the right, opposite the logos */}
-            <div className="w-auto lg:w-[55%] max-lg:shrink-0">
-              <div className="w-full h-auto -mx-[2.5px] flex lg:justify-end">
-                {data?.actionLinks?.map((item, index) => (
-                  <div
-                    key={index}
-                    // CHANGED: max-lg:flex-1 -> max-lg:hidden (action pills are inside the hamburger menu on mobile)
-                    className="w-auto h-auto px-[2.5px] max-lg:hidden"
-                  >
-                    <Link
-                      href={item?.url || "#"}
-                      aria-label={item?.label}
-                      className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-[15px] border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
+              {/* CHANGED: w-auto + shrink-0 on mobile so the hamburger always stays visible on the right, opposite the logos */}
+              <div className="w-auto lg:w-[55%] max-lg:shrink-0">
+                <div className="w-full h-auto -mx-[2.5px] flex lg:justify-end">
+                  {data?.actionLinks?.map((item, index) => (
+                    <div
+                      key={index}
+                      // CHANGED: max-lg:flex-1 -> max-lg:hidden (action pills are inside the hamburger menu on mobile)
+                      className="w-auto h-auto px-[2.5px] max-lg:hidden"
                     >
-                      {item?.label}
-                    </Link>
-                  </div>
-                ))}
-                {/* CHANGED: className="max-lg:hidden" (the Apply buttons are inside the hamburger menu on mobile) */}
-                <ApplyButtons
-                  buttons={data?.applyButtons}
-                  variant="desktop"
-                  className="max-lg:hidden"
-                />
-                {/* CHANGED: hamburger is back here (mobile only), on the right side opposite the logos */}
-                <div className="w-auto h-auto pl-0.75 max-lg:flex hidden">
-                  <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-                    <SheetTrigger
-                      aria-label="Open menu"
-                      className="w-10 h-10 shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[5px] border border-[#D1D5DC80]/50 overflow-hidden flex items-center justify-center"
-                    >
-                      <div className="w-5 h-3.5 flex flex-col items-end justify-between">
-                        <span className="w-full h-0.5 rounded-full bg-white block"></span>
-                        <span className="w-3 h-0.5 rounded-full bg-white block"></span>
-                        <span className="w-full h-0.5 rounded-full bg-white block"></span>
-                      </div>
-                    </SheetTrigger>
-                    <SheetContent className="!w-full !max-w-full h-full max-h-screen bg-[#fff7eb] dark:bg-[#18181b] p-0 border-0 flex flex-col overflow-hidden [&>button]:hidden z-[100]">
-                      {/* STICKY TOP HEADER SECTION */}
-                      <div className="w-full shrink-0 bg-[#fff7eb] dark:bg-[#18181b]">
-                        {/* Top Red-Orange Banner Bar */}
-                        <div className="w-full bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-3 py-2.5 flex items-center justify-between text-white shrink-0">
-                          <div className="flex items-center gap-2 min-w-0">
-                            <Link
-                              href="/"
-                              className="w-30 flex items-center gap-1.5 shrink-0"
-                            >
-                              <Image
-                                src="/images/dsu-logo.svg"
-                                alt="DSU Logo"
-                                width={32}
-                                height={32}
-                                className="size-full object-contain"
-                              />
-                            </Link>
-                            <div className="h-6 w-[1px] bg-white/30 shrink-0" />
-                            <div className="w-15 flex items-center shrink-0">
-                              <Image
-                                src="/images/header-logo-2.svg"
-                                alt="NAAC A+"
-                                width={32}
-                                height={22}
-                                className="size-full object-contain"
-                              />
-                            </div>
-                            <div className="h-6 w-[1px] bg-white/30 shrink-0" />
-                            <span className="text-[9.5px] leading-tight font-medium opacity-95 shrink-0">
-                              India&apos;s AI-First
-                              <br />
-                              University
-                            </span>
-                          </div>
-                          <SheetClose className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors text-white shrink-0 ml-1">
-                            <X size={18} />
-                          </SheetClose>
+                      <Link
+                        href={item?.url || "#"}
+                        aria-label={item?.label}
+                        className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full lg:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-[15px] border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
+                      >
+                        {item?.label}
+                      </Link>
+                    </div>
+                  ))}
+                  {/* CHANGED: className="max-lg:hidden" (the Apply buttons are inside the hamburger menu on mobile) */}
+                  <ApplyButtons
+                    buttons={data?.applyButtons}
+                    variant="desktop"
+                    className="max-lg:hidden"
+                  />
+                  {/* CHANGED: hamburger is back here (mobile only), on the right side opposite the logos */}
+                  <div className="w-auto h-auto pl-0.75 max-lg:flex hidden">
+                    <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                      <SheetTrigger
+                        aria-label="Open menu"
+                        className="w-10 h-10 shrink-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[5px] border border-[#D1D5DC80]/50 overflow-hidden flex items-center justify-center"
+                      >
+                        <div className="w-5 h-3.5 flex flex-col items-end justify-between">
+                          <span className="w-full h-0.5 rounded-full bg-white block"></span>
+                          <span className="w-3 h-0.5 rounded-full bg-white block"></span>
+                          <span className="w-full h-0.5 rounded-full bg-white block"></span>
                         </div>
-
-                        {/* Utility Bar */}
-                        <div className="w-full bg-[#FFF4E8] dark:bg-[#232427] border-b border-black/8 dark:border-white/0 px-3 py-2 flex items-center justify-between text-[11px] font-medium text-[#333] dark:text-white/90 overflow-x-auto">
-                          <div className="flex items-center gap-1.5 shrink-0 text-black dark:text-white">
-                            <Link
-                              href="#!"
-                              className="flex items-center gap-1 hover:text-(--basecolor)"
-                            >
-                              <span className="dark:text-white">
-                                Virtual Tour
-                              </span>
-                              <Image
-                                src="/images/header-360-icon-black.svg"
-                                alt="Tour"
-                                width={13}
-                                height={13}
-                                className="w-3.5 h-3.5 dark:invert"
-                              />
-                            </Link>
-                            <span className="text-black/20 dark:text-white/20">
-                              |
-                            </span>
-                            <Link
-                              href="#!"
-                              className="flex items-center gap-1 hover:text-(--basecolor)"
-                            >
-                              <span>E-Brochure</span>
-                              <Image
-                                src="/images/header-brochure-icon-black.svg"
-                                alt="Brochure"
-                                width={13}
-                                height={13}
-                                className="w-3.5 h-3.5 dark:invert"
-                              />
-                            </Link>
-                            {isValidLoginButton(data?.topBar?.loginButton) && (
-                              <>
-                                <span className="text-black/20 dark:text-white/20">
-                                  |
-                                </span>
-                                <LoginButton
-                                  button={data?.topBar?.loginButton}
-                                  className="flex items-center gap-1 hover:text-(--basecolor) cursor-pointer"
-                                  iconSrc="/images/header-login-black.svg"
-                                  iconClassName="w-3.5 h-3.5 flex items-center justify-center dark:invert"
+                      </SheetTrigger>
+                      <SheetContent className="!w-full !max-w-full h-full max-h-screen bg-[#fff7eb] dark:bg-[#18181b] p-0 border-0 flex flex-col overflow-hidden [&>button]:hidden z-[100]">
+                        {/* STICKY TOP HEADER SECTION */}
+                        <div className="w-full shrink-0 bg-[#fff7eb] dark:bg-[#18181b]">
+                          {/* Top Red-Orange Banner Bar */}
+                          <div className="w-full bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-3 py-2.5 flex items-center justify-between text-white shrink-0">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <Link
+                                href="/"
+                                className="w-30 flex items-center gap-1.5 shrink-0"
+                              >
+                                <Image
+                                  src="/images/dsu-logo.svg"
+                                  alt="DSU Logo"
+                                  width={32}
+                                  height={32}
+                                  className="size-full object-contain"
                                 />
-                              </>
-                            )}
+                              </Link>
+                              <div className="h-6 w-[1px] bg-white/30 shrink-0" />
+                              <div className="w-15 flex items-center shrink-0">
+                                <Image
+                                  src="/images/header-logo-2.svg"
+                                  alt="NAAC A+"
+                                  width={32}
+                                  height={22}
+                                  className="size-full object-contain"
+                                />
+                              </div>
+                              <div className="h-6 w-[1px] bg-white/30 shrink-0" />
+                              <span className="text-[9.5px] leading-tight font-medium opacity-95 shrink-0">
+                                India&apos;s AI-First
+                                <br />
+                                University
+                              </span>
+                            </div>
+                            <SheetClose className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors text-white shrink-0 ml-1">
+                              <X size={18} />
+                            </SheetClose>
                           </div>
-                          <div className="flex items-center gap-1.5 shrink-0 ml-2">
-                            <ThemeToggle iconClassName="max-lg:invert" />
-                          </div>
-                        </div>
 
-                        {/* Action Links Pills */}
-                        <div className="w-full bg-[#FFFBF7] dark:bg-[#18181b] px-3 pt-2.5 pb-2 flex flex-wrap items-center gap-1.5 overflow-x-auto no-scrollbar">
-                          {data?.actionLinks?.map((item, index) => (
-                            <Link
-                              key={index}
-                              href={item?.url || "#"}
-                              className="px-3 py-2 rounded-[3px] border text-center flex-grow-1  border-[#ea580c] dark:border-[#ea580c] text-xs font-bold text-black dark:text-white shrink-0 hover:bg-(--basecolor)/10 transition-colors"
+                          {/* Utility Bar */}
+                          <div className="w-full bg-[#FFF4E8] dark:bg-[#232427] border-b border-black/8 dark:border-white/0 px-3 py-2 flex items-center justify-between text-[11px] font-medium text-[#333] dark:text-white/90 overflow-x-auto">
+                            <div className="flex items-center gap-1.5 shrink-0 text-black dark:text-white">
+                              <Link
+                                href="#!"
+                                className="flex items-center gap-1 hover:text-(--basecolor)"
+                              >
+                                <span className="dark:text-white">
+                                  Virtual Tour
+                                </span>
+                                <Image
+                                  src="/images/header-360-icon-black.svg"
+                                  alt="Tour"
+                                  width={13}
+                                  height={13}
+                                  className="w-3.5 h-3.5 dark:invert"
+                                />
+                              </Link>
+                              <span className="text-black/20 dark:text-white/20">
+                                |
+                              </span>
+                              <Link
+                                href="#!"
+                                className="flex items-center gap-1 hover:text-(--basecolor)"
+                              >
+                                <span>E-Brochure</span>
+                                <Image
+                                  src="/images/header-brochure-icon-black.svg"
+                                  alt="Brochure"
+                                  width={13}
+                                  height={13}
+                                  className="w-3.5 h-3.5 dark:invert"
+                                />
+                              </Link>
+                              {isValidLoginButton(data?.topBar?.loginButton) && (
+                                <>
+                                  <span className="text-black/20 dark:text-white/20">
+                                    |
+                                  </span>
+                                  <LoginButton
+                                    button={data?.topBar?.loginButton}
+                                    className="flex items-center gap-1 hover:text-(--basecolor) cursor-pointer"
+                                    iconSrc="/images/header-login-black.svg"
+                                    iconClassName="w-3.5 h-3.5 flex items-center justify-center dark:invert"
+                                  />
+                                </>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                              <ThemeToggle iconClassName="max-lg:invert" />
+                            </div>
+                          </div>
+
+                          {/* Action Links Pills */}
+                          <div className="w-full bg-[#FFFBF7] dark:bg-[#18181b] px-3 pt-2.5 pb-2 flex flex-wrap items-center gap-1.5 overflow-x-auto no-scrollbar">
+                            {data?.actionLinks?.map((item, index) => (
+                              <Link
+                                key={index}
+                                href={item?.url || "#"}
+                                className="px-3 py-2 rounded-[3px] border text-center flex-grow-1  border-[#ea580c] dark:border-[#ea580c] text-xs font-bold text-black dark:text-white shrink-0 hover:bg-(--basecolor)/10 transition-colors"
+                              >
+                                {item?.label}
+                              </Link>
+                            ))}
+                          </div>
+
+                          {/* Main Buttons (Apply Here, CDSIMER, DSU Online) */}
+                          <div className="w-full px-2.5 pb-3 pt-2 flex items-center justify-between gap-2">
+                            <ApplyButtons
+                              buttons={data?.applyButtons}
+                              variant="mobile"
+                            />
+                            <div className="flex items-center gap-1.25">
+                              <Link
+                                href="/#"
+                                className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
+                              >
+                                CDSIMER
+                              </Link>
+                              <Link
+                                href="/#"
+                                className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
+                              >
+                                DSU Online
+                              </Link>
+                            </div>
+                          </div>
+
+                          {/* Search */}
+                          <form
+                            role="search"
+                            action="/search"
+                            onSubmit={submitMobileSearch}
+                            className="relative mx-2.5 mb-3"
+                          >
+                            <input
+                              ref={mobileSearchInputRef}
+                              type="search"
+                              name="q"
+                              value={mobileSearchQuery}
+                              onChange={(e) => setMobileSearchQuery(e.target.value)}
+                              placeholder="Search..."
+                              aria-label="Search the site"
+                              autoComplete="off"
+                              enterKeyHint="search"
+                              maxLength={100}
+                              className="w-full h-11 pl-4 pr-11 text-sm text-black dark:text-white bg-white dark:bg-white/5 border border-black/15 dark:border-white/15 rounded-[3px] outline-none placeholder:text-black/40 dark:placeholder:text-white/40 focus:border-(--basecolor2) transition-colors"
+                            />
+                            <button
+                              type="submit"
+                              aria-label="Submit search"
+                              className="absolute right-1 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center"
                             >
-                              {item?.label}
-                            </Link>
+                              <Image
+                                src="/images/header-search-icon.svg"
+                                alt=""
+                                width={16}
+                                height={16}
+                                className="w-4 h-4 object-contain invert dark:invert-0"
+                              />
+                            </button>
+                          </form>
+                        </div>
+                        {/* SCROLLABLE NAVIGATION MENU LIST */}
+                        <div className="w-full flex-1 overflow-y-auto bg-[#fff7eb] dark:bg-[#18181b] border-t border-black/8 dark:border-white/0 pb-12">
+                          {data?.navigationLinks?.map((item) => (
+                            <NavigationMenu
+                              key={item?.id}
+                              item={item}
+                              level={0}
+                            />
                           ))}
                         </div>
-
-                        {/* Main Buttons (Apply Here, CDSIMER, DSU Online) */}
-                        <div className="w-full px-2.5 pb-3 pt-2 flex items-center justify-between gap-2">
-                          <ApplyButtons
-                            buttons={data?.applyButtons}
-                            variant="mobile"
-                          />
-                          <div className="flex items-center gap-1.25">
-                            <Link
-                              href="/#"
-                              className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
-                            >
-                              CDSIMER
-                            </Link>
-                            <Link
-                              href="/#"
-                              className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
-                            >
-                              DSU Online
-                            </Link>
-                          </div>
-                        </div>
-
-                        {/* Search */}
-                        <form
-                          role="search"
-                          action="/search"
-                          onSubmit={submitMobileSearch}
-                          className="relative mx-2.5 mb-3"
-                        >
-                          <input
-                            ref={mobileSearchInputRef}
-                            type="search"
-                            name="q"
-                            value={mobileSearchQuery}
-                            onChange={(e) => setMobileSearchQuery(e.target.value)}
-                            placeholder="Search..."
-                            aria-label="Search the site"
-                            autoComplete="off"
-                            enterKeyHint="search"
-                            maxLength={100}
-                            className="w-full h-11 pl-4 pr-11 text-sm text-black dark:text-white bg-white dark:bg-white/5 border border-black/15 dark:border-white/15 rounded-[3px] outline-none placeholder:text-black/40 dark:placeholder:text-white/40 focus:border-(--basecolor2) transition-colors"
-                          />
-                          <button
-                            type="submit"
-                            aria-label="Submit search"
-                            className="absolute right-1 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center"
-                          >
-                            <Image
-                              src="/images/header-search-icon.svg"
-                              alt=""
-                              width={16}
-                              height={16}
-                              className="w-4 h-4 object-contain invert dark:invert-0"
-                            />
-                          </button>
-                        </form>
-                      </div>
-                      {/* SCROLLABLE NAVIGATION MENU LIST */}
-                      <div className="w-full flex-1 overflow-y-auto bg-[#fff7eb] dark:bg-[#18181b] border-t border-black/8 dark:border-white/0 pb-12">
-                        {data?.navigationLinks?.map((item) => (
-                          <NavigationMenu
-                            key={item?.id}
-                            item={item}
-                            level={0}
-                          />
-                        ))}
-                      </div>
-                    </SheetContent>
-                  </Sheet>
+                      </SheetContent>
+                    </Sheet>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
       {!isMobile && (
@@ -1457,6 +1459,7 @@ function MegaMenuPanel({
           key={leaf?.id || leaf?.label}
           leaf={leaf}
           onKeepOpen={onKeepOpen}
+          preferLeft={reverseRow}
         />
       );
     }
@@ -1644,7 +1647,9 @@ const FLYOUT_VERTICAL_SPACE = 52;
 // ADDED: narrowest the flyout may shrink to on the right before it flips to the left of the panel
 const FLYOUT_MIN_FIT = 160;
 
-function SubMenuLeaf({ leaf, onKeepOpen }) {
+// preferLeft: right-half menus keep the list on the left of the orange sidebar, so the flyout opens
+// on the left (next to the list) instead of past the sidebar, far from the hovered row
+function SubMenuLeaf({ leaf, onKeepOpen, preferLeft = false }) {
   const rowRef = useRef(null);
   const linkRef = useRef(null);
   const closeTimer = useRef(null);
@@ -1684,15 +1689,9 @@ function SubMenuLeaf({ leaf, onKeepOpen }) {
       const viewportWidth = document.documentElement.clientWidth;
       const rightSpace = viewportWidth - panelRect.right - 8;
       const leftSpace = panelRect.left - 8;
-
-      // CHANGED: open on the side away from the sidebar (right when the sidebar is on the left,
-      // left when the sidebar is on the right, i.e. right-aligned menus). Use the other side
-      // only when the preferred side is too tight and the other side has more room.
-      const preferLeft = !!sidebarRect && sidebarRect.left > panelRect.left;
-      const preferSpace = preferLeft ? leftSpace : rightSpace;
-      const otherSpace = preferLeft ? rightSpace : leftSpace;
-      const useOther = preferSpace < FLYOUT_MIN_FIT && otherSpace > preferSpace;
-      const flip = useOther ? !preferLeft : preferLeft;
+      const flip = preferLeft
+        ? leftSpace >= FLYOUT_MIN_FIT || leftSpace > rightSpace
+        : rightSpace < FLYOUT_MIN_FIT && leftSpace > rightSpace;
       const maxWidth = Math.min(FLYOUT_MAX_WIDTH, flip ? leftSpace : rightSpace);
 
       // 1px border + padding puts the first item exactly level with the parent row

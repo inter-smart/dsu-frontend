@@ -9,8 +9,22 @@ export default function TopMenu({ data = [] }) {
     const navRef = useRef(null);
     const lenis = useLenis();
 
+    // set while a click-triggered scroll runs, so scroll events on the way don't override the clicked item
+    const clickLock = useRef(false);
+    // scrollY where a click-scroll ended: small scrolls around it keep the clicked item (layout shifts/transforms
+    // can leave the section top a few px past the detection line, which flipped the active item to the previous one)
+    const landedAt = useRef(null);
+
     useEffect(() => {
+        const release = () => {
+            clickLock.current = false;
+        };
         const handleScroll = () => {
+            if (clickLock.current) return;
+            if (landedAt.current !== null) {
+                if (Math.abs(window.scrollY - landedAt.current) < 150) return;
+                landedAt.current = null;
+            }
             const navHeight = navRef.current?.offsetHeight || 80;
             const scrollPos = window.scrollY + navHeight + 80;
 
@@ -29,9 +43,21 @@ export default function TopMenu({ data = [] }) {
         };
 
         window.addEventListener("scroll", handleScroll, { passive: true });
+        // the user taking over the scroll ends the lock
+        window.addEventListener("wheel", release, { passive: true });
+        window.addEventListener("touchstart", release, { passive: true });
         handleScroll();
-        return () => window.removeEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("wheel", release);
+            window.removeEventListener("touchstart", release);
+        };
     }, [data]);
+
+    const landed = () => {
+        clickLock.current = false;
+        landedAt.current = window.scrollY;
+    };
 
     const handleScrollTo = (e, href) => {
         if (!href?.startsWith("#")) return;
@@ -43,17 +69,21 @@ export default function TopMenu({ data = [] }) {
         const navHeight = navRef.current?.offsetHeight || 80;
         const offset = -navHeight - 16;
 
+        clickLock.current = true;
+        landedAt.current = null;
+        setActiveId(href);
+
         if (lenis) {
-            lenis.scrollTo(target, { offset, duration: 1.2 });
+            lenis.scrollTo(target, { offset, duration: 1.2, onComplete: landed });
         } else {
             const targetPos = target.getBoundingClientRect().top + window.scrollY + offset;
             window.scrollTo({
                 top: targetPos,
                 behavior: "smooth",
             });
+            setTimeout(landed, 1000);
         }
 
-        setActiveId(href);
         window.history.pushState(null, "", href);
     };
 

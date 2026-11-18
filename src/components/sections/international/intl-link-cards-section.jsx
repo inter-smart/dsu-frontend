@@ -7,7 +7,11 @@ export default function IntlLinkCardsSection({ data }) {
     return (
         <section className="py-[15px] xl:py-[22px] 2xl:py-[28px] 3xl:py-[40px]">
             <div className="container">
-                {data.title && <h2 className="text-[22px] font-bold leading-[1.25] text-black dark:text-white xl:text-[28px] 2xl:text-[32px] 3xl:text-[40px] mb-[16px] xl:mb-[24px]">{data.title}</h2>}
+                {data.title && (
+                    <h2 className="relative mx-auto mb-[22px] pb-[14px] text-center text-[24px] font-bold leading-[1.25] text-[#212121] after:absolute after:bottom-0 after:left-1/2 after:h-[3px] after:w-[56px] after:-translate-x-1/2 after:rounded-full after:bg-gradient-to-r after:from-(--basecolor) after:to-(--basecolor2) after:content-[''] dark:text-white xl:mb-[32px] xl:text-[32px] xl:after:w-[72px] 2xl:text-[38px] 3xl:text-[52px]">
+                        {data.title}
+                    </h2>
+                )}
                 {data.display === "people" ? (
                     <ul className="flex flex-wrap justify-center gap-[24px] xl:gap-[36px]">
                         {data.items.map((item) => (
@@ -48,27 +52,35 @@ export default function IntlLinkCardsSection({ data }) {
                         const card = (
                             <>
                                 {item.image?.url && (
-                                    <div className="relative aspect-square w-full overflow-hidden bg-black/5">
-                                        <Image
-                                            src={item.image.url}
-                                            alt={item.image.alternativeText || item.title}
-                                            fill
-                                            sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                                            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                                        />
-                                    </div>
+                                    <Image
+                                        src={item.image.url}
+                                        alt={item.image.alternativeText || ""}
+                                        fill
+                                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
                                 )}
-                                <div className="p-[12px] xl:p-[15px]">
-                                    <h3 className="text-[15px] font-semibold text-black xl:text-[16px] 2xl:text-[18px] 3xl:text-[22px]">
-                                        {item.title}
-                                    </h3>
-                                    {item.description && (
-                                        <p className="mt-[6px] text-[13px] leading-[1.5] text-black/70 2xl:text-[14px]">{item.description}</p>
+                                <span className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                                <span className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-(--basecolor2) to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                                <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-[12px] p-[18px] xl:p-[24px]">
+                                    <span className="min-w-0">
+                                        <span className="block text-[18px] font-bold leading-tight text-white xl:text-[22px] 2xl:text-[26px] 3xl:text-[34px]">{item.title}</span>
+                                        {item.description && (
+                                            // Shown on hover/keyboard focus; touch screens (no hover) always show it
+                                            <span className="grid grid-rows-[0fr] opacity-0 transition-all duration-500 group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-visible:grid-rows-[1fr] group-focus-visible:opacity-100 [@media(hover:none)]:grid-rows-[1fr] [@media(hover:none)]:opacity-100">
+                                                <span className="overflow-hidden">
+                                                    <span className="mt-[6px] block text-[13px] leading-[1.5] text-white 2xl:text-[15px]">{item.description}</span>
+                                                </span>
+                                            </span>
+                                        )}
+                                    </span>
+                                    {item.url && (
+                                        <span aria-hidden="true" className="flex size-[36px] shrink-0 items-center justify-center rounded-full bg-white text-[18px] text-(--basecolor) transition-transform duration-300 group-hover:translate-x-[4px] xl:size-[44px]">→</span>
                                     )}
-                                </div>
+                                </span>
                             </>
                         );
-                        const cls = "group block overflow-hidden rounded-[10px] border border-black/10 bg-white transition-shadow hover:shadow-lg";
+                        const cls = "group relative block aspect-[4/3] overflow-hidden rounded-[16px] bg-black shadow-[0_6px_20px_rgba(0,0,0,0.12)] transition-shadow duration-300 hover:shadow-[0_14px_36px_rgba(249,115,22,0.3)] xl:aspect-[5/4]";
 
                         return item.url ? (
                             <Link
