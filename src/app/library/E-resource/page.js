@@ -12,7 +12,34 @@ const r = (logo, publisher, url, loginDetails, manual, video) => ({
 });
 
 const local_data = {
-    // ...id, seo, hero stay as you have them
+    hero: {
+        id: 25,
+        heroMedia: {
+            alternativeText: "Overview page title",
+            mime: "image/jpg",
+            // if video - mime: "video/mp4",
+            url: "/images/academic-banner.jpg",
+        },
+        title: "Library",
+        breadcrumb: [
+            {
+                label: "Home",
+                href: "/",
+            },
+            {
+                label: "Student Life",
+                href: "/",
+            },
+            {
+                label: "Library",
+                href: "/",
+            },
+            {
+                label: "E - Resources",
+                href: "/",
+            },
+        ],
+    },
 
     eResources: {
         title: "E - Resources",
