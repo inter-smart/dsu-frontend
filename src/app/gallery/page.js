@@ -2,6 +2,7 @@ import { seoMetadata } from "@/lib/seo";
 import { redirectToSlug } from "@/lib/page-routes";
 import InnerHero from "@/components/layout/common/InnerHero";
 import Gallery from "@/components/sections/gallery/gallery";
+import FlexibleSections from "@/components/flexible/FlexibleSections";
 import FloatingContactRail from "@/components/layout/common/floating-contact-rail";
 import { getGalleryPage, getGalleryItems } from "@/lib/api";
 
@@ -113,7 +114,11 @@ export default async function page({ viaSlug } = {}) {
   return (
     <>
       <InnerHero data={hero} />
-      <Gallery data={gallery} />
+      {pageData?.template === "flexible-page" ? (
+        <FlexibleSections sections={pageData.flexiblePage?.sections} />
+      ) : (
+        <Gallery data={gallery} />
+      )}
       <FloatingContactRail />
     </>
   );

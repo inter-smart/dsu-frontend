@@ -13,6 +13,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import RichText from "@/components/ui/rich-text";
 import { ctaLinkProps, fileLinkProps } from "@/lib/schools/link-props";
 
 export default function AcademicQualitySection({ data }) {
@@ -160,9 +161,7 @@ export default function AcademicQualitySection({ data }) {
 
                                 {/* Description */}
                                 {tabData?.description && (
-                                    <p className="text_1 leading-[1.5] text-[#4A5565] mb-[20px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[45px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                        {tabData.description}
-                                    </p>
+                                    <RichText value={tabData.description} className="mb-[20px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[45px]" />
                                 )}
 
                                 {/* Quick Links */}
@@ -202,7 +201,7 @@ export default function AcademicQualitySection({ data }) {
                                                 <AccordionContent className="px-[15px] md:px-[18px] xl:px-[25px] 2xl:px-[30px] 3xl:px-[35px] pb-[15px] xl:pb-[20px] 2xl:pb-[25px] 3xl:pb-[30px] pt-0">
                                                     {/* Description */}
                                                     {practice.description && (
-                                                        <p className="text_1 leading-[1.5] text-[#4A5565] mb-[15px] xl:mb-[20px] 2xl:mb-[25px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                                        <p className="text_1 leading-[1.5] text-[#4A5565] mb-[15px] xl:mb-[20px] 2xl:mb-[25px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px] whitespace-pre-line">
                                                             {practice.description}
                                                         </p>
                                                     )}
