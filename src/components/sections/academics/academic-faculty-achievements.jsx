@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 
@@ -274,10 +275,16 @@ export default function AcademicFacultyAchievements({ data }) {
                                             </h3>
                                         )}
 
-                                        {item.description && (
-                                            <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                                {item.description}
-                                            </p>
+                                        {Array.isArray(item.description) ? (
+                                            <div className="typography [&_a]:text-[#DC2626] [&_a]:underline [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5">
+                                                <BlocksRenderer content={item.description} />
+                                            </div>
+                                        ) : (
+                                            item.description && (
+                                                <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                                    {item.description}
+                                                </p>
+                                            )
                                         )}
                                     </div>
                                 </div>

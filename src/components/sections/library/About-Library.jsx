@@ -146,7 +146,7 @@ export default function AboutLibrary({ data, menu }) {
 
                             {/* ─── Description ─── */}
                             {description?.length > 0 && (
-                                <div className="text_1 mt-5 md:mt-6 lg:mt-8 [&_p+p]:mt-4 lg:[&_p+p]:mt-6">
+                                <div className="typography mt-5 md:mt-6 lg:mt-8">
                                     {isPlainText ? (
                                         description.map((para, index) => <p key={index}>{para}</p>)
                                     ) : (

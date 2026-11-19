@@ -38,7 +38,7 @@ export default function AcademicCollaboration({ data, varient }) {
                         {data.heading && <div className="cmn_Title mb-[25px]">{data.heading}</div>}
                         {Array.isArray(data.description) ? (
                             data.description.length > 0 && (
-                                <div className="dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                <div className="typography dark:text-[#9CA3AF]">
                                     <BlocksRenderer content={data.description} />
                                 </div>
                             )

@@ -13,6 +13,7 @@ export const SCHOOL_TABS = [
   { key: "facilities", label: "Infrastructure & Facilities" },
   { key: "placement-snapshot", label: "Placements Snapshot" },
   { key: "achievements", label: "Achievements" },
+  { key: "library", label: "Library" },
   { key: "news-events", label: "News & Events" },
   { key: "contact", label: "Contact" },
 ];

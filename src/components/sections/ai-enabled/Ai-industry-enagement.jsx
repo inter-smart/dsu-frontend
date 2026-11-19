@@ -20,7 +20,7 @@ export default function AiIndustryEngagement({ data }) {
                     )}
                     {Array.isArray(data?.description) ? (
                         data.description.length > 0 && (
-                            <div className="mb-[30px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                            <div className="typography mb-[30px]">
                                 <BlocksRenderer content={data.description} />
                             </div>
                         )

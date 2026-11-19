@@ -41,6 +41,8 @@ function HtmlAwareCode({ plainText = "", language }) {
 }
 
 export function BlocksRenderer({ blocks, ...props }) {
+  // the library calls content.map() unguarded, so an empty rich-text field (null) would crash the page
+  if (!Array.isArray(props.content)) return null;
   return <StrapiBlocksRenderer {...props} blocks={{ code: HtmlAwareCode, ...blocks }} />;
 }
 
