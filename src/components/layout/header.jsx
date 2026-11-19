@@ -647,7 +647,7 @@ export default function Header({ data = local_data }) {
           {/* CHANGED (mobile only): "India's AI-First University" tagline shown in the top bar */}
           <div className="flex items-center">
             <div
-              className=" shrink-0 pr-2 text-[11px] sm:text-[10px] leading-[1.2] font-medium text-white text-center"
+              className=" shrink-0 pr-2 text-[11px] sm:text-[10px] leading-[1.2] font-medium text-white text-center sm:hidden"
               dangerouslySetInnerHTML={{
                 __html: data?.logo?.logoText,
               }}
