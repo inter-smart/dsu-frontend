@@ -4,16 +4,21 @@ import { useState } from "react";
 import SidebarSection from "@/components/sections/governance/sidebarSection";
 import Image from "next/image";
 
-const DEFAULT_HEADERS = ["Name", "Address/Designation", "Status in the Authority"];
+const cellDivider = "relative after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last:after:hidden";
 
-// Common flexible section: a committee table (title, subtitle, CMS-editable column headings, members).
+// Common flexible section: a custom table (title, subtitle, any number of column headings and rows).
+// Each row's cells fill the columns in order; an optional row image shows in the first cell.
 // On governance pages (governancePages passed in) it keeps the governance sidebar beside the table.
 export default function Committee({ data, title, governancePages = [] }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
-    const members = data?.members || [];
-    const hasImages = members.some((item) => item.image);
-    const headers = DEFAULT_HEADERS.map((fallback, idx) => data?.headers?.[idx] || fallback);
+    const rows = data?.rows || [];
+    const headers = data?.headers || [];
+    const hasImages = rows.some((row) => row.image);
+    const hasHeaders = headers.some(Boolean);
+    // Enough columns for the longest of: the heading list or any row's cells.
+    const columnCount = Math.max(headers.length, ...rows.map((row) => row.cells?.length || 0), 1);
+    const columns = Array.from({ length: columnCount }, (_, idx) => idx);
     const withSidebar = governancePages.length > 0;
 
     const content = (
@@ -25,75 +30,67 @@ export default function Committee({ data, title, governancePages = [] }) {
             )}
             {data?.subtitle && <div className="text_1 text-[#4A5565]">{data.subtitle}</div>}
             {/* table */}
-            {data && (
+            {(hasHeaders || rows.length > 0) && (
                 <div className="w-full rounded-[10px] max-lg:overflow-x-auto">
-                    <table className="w-full min-w-[700px] border-separate border-spacing-y-[10px]">
-                        <thead>
-                            <tr className="bg-gradient-to-r from-[rgba(220,38,38,0.8)] to-[rgba(249,115,22,0.8)]">
-                                {headers.map((item, idx) => (
-                                    <th
-                                        key={idx}
-                                        className={`whitespace-nowrap text-[13px] lg:text-[16px] 2xl:text-[18px] 3xl:text-[20px] font-normal uppercase text-white first:rounded-l-[10px] last:rounded-r-[10px] ${idx === 0 && !hasImages
-                                            ? "text-left p-[10px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px]"
-                                            : "text-center p-[10px_15px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px]"}`}
-                                    >
-                                        {item}
-                                    </th>
-                                ))}
-                            </tr>
-                        </thead>
+                    {/* fixed layout + colgroup: every column gets the same width whatever its content */}
+                    <table
+                        className="w-full table-fixed border-separate border-spacing-y-[10px]"
+                        style={{ minWidth: Math.max(700, columnCount * 200) }}
+                    >
+                        <colgroup>
+                            {columns.map((idx) => (
+                                <col key={idx} style={{ width: `${100 / columnCount}%` }} />
+                            ))}
+                        </colgroup>
+                        {hasHeaders && (
+                            <thead>
+                                <tr className="bg-gradient-to-r from-[rgba(220,38,38,0.8)] to-[rgba(249,115,22,0.8)]">
+                                    {columns.map((idx) => (
+                                        <th
+                                            key={idx}
+                                            className={`break-words text-[13px] lg:text-[16px] 2xl:text-[18px] 3xl:text-[20px] font-normal uppercase text-white first:rounded-l-[10px] last:rounded-r-[10px] ${idx === 0 && !hasImages
+                                                ? "text-left p-[10px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px]"
+                                                : "text-center p-[10px_15px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px]"}`}
+                                        >
+                                            {headers[idx]}
+                                        </th>
+                                    ))}
+                                </tr>
+                            </thead>
+                        )}
 
                         <tbody>
-                            {members.map((item, idx) => (
+                            {rows.map((row, rowIdx) => (
                                 <tr
-                                    key={item.id ?? idx}
+                                    key={row.id ?? rowIdx}
                                     className="rounded-[10px] bg-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.08)] hover:bg-gradient-to-b hover:from-[#FFF8EE] hover:to-[#FFF3E0]"
                                 >
-                                    <td className="rounded-l-[10px] p-[15px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px] relative  after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last-of-type:after:hidden">
-                                        <div className="flex items-center min-w-[200px] xl:min-w-[250px] 2xl:min-w-[300px] 3xl:min-w-[375px]">
-                                            {item.image && (
-                                                <div className="h-[50px] xl:h-[61px] 2xl:h-[73px] 3xl:h-[92px] w-[50px] xl:w-[61px] 2xl:w-[73px] 3xl:w-[92px] shrink-0 overflow-hidden rounded-full">
-                                                    <Image
-                                                        src={item.image}
-                                                        width={92}
-                                                        height={92}
-                                                        className="h-full w-full object-cover"
-                                                        alt={item.name || "Committee member"}
-                                                    />
-                                                </div>
-                                            )}
-
-                                            <div className={`${item.image ? "w-[calc(100%-50px)] xl:w-[calc(100%-61px)] 2xl:w-[calc(100%-73px)] 3xl:w-[calc(100%-92px)] pl-[15px] xl:pl-[25px] 2xl:pl-[35px] 3xl:pl-[45px]" : "w-full"}`}>
-                                                <div className="text-[12px] md:text-[16px] font-semibold text-[#212121]">
-                                                    {item.name}
-                                                </div>
-
-                                                {item.note && (
-                                                    <div className="mt-[0px] text-[12px] md:text-[16px] text-[#4A5565]">
-                                                        {item.note}
+                                    {columns.map((idx) =>
+                                        idx === 0 ? (
+                                            <td key={idx} className={`first:rounded-l-[10px] last:rounded-r-[10px] p-[15px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px] ${cellDivider}`}>
+                                                <div className="flex items-center">
+                                                    {row.image && (
+                                                        <div className="h-[50px] xl:h-[61px] 2xl:h-[73px] 3xl:h-[92px] w-[50px] xl:w-[61px] 2xl:w-[73px] 3xl:w-[92px] shrink-0 overflow-hidden rounded-full">
+                                                            <Image
+                                                                src={row.image}
+                                                                width={92}
+                                                                height={92}
+                                                                className="h-full w-full object-cover"
+                                                                alt={row.cells?.[0] || "Committee member"}
+                                                            />
+                                                        </div>
+                                                    )}
+                                                    <div className={`min-w-0 break-words whitespace-pre-line text-[12px] md:text-[16px] font-semibold text-[#212121] ${row.image ? "pl-[15px] xl:pl-[25px] 2xl:pl-[35px] 3xl:pl-[45px]" : ""}`}>
+                                                        {row.cells?.[0]}
                                                     </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                    <td className="p-[12px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px] text-center text-[14px] md:text-[16px]  font-semibold text-[#4A5565] relative  after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last-of-type:after:hidden">
-                                        <div className="max-w-[320px] m-auto text-center">
-                                            {item.designation}
-                                        </div>
-                                    </td>
-                                    <td className="rounded-r-[10px] p-[15px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px] text-center relative  after:absolute after:content-[''] after:top-0 after:right-0 after:bottom-0 after:m-auto after:w-[1px] after:h-[50%] after:bg-black/10 last-of-type:after:hidden">
-                                        {item.status && (
-                                            <div
-                                                className={`mx-auto w-fit flex h-[32px] xl:h-[35px] 2xl:h-[43px] 3xl:h-[52px] min-w-[100px] lg:min-w-[120px] xl:min-w-[155px] 2xl:min-w-[185px] 3xl:min-w-[232px] items-center justify-center overflow-hidden rounded-[100px] p-0 text_1 font-semibold ${item.status === "Chairperson"
-                                                    ? "bg-[#E9F3E7] text-[#4D8F55]"
-                                                    : "bg-[#CBE3FA] text-[#007DC5]"
-                                                    }`}
-                                            >
-                                                {item.status}
-                                            </div>
-                                        )}
-                                    </td>
+                                                </div>
+                                            </td>
+                                        ) : (
+                                            <td key={idx} className={`last:rounded-r-[10px] p-[12px] xl:p-[15px] 2xl:p-[18px_20px] 3xl:p-[20px_25px] text-center text-[14px] md:text-[16px] font-semibold text-[#4A5565] ${cellDivider}`}>
+                                                <div className="m-auto text-center break-words whitespace-pre-line">{row.cells?.[idx]}</div>
+                                            </td>
+                                        )
+                                    )}
                                 </tr>
                             ))}
                         </tbody>
