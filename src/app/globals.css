@@ -347,6 +347,9 @@ html.lenis body {
     ul > li a {
       @apply  block hover:text-[#f97316];
     }
+    ul l::before{
+      display: none;
+    }
     ol {
       @apply !my-0 !ml-4 my-5 pl-[10px]
     }
@@ -711,12 +714,17 @@ body:has(.balckHeader) header {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 0 !important;
+    margin: 0 !important;
   }
   .rich-text ul > li {
     position: relative;
     margin: 0;
     padding-left: 19px;
   }
+  .rich-text ul > li {
+    list-style: none;
+}
   .rich-text ul > li::before {
     content: "";
     position: absolute;

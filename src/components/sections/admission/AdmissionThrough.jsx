@@ -217,9 +217,8 @@ function CtaBlock({ cta, row = false }) {
     if (!cta) return null;
     return (
         <div
-            className={`group/cta relative flex h-full w-full gap-5 overflow-hidden bg-linear-to-br from-(--basecolor) to-(--basecolor2) p-6 text-white shadow-[0_6px_20px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(249,115,22,0.35)]  ${
-                row ? "flex-col lg:flex-row lg:items-center lg:justify-between" : "flex-col"
-            }`}
+            className={`group/cta relative flex h-full w-full gap-5 overflow-hidden max-sm:border border-(--basecolor2)/30 bg-white p-6 text-black   transition-all duration-500   ${row ? "flex-col lg:flex-row lg:items-center lg:justify-between" : "flex-col"
+                }`}
         >
             {/* soft glows: the top one grows on hover */}
             <span
@@ -238,17 +237,17 @@ function CtaBlock({ cta, row = false }) {
 
             <div className="relative">
                 {cta.eyebrow && (
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/80 xl:text-[11px]">
+                    <span className="text-[10px] font-semibold uppercase   text-black/80 xl:text-[11px]">
                         {cta.eyebrow}
                     </span>
                 )}
                 {cta.title && (
-                    <h3 className="mt-2  text-[26px] leading-[1.15] sm:text-[28px] xl:text-[32px] 2xl:text-[36px]">
+                    <h3 className="mt-2  text-[26px] leading-[1.15] sm:text-[28px] xl:text-[32px] 2xl:text-[36px] text-black">
                         {cta.title}
                     </h3>
                 )}
                 {cta.description && (
-                    <p className="mt-2 text-[13px] leading-relaxed text-white/90 xl:text-[14px]">
+                    <p className="mt-2 text-[13px] leading-relaxed text-black/90 xl:text-[14px]">
                         {cta.description}
                     </p>
                 )}
@@ -258,9 +257,8 @@ function CtaBlock({ cta, row = false }) {
                 <Link
                     href={cta.button.url || "#!"}
                     {...externalProps(cta.button)}
-                    className={`group/btn relative inline-flex w-fit shrink-0 items-center justify-center gap-2 bg-white px-5 py-3 text_1 font-semibold text-[#1C1C1C] shadow-md transition-all duration-300 hover:bg-[#1C1C1C] hover:text-white hover:shadow-xl  ${
-                        row ? "" : "mt-auto"
-                    }`}
+                    className={`group/btn relative inline-flex w-fit shrink-0 items-center justify-center gap-2 overflow-hidden bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-5 py-3 text_1 font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-linear-to-l hover:shadow-xl ${row ? "" : "mt-auto"
+                        }`}
                 >
                     {cta.button.label}
                     <ArrowRight
@@ -323,11 +321,7 @@ export default function WaysToApply({ data }) {
 
                 {/* ─── Mobile / tablet: gradient block first, then the slider ─── */}
                 <div className="lg:hidden">
-                    {cta && (
-                        <div className="mb-5">
-                            <CtaBlock cta={cta} />
-                        </div>
-                    )}
+
 
                     {exams.length > 0 && (
                         <Swiper
@@ -353,6 +347,11 @@ export default function WaysToApply({ data }) {
                                 </SwiperSlide>
                             ))}
                         </Swiper>
+                    )}
+                    {cta && (
+                        <div className="mb-5">
+                            <CtaBlock cta={cta} />
+                        </div>
                     )}
                 </div>
 
