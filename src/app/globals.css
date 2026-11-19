@@ -362,7 +362,7 @@ html.lenis body {
 
       /* tables pasted as HTML into a Strapi "HTML" code block */
       .blocks-html {
-        @apply !my-0 !ml-4 my-5 pl-[10px]
+        @apply my-3 lg:my-4;
       }
       .blocks-html table {
         @apply w-full border-collapse text-left text-(--text-color);
