@@ -621,7 +621,7 @@ export default function Header({ data = local_data }) {
   const isMobile = useIsMobile();
   const TopHeaderTextStyle =
     // max-[1169px]:after:* = invisible 48px-tall touch target on mobile
-    "text-[12px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] min-[1170px]:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] min-[1170px]:gap-2.5 flex items-center max-[1169px]:relative max-[1169px]:after:absolute max-[1169px]:after:inset-x-0 max-[1169px]:after:-inset-y-3.5 max-[1169px]:after:content-['']";
+    "text-[11px] sm:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-[1.1] font-medium text-white w-auto h-auto px-[5px] sm:px-[10px] min-[1170px]:px-[15px] 2xl:px-5 border-r border-white/20 gap-[5px] min-[1170px]:gap-2.5 flex items-center max-[1169px]:relative max-[1169px]:after:absolute max-[1169px]:after:inset-x-0 max-[1169px]:after:-inset-y-3.5 max-[1169px]:after:content-['']";
   return (
     <header
       className={cn(
@@ -629,14 +629,14 @@ export default function Header({ data = local_data }) {
         isHeaderVisible ? "translate-y-0" : "-translate-y-full",
         isScrolled
           ? [
-              "bg-black/70 backdrop-blur-xl transition-all duration-800 shadow-md",
-            ]
+            "bg-black/70 backdrop-blur-xl transition-all duration-800 shadow-md",
+          ]
           : isHome
             ? [
-                "bg-black/50 xl:bg-linear-to-r",
-                "from-(--basecolor)/10",
-                "to-(--basecolor2)/10",
-              ]
+              "bg-black/50 xl:bg-linear-to-r",
+              "from-(--basecolor)/10",
+              "to-(--basecolor2)/10",
+            ]
             : ["backdrop-blur-md shadow-md border-b border-white/10"],
         NOT_FOUND_HEADER_GRADIENT,
       )}
@@ -645,29 +645,31 @@ export default function Header({ data = local_data }) {
         {/* CHANGED: justify-between on mobile (tagline left, links right), justify-end on desktop */}
         <div className="container h-full flex items-center justify-between min-[1170px]:justify-end">
           {/* CHANGED (mobile only): "India's AI-First University" tagline shown in the top bar */}
-          <div
-            className="sm:hidden shrink-0 pr-2 text-[11px] sm:text-[10px] leading-[1.2] font-medium text-white text-center"
-            dangerouslySetInnerHTML={{
-              __html: data?.logo?.logoText,
-            }}
-          />
-          {/* CDSIMER and DSU Online are hidden on small screens (they live in the hamburger menu). */}
-          <div className="w-auto h-auto gap-1.25 sm:gap-1.75 2xl:gap-2.5 flex max-sm:hidden">
-            {data?.topBar?.topBarButtons?.map((item) => (
-              <div key={item?.id} className="w-auto h-auto">
-                <Link
-                  href={item?.url || "#"}
-                  aria-label={item?.label}
-                  {...(item?.isExternal && {
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                  })}
-                  className="text-[10px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full min-[1170px]:h-auto p-2.5 max-[1169px]:relative max-[1169px]:after:absolute max-[1169px]:after:inset-x-0 max-[1169px]:after:-inset-y-1 max-[1169px]:after:content-[''] sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
-                >
-                  {item?.label}
-                </Link>
-              </div>
-            ))}
+          <div className="flex items-center">
+            <div
+              className=" shrink-0 pr-2 text-[11px] sm:text-[10px] leading-[1.2] font-medium text-white text-center sm:hidden"
+              dangerouslySetInnerHTML={{
+                __html: data?.logo?.logoText,
+              }}
+            />
+            {/* CDSIMER and DSU Online are hidden on small screens (they live in the hamburger menu). */}
+            <div className="w-auto h-auto gap-1.25 sm:gap-1.75 2xl:gap-2.5 flex">
+              {data?.topBar?.topBarButtons?.map((item) => (
+                <div key={item?.id} className="w-auto h-auto">
+                  <Link
+                    href={item?.url || "#"}
+                    aria-label={item?.label}
+                    {...(item?.isExternal && {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
+                    className="text-[10px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full min-[1170px]:h-auto p-[6px_4px] sm:p-2.5 max-[1169px]:relative max-[1169px]:after:absolute max-[1169px]:after:inset-x-0 max-[1169px]:after:-inset-y-1 max-[1169px]:after:content-[''] sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
+                  >
+                    {item?.label}
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="w-auto h-auto min-[1170px]:gap-2.5 3xl:gap-2.5 flex items-center ">
             {data?.topBar?.topBarLinkIcons?.map((item, index) => (
@@ -838,7 +840,7 @@ export default function Header({ data = local_data }) {
                       <Link
                         href={item?.url || "#"}
                         aria-label={item?.label}
-                        className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center text-white w-auto h-full min-[1170px]:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-[15px] border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
+                        className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center !text-white w-auto h-full min-[1170px]:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-[15px] border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
                       >
                         {item?.label}
                       </Link>
@@ -943,18 +945,18 @@ export default function Header({ data = local_data }) {
                               {isValidLoginButton(
                                 data?.topBar?.loginButton,
                               ) && (
-                                <>
-                                  <span className="text-black/20 dark:text-white/20">
-                                    |
-                                  </span>
-                                  <LoginButton
-                                    button={data?.topBar?.loginButton}
-                                    className="flex items-center gap-1 hover:text-(--basecolor) cursor-pointer"
-                                    iconSrc="/images/header-login-black.svg"
-                                    iconClassName="w-3.5 h-3.5 flex items-center justify-center dark:invert"
-                                  />
-                                </>
-                              )}
+                                  <>
+                                    <span className="text-black/20 dark:text-white/20">
+                                      |
+                                    </span>
+                                    <LoginButton
+                                      button={data?.topBar?.loginButton}
+                                      className="flex items-center gap-1 hover:text-(--basecolor) cursor-pointer"
+                                      iconSrc="/images/header-login-black.svg"
+                                      iconClassName="w-3.5 h-3.5 flex items-center justify-center dark:invert"
+                                    />
+                                  </>
+                                )}
                             </div>
                             <div className="flex items-center gap-1.5 shrink-0 ml-2">
                               <ThemeToggle iconClassName="max-[1169px]:invert" />
@@ -1316,7 +1318,7 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
               textSize,
               "2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-white w-full h-full px-1.25 sm:px-2.5 xl:px-3.75 flex items-center justify-center relative z-0",
               showOthers &&
-                "before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:absolute before:z-1 before:inset-[0_0_0_auto]",
+              "before:content-[''] before:w-px before:h-[25%] sm:before:h-1/2 before:my-auto before:bg-white sm:before:bg-black/10 before:absolute before:z-1 before:inset-[0_0_0_auto]",
             )}
           >
             <span>{nri.label}</span>
@@ -1350,7 +1352,7 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
             "absolute left-1/2 top-0 z-10 flex h-(--nh) w-(--nw) -translate-x-1/2 items-center justify-center whitespace-nowrap bg-transparent font-bold leading-none  -top-[3px]",
             isMobile
               ? // menu sheet: cream (light) / dark (dark) background behind the notch
-                "text-[11px] text-black dark:text-white"
+              "text-[11px] text-black dark:text-white"
               : "text-[9px] sm:text-[11px] 2xl:text-xs 3xl:text-sm text-white",
           )}
         >
@@ -1380,7 +1382,7 @@ function isActiveUrl(url, pathname) {
   let path = url;
   try {
     path = new URL(url, "http://x").pathname;
-  } catch {}
+  } catch { }
   const clean = (p) => (p.length > 1 ? p.replace(/\/+$/, "") : p);
   return clean(path) === clean(pathname);
 }
@@ -1848,7 +1850,7 @@ function SubMenuLeaf({ leaf, onKeepOpen, preferLeft = false }) {
                       className={cn(
                         "w-full inline-flex items-start gap-2 text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-snug text-[#262626] rounded-[5px] px-2.5 py-[5px] transition-all duration-150 hover:bg-[#FFE8D6] hover:font-medium",
                         isActiveUrl(sub?.url, pathname) &&
-                          "bg-[#FFE8D6] font-medium",
+                        "bg-[#FFE8D6] font-medium",
                       )}
                     >
                       <span className="w-[8px] h-[8px] mt-[5px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
@@ -2031,18 +2033,18 @@ function NavigationMenu({
             className={cn(
               level === 0
                 ? cn(
-                    "text-sm font-medium transition-colors",
-                    isOpen
-                      ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent font-bold"
-                      : "text-[#212121] dark:text-white",
-                  )
+                  "text-sm font-medium transition-colors",
+                  isOpen
+                    ? "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent font-bold"
+                    : "text-[#212121] dark:text-white",
+                )
                 : level === 1
                   ? cn(
-                      "text-[13.5px] font-semibold transition-colors",
-                      isOpen
-                        ? "text-(--basecolor)"
-                        : "text-[#212121] dark:text-white",
-                    )
+                    "text-[13.5px] font-semibold transition-colors",
+                    isOpen
+                      ? "text-(--basecolor)"
+                      : "text-[#212121] dark:text-white",
+                  )
                   : "text-xs font-bold uppercase tracking-wider text-[#ea580c]",
             )}
           >

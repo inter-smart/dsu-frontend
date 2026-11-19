@@ -33,7 +33,7 @@ export default function AdmissionCriteria({ data, variant }) {
             <div className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mb-2.5 2xl:mb-3.75 3xl:mb-5 relative z-0 [--size:15px] 2xl:[--size:20px] 3xl:[--size:25px] before:content-[''] before:w-(--size) before:h-0.5 2xl:before:h-0.75 pl-[calc(var(--size)+8px)] before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:inline-block before:absolute before:z-1 before:inset-[0_auto_0_0]">
               {data?.subTitle}
             </div>
-            <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-5">
+            <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-5 cmn_Title">
               {data?.title}
             </Heading>
             <Text>{data?.description}</Text>
