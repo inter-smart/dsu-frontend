@@ -100,9 +100,14 @@ export default function HomeResearch({ data }) {
 
   useEffect(() => {
     if (!emblaApi) return;
-    onSelect(emblaApi);
+    emblaApi.on("init", onSelect);
     emblaApi.on("reInit", onSelect);
     emblaApi.on("select", onSelect);
+    return () => {
+      emblaApi.off("init", onSelect);
+      emblaApi.off("reInit", onSelect);
+      emblaApi.off("select", onSelect);
+    };
   }, [emblaApi, onSelect]);
 
   // Tab label and icon set on each block in the CMS; the design defaults while they are empty.
@@ -135,7 +140,10 @@ export default function HomeResearch({ data }) {
   return (
     <section className="w-full h-auto py-[35px_10px] sm:py-12.5 lg:py-17.5 2xl:py-22.5 3xl:py-27.5 dark:bg-[#101010] block overflow-hidden">
       <div className="container">
-        <div data-reveal className="w-full h-auto mb-6.25 lg:mb-8.75 2xl:mb-10 3xl:mb-12.5 text-center">
+        <div
+          data-reveal
+          className="w-full h-auto mb-6.25 lg:mb-8.75 2xl:mb-10 3xl:mb-12.5 text-center"
+        >
           <Heading
             as="h2"
             aurora
@@ -290,7 +298,7 @@ export default function HomeResearch({ data }) {
                                 : "col-span-12"
                           }`}
                         >
-                          <div className="[--icon-size:30px] sm:[--icon-size:25px] lg:[--icon-size:30px] 2xl:[--icon-size:35px] 3xl:[--icon-size:50px] w-full h-full p-3.75 sm:p-[10px_15px] lg:p-[10px_25px] bg-white dark:bg-black/20 rounded-[10px] border border-black/10 overflow-hidden relative z-0 transition-colors duration-500 flex items-center justify-center hover:border-(--basecolor) dark:hover:border-white">
+                          <div className="[--icon-size:30px] sm:[--icon-size:25px] 2xl:[--icon-size:35px] 3xl:[--icon-size:50px] w-full h-full p-3.75 sm:p-[10px_15px] lg:p-[10px_25px] bg-white dark:bg-black/20 rounded-[10px] border border-black/10 overflow-hidden relative z-0 transition-colors duration-500 flex items-center justify-center hover:border-(--basecolor) dark:hover:border-white">
                             <ShineBorder
                               shineColor={["#909191"]}
                               duration={8 + index * 4}
@@ -308,7 +316,7 @@ export default function HomeResearch({ data }) {
                               )}
                             </div>
                             <div className="pl-2.5 2xl:pl-3.75 3xl:pl-5">
-                              <div className="text-[25px] 2xl:text-[32px] 3xl:text-[40px] leading-snug font-bold text-[#212121] w-auto h-auto mb-0.5 sm:mb-1.25 dark:bg-linear-to-r dark:from-(--basecolor) dark:to-(--basecolor2) dark:bg-clip-text dark:text-transparent dark:w-fit">
+                              <div className="text-[25px] lg:text-xl 2xl:text-[32px] 3xl:text-[40px] leading-snug font-bold text-[#212121] w-auto h-auto mb-0.5 sm:mb-1.25 dark:bg-linear-to-r dark:from-(--basecolor) dark:to-(--basecolor2) dark:bg-clip-text dark:text-transparent dark:w-fit">
                                 <ClientCountUp
                                   start={0}
                                   end={item?.value || 0}
@@ -319,7 +327,7 @@ export default function HomeResearch({ data }) {
                                 />
                               </div>
                               <div
-                                className="typography text_1 leading-[1.1] font-normal text-[#4A5565] dark:text-white"
+                                className="text_1 lg:text-sm! 2xl:text-base! 3xl:text-lg! leading-[1.1] font-normal text-[#4A5565] dark:text-white"
                                 dangerouslySetInnerHTML={{
                                   __html: item?.label || "",
                                 }}
@@ -365,7 +373,7 @@ export default function HomeResearch({ data }) {
               <h3 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-[45px] leading-[1.1] font-bold text-[#212121] dark:text-white w-full md:w-[35%] max-sm:mb-2.5">
                 {data?.incubation?.header?.title}
               </h3>
-              <div className="text-sm sm:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.5] font-normal text-[#4A5565] dark:text-white w-full md:w-[45%]">
+              <div className="text-sm sm:text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.5] font-normal text-[#4A5565] dark:text-white w-full md:w-[45%]">
                 {data?.incubation?.header?.description}
               </div>
               <div className="w-full md:w-[20%] hidden sm:flex md:justify-end">
@@ -377,7 +385,7 @@ export default function HomeResearch({ data }) {
               className="[--slide-gap:10px] xl:[--slide-gap:15px] 3xl:[--slide-gap:20px] w-full h-auto overflow-hidden"
             >
               <div className="ml-[calc(var(--slide-gap)*-1)] touch-pan-y touch-pinch-zoom flex">
-                {data?.incubation?.featuredCards?.map((item, index) => (
+                {data?.incubation?.featuredCards?.map((item) => (
                   <div
                     key={item?.id}
                     className="min-w-0 translate-x-0 translate-y-0 flex-[0_0_100%] sm:flex-[0_0_calc(100%/1.4)] lg:flex-[0_0_calc(100%/2)] pl-(--slide-gap)"
@@ -423,7 +431,7 @@ export default function HomeResearch({ data }) {
               <h3 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-[45px] leading-[1.1] font-bold text-[#212121] dark:text-white w-full sm:w-[35%] max-sm:mb-2.5">
                 {data?.innovation?.header?.title}
               </h3>
-              <div className="text-sm sm:text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.5] font-normal text-[#4A5565] dark:text-white w-full sm:w-[45%]">
+              <div className="text-sm sm:text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.5] font-normal text-[#4A5565] dark:text-white w-full sm:w-[45%]">
                 {data?.innovation?.header?.description}
               </div>
               <div className="w-full sm:w-[20%] hidden sm:flex justify-end">

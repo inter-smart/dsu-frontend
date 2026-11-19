@@ -10,11 +10,9 @@ import {
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const local_data = {};
-
 export default function AdmissionProgramme({ data }) {
   return (
-    <section className="block h-auto w-full py-[10px_40px] sm:py-[10px_50px] lg:py-15 2xl:py-20 3xl:py-25">
+    <section className="block h-auto w-full py-[10px_40px] sm:py-[10px_50px] lg:py-[40px_60px] 2xl:py-[40px_80px] 3xl:py-[40px_100px]">
       <div className="container">
         <div className="w-full h-auto block mb-5 sm:mb-7.5 lg:mb-10 2xl:mb-12.5 3xl:mb-15">
           <Heading className="mb-2.5 lg:mb-3.75 2xl:mb-5 3xl:mb-6.25">
@@ -63,7 +61,6 @@ export default function AdmissionProgramme({ data }) {
                             </>
                           );
                           const key = `${item?.title}-${index}`;
-                          // a row without a linked programme stays visible, just not clickable
                           return item?.link ? (
                             <Link
                               key={key}

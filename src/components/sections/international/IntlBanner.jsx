@@ -21,7 +21,7 @@ export default function IntlBanner({ data, formData }) {
             <div className="absolute inset-x-0 top-0 h-[260px] bg-linear-to-b from-black/60 to-transparent" />
 
             {/* pt clears the fixed header (taller on desktop) */}
-            <div className="container relative z-10 pb-10 pt-[130px] lg:pt-[240px] lg:pb-[40px] xl:pb-[50px] 2xl:pb-[80px] 3xl:pb-[100px] h-full">
+            <div className="container relative z-10 pb-10 pt-[130px] lg:pt-[240px] lg:pb-[40px] xl:pb-[40px] 2xl:pb-[50px] 3xl:pb-[60px] h-full">
                 <div className="grid items-end gap-8 lg:grid-cols-[1fr_46%] xl:grid-cols-[1fr_40%] 2xl:grid-cols-[1fr_655px] 2xl:gap-[40px]">
                     {/* Left: text pinned to the bottom */}
                     <div className="flex flex-col justify-end pb-3 text-white max-lg:pt-[120px] lg:pb-15">

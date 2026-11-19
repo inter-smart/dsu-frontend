@@ -6,7 +6,6 @@ import { Heading } from "@/components/ui/heading";
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useCallback, useState } from "react";
 
-/* Each story group gets its own carousel instance */
 function StoriesCarousel({ item, index }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {

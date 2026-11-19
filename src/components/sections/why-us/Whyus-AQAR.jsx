@@ -15,7 +15,7 @@ export default function WhyusAQAR({ data }) {
                     <p className="text_1  ">{data.description}</p>
                 </div>
                 <Tabs defaultValue={defaultTab} className="w-full">
-                    <TabsList className="gap-[8px] bg-transparent p-0 mb-[25px] xl:mb-[40px]">
+                    <TabsList className="gap-[8px] bg-transparent p-0 mb-[25px] xl:mb-[20px]">
                         {data.yearFilters.map((item) => (
                             <TabsTrigger
                                 key={item.id}
