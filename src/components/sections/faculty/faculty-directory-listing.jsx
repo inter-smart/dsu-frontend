@@ -405,7 +405,7 @@ export default function FacultyDirectoryListing({ data }) {
                   })}
                 </div>
               </div>
-              <div className="w-full h-auto p-[20px_15px] lg:p-[25px_15px] 2xl:p-[30px_15px] 3xl:p-[35px_20px] bg-white border border-[#E7E1D8] rounded-[15px] 2xl:rounded-[20px] overflow-hidden">
+              {/* <div className="w-full h-auto p-[20px_15px] lg:p-[25px_15px] 2xl:p-[30px_15px] 3xl:p-[35px_20px] bg-white border border-[#E7E1D8] rounded-[15px] 2xl:rounded-[20px] overflow-hidden">
                 <div className="text-base 2xl:text-lg 3xl:text-[22px] leading-[1.1] font-medium text-[#212121] mb-3.75 lg:mb-6.25">
                   Popular Expertise Areas
                 </div>
@@ -430,7 +430,7 @@ export default function FacultyDirectoryListing({ data }) {
                     </button>
                   ))}
                 </div>
-              </div>
+              </div> */}
               <button
                 type="button"
                 onClick={resetFilters}
