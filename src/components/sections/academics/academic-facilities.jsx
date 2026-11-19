@@ -86,9 +86,13 @@ export default function AcademicFacilities({ data }) {
                                         </h3>
                                         <div className="w-[40px] xl:w-[50px] 2xl:w-[55px] 3xl:w-[65px] h-[3px] xl:h-[4px] bg-[#EA580C] mb-[12px] xl:mb-[16px] 2xl:mb-[20px] 3xl:mb-[25px] rounded-full" />
                                         <div className="text_1 leading-[1.5] xl:leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px] typography [&_p]:text-[14px] [&_p]:md:text-[15px] [&_p]:lg:text-[14px] [&_p]:xl:text-[14px] [&_p]:2xl:text-[14.4px] [&_p]:3xl:text-[18px] [&_p]:leading-[1.5] [&_p]:xl:leading-[1.6] [&_p]:tracking-tight [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF]">
-                                            {Array.isArray(item.description)
-                                                ? <BlocksRenderer content={item.description} />
-                                                : item.description && <p>{item.description}</p>}
+                                            {Array.isArray(item.description) ? (
+                                                <BlocksRenderer content={item.description} />
+                                            ) : item.description && typeof item.description === "object" ? (
+                                                <BlocksRenderer content={[item.description]} />
+                                            ) : (
+                                                item.description && <p>{item.description}</p>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

@@ -1,148 +1,154 @@
 "use client";
-
 import Image from "next/image";
+import AcademicCta from "./academic-cta";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
-import AcademicCta from "./academic-cta";
-export default function DeanMessage({ data, varient }) {
-    if (!data) return null;
+export default function DeanMessage({ data, varient, hideSignature }) {
+  if (!data) return null;
 
-    const {
-        heading,
-        media,
-        featuredPerson,
-        quote,
-        message,
-        closing,
-    } = data;
+  const { heading, media, featuredPerson, quote, message, closing } = data;
 
-    return (
-        <section className="relative py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
-            <div className="container ">
-                <div className="relative after:content-[''] after:table after:clear-both">
-                    {/* Floating Dean Image Card (Floated Left on md and above) */}
-                    <div className={`w-full ${varient === "home"
-                        ? "md:w-[50%] "
-                        : "md:w-[320px] lg:w-[300px] xl:w-[360px] 2xl:w-[440px] 3xl:w-[500px]"} md:float-left mr-0 md:mr-[15px] lg:mr-[20px] xl:mr-[25px] 2xl:mr-[30px] 3xl:mr-[40px] mb-[25px] md:mb-[20px] xl:mb-[30px] `}>
-                        <div className="relative overflow-hidden rounded-[16px] xl:rounded-[20px] 2xl:rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.12)] bg-[#111]">
-                            {/* Dean Photo */}
-                            {media?.url && (
-                                <div className={`relative w-full  overflow-hidden 
-                                ${varient === "home"
-                                        ? "aspect-[4/3] sm:aspect-[1/1] md:aspect-[855/555]"
-                                        : "aspect-[4/3] sm:aspect-[1/1] md:aspect-[4/4.2]"} 
-                            `}>
-                                    <Image
-                                        src={media.url}
-                                        alt={media.alternativeText || featuredPerson?.name || "Dean"}
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 440px, 560px"
-                                        className="object-cover object-top"
-                                        priority
-                                    />
-                                </div>
-                            )}
-
-                            {/* Card Overlay with Person Info */}
-                            {featuredPerson && (
-                                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/75 to-transparent pt-12 pb-4 2xl:pb-5 px-4 2xl:px-6">
-                                    <div className="flex items-stretch gap-3 xl:gap-3.5">
-                                        {/* Orange/Red Vertical Bar */}
-                                        <div className="w-[3px] 2xl:w-[4px] rounded-full bg-gradient-to-b from-[#DC2626] to-[#F97316] shrink-0" />
-
-                                        {/* Text Info */}
-                                        <div>
-                                            <div className="text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[24px] font-bold text-white leading-snug">
-                                                {featuredPerson.name}
-                                            </div>
-                                            {featuredPerson.designation && (
-                                                <div className="text-[11px] xl:text-[12px] 2xl:text-[13px] 3xl:text-[15px] text-white/85 font-normal leading-snug mt-0.5">
-                                                    {featuredPerson.designation}
-                                                </div>
-                                            )}
-                                            {featuredPerson.institution && (
-                                                <div className="text-[10px] xl:text-[11px] 2xl:text-[12px] 3xl:text-[14px] text-white/65 font-normal leading-snug">
-                                                    {featuredPerson.institution}
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* Heading */}
-                    {heading && (
-                        <h2 className={`cmn_Title font-bold leading-tight text-[#212121] dark:text-[#F9FAFB] 
-                         mb-[12px] xl:mb-[16px] 2xl:mb-[20px] 
-                         ${varient === "home"
-                                ? "pt-0 xl:pt-[10px] max-w-[85%]"
-                                : "xl:pt-[30px] 2xl:pt-[40px] 3xl::pt-[60px]"} `}>
-                            {heading}
-                        </h2>
-                    )}
-
-                    {/* Quote */}
-                    {quote?.text && (
-                        <div className="text-[13px] xl:text-[14.5px] 2xl:text-[16px] 3xl:text-[19px] font-bold text-[#4A5565] dark:text-[#F9FAFB] leading-snug mb-[16px] xl:mb-[20px] 2xl:mb-[24px]">
-                            &ldquo;{quote.text}&rdquo;{quote.author ? ` – ${quote.author}` : ""}
-                        </div>
-                    )}
-
-                    {/* Message Body Paragraphs */}
-                    {message && (
-                        <div className="typography text_1 [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_p]:mb-[14px] [&_p]:xl:mb-[18px] [&_p]:2xl:mb-[28px] [&>_p]:3xl:mb-[35px] [&_p]:leading-[22px] [&_p]:2xl:leading-[25px] [&_p]:3xl:leading-[28px] [&_p]:last:mb-0 lg:max-w-[92%] ">
-                            {Array.isArray(message) ? (
-                                <BlocksRenderer content={message} />
-                            ) : (
-                                <div>
-                                    <p>{message}</p>
-
-                                </div>
-                            )}
-                        </div>
-                    )}
-                    
-
-                    {/* Closing Note */}
-                    {closing && (
-                        <div className="text-[13px] xl:text-[15px] 2xl:text-[16px] 3xl:text-[18px] font-normal text-[#4A5565] dark:text-[#F9FAFB] tracking-wide mt-[24px] xl:mt-[30px] 2xl:mt-[35px] mb-[20px] xl:mb-[25px]">
-                            {closing}
-                        </div>
-                    )}
-
-                    <AcademicCta cta={data.cta} className="mb-[20px] xl:mb-[25px]" />
-
-                    {/* Bottom Signature / Featured Person Block */}
-                    {featuredPerson && (
-                        <div
-                            className={`items-stretch gap-3 xl:gap-3.5 mt-[20px] xl:mt-[25px] ${varient === "home" ? "hidden" : "flex"
-                                }`}
-                        >
-                            {/* Orange/Red Vertical Bar */}
-                            <div className="w-[3px] 2xl:w-[4px] rounded-full bg-gradient-to-b from-[#DC2626] to-[#F97316] shrink-0" />
-
-                            {/* Text Info */}
-                            <div>
-                                <div className="text-[14px] xl:text-[17px] 2xl:text-[22px] 3xl:text-[25px] font-bold text-[#212121] dark:text-[#F9FAFB] leading-snug">
-                                    {featuredPerson.name}
-                                </div>
-                                {featuredPerson.designation && (
-                                    <div className="text-[11px] xl:text-[12px] 2xl:text-[13.5px] 3xl:text-[16px] text-[#212121] dark:text-[#D1D5DB] font-normal leading-snug mt-0.5">
-                                        {featuredPerson.designation}
-                                    </div>
-                                )}
-                                {featuredPerson.institution && (
-                                    <div className="text-[10px] xl:text-[11px] 2xl:text-[12.5px] 3xl:text-[15px] text-[#4A5565] dark:text-[#9CA3AF] font-normal leading-snug">
-                                        {featuredPerson.institution}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    )}
+  return (
+    <section className="relative py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
+      <div className="container ">
+        <div className="relative after:content-[''] after:table after:clear-both">
+          {/* Floating Dean Image Card (Floated Left on md and above) */}
+          <div
+            className={`w-full ${
+              varient === "home"
+                ? "md:w-[50%] "
+                : "md:w-[320px] lg:w-[300px] xl:w-[360px] 2xl:w-[440px] 3xl:w-[500px]"
+            } md:float-left mr-0 md:mr-[15px] lg:mr-[20px] xl:mr-[25px] 2xl:mr-[30px] 3xl:mr-[40px] mb-[25px] md:mb-[20px] xl:mb-[30px] `}
+          >
+            <div className="relative overflow-hidden rounded-[16px] xl:rounded-[20px] 2xl:rounded-[24px] shadow-[0_8px_30px_rgba(0,0,0,0.12)] bg-[#111] max-md:max-w-80">
+              {/* Dean Photo */}
+              {media?.url && (
+                <div
+                  className={`relative w-full overflow-hidden 
+                                ${
+                                  varient === "home"
+                                    ? "aspect-[4/3] sm:aspect-[1/1] md:aspect-[855/555]"
+                                    : "aspect-[4/3] sm:aspect-[1/1] md:aspect-[4/4.2]"
+                                } 
+                            `}
+                >
+                  <Image
+                    src={media.url}
+                    alt={
+                      media.alternativeText || featuredPerson?.name || "Dean"
+                    }
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 440px, 560px"
+                    className="object-cover object-top"
+                    priority
+                  />
                 </div>
+              )}
+
+              {/* Card Overlay with Person Info */}
+              {featuredPerson && (
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/75 to-transparent pt-12 pb-4 2xl:pb-5 px-4 2xl:px-6">
+                  <div className="flex items-stretch gap-3 xl:gap-3.5">
+                    {/* Orange/Red Vertical Bar */}
+                    <div className="w-[3px] 2xl:w-[4px] rounded-full bg-gradient-to-b from-[#DC2626] to-[#F97316] shrink-0" />
+
+                    {/* Text Info */}
+                    <div>
+                      <div className="text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[24px] font-bold text-white leading-snug">
+                        {featuredPerson.name}
+                      </div>
+                      {featuredPerson.designation && (
+                        <div className="text-[11px] xl:text-[12px] 2xl:text-[13px] 3xl:text-[15px] text-white/85 font-normal leading-snug mt-0.5">
+                          {featuredPerson.designation}
+                        </div>
+                      )}
+                      {featuredPerson.institution && (
+                        <div className="text-[10px] xl:text-[11px] 2xl:text-[12px] 3xl:text-[14px] text-white/65 font-normal leading-snug">
+                          {featuredPerson.institution}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-        </section>
-    );
+          </div>
+
+          {/* Heading */}
+          {heading && (
+            <h2
+              className={`cmn_Title font-bold leading-tight text-[#212121] dark:text-[#F9FAFB] 
+                         mb-[12px] xl:mb-[16px] 2xl:mb-[20px] 
+                         ${
+                           varient === "home"
+                             ? "pt-0 xl:pt-[10px] max-w-[85%]"
+                             : "xl:pt-[30px] 2xl:pt-[40px] 3xl::pt-[60px]"
+                         } `}
+            >
+              {heading}
+            </h2>
+          )}
+
+          {/* Quote */}
+          {quote?.text && (
+            <div className="text-[13px] xl:text-[14.5px] 2xl:text-[16px] 3xl:text-[19px] font-bold text-[#4A5565] dark:text-[#F9FAFB] leading-snug mb-[16px] xl:mb-[20px] 2xl:mb-[24px]">
+              &ldquo;{quote.text}&rdquo;
+              {quote.author ? ` – ${quote.author}` : ""}
+            </div>
+          )}
+
+          {/* Message Body Paragraphs */}
+          {message && (
+            <div className="typography text_1 [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_p]:mb-[14px] [&_p]:xl:mb-[18px] [&_p]:2xl:mb-[28px] [&>_p]:3xl:mb-[35px] [&_p]:leading-[22px] [&_p]:2xl:leading-[25px] [&_p]:3xl:leading-[28px] [&_p]:last:mb-0 lg:max-w-[92%] ">
+              {Array.isArray(message) ? (
+                <BlocksRenderer content={message} />
+              ) : (
+                <div>
+                  <p>{message}</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Closing Note */}
+          {closing && (
+            <div className="text-[13px] xl:text-[15px] 2xl:text-[16px] 3xl:text-[18px] font-normal text-[#4A5565] dark:text-[#F9FAFB] tracking-wide mt-[24px] xl:mt-[30px] 2xl:mt-[35px] mb-[20px] xl:mb-[25px]">
+              {closing}
+            </div>
+          )}
+
+          <AcademicCta cta={data.cta} className="mb-[20px] xl:mb-[25px]" />
+
+          {/* Bottom Signature / Featured Person Block */}
+          {featuredPerson && (
+            <div
+              className={`items-stretch gap-3 xl:gap-3.5 mt-[20px] xl:mt-[25px] ${
+                varient === "home" || hideSignature ? "hidden" : "flex"
+              }`}
+            >
+              {/* Orange/Red Vertical Bar */}
+              <div className="w-[3px] 2xl:w-[4px] rounded-full bg-gradient-to-b from-[#DC2626] to-[#F97316] shrink-0" />
+
+              {/* Text Info */}
+              <div>
+                <div className="text-[14px] xl:text-[17px] 2xl:text-[22px] 3xl:text-[25px] font-bold text-[#212121] dark:text-[#F9FAFB] leading-snug">
+                  {featuredPerson.name}
+                </div>
+                {featuredPerson.designation && (
+                  <div className="text-[11px] xl:text-[12px] 2xl:text-[13.5px] 3xl:text-[16px] text-[#212121] dark:text-[#D1D5DB] font-normal leading-snug mt-0.5">
+                    {featuredPerson.designation}
+                  </div>
+                )}
+                {featuredPerson.institution && (
+                  <div className="text-[10px] xl:text-[11px] 2xl:text-[12.5px] 3xl:text-[15px] text-[#4A5565] dark:text-[#9CA3AF] font-normal leading-snug">
+                    {featuredPerson.institution}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
 }

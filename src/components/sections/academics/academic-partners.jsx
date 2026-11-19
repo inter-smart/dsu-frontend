@@ -64,15 +64,15 @@ export default function AcademicPartners({ data, varient }) {
                             {data?.partners?.filter((p) => p?.logo?.url).map((partner, id) => (
                                 <SwiperSlide
                                     key={id}
-                                    className="!h-[80px] lg:!h-[110px] xl:!h-[130px] border-r border-b border-black/10 dark:border-white/10 last-of-type:border-0"
+                                    className="!h-[80px] lg:!h-[110px] xl:!h-[130px] border-r border-b border-black/10 dark:border-white/10 last-of-type:border-0 flex! items-center justify-center"
                                 >
-                                    <div className="w-full h-full flex items-center justify-center p-[15px]">
+                                    <div className="w-full h-auto aspect-140/50 flex items-center justify-center px-1.25">
                                         <Image
                                             src={partner.logo?.url}
                                             alt={partner.logo?.alternativeText || partner.name || "Partner logo"}
                                             width={110}
                                             height={40}
-                                            className="object-contain max-h-[35px] xl:max-h-[36px] lg:min-w-[150px] w-full h-full object-contain flex items-center justify-center dark:bg-white/90 dark:rounded-[4px] dark:p-[4px]"
+                                            className="w-full h-full object-contain flex items-center justify-center dark:bg-white/90 dark:rounded-[4px] dark:p-[4px]"
                                         />
                                     </div>
                                 </SwiperSlide>

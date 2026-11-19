@@ -61,7 +61,7 @@ export default async function Page({ params }) {
             // static button: always opens the full Dean / HoD message tab
             cta: { label: "Read More", url: `/schools/${slug}/dean-message` },
           }}
-          varient="home"
+          hideSignature
         />
       )}
       {hasContent(data.whyChooseThisSchool) && (
