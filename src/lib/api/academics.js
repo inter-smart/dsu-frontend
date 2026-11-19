@@ -22,6 +22,19 @@ export async function getSchoolNewsPaged(slug, page, pageSize = 6) {
   return { data: section.newsEvents, pagination: section.pagination };
 }
 
+// One Library sub-page of a school: school shell + `page` (title, slug, template, seo, content) + the library `sidebar`.
+export async function getSchoolLibraryPage(slug, page, params) {
+  return fetchAPI(`${slugPath("/api/schools", slug)}/library/${encodeURIComponent(page)}`, params);
+}
+
+// Paged images of a school Library gallery sub-page ("Load More"): { data: [image], pagination }
+export async function getSchoolLibraryGalleryPaged(slug, page, pageNumber, pageSize) {
+  const res = await getSchoolLibraryPage(slug, page, { page: pageNumber, pageSize });
+  const content = res?.page?.content;
+  if (!content?.images || !content?.pagination) return null;
+  return { data: content.images, pagination: content.pagination };
+}
+
 // ── Departments ───────────────────────────────────────────────────────────────
 export async function getDepartments(params) {
   return fetchAPI("/api/departments", params);

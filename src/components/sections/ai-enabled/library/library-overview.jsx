@@ -5,6 +5,48 @@ import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import LibrarySidebar from "./library-sidemenubar";
 
+// Table with a label column and any number of value columns; scrolls sideways when the columns do not fit.
+// `table` is { columns, rows: [{ id, label, values }] }; the static page still passes the old `items: [{ label, value }]`.
+const asTable = (t) =>
+    t?.table ?? (t?.items?.length ? { columns: [], rows: t.items.map((r, i) => ({ id: i, label: r.label, values: [r.value ?? ""] })) } : null);
+
+function LibraryTable({ heading, note, table, className = "" }) {
+    const { columns, rows } = table;
+    const hasHead = columns.some(Boolean);
+    return (
+        <div className={`w-full border border-black/10 dark:border-white/10 bg-[#F4F8FD] dark:bg-[#18191B] rounded-[4px] xl:rounded-[8px] 3xl:rounded-[10px] ${className}`}>
+            <div className="flex items-center flex-wrap justify-between border-b border-black/10 dark:border-white/10 p-[12px] xl:p-[15px] 2xl:p-[20px] 3xl:p-[23px]">
+                <div className="cmn_Txt dark:text-white">{heading}</div>
+                <div className="text_1 dark:text-[#9CA3AF]">{note}</div>
+            </div>
+            <div className="p-[15px_12px] xl:p-[20px_15px] 2xl:p-[30px_20px] 3xl:p-[40px_23px] w-full overflow-x-auto">
+                <table className="w-full border-collapse text-left">
+                    {hasHead && (
+                        <thead>
+                            <tr className="border-b border-black/10 dark:border-white/10">
+                                <th className="text_1 font-semibold dark:text-white py-[10px] pr-[15px]">{columns[0]}</th>
+                                {rows[0].values.map((_, i) => (
+                                    <th key={i} className="text_1 font-semibold dark:text-white py-[10px] px-[10px] text-right whitespace-nowrap">{columns[i + 1]}</th>
+                                ))}
+                            </tr>
+                        </thead>
+                    )}
+                    <tbody>
+                        {rows.map((row) => (
+                            <tr key={row.id} className="border-b border-black/10 dark:border-white/10">
+                                <td className="text_1 dark:text-[#9CA3AF] py-[10px] pr-[15px]">{row.label}</td>
+                                {row.values.map((v, i) => (
+                                    <td key={i} className="text_1 dark:text-white py-[10px] px-[10px] text-right whitespace-nowrap">{v?.trim() ? v : "-"}</td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
 export default function LibraryOverview({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
@@ -47,55 +89,27 @@ export default function LibraryOverview({ data, menu }) {
                                     </div>
                                 ))}
                             </div>
-                            <div className="w-full border border-black/10 dark:border-white/10 bg-[#F4F8FD] dark:bg-[#18191B] rounded-[4px] xl:rounded-[8px] 2xl:rounded-[8px] 3xl:rounded-[10px] mb-[30px] 2xl:mb-[40px] 3xl:mb-[60px]">
-                                <div className="flex items-center flex-wrap justify-between border-b border-black/10 dark:border-white/10 p-[12px] xl:p-[15px] 2xl:p-[20px] 3xl:p-[23px]">
-                                    <div className="cmn_Txt dark:text-white">
-                                        {data?.libraryCollections.heading}
-                                    </div>
-                                    <div className="text_1 dark:text-[#9CA3AF]">
-                                        {data?.libraryCollections.statisticsDate}
-                                    </div>
-                                </div>
-                                <div className="p-[15px_12px] xl:p-[20px_15px] 2xl:p-[30px_20px] 3xl:p-[40px_23px] w-full">
-                                    {data?.libraryCollections?.items.map((collection, id) => (
-                                        <div key={collection.label ?? id} className="flex items-center flex-wrap justify-between border-b border-black/10 dark:border-white/10 py-[10px]">
-                                            <div className="text_1 dark:text-[#9CA3AF]">
-                                                {collection.label}
-                                            </div>
-                                            <div className="text_1 dark:text-white">
-                                                {collection.value? collection.value: "-"}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                            {asTable(data?.libraryCollections) && (
+                                <LibraryTable
+                                    heading={data.libraryCollections.heading}
+                                    note={data.libraryCollections.statisticsDate}
+                                    table={asTable(data.libraryCollections)}
+                                    className="mb-[30px] 2xl:mb-[40px] 3xl:mb-[60px]"
+                                />
+                            )}
                             <div className="w-full">
                                 <div className="cmn_Title dark:text-white">{data?.membershipSection.heading}</div>
                                 <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]  typography">
                                     {data?.membershipSection?.description && <BlocksRenderer content={data.membershipSection.description} />}
                                 </div>
-                                <div className="w-full border border-black/10 dark:border-white/10 bg-[#F4F8FD] dark:bg-[#18191B] rounded-[4px] xl:rounded-[8px] 2xl:rounded-[8px] 3xl:rounded-[10px] mb-[30px] 2xl:mb-[40px] 3xl:mb-[60px]">
-                                    <div className="flex items-center flex-wrap justify-between border-b border-black/10 dark:border-white/10 p-[12px] xl:p-[15px] 2xl:p-[20px] 3xl:p-[23px]">
-                                        <div className="cmn_Txt dark:text-white">
-                                            {data?.membershipSection?.membershipTable.heading}
-                                        </div>
-                                        <div className="text_1 font-medium text-[#212121] dark:text-[#9CA3AF]">
-                                            {data?.membershipSection?.membershipTable.note}
-                                        </div>
-                                    </div>
-                                    <div className="p-[15px_12px] xl:p-[20px_15px] 2xl:p-[30px_20px] 3xl:p-[40px_23px] w-full">
-                                        {data?.membershipSection?.membershipTable?.items.map((collection, id) => (
-                                            <div key={collection.label ?? id} className="flex items-center flex-wrap justify-between border-b border-black/10 dark:border-white/10 py-[10px]">
-                                                <div className="text_1 dark:text-[#9CA3AF]">
-                                                    {collection.label}
-                                                </div>
-                                                <div className="text_1 dark:text-white">
-                                                    {collection.value}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+                                {asTable(data?.membershipSection?.membershipTable) && (
+                                    <LibraryTable
+                                        heading={data.membershipSection.membershipTable.heading}
+                                        note={data.membershipSection.membershipTable.note}
+                                        table={asTable(data.membershipSection.membershipTable)}
+                                        className="mb-[30px] 2xl:mb-[40px] 3xl:mb-[60px]"
+                                    />
+                                )}
                                 <div className="text_1 dark:text-[#9CA3AF] mb-[20px]">
                                     {data?.membershipSection?.documentsRequired.description}
                                 </div>
