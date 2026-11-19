@@ -85,9 +85,15 @@ export default function AcademicFacilities({ data }) {
                                             {item.title}
                                         </h3>
                                         <div className="w-[40px] xl:w-[50px] 2xl:w-[55px] 3xl:w-[65px] h-[3px] xl:h-[4px] bg-[#EA580C] mb-[12px] xl:mb-[16px] 2xl:mb-[20px] 3xl:mb-[25px] rounded-full" />
-                                        <p className="text_1 leading-[1.5] xl:leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                            {item.description}
-                                        </p>
+                                        <div className="text_1 leading-[1.5] xl:leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                            {Array.isArray(item.description) ? (
+                                                <BlocksRenderer content={item.description} />
+                                            ) : item.description && typeof item.description === "object" ? (
+                                                <BlocksRenderer content={[item.description]} />
+                                            ) : (
+                                                item.description
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
 
