@@ -1,15 +1,28 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import "swiper/css";
 
 export default function AIGallery({ data }) {
     const swiperRef = useRef(null);
+    const sectionRef = useRef(null);
     // locked = every image fits on screen, so the controls hide
     const [locked, setLocked] = useState(false);
     const [snap, setSnap] = useState({ count: 0, active: 0 });
+
+    // images open in a Fancybox popup (bound to this section only)
+    useEffect(() => {
+        const el = sectionRef.current;
+        if (!el) return;
+        Fancybox.bind(el, "[data-fancybox]", {
+            Images: { initialSize: "fit", Panzoom: { maxScale: 2 } },
+        });
+        return () => Fancybox.unbind(el);
+    }, []);
 
     if (!data) return null;
 
@@ -24,7 +37,7 @@ export default function AIGallery({ data }) {
         "size-[30px] xl:size-[44px] rounded-full border p-1 border-black/20 flex items-center justify-center text-[#F15A24] transition-colors duration-300 hover:bg-[#F15A24] hover:text-white disabled:opacity-40 disabled:pointer-events-none";
 
     return (
-        <section className="relative py-[20px_40px] xl:py-[20px_60px] 2xl:py-[20px_80px] 3xl:py-[20px_100px] bg-white dark:bg-[#101010] transition-colors duration-300">
+        <section ref={sectionRef} className="relative py-[20px_40px] xl:py-[20px_60px] 2xl:py-[20px_80px] 3xl:py-[20px_100px] bg-white dark:bg-[#101010] transition-colors duration-300">
             <div className="container">
                 {/* hairline above the heading, as in the design */}
                 <div className="border-t border-black/10 dark:border-white/10 pt-[35px] xl:pt-[60px]">
@@ -59,7 +72,13 @@ export default function AIGallery({ data }) {
                             >
                                 {items.map((item, index) => (
                                     <SwiperSlide key={item?.id ?? index} className="!h-auto">
-                                        <div className="group relative w-full aspect-[563/461] overflow-hidden rounded-[8px] bg-[#e5e7eb] dark:bg-[#18191B]">
+                                        <a
+                                            href={item?.image?.url || undefined}
+                                            data-fancybox="centre-gallery"
+                                            data-caption={item?.image?.alternativeText || ""}
+                                            aria-label={`View ${item?.image?.alternativeText || `gallery image ${index + 1}`}`}
+                                            className="group relative block w-full aspect-[563/461] overflow-hidden rounded-[8px] bg-[#e5e7eb] dark:bg-[#18191B] cursor-zoom-in"
+                                        >
                                             {item?.image?.url && (
                                                 <Image
                                                     src={item.image.url}
@@ -70,7 +89,7 @@ export default function AIGallery({ data }) {
                                                     className="object-cover select-none transition-transform duration-700 ease-out group-hover:scale-105"
                                                 />
                                             )}
-                                        </div>
+                                        </a>
                                     </SwiperSlide>
                                 ))}
                             </Swiper>

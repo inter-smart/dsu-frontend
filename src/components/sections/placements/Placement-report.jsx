@@ -20,6 +20,8 @@ const ArrowIcon = () => (
 
 export default function PlacementReport({ data }) {
     if (!data) return null;
+    // the table (header included) is shown only when there is at least one row
+    const rows = Array.isArray(data.rows) ? data.rows : [];
 
     return (
         <section className="relative py-[30px] xl:py-[45px] 2xl:py-[60px] 3xl:py-[75px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-none dark:bg-[#000]">
@@ -38,6 +40,7 @@ export default function PlacementReport({ data }) {
                     </div>
                 )}
 
+                {rows.length > 0 && (
                 <div className="w-full overflow-x-auto">
                     <div className="md:min-w-[600px] rounded-[6px] border border-black/10 dark:border-white/10 bg-white dark:bg-[#18191B] overflow-hidden">
                         {/* Header */}
@@ -53,7 +56,7 @@ export default function PlacementReport({ data }) {
                         </div>
 
                         {/* Rows */}
-                        {data?.rows?.map((row) => (
+                        {rows.map((row) => (
                             <div
                                 key={row.id}
                                 className="grid grid-cols-[110px_1fr] sm:grid-cols-[150px_1fr] xl:grid-cols-[200px_1fr] 2xl:grid-cols-[240px_1fr] border-b border-black/10 dark:border-white/10 last:border-b-0"
@@ -77,6 +80,7 @@ export default function PlacementReport({ data }) {
                         ))}
                     </div>
                 </div>
+                )}
             </div>
         </section>
     );

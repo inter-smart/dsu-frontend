@@ -191,6 +191,29 @@ html.lenis body {
   p {
     @apply text-[14px] md:text-[15px] lg:text-[16px] 2xl:text-[18px] 3xl:text-[20px] leading-[22px] 2xl:leading-[25px] 3xl:leading-[28px] font-normal tracking-tight text-[#212121] dark:text-[#F9FAFB];
   }
+  h1 {
+    @apply text-[30px] sm:text-[40px] lg:text-[54px] 2xl:text-[65px] 3xl:text-[80px] leading-tight font-normal text-(--text-color) mb-[10px];
+  }
+
+  h2 {
+    @apply text-[20px] sm:text-[24px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[35px] leading-tight font-semibold text-(--text-color) mb-[10px];
+  }
+
+  h3 {
+    @apply text-[18px] sm:text-[22px] lg:text-[24px] 2xl:text-[26px] 3xl:text-[30px] leading-tight font-semibold text-(--text-color) mb-[10px];
+  }
+
+  h4 {
+    @apply text-[17px] sm:text-[20px] lg:text-[22px] xl:text-[26px] 2xl:text-[28px] 3xl:text-[28px] leading-tight font-normal text-(--text-color) mb-[10px];
+  }
+
+  h5 {
+    @apply text-[16px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal text-(--text-color) mb-[10px];
+  }
+
+  h6 {
+    @apply text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-tight font-normal text-(--text-color) mb-[10px];
+  }
   .cmnFlx {
     @apply flex flex-wrap;
   }
@@ -201,7 +224,7 @@ html.lenis body {
     @apply w-full lg:w-[calc(100%-240px)] xl:w-[calc(100%-260px)] 2xl:w-[calc(100%-310px)] 3xl:w-[calc(100%-390px)] lg:pl-[20px] xl:pl-[30px] 2xl:pl-[40px] 3xl:pl-[50px];
   }
   .cmn_Title {
-    @apply text-[25px] xl:text-[32px] 2xl:text-[35px] 3xl:text-[55px] font-bold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white;
+    @apply text-[25px] xl:text-[32px] 2xl:text-[35px] 3xl:text-[50px] font-semibold leading-[30px]  mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white;
   }
   .cmn_Txt {
     @apply text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold;
@@ -231,6 +254,15 @@ html.lenis body {
       @apply border border-[#9fa2a76b] px-3 py-2 text-left align-top break-words md:min-w-[110px];
     }
 
+    td a {
+      color: var(--basecolor2);
+      letter-spacing: 0.6px
+    }
+    /* FIXED: "important" -> "!important" (without the ! the whole declaration was ignored) */
+    td a:hover {
+      color: green !important;
+      letter-spacing: 0.6px
+    }
     th {
       @apply font-semibold text-white;
       background: linear-gradient(
@@ -269,27 +301,27 @@ html.lenis body {
     }
 
     h1 {
-      @apply text-[30px] sm:text-[40px] lg:text-[54px] 2xl:text-[65px] 3xl:text-[80px] leading-tight font-normal text-(--text-color);
+      @apply text-[30px] sm:text-[40px] lg:text-[54px] 2xl:text-[65px] 3xl:text-[80px] leading-tight font-normal text-(--text-color) mb-[10px];
     }
 
     h2 {
-      @apply text-[20px] sm:text-[24px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-tight font-bold text-(--text-color);
+      @apply text-[20px] sm:text-[24px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[35px] leading-tight font-semibold text-(--text-color) mb-[10px];
     }
 
     h3 {
-      @apply text-[18px] sm:text-[18px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[30px] leading-tight font-bold text-(--text-color);
+      @apply text-[18px] sm:text-[18px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[30px] leading-tight font-semibold text-(--text-color) mb-[10px];
     }
 
     h4 {
-      @apply text-[17px] sm:text-[12px] lg:text-[12px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
+      @apply text-[17px] sm:text-[12px] lg:text-[12px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-tight font-normal text-(--text-color) mb-[10px];
     }
 
     h5 {
-      @apply text-[16px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal text-(--text-color);
+      @apply text-[16px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal text-(--text-color) mb-[10px];
     }
 
     h6 {
-      @apply text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-tight font-normal text-(--text-color);
+      @apply text-[15px] 2xl:text-[15px] 3xl:text-[18px] leading-tight font-normal text-(--text-color) mb-[10px];
     }
 
     &[dir="ltr"] ul,
@@ -304,31 +336,30 @@ html.lenis body {
 
     ul > li,
     ol > li {
-      @apply my-1 lg:my-1.5;
-    }
-    ul {
-      @apply !ml-4;
+      @apply my-1 lg:my-1.5 
+        }
+    ul{
+      @apply !my-0 !ml-4 my-5 pl-[10px]
     }
     ul > li {
       @apply list-disc text-(--text-color);
     }
+    ul > li a {
+      @apply  block hover:text-[#f97316];
+    }
+    ul l::before{
+      display: none;
+    }
     ol {
-      @apply !ml-4;
+      @apply !my-0 !ml-4 my-5 pl-[10px]
     }
     ol > li {
       @apply list-decimal text-(--text-color);
     }
-    a {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      padding-inline: 3px;
-      @apply text-(--basecolor);
-    }
-    a:hover {
-      @apply text-(--basecolor2);
-    }
+
     caption {
       @apply pb-2 text-left text-[13px] font-medium opacity-80;
+    }
 
       /* tables pasted as HTML into a Strapi "HTML" code block */
       .blocks-html {
@@ -358,7 +389,6 @@ html.lenis body {
       }
     }
   }
-}
 @keyframes spec-flip-in {
   0% {
     opacity: 0;
@@ -425,6 +455,8 @@ body {
 :root {
   --base-color: #dc2626;
   --base-color-2: #f97316;
+  /* FIXED: --track-bg was used by the scrollbar rules but never defined */
+  --track-bg: transparent;
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -542,9 +574,10 @@ body {
 [data-slot="select-trigger"] svg:last-child {
   transition: transform 0.2s ease-in-out;
 }
+/* FIXED: rotate(0deg) did nothing -> rotate(180deg) so the arrow points up when open */
 [data-slot="select-trigger"][data-popup-open] svg:last-child,
 [data-slot="select-trigger"][aria-expanded="true"] svg:last-child {
-  transform: rotate(0deg);
+  transform: rotate(180deg);
 }
 
 /* Scroll reveal (see components/providers/scroll-reveal.jsx).
@@ -682,12 +715,17 @@ body:has(.balckHeader) header {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 0 !important;
+    margin: 0 !important;
   }
   .rich-text ul > li {
     position: relative;
     margin: 0;
     padding-left: 19px;
   }
+  .rich-text ul > li {
+    list-style: none;
+}
   .rich-text ul > li::before {
     content: "";
     position: absolute;
@@ -770,7 +808,7 @@ body:has(.balckHeader) header {
     font-style: italic;
   }
 
-  @media (min-width: 640px) {
+  /* @media (min-width: 640px) {
     .rich-text h1,
     .rich-text h2 {
       font-size: 24px;
@@ -898,4 +936,10 @@ body:has(.balckHeader) header {
       width: 24px;
     }
   }
+}
+strong, b{
+  font-weight: 600;
+}
+p a:hover{
+  color: #F97316;
 }

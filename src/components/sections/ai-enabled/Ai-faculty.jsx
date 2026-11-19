@@ -185,7 +185,7 @@ export default function AiFaculty({ data }) {
                     </h2>
 
                     {description && (
-                        <div className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] max-w-[1280px]">
+                        <div className="typography text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] max-w-[1280px]">
                             {Array.isArray(description) ? (
                                 <BlocksRenderer content={description} />
                             ) : (

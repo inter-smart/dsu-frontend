@@ -43,6 +43,8 @@ export default function InnerHero({ data, placementMenuItems, className }) {
       data?.heroVideoUrl ||
       data?.heroMedia?.url,
   );
+  // A YouTube banner has no heroMedia file (the CMS sends heroMedia: null), so a video id counts as media too.
+  const hasHeroMedia = Boolean(data?.heroMedia || youtubeId);
   const breadcrumb =
     Array.isArray(data.breadcrumb) && data.breadcrumb.length > 0
       ? data.breadcrumb
@@ -70,11 +72,11 @@ export default function InnerHero({ data, placementMenuItems, className }) {
     <section
       className={cn(
         "relative z-0 block w-full",
-        data?.heroMedia && heightClass,
+        hasHeroMedia && heightClass,
         className,
       )}
     >
-      {data?.heroMedia ? (
+      {hasHeroMedia ? (
         <>
           {/* Background Media */}
           <div className="absolute inset-0 z-0 h-full w-full">

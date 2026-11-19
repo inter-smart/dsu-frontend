@@ -19,7 +19,7 @@ export default function StepPersonal({ formData, setFormData }) {
       <h3 className="text-xl xl:text-2xl font-bold text-[#212121] dark:text-white mb-1.5">
         Personal Information
       </h3>
-      <p className="text-sm text-[#4A5565] dark:text-gray-300 mb-6.25 xl:mb-7.5 lg:text-[16px] xl:text-[18px] 2xl:text-[16px]">
+      <p className="text_1 text-[#4A5565] dark:text-gray-300 mb-6.25 xl:mb-7.5  ">
         Please fill all mandatory fields. DOB format: DD-MM-YYYY. Resume max: 10MB.
       </p>
 

@@ -9,7 +9,7 @@ export default function FacultyPublications({ data }) {
   return (
     <section className="w-full h-auto py-10 2xl:py-12.5 3xl:py-17.5 bg-linear-to-t from-[#FFF3E0]/50 to-[#FFF8EE]/50 block">
       <div className="container">
-        <div className="w-full h-auto mb-5 2xl:mb-6.25 3xl:mb-7.5 space-y-2.5 lg:space-y-3.75 3xl:space-y-5">
+        <div className="typography w-full h-auto mb-5 2xl:mb-6.25 3xl:mb-7.5 space-y-2.5 lg:space-y-3.75 3xl:space-y-5">
           <Heading>{data?.title}</Heading>
           {data?.description && (
             <Text

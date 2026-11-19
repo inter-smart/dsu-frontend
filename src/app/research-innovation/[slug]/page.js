@@ -19,16 +19,17 @@ export async function generateMetadata({ params }) {
 // Doctoral Research menu bar: the entry's Sidebar links when it has any; the Ph.D. Admission page
 // falls back to the Ph.D. menu (Eligibility, Admission Process, ...), other entries show none.
 const PHD_MENU_DEFAULT_SLUGS = new Set(["phd-admission"]);
-const doctoralMenuBar = (page) => {
+const doctoralMenuBar = (page,slug = null) => {
     const own = (page.sidebar || []).filter((link) => link?.label && link?.href);
     const items = own.length ? own : PHD_MENU_DEFAULT_SLUGS.has(page.slug) ? phdMenuItems : [];
-    return items.length ? { items, home: PHD_BASE } : null;
+    return items.length ? { items, home: slug == "phd-admission" ? "/research-innovation/doctoral-research/ph-d-programmes" : PHD_BASE } : null;
 };
+
 
 export default async function Page({ params }) {
     const { slug } = await params;
     const page = await getDoctoralResearchPageBySlug(slug);
-    if (page) return <CmsPageView page={page} menuBar={doctoralMenuBar(page)} />;
+    if (page) return <CmsPageView page={page} menuBar={doctoralMenuBar(page, slug)} />;
     if (slug === (await getInnovationListingSlug())) return <InnovationListing viaSlug />;
     notFound();
 }

@@ -28,12 +28,14 @@ export default async function Page({ params }) {
     const hero = {
         ...page.hero,
         heroMedia: page.hero?.heroMedia?.url ? page.hero.heroMedia : FALLBACK_HERO_MEDIA,
-        breadcrumb: [
-            { label: "Home", href: "/" },
-            { label: "Schools", href: "/schools" },
-            { label: page.school.name, href: `/schools/${slug}` },
-            { label: page.title, href: `/schools/${slug}/${pageSlug}` },
-        ],
+        breadcrumb: page.hero?.breadcrumb?.length
+            ? page.hero.breadcrumb
+            : [
+                { label: "Home", href: "/" },
+                { label: "Schools", href: "/schools" },
+                { label: page.school.name, href: `/schools/${slug}` },
+                { label: page.title, href: `/schools/${slug}/${pageSlug}` },
+            ],
     };
     const sidebar = page.sidebar || [];
 

@@ -47,7 +47,7 @@ export default function IntlLinkCardsSection({ data }) {
                         ))}
                     </ul>
                 ) : (
-                <div className="grid grid-cols-1 gap-[15px] sm:grid-cols-2 lg:grid-cols-3 xl:gap-[25px] 3xl:gap-[35px]">
+                <div className="grid grid-cols-1 gap-[15px] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-[25px] 3xl:gap-[35px]">
                     {data.items.map((item) => {
                         const card = (
                             <>

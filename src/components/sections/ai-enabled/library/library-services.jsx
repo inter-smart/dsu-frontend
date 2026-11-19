@@ -6,25 +6,6 @@ import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link";
 import LibrarySidebar from "./library-sidemenubar";
 
-// A section's single `content` field: paragraphs and lists styled like the separate intro / items / outro.
-const TEXT = "text_1 text-[#4A5565] dark:text-[#9CA3AF]";
-const sectionBlocks = {
-    paragraph: ({ children }) => (
-        <p className={`${TEXT} lg:text-[14px] 2xl:text-[14.4px] leading-[1.2] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]`}>{children}</p>
-    ),
-    list: ({ children, format }) =>
-        format === "ordered" ? (
-            <ol className={`${TEXT} list-decimal pl-[20px] mb-[20px]`}>{children}</ol>
-        ) : (
-            <ul className="mb-[20px]">{children}</ul>
-        ),
-    "list-item": ({ children }) => (
-        <li className={`${TEXT} relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]`}>
-            {children}
-        </li>
-    ),
-};
-
 export default function LibraryServices({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
@@ -62,7 +43,8 @@ export default function LibraryServices({ data, menu }) {
                                     </h2>
 
                                     {section.content ? (
-                                        <div><BlocksRenderer content={section.content} blocks={sectionBlocks} /></div>
+                                        // rich text from the CMS: styled by the shared `typography` class only
+                                        <div className="typography"><BlocksRenderer content={section.content} /></div>
                                     ) : (
                                         <>
                                     {(section.intro || section.description) && (
@@ -114,9 +96,9 @@ export default function LibraryServices({ data, menu }) {
                                         </ul>
                                     )}
 
-                                    {data?.outro && (
+                                    {data.journalsSection.outro && (
                                         <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]  typography">
-                                            <BlocksRenderer content={section.outro} />
+                                            <BlocksRenderer content={data.journalsSection.outro} />
                                         </div>
                                     )}
                                     <div className="w-full lg:max-w-full mt-[15px]">

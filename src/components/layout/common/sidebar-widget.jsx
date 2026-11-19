@@ -55,6 +55,8 @@ export default function SidebarWidget({
   const [shareOpen, setShareOpen] = useState(false); // ADDED
   const [shareUrl, setShareUrl] = useState(""); // ADDED: read on click, so it is safe for SSR
   const shareRef = useRef(null); // ADDED
+  const [menuOpen, setMenuOpen] = useState(false); // ADDED (mobile): quick actions are hidden until the toggle button is tapped
+  const asideRef = useRef(null); // ADDED (mobile): used to close the actions on outside tap
 
   const handleShare = async (e) => {
     e.preventDefault();
@@ -100,6 +102,12 @@ export default function SidebarWidget({
     }
   };
 
+  // ADDED (mobile): open / close the quick actions. Closing also closes the share pill.
+  const toggleMenu = () => {
+    if (menuOpen) setShareOpen(false);
+    setMenuOpen((open) => !open);
+  };
+
   // ADDED: close the pill on outside click or Escape
   useEffect(() => {
     if (!shareOpen) return undefined;
@@ -116,6 +124,27 @@ export default function SidebarWidget({
       document.removeEventListener("keydown", onKey);
     };
   }, [shareOpen]);
+
+  // ADDED (mobile): close the quick actions on outside tap or Escape
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const close = () => {
+      setMenuOpen(false);
+      setShareOpen(false);
+    };
+    const onPointerDown = (e) => {
+      if (asideRef.current && !asideRef.current.contains(e.target)) close();
+    };
+    const onKey = (e) => e.key === "Escape" && close();
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("touchstart", onPointerDown, { passive: true });
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("touchstart", onPointerDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
 
   // ADDED: share targets (the URL is encoded at render time from shareUrl)
   const encodedUrl = encodeURIComponent(shareUrl);
@@ -159,7 +188,7 @@ export default function SidebarWidget({
       label: "360° Virtual Tour",
       href: virtualTourLink,
       icon: "/images/icon-float-360.svg",
-      bgColor: "bg-[#007DC5]", 
+      bgColor: "bg-[#007DC5]",
       isExternal: true,
     },
   ];
@@ -170,115 +199,171 @@ export default function SidebarWidget({
 
   return (
     <aside
+      ref={asideRef} // ADDED
       aria-label="Floating Quick Actions"
       className={`fixed right-2 bottom-[5%] lg:bottom-[10%] z-[999] flex flex-col items-center max-lg:justify-center gap-2 xl:gap-2.5 3xl:gap-3.5 ${className}`}
     >
-      {/* 1. Apply Now + Brochure / Application Document */}
-      <div className="relative flex items-center group">
-        {/* Label on hover */}
-        <Link
-          href={applyLink}
-          aria-label="Apply Now"
-          className="pointer-events-none group-hover:pointer-events-auto absolute right-full mr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 bg-[#FFCC00] hover:bg-[#F5B800] text-black font-bold text-[11px] sm:text-xs 2xl:text-sm 3xl:text-base leading-none px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-[4px] shadow-[0px_4px_10px_rgba(0,0,0,0.18)] select-none whitespace-nowrap"
-        >
-          Apply Now
-        </Link>
-        <Link
-          href={applyLink}
-          aria-label="Apply Now"
-          className="size-9 xl:size-10 3xl:size-12 rounded-full flex items-center justify-center bg-gradient-to-r from-[#DC2626] to-[#F97316] shadow-[0px_4px_10px_rgba(0,0,0,0.2)] transition-all duration-300 hover:scale-110 active:scale-95 shrink-0"
-        >
-          <Image
-            src="/images/icon-float-brochure.svg"
-            alt=""
-            width={20}
-            height={20}
-            className="size-4 xl:size-4.5 3xl:size-5"
-          />
-        </Link>
-      </div>
-
-      {/* 2 - 5. Secondary Quick Action Circles */}
-      {navItems.map((item) => {
-        const linkProps = item.isExternal
-          ? { target: "_blank", rel: "noopener noreferrer" }
-          : {};
-        const isShare = item.id === "share"; // ADDED
-
-        return (
-          <div
-            key={item.id}
-            ref={isShare ? shareRef : undefined} // ADDED
-            className="relative flex items-center group"
+      {/* ADDED: wrapper around the quick actions.
+          Desktop (lg:contents): no box of its own, so the layout is exactly as before.
+          Mobile: hidden until the toggle button below is tapped. */}
+      <div
+        id="quick-actions-list"
+        className={
+          menuOpen
+            ? "lg:contents max-lg:flex max-lg:flex-col max-lg:items-center max-lg:gap-2 max-lg:animate-in max-lg:fade-in max-lg:slide-in-from-bottom-2 max-lg:duration-200"
+            : "lg:contents max-lg:hidden"
+        }
+      >
+        {/* 1. Apply Now + Brochure / Application Document */}
+        <div className="relative flex items-center group">
+          {/* Label on hover */}
+          <Link
+            href={applyLink}
+            aria-label="Apply Now"
+            className="pointer-events-none group-hover:pointer-events-auto absolute right-full mr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 bg-[#FFCC00] hover:bg-[#F5B800] text-black font-bold text-[11px] sm:text-xs 2xl:text-sm 3xl:text-base leading-none px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-[4px] shadow-[0px_4px_10px_rgba(0,0,0,0.18)] select-none whitespace-nowrap"
           >
-            {/* Tooltip on hover (CHANGED: hidden while the share pill is open) */}
-            <span
-              className={`pointer-events-none absolute right-full mr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 bg-neutral-900/95 dark:bg-neutral-800/95 text-white text-[11px] sm:text-xs 2xl:text-sm font-medium px-2.5 py-1.5 rounded-[4px] shadow-lg whitespace-nowrap select-none ${
-                isShare && shareOpen ? "hidden" : ""
-              }`}
-            >
-              {item.label}
-            </span>
+            Apply Now
+          </Link>
+          <Link
+            href={applyLink}
+            aria-label="Apply Now"
+            className="size-9 xl:size-10 3xl:size-12 rounded-full flex items-center justify-center bg-gradient-to-r from-[#DC2626] to-[#F97316] shadow-[0px_4px_10px_rgba(0,0,0,0.2)] transition-all duration-300 hover:scale-110 active:scale-95 shrink-0"
+          >
+            <Image
+              src="/images/icon-float-brochure.svg"
+              alt=""
+              width={20}
+              height={20}
+              className="size-4 xl:size-4.5 3xl:size-5"
+            />
+          </Link>
+        </div>
 
-            <a
-              href={item.href}
-              onClick={item.onClick}
-              aria-label={item.label}
-              {...linkProps}
-              {...(isShare && { "aria-expanded": shareOpen, "aria-haspopup": "true" })} // ADDED
-              className={`size-9 xl:size-10 3xl:size-12 rounded-full flex items-center justify-center shadow-[0px_4px_10px_rgba(0,0,0,0.2)] transition-all duration-300 hover:scale-110 active:scale-95 ${item.bgColor} shrink-0`}
-            >
-              <Image
-                src={item.icon}
-                alt=""
-                width={20}
-                height={20}
-                className="size-4 xl:size-4.5 3xl:size-5"
-              />
-            </a>
+        {/* 2 - 5. Secondary Quick Action Circles */}
+        {navItems.map((item) => {
+          const linkProps = item.isExternal
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {};
+          const isShare = item.id === "share"; // ADDED
 
-            {/* ADDED: share pill, opens to the left of the Share button */}
-            {isShare && (
-              <div
-                role="group"
-                aria-label="Share this page"
-                className={`absolute right-full top-1/2 mr-3 flex origin-right -translate-y-1/2 items-center gap-0.5 rounded-full bg-white px-2.5 py-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.18)] ring-1 ring-black/5 transition-all duration-200 motion-reduce:transition-none dark:bg-neutral-800 dark:ring-white/10 xl:px-3 xl:py-2 ${
-                  shareOpen
+          return (
+            <div
+              key={item.id}
+              ref={isShare ? shareRef : undefined} // ADDED
+              className="relative flex items-center group"
+            >
+              {/* Tooltip on hover (CHANGED: hidden while the share pill is open) */}
+              <span
+                className={`pointer-events-none absolute right-full mr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 bg-neutral-900/95 dark:bg-neutral-800/95 text-white text-[11px] sm:text-xs 2xl:text-sm font-medium px-2.5 py-1.5 rounded-[4px] shadow-lg whitespace-nowrap select-none ${isShare && shareOpen ? "hidden" : ""
+                  }`}
+              >
+                {item.label}
+              </span>
+
+              <a
+                href={item.href}
+                onClick={item.onClick}
+                aria-label={item.label}
+                {...linkProps}
+                {...(isShare && { "aria-expanded": shareOpen, "aria-haspopup": "true" })} // ADDED
+                className={`size-9 xl:size-10 3xl:size-12 rounded-full flex items-center justify-center shadow-[0px_4px_10px_rgba(0,0,0,0.2)] transition-all duration-300 hover:scale-110 active:scale-95 ${item.bgColor} shrink-0`}
+              >
+                <Image
+                  src={item.icon}
+                  alt=""
+                  width={20}
+                  height={20}
+                  className="size-4 xl:size-4.5 3xl:size-5"
+                />
+              </a>
+
+              {/* ADDED: share pill, opens to the left of the Share button */}
+              {isShare && (
+                <div
+                  role="group"
+                  aria-label="Share this page"
+                  className={`absolute right-full top-1/2 mr-3 flex origin-right -translate-y-1/2 items-center gap-0.5 rounded-full bg-white px-2.5 py-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.18)] ring-1 ring-black/5 transition-all duration-200 motion-reduce:transition-none dark:bg-neutral-800 dark:ring-white/10 xl:px-3 xl:py-2 ${shareOpen
                     ? "visible translate-x-0 scale-100 opacity-100"
                     : "invisible translate-x-2 scale-95 opacity-0"
-                }`}
-              >
-                {shareLinks.map((s) => (
-                  <a
-                    key={s.id}
-                    href={s.href}
-                    aria-label={s.label}
-                    title={s.label}
-                    {...(!s.internal && { target: "_blank", rel: "noopener noreferrer" })}
-                    onClick={() => setShareOpen(false)}
-                    className={pillBtn}
-                  >
-                    {shareIcons[s.id]}
-                  </a>
-                ))}
-
-                <button
-                  type="button"
-                  onClick={copyLink}
-                  aria-label={copied ? "Link copied" : "Copy link"}
-                  title={copied ? "Link copied" : "Copy link"}
-                  className={`${pillBtn} ${copied ? "text-[#16a34a]!" : ""}`}
+                    }`}
                 >
-                  {copied ? shareIcons.check : shareIcons.link}
-                </button>
-                <span role="status" aria-live="polite" className="sr-only">
-                  {copied ? "Link copied" : ""}
-                </span>
-              </div>
-            )}
-          </div>
-        );
-      })}
+                  {shareLinks.map((s) => (
+                    <a
+                      key={s.id}
+                      href={s.href}
+                      aria-label={s.label}
+                      title={s.label}
+                      {...(!s.internal && { target: "_blank", rel: "noopener noreferrer" })}
+                      onClick={() => setShareOpen(false)}
+                      className={pillBtn}
+                    >
+                      {shareIcons[s.id]}
+                    </a>
+                  ))}
+
+                  <button
+                    type="button"
+                    onClick={copyLink}
+                    aria-label={copied ? "Link copied" : "Copy link"}
+                    title={copied ? "Link copied" : "Copy link"}
+                    className={`${pillBtn} ${copied ? "text-[#16a34a]!" : ""}`}
+                  >
+                    {copied ? shareIcons.check : shareIcons.link}
+                  </button>
+                  <span role="status" aria-live="polite" className="sr-only">
+                    {copied ? "Link copied" : ""}
+                  </span>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* ADDED (mobile only): toggle button. The "+" turns into an "x" while the actions are open. */}
+      <button
+        type="button"
+        onClick={toggleMenu}
+        aria-label={menuOpen ? "Close quick actions" : "Open quick actions"}
+        aria-expanded={menuOpen}
+        aria-controls="quick-actions-list"
+        className="lg:hidden size-10 shrink-0 rounded-full flex items-center justify-center bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white shadow-[0px_4px_10px_rgba(0,0,0,0.2)] transition-all duration-300 active:scale-95"
+      >
+        {menuOpen ? (
+          // Close "X" icon when opened
+          <svg
+            viewBox="0 0 24 24"
+            className="size-5 transition-transform duration-200 rotate-90 animate-in spin-in-90"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        ) : (
+          // Share / connect icon when collapsed
+          <svg
+            viewBox="0 0 24 24"
+            className="size-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+          </svg>
+        )}
+      </button>
     </aside>
   );
 }

@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 /* ───────── helpers ───────── */
 
@@ -40,7 +40,7 @@ const fadeUp = (inView) =>
 function RichText({ content }) {
   if (!content) return null;
   return typeof content === "string" ? (
-    <div dangerouslySetInnerHTML={{ __html: content }} />
+    <div className="typography" dangerouslySetInnerHTML={{ __html: content }} />
   ) : (
     <BlocksRenderer content={content} />
   );

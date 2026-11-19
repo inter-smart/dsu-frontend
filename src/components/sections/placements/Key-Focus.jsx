@@ -12,7 +12,16 @@ import Image from "next/image";
 const sanitizeHtml = (html) =>
     DOMPurify.sanitize(html || "", {
         USE_PROFILES: { html: true },
-        ADD_ATTR: ["target"],
+        ADD_TAGS: ["iframe"],
+        ADD_ATTR: [
+            "target",
+            "srcdoc",
+            "allow",
+            "allowfullscreen",
+            "frameborder",
+            "loading",
+            "referrerpolicy",
+        ],
         FORBID_TAGS: ["style", "form", "input", "button"],
     });
 
@@ -67,7 +76,7 @@ export default function KeyFocus({ data }) {
                                                 {/* CKEditor HTML from Strapi; older entries may still send blocks */}
                                                 {typeof item.answer === "string" ? (
                                                     <div
-                                                        className="ck-content blocks-html w-full overflow-x-auto"
+                                                        className="typography ck-content blocks-html w-full overflow-x-auto"
                                                         dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.answer) }}
                                                     />
                                                 ) : (

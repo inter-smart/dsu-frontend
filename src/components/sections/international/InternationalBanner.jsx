@@ -54,10 +54,10 @@ export default function InternationalBanner({ data, formData }) {
                             </ol>
                         </nav>
 
-                        <p className="w-fit bg-linear-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-[17px] font-medium leading-tight text-transparent 3xl:text-[30px] lg:text-[19px] xl:text-[24px] 2xl:text-[28px]">
+                        <p className="w-fit bg-linear-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-[18px] font-medium leading-tight text-transparent lg:text-[19px] xl:text-[22px] 2xl:text-[25px]">
                             {subtitle}
                         </p>
-                        <h1 className="mt-1 max-w-[750px] text-[34px] font-bold leading-tight lg:text-[44px] xl:text-[48px] 2xl:text-[45px] 3xl:text-[60.9px]">
+                        <h1 className="mt-1 max-w-[750px]   font-bold leading-tight cmn_Title text-white">
                             {title}
                         </h1>
 

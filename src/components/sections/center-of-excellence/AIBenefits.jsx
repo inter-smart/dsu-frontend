@@ -9,8 +9,7 @@ export default function AIBenefits({ data }) {
     if (!data) return null;
 
     const items = Array.isArray(data?.items) ? data.items : [];
-
-    // items start open unless `open: false` is set on them
+ 
     const defaultOpen = items
         .map((item, index) => ({ value: String(item?.id ?? index), open: item?.open !== false }))
         .filter((entry) => entry.open)

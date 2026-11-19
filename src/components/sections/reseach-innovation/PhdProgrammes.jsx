@@ -4,8 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { ctaLinkProps } from "@/lib/schools/link-props";
-import { hasContent } from "@/lib/has-content";
-import TableScrollBox from "@/components/layout/common/TableScrollBox";
+import { hasContent } from "@/lib/has-content"; 
 
 
 const renderText = (value) =>
@@ -116,29 +115,29 @@ export default function PhdProgrammes({ data }) {
                                                             <div className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF]">{item.area}</div>
                                                         )}
                                                     </div>
-                                                    {/* {item?.cta?.url && item?.cta?.label && ( */}
-                                                    <Link
-                                                        href=""
-                                                        {...ctaLinkProps(item.cta)}
-                                                        className="group/cta flex shrink-0 items-center gap-[6px] text_1 font-medium text-[#F97316] pr-[10px] xl:pr-[30px] md:opacity-0 -translate-x-[8px] transition-all duration-300 ease-out md:group-hover:opacity-100 md:group-hover:translate-x-0 md:focus-visible:opacity-100 md:focus-visible:translate-x-0 md:[@media(hover:none)]:opacity-100 [@media(hover:none)]:translate-x-0"
-                                                    >
-                                                        <span>knowmore</span>
-                                                        <svg
-                                                            width="16"
-                                                            height="16"
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            strokeWidth="2.5"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            className="transition-transform duration-300 group-hover/cta:translate-x-[4px]"
-                                                            aria-hidden="true"
+                                                    {item?.cta?.url && item?.cta?.label && (
+                                                        <Link
+                                                            href={item.cta.url}
+                                                            {...ctaLinkProps(item.cta)}
+                                                            className="group/cta flex shrink-0 items-center gap-[6px] text_1 font-medium text-[#F97316] pr-[10px] xl:pr-[30px] md:opacity-0 -translate-x-[8px] transition-all duration-300 ease-out md:group-hover:opacity-100 md:group-hover:translate-x-0 md:focus-visible:opacity-100 md:focus-visible:translate-x-0 md:[@media(hover:none)]:opacity-100 [@media(hover:none)]:translate-x-0"
                                                         >
-                                                            <path d="M5 12h14M13 6l6 6-6 6" />
-                                                        </svg>
-                                                    </Link>
-                                                    {/* )} */}
+                                                            <span>{item.cta.label}</span>
+                                                            <svg
+                                                                width="16"
+                                                                height="16"
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                strokeWidth="2.5"
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                className="transition-transform duration-300 group-hover/cta:translate-x-[4px]"
+                                                                aria-hidden="true"
+                                                            >
+                                                                <path d="M5 12h14M13 6l6 6-6 6" />
+                                                            </svg>
+                                                        </Link>
+                                                    )}
                                                 </div>
                                             </td>
                                         </tr>
