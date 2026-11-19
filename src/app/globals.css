@@ -931,6 +931,6 @@ body:has(.balckHeader) header {
 strong, b{
   font-weight: 600;
 }
-a:hover{
+p a:hover{
   color: #F97316;
 }

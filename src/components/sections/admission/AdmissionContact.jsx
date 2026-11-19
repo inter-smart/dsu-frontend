@@ -43,7 +43,7 @@ export default function AdmissionContact({ data }) {
       <div className="container">
         {/* Section Header */}
         <div className="mb-6 sm:mb-8 xl:mb-10">
-          <h2 className="text-2xl sm:text-3xl lg:text-[36px] 2xl:text-[42px] 3xl:text-[48px] leading-[1.15] font-bold text-(--text-color) tracking-tight">
+          <h2 className="cmn_Title leading-[1.15] font-bold text-(--text-color) tracking-tight">
             {heading}
           </h2>
 

@@ -49,7 +49,7 @@ export default function AdmissionAccomodation({ data }) {
 
                             {/* Description */}
                             {hero.description && hero.description.length > 0 && (
-                                <div className="text-[13px] sm:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#4A5565] dark:text-[#9CA3AF] leading-[1.7] mb-5 sm:mb-6 xl:mb-8 [&>p]:mb-3 [&>p:last-child]:mb-0  typography">
+                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.7] mb-5 sm:mb-6 xl:mb-8 [&>p]:mb-3 [&>p:last-child]:mb-0  typography">
                                     <BlocksRenderer content={hero.description} />
                                 </div>
                             )}

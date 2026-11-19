@@ -19,7 +19,7 @@ export default function AdmissionDocument({ data }) {
                 {(heading || description?.length > 0) && (
                 <div className="mb-6 sm:mb-8 xl:mb-10">
                     {heading && (
-                        <h2 className="text-[26px] sm:text-[32px] md:text-[38px] xl:text-[44px] 2xl:text-[48px] font-bold text-[#1E1E1E] dark:text-white tracking-tight leading-[1.2]">
+                        <h2 className="cmn_Title font-bold text-[#1E1E1E] dark:text-white tracking-tight leading-[1.2]">
                             {heading}
                         </h2>
                     )}
@@ -38,7 +38,7 @@ export default function AdmissionDocument({ data }) {
                                     }}
                                 />
                             ) : (
-                                <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                <p className="!my-0 !text-inherit leading-relaxed  text_1">
                                     {description}
                                 </p>
                             )}

@@ -30,7 +30,7 @@ export function FaqAccordion({ items }) {
                             <AccordionTrigger
                                 className="group/trigger flex w-full items-center justify-between px-4 sm:px-6 xl:px-8 py-4 sm:py-5 xl:py-6 hover:no-underline hover:bg-[#FAFAFA] dark:hover:bg-white/[0.03] transition-colors duration-200 rounded-none border-transparent outline-none focus-visible:ring-0 [&>[data-slot=accordion-trigger-icon]]:hidden"
                             >
-                                <span className="text-[14px] sm:text-[15px] xl:text-[16px] 2xl:text-[17px] 3xl:text-[19px] font-semibold text-[#1E1E1E] dark:text-white text-left leading-snug">
+                                <span className="text_1 font-semibold text-[#1E1E1E] dark:text-white text-left leading-snug">
                                     {item.question}
                                 </span>
                                 {/* Plus/Minus icons */}
@@ -40,12 +40,12 @@ export function FaqAccordion({ items }) {
 
                             {hasContent && (
                                 <AccordionContent className="px-4 sm:px-6 xl:px-8 pb-4 sm:pb-5 xl:pb-6 pt-2">
-                                    <div className="text-[13px] sm:text-[14px] xl:text-[15px] 3xl:text-[17px] text-[#4A5565] dark:text-[#9CA3AF] leading-relaxed [&_p]:!my-0 [&_p]:!text-inherit [&_p]:leading-relaxed  typography">
+                                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-relaxed [&_p]:!my-0 [&_p]:!text-inherit [&_p]:leading-relaxed  typography">
                                         <BlocksRenderer
                                             content={item.answer}
                                             blocks={{
                                                 paragraph: ({ children }) => (
-                                                    <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                                    <p className="!my-0 !text-inherit leading-relaxed text_1">
                                                         {children}
                                                     </p>
                                                 ),

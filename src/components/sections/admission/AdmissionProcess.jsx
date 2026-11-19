@@ -19,26 +19,26 @@ export default function AdmissionProcess({ data }) {
                 {(heading || description?.length > 0) && (
                 <div className="mb-8 sm:mb-10 md:mb-12 xl:mb-14">
                     {heading && (
-                        <h2 className="text-[26px] sm:text-[32px] md:text-[38px] xl:text-[44px] 2xl:text-[48px] 3xl:text-[55px] font-bold text-[#1E1E1E] dark:text-white tracking-tight leading-[1.2]">
+                        <h2 className="cmn_Title font-bold text-[#1E1E1E] dark:text-white tracking-tight leading-[1.2]">
                             {heading}
                         </h2>
                     )}
 
                     {description?.length > 0 && (
-                        <div className="typography mt-2.5 sm:mt-3 text-[14px] sm:text-[15px] xl:text-[16px] text-[#6B7280] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
+                        <div className="typography mt-2.5 sm:mt-3 text_1 text-[#6B7280] dark:text-[#9CA3AF] max-w-3xl leading-relaxed">
                             {Array.isArray(description) ? (
                                 <BlocksRenderer
                                     content={description}
                                     blocks={{
                                         paragraph: ({ children }) => (
-                                            <p className="text_1 !my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                            <p className="text_1 !my-0 !text-inherit leading-relaxed ">
                                                 {children}
                                             </p>
                                         ),
                                     }}
                                 />
                             ) : (
-                                <p className="text_1 !my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                <p className="text_1 !my-0 !text-inherit leading-relaxed ">
                                     {description}
                                 </p>
                             )}
@@ -81,12 +81,12 @@ export default function AdmissionProcess({ data }) {
                                 {/* Step Title & Description */}
                                 <div className="pt-2 sm:pt-2.5 xl:pt-3 max-w-3xl">
                                     {step?.title && (
-                                        <h3 className="text-[17px] sm:text-[19px] xl:text-[21px] 2xl:text-[26px] 3xl:text-[30px] font-bold text-[#1E1E1E] dark:text-white leading-snug">
+                                        <h3 className="cmn_Title font-bold text-[#1E1E1E] dark:text-white leading-snug">
                                             {step.title}
                                         </h3>
                                     )}
                                     {step?.description && (
-                                        <p className="mt-1 sm:mt-1.5 text-[13px] sm:text-[14px] 3xl:text-[18px] text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed lg:text-[16px] xl:text-[17px] 2xl:text-[15px]">
+                                        <p className="mt-1 sm:mt-1.5 text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed  ">
                                             {step.description}
                                         </p>
                                     )}
