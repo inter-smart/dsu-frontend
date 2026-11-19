@@ -16,8 +16,7 @@ import { hasContent } from "@/lib/has-content";
 const renderText = (value) =>
     Array.isArray(value) ? <BlocksRenderer content={value} /> : value;
 
-// Turns a YouTube link (watch, youtu.be, shorts, embed) or a bare 11-char id into a watch URL.
-// Returns "" when the value is empty or not a YouTube link.
+
 const getYouTubeHref = (input) => {
     const value = typeof input === "string" ? input : input?.url;
     if (typeof value !== "string") return "";

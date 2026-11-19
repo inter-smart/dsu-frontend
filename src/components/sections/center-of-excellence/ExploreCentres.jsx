@@ -284,7 +284,7 @@ export default function ExploreCentres({ data }) {
           {data?.description && (
             <div
               style={{ transitionDelay: "150ms" }}
-              className={`w-full lg:w-[45%] 2xl:w-[42%] [&_p]:text_1  [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] ${fadeUp(headInView)}`}
+              className={`w-full lg:w-[45%] 2xl:w-[42%] [&_p]:text_1 [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] ${fadeUp(headInView)}`}
             >
               <RichText content={data.description} />
             </div>
