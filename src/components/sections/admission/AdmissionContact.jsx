@@ -78,7 +78,7 @@ export default function AdmissionContact({ data }) {
                 {mainOffice.heading}
               </h3>
               {mainOffice.subtitle && (
-                <p className="text_1 leading-[1.1] font-normal text-[#4A5565] dark:text-[#9CA3AF] mt-1.5 sm:mt-2 lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
+                <p className="text_1 leading-[1.1] font-normal text-[#4A5565] dark:text-[#9CA3AF] mt-1.5 sm:mt-2 ">
                   {mainOffice.subtitle}
                 </p>
               )}
