@@ -74,7 +74,7 @@ export default function AdmissionDates({ data }) {
                                                 {item.title}
                                             </h4>
                                             {item.description && (
-                                                <p className="mt-0.5 sm:mt-1 text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-[1.5] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                                <p className="mt-0.5 sm:mt-1 text_1 text-[#6B7280] dark:text-[#9CA3AF]  ">
                                                     {item.description}
                                                 </p>
                                             )}
