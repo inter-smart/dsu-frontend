@@ -48,20 +48,20 @@ export default function AdmissionContact({ data }) {
           </h2>
 
           {description && (
-            <div className="typography mt-2.5 2xl:mt-3 text-[13px] 2xl:text-[15px] 3xl:text-[18px] leading-relaxed text-[#4A5565] dark:text-[#9CA3AF] max-w-4xl">
+            <div className="typography mt-2.5 2xl:mt-3 text_1 leading-relaxed text-[#4A5565] dark:text-[#9CA3AF] max-w-4xl">
               {Array.isArray(description) ? (
                 <BlocksRenderer
                   content={description}
                   blocks={{
                     paragraph: ({ children }) => (
-                      <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                      <p className="!my-0 !text-inherit leading-relaxed text_1">
                         {children}
                       </p>
                     ),
                   }}
                 />
               ) : (
-                <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                <p className="!my-0 !text-inherit leading-relaxed  text_1">
                   {description}
                 </p>
               )}
@@ -78,7 +78,7 @@ export default function AdmissionContact({ data }) {
                 {mainOffice.heading}
               </h3>
               {mainOffice.subtitle && (
-                <p className="text-[13px] 3xl:text-[18px] leading-[1.1] font-normal text-[#4A5565] dark:text-[#9CA3AF] mt-1.5 sm:mt-2 lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
+                <p className="text_1 leading-[1.1] font-normal text-[#4A5565] dark:text-[#9CA3AF] mt-1.5 sm:mt-2 lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
                   {mainOffice.subtitle}
                 </p>
               )}
@@ -123,7 +123,7 @@ export default function AdmissionContact({ data }) {
                             className="w-full h-full object-contain"
                           />
                         </div>
-                        <div className="text-xs sm:text-sm 2xl:text-[15px] 3xl:text-[18px] leading-[1.1] font-semibold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit pl-1.5 transition-all duration-300 group-hover:underline">
+                        <div className="text_1 leading-[1.1] font-semibold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit pl-1.5 transition-all duration-300 group-hover:underline">
                           {addressCol.directions.label}
                         </div>
                       </Link>
@@ -138,7 +138,7 @@ export default function AdmissionContact({ data }) {
                   <div className="text_1 font-medium tracking-wider text-[#212121] dark:text-gray-400 uppercase mb-3">
                     {helplineCol.label}
                   </div>
-                  <div className="text-[13px] 2xl:text-[15px] 3xl:text-[18px] leading-snug font-normal text-[#4A5565] dark:text-gray-200 flex flex-col gap-1">
+                  <div className="text_1 leading-snug font-normal text-[#4A5565] dark:text-gray-200 flex flex-col gap-1">
                     {helplineCol.values?.map((item, idx) => (
                       <PhoneNumbers
                         key={idx}
@@ -154,10 +154,10 @@ export default function AdmissionContact({ data }) {
               {/* Email Card */}
               {emailCol && (
                 <div className="bg-white dark:bg-[#202225] rounded-[6px] 2xl:rounded-[8px] p-4 sm:p-5 2xl:p-6 border border-black/10 dark:border-white/10 flex flex-col  shadow-xs">
-                  <div className="text-[11px] 2xl:text-[13px] 3xl:text-[18px] tracking-wider text-[#212121] dark:text-gray-400 uppercase mb-2">
+                  <div className="text_1 tracking-wider text-[#212121] dark:text-gray-400 uppercase mb-2">
                     {emailCol.label}
                   </div>
-                  <div className="text-[13px] 2xl:text-[15px] 3xl:text-[17px] leading-snug font-normal text-[#4A5565] dark:text-gray-200">
+                  <div className="text_1 leading-snug font-normal text-[#4A5565] dark:text-gray-200">
                     {emailCol.values?.map((item, idx) => (
                       <Link
                         key={idx}
@@ -312,7 +312,7 @@ export default function AdmissionContact({ data }) {
                     </div>
 
                     {/* Address */}
-                    <div className="text-[13px] 2xl:text-[15px] 3xl:text-[18px] leading-[1.1] font-normal text-[#4A5565] mb-2.5 lg:mb-3.75 3xl:mb-5">
+                    <div className="text_1 leading-[1.1] font-normal text-[#4A5565] mb-2.5 lg:mb-3.75 3xl:mb-5">
                       {item?.address}
                     </div>
 
@@ -333,7 +333,7 @@ export default function AdmissionContact({ data }) {
                             className="w-full h-full object-contain"
                           />
                         </div>
-                        <div className="text-sm 2xl:text-[17px] 3xl:text-xl leading-[1.1] font-semibold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit pl-1.75 2xl:pl-2.5 transition-all duration-300 group-hover:underline">
+                        <div className="text_1 leading-[1.1] font-semibold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit pl-1.75 2xl:pl-2.5 transition-all duration-300 group-hover:underline">
                           {item?.directions?.label}
                         </div>
                       </Link>
@@ -356,10 +356,10 @@ export default function AdmissionContact({ data }) {
                             />
                           </div>
                           <div className="w-[calc(100%-var(--icon-size))] pl-2.5">
-                            <div className="text-[13px] 2xl:text-[15px] 3xl:text-[17px] leading-[1.1] font-medium text-[#212121] dark:text-white mb-1.25 2xl:mb-2.5">
+                            <div className="text_1 leading-[1.1] font-medium text-[#212121] dark:text-white mb-1.25 2xl:mb-2.5">
                               {item.email.label}
                             </div>
-                            <div className="text-[13px] 2xl:text-[15px] 3xl:text-[18px] leading-snug font-medium text-[#4A5565] dark:text-[#9CA3AF] flex flex-wrap items-center gap-y-1">
+                            <div className="text_1 leading-snug font-medium text-[#4A5565] dark:text-[#9CA3AF] flex flex-wrap items-center gap-y-1">
                               {item.email.values?.map((emailVal, idx) => (
                                 <span
                                   key={idx}
@@ -404,10 +404,10 @@ export default function AdmissionContact({ data }) {
                             />
                           </div>
                           <div className="w-[calc(100%-var(--icon-size))] pl-2.5">
-                            <div className="text-[13px] 2xl:text-[15px] 3xl:text-[17px] leading-[1.1] font-medium text-[#212121] dark:text-white mb-1.25 2xl:mb-2.5">
+                            <div className="text_1 leading-[1.1] font-medium text-[#212121] dark:text-white mb-1.25 2xl:mb-2.5">
                               {contact.label}
                             </div>
-                            <div className="text-[13px] 2xl:text-[15px] 3xl:text-[17px] leading-snug font-medium text-[#4A5565] dark:text-[#9CA3AF] flex flex-wrap items-center gap-y-1">
+                            <div className="text_1 leading-snug font-medium text-[#4A5565] dark:text-[#9CA3AF] flex flex-wrap items-center gap-y-1">
                               {contact.values?.map((phoneVal, vIdx) => (
                                 <span
                                   key={vIdx}
@@ -450,7 +450,7 @@ export default function AdmissionContact({ data }) {
                   </h2>
                 )}
                 {visitCampus?.description && (
-                  <p className="mt-2 sm:mt-2.5 text-[13px] 3xl:text-lg leading-relaxed text-[#4A5565] dark:text-[#9CA3AF] lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
+                  <p className="mt-2 sm:mt-2.5 text_1 leading-relaxed text-[#4A5565] dark:text-[#9CA3AF] ">
                     {visitCampus.description}
                   </p>
                 )}
@@ -464,10 +464,10 @@ export default function AdmissionContact({ data }) {
                     target="_blank"
                     className="group flex items-center justify-between bg-white dark:bg-[#18191B] border border-[#FED7AA]/60 dark:border-white/10 hover:border-[#EA580C]/40 rounded-[6px] sm:rounded-[8px] px-4 sm:px-5 py-3 sm:py-3.5 transition-all duration-200 shadow-2xs hover:shadow-xs"
                   >
-                    <span className="text-[13px] sm:text-[14px] 2xl:text-[15px] font-semibold text-[#1E1E1E] dark:text-white leading-tight">
+                    <span className="text_1 font-semibold text-[#1E1E1E] dark:text-white leading-tight">
                       {visitItem.name}
                     </span>
-                    <span className="text-[13px] sm:text-[14px] 2xl:text-[15px] font-semibold text-[#EA580C] group-hover:text-[#C2410C] transition-colors leading-tight">
+                    <span className="text_1 font-semibold text-[#EA580C] group-hover:text-[#C2410C] transition-colors leading-tight">
                       Get Directions &gt;
                     </span>
                   </Link>
