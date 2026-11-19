@@ -438,7 +438,7 @@ export default function AdmissionContact({ data }) {
                   </h2>
                 )}
                 {visitCampus?.description && (
-                  <p className="mt-2 sm:mt-2.5 text_1 leading-relaxed text-[#4A5565] dark:text-[#9CA3AF] ">
+                  <p className="mt-2 sm:mt-2.5 text_1 leading-relaxed text-[#4A5565] dark:text-[#9CA3AF]">
                     {visitCampus.description}
                   </p>
                 )}
