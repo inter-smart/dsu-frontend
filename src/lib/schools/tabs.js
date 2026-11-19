@@ -12,6 +12,7 @@ export const SCHOOL_TABS = [
   { key: "industry-collaborations", label: "Industry Collaborations" },
   { key: "facilities", label: "Infrastructure & Facilities" },
   { key: "placement-snapshot", label: "Placements Snapshot" },
+  { key: "faculty", label: "Faculty" },
   { key: "achievements", label: "Achievements" },
   { key: "library", label: "Library" },
   { key: "news-events", label: "News & Events" },

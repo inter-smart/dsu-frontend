@@ -4,10 +4,11 @@ import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode } from "swiper/modules";
+import { FreeMode, Navigation, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/free-mode";
+import "swiper/css/navigation";
 
 const MONTH_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -244,21 +245,68 @@ export default function AcademicFacultyAchievements({ data }) {
                                 className="flex flex-col-reverse md:flex-row items-stretch gap-6 lg:gap-10 xl:gap-12"
                             >
                                 {/* Left Side: Media Image Box */}
-                                {item?.media?.url && (
-                                    <div className="w-full md:w-[380px] lg:w-[420px] xl:w-[460px] 2xl:w-[490px] shrink-0">
-                                        <div className="relative w-full aspect-[4/3] rounded-[12px] overflow-hidden bg-white dark:bg-[#18191B] p-2 border border-red-500/20 shadow-[0_4px_20px_rgba(0,0,0,0.04)] group">
-                                            <div className="relative w-full h-full rounded-[8px] overflow-hidden">
-                                                <Image
-                                                    src={item.media.url}
-                                                    alt={item.media.alternativeText || item.title}
-                                                    fill
-                                                    className="object-cover transition-transform duration-500 group-hover:scale-102"
-                                                    sizes="(max-width: 1024px) 100vw, 490px"
-                                                />
+                                {(() => {
+                                    const images = item.images?.length ? item.images : item.media?.url ? [item.media] : [];
+                                    if (!images.length) return null;
+                                    const renderImg = (img) => (
+                                        <div className="relative w-full h-full rounded-[8px] overflow-hidden">
+                                            <Image
+                                                src={img.url}
+                                                alt={img.alternativeText || item.title}
+                                                fill
+                                                className="object-cover"
+                                                sizes="(max-width: 1024px) 100vw, 490px"
+                                            />
+                                        </div>
+                                    );
+                                    return (
+                                        <div className="w-full md:w-[380px] lg:w-[420px] xl:w-[460px] 2xl:w-[490px] shrink-0">
+                                            <div className="relative w-full aspect-[4/3] rounded-[12px] overflow-hidden bg-white dark:bg-[#18191B] p-2 border border-red-500/20 shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+                                                {images.length > 1 ? (
+                                                    <Swiper
+                                                        modules={[Navigation, Autoplay]}
+                                                        slidesPerView={1}
+                                                        loop
+                                                        autoplay={{ delay: 3500, disableOnInteraction: false }}
+                                                        navigation={{
+                                                            prevEl: `.achv-prev-${item.id}`,
+                                                            nextEl: `.achv-next-${item.id}`,
+                                                        }}
+                                                        className="w-full h-full"
+                                                    >
+                                                        {images.map((img, i) => (
+                                                            <SwiperSlide key={`${img.url}-${i}`}>{renderImg(img)}</SwiperSlide>
+                                                        ))}
+                                                    </Swiper>
+                                                ) : (
+                                                    renderImg(images[0])
+                                                )}
+                                            {images.length > 1 && (
+                                                <>
+                                                    <button
+                                                        type="button"
+                                                        aria-label="Previous image"
+                                                        className={`achv-prev-${item.id} absolute left-[14px] top-1/2 -translate-y-1/2 z-10 w-[32px] h-[32px] xl:w-[36px] xl:h-[36px] 2xl:w-[40px] 2xl:h-[40px] 3xl:w-[46px] 3xl:h-[46px] flex items-center justify-center cursor-pointer`}
+                                                    >
+                                                        <svg className="w-full h-full" fill="none" stroke="#ffff" strokeWidth="1" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        aria-label="Next image"
+                                                        className={`achv-next-${item.id} absolute right-[14px] top-1/2 -translate-y-1/2 z-10 w-[32px] h-[32px] xl:w-[36px] xl:h-[36px] 2xl:w-[40px] 2xl:h-[40px] 3xl:w-[46px] 3xl:h-[46px] flex items-center justify-center cursor-pointer`}
+                                                    >
+                                                        <svg className="w-full h-full" fill="none" stroke="#ffff" strokeWidth="1" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
                                             </div>
                                         </div>
-                                    </div>
-                                )}
+                                    );
+                                })()}
 
                                 {/* Right Side: Content */}
                                 <div className="flex-1 flex flex-col justify-center py-1">
