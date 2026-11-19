@@ -161,6 +161,7 @@ import StudentSuccessStories from "@/components/sections/placements/student-succ
 import IntlTextSection from "@/components/sections/international/intl-text-section";
 import TitleDescription from "@/components/sections/common/title-description";
 import Committee from "@/components/sections/common/committee";
+import CommonTabGallery from "@/components/sections/common/gallery";
 import IntlButtonSection from "@/components/sections/international/intl-button-section";
 import IntlTextButtonSection from "@/components/sections/international/intl-text-button-section";
 import IntlVideoSection from "@/components/sections/international/intl-video-section";
@@ -484,6 +485,7 @@ const flexibleRegistry = {
   // Common sections (every flexible page)
   "common.title-description": { Component: TitleDescription },
   "common.committee": { Component: Committee },
+  "common.gallery": { Component: CommonTabGallery },
   // centres of excellence listing (src/app/center-of-excellence/page.js)
   "coe.gallery-section": { Component: CommonGallery },
 
