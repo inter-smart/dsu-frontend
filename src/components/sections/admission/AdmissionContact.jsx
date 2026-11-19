@@ -280,149 +280,149 @@ export default function AdmissionContact({ data }) {
 
         {/* Campus Cards Grid (Exact font size & styling matching contact.jsx) */}
         {/* Campus Cards Grid */}
-<div className="w-full grid grid-cols-1 md:grid-cols-2 gap-2.5 lg:gap-3.75 2xl:gap-5">
-  {(campuses || [])?.map((item, index) => {
-    const iconUrl = item?.icon?.url;
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-2.5 lg:gap-3.75 2xl:gap-5">
+          {(campuses || [])?.map((item, index) => {
+            const iconUrl = item?.icon?.url;
 
-    return (
-      <div
-        key={item?.id || index}
-        className="w-full h-full flex flex-col bg-white dark:bg-[#18191B] border border-black/10 dark:border-white/10 rounded-[7px] 2xl:rounded-[12px] overflow-hidden"
-      >
-        {/* Accent bar */}
-        <div className="w-full h-1 bg-linear-to-r from-(--basecolor) to-(--basecolor2)" />
-
-        {/* Header */}
-        <div className="w-full p-4 sm:p-5 lg:p-6 2xl:p-7.5 3xl:p-9">
-          <div className="[--icon-size:40px] sm:[--icon-size:44px] lg:[--icon-size:50px] 2xl:[--icon-size:58px] 3xl:[--icon-size:68px] w-full flex items-center gap-3 lg:gap-4 mb-3 lg:mb-4">
-            <div className="w-(--icon-size) h-(--icon-size) shrink-0 p-2 2xl:p-2.5 rounded-[8px] 2xl:rounded-[12px] bg-(--basecolor)/10 flex items-center justify-center">
-              {iconUrl && (
-                <Image
-                  src={iconUrl}
-                  alt={item?.icon?.alternativeText || ""}
-                  width={64}
-                  height={64}
-                  className="w-full h-full object-contain"
-                />
-              )}
-            </div>
-
-            <div className="min-w-0">
-              <div className="text-lg sm:text-xl lg:text-[24px] 2xl:text-[30px] 3xl:text-[36px] leading-[1.1] font-bold text-(--text-color)">
-                {item?.name}
-              </div>
-              <div className="mt-0.5 text-sm sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl leading-[1.2] font-medium text-[#4A5565] dark:text-[#9CA3AF]">
-                {item?.subtitle}
-              </div>
-            </div>
-          </div>
-
-          <div className="text_1 leading-snug font-normal text-[#4A5565] dark:text-[#9CA3AF]">
-            {item?.address}
-          </div>
-
-          {item?.directions && (
-            <Link
-              href={item?.directions?.href || "/"}
-              aria-label="Get Directions"
-              target="_blank"
-              className="group mt-3 lg:mt-4 inline-flex items-center gap-1.5 py-1.5 pl-2.5 pr-4 rounded-full border border-black/10 dark:border-white/15 transition-colors duration-300 hover:border-(--basecolor) hover:bg-(--basecolor)/5"
-            >
-              <div className="w-5.5 2xl:w-6.5 h-auto aspect-35/25 shrink-0 overflow-hidden flex items-center justify-center">
-                <Image
-                  src="/images/direction-icon.svg"
-                  alt="Directions"
-                  width={35}
-                  height={25}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <span className="text_1 leading-[1.1] font-semibold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent">
-                {item?.directions?.label}
-              </span>
-            </Link>
-          )}
-        </div>
-
-        {/* Contact panel */}
-        <div className="w-full flex-1 px-4 sm:px-5 lg:px-6 2xl:px-7.5 3xl:px-9 py-1 bg-[#F7F8FA] dark:bg-white/3 border-t border-black/10 dark:border-white/10">
-          <div className="w-full divide-y divide-black/10 dark:divide-white/10">
-            {/* Email */}
-            {item?.email && (
-              <div className="w-full flex items-start gap-3 py-2.5 lg:py-3">
-                <div className="w-8 lg:w-9 2xl:w-10 h-auto aspect-square shrink-0 p-1.75 2xl:p-2 rounded-full bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center">
-                  <Image
-                    src="/images/contact-inner-icon-1.svg"
-                    alt="Email Icon"
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-contain dark:invert"
-                  />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="text-sm 2xl:text-base leading-[1.2] font-medium text-[#4A5565] dark:text-[#9CA3AF] mb-0.5">
-                    {item.email.label}
-                  </div>
-                  <div className="text_1 leading-snug font-semibold text-[#212121] dark:text-white flex flex-wrap gap-y-0.5">
-                    {item.email.values?.map((emailVal, idx) => (
-                      <span
-                        key={idx}
-                        className="pr-3 mr-3 border-r border-black/20 dark:border-white/25 last:pr-0 last:mr-0 last:border-r-0"
-                      >
-                        <Link
-                          href={emailVal.href || `mailto:${emailVal.value}`}
-                          className="break-all transition-colors hover:underline hover:text-(--basecolor)"
-                        >
-                          {emailVal.value}
-                        </Link>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Phone contacts */}
-            {item?.contacts?.map((contact, cIdx) => (
+            return (
               <div
-                key={contact?.id || cIdx}
-                className="w-full flex items-start gap-3 py-2.5 lg:py-3"
+                key={item?.id || index}
+                className="w-full h-full flex flex-col bg-white dark:bg-[#18191B] border border-black/10 dark:border-white/10 rounded-[7px] 2xl:rounded-[12px] overflow-hidden"
               >
-                <div className="w-8 lg:w-9 2xl:w-10 h-auto aspect-square shrink-0 p-1.75 2xl:p-2 rounded-full bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center">
-                  <Image
-                    src="/images/contact-inner-icon-2.svg"
-                    alt="Phone Icon"
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-contain dark:invert"
-                  />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="text-sm 2xl:text-base leading-[1.2] font-medium text-[#4A5565] dark:text-[#9CA3AF] mb-1.5">
-                    {contact.label}
-                  </div>
-                  <div className="text_1 leading-snug font-medium text-[#212121] dark:text-white flex flex-wrap gap-y-0.5">
-                    {contact.values?.map((phoneVal, vIdx) => (
-                      <span
-                        key={vIdx}
-                        className="pr-3 mr-3 border-r border-black/20 dark:border-white/25 last:pr-0 last:mr-0 last:border-r-0"
-                      >
-                        <PhoneNumbers
-                          value={phoneVal.value}
-                          linkClassName="transition-colors hover:underline hover:text-(--basecolor)"
+                {/* Accent bar */}
+                <div className="w-full h-1 bg-linear-to-r from-(--basecolor) to-(--basecolor2)" />
+
+                {/* Header */}
+                <div className="w-full p-4 sm:p-5 lg:p-6 2xl:p-7.5 3xl:p-9">
+                  <div className="[--icon-size:40px] sm:[--icon-size:44px] lg:[--icon-size:50px] 2xl:[--icon-size:58px] 3xl:[--icon-size:68px] w-full flex items-center gap-3 lg:gap-4 mb-3 lg:mb-4">
+                    <div className="w-(--icon-size) h-(--icon-size) shrink-0 p-2 2xl:p-2.5 rounded-[8px] 2xl:rounded-[12px] bg-(--basecolor)/10 flex items-center justify-center">
+                      {iconUrl && (
+                        <Image
+                          src={iconUrl}
+                          alt={item?.icon?.alternativeText || ""}
+                          width={64}
+                          height={64}
+                          className="w-full h-full object-contain"
                         />
+                      )}
+                    </div>
+
+                    <div className="min-w-0">
+                      <div className="text-lg sm:text-xl lg:text-[24px] 2xl:text-[30px] 3xl:text-[36px] leading-[1.1] font-bold text-(--text-color)">
+                        {item?.name}
+                      </div>
+                      <div className="mt-0.5 text-sm sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl leading-[1.2] font-medium text-[#4A5565] dark:text-[#9CA3AF]">
+                        {item?.subtitle}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text_1 leading-snug font-normal text-[#4A5565] dark:text-[#9CA3AF]">
+                    {item?.address}
+                  </div>
+
+                  {item?.directions && (
+                    <Link
+                      href={item?.directions?.href || "/"}
+                      aria-label="Get Directions"
+                      target="_blank"
+                      className="group mt-3 lg:mt-4 inline-flex items-center gap-1.5 py-1.5 pl-2.5 pr-4 rounded-full   dark:border-white/15 transition-colors duration-300 hover:border-(--basecolor) hover:bg-(--basecolor)/5"
+                    >
+                      <div className="w-5.5 2xl:w-6.5 h-auto aspect-35/25 shrink-0 overflow-hidden flex items-center justify-center">
+                        <Image
+                          src="/images/direction-icon.svg"
+                          alt="Directions"
+                          width={35}
+                          height={25}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <span className="text_1 leading-[1.1] font-semibold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent">
+                        {item?.directions?.label}
                       </span>
+                    </Link>
+                  )}
+                </div>
+
+                {/* Contact panel */}
+                <div className="w-full flex-1 px-4 sm:px-5 lg:px-6 2xl:px-7.5 3xl:px-9 py-1 bg-[#F7F8FA] dark:bg-white/3 border-t border-black/10 dark:border-white/10">
+                  <div className="w-full divide-y divide-black/10 dark:divide-white/10">
+                    {/* Email */}
+                    {item?.email && (
+                      <div className="w-full flex items-start gap-3 py-2.5 lg:py-4">
+                        <div className="w-8 lg:w-9 2xl:w-10 h-auto aspect-square shrink-0 p-1.75 2xl:p-2 rounded-full bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center">
+                          <Image
+                            src="/images/contact-inner-icon-1.svg"
+                            alt="Email Icon"
+                            width={40}
+                            height={40}
+                            className="w-full h-full object-contain dark:invert"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="text-sm 2xl:text-base leading-[1.2] font-medium text-[#4A5565] dark:text-[#9CA3AF] mb-1.5">
+                            {item.email.label}
+                          </div>
+                          <div className="text_1 leading-snug font-medium text-[#212121] dark:text-white flex flex-wrap gap-y-1">
+                            {item.email.values?.map((emailVal, idx) => (
+                              <span
+                                key={idx}
+                                className="pr-3 mr-3 border-r border-black/20 dark:border-white/25 last:pr-0 last:mr-0 last:border-r-0"
+                              >
+                                <Link
+                                  href={emailVal.href || `mailto:${emailVal.value}`}
+                                  className="break-all transition-colors hover:underline hover:text-(--basecolor)"
+                                >
+                                  {emailVal.value}
+                                </Link>
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Phone contacts */}
+                    {item?.contacts?.map((contact, cIdx) => (
+                      <div
+                        key={contact?.id || cIdx}
+                        className="w-full flex items-start gap-3 py-2.5 lg:py-4"
+                      >
+                        <div className="w-8 lg:w-9 2xl:w-10 h-auto aspect-square shrink-0 p-1.75 2xl:p-2 rounded-full bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center">
+                          <Image
+                            src="/images/contact-inner-icon-2.svg"
+                            alt="Phone Icon"
+                            width={40}
+                            height={40}
+                            className="w-full h-full object-contain dark:invert"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="text-sm 2xl:text-base leading-[1.2] font-medium text-[#4A5565] dark:text-[#9CA3AF] mb-1.5">
+                            {contact.label}
+                          </div>
+                          <div className="text_1 leading-snug font-medium text-[#212121] dark:text-white flex flex-wrap gap-y-1">
+                            {contact.values?.map((phoneVal, vIdx) => (
+                              <span
+                                key={vIdx}
+                                className="pr-3 mr-3 border-r border-black/20 dark:border-white/25 last:pr-0 last:mr-0 last:border-r-0"
+                              >
+                                <PhoneNumbers
+                                  value={phoneVal.value}
+                                  linkClassName="transition-colors hover:underline hover:text-(--basecolor)"
+                                />
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
-      </div>
-    );
-  })}
-</div>
 
         {visitCampuses.length > 0 && (
           <>
