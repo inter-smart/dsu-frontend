@@ -23,7 +23,7 @@ export default function NewsEventsDetail({
                     data?.newsEventsDetailImage?.alternativeText ||
                     "News & Events"
                   }
-                width={1210}
+                  width={1210}
                   height={665}
                   className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                 />
@@ -46,28 +46,30 @@ export default function NewsEventsDetail({
             </div>
             <div className="w-full h-auto block">
               <div className="w-full h-auto mb-5 sm:mb-6.25 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5">
-                <Heading as="h2" className="mb-3.75 sm:mb-5 lg:mb-6.25 2xl:mb-8.75">
+                <div className="mb-3.75 sm:mb-5 lg:mb-6.25 2xl:mb-8.75 cmn_Title">
                   {data?.title}
-                </Heading>
+                </div>
                 <div className="w-full h-auto space-y-2.5 block">
                   {data?.organized?.name && (
-                    <div className="text-sm sm:text-base lg:text-lg 2xl:text-[23px] 3xl:text-[28px] leading-[1.1] font-medium text-[#212121]">
+                    <div className="text-_1  text-[#212121] ">
                       <span className="font-bold pr-1.25">Organized by:</span>
                       {data?.organized?.name}
                     </div>
                   )}
-                  {data?.organized?.date && (
-                    <div className="text-sm sm:text-base lg:text-lg 2xl:text-[23px] 3xl:text-[28px] leading-[1.1] font-medium text-[#212121]">
-                      <span className="font-bold pr-1.25">Date:</span>
-                      {data?.organized?.date}
-                    </div>
-                  )}
-                  {data?.organized?.time && (
-                    <div className="text-sm sm:text-base lg:text-lg 2xl:text-[23px] 3xl:text-[28px] leading-[1.1] font-medium text-[#212121]">
-                      <span className="font-bold pr-1.25">Time:</span>
-                      {data?.organized?.time}
-                    </div>
-                  )}
+                  <div className="flex items-center gap-3">
+                    {data?.organized?.date && (
+                      <div className="text_1 text-[#212121]">
+                        <span className="font-bold pr-1.25">Date:</span>
+                        {data?.organized?.date}
+                      </div>
+                    )}
+                    {data?.organized?.time && (
+                      <div className="text_1 text-[#212121]">
+                        <span className="font-bold pr-1.25">Time:</span>
+                        {data?.organized?.time}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
               <div
@@ -95,7 +97,7 @@ export default function NewsEventsDetail({
                     {group?.members?.length > 0 && (
                       <div className="w-full h-auto grid md:grid-cols-2 gap-5 lg:gap-10 2xl:gap-12.5 3xl:gap-17.5 mb-3.75 sm:mb-5 3xl:mb-10">
                         {group?.members?.map((member) => (
-                          <div key={member?.id} className="w-auto h-auto">
+                          <div key={member?.id} className="w-auto h-auto  shadow-sm">
                             <div className="[--width:120px] 2xl:[--width:150px] 3xl:[--width:185px] w-full h-full flex items-center">
                               {member?.profileImage?.url && (
                                 <div className="w-(--width) h-full overflow-hidden block">
@@ -156,7 +158,7 @@ export default function NewsEventsDetail({
                   __html: data?.description2 || "",
                 }}
               />
-              
+
               {/* <div className="my-5 lg:my-7.5 3xl:my-10 flex items-center">
                 <button className="group/button inline-flex shrink-0 items-center justify-center rounded-sm border bg-clip-padding outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 text-[12px] 2xl:text-[14.4px] 3xl:text-[18px] leading-none font-bold whitespace-nowrap text-white bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white border-transparent hover:bg-primary/80 h-[34px] 2xl:h-[40px] 3xl:h-[50px] gap-2 2xl:gap-4 3xl:gap-5 px-3 2xl:px-4 3xl:px-5 transition-colors duration-300 ease-in-out hover:from-(--basecolor2) hover:to-(--basecolor)">
                   Read More
