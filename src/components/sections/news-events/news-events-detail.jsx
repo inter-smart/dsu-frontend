@@ -156,7 +156,37 @@ export default function NewsEventsDetail({
                   __html: data?.description2 || "",
                 }}
               />
-              
+
+              {data?.detailGallery?.length > 0 && (
+                <div className="w-full h-auto mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-5 3xl:gap-7.5">
+                    {data.detailGallery.map((media, idx) =>
+                      media?.mime?.startsWith("video/") ? (
+                        <video
+                          key={media?.url || idx}
+                          src={media.url}
+                          controls
+                          preload="metadata"
+                          className="w-full h-auto aspect-490/307 object-cover bg-black rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px]"
+                        />
+                      ) : (
+                        <Image
+                          key={media?.url || idx}
+                          src={media.url}
+                          alt={
+                            media?.alternativeText ||
+                            `${data?.title || "News & Events"} – gallery ${idx + 1}`
+                          }
+                          width={490}
+                          height={307}
+                          className="w-full h-auto aspect-490/307 object-cover rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px]"
+                        />
+                      ),
+                    )}
+                  </div>
+                </div>
+              )}
+
               {/* <div className="my-5 lg:my-7.5 3xl:my-10 flex items-center">
                 <button className="group/button inline-flex shrink-0 items-center justify-center rounded-sm border bg-clip-padding outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 text-[12px] 2xl:text-[14.4px] 3xl:text-[18px] leading-none font-bold whitespace-nowrap text-white bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white border-transparent hover:bg-primary/80 h-[34px] 2xl:h-[40px] 3xl:h-[50px] gap-2 2xl:gap-4 3xl:gap-5 px-3 2xl:px-4 3xl:px-5 transition-colors duration-300 ease-in-out hover:from-(--basecolor2) hover:to-(--basecolor)">
                   Read More
