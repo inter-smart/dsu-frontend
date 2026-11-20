@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { sanitizeRichHtml as sanitizeHtml } from "@/lib/sanitize-rich-html";
 
 export default function BscOverview({ data }) {
     return (
@@ -35,9 +36,21 @@ export default function BscOverview({ data }) {
                             )}
 
                             {data?.intro && (
-                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography">
-                                    <BlocksRenderer content={data.intro} />
-                                </div>
+                                /* CKEditor HTML from Strapi goes straight into the text container (no overflow wrapper:
+                                   that would stop the text flowing around the floated image); the legacy
+                                   programme overview still sends blocks */
+                                typeof data.intro === "string" ? (
+                                    <div
+                                        className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography"
+                                        dangerouslySetInnerHTML={{
+                                            __html: sanitizeHtml(data.intro),
+                                        }}
+                                    />
+                                ) : (
+                                    <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography">
+                                        <BlocksRenderer content={data.intro} />
+                                    </div>
+                                )
                             )}
                         </div>
                     </div>
