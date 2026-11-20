@@ -211,7 +211,17 @@ function FacilitySection({ section, index }) {
                                         />
 
                                         {item?.title && (
-                                            <span className="absolute inset-x-0 bottom-0 pt-16 px-4 lg:px-5 2xl:px-6 pb-4 lg:pb-5 2xl:pb-6 bg-linear-to-t from-black/75 via-black/30 to-transparent">
+                                            <span
+                                                className={cn(
+                                                    "absolute inset-x-0 bottom-0 pt-16 px-4 lg:px-5 2xl:px-6 pb-4 lg:pb-5 2xl:pb-6 bg-linear-to-t from-black/75 via-black/30 to-transparent",
+                                                    "transition-all duration-500 ease-out",
+                                                    // desktop: hidden until hover / keyboard focus
+                                                    "lg:opacity-0 lg:translate-y-4",
+                                                    "lg:group-hover:opacity-100 lg:group-hover:translate-y-0",
+                                                    "lg:group-focus-visible:opacity-100 lg:group-focus-visible:translate-y-0",
+                                                    "motion-reduce:transition-none motion-reduce:translate-y-0",
+                                                )}
+                                            >
                                                 <span className="block text-base lg:text-lg 2xl:text-2xl leading-tight font-bold text-white">
                                                     {item.title}
                                                 </span>
