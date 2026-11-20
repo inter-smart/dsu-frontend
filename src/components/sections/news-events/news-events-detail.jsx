@@ -275,7 +275,7 @@ export default function NewsEventsDetail({
               </div>
             </div>
           </div>
-          <div className="w-(--width) top-0 sticky h-full">
+          <div className="w-(--width) lg:top-[70px] lg:sticky h-full">
             {/* {data?.gallery?.length > 0 && (
               <div className="max-lg:gap-2.5 max-lg:grid max-lg:grid-cols-2 mb-5 sm:mb-7.5 2xl:mb-15 3xl:mb-17.5">
                 {data?.gallery?.map((image, idx) => (
