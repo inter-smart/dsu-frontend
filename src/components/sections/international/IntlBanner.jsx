@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import EnquiryForm from "./EnquiryForm"; 
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function IntlBanner({ data, formData }) {
     const { image, subtitle, title, button, scholarship } = data;
@@ -64,7 +65,7 @@ export default function IntlBanner({ data, formData }) {
                             </p>
                         )}
                         <h1 className="mt-1 max-w-[750px] text-[34px] font-bold leading-tight lg:text-[44px] xl:text-[48px] 2xl:text-[45px] 3xl:text-[60.9px]">
-                            {title}
+                            {withLineBreaks(title)}
                         </h1>
 
                         {/* Button + scholarship */}

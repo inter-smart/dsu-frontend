@@ -1,6 +1,8 @@
+import { plainTitle } from "./line-breaks";
+
 // Next.js metadata from a CMS `seo` component; a blank CMS field falls back to the page's own title / the site default.
 export function seoMetadata(seo, fallbackTitle) {
-    const title = seo?.metaTitle || fallbackTitle;
+    const title = seo?.metaTitle || plainTitle(fallbackTitle);
     const description = seo?.metaDescription || (title ? `${title} at Dayananda Sagar University.` : undefined);
     return {
         ...(title && { title }),

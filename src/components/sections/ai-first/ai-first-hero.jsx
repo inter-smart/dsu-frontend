@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AiFirstHero({ data }) {
   return (
@@ -21,7 +22,7 @@ export default function AiFirstHero({ data }) {
       <div className="container relative z-20 flex h-full w-full flex-col justify-end pb-[40px] sm:pb-[55px] lg:pb-[70px] xl:pb-[85px] 2xl:pb-[95px] 3xl:pb-[110px]">
         {data?.title && (
           <h1 className="mb-2 w-full max-w-[900px] text-[26px] font-bold leading-tight text-white sm:text-[32px] md:text-[38px] lg:text-[44px] xl:text-[50px] 2xl:text-[55px] 3xl:text-[61px]">
-            {data.title}
+            {withLineBreaks(data.title)}
           </h1>
         )}
         {data?.subtitle && (

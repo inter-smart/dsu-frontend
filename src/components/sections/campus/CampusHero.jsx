@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 function Icon360({ className }) {
     return (
@@ -68,7 +69,7 @@ export default function CampusHero({ data }) {
                     {/* Text */}
                     <div className="w-full md:w-[55%] lg:w-1/2 h-auto md:max-w-[300px] lg:max-w-[320px] xl:max-w-[420px] 2xl:max-w-[450px] 3xl:max-w-[550px]">
                         <h1 className="cmn_Title font-bold text-white mb-2.5 sm:mb-3 lg:mb-4 2xl:mb-5 max-w-[620px]">
-                            {data?.title}
+                            {withLineBreaks(data?.title)}
                         </h1>
                         <p className="text_1 text-white ">
                             {data?.description}

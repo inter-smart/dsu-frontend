@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Grip } from "lucide-react";
 import EnquiryForm from "./EnquiryForm";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function InternationalBanner({ data, formData }) {
     const { image, breadcrumb, subtitle, title, button, scholarship, studyLogo } = data;
@@ -58,7 +59,7 @@ export default function InternationalBanner({ data, formData }) {
                             {subtitle}
                         </p>
                         <h1 className="mt-1 max-w-[750px]   font-bold leading-tight cmn_Title text-white">
-                            {title}
+                            {withLineBreaks(title)}
                         </h1>
 
                         {/* Button + scholarship */}

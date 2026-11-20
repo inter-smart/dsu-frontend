@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 import { cn } from "@/lib/utils";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -50,7 +51,7 @@ export default function InnerHero({ data, placementMenuItems, className }) {
       ? data.breadcrumb
       : [
           { label: "Home", href: "/" },
-          ...(data.title ? [{ label: data.title }] : []),
+          ...(data.title ? [{ label: plainTitle(data.title) }] : []),
         ];
   const hasMenubar = Boolean(
     data?.menuBar ||
@@ -103,7 +104,7 @@ export default function InnerHero({ data, placementMenuItems, className }) {
                   src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3`}
                   title={
                     data?.heroMedia?.alternativeText ||
-                    data?.title ||
+                    plainTitle(data?.title) ||
                     "Hero video"
                   }
                   tabIndex={-1}
@@ -137,7 +138,7 @@ export default function InnerHero({ data, placementMenuItems, className }) {
                   src={data.heroMedia.url}
                   alt={
                     data?.heroMedia?.alternativeText ||
-                    data?.title ||
+                    plainTitle(data?.title) ||
                     "Hero image"
                   }
                   width={1920}
@@ -196,7 +197,7 @@ export default function InnerHero({ data, placementMenuItems, className }) {
               {/* Title */}
               {data?.title && (
                 <h1 className="w-full text-[18px] font-bold leading-tight text-white sm:text-[22px] md:text-[26px] lg:text-[32px] xl:text-[40px] 3xl:text-[60px] max-w-70 sm:max-w-87.5 md:max-w-112.5 lg:max-w-137.5 xl:max-w-175 3xl:max-w-225">
-                  {data.title}
+                  {withLineBreaks(data.title)}
                 </h1>
               )}
             </div>
