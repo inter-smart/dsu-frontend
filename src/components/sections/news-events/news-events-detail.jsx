@@ -11,24 +11,24 @@ export default function NewsEventsDetail({
 }) {
 
   return (
-    <section className="w-full h-auto py-10 sm:py-[70px_80px] lg:py-[90px_110px] 2xl:py-[110px_130px] 3xl:py-[130px_160px] block">
+    <section className="w-full h-auto py-10 sm:py-[70px_80px] lg:py-[90px_110px] 2xl:py-[110px_130px] 3xl:py-[100px] block">
       <div className="container">
         <div className="[--width:100%] lg:[--width:285px] xl:[--width:330px] 2xl:[--width:390px] 3xl:[--width:500px] w-full h-auto flex flex-wrap">
           <div className="w-(--width) lg:w-[calc(100%-var(--width))] h-auto lg:pr-3.75 2xl:pr-5 3xl:pr-7.5 max-lg:mb-5">
-            <div className="group w-full h-auto aspect-1210/665 mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block relative z-0 bg-gray-200 dark:bg-white/10">
-              {data?.newsEventsDetailImage?.url && (
+            {/* <div className="group w-full h-auto aspect-1210/665 mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block relative z-0 bg-gray-200 dark:bg-white/10"> */}
+            {/* {data?.newsEventsDetailImage?.url && (
                 <Image
                   src={data.newsEventsDetailImage?.url}
                   alt={
                     data?.newsEventsDetailImage?.alternativeText ||
                     "News & Events"
                   }
-                width={1210}
+                  width={1210}
                   height={665}
                   className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                 />
-              )}
-              {data?.newsEventsDetailDate && (
+              )} */}
+            {/* {data?.newsEventsDetailDate && (
                 <div className="w-fit h-auto aspect-square p-2.5 sm:p-[15px_10px] 2xl:p-[20px_15px] m-2.5 sm:m-[20px_10px] 2xl:m-[30px_15px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block absolute z-1 inset-[auto_auto_0_0]">
                   <div className="text-[10px] sm:text-[13px] 2xl:text-sm 3xl:text-base leading-[1.1] font-normal text-white text-center">
                     <div className="flex items-start justify-center">
@@ -42,33 +42,87 @@ export default function NewsEventsDetail({
                     {data?.newsEventsDetailMonth}
                   </div>
                 </div>
-              )}
-            </div>
+              )} */}
+            {/* </div> */}
             <div className="w-full h-auto block">
               <div className="w-full h-auto mb-5 sm:mb-6.25 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5">
-                <Heading as="h2" className="mb-3.75 sm:mb-5 lg:mb-6.25 2xl:mb-8.75">
+                {/* Date & time */}
+                {(data?.organized?.date || data?.organized?.time) && (
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-2.5 sm:mb-3 lg:mb-4">
+                    {data?.organized?.date && (
+                      <div className="flex items-center gap-2">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="w-5 h-5 lg:w-6 lg:h-6 shrink-0"
+                          aria-hidden="true"
+                        >
+                          <defs>
+                            <linearGradient id="eventDateGrad" x1="3" y1="12" x2="21" y2="12" gradientUnits="userSpaceOnUse">
+                              <stop stopColor="#DC2626" />
+                              <stop offset="1" stopColor="#F97316" />
+                            </linearGradient>
+                          </defs>
+                          <g stroke="url(#eventDateGrad)">
+                            <rect x="3" y="5" width="18" height="16" rx="2" />
+                            <path d="M16 3v4M8 3v4M3 10h18" />
+                          </g>
+                        </svg>
+                        <span className="text_1 font-semibold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent">
+                          {data.organized.date}
+                        </span>
+                      </div>
+                    )}
+
+                    {data?.organized?.date && data?.organized?.time && (
+                      <span aria-hidden="true" className="w-px h-4 bg-black/20 dark:bg-white/20" />
+                    )}
+
+                    {data?.organized?.time && (
+                      <div className="flex items-center gap-2">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="w-5 h-5 lg:w-6 lg:h-6 shrink-0"
+                          aria-hidden="true"
+                        >
+                          <defs>
+                            <linearGradient id="eventTimeGrad" x1="3" y1="12" x2="21" y2="12" gradientUnits="userSpaceOnUse">
+                              <stop stopColor="#DC2626" />
+                              <stop offset="1" stopColor="#F97316" />
+                            </linearGradient>
+                          </defs>
+                          <g stroke="url(#eventTimeGrad)">
+                            <circle cx="12" cy="12" r="9" />
+                            <path d="M12 7v5l3 2" />
+                          </g>
+                        </svg>
+                        <span className="text_1 font-semibold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent">
+                          {data.organized.time}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Title */}
+                <h1 className="mb-3.75 sm:mb-5 lg:mb-6.25 2xl:mb-8.75 cmn_Title">
                   {data?.title}
-                </Heading>
-                <div className="w-full h-auto space-y-2.5 block">
-                  {data?.organized?.name && (
-                    <div className="text-sm sm:text-base lg:text-lg 2xl:text-[23px] 3xl:text-[28px] leading-[1.1] font-medium text-[#212121]">
-                      <span className="font-bold pr-1.25">Organized by:</span>
-                      {data?.organized?.name}
-                    </div>
-                  )}
-                  {data?.organized?.date && (
-                    <div className="text-sm sm:text-base lg:text-lg 2xl:text-[23px] 3xl:text-[28px] leading-[1.1] font-medium text-[#212121]">
-                      <span className="font-bold pr-1.25">Date:</span>
-                      {data?.organized?.date}
-                    </div>
-                  )}
-                  {data?.organized?.time && (
-                    <div className="text-sm sm:text-base lg:text-lg 2xl:text-[23px] 3xl:text-[28px] leading-[1.1] font-medium text-[#212121]">
-                      <span className="font-bold pr-1.25">Time:</span>
-                      {data?.organized?.time}
-                    </div>
-                  )}
-                </div>
+                </h1>
+
+                {/* Organiser */}
+                {data?.organized?.name && (
+                  <div className="text_1 text-[#212121] dark:text-white">
+                    <span className="font-bold pr-1.25">Organized by:</span>
+                    {data.organized.name}
+                  </div>
+                )}
               </div>
               <div
                 className="typography [&_p]:text-[#4A5565] [&_p]:mb-2.5 sm:[&_p]:mb-3.75 lg:[&_p]:mb-5 2xl:[&_p]:mb-7.5 3xl:[&_p]:mb-10 [&_h2]:mb-5 sm:[&_h2]:mb-6.25 2xl:[&_h2]:mb-8.75 [&_h3]:mb-3.75 2xl:[&_h3]:mb-5"
@@ -95,7 +149,7 @@ export default function NewsEventsDetail({
                     {group?.members?.length > 0 && (
                       <div className="w-full h-auto grid md:grid-cols-2 gap-5 lg:gap-10 2xl:gap-12.5 3xl:gap-17.5 mb-3.75 sm:mb-5 3xl:mb-10">
                         {group?.members?.map((member) => (
-                          <div key={member?.id} className="w-auto h-auto">
+                          <div key={member?.id} className="w-auto h-auto bg-white shadow-sm">
                             <div className="[--width:120px] 2xl:[--width:150px] 3xl:[--width:185px] w-full h-full flex items-center">
                               {member?.profileImage?.url && (
                                 <div className="w-(--width) h-full overflow-hidden block">
@@ -251,8 +305,8 @@ export default function NewsEventsDetail({
               </div>
             </div>
           </div>
-          <div className="w-(--width)">
-            {data?.gallery?.length > 0 && (
+          <div className="w-(--width) lg:top-[70px] lg:sticky h-full">
+            {/* {data?.gallery?.length > 0 && (
               <div className="max-lg:gap-2.5 max-lg:grid max-lg:grid-cols-2 mb-5 sm:mb-7.5 2xl:mb-15 3xl:mb-17.5">
                 {data?.gallery?.map((image, idx) => (
                   <Image
@@ -268,7 +322,7 @@ export default function NewsEventsDetail({
                   />
                 ))}
               </div>
-            )}
+            )} */}
             {data?.relatedNews?.length > 0 && (
               <div className="w-full h-auto p-[10px_0_10px_10px] sm:p-[15px_0_15px_15px] 3xl:p-[20px_0_20px_20px] border-l border-black/20 block">
                 <div className="text-xl sm:text-2xl lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.1] font-bold text-[#212121] mb-5 sm:mb-7.5 3xl:mb-11.25">

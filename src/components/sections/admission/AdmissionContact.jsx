@@ -147,14 +147,14 @@ export default function AdmissionContact({ data }) {
                     href={whatsappBtn.href || "#"}
                     target={whatsappBtn.isExternal ? "_blank" : undefined}
                     rel={whatsappBtn.isExternal ? "noopener noreferrer" : undefined}
-                    className="group relative flex h-[36px] sm:h-[40px] xl:h-[44px] 3xl:h-[50px]  w-fit items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] p-[1px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
+                    className="group relative flex h-[36px] sm:h-[40px] xl:h-[44px] 3xl:h-[50px]  w-fit items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#25d366] to-[#25d366] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] p-[1px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                   >
-                    <div className="w-full bg-[#FFF7EE] h-full overflow-hidden rounded-[4px] flex items-center gap-[10px] px-6">
-                      <span className="relative z-[1] text-black transition-transform duration-300 w-full  ">
+                    <div className="w-full bg-[#25d366] h-full overflow-hidden rounded-[4px] flex items-center gap-[10px] px-6">
+                      <span className="relative z-[1] text-white transition-transform duration-300 w-full  ">
                         {whatsappBtn.label}
                       </span>
 
-                      <div className="relative z-[1] flex h-[25px] w-[25px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
+                      <div className="relative z-[1] flex h-[30px] w-[30px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
                         <svg
                           className="w-full h-full object-cover"
                           viewBox="0 0 17 17"
@@ -163,11 +163,11 @@ export default function AdmissionContact({ data }) {
                           <g clipPath="url(#clip0_5987_109481)">
                             <path
                               d="M0.337077 16.1797C0.247414 16.1797 0.160449 16.144 0.096404 16.0779C0.00404493 15.9835 -0.0249437 15.8446 0.0229212 15.7213L1.27887 12.455C0.440896 11.1532 0 9.64781 0 8.08984C0 3.62897 3.62897 0 8.08984 0C12.5507 0 16.1797 3.62897 16.1797 8.08984C16.1797 12.5507 12.5507 16.1797 8.08984 16.1797C6.57704 16.1797 5.10402 15.7577 3.82043 14.9568L0.450335 16.1601C0.413256 16.1736 0.375504 16.1797 0.337077 16.1797ZM3.8629 14.2469C3.92762 14.2469 3.99166 14.2651 4.04694 14.3015C5.25368 15.0896 6.65187 15.5062 8.08984 15.5062C12.1786 15.5062 15.5055 12.1793 15.5055 8.09052C15.5055 4.00178 12.1786 0.674828 8.08984 0.674828C4.0011 0.674828 0.674154 4.00178 0.674154 8.09052C0.674154 9.57231 1.10966 11.0029 1.93482 12.2271C1.99617 12.3181 2.00898 12.4341 1.96988 12.5366L0.915501 15.2783L3.74964 14.2664C3.78605 14.2536 3.82447 14.2469 3.8629 14.2469Z"
-                              fill="#212121"
+                              fill="#ffff" 
                             />
                             <path
                               d="M10.1104 12.1328C9.05126 12.1328 7.01801 10.8661 6.16386 10.0119C5.3097 9.1571 4.04297 7.12385 4.04297 6.06543C4.04297 4.976 4.96993 4.04297 5.72835 4.04297H6.40251C6.5306 4.04297 6.6479 4.11578 6.70453 4.23106C6.7052 4.23173 7.11104 5.0569 7.37666 5.57465C7.67598 6.15914 7.11306 6.84677 6.79284 7.17104C6.90745 7.46497 7.17509 8.04744 7.65171 8.52407C8.12834 9.0007 8.71081 9.26901 9.00474 9.38294C9.32833 9.06204 10.016 8.49845 10.6011 8.79912C11.1189 9.06541 11.9434 9.47058 11.944 9.47058C12.06 9.52788 12.1328 9.64519 12.1328 9.77327V10.4474C12.1328 11.2065 11.1991 12.1328 10.1104 12.1328ZM5.72835 4.71712C5.34746 4.71712 4.71712 5.34746 4.71712 6.06543C4.71712 6.84677 5.81869 8.71216 6.64116 9.53462C7.5398 10.4333 9.38766 11.4587 10.1104 11.4587C10.8283 11.4587 11.4587 10.8283 11.4587 10.4474V9.98294C11.1823 9.84676 10.6605 9.58788 10.293 9.39912C10.1353 9.31418 9.65597 9.65193 9.35193 9.99642C9.26496 10.0948 9.12946 10.1326 9.00541 10.0969C8.96294 10.0847 7.96452 9.78945 7.17509 9.00002C6.38565 8.21059 6.09105 7.21217 6.07824 7.16969C6.04183 7.0443 6.08161 6.90947 6.17869 6.82318C6.52251 6.51914 6.85823 6.04183 6.77599 5.88139C6.5879 5.51532 6.3297 4.99353 6.19352 4.71712H5.72835Z"
-                              fill="#212121"
+                              fill="#ffff"
                             />
                           </g>
                           <defs>
@@ -195,7 +195,7 @@ export default function AdmissionContact({ data }) {
                   <div className="text_1 font-semibold tracking-wider text-[#212121] dark:text-gray-400 uppercase mb-2">
                     {addressCol.label}
                   </div>
-                  <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center   gap-3">
                     <div className="text-[13px] 2xl:text-[15px] 3xl:text-[18px] leading-snug font-normal text-[#4A5565] dark:text-gray-200">
                       {addressCol.value?.includes("Bengaluru") ? (
                         <>
@@ -237,7 +237,7 @@ export default function AdmissionContact({ data }) {
 
               {/* Admissions Helpline Card */}
               {helplineCol && (
-                <div className="bg-white dark:bg-[#202225] rounded-[6px] 2xl:rounded-[8px] p-4 sm:p-5 2xl:p-6 border border-black/10 dark:border-white/10 flex flex-col justify-between shadow-xs">
+                <div className="bg-white dark:bg-[#202225] rounded-[6px] 2xl:rounded-[8px] p-4 sm:p-5 2xl:p-6 border border-black/10 dark:border-white/10 flex flex-col   shadow-xs">
                   <div className="text_1 font-semibold tracking-wider text-[#212121] dark:text-gray-400 uppercase mb-3">
                     {helplineCol.label}
                   </div>

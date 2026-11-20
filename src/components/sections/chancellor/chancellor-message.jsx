@@ -60,7 +60,7 @@ export default function ChancellorMessage({ data }) {
                       <li className="py-[13px] border-b border-black/20 dark:border-white/10 last-of-type:border-0">
                         <Link
                           href={`mailto:${email}`}
-                          className="flex gap-[10px] group"
+                          className="flex items-start gap-[10px] group"
                         >
                           <div className="w-[18px] xl:w-[20px] 3xl:w-[22px] h-[18px] 2xl:w-[20px] 3xl:h-[22px] flex">
                             <svg
@@ -94,12 +94,13 @@ export default function ChancellorMessage({ data }) {
                               </defs>
                             </svg>
                           </div>
-                          <div className="text_1 font-semibold text-[#212121] dark:text-white w-[calc(100%-18px)] 2xl:w-[calc(100%-20px)] 3xl:w-[calc(100%-22px)] transition-all group-hover:text-[#DC2626] word-break-all">
-                            {email}
-                          </div>
+                           <div className="text_1 font-semibold text-[#212121] dark:text-white min-w-0 flex-1 wrap-anywhere transition-all group-hover:text-[#DC2626]">
+        {email}
+      </div>
                         </Link>
                       </li>
-                    )}
+                    )
+                    }
                     {telHref && (
                       <li className="py-[13px] border-b border-black/20 dark:border-white/10 last-of-type:border-0">
                         <Link href={telHref} className="flex gap-[10px] group">
@@ -145,10 +146,10 @@ export default function ChancellorMessage({ data }) {
                           href={linkHref}
                           {...(hasFile
                             ? {
-                                target: "_blank",
-                                rel: "noopener noreferrer",
-                                download: true,
-                              }
+                              target: "_blank",
+                              rel: "noopener noreferrer",
+                              download: true,
+                            }
                             : {})}
                           className="flex gap-[10px] group"
                         >
