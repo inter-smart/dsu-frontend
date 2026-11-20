@@ -21,6 +21,16 @@ const defaultDatesData = {
     },
 };
 
+// Parses "03 AUG 2026", "2026-08-03" etc. Items without a valid date sort last.
+const toTime = (value) => {
+    const time = value ? Date.parse(value) : NaN;
+    return Number.isNaN(time) ? -Infinity : time;
+};
+
+// Latest date first
+const sortByLatest = (items = []) =>
+    [...items].sort((a, b) => toTime(b.date) - toTime(a.date));
+
 export default function AdmissionDates({ data }) {
     const datesData = data || defaultDatesData;
     const heading = datesData?.heading || defaultDatesData.heading;
@@ -54,7 +64,7 @@ export default function AdmissionDates({ data }) {
 
                             {/* Date Items */}
                             <div className="flex flex-col gap-1.5 sm:gap-2">
-                                {group.items.map((item) => (
+                                {sortByLatest(group.items).map((item) => (
                                     <div
                                         key={item.id}
                                         className="relative flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0 overflow-hidden border border-[#F0F0F0] dark:border-white/8 rounded-[4px] sm:rounded-[6px] dark:bg-[#141414] p-[15px] xl:p-[20px] 2xl:p-[25px] 3xl:p-[30px]"

@@ -21,8 +21,10 @@ export default function AdmissionSection({data}) {
                                             {item.heading}
                                         </div>
                                     )}
-                                    {item?.description && (
-                                        <p className="dark:text-black text_1">{item.description}</p>
+                                    {item?.description?.length > 0 && (
+                                        <div className="dark:text-black text_1">
+                                            <BlocksRenderer content={item.description} />
+                                        </div>
                                     )}
                                     {item?.button?.label && (
                                      <Link

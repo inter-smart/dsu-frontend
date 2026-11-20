@@ -137,18 +137,6 @@ const COLS = 4;
 const gradientText =
     "bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent";
 
-// static fallback: used when the data has no "cta"
-const DEFAULT_CTA = {
-    eyebrow: "No entrance test?",
-    title: "Direct Admissions 2027",
-    description: "Apply online directly to DSU through the admissions portal.",
-    button: {
-        label: "Go to the admissions portal",
-        url: "/",
-        isExternal: true,
-    },
-};
-
 // static classes so Tailwind can see them
 const spanClass = {
     1: "lg:col-span-1",
@@ -275,8 +263,8 @@ export default function WaysToApply({ data }) {
     if (!data) return null;
 
     const { heading, description, exams = [] } = data;
-    // CMS / JSON value if present, otherwise the static box
-    const cta = data.cta ?? DEFAULT_CTA;
+    // from the CMS (Admission Through → CTA fields); hidden when empty
+    const cta = data.cta;
 
     // empty cells left in the last row -> the gradient block fills them
     const remainder = (COLS - (exams.length % COLS)) % COLS;

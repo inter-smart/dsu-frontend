@@ -32,7 +32,33 @@ export default function AcademicAchievements({ data, variant }) {
                         <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]  typography">
                             {data?.description?.length > 0 && <BlocksRenderer content={data.description} />}
                         </div>
-                        
+                        {data?.cta?.href && (
+                            <div className="mt-[20px] xl:mt-[30px]">
+                                <a
+                                    href={data.cta.href}
+                                    target={data.cta.isExternal ? "_blank" : undefined}
+                                    rel={data.cta.isExternal ? "noopener noreferrer" : undefined}
+                                    className="group base-gradient inline-flex items-center justify-center gap-2.5 rounded-[4px] px-5 py-3 text-[13px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 xl:px-6 xl:py-4 xl:text-[16px]"
+                                >
+                                    {data.cta.label || "Explore Now"}
+                                    <svg
+                                        width="11"
+                                        height="9"
+                                        viewBox="0 0 11 9"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="shrink-0 transition-transform duration-300 group-hover:translate-x-[3px]"
+                                        aria-hidden="true"
+                                    >
+                                        <circle cx="5.12232" cy="0.919192" r="0.919192" fill="white" />
+                                        <circle cx="5.12232" cy="4.33325" r="0.919192" fill="white" />
+                                        <circle cx="5.12232" cy="7.74732" r="0.919192" fill="white" />
+                                        <circle cx="9.32349" cy="4.33325" r="0.919192" fill="white" />
+                                        <circle cx="0.919192" cy="4.33325" r="0.919192" fill="white" />
+                                    </svg>
+                                </a>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
