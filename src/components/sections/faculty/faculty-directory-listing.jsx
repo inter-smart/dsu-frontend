@@ -85,6 +85,7 @@ export default function FacultyDirectoryListing({ data }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("");
   const [activeDepartment, setActiveDepartment] = useState("");
+  const [activeSchool, setActiveSchool] = useState("");
   const [activeExpertise, setActiveExpertise] = useState("");
   const [expandedDepartment, setExpandedDepartment] = useState(
     departments[0]?.name ?? "",
@@ -113,11 +114,12 @@ export default function FacultyDirectoryListing({ data }) {
     search: searchQuery,
     category: activeCategory,
     department: activeDepartment,
+    school: activeSchool,
     expertise: activeExpertise,
   };
   // page 1 for the initial (empty) filters is already rendered by the server
   const lastFilterKey = useRef(
-    JSON.stringify({ search: "", category: "", department: "", expertise: "" }),
+    JSON.stringify({ search: "", category: "", department: "", school: "", expertise: "" }),
   );
 
   const loadPage = async (page, append) => {
@@ -166,7 +168,7 @@ export default function FacultyDirectoryListing({ data }) {
     lastFilterKey.current = key;
     loadPage(1, false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isServer, searchQuery, activeCategory, activeDepartment, activeExpertise]);
+  }, [isServer, searchQuery, activeCategory, activeDepartment, activeSchool, activeExpertise]);
 
   // local mode: search / department / expertise checks (category is checked separately,
   // so the chip counts can leave it out)
@@ -174,6 +176,7 @@ export default function FacultyDirectoryListing({ data }) {
   const matchesOtherFilters = (member) =>
     (!searchTerm || member.name.toLowerCase().includes(searchTerm)) &&
     (!activeDepartment || member.department === activeDepartment) &&
+    (!activeSchool || member.school === activeSchool) &&
     (!activeExpertise ||
       (member.expertiseAreas ?? []).includes(activeExpertise));
   const otherFiltered = isServer
@@ -223,6 +226,7 @@ export default function FacultyDirectoryListing({ data }) {
     setSearchQuery("");
     setActiveCategory("");
     setActiveDepartment("");
+    setActiveSchool("");
     setActiveExpertise("");
     setVisibleCount(initialVisibleCount);
   };
@@ -340,11 +344,15 @@ export default function FacultyDirectoryListing({ data }) {
                         <button
                           type="button"
                           aria-expanded={isExpanded}
-                          onClick={() =>
+                          onClick={() => {
+                            // clicking a school lists everyone in that school (even people with no department)
                             setExpandedDepartment(
                               isExpanded ? "" : department.name,
-                            )
-                          }
+                            );
+                            setActiveSchool(isExpanded ? "" : department.name);
+                            setActiveDepartment("");
+                            setVisibleCount(initialVisibleCount);
+                          }}
                           className="text-[13px] 2xl:text-sm 3xl:text-base leading-[1.4] font-medium text-left text-[#212121] w-full flex-grow-1 gap-2 p-[10px] 2xl:p-[15px_var(--spacing)] 3xl:p-[20px_var(--spacing)] flex items-center justify-between"
                         >
                           <span>{department.name}</span>
@@ -378,6 +386,7 @@ export default function FacultyDirectoryListing({ data }) {
                                   type="button"
                                   onClick={() => {
                                     setActiveDepartment(child.value);
+                                    setActiveSchool("");
                                     setVisibleCount(initialVisibleCount);
                                   }}
                                   className={`text-[13px] 2xl:text-sm 3xl:text-base leading-[1.1] font-normal text-left text-[#4A5565] 2xl:py-[7px] 3xl:py-[10px] transition-colors duration-300 hover:text-(--basecolor) ${
@@ -396,7 +405,7 @@ export default function FacultyDirectoryListing({ data }) {
                   })}
                 </div>
               </div>
-              <div className="w-full h-auto p-[20px_15px] lg:p-[25px_15px] 2xl:p-[30px_15px] 3xl:p-[35px_20px] bg-white border border-[#E7E1D8] rounded-[15px] 2xl:rounded-[20px] overflow-hidden">
+              {/* <div className="w-full h-auto p-[20px_15px] lg:p-[25px_15px] 2xl:p-[30px_15px] 3xl:p-[35px_20px] bg-white border border-[#E7E1D8] rounded-[15px] 2xl:rounded-[20px] overflow-hidden">
                 <div className="text-base 2xl:text-lg 3xl:text-[22px] leading-[1.1] font-medium text-[#212121] mb-3.75 lg:mb-6.25">
                   Popular Expertise Areas
                 </div>
@@ -421,7 +430,7 @@ export default function FacultyDirectoryListing({ data }) {
                     </button>
                   ))}
                 </div>
-              </div>
+              </div> */}
               <button
                 type="button"
                 onClick={resetFilters}

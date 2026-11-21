@@ -3,6 +3,20 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { sanitizeRichHtml } from "@/lib/sanitize-rich-html";
+
+// A rich-text value is CKEditor HTML (department overview) or Strapi blocks (school / static data).
+// HTML goes straight into the styled container (no extra wrapper, so text still flows around floats).
+function RichText({ content, className }) {
+    if (typeof content === "string") {
+        return <div className={className} dangerouslySetInnerHTML={{ __html: sanitizeRichHtml(content) }} />;
+    }
+    return (
+        <div className={className}>
+            <BlocksRenderer content={content} />
+        </div>
+    );
+}
 
 export default function AcademicOverview({ data }) {
     if (!data) return null;
@@ -50,9 +64,10 @@ export default function AcademicOverview({ data }) {
 
                         {data?.nursingBannerSection && (
                             <div className="w-full rounded-[10px] overflow-hidden bg-gradient-to-r from-[#DC2626] to-[#F97316] p-[20px] lg:p-[30px_50px]">
-                                <div className="text_1 !text-white font-semibold [&_p]:text-white [&_p]:font-semibold text-center leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography">
-                                    <BlocksRenderer content={data?.nursingBannerSection.description} />
-                                </div>
+                                <RichText
+                                    content={data?.nursingBannerSection.description}
+                                    className="text_1 !text-white font-semibold [&_p]:text-white [&_p]:font-semibold text-center leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography"
+                                />
                                 {data.nursingBannerSection.badge?.label && (
                                 <Link href="/"
                                     className="group relative flex h-[30px] w-fit mt-[25px] 2xl:mt-[30px] min-w-[130px] mx-auto px-[30px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-white text_1 font-bold capitalize text-[#F97316] transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] px-[10px]  before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
@@ -87,9 +102,10 @@ export default function AcademicOverview({ data }) {
                         )}
 
                         {data?.intro && (
-                            <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography">
-                                <BlocksRenderer content={data.intro} />
-                            </div>
+                            <RichText
+                                content={data.intro}
+                                className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography"
+                            />
                         )}
                     </div>
                 </div>
@@ -123,9 +139,10 @@ export default function AcademicOverview({ data }) {
                         {/* Right Flowing Content: Outro */}
                         {data?.outro && (
                             <div>
-                                <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography">
-                                    <BlocksRenderer content={data.outro} />
-                                </div>
+                                <RichText
+                                    content={data.outro}
+                                    className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography"
+                                />
                             </div>
                         )}
                     </div>

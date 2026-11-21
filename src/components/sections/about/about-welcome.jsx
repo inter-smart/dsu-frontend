@@ -152,7 +152,7 @@ export default function AboutWelcome({ data }) {
                       data-reveal-stagger
                       onMouseEnter={() => setHovered(true)}
                       onMouseLeave={() => setHovered(false)}
-                      className="flex flex-col gap-[5px] lg:gap-[8px] xl:gap-[10px] 3xl:gap-[15px] max-w-[75%] w-full"
+                      className="flex flex-col gap-[5px] lg:gap-[8px] xl:gap-[10px] 3xl:gap-[15px] max-w-[45%] xl:max-w-[70%] w-full"
                     >
                       {panelItems.map((item, id) => (
                         <div

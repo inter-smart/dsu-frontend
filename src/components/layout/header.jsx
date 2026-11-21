@@ -1057,7 +1057,14 @@ export default function Header({ data = local_data }) {
       {!isMobile && (
         <div className="container relative">
           <div className="w-full h-auto flex items-center justify-between relative z-0">
-            <Link href="/" aria-label="Home" className="p-[15px_10px] xl:p-[15px_20px] 2xl:p-4 3xl:p-5 pl-0 text-white hover:opacity-80 transition-opacity">
+            <Link
+              href="/"
+              aria-label="Home"
+              className={cn(
+                "p-[15px_10px] xl:p-[15px_20px] 2xl:p-4 3xl:p-5 pl-0 text-white hover:opacity-80 transition-opacity duration-400 -z-1",
+                isSearchOpen && "opacity-0",
+              )}
+            >
               <Home className="size-5" />
             </Link>
             {data?.navigationLinks?.map((item) => (
@@ -1120,7 +1127,7 @@ export default function Header({ data = local_data }) {
                 role="search"
                 action="/search"
                 onSubmit={submitSearch}
-                className="w-full h-auto relative"
+                className="w-full h-auto relative z-20"
               >
                 <input
                   ref={searchInputRef}
