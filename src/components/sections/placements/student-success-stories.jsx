@@ -2,13 +2,16 @@
 
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import React, { useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import "swiper/css";
 
 export default function StudentSuccessStories({ data, variant, slug }) {
-    // life-dsu shows the stories as a static grid, every other page keeps the slider
-    const isGrid = slug === "life-dsu";
+    // life-dsu and the school pages (/schools/…, /ai-enabled/school-…) show the stories as a static grid; every other page keeps the slider
+    const pathname = usePathname() || "";
+    const isGrid = slug === "life-dsu" || pathname.startsWith("/schools/") || pathname.startsWith("/ai-enabled/school-");
   
     const otherSwiperRef = useRef(null); 
 
@@ -192,8 +195,14 @@ export default function StudentSuccessStories({ data, variant, slug }) {
     );
 }
 
+// Quotes longer than this are clamped on the card and read in full in a popup
+const LONG_QUOTE = 220;
+
 function StoryCard({ story, variant }) {
+    const [open, setOpen] = useState(false);
+    const long = (story.quote?.length || 0) > LONG_QUOTE;
     return (
+        <>
                 <div className={`w-full h-full ${variant === "bg-gradient" ? "bg-white": "bg-[#F8FAFC]"}  dark:bg-[#151618] rounded-[4px] p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-md`}>
                     {/* Top Content */}
                     <div>
@@ -222,9 +231,20 @@ function StoryCard({ story, variant }) {
                         </h4>
 
                         {/* Story Quote Text */}
-                        <p className="text_1 text-[#64748B] dark:text-[#94A3B8]  ">
+                        <p className={`text_1 text-[#64748B] dark:text-[#94A3B8] ${long ? "line-clamp-5" : ""}`}>
                             {story.quote}
                         </p>
+                        {long && (
+                            <button
+                                type="button"
+                                onClick={() => setOpen(true)}
+                                className="mt-3 inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#DC2626] transition-colors hover:text-[#F97316] focus-visible:rounded-[2px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#DC2626] 2xl:text-[15px]"
+                            >
+                                Read more
+                                <span aria-hidden="true">→</span>
+                                <span className="sr-only"> of {story.name || "this"} story</span>
+                            </button>
+                        )}
                     </div>
 
                     {/* Bottom Author Row */}
@@ -255,5 +275,27 @@ function StoryCard({ story, variant }) {
                         </div>
                     </div>
                 </div>
+            {long && (
+                <Dialog open={open} onOpenChange={setOpen}>
+                    <DialogContent className="z-[999999] flex max-w-[720px] flex-col !overflow-hidden bg-linear-to-b from-[#FFF9F2] to-[#FFF3E0] dark:from-[#1c1815] dark:to-[#131416]">
+                        <div className="flex shrink-0 items-center gap-3 border-b border-black/10 pb-4 pr-8 dark:border-white/10">
+                            <div className="relative size-[56px] shrink-0 overflow-hidden rounded-lg bg-neutral-200 dark:bg-neutral-700">
+                                <Image src={story.avatar || "/images/home-testimonial-avatar-1.jpg"} alt={story.name || "Student"} fill className="object-cover" />
+                            </div>
+                            <div className="min-w-0">
+                                <DialogTitle className="!m-0 text-[16px] font-bold leading-tight text-[#212121] dark:text-white 2xl:text-[18px]">{story.name}</DialogTitle>
+                                {story.role && <p className="!mb-0 !mt-1 text-[13px] leading-tight text-[#212121] dark:text-[#CBD5E1] 2xl:text-[14px]">{story.role}</p>}
+                                {story.degree && <p className="!mb-0 !mt-1 text-[13px] leading-tight text-[#212121] dark:text-[#CBD5E1] 2xl:text-[14px]">{story.degree}</p>}
+                            </div>
+                        </div>
+                        {/* only the story scrolls; the author header stays in view */}
+                        <div data-lenis-prevent className="-mr-3 min-h-0 flex-1 overflow-y-auto overscroll-contain pr-3 sm:-mr-4 sm:pr-4">
+                            {story.title && <h4 className="cmn_Txt mb-3 font-bold leading-[1.3] text-[#1F1F1F] dark:text-white">{story.title}</h4>}
+                            <p className="text_1 whitespace-pre-line text-[#475569] dark:text-[#94A3B8]">{story.quote}</p>
+                        </div>
+                    </DialogContent>
+                </Dialog>
+            )}
+        </>
     );
 }

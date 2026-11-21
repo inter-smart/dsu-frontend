@@ -62,7 +62,7 @@ export default function ChancellorMessage({ data }) {
                           href={`mailto:${email}`}
                           className="flex items-start gap-[10px] group"
                         >
-                          <div className="w-[18px] xl:w-[20px] 3xl:w-[22px] h-[18px] 2xl:w-[20px] 3xl:h-[22px] flex">
+                          <div className="mt-[3px] flex size-[18px] shrink-0 xl:mt-[2px] xl:size-[20px] 3xl:size-[22px] [&>svg]:size-full">
                             <svg
                               width="22"
                               height="22"
@@ -94,8 +94,8 @@ export default function ChancellorMessage({ data }) {
                               </defs>
                             </svg>
                           </div>
-                           <div className="text_1 font-semibold text-[#212121] dark:text-white min-w-0 flex-1 wrap-anywhere transition-all group-hover:text-[#DC2626]">
-        {email}
+                           <div className="text_1 font-semibold text-[#212121] dark:text-white min-w-0 flex-1 break-words transition-all group-hover:text-[#DC2626]">
+        {email.includes("@") ? <>{email.split("@")[0]}@<wbr />{email.split("@").slice(1).join("@")}</> : email}
       </div>
                         </Link>
                       </li>
@@ -104,7 +104,7 @@ export default function ChancellorMessage({ data }) {
                     {telHref && (
                       <li className="py-[13px] border-b border-black/20 dark:border-white/10 last-of-type:border-0">
                         <Link href={telHref} className="flex gap-[10px] group">
-                          <div className="w-[18px] xl:w-[20px] 3xl:w-[22px] h-[18px] 2xl:w-[20px] 3xl:h-[22px] flex">
+                          <div className="mt-[3px] flex size-[18px] shrink-0 xl:mt-[2px] xl:size-[20px] 3xl:size-[22px] [&>svg]:size-full">
                             <svg
                               width="23"
                               height="23"
@@ -153,7 +153,7 @@ export default function ChancellorMessage({ data }) {
                             : {})}
                           className="flex gap-[10px] group"
                         >
-                          <div className="w-[18px] xl:w-[20px] 3xl:w-[22px] h-[18px] 2xl:w-[20px] 3xl:h-[22px] flex">
+                          <div className="mt-[3px] flex size-[18px] shrink-0 xl:mt-[2px] xl:size-[20px] 3xl:size-[22px] [&>svg]:size-full">
                             <svg
                               width="26"
                               height="24"

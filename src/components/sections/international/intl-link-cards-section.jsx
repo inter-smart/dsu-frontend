@@ -3,7 +3,8 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "@/components/ui/safe-image";
 import { safeHref } from "@/lib/utils";
 
-// Scholars in Residence: portrait cards ("Name, Role" title + affiliation), so faces are never cropped
+// People without links but with a description (Scholars in Residence, student testimonials):
+// portrait cards ("Name, Role" title + text below), so faces and text are never cropped
 function ScholarCards({ items }) {
     return (
         <ul className="grid grid-cols-1 gap-[12px] sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xl:gap-[20px] 3xl:gap-[28px]">
@@ -105,7 +106,7 @@ export default function IntlLinkCardsSection({ data, slug }) {
                 )}
                 {ARTICLE_PAGES.includes(slug) && data.display === "cards" ? (
                     <ArticleCards items={data.items} centered={!!data.title} />
-                ) : slug === "scholars-in-residence" ? (
+                ) : data.items.every((item) => !item.url && item.description?.trim()) ? (
                     <ScholarCards items={data.items} />
                 ) : data.display === "people" ? (
                     <ul className="mx-auto flex max-w-[1120px] flex-wrap justify-center gap-[12px] xl:gap-[20px] 3xl:max-w-[1440px] 3xl:gap-[28px]">

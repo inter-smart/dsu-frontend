@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "@/components/ui/safe-image";
 import { buttonVariants } from "@/components/ui/button";
 import { safeHref } from "@/lib/utils";
+import { isStructured } from "./intl-structured-text";
 
 export function IntlButton({ button }) {
     const newTab = button.isExternal || button.isFile;
@@ -26,8 +27,10 @@ export function IntlButton({ button }) {
 }
 
 // International flexible section: one button, or a row of buttons (data.buttons), each with an uploaded icon.
-export default function IntlButtonSection({ data }) {
+export default function IntlButtonSection({ data, prev, prevData }) {
     const buttons = data.buttons || [data];
+    // Under a plain text block (the "About DSU" closer) the text section already draws these buttons in its panel
+    if (prev === "international.text-section" && !prevData?.profile && !isStructured(prevData?.description)) return null;
 
     return (
         <section className="py-[10px_30px] xl:py-[14px_40px] 3xl:py-[20px_60px]">
