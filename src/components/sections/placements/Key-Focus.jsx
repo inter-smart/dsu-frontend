@@ -27,21 +27,32 @@ const sanitizeHtml = (html) =>
 
 export default function KeyFocus({ data }) {
     const primaryImage = data?.media;
+    const hasDescription = Array.isArray(data?.description) ? data.description.length > 0 : Boolean(data?.description);
+    const hasHeader = Boolean(data?.heading) || hasDescription;
     return (
-        <section className="relative py-[5px_40px] xl:py-[5px_60px] 2xl:py-[20px_70px] 3xl:py-[30px_90px] ">
+        // without a heading/description this is just an accordion between other flexible sections: keep its spacing tight
+        <section
+            className={
+                hasHeader
+                    ? "relative py-[5px_40px] xl:py-[5px_60px] 2xl:py-[20px_70px] 3xl:py-[30px_90px]"
+                    : "relative py-[15px] xl:py-[22px] 2xl:py-[28px] 3xl:py-[40px]"
+            }
+        >
             <div className="container">
-                <div className="flex flex-wrap justify-between mb-[30px] 2xl:mb-[45px]">
-                    {data.heading && (
-                        <div className="text-[18px] lg:text-[25px] xl:text-[32px] 2xl:text-[40px] 3xl:text-[45px] font-semibold">
-                            {data.heading}
-                        </div>
-                    )}
-                    {data.description && (
-                        <div className="text_1 text-[#4A5565] w-full lg:w-[45%] ml-auto dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography">
-                            <BlocksRenderer content={data.description} />
-                        </div>
-                    )}
-                </div>
+                {hasHeader && (
+                    <div className="flex flex-wrap justify-between mb-[30px] 2xl:mb-[45px]">
+                        {data.heading && (
+                            <div className="text-[18px] lg:text-[25px] xl:text-[32px] 2xl:text-[40px] 3xl:text-[45px] font-semibold">
+                                {data.heading}
+                            </div>
+                        )}
+                        {hasDescription && (
+                            <div className="text_1 text-[#4A5565] w-full lg:w-[45%] ml-auto dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography">
+                                <BlocksRenderer content={data.description} />
+                            </div>
+                        )}
+                    </div>
+                )}
                 <div className="relative lg:flex flex-wrap">
                     {primaryImage && (
                         <div className="w-full lg:w-[35%] max-lg:hidden">

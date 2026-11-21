@@ -276,7 +276,7 @@ const flexibleRegistry = {
 
   // career-development (src/app/placement/[slug]/page.js)
   "placement.career-overview-section": { Component: CareerPlacement },
-  "placement.career-key-focus-section": { Component: KeyFocus },
+  "placement.career-key-focus-section": { Component: KeyFocus, flow: true },
   "placement.career-goal-section": { Component: CareerGoal },
   "placement.career-campus-drive-section": { Component: CampusDrives },
   "placement.career-professional-section": { Component: ProfessionalCertification },
@@ -481,10 +481,10 @@ const flexibleRegistry = {
   "international.IntlTextCTASection": { Component: IntlTextCTASection }, // legacy key
 
   // Pdf Reports pages: one PDF in an iframe, or a list of PDFs
-  "pdf-report.reports-section": { Component: PdfReports },
+  "pdf-report.reports-section": { Component: PdfReports, flow: true },
 
-  // Common sections (every flexible page)
-  "common.title-description": { Component: TitleDescription },
+  // Common sections (every flexible page); `flow` = shared tight vertical spacing (see FlexibleSections)
+  "common.title-description": { Component: TitleDescription, flow: true },
   "common.committee": { Component: Committee },
   "common.gallery": { Component: CommonTabGallery },
   // centres of excellence listing (src/app/center-of-excellence/page.js)
@@ -553,5 +553,15 @@ const flexibleRegistry = {
   // department industry connect (src/components/sections/academics/department-page.jsx)
   "department.industry-engagement-section": { Component: AiIndustryEngagement },
 };
+
+// Spacing: every section is `flow` (shared tight vertical padding, see FlexibleSections) so stacked sections
+// don't pile up big gaps, except the designed landing-page sections, heroes/banners and the large school /
+// department blocks, which keep their own padding. An entry can still set `flow` itself to override this.
+const KEEP_OWN_SPACING =
+  /^(home|about|ai-first|nvidia|sii|isv|school|department|coe)\.|^shared\.|hero|banner|^international\.(about|awards|courses|innovation|instructions|admission-process|enquiry-form|text-cta|IntlTextCTASection)$/i;
+
+for (const [key, entry] of Object.entries(flexibleRegistry)) {
+  if (entry.flow === undefined) entry.flow = !KEEP_OWN_SPACING.test(key);
+}
 
 export default flexibleRegistry;

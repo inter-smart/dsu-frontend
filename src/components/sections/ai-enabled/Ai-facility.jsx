@@ -29,7 +29,7 @@ export default function AiFacility({ data }) {
                     </div>
                 )}
                 <div className="flex flex-col gap-[20px] lg:gap-[0] mt-[30px] xl:mt-[70px] 2xl:mt-[100px] 3xl:mt-[140px]">
-                    {data.labs.map((item, id) => (
+                    {(data?.labs ?? []).map((item, id) => (
                         <div className={`flex flex-wrap w-full   ${id % 2 === 0 ? "" : "lg: flex-row-reverse"}`} key={id}>
                             <div className="w-full lg:w-1/2">
                                 <div className="w-full h-full rounded-[10px]  overflow-hidden">

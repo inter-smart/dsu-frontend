@@ -12,6 +12,7 @@ const legacyGroups = (d) => [
 ].filter(Boolean);
 
 export default function AiClinicalFacility({ data }) {
+    data = data ?? {};
     const groups = data.groups ?? legacyGroups(data);
     return (
         <section className="realtive py-[40px] xl:py-[50px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-black">
