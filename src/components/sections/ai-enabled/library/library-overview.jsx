@@ -60,10 +60,12 @@ function LibraryTable({ heading, note, table, className = "" }) {
     const hasHead = columns.some(Boolean);
     return (
         <div className={`w-full border border-black/10 dark:border-white/10 bg-[#F4F8FD] dark:bg-[#18191B] rounded-[4px] xl:rounded-[8px] 3xl:rounded-[10px] ${className}`}>
-            <div className="flex items-center flex-wrap justify-between border-b border-black/10 dark:border-white/10 p-[12px] xl:p-[15px] 2xl:p-[20px] 3xl:p-[23px]">
-                <div className="cmn_Txt dark:text-white">{heading}</div>
-                <div className="text_1 dark:text-[#9CA3AF]">{note}</div>
-            </div>
+            {(heading || note) && (
+                <div className="flex items-center flex-wrap justify-between border-b border-black/10 dark:border-white/10 p-[12px] xl:p-[15px] 2xl:p-[20px] 3xl:p-[23px]">
+                    <div className="cmn_Txt dark:text-white">{heading}</div>
+                    <div className="text_1 dark:text-[#9CA3AF]">{note}</div>
+                </div>
+            )}
             <div className="p-[15px_12px] xl:p-[20px_15px] 2xl:p-[30px_20px] 3xl:p-[40px_23px] w-full overflow-x-auto">
                 <table className="w-full border-collapse text-left">
                     {hasHead && (
@@ -150,8 +152,6 @@ export default function LibraryOverview({ data, menu }) {
                                 </div>
                                 {asTable(data?.membershipSection?.membershipTable) && (
                                     <LibraryTable
-                                        heading={data.membershipSection.membershipTable.heading}
-                                        note={data.membershipSection.membershipTable.note}
                                         table={asTable(data.membershipSection.membershipTable)}
                                         className="mb-[30px] 2xl:mb-[40px] 3xl:mb-[60px]"
                                     />

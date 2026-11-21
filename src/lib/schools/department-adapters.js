@@ -113,7 +113,7 @@ export function librarySection(s) {
     membershipSection: {
       heading: s.membershipHeading,
       description: s.membershipDescription,
-      membershipTable: { heading: s.membershipHeading, note: s.membershipNote, table: membershipItemsTable(s) ?? libraryTable(s.membershipRows, s.membership, s.membershipColumns) },
+      membershipTable: { table: membershipItemsTable(s) },
       documentsRequired: { description: s.documentsDescription, items: label(s.documentsRequired) },
     },
   };
