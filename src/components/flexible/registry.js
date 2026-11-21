@@ -171,6 +171,7 @@ import IntlLeadersSection from "@/components/sections/international/intl-leaders
 import IntlLinkCardsSection from "@/components/sections/international/intl-link-cards-section";
 import IntlPartnersSection from "@/components/sections/international/intl-partners-section";
 import IntlTabbedGallery from "@/components/sections/gallery/gallery";
+import IntlGallerySection from "@/components/sections/international/intl-gallery-section";
 import IntlAccordionSection from "@/components/sections/international/intl-accordion-section";
 import TeamSection from "@/components/sections/placements/Team-section";
 import IntlTextCTASection from "../sections/international/IntlTextCTASection";
@@ -472,7 +473,7 @@ const flexibleRegistry = {
   "international.leaders-section": { Component: IntlLeadersSection },
   "international.link-cards-section": { Component: IntlLinkCardsSection },
   "international.partners-section": { Component: IntlPartnersSection },
-  "international.gallery": { Component: IntlTabbedGallery },
+  "international.gallery": { Component: IntlGallerySection },
   // standalone gallery page (src/app/gallery/page.js)
   "gallery.gallery-section": { Component: IntlTabbedGallery },
   "international.accordion-section": { Component: IntlAccordionSection },
