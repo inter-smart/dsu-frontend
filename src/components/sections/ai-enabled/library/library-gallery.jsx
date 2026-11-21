@@ -9,6 +9,8 @@ import { toGalleryItems } from "@/lib/schools/department-adapters";
 // Pages come from the API (`data.pagination`); without it (static reference page) every item is shown.
 export default function LibraryGallery({ data, menu, departmentSlug, schoolSlug, pageSlug }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+    // only the "Overview" entry (no sub-pages) means no sidebar: the content takes the full width
+    const hasMenu = !Array.isArray(menu) || menu.length > 1; // no menu passed = the sidebar's built-in default list
     const [items, setItems] = useState(data?.gallery ?? []);
     const [pagination, setPagination] = useState(data?.pagination ?? null);
     const [loading, setLoading] = useState(false);
@@ -38,14 +40,14 @@ export default function LibraryGallery({ data, menu, departmentSlug, schoolSlug,
         <section className="relative py-[20px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
             <div className="container">
                 <div className="cmnFlx">
-                    <div className="leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full">
+                    <div className={hasMenu ? "leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full" : "hidden"}>
                         <LibrarySidebar
                             data={menu}
                             isOpen={isMobileSidebarOpen}
                             onClose={() => setIsMobileSidebarOpen(false)}
                         />
                     </div>
-                    <div className="rtBx">
+                    <div className={hasMenu ? "rtBx" : "w-full"}>
                         <div className="w-full lg:h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_30px] 2xl:p-[40px_40px] 3xl:p-[50px]">
                             <h2 className="cmn_Title mb-[20px]">
                                 {data.heading}
