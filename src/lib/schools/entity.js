@@ -108,7 +108,12 @@ export async function loadDepartmentFlexPage(schoolSlug, departmentSlug, pageSlu
   return {
     school: res.school,
     page,
-    hero: { ...buildHero(page.hero, trail, page.hero?.title || page.title), heroMedia: withBanner(page.hero?.heroMedia) },
+    hero: {
+      ...buildHero(page.hero, trail, page.hero?.title || page.title),
+      heroMedia: withBanner(page.hero?.heroMedia),
+      // breadcrumb items added on the page itself win over the generated trail
+      ...(page.hero?.breadcrumb?.length ? { breadcrumb: page.hero.breadcrumb } : {}),
+    },
     menuItems: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs, res.menuOrder),
     menuHome: base,
   };
@@ -196,7 +201,12 @@ export async function loadProgramFlexPage(schoolSlug, programmeSlug, pageSlug) {
   return {
     school: res.school,
     page,
-    hero: { ...buildHero(page.hero, trail, page.hero?.title || page.title), heroMedia: withBanner(page.hero?.heroMedia) },
+    hero: {
+      ...buildHero(page.hero, trail, page.hero?.title || page.title),
+      heroMedia: withBanner(page.hero?.heroMedia),
+      // breadcrumb items added on the page itself win over the generated trail
+      ...(page.hero?.breadcrumb?.length ? { breadcrumb: page.hero.breadcrumb } : {}),
+    },
     menuItems: menuFor(shownTabs(PROGRAM_TABS, res), base, res.extraTabs, res.menuOrder),
   };
 }
