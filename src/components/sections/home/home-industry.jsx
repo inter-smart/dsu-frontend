@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import Image from "@/components/ui/safe-image";
-import { safeHref } from "@/lib/utils";
 import { Text } from "@/components/ui/text";
 import Autoplay from "embla-carousel-autoplay";
 import { Heading } from "@/components/ui/heading";
@@ -83,15 +82,17 @@ export default function HomeIndustry({ data }) {
           ref={collaborationEmblaRef}
         >
           <div className="ml-[calc(var(--slide-gap)*-1)] touch-pan-y touch-pinch-zoom flex">
-            {data?.collaborations?.map((item) => (
+            {data?.collaborations?.map((item) => {
+              const href = typeof item?.link === "string" ? item.link.trim() : "";
+              const Card = href ? Link : "div";
+              return (
               <div
                 key={item?.id}
                 className="min-w-0 translate-x-0 translate-y-0 flex-[0_0_calc(100%/1.2)] sm:flex-[0_0_calc(100%/2)] lg:flex-[0_0_calc(100%/3)] pl-(--slide-gap)"
               >
-                <Link
-                  href={safeHref(item?.link)}
-                  aria-label={"Industry Collaboration"}
-                  className="group [--gap:15px_10px] sm:[--gap:20px_15px] 2xl:[--gap:25px_20px] w-full h-full block relative z-0 before:content-[''] before:w-5 sm:before:w-6.25 2xl:before:w-8.75 before:h-auto before:aspect-square before:m-(--gap) before:bg-[url('data:image/svg+xml,%3Csvg%20width=%2233%22%20height=%2233%22%20viewBox=%220%200%2033%2033%22%20fill=%22none%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3CforeignObject%20x=%22-44.8%22%20y=%22-44.8%22%20width=%22122.6%22%20height=%22122.6%22%3E%3Cdiv%20xmlns=%22http://www.w3.org/1999/xhtml%22%20style=%22backdrop-filter:blur(22.4px);clip-path:url(%23bgblur_0_3410_39920_clip_path);height:100%25;width:100%25%22%3E%3C/div%3E%3C/foreignObject%3E%3Cg%20data-figma-bg-blur-radius=%2244.8%22%3E%3Ccircle%20cx=%2216.5%22%20cy=%2216.5%22%20r=%2216.5%22%20fill=%22%23D9D9D9%22%20fill-opacity=%220.1%22/%3E%3Ccircle%20cx=%2216.5%22%20cy=%2216.5%22%20r=%2216%22%20stroke=%22white%22%20stroke-opacity=%220.1%22/%3E%3C/g%3E%3Cg%20clip-path=%22url(%23clip1_3410_39920)%22%3E%3Cpath%20d=%22M12.8262%2010.8267C12.5226%2010.5395%2012.5002%2010.074%2012.7637%209.76123L12.8204%209.70068L12.8799%209.64893C13.1893%209.40431%2013.6417%209.41849%2013.9346%209.69287L13.9366%209.6958L20.7588%2016.1802L20.7579%2016.1812C20.9168%2016.3262%2021.013%2016.5315%2021.0128%2016.7544L21.0137%2016.7573L21.0128%2016.7573C21.0122%2016.9721%2020.9227%2017.1726%2020.7715%2017.3169L20.7715%2017.3179L13.9493%2023.8022L13.9464%2023.8052L13.9454%2023.8042C13.633%2024.0965%2013.1412%2024.0935%2012.8331%2023.7964C12.5112%2023.4859%2012.5146%2022.9766%2012.8389%2022.6704L19.0616%2016.7554L12.8262%2010.8267Z%22%20fill=%22white%22%20stroke=%22white%22/%3E%3C/g%3E%3Cdefs%3E%3CclipPath%20id=%22bgblur_0_3410_39920_clip_path%22%20transform=%22translate(44.8%2044.8)%22%3E%3Ccircle%20cx=%2216.5%22%20cy=%2216.5%22%20r=%2216.5%22/%3E%3C/clipPath%3E%3CclipPath%20id=%22clip1_3410_39920%22%3E%3Crect%20width=%2217%22%20height=%2211%22%20fill=%22white%22%20transform=%22translate(11%2025)%20rotate(-90)%22/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E')] before:bg-no-repeat before:bg-center before:bg-contain before:absolute before:z-1 before:inset-[auto_0_0_auto]"
+                <Card
+                  {...(href ? { href, "aria-label": "Industry Collaboration" } : {})}
+                  className={`${href ? "" : "before:hidden "}group [--gap:15px_10px] sm:[--gap:20px_15px] 2xl:[--gap:25px_20px] w-full h-full block relative z-0 before:content-[''] before:w-5 sm:before:w-6.25 2xl:before:w-8.75 before:h-auto before:aspect-square before:m-(--gap) before:bg-[url('data:image/svg+xml,%3Csvg%20width=%2233%22%20height=%2233%22%20viewBox=%220%200%2033%2033%22%20fill=%22none%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3CforeignObject%20x=%22-44.8%22%20y=%22-44.8%22%20width=%22122.6%22%20height=%22122.6%22%3E%3Cdiv%20xmlns=%22http://www.w3.org/1999/xhtml%22%20style=%22backdrop-filter:blur(22.4px);clip-path:url(%23bgblur_0_3410_39920_clip_path);height:100%25;width:100%25%22%3E%3C/div%3E%3C/foreignObject%3E%3Cg%20data-figma-bg-blur-radius=%2244.8%22%3E%3Ccircle%20cx=%2216.5%22%20cy=%2216.5%22%20r=%2216.5%22%20fill=%22%23D9D9D9%22%20fill-opacity=%220.1%22/%3E%3Ccircle%20cx=%2216.5%22%20cy=%2216.5%22%20r=%2216%22%20stroke=%22white%22%20stroke-opacity=%220.1%22/%3E%3C/g%3E%3Cg%20clip-path=%22url(%23clip1_3410_39920)%22%3E%3Cpath%20d=%22M12.8262%2010.8267C12.5226%2010.5395%2012.5002%2010.074%2012.7637%209.76123L12.8204%209.70068L12.8799%209.64893C13.1893%209.40431%2013.6417%209.41849%2013.9346%209.69287L13.9366%209.6958L20.7588%2016.1802L20.7579%2016.1812C20.9168%2016.3262%2021.013%2016.5315%2021.0128%2016.7544L21.0137%2016.7573L21.0128%2016.7573C21.0122%2016.9721%2020.9227%2017.1726%2020.7715%2017.3169L20.7715%2017.3179L13.9493%2023.8022L13.9464%2023.8052L13.9454%2023.8042C13.633%2024.0965%2013.1412%2024.0935%2012.8331%2023.7964C12.5112%2023.4859%2012.5146%2022.9766%2012.8389%2022.6704L19.0616%2016.7554L12.8262%2010.8267Z%22%20fill=%22white%22%20stroke=%22white%22/%3E%3C/g%3E%3Cdefs%3E%3CclipPath%20id=%22bgblur_0_3410_39920_clip_path%22%20transform=%22translate(44.8%2044.8)%22%3E%3Ccircle%20cx=%2216.5%22%20cy=%2216.5%22%20r=%2216.5%22/%3E%3C/clipPath%3E%3CclipPath%20id=%22clip1_3410_39920%22%3E%3Crect%20width=%2217%22%20height=%2211%22%20fill=%22white%22%20transform=%22translate(11%2025)%20rotate(-90)%22/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E')] before:bg-no-repeat before:bg-center before:bg-contain before:absolute before:z-1 before:inset-[auto_0_0_auto]`}
                 >
                   <div className="w-full h-full aspect-560/440 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block relative z-0 group-hover:after:opacity-80 before:content-[''] before:w-full before:h-1/2 before:bg-linear-to-t before:from-[#090909] before:to-[#0B2148]/0 before:opacity-50 before:absolute before:z-1 before:inset-[auto_0_0_0] after:content-[''] after:w-full after:h-1/2 after:bg-linear-to-t after:from-black after:to-(--basecolor2)/0 after:opacity-0 after:transition-opacity after:duration-500 after:absolute after:z-1 after:inset-[auto_0_0_0]">
                     <Image
@@ -110,9 +111,10 @@ export default function HomeIndustry({ data }) {
                       {item?.title}
                     </h3>
                   </div>
-                </Link>
+                </Card>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
         </div>

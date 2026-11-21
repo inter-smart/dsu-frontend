@@ -8,7 +8,7 @@ const PIN_TOP = 10; // px gap above the pinned bar
 // Desktop menubar that pins to the top while scrolling down (the site header is hidden then) and
 // disappears on scroll up (the header comes back). Rendered through a portal while pinned because the
 // hero that holds the menubar is its own stacking context and would let later sections paint over it.
-export default function StickyMenubar({ children }) {
+export default function StickyMenubar({ children, bound = "main" }) {
   const holder = useRef(null);
   const [stuck, setStuck] = useState(false);
   const [height, setHeight] = useState(0);
@@ -30,8 +30,8 @@ export default function StickyMenubar({ children }) {
       // Pin only once the in-flow bar has fully left the screen, so nothing visibly jumps.
       const bottom = el.getBoundingClientRect().bottom + y;
       if (y <= bottom) return setStuck(false);
-      // Stay inside <main>: once its end nears the top, the bar rides up with it (like position: sticky)
-      const main = el.closest("main");
+      // Stay inside <main> (or the `bound` ancestor): once its end nears the top, the bar rides up with it (like position: sticky)
+      const main = el.closest(bound);
       if (main) setTop(Math.min(PIN_TOP, main.getBoundingClientRect().bottom - el.offsetHeight));
       if (dy > 0) {
         setHeight(el.offsetHeight);
@@ -54,7 +54,7 @@ export default function StickyMenubar({ children }) {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [bound]);
 
   return (
     <div ref={holder} className="flow-root" style={stuck ? { height } : undefined}>

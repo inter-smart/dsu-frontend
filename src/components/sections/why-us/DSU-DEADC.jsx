@@ -50,7 +50,7 @@ export default function DSUDEADC({ data, menu }) {
                                 {data?.heading}
                             </h2>
 
-                            <div className="text_1 leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565]  
+                            <div className="text_1 typography leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565]  
                                          w-full  ">
                                 {data?.description?.length > 0 && <BlocksRenderer content={data.description} />}
                             </div>

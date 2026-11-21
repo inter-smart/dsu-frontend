@@ -3,24 +3,26 @@
 import { useState } from "react";
 import LibrarySidebar from "./library-sidemenubar";
 import Image from "next/image";
-import { getDepartmentLibraryGalleryPaged } from "@/lib/api";
+import { getDepartmentLibraryGalleryPaged, getSchoolLibraryGalleryPaged } from "@/lib/api";
 import { toGalleryItems } from "@/lib/schools/department-adapters";
 
 // Pages come from the API (`data.pagination`); without it (static reference page) every item is shown.
-export default function LibraryGallery({ data, menu, departmentSlug, pageSlug }) {
+export default function LibraryGallery({ data, menu, departmentSlug, schoolSlug, pageSlug }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
     const [items, setItems] = useState(data?.gallery ?? []);
     const [pagination, setPagination] = useState(data?.pagination ?? null);
     const [loading, setLoading] = useState(false);
     const isVideo = data?.gallery?.image?.mime?.includes("video");
 
-    const hasMore = Boolean(departmentSlug && pageSlug && pagination && pagination.page < pagination.pageCount);
+    const hasMore = Boolean((departmentSlug || schoolSlug) && pageSlug && pagination && pagination.page < pagination.pageCount);
 
     const loadMore = async () => {
         if (!hasMore || loading) return;
         setLoading(true);
         try {
-            const res = await getDepartmentLibraryGalleryPaged(departmentSlug, pageSlug, pagination.page + 1, pagination.pageSize);
+            const res = departmentSlug
+                ? await getDepartmentLibraryGalleryPaged(departmentSlug, pageSlug, pagination.page + 1, pagination.pageSize)
+                : await getSchoolLibraryGalleryPaged(schoolSlug, pageSlug, pagination.page + 1, pagination.pageSize);
             if (res?.data && res?.pagination) {
                 setItems((prev) => {
                     const seen = new Set(prev.map((item) => item.id));

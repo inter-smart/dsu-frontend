@@ -18,6 +18,15 @@ export const librarySidebarItems = (schoolSlug, departmentSlug, sidebar = []) =>
     .map((p) => ({ label: p.title, slug: libraryHref(schoolSlug, departmentSlug, p.slug) })),
 ];
 
+// A school's Library landing page, or one of its sub-pages.
+export const schoolLibraryHref = (schoolSlug, pageSlug) => `/schools/${schoolSlug}/library${pageSlug ? `/${pageSlug}` : ""}`;
+
+// School Library side menu: the landing page, then the school's sub-pages in the order set in the CMS.
+export const schoolLibrarySidebarItems = (schoolSlug, sidebar = []) => [
+  { label: "Overview", slug: schoolLibraryHref(schoolSlug) },
+  ...sidebar.filter((p) => p?.slug).map((p) => ({ label: p.title, slug: schoolLibraryHref(schoolSlug, p.slug) })),
+];
+
 // Canonical programme URL: every programme (school-direct or department-owned) lives under its school.
 // Tabs are `${programmeBase}/<tab>`; the bare base serves the Overview tab.
 export const programmeBase = (schoolSlug, programmeSlug) => `/ai-enabled/${schoolSlug}/programs/${programmeSlug}`;

@@ -9,10 +9,10 @@ export default function AdmissionFeePayment({ data }) {
         <div className="-mx-2.5 [&>div]:p-2.5 w-full h-auto flex flex-wrap items-center">
           <div className="w-full sm:w-1/2 max-sm:mb-3.75">
             <div className="w-full h-auto block mb-5 sm:mb-6.25 lg:mb-7.5 2xl:mb-7.5 3xl:mb-10">
-              <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-6.25">
+              <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-6.25 cmn_Title">
                 {data?.title}
               </Heading>
-              <Text>{data?.description}</Text>
+              <Text className="text_1">{data?.description}</Text>
             </div>
             <ul className="space-y-2.5 3xl:space-y-3.75">
               {data?.payments?.map((item) => (

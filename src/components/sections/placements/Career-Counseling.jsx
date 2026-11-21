@@ -1,6 +1,6 @@
 "use client";
 
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 const getText = (block) => (block?.children || []).map((c) => c.text).join("");
 
@@ -63,7 +63,7 @@ export default function CareerCounselling({ data }) {
     return (
         <section
             id={data?.id}
-            className="relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] bg-white dark:bg-[#0f1011] transition-colors duration-300"
+            className="relative rich-card py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px]   dark:bg-[#0f1011] transition-colors duration-300"
         >
             <div className="container">
                 <div className="flex flex-wrap -mx-[15px]">
@@ -72,7 +72,7 @@ export default function CareerCounselling({ data }) {
                             key={`${section.heading || "section"}-${index}`}
                             className={`${colClass} px-[15px] mb-[30px]`}
                         >
-                            <div className="rich-card h-full">
+                            <div className=" h-full">
                                 {section.heading && (
                                     <h2 className="cmn_Title text-black dark:text-white">
                                         {section.heading}
@@ -82,7 +82,7 @@ export default function CareerCounselling({ data }) {
                                     <p className="rich-subtitle">{section.subheading}</p>
                                 )}
                                 {section.blocks.length > 0 && (
-                                    <div className="text_1 rich-text mt-[20px] xl:mt-[28px]">
+                                    <div className="typography text_1 rich-text mt-[20px] xl:mt-[28px]">
                                         <BlocksRenderer content={section.blocks} />
                                     </div>
                                 )}

@@ -47,7 +47,7 @@ export default function AboutRecognition({ data }) {
                     </h2>
                 )}
                 {hasContent(data.subheading) && (
-                    <div className="text_1 mb-[25px] leading-[1.2] text-[#4A5565] xl:mb-[35px] 3xl:mb-[50px] dark:text-[#9CA3AF]">
+                    <div className="typography text_1 mb-[25px] leading-[1.2] text-[#4A5565] xl:mb-[35px] 3xl:mb-[50px] dark:text-[#9CA3AF]">
                         {Array.isArray(data.subheading) ? (
                             <BlocksRenderer content={data.subheading} />
                         ) : typeof data.subheading === "string" ? (

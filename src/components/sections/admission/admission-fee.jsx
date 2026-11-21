@@ -38,10 +38,10 @@ export default function AdmissionFee({ data }) {
     <section className="block h-auto w-full py-[10px_40px] sm:py-[10px_50px] lg:py-15 2xl:py-20 3xl:py-25">
       <div className="container">
         <div className="w-full h -auto block mb-5 sm:mb-7.5 lg:mb-10 2xl:mb-12.5 3xl:mb-15">
-          <Heading className="mb-2.5 lg:mb-3.75 2xl:mb-5 3xl:mb-6.25">
+          <Heading className="mb-2.5 lg:mb-3.75 2xl:mb-5 3xl:mb-6.25 cmn_Title">
             {data?.title}
           </Heading>
-          <Text>{data?.description}</Text>
+          <Text className="text_1">{data?.description}</Text>
         </div>
         <Tabs defaultValue={data?.categories[0]?.id} className="w-full">
           <TabsList className="w-full h-auto! mb-5 lg:mb-10 2xl:mb-12.5 3xl:mb-15 gap-2.5 2xl:gap-3.75 p-0 bg-transparent rounded-none flex flex-wrap justify-start">

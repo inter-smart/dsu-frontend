@@ -13,6 +13,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import RichText from "@/components/ui/rich-text";
 import { ctaLinkProps, fileLinkProps } from "@/lib/schools/link-props";
 
 export default function AcademicQualitySection({ data }) {
@@ -34,11 +35,11 @@ export default function AcademicQualitySection({ data }) {
     };
 
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[120px]">
+        <section className="relative py-[30px] xl:py-[40px] 2xl:py-[50px] 3xl:py-[70px]">
             <div className="container">
                 <Tabs defaultValue={defaultTab} className="w-full">
                     {/* Tab Navigation Swiper with Nav Buttons */}
-                    <div className="self-start flex items-center gap-[8px] sm:gap-[12px] mb-[25px] xl:mb-[35px] 2xl:mb-[45px] w-fit max-w-full">
+                    <div className="self-start flex items-center gap-[8px] sm:gap-[12px] mb-[15px] xl:mb-[25px] 2xl:mb-[35px] w-fit max-w-full">
                         {/* Prev Arrow Button - only visible if items exceed slider limit */}
                         <button
                             ref={prevRef}
@@ -143,7 +144,7 @@ export default function AcademicQualitySection({ data }) {
                         if (!tabData) {
                             return (
                                 <TabsContent key={tab.id} value={tab.value}>
-                                    <p className="text_1 text-gray-400 py-[14px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">No content available.</p>
+                                    <p className="text_1 text-gray-400 py-[14px]  ">No content available.</p>
                                 </TabsContent>
                             );
                         }
@@ -160,9 +161,7 @@ export default function AcademicQualitySection({ data }) {
 
                                 {/* Description */}
                                 {tabData?.description && (
-                                    <p className="text_1 leading-[1.5] text-[#4A5565] mb-[20px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[45px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                        {tabData.description}
-                                    </p>
+                                    <RichText value={tabData.description} className="mb-[20px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[45px]" />
                                 )}
 
                                 {/* Quick Links */}
@@ -202,7 +201,7 @@ export default function AcademicQualitySection({ data }) {
                                                 <AccordionContent className="px-[15px] md:px-[18px] xl:px-[25px] 2xl:px-[30px] 3xl:px-[35px] pb-[15px] xl:pb-[20px] 2xl:pb-[25px] 3xl:pb-[30px] pt-0">
                                                     {/* Description */}
                                                     {practice.description && (
-                                                        <p className="text_1 leading-[1.5] text-[#4A5565] mb-[15px] xl:mb-[20px] 2xl:mb-[25px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                                        <p className="text_1   text-[#4A5565] mb-[15px] xl:mb-[20px] 2xl:mb-[25px]  whitespace-pre-line">
                                                             {practice.description}
                                                         </p>
                                                     )}
@@ -210,14 +209,14 @@ export default function AcademicQualitySection({ data }) {
                                                     {/* Key Highlights */}
                                                     {practice.highlights && practice.highlights.length > 0 && (
                                                         <div className="mb-[15px] xl:mb-[20px] 2xl:mb-[25px]">
-                                                            <h4 className="text-[13px] lg:text-[14px] xl:text-[15px] 2xl:text-[16px] 3xl:text-[18px] font-bold text-[#212121] mb-[10px] xl:mb-[12px]">
+                                                            <h4 className="text_1 font-bold text-[#212121] mb-[10px] xl:mb-[12px]">
                                                                 Key Highlights
                                                             </h4>
                                                             <ul className="flex flex-col gap-[4px] xl:gap-[6px] 2xl:gap-[8px]">
                                                                 {practice.highlights.map((item, idx) => (
                                                                     <li
                                                                         key={idx}
-                                                                        className="text_1 leading-[1.5] text-[#4A5565] pl-[14px] relative before:content-['•'] before:absolute before:left-0 before:top-0 before:text-[#4A5565]"
+                                                                        className="text_1   text-[#4A5565] pl-[14px] relative before:content-['•'] before:absolute before:left-0 before:top-0 before:text-[#4A5565]"
                                                                     >
                                                                         {item}
                                                                     </li>
@@ -229,7 +228,7 @@ export default function AcademicQualitySection({ data }) {
                                                     {/* Documents */}
                                                     {practice.documents && practice.documents.length > 0 && (
                                                         <div>
-                                                            <h4 className="text-[13px] lg:text-[14px] xl:text-[15px] 2xl:text-[16px] 3xl:text-[18px] font-bold text-[#212121] mb-[10px] xl:mb-[12px]">
+                                                            <h4 className="text_1 font-bold text-[#212121] mb-[10px] xl:mb-[12px]">
                                                                 Documents
                                                             </h4>
                                                             <div className="flex flex-wrap gap-[10px] xl:gap-[15px] 2xl:gap-[20px]">

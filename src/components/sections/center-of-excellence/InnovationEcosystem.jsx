@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 /* ───────── helpers ───────── */
 
@@ -136,7 +136,7 @@ export default function InnovationEcosystem({ data }) {
                 className={`mt-5 xl:mt-8 2xl:mt-10 [&_p]:mb-[22px] [&_p]:text_1 leading-[1.9] [&_p:last-child]:mb-0 dark:[&_p]:text-[#9CA3AF] 2xl:[&_p]:mb-[29px] ${fadeUp(topInView)}`}
               >
                 {typeof data.description === "string" ? (
-                  <div dangerouslySetInnerHTML={{ __html: data.description }} />
+                  <div className="typography" dangerouslySetInnerHTML={{ __html: data.description }} />
                 ) : (
                   <BlocksRenderer content={data.description} />
                 )}

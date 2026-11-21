@@ -93,7 +93,7 @@ export default function HistoryTimeline({ data }) {
           <h2 className="cmn_Title">
             {data?.title || "Our History of Timeline"}
           </h2>
-          <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+          <p className="text_1 ">
             {data?.subtitle ||
               "The Dayananda Sagar Schools and Colleges of Science, Arts and Commerce are pioneering institutions"}
           </p>
@@ -180,11 +180,10 @@ export default function HistoryTimeline({ data }) {
                     >
                       {/* Decade Title Label */}
                       <span
-                        className={`text-xs sm:text-sm md:text-[15px] lg:text-[16px] xl:text-[18px] 3xl:text-[25px] pb-3 transition-all duration-200 whitespace-nowrap px-1 ${
-                          isActive
+                        className={`text-xs sm:text-sm md:text-[15px] lg:text-[16px] xl:text-[18px] 3xl:text-[25px] pb-3 transition-all duration-200 whitespace-nowrap px-1 ${isActive
                             ? "text-[#1F1F1F] dark:text-white font-bold scale-105"
                             : "text-[#A3A3A3] dark:text-[#6B7280] font-medium group-hover:text-[#4B5563] dark:group-hover:text-white"
-                        }`}
+                          }`}
                       >
                         {decade.decadeLabel}
                       </span>
@@ -192,9 +191,8 @@ export default function HistoryTimeline({ data }) {
                       {/* Continuous Dynamic Full-Width Baseline Segment */}
                       <div className="w-full h-[6px] relative flex items-center">
                         <div
-                          className={`w-full h-full transition-colors duration-300 ${segmentBg} ${
-                            idx === 0 ? "rounded-l-full" : ""
-                          } ${idx === decades.length - 1 ? "rounded-r-full" : ""}`}
+                          className={`w-full h-full transition-colors duration-300 ${segmentBg} ${idx === 0 ? "rounded-l-full" : ""
+                            } ${idx === decades.length - 1 ? "rounded-r-full" : ""}`}
                         />
                       </div>
                     </button>
@@ -284,19 +282,27 @@ export default function HistoryTimeline({ data }) {
 
                           {/* Event Card Content Box */}
                           <div
-                            className={`w-full md:w-1/2 pl-16 md:pl-0 ${
-                              isEven
+                            className={`w-full md:w-1/2 pl-16 md:pl-0 ${isEven
                                 ? "md:order-2 md:pl-12 text-left"
                                 : "md:order-1 md:pr-12 md:text-left"
-                            }`}
+                              }`}
                           >
-                            <div className="bg-[#fff] dark:bg-[#18191B] border border-[#EFD8CA] dark:border-white/10 rounded-md p-3 sm:p-5 shadow-[0_8px_25px_-5px_rgba(234,88,12,0.06)] hover:shadow-[0_12px_32px_-5px_rgba(234,88,12,0.12)] transition-all duration-300 transform hover:-translate-y-1">
-                              <h3 className="text-[15px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] font-semibold text-[#212121] dark:text-white mb-2 leading-snug">
-                                {event.title}
-                              </h3>
-                              <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                {event.description}
-                              </p>
+                            <div className="group relative overflow-hidden bg-[#fff] dark:bg-[#18191B] border border-[#EFD8CA] dark:border-white/10 rounded-md p-3 sm:p-5 shadow-[0_8px_25px_-5px_rgba(234,88,12,0.06)] hover:shadow-[0_12px_32px_-5px_rgba(234,88,12,0.25)] hover:border-transparent transition-all duration-300 transform hover:-translate-y-1">
+                              {/* Gradient layer (fades in on hover) */}
+                              <span
+                                aria-hidden="true"
+                                className="pointer-events-none absolute inset-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                              />
+
+                              {/* Content sits above the gradient */}
+                              <div className="relative z-10">
+                                <h3 className="text-[15px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] font-semibold text-[#212121] dark:text-white mb-2 leading-snug transition-colors duration-300 group-hover:text-white">
+                                  {event.title}
+                                </h3>
+                                <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] transition-colors duration-300 group-hover:text-white dark:group-hover:text-white">
+                                  {event.description}
+                                </p>
+                              </div>
                             </div>
                           </div>
 
@@ -320,9 +326,8 @@ export default function HistoryTimeline({ data }) {
 
                           {/* Empty Spacer Column for Desktop Grid Alignment */}
                           <div
-                            className={`hidden md:block md:w-1/2 ${
-                              isEven ? "md:order-1" : "md:order-2"
-                            }`}
+                            className={`hidden md:block md:w-1/2 ${isEven ? "md:order-1" : "md:order-2"
+                              }`}
                           />
                         </div>
                       );

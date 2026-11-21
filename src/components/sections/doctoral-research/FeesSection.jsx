@@ -20,7 +20,7 @@ export default function FeesSection({ data }) {
         </div>
       )}
       {hasContent(note) && (
-        <div data-reveal className="text_1 mt-[15px] [&_a]:font-medium [&_a]:!text-[#DC2626] [&_a]:underline [&_a]:underline-offset-2">
+        <div data-reveal className="typography text_1 mt-[15px] [&_a]:font-medium [&_a]:!text-[#DC2626] [&_a]:underline [&_a]:underline-offset-2">
           <BlocksRenderer content={note} />
         </div>
       )}

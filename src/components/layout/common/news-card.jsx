@@ -8,12 +8,12 @@ export default function NewsCard({ item }) {
     <div className="group w-full h-full bg-linear-to-b from-[#FFF8EE]/50 to-[#FFF3E0]/50 dark:bg-none dark:bg-white/5 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col relative z-0">
       <ShineBorder shineColor={["#909191"]} className="hidden dark:block" />
       <div className="w-full h-auto block relative z-0">
-        <div className="w-full h-auto aspect-560/220 mb-7.5 2xl:mb-10 3xl:mb-12.5 border-b border-[#909191] overflow-hidden block bg-gray-200 dark:bg-white/10">
+        <div className="w-full h-auto aspect-560/340 mb-7.5 2xl:mb-10 3xl:mb-12.5 border-b border-[#909191] overflow-hidden block bg-gray-200 dark:bg-white/10">
           {item?.path && (
             <Image
               src={item.path}
               width={563}
-              height={220}
+              height={340}
               alt={item?.title || "News"}
               className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
             />

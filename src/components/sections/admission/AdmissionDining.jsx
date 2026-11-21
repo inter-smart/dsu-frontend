@@ -22,7 +22,7 @@ export default function AdmissionDining({ data }) {
                 <h2 className='cmn_Title'>
                     {data.heading}
                 </h2>
-                <div className="text-[13px] sm:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6]   mb-8 sm:mb-10 xl:mb-12  typography">
+                <div className="text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6]   mb-8 sm:mb-10 xl:mb-12  typography">
                     {data?.description?.length > 0 && <BlocksRenderer content={data.description} />}
                 </div> 
                 <div className="w-full">
@@ -53,7 +53,7 @@ export default function AdmissionDining({ data }) {
                                     <div className="text-[15px] lg:text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[31px] font-semibold text-[#212121] dark:text-black mb-[8px]">
                                         {item.title}
                                     </div>
-                                    <p className="dark:text-black lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.description}</p>
+                                    <p className="dark:text-black text_1">{item.description}</p>
                                 </div>
                             </SwiperSlide>
                         ))}

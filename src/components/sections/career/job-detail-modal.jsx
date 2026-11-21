@@ -58,7 +58,7 @@ export default function JobDetailModal({ job, open, onOpenChange }) {
                 <h4 className="text-base xl:text-lg font-bold text-[#212121] dark:text-white mb-2.5">
                   Job Description
                 </h4>
-                <div className="text-sm xl:text-base leading-relaxed text-[#4A5565] dark:text-gray-300 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:pl-5 [&_ol]:pl-5 [&_p]:mb-2">
+                <div className="typography text-sm xl:text-base leading-relaxed text-[#4A5565] dark:text-gray-300 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:pl-5 [&_ol]:pl-5 [&_p]:mb-2">
                   {Array.isArray(job.description) ? (
                     <BlocksRenderer content={job.description} />
                   ) : (

@@ -18,6 +18,9 @@ function VideoCard({ video }) {
     const thumb = video.poster?.url || (id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : "");
     const href = id ? `https://www.youtube.com/watch?v=${id}` : video.videoFile?.url;
     if (!href) return null;
+    // "Name - Role" (talks) or "Name from Country studying Course" (testimonials): name in bold, the rest below
+    const m = video.title?.match(/^(.+?)\s+[-–]\s+(.+)$/) || video.title?.match(/^(.+?)\s+(from\s.+)$/);
+    const [name, role] = m ? [m[1], m[2]] : [video.title, ""];
 
     return (
         <a
@@ -26,7 +29,11 @@ function VideoCard({ video }) {
             data-type={id ? undefined : "html5video"}
             data-caption={video.title || undefined}
             aria-label={`Play ${video.title || "video"}`}
-            className="group block overflow-hidden rounded-[12px] border border-black/10 bg-[linear-gradient(180deg,#FFF8EE_0%,#FFF3E0_100%)] shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(249,115,22,0.12)] dark:border-white/10 dark:bg-[linear-gradient(180deg,#1C1917_0%,#18181B_100%)]"
+            className={
+                video.title
+                    ? "group flex h-full flex-col overflow-hidden rounded-[14px] border border-black/10 bg-white transition-all duration-300 hover:border-[#F97316]/40 hover:shadow-[0_12px_30px_rgba(249,115,22,0.14)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--basecolor) motion-safe:hover:-translate-y-1 dark:border-white/10 dark:bg-[#18191B] xl:rounded-[18px]"
+                    : "group block overflow-hidden rounded-[12px] border border-black/10 bg-[linear-gradient(180deg,#FFF8EE_0%,#FFF3E0_100%)] shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(249,115,22,0.12)] dark:border-white/10 dark:bg-[linear-gradient(180deg,#1C1917_0%,#18181B_100%)]"
+            }
         >
             <span className="relative block aspect-video w-full overflow-hidden bg-black">
                 {thumb && (
@@ -38,7 +45,18 @@ function VideoCard({ video }) {
                     <span className="ml-1 border-y-[9px] border-l-[15px] border-y-transparent border-l-white" />
                 </span>
             </span>
-            {video.title && <span className="block px-[15px] py-[12px] text-[14px] font-semibold text-[#212121] dark:text-white xl:text-[16px] 3xl:text-[22px]">{video.title}</span>}
+            {video.title && (
+                <span className="flex flex-1 flex-col p-[14px] xl:p-[20px] 3xl:p-[26px]">
+                    <span className="block text-[16px] font-semibold leading-snug text-[#212121] transition-colors group-hover:text-[#DC2626] dark:text-white xl:text-[18px] 3xl:text-[23px]">{name}</span>
+                    {role && <span className="mt-[4px] block text-[13px] leading-[1.5] text-[#555] dark:text-white/70 xl:text-[14px] 3xl:text-[18px]">{role}</span>}
+                    <span className="mt-auto inline-flex items-center gap-[8px] pt-[14px] text-[13px] font-semibold text-[#DC2626] xl:text-[14px]">
+                        <span aria-hidden="true" className="flex size-[24px] items-center justify-center rounded-full bg-[#F97316]/10 transition-colors group-hover:bg-gradient-to-r group-hover:from-(--basecolor) group-hover:to-(--basecolor2) group-hover:text-white">
+                            <span className="ml-[2px] border-y-[5px] border-l-[8px] border-y-transparent border-l-current" />
+                        </span>
+                        Watch video
+                    </span>
+                </span>
+            )}
         </a>
     );
 }

@@ -10,11 +10,20 @@ import {
 import Image from "next/image";
 
 const sanitizeHtml = (html) =>
-  DOMPurify.sanitize(html || "", {
-    USE_PROFILES: { html: true },
-    ADD_ATTR: ["target"],
-    FORBID_TAGS: ["style", "form", "input", "button"],
-  });
+    DOMPurify.sanitize(html || "", {
+        USE_PROFILES: { html: true },
+        ADD_TAGS: ["iframe"],
+        ADD_ATTR: [
+            "target",
+            "srcdoc",
+            "allow",
+            "allowfullscreen",
+            "frameborder",
+            "loading",
+            "referrerpolicy",
+        ],
+        FORBID_TAGS: ["style", "form", "input", "button"],
+    });
 
 export default function KeyFocus({ data }) {
   const primaryImage = data?.media;

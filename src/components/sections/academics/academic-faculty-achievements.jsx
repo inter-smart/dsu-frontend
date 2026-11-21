@@ -2,11 +2,15 @@
 
 import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode } from "swiper/modules";
+import { FreeMode, Navigation, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/free-mode";
+import "swiper/css/navigation";
+
+const MONTH_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 export default function AcademicFacultyAchievements({ data }) {
     const [swiper, setSwiper] = useState(null);
@@ -52,27 +56,61 @@ export default function AcademicFacultyAchievements({ data }) {
         data?.tabToggle?.options?.find((opt) => opt.isActive)?.id || 1
     );
 
-    // Active Month Filter Pill
+    // Active Month Filter Pill (id for the static pages, value for CMS-driven pills)
     const defaultFilterId = (data?.monthFilters?.find((m) => m.isActive) ?? data?.monthFilters?.[0])?.id;
     const [selectedFilterId, setSelectedFilterId] = useState(defaultFilterId);
+    const [selectedValue, setSelectedValue] = useState(null);
 
     const activeTab = useMemo(() => {
         return data?.tabToggle?.options?.find((opt) => opt.id === activeTabId);
     }, [data, activeTabId]);
 
+    // Items of the active tab: Student tab shows category "student", the other tab everything else
+    const pool = useMemo(() => {
+        const studentTab = activeTab && activeTab.label.toLowerCase().includes("student");
+        return (data?.achievements ?? []).filter((item) =>
+            studentTab ? item.category === "student" : item.category !== "student"
+        );
+    }, [data, activeTab]);
+
+    // CMS items carry a monthKey ("YYYY-MM"): the pills come from the months the active tab
+    // actually has items for (newest 6 as "Mon YYYY", older ones grouped per year).
+    const cmsMode = useMemo(() => (data?.achievements ?? []).some((a) => a.monthKey), [data]);
+    const monthFilters = useMemo(() => {
+        if (!cmsMode) return data?.monthFilters ?? [];
+        const keys = [...new Set(pool.map((a) => a.monthKey).filter(Boolean))].sort().reverse();
+        const pills = keys.slice(0, 6).map((k) => {
+            const [y, m] = k.split("-");
+            return { value: k, label: `${MONTH_SHORT[Number(m) - 1]} ${y}` };
+        });
+        for (const k of keys.slice(6)) {
+            const y = k.slice(0, 4);
+            if (!pills.some((p) => p.value === y)) pills.push({ value: y, label: y });
+        }
+        return pills.map((p, i) => ({ ...p, id: i + 1 }));
+    }, [cmsMode, pool, data]);
+
     const selectedFilter = useMemo(() => {
-        return data?.monthFilters?.find((m) => m.id === selectedFilterId);
-    }, [data, selectedFilterId]);
+        if (cmsMode) return monthFilters.find((m) => m.value === selectedValue) ?? monthFilters[0];
+        return monthFilters.find((m) => m.id === selectedFilterId);
+    }, [cmsMode, monthFilters, selectedValue, selectedFilterId]);
+
+    // pills change with the tab: back to the first pill
+    useEffect(() => {
+        if (swiper && !swiper.destroyed && cmsMode) {
+            swiper.slideTo(0, 0);
+            swiper.update();
+            syncNav(swiper);
+        }
+    }, [monthFilters, swiper, cmsMode]);
 
     // Filter achievements dynamically based on selected tab and month/year
     const filteredAchievements = useMemo(() => {
         if (!data?.achievements) return [];
 
-        // Student tab shows items marked category "student", the other tab everything else
-        const studentTab = activeTab && activeTab.label.toLowerCase().includes("student");
-        const pool = data.achievements.filter((item) =>
-            studentTab ? item.category === "student" : item.category !== "student"
-        );
+        if (cmsMode) {
+            return selectedFilter ? pool.filter((item) => item.monthKey?.startsWith(selectedFilter.value)) : [];
+        }
 
         if (!selectedFilter) return pool;
 
@@ -98,7 +136,7 @@ export default function AcademicFacultyAchievements({ data }) {
                 return dateStr.includes(token);
             });
         });
-    }, [data, selectedFilter, activeTab]);
+    }, [data, selectedFilter, pool, cmsMode]);
 
     // Early return sits after all hooks (hooks must not be called conditionally)
     if (!data) return null;
@@ -135,7 +173,7 @@ export default function AcademicFacultyAchievements({ data }) {
                 </div>
 
                 {/* Filter Pills Swiper Row (June 2026 ... 2023) with Nav Buttons */}
-                {data?.monthFilters?.length > 0 && (
+                {monthFilters.length > 0 && (
                     <div className="relative mb-10 xl:mb-14 flex items-center gap-2 sm:gap-3">
                         {/* Prev Arrow Navigation Button */}
                         <button
@@ -164,12 +202,12 @@ export default function AcademicFacultyAchievements({ data }) {
                                 onTransitionEnd={syncNav}
                                 className="w-full !py-1"
                             >
-                                {data.monthFilters.map((filter) => {
-                                    const isCurrent = selectedFilterId === filter.id;
+                                {monthFilters.map((filter) => {
+                                    const isCurrent = selectedFilter?.id === filter.id;
                                     return (
                                         <SwiperSlide key={filter.id} className="!w-auto">
                                             <button
-                                                onClick={() => setSelectedFilterId(filter.id)}
+                                                onClick={() => { setSelectedFilterId(filter.id); setSelectedValue(filter.value ?? null); }}
                                                 className={`px-5 py-2 rounded-full text_1 font-medium whitespace-nowrap transition-all duration-300 ${isCurrent
                                                         ? "bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white shadow-sm cursor-pointer"
                                                         : "bg-transparent dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 text-[#374151] dark:text-gray-200 hover:border-gray-400 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
@@ -207,21 +245,68 @@ export default function AcademicFacultyAchievements({ data }) {
                                 className="flex flex-col-reverse md:flex-row items-stretch gap-6 lg:gap-10 xl:gap-12"
                             >
                                 {/* Left Side: Media Image Box */}
-                                {item?.media?.url && (
-                                    <div className="w-full md:w-[380px] lg:w-[420px] xl:w-[460px] 2xl:w-[490px] shrink-0">
-                                        <div className="relative w-full aspect-[4/3] rounded-[12px] overflow-hidden bg-white dark:bg-[#18191B] p-2 border border-red-500/20 shadow-[0_4px_20px_rgba(0,0,0,0.04)] group">
-                                            <div className="relative w-full h-full rounded-[8px] overflow-hidden">
-                                                <Image
-                                                    src={item.media.url}
-                                                    alt={item.media.alternativeText || item.title}
-                                                    fill
-                                                    className="object-cover transition-transform duration-500 group-hover:scale-102"
-                                                    sizes="(max-width: 1024px) 100vw, 490px"
-                                                />
+                                {(() => {
+                                    const images = item.images?.length ? item.images : item.media?.url ? [item.media] : [];
+                                    if (!images.length) return null;
+                                    const renderImg = (img) => (
+                                        <div className="relative w-full h-full rounded-[8px] overflow-hidden">
+                                            <Image
+                                                src={img.url}
+                                                alt={img.alternativeText || item.title}
+                                                fill
+                                                className="object-cover"
+                                                sizes="(max-width: 1024px) 100vw, 490px"
+                                            />
+                                        </div>
+                                    );
+                                    return (
+                                        <div className="w-full md:w-[380px] lg:w-[420px] xl:w-[460px] 2xl:w-[490px] shrink-0">
+                                            <div className="relative w-full aspect-[4/3] rounded-[12px] overflow-hidden bg-white dark:bg-[#18191B] p-2 border border-red-500/20 shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+                                                {images.length > 1 ? (
+                                                    <Swiper
+                                                        modules={[Navigation, Autoplay]}
+                                                        slidesPerView={1}
+                                                        loop
+                                                        autoplay={{ delay: 3500, disableOnInteraction: false }}
+                                                        navigation={{
+                                                            prevEl: `.achv-prev-${item.id}`,
+                                                            nextEl: `.achv-next-${item.id}`,
+                                                        }}
+                                                        className="w-full h-full"
+                                                    >
+                                                        {images.map((img, i) => (
+                                                            <SwiperSlide key={`${img.url}-${i}`}>{renderImg(img)}</SwiperSlide>
+                                                        ))}
+                                                    </Swiper>
+                                                ) : (
+                                                    renderImg(images[0])
+                                                )}
+                                            {images.length > 1 && (
+                                                <>
+                                                    <button
+                                                        type="button"
+                                                        aria-label="Previous image"
+                                                        className={`achv-prev-${item.id} absolute left-[14px] top-1/2 -translate-y-1/2 z-10 w-[32px] h-[32px] xl:w-[36px] xl:h-[36px] 2xl:w-[40px] 2xl:h-[40px] 3xl:w-[46px] 3xl:h-[46px] flex items-center justify-center cursor-pointer`}
+                                                    >
+                                                        <svg className="w-full h-full" fill="none" stroke="#ffff" strokeWidth="1" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        aria-label="Next image"
+                                                        className={`achv-next-${item.id} absolute right-[14px] top-1/2 -translate-y-1/2 z-10 w-[32px] h-[32px] xl:w-[36px] xl:h-[36px] 2xl:w-[40px] 2xl:h-[40px] 3xl:w-[46px] 3xl:h-[46px] flex items-center justify-center cursor-pointer`}
+                                                    >
+                                                        <svg className="w-full h-full" fill="none" stroke="#ffff" strokeWidth="1" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
                                             </div>
                                         </div>
-                                    </div>
-                                )}
+                                    );
+                                })()}
 
                                 {/* Right Side: Content */}
                                 <div className="flex-1 flex flex-col justify-center py-1">
@@ -238,10 +323,16 @@ export default function AcademicFacultyAchievements({ data }) {
                                             </h3>
                                         )}
 
-                                        {item.description && (
-                                            <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                                {item.description}
-                                            </p>
+                                        {Array.isArray(item.description) ? (
+                                            <div className="typography [&_a]:text-[#DC2626] [&_a]:underline [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5">
+                                                <BlocksRenderer content={item.description} />
+                                            </div>
+                                        ) : (
+                                            item.description && (
+                                                <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                                    {item.description}
+                                                </p>
+                                            )
                                         )}
                                     </div>
                                 </div>

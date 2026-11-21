@@ -65,6 +65,23 @@ export const chaptersSection = (s) =>
       }
     : null;
 
+// Library table: the multi-column rows (label + any number of values) when filled, else the old 2-column
+// list. Returns { columns: [heading], rows: [{ id, label, values: [text] }] }; null when no row has a real
+// value (empty or "-" only), so the table is not shown at all.
+const isReal = (v) => typeof v === "string" && v.trim() !== "" && v.trim() !== "-";
+function libraryTable(rows, legacy, columns) {
+  const list = (rows ?? []).length
+    ? rows.map((r, i) => ({ id: r.id ?? i, label: r.label, values: (r.values ?? []).map((v) => v.text ?? "") }))
+    : (legacy ?? []).map((r, i) => ({ id: r.id ?? i, label: r.label, values: [r.value ?? ""] }));
+  const kept = list.filter((r) => r.label || r.values.some(isReal));
+  if (!kept.some((r) => r.values.some(isReal))) return null;
+  const width = Math.max(1, ...kept.map((r) => r.values.length));
+  return {
+    columns: (columns ?? []).map((c) => c.text ?? ""),
+    rows: kept.map((r) => ({ ...r, values: Array.from({ length: width }, (_, i) => r.values[i] ?? "") })),
+  };
+}
+
 // Library landing page → LibraryOverview props (which reads every nested group unguarded).
 export function librarySection(s) {
   if (!s) return null;
@@ -73,11 +90,11 @@ export function librarySection(s) {
     description: s.description,
     image: s.image,
     infoCards: (s.infoCards ?? []).map((c) => ({ id: c.id, title: c.title, items: label(c.items) })),
-    libraryCollections: { heading: s.collectionsHeading, statisticsDate: s.statisticsDate, items: s.collections ?? [] },
+    libraryCollections: { heading: s.collectionsHeading, statisticsDate: s.statisticsDate, table: libraryTable(s.collectionRows, s.collections, s.collectionsColumns) },
     membershipSection: {
       heading: s.membershipHeading,
       description: s.membershipDescription,
-      membershipTable: { heading: s.membershipHeading, note: s.membershipNote, items: s.membership ?? [] },
+      membershipTable: { heading: s.membershipHeading, note: s.membershipNote, table: libraryTable(s.membershipRows, s.membership, s.membershipColumns) },
       documentsRequired: { description: s.documentsDescription, items: label(s.documentsRequired) },
     },
   };

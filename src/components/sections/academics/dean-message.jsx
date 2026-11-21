@@ -77,7 +77,7 @@ export default function DeanMessage({ data, varient, hideSignature }) {
           {/* Heading */}
           {heading && (
             <h2
-              className={`text-[25px] sm:text-[28px] md:text-[32px] xl:text-[40px] 2xl:text-[46px] 3xl:text-[55px] font-bold leading-tight text-[#212121] dark:text-[#F9FAFB] 
+              className={`cmn_Title font-bold leading-tight text-[#212121] dark:text-[#F9FAFB] 
                          mb-[12px] xl:mb-[16px] 2xl:mb-[20px] 
                          ${
                            varient === "home"
@@ -99,7 +99,7 @@ export default function DeanMessage({ data, varient, hideSignature }) {
 
           {/* Message Body Paragraphs */}
           {message && (
-            <div className="text_1 [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_p]:mb-[14px] [&_p]:xl:mb-[18px] [&_p]:2xl:mb-[28px] [&>_p]:3xl:mb-[35px] [&_p]:leading-[22px] [&_p]:2xl:leading-[25px] [&_p]:3xl:leading-[28px] [&_p]:last:mb-0 lg:max-w-[92%] ">
+            <div className="typography text_1 [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] [&_p]:mb-[14px] [&_p]:xl:mb-[18px] [&_p]:2xl:mb-[28px] [&>_p]:3xl:mb-[35px] [&_p]:leading-[22px] [&_p]:2xl:leading-[25px] [&_p]:3xl:leading-[28px] [&_p]:last:mb-0 lg:max-w-[92%] ">
               {Array.isArray(message) ? (
                 <BlocksRenderer content={message} />
               ) : (

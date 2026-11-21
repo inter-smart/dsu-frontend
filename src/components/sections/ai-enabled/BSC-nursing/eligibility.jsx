@@ -2,6 +2,10 @@
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 export default function Aieligibility({ data }) {
+    const hasTable =
+        (data?.seatsSection?.tableHeaders?.length ?? 0) > 0 &&
+        (data?.seatsSection?.tableRows?.length ?? 0) > 0;
+
     return (
         <section className="realtive py-[10px_0px] xl:py-[50px_0] 2xl:py-[70px_0] 3xl:py-[90px_0] dark:bg-[#101010]">
             <div className="container">
@@ -16,6 +20,7 @@ export default function Aieligibility({ data }) {
                         <BlocksRenderer content={data.description} />
                     </div>
                 )}
+                {hasTable && (
                 <div className="w-full overflow-x-auto mt-[25px] pb-[10px]">
                     <div className="min-w-[700px] rounded-[8px] border border-[#707070] dark:border-white/20 dark:bg-[#18191B] overflow-hidden">
                         <table className="w-full border-collapse">
@@ -35,19 +40,19 @@ export default function Aieligibility({ data }) {
                             <tbody>
                                 {data?.seatsSection?.tableRows?.map((row) => (
                                     <tr key={row.id} className="border-b border-[#707070] dark:border-white/20 last:border-b-0">
-                                        <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-left text_1 text-[#212121] dark:text-white font-medium first-of-type:md:w-[30%] last-of-type:md:w-[30%] last:border-r-0 lg:text-[15px]">
+                                        <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-left text_1 text-[#212121] dark:text-white font-medium first-of-type:md:w-[30%] last-of-type:md:w-[30%] last:border-r-0  ">
                                             {row.programme}
                                         </td>
-                                        <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-left text_1 text-[#212121] dark:text-white font-medium first-of-type:md:w-[30%] last-of-type:md:w-[30%]  last:border-r-0 lg:text-[15px]">
+                                        <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-left text_1 text-[#212121] dark:text-white font-medium first-of-type:md:w-[30%] last-of-type:md:w-[30%]  last:border-r-0  ">
                                             {row.level}
                                         </td>
-                                        <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-left text_1 text-[#212121] dark:text-white font-medium first-of-type:md:w-[30%] last-of-type:md:w-[30%]  last:border-r-0 lg:text-[15px]">
+                                        <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-left text_1 text-[#212121] dark:text-white font-medium first-of-type:md:w-[30%] last-of-type:md:w-[30%]  last:border-r-0 ">
                                             {row.duration}
                                         </td>
-                                        <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-left text_1 text-[#212121] dark:text-white font-medium first-of-type:md:w-[30%] last-of-type:md:w-[30%]  last:border-r-0 lg:text-[15px]">
+                                        <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-left text_1 text-[#212121] dark:text-white font-medium first-of-type:md:w-[30%] last-of-type:md:w-[30%]  last:border-r-0  ">
                                             {row.intake}
                                         </td>
-                                        <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-left text_1 text-[#212121] dark:text-white font-medium first-of-type:md:w-[30%] last-of-type:md:w-[30%]  last:border-r-0 lg:text-[15px] leading-[1.6]">
+                                        <td className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-left text_1 text-[#212121] dark:text-white font-medium first-of-type:md:w-[30%] last-of-type:md:w-[30%]  last:border-r-0 ">
                                             {row.eligibility}
                                         </td>
                                     </tr>
@@ -56,6 +61,7 @@ export default function Aieligibility({ data }) {
                         </table>
                     </div>
                 </div>
+                )}
             </div>
         </section>
     )

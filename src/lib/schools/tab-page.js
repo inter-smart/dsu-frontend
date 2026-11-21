@@ -30,12 +30,7 @@ export async function loadSchoolTabData(slug, tab) {
     const hero = { ...(school.hero ?? {}) };
     if (!hero.heroMedia?.url) hero.heroMedia = FALLBACK_HERO_MEDIA;
     const cmsCrumbs = school.hero?.breadcrumb;
-    if (cmsCrumbs?.length) {
-        const href = `/schools/${slug}/${tab}`;
-        hero.breadcrumb = cmsCrumbs.some((b) => b.label === entry.label)
-            ? cmsCrumbs
-            : [...cmsCrumbs, { label: entry.label, href }];
-    }
+    if (cmsCrumbs?.length) hero.breadcrumb = cmsCrumbs;
 
     return { data, hero, slug, hasDepartments, label: entry.label, school };
 }

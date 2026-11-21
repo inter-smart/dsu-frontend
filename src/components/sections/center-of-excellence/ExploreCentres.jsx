@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 /* ───────── helpers ───────── */
 
@@ -43,7 +43,7 @@ const fadeUp = (inView) =>
 function RichText({ content }) {
   if (!content) return null;
   return typeof content === "string" ? (
-    <div dangerouslySetInnerHTML={{ __html: content }} />
+    <div className="typography" dangerouslySetInnerHTML={{ __html: content }} />
   ) : (
     <BlocksRenderer content={content} />
   );
@@ -284,7 +284,7 @@ export default function ExploreCentres({ data }) {
           {data?.description && (
             <div
               style={{ transitionDelay: "150ms" }}
-              className={`w-full lg:w-[45%] 2xl:w-[42%] [&_p]:text-[14px] [&_p]:leading-[1.8] [&_p]:text-[#4A5565] md:[&_p]:text-[15px] 3xl:[&_p]:text-[17px] dark:[&_p]:text-[#9CA3AF] ${fadeUp(headInView)}`}
+              className={`w-full lg:w-[45%] 2xl:w-[42%] [&_p]:text_1 [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] ${fadeUp(headInView)}`}
             >
               <RichText content={data.description} />
             </div>

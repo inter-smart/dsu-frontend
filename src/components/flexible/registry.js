@@ -27,6 +27,8 @@ import DoctoralFeesSection from "@/components/sections/doctoral-research/FeesSec
 import DoctoralCourseworkSection from "@/components/sections/doctoral-research/CourseworkSection";
 import DoctoralFormsSection from "@/components/sections/doctoral-research/FormsSection";
 import DoctoralContactSection from "@/components/sections/doctoral-research/ContactSection";
+import DoctoralRegulationsSection from "@/components/sections/doctoral-research/RegulationsSection";
+import DoctoralSupervisorsSection from "@/components/sections/doctoral-research/SupervisorsSection";
 import NIRFRanking from "@/components/sections/NIRF/NIRF-ranking";
 import OtherApproval from "@/components/sections/regulatory-approval/other-approval";
 import UgcRecognition from "@/components/sections/regulatory-approval/ugc-recognition";
@@ -62,6 +64,11 @@ import AiRecentClinic from "@/components/sections/ai-enabled/Ai-recent-clinic";
 import AiVisionMission from "@/components/sections/ai-enabled/Ai-vision-mission";
 import NewsEvents from "@/components/sections/news-events/news-events";
 import LibraryOverview from "@/components/sections/ai-enabled/library/library-overview";
+import LibraryServices from "@/components/sections/ai-enabled/library/library-services";
+import LibraryDownloads from "@/components/sections/ai-enabled/library/library-download";
+import LibraryAutomation from "@/components/sections/ai-enabled/library/library-automation";
+import LibraryFaq from "@/components/sections/ai-enabled/library/library-Faq";
+import LibraryGallery from "@/components/sections/ai-enabled/library/library-gallery";
 import * as adapt from "@/lib/schools/department-adapters";
 import AboutHistory from "@/components/sections/about/about-history";
 import AboutLeadership from "@/components/sections/about/about-leadership";
@@ -109,6 +116,7 @@ import GovernanceFinancecommittte from "@/components/sections/governance/governa
 import AcademicQualitySection from "@/components/sections/why-us/AcademicQualitySection";
 import WhyusAQAR from "@/components/sections/why-us/Whyus-AQAR";
 import PdfReports from "@/components/sections/why-us/PdfReports";
+import CommonGallery from "@/components/layout/common/CommonGallery";
 import PhdProgrammes from "@/components/sections/reseach-innovation/PhdProgrammes";
 import DoctoralResearchCards from "@/components/sections/reseach-innovation/DoctoralResearch";
 import PostDoctoralCta from "@/components/sections/reseach-innovation/PostDoctoralCta";
@@ -151,6 +159,9 @@ import RecruitmentGallery from "@/components/sections/placements/recruitment-gal
 import StudentSuccess from "@/components/sections/placements/student-success";
 import StudentSuccessStories from "@/components/sections/placements/student-success-stories";
 import IntlTextSection from "@/components/sections/international/intl-text-section";
+import TitleDescription from "@/components/sections/common/title-description";
+import Committee from "@/components/sections/common/committee";
+import CommonTabGallery from "@/components/sections/common/gallery";
 import IntlButtonSection from "@/components/sections/international/intl-button-section";
 import IntlTextButtonSection from "@/components/sections/international/intl-text-button-section";
 import IntlVideoSection from "@/components/sections/international/intl-video-section";
@@ -160,6 +171,7 @@ import IntlLeadersSection from "@/components/sections/international/intl-leaders
 import IntlLinkCardsSection from "@/components/sections/international/intl-link-cards-section";
 import IntlPartnersSection from "@/components/sections/international/intl-partners-section";
 import IntlTabbedGallery from "@/components/sections/gallery/gallery";
+import IntlGallerySection from "@/components/sections/international/intl-gallery-section";
 import IntlAccordionSection from "@/components/sections/international/intl-accordion-section";
 import TeamSection from "@/components/sections/placements/Team-section";
 import IntlTextCTASection from "../sections/international/IntlTextCTASection";
@@ -204,10 +216,19 @@ function adapted(Component, adapter) {
     };
 }
 
-// Library landing section; no department context here, so the sidebar menu is left empty
-function libraryOverview({ data }) {
+// Library landing section; the side menu is the flexible page's own Sidebar links
+function libraryOverview({ data, menu }) {
     const props = adapt.librarySection(data);
-    return props ? <LibraryOverview data={props} menu={[]} /> : null;
+    return props ? <LibraryOverview data={props} menu={menu || []} /> : null;
+}
+
+// Library sub-page templates as sections (same components as the Library sub-pages); the side menu is the
+// flexible page's own Sidebar links
+function libraryTemplate(Component, adapter) {
+    return function LibraryTemplate({ data, menu }) {
+        const props = adapter(data);
+        return props ? <Component data={props} menu={menu || []} /> : null;
+    };
 }
 
 
@@ -347,7 +368,7 @@ const flexibleRegistry = {
   "school.overview-section": { Component: AcademicOverview },
   "school.vision-mission-section": { Component: AcademicVisionMission },
   "school.dean-message-section": { Component: DeanMessage },
-  "school.why-choose-section": { Component: AcademicWhychoose },
+  "school.why-choose-section": { Component: WhyChoose }, // points have a title and a description: the Why Choose tab design
   "school.why-choose-home-section": { Component: AcademicWhychoose },
   "school.why-choose-tab-section": { Component: WhyChoose },
   "school.facilities-section": { Component: AcademicFacilities },
@@ -374,6 +395,11 @@ const flexibleRegistry = {
   "department.partner-with-us-section": { Component: adapted(AiPartnerwithus, adapt.partnerWithUsSection) },
   "department.chapters-section": { Component: adapted(AiAcademicChapters, adapt.chaptersSection) },
   "department.library-section": { Component: libraryOverview },
+  "department.library-services-template": { Component: libraryTemplate(LibraryServices, adapt.libraryServicesContent) },
+  "department.library-files-template": { Component: libraryTemplate(LibraryDownloads, adapt.libraryFilesContent) },
+  "department.library-automation-template": { Component: libraryTemplate(LibraryAutomation, adapt.libraryAutomationContent) },
+  "department.library-faqs-template": { Component: libraryTemplate(LibraryFaq, adapt.libraryFaqsContent) },
+  "department.library-gallery-template": { Component: libraryTemplate(LibraryGallery, adapt.libraryGalleryContent) },
   "department.placement-collaborations-section": { Component: AcademicCollaboration },
   "department.placement-partners-section": { Component: AcademicPartners },
 
@@ -447,13 +473,22 @@ const flexibleRegistry = {
   "international.leaders-section": { Component: IntlLeadersSection },
   "international.link-cards-section": { Component: IntlLinkCardsSection },
   "international.partners-section": { Component: IntlPartnersSection },
-  "international.gallery": { Component: IntlTabbedGallery },
+  "international.gallery": { Component: IntlGallerySection },
+  // standalone gallery page (src/app/gallery/page.js)
+  "gallery.gallery-section": { Component: IntlTabbedGallery },
   "international.accordion-section": { Component: IntlAccordionSection },
   "international.text-cta-section": { Component: IntlTextCTASection },
   "international.IntlTextCTASection": { Component: IntlTextCTASection }, // legacy key
 
   // Pdf Reports pages: one PDF in an iframe, or a list of PDFs
   "pdf-report.reports-section": { Component: PdfReports },
+
+  // Common sections (every flexible page)
+  "common.title-description": { Component: TitleDescription },
+  "common.committee": { Component: Committee },
+  "common.gallery": { Component: CommonTabGallery },
+  // centres of excellence listing (src/app/center-of-excellence/page.js)
+  "coe.gallery-section": { Component: CommonGallery },
 
   // Innovation (Research & Innovation pages)
   "innovation.phd-programmes-section": { Component: PhdProgrammes },
@@ -476,6 +511,8 @@ const flexibleRegistry = {
   "doctoral-research.coursework-section": { Component: DoctoralCourseworkSection },
   "doctoral-research.forms-section": { Component: DoctoralFormsSection },
   "doctoral-research.contact-section": { Component: DoctoralContactSection },
+  "doctoral-research.regulations-section": { Component: DoctoralRegulationsSection },
+  "doctoral-research.supervisors-section": { Component: DoctoralSupervisorsSection },
   // about page (src/app/about/page.js): logo slider
   "about.accreditation-section": { Component: AccreditationSlider },
 

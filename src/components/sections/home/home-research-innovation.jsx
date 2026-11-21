@@ -12,6 +12,27 @@ import { useEffect, useCallback, useState } from "react";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+// A header button only when it has a label (the CMS sends empty strings for an unset one).
+function HeaderButton({ button }) {
+  if (!button?.label) return null;
+  return (
+    <Link
+      href={safeHref(button?.link)}
+      className={buttonVariants({ variant: "default", size: "default" })}
+    >
+      {button.label}
+      <Image
+        src="/images/icon-btn.svg"
+        alt="home-btn"
+        width={15}
+        height={15}
+        className="size-3.75"
+        data-icon="inline-end"
+      />
+    </Link>
+  );
+}
+
 export default function HomeResearch({ data }) {
   const [incubationCardEmblaRef] = useEmblaCarousel(
     {
@@ -79,10 +100,38 @@ export default function HomeResearch({ data }) {
 
   useEffect(() => {
     if (!emblaApi) return;
-    onSelect(emblaApi);
+    emblaApi.on("init", onSelect);
     emblaApi.on("reInit", onSelect);
     emblaApi.on("select", onSelect);
+    return () => {
+      emblaApi.off("init", onSelect);
+      emblaApi.off("reInit", onSelect);
+      emblaApi.off("select", onSelect);
+    };
   }, [emblaApi, onSelect]);
+
+  // Tab label and icon set on each block in the CMS; the design defaults while they are empty.
+  const tabs = [
+    {
+      value: "research",
+      icon: data?.research?.tabIcon?.url || "/images/home-research-1.svg",
+      label: data?.research?.tabLabel || "Research",
+    },
+    {
+      value: "incubation",
+      icon: data?.incubation?.tabIcon?.url || "/images/home-research-2.svg",
+      label: data?.incubation?.tabLabel || (
+        <>
+          Incubation & <br /> Entrepreneurship
+        </>
+      ),
+    },
+    {
+      value: "innovation",
+      icon: data?.innovation?.tabIcon?.url || "/images/home-research-3.svg",
+      label: data?.innovation?.tabLabel || "Innovation Labs",
+    },
+  ];
 
   const tabIconStyles =
     "w-10 sm:w-12.5 lg:w-15 2xl:w-18.75 3xl:w-25 h-auto aspect-square p-2 sm:p-2.5 lg:p-3 2xl:p-3.75 3xl:p-5 dark:bg-white/10 max-sm:dark:bg-white rounded-full border-1 sm:border-2 3xl:border-3 border-(--basecolor2)/50 overflow-hidden transition-all duration-500 flex items-center justify-center group-hover:border-(--basecolor2)/100";
@@ -112,59 +161,26 @@ export default function HomeResearch({ data }) {
               "[--line:5px] lg:[--line:6px] 2xl:[--line:7px] 3xl:[--line:9px] w-full h-auto flex-1 p-0 mb-5 sm:mb-7.5 lg:mb-10 2xl:mb-12.5 3xl:mb-20 gap-0 bg-transparent rounded-none [&>button]:h-25 sm:[&>button]:h-20 lg:[&>button]:h-22.5 2xl:[&>button]:h-27.5 3xl:[&>button]:h-35 [&>button]:p-0 [&>button]:gap-0 [&>button]:border-0 [&>button]:rounded-none [&>button]:relative [&>button]:z-0 [&>button::before]:content-[''] [&>button::before]:w-full [&>button::before]:h-(--line) [&>button::before]:absolute [&>button::before]:z-1 [&>button::before]:inset-[auto_0_0_0] [&>button::before]:translate-y-(--line) [&>button::before]:transition-all [&>button::before]:duration-300 [&>button::before]:ease-in-out [&>button[data-active]::before]:bg-linear-to-r [&>button[data-active]::before]:from-(--basecolor) [&>button[data-active]::before]:to-(--basecolor2) [&>button:nth-child(1):not([data-active])::before]:bg-[#8B8B8B]/30 [&>button:nth-child(2):not([data-active])::before]:bg-[#8B8B8B]/10 [&>button:nth-child(3):not([data-active])::before]:bg-[#8B8B8B]/10 [&>button:nth-child(1)[data-active]~button:nth-child(2)::before]:bg-[#8B8B8B]/30 [&>button[data-active]]:bg-transparent [&>button[data-active]]:shadow-none"
             }
           >
-            <TabsTrigger
-              value="research"
-              className={
-                "group max-sm:!gap-1.75 flex max-sm:flex-col items-center justify-center"
-              }
-            >
-              <span className={tabIconStyles}>
-                <Image
-                  src={"/images/home-research-1.svg"}
-                  alt={"Research-icon-1"}
-                  width={50}
-                  height={50}
-                  className={"w-full h-full object-contain"}
-                />
-              </span>
-              <span className={tabTextStyles}>Research</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="incubation"
-              className={
-                "group max-sm:!gap-1.75 flex max-sm:flex-col items-center justify-center"
-              }
-            >
-              <span className={tabIconStyles}>
-                <Image
-                  src={"/images/home-research-2.svg"}
-                  alt={"Research-icon-1"}
-                  width={50}
-                  height={50}
-                  className={"w-full h-full object-contain"}
-                />
-              </span>
-              <span className={tabTextStyles}>
-                Incubation & <br /> Entrepreneurship
-              </span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="innovation"
-              className={
-                "group max-sm:!gap-1.75 flex max-sm:flex-col items-center justify-center"
-              }
-            >
-              <span className={tabIconStyles}>
-                <Image
-                  src={"/images/home-research-3.svg"}
-                  alt={"Research-icon-1"}
-                  width={50}
-                  height={50}
-                  className={"w-full h-full object-contain"}
-                />
-              </span>
-              <span className={tabTextStyles}>Innovation Labs</span>
-            </TabsTrigger>
+            {tabs.map((tab) => (
+              <TabsTrigger
+                key={tab.value}
+                value={tab.value}
+                className={
+                  "group max-sm:!gap-1.75 flex max-sm:flex-col items-center justify-center"
+                }
+              >
+                <span className={tabIconStyles}>
+                  <Image
+                    src={tab.icon}
+                    alt={`${tab.value} icon`}
+                    width={50}
+                    height={50}
+                    className={"w-full h-full object-contain"}
+                  />
+                </span>
+                <span className={`${tabTextStyles} whitespace-pre-line`}>{tab.label}</span>
+              </TabsTrigger>
+            ))}
           </TabsList>
           <TabsContent value="research">
             <div className="w-full h-auto block">
@@ -176,23 +192,7 @@ export default function HomeResearch({ data }) {
                   {data?.research?.header?.description}
                 </div>
                 <div className="w-full md:w-[20%] hidden md:flex justify-end">
-                  <Link
-                    href={safeHref(data?.research?.header?.button?.link)}
-                    className={buttonVariants({
-                      variant: "default",
-                      size: "default",
-                    })}
-                  >
-                    {data?.research?.header?.button?.label}
-                    <Image
-                      src="/images/icon-btn.svg"
-                      alt="home-btn"
-                      width={15}
-                      height={15}
-                      className="size-3.75"
-                      data-icon="inline-end"
-                    />
-                  </Link>
+                  <HeaderButton button={data?.research?.header?.button} />
                 </div>
               </div>
               <div className="[--box-size:100%] lg:[--box-size:370px] 2xl:[--box-size:440px] 3xl:[--box-size:560px] w-full h-auto flex flex-wrap">
@@ -336,6 +336,7 @@ export default function HomeResearch({ data }) {
                           </div>
                         </div>
                       ))}
+                    {data?.research?.ctaButton?.label && (
                     <Link
                       href={safeHref(data?.research?.ctaButton?.link)}
                       className={buttonVariants({
@@ -346,7 +347,10 @@ export default function HomeResearch({ data }) {
                       })}
                     >
                       <Image
-                        src="/images/research-button-icon.svg"
+                        src={
+                          data?.research?.ctaButton?.icon ||
+                          "/images/research-button-icon.svg"
+                        }
                         alt="home-btn"
                         width={15}
                         height={15}
@@ -355,24 +359,9 @@ export default function HomeResearch({ data }) {
                       />
                       {data?.research?.ctaButton?.label}
                     </Link>
+                    )}
                     <div className="w-full h-auto mt-7.5 col-span-12 flex items-center md:hidden justify-center">
-                      <Link
-                        href={safeHref(data?.research?.header?.button?.link)}
-                        className={buttonVariants({
-                          variant: "default",
-                          size: "default",
-                        })}
-                      >
-                        {data?.research?.header?.button?.label}
-                        <Image
-                          src="/images/icon-btn.svg"
-                          alt="home-btn"
-                          width={15}
-                          height={15}
-                          className="size-3.75"
-                          data-icon="inline-end"
-                        />
-                      </Link>
+                      <HeaderButton button={data?.research?.header?.button} />
                     </div>
                   </div>
                 </div>
@@ -388,23 +377,7 @@ export default function HomeResearch({ data }) {
                 {data?.incubation?.header?.description}
               </div>
               <div className="w-full md:w-[20%] hidden sm:flex md:justify-end">
-                <Link
-                  href={safeHref(data?.incubation?.header?.button?.link)}
-                  className={buttonVariants({
-                    variant: "default",
-                    size: "default",
-                  })}
-                >
-                  {data?.incubation?.header?.button?.label}
-                  <Image
-                    src="/images/icon-btn.svg"
-                    alt="home-btn"
-                    width={15}
-                    height={15}
-                    className="size-3.75"
-                    data-icon="inline-end"
-                  />
-                </Link>
+                <HeaderButton button={data?.incubation?.header?.button} />
               </div>
             </div>
             <div
@@ -412,7 +385,7 @@ export default function HomeResearch({ data }) {
               className="[--slide-gap:10px] xl:[--slide-gap:15px] 3xl:[--slide-gap:20px] w-full h-auto overflow-hidden"
             >
               <div className="ml-[calc(var(--slide-gap)*-1)] touch-pan-y touch-pinch-zoom flex">
-                {data?.incubation?.featuredCards?.map((item, index) => (
+                {data?.incubation?.featuredCards?.map((item) => (
                   <div
                     key={item?.id}
                     className="min-w-0 translate-x-0 translate-y-0 flex-[0_0_100%] sm:flex-[0_0_calc(100%/1.4)] lg:flex-[0_0_calc(100%/2)] pl-(--slide-gap)"
@@ -444,7 +417,7 @@ export default function HomeResearch({ data }) {
                           {item?.description}
                         </div>
                         <div className="text-[13px] 3xl:text-[15px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit">
-                          Explore {" > "}
+                          {data?.incubation?.cardLinkLabel || "Explore"} {" > "}
                         </div>
                       </div>
                     </Link>
@@ -462,23 +435,7 @@ export default function HomeResearch({ data }) {
                 {data?.innovation?.header?.description}
               </div>
               <div className="w-full sm:w-[20%] hidden sm:flex justify-end">
-                <Link
-                  href={safeHref(data?.innovation?.header?.button?.link)}
-                  className={buttonVariants({
-                    variant: "default",
-                    size: "default",
-                  })}
-                >
-                  {data?.innovation?.header?.button?.label}
-                  <Image
-                    src="/images/icon-btn.svg"
-                    alt="home-btn"
-                    width={15}
-                    height={15}
-                    className="size-3.75"
-                    data-icon="inline-end"
-                  />
-                </Link>
+                <HeaderButton button={data?.innovation?.header?.button} />
               </div>
             </div>
             <div
