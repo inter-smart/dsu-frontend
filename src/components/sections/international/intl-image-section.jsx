@@ -55,8 +55,8 @@ export default function IntlImageSection({ data }) {
                     data-fancybox="intl-image"
                     data-caption={image.alt || ""}
                     aria-label={image.alt ? `Enlarge image: ${image.alt}` : "Enlarge image"}
-                    className={`group relative block w-fit cursor-zoom-in mx-auto focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--basecolor) ${
-                        size === "small" ? "rounded-full bg-gradient-to-br from-[#DC2626] to-[#F97316] p-[5px] shadow-[0_12px_30px_rgba(220,38,38,0.25)]" : "mb-[10px] rounded-[14px] xl:mb-[16px] xl:rounded-[18px]"
+                    className={`group relative block w-fit cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--basecolor) ${
+                        size === "small" ? "mx-auto rounded-full bg-gradient-to-br from-[#DC2626] to-[#F97316] p-[5px] shadow-[0_12px_30px_rgba(220,38,38,0.25)]" : "mb-[10px] rounded-[14px] xl:mb-[16px] xl:rounded-[18px]"
                     }`}
                 >
                     {/* brand backdrop offset behind framed images */}
