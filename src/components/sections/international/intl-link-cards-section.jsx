@@ -2,8 +2,36 @@ import Link from "next/link";
 import Image from "@/components/ui/safe-image";
 import { safeHref } from "@/lib/utils";
 
+// Scholars in Residence: portrait cards ("Name, Role" title + affiliation), so faces are never cropped
+function ScholarCards({ items }) {
+    return (
+        <ul className="grid grid-cols-1 gap-[12px] sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xl:gap-[20px] 3xl:gap-[28px]">
+            {items.map((item) => {
+                const cut = item.title?.lastIndexOf(", ") ?? -1;
+                const name = cut > 0 ? item.title.slice(0, cut) : item.title;
+                const role = cut > 0 ? item.title.slice(cut + 2) : "";
+                return (
+                    <li key={item.id} className="group flex overflow-hidden rounded-[14px] sm:flex-col border border-black/10 bg-white transition-all duration-300 hover:border-[#F97316]/40 hover:shadow-[0_12px_30px_rgba(249,115,22,0.14)] motion-safe:hover:-translate-y-1 dark:border-white/10 dark:bg-[#18191B] xl:rounded-[18px]">
+                        <span className="relative block aspect-[4/5] w-[112px] shrink-0 overflow-hidden bg-gradient-to-b sm:w-auto from-[#FFF8EE] to-[#FFE4CC] dark:from-white/5 dark:to-white/10">
+                            {item.image?.url && (
+                                <Image src={item.image.url} alt={item.image.alternativeText || name} fill sizes="(min-width: 1200px) 25vw, (min-width: 768px) 33vw, (min-width: 576px) 50vw, 112px" className="object-cover object-top transition-transform duration-700 ease-out motion-safe:group-hover:scale-105" />
+                            )}
+                            <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[4px] origin-left scale-x-0 bg-gradient-to-r from-[#DC2626] to-[#F97316] transition-transform duration-500 group-hover:scale-x-100" />
+                        </span>
+                        <span className="flex min-w-0 flex-1 flex-col justify-center p-[14px] sm:justify-start sm:p-[12px] xl:p-[18px] 3xl:p-[24px]">
+                            {role && <span className="block text-[11px] font-semibold uppercase tracking-[0.08em] text-[#DC2626] xl:text-[12px] 3xl:text-[15px]">{role}</span>}
+                            <h3 className="mb-0 mt-[4px] text-[15px] font-semibold leading-snug text-[#212121] dark:text-white xl:text-[17px] 3xl:text-[22px]">{name}</h3>
+                            {item.description && <p className="mb-0 mt-[8px] border-t border-black/10 pt-[8px] text-[13px] leading-[1.5] text-[#555] dark:border-white/10 dark:text-white/70 xl:text-[14px] 3xl:text-[18px]">{item.description}</p>}
+                        </span>
+                    </li>
+                );
+            })}
+        </ul>
+    );
+}
+
 // International flexible section: cards with an image, a title and a link.
-export default function IntlLinkCardsSection({ data }) {
+export default function IntlLinkCardsSection({ data, slug }) {
     return (
         <section className="py-[15px] xl:py-[22px] 2xl:py-[28px] 3xl:py-[40px]">
             <div className="container">
@@ -12,7 +40,9 @@ export default function IntlLinkCardsSection({ data }) {
                         {data.title}
                     </h2>
                 )}
-                {data.display === "people" ? (
+                {slug === "scholars-in-residence" ? (
+                    <ScholarCards items={data.items} />
+                ) : data.display === "people" ? (
                     <ul className="flex flex-wrap justify-center gap-[24px] xl:gap-[36px]">
                         {data.items.map((item) => (
                             <li key={item.id} className="w-[calc(50%-12px)] text-center md:w-[calc(33.333%-18px)] xl:w-[calc(25%-27px)]">
