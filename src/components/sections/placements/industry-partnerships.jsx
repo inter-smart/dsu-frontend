@@ -49,7 +49,7 @@ export default function IndustryPartnerships({ data }) {
   return (
     <section className="py-[40px] xl:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-[#F1F5FC] dark:bg-[#0f1011] transition-colors duration-300">
       <div className="container">
-        <div className="grid lg:grid-cols-2 gap-[30px] xl:gap-[50px] 3xl:gap-[70px] items-start">
+        <div className="grid xl:grid-cols-2 gap-[30px] xl:gap-[50px] 3xl:gap-[70px] items-start">
           <div>
             {data?.eyebrow && (
               <div className="flex items-center gap-[10px] mb-[8px] text-[13px] 2xl:text-[15px] 3xl:text-[20px] tracking-[0.05em] uppercase text-(--basecolor2) before:content-[''] before:w-[28px] before:h-[3px] before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2)">

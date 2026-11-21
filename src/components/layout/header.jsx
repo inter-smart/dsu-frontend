@@ -868,7 +868,17 @@ export default function Header({ data = local_data }) {
                           <span className="w-full h-0.5 rounded-full bg-white block"></span>
                         </div>
                       </SheetTrigger>
-                      <SheetContent className="!w-full !max-w-full h-full max-h-screen bg-[#fff7eb] dark:bg-[#18181b] p-0 border-0 flex flex-col overflow-hidden [&>button]:hidden z-[100]">
+                      <SheetContent
+                        onClick={(event) => {
+                          if (
+                            event.target instanceof Element &&
+                            event.target.closest("a")
+                          ) {
+                            setIsMobileMenuOpen(false);
+                          }
+                        }}
+                        className="!w-full !max-w-full h-full max-h-screen bg-[#fff7eb] dark:bg-[#18181b] p-0 border-0 flex flex-col overflow-hidden [&>button]:hidden z-[100]"
+                      >
                         {/* STICKY TOP HEADER SECTION */}
                         <div className="w-full shrink-0 bg-[#fff7eb] dark:bg-[#18181b]">
                           {/* Top Red-Orange Banner Bar */}
