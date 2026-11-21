@@ -177,7 +177,9 @@ export default function AdmissionContact({ data }) {
                 <Link
                   href={enquireBtn.href || "#"}
                   target={enquireBtn.isExternal ? "_blank" : undefined}
-                  rel={enquireBtn.isExternal ? "noopener noreferrer" : undefined}
+                  rel={
+                    enquireBtn.isExternal ? "noopener noreferrer" : undefined
+                  }
                   className="group relative inline-flex h-[36px] sm:h-[40px] xl:h-[44px] 3xl:h-[50px] items-center justify-center gap-[10px] overflow-hidden rounded-[5px] bg-gradient-to-r from-[#DC2626] to-[#F97316] px-[20px] sm:px-[24px] text_1 font-bold capitalize text-white transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.35)] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                 >
                   <span className="relative z-[1] transition-transform duration-300">
@@ -232,7 +234,9 @@ export default function AdmissionContact({ data }) {
                 <Link
                   href={whatsappBtn.href || "#"}
                   target={whatsappBtn.isExternal ? "_blank" : undefined}
-                  rel={whatsappBtn.isExternal ? "noopener noreferrer" : undefined}
+                  rel={
+                    whatsappBtn.isExternal ? "noopener noreferrer" : undefined
+                  }
                   className="group relative flex h-[36px] sm:h-[40px] xl:h-[44px] 3xl:h-[50px]  w-fit items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px]  2xl:h-[40px] 2xl:gap-[10px] 2xl:rounded-[4px] 3xl:h-[50px] p-[1px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                 >
                   <div className="w-full bg-[#FFF7EE] h-full overflow-hidden rounded-[4px] flex items-center gap-[10px] px-6">
@@ -284,7 +288,7 @@ export default function AdmissionContact({ data }) {
                 key={item?.id || index}
                 className="w-full md:w-1/2 h-auto p-1.25 2xl:p-2.5 block"
               >
-                <div className="w-full h-full p-[20px_15px_15px_15px] sm:p-[30px_25px_20px_20px] lg:p-[40px_20px_30px_25px] 2xl:p-[50px_40px_40px_30px] 3xl:p-[60px_50px_45px_40px] bg-white dark:bg-[#18191B] border border-black/10 dark:border-white/10 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden flex flex-col justify-between">
+                <div className="w-full h-full p-[20px_15px_15px_15px] sm:p-[30px_25px_20px_20px] lg:p-[40px_20px_30px_25px] 2xl:p-[50px_40px_40px_30px] 3xl:p-[60px_50px_45px_40px] bg-white dark:bg-[#18191B] border border-black/10 dark:border-white/10 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden flex flex-col">
                   <div className="w-full h-auto mb-2.5 lg:mb-3.75 3xl:mb-5">
                     {/* Campus Header (Icon + Title) */}
                     <div className="[--icon-size:30px] sm:[--icon-size:35px] lg:[--icon-size:40px] 2xl:[--icon-size:50px] 3xl:[--icon-size:60px] w-full h-auto mb-2.5 lg:mb-3.75 2xl:mb-5 3xl:mb-7.5 flex items-center">

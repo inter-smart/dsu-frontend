@@ -9,14 +9,25 @@ import "swiper/css/thumbs";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import { Thumbs, FreeMode, Navigation, EffectFade } from "swiper/modules";
+import { Thumbs, FreeMode, EffectFade } from "swiper/modules";
 
 export default function HistoryTimeline({ data }) {
   const decades = data?.decades || [];
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const timelineRef = useRef(null); // ADDED
+  const timelineSwiperRef = useRef(null);
   const lenis = useLenis(); // ADDED
+
+  const navigateDecades = (direction) => {
+    const nextIndex = activeIndex + direction;
+    if (nextIndex < 0 || nextIndex >= decades.length) return;
+
+    timelineSwiperRef.current?.slideTo(nextIndex);
+    if (thumbsSwiper && !thumbsSwiper.destroyed) {
+      thumbsSwiper.slideTo(nextIndex);
+    }
+  };
 
   // ADDED: when the timeline list is already at its top (scrolling up) or bottom (scrolling down),
   // pass the wheel to the page so the page keeps scrolling instead of getting stuck.
@@ -116,6 +127,8 @@ export default function HistoryTimeline({ data }) {
           {/* Prev Navigation Button */}
           <button
             type="button"
+            onClick={() => navigateDecades(-1)}
+            disabled={activeIndex === 0}
             className="thumb-prev-btn w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white dark:bg-[#18191B] border border-[#FDE6E0] dark:border-white/10 shadow-sm flex items-center justify-center text-[#212121] dark:text-white hover:bg-[#EA580C] hover:text-white hover:border-[#EA580C] transition-all cursor-pointer shrink-0 z-20 disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Previous Decade"
           >
@@ -139,10 +152,6 @@ export default function HistoryTimeline({ data }) {
               onSwiper={setThumbsSwiper}
               watchSlidesProgress={true}
               freeMode={true}
-              navigation={{
-                prevEl: ".thumb-prev-btn",
-                nextEl: ".thumb-next-btn",
-              }}
               slidesPerView={3.2}
               spaceBetween={0}
               breakpoints={{
@@ -150,7 +159,7 @@ export default function HistoryTimeline({ data }) {
                 640: { slidesPerView: 5.5 },
                 1024: { slidesPerView: 7 },
               }}
-              modules={[Thumbs, FreeMode, Navigation]}
+              modules={[Thumbs, FreeMode]}
               className="w-full"
             >
               {decades.map((decade, idx) => {
@@ -198,6 +207,8 @@ export default function HistoryTimeline({ data }) {
           {/* Next Navigation Button */}
           <button
             type="button"
+            onClick={() => navigateDecades(1)}
+            disabled={activeIndex >= decades.length - 1}
             className="thumb-next-btn w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white dark:bg-[#18191B] border border-[#FDE6E0] dark:border-white/10 shadow-sm flex items-center justify-center text-[#212121] dark:text-white hover:bg-[#EA580C] hover:text-white hover:border-[#EA580C] transition-all cursor-pointer shrink-0 z-20 disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Next Decade"
           >
@@ -224,6 +235,9 @@ export default function HistoryTimeline({ data }) {
           className="relative lg:max-w-[75%] mx-auto h-[340px] sm:h-[400px] md:h-[900px]"
         >
           <Swiper
+            onSwiper={(swiper) => {
+              timelineSwiperRef.current = swiper;
+            }}
             direction="vertical"
             slidesPerView={1}
             spaceBetween={0}
@@ -234,7 +248,12 @@ export default function HistoryTimeline({ data }) {
               swiper:
                 thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
             }}
-            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+            onSlideChange={(swiper) => {
+              setActiveIndex(swiper.activeIndex);
+              if (thumbsSwiper && !thumbsSwiper.destroyed) {
+                thumbsSwiper.slideTo(swiper.activeIndex);
+              }
+            }}
             modules={[Thumbs, EffectFade]}
             className="h-full w-full rounded-2xl"
           >

@@ -25,11 +25,11 @@ export default function DeanMessage({ data, varient, hideSignature }) {
               {media?.url && (
                 <div
                   className={`relative w-full overflow-hidden 
-                                ${
-                                  varient === "home"
-                                    ? "aspect-[4/3] sm:aspect-[1/1] md:aspect-[855/555]"
-                                    : "aspect-[4/3] sm:aspect-[1/1] md:aspect-[4/4.2]"
-                                } 
+                              ${
+                                varient === "home"
+                                  ? "aspect-[4/3] sm:aspect-[1/1] md:aspect-[855/555]"
+                                  : "aspect-[4/3] sm:aspect-[1/1] md:aspect-[4/4.2]"
+                              } 
                             `}
                 >
                   <Image

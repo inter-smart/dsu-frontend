@@ -41,7 +41,7 @@ export default function PlacementContact(props) {
                     {data?.details && data.details.length > 0 && (
                         <div className="flex flex-col gap-1.5 sm:gap-2">
                             {data.details.map((item) => (
-                                <div key={item?.id || item?.label} className="text-[13px] sm:text-[14px] 2xl:text-[15px] 3xl:text-[18px] text-[#1F1F1F] dark:text-white">
+                                <div key={item?.id || item?.label} className="text-[13px] sm:text-[14px] 2xl:text-[15px] 3xl:text-[18px] text-[#1F1F1F] dark:text-white whitespace-nowrap">
                                     <span className="text_! font-bold text-[#1F1F1F] dark:text-white mr-1.5">
                                         {item?.label}
                                     </span>

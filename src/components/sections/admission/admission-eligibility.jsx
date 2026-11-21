@@ -1,6 +1,6 @@
 "use client";
 import { Text } from "@/components/ui/text";
-import { Heading } from "@/components/ui/heading";                                                                                                                                                                                                                         
+import { Heading } from "@/components/ui/heading";
 import {
   Accordion,
   AccordionContent,
@@ -43,7 +43,7 @@ export default function AdmissionEligibility({ data }) {
                     value={item?.id}
                     className="[--gap:10px_15px] lg:[--gap:15px_20px] 2xl:[--gap:20px_30px] 3xl:[--gap:25px_40px] w-full h-auto bg-linear-to-b from-[#FFF8EE] to-[#FFF3E0] border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden"
                   >
-                    <AccordionTrigger className="2xl:text-xl 3xl:text-[25px] leading-[1.1] font-semibold text-[#212121] w-full h-auto p-(--gap) items-center hover:no-underline [&>svg]:hidden! after:ml-3 after:text-lg after:font-bold after:content-['+'] after:content-text-inherit aria-expanded:after:content-['-']">
+                    <AccordionTrigger className="text-base lg:text-lg 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-semibold text-[#212121] w-full h-auto p-(--gap) items-center hover:no-underline [&>svg]:hidden! after:ml-3 after:text-lg after:font-bold after:content-['+'] after:content-text-inherit aria-expanded:after:content-['-']">
                       {item?.name}
                     </AccordionTrigger>
                     <AccordionContent>
@@ -57,10 +57,10 @@ export default function AdmissionEligibility({ data }) {
                             value={item?.title}
                             className="w-full h-auto bg-white rounded-[10px] 2xl:rounded-[15px] border border-[#E3E9EF] overflow-hidden hover:border-(--basecolor) hover:bg-(--basecolor2)/10 transition-colors duration-300"
                           >
-                            <AccordionTrigger className="text-sm 2xl:text-base 3xl:text-xl leading-[1.4] font-medium text-[#212121] w-full h-auto p-[0_15px] 2xl:p-[0_20px] 3xl:px-6.25 border-0 rounded-none overflow-hidden no-underline! flex items-center justify-between transition-colors duration-300 [&>svg]:hidden! after:ml-3 after:text-lg after:font-bold after:content-['+'] aria-expanded:after:content-['-']">
+                            <AccordionTrigger className="text-sm lg:text-base 3xl:text-xl leading-[1.4] font-medium text-[#212121] w-full h-auto p-[0_15px] 2xl:p-[0_20px] 3xl:px-6.25 border-0 rounded-none overflow-hidden no-underline! flex items-center justify-between transition-colors duration-300 [&>svg]:hidden! after:ml-3 after:text-lg after:font-bold after:content-['+'] aria-expanded:after:content-['-']">
                               <span className="w-full h-auto py-2.5 2xl:py-3.75 3xl:py-5 gap-1.75 2xl:gap-2.5 border-b-0 border-black/10 group-aria-expanded/accordion-trigger:border-b flex flex-col">
                                 <span>{item?.title}</span>
-                                <span className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] shrink-0 flex items-center gap-2">
+                                <span className="text-xs lg:text-base 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] shrink-0 flex items-center gap-2">
                                   {item?.level}
                                   {item?.duration && (
                                     <>
@@ -73,10 +73,10 @@ export default function AdmissionEligibility({ data }) {
                             </AccordionTrigger>
                             <AccordionContent>
                               <div className="w-full h-auto p-[10px_15px] 2xl:p-[15px_20px] 3xl:p-[20px_25px]">
-                                <div className="text-sm 2xl:text-base 3xl:text-xl leading-[1.2] font-medium text-[#212121] mb-2.5">
+                                <div className="text-sm lg:text-base 3xl:text-xl leading-[1.2] font-medium text-[#212121] mb-2.5">
                                   {item?.eligibility?.title || "Eligibility"}
                                 </div>
-                                <div className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.6] font-normal text-[#4A5565]">
+                                <div className="text-sm 3xl:text-lg leading-[1.6] font-normal text-[#4A5565]">
                                   {item?.eligibility?.description ||
                                     "Please refer to the programme-specific admission requirements."}
                                 </div>
