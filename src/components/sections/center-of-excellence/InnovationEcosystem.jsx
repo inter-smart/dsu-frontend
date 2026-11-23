@@ -57,8 +57,7 @@ function Counter({ end = 0, decimals = 0, duration = 2200, start = false }) {
 
 // fade + slide up
 const fadeUp = (inView) =>
-  `transition-all duration-1000 ease-out motion-reduce:transition-none ${
-    inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+  `transition-all duration-1000 ease-out motion-reduce:transition-none ${inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
   }`;
 
 // one media tile: image (next/image) or uploaded video (poster optional)
@@ -151,20 +150,17 @@ export default function InnovationEcosystem({ data }) {
                 <div
                   key={item?.id ?? index}
                   style={{ transitionDelay: `${index * 250}ms` }}
-                  className={`group relative h-[200px] overflow-hidden rounded-[8px] transition-[clip-path] duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:h-[260px] xl:h-[300px] 2xl:h-[341px] xl:rounded-[10px] ${
-                    index === 0 ? "flex-[632]" : "flex-[373]"
-                  } ${
-                    topInView
+                  className={`group relative h-[200px] overflow-hidden rounded-[8px] transition-[clip-path] duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:h-[260px] xl:h-[300px] 2xl:h-[341px] xl:rounded-[10px] ${index === 0 ? "flex-[632]" : "flex-[373]"
+                    } ${topInView
                       ? "[clip-path:inset(0_0_0_0)]"
                       : "[clip-path:inset(0_100%_0_0)]"
-                  }`}
+                    }`}
                 >
                   {/* slow settle from a slight zoom */}
                   <div
                     style={{ transitionDelay: `${index * 250}ms` }}
-                    className={`relative size-full transition-transform duration-[1600ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
-                      topInView ? "scale-100" : "scale-[1.15]"
-                    }`}
+                    className={`relative size-full transition-transform duration-[1600ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${topInView ? "scale-100" : "scale-[1.15]"
+                      }`}
                   >
                     <MediaItem
                       item={item}
@@ -190,7 +186,7 @@ export default function InnovationEcosystem({ data }) {
                 style={{ transitionDelay: `${index * 150}ms` }}
                 className={`relative lg:pl-[70px] xl:pl-[100px] 2xl:pl-[133px] lg:first:pl-0 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[75px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-black/10 lg:before:content-[''] lg:first:before:hidden dark:lg:before:bg-white/15 ${fadeUp(statsInView)}`}
               >
-                <div className="bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text cmn_Title font-bold leading-none text-transparent ">
+                <div className="bg-linear-to-r from-[#DC2626] to-[#F97316] !bg-clip-text !text-transparent [-webkit-text-fill-color:transparent] [&_*]:![-webkit-text-fill-color:transparent] [&_*]:!text-transparent cmn_Title font-bold leading-none w-fit">
                   <Counter
                     end={Number(stat.end) || 0}
                     decimals={Number(stat.decimals) || 0}

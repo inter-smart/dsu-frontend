@@ -34,7 +34,7 @@ export default function AICta({ data }) {
     const hasButtons = data?.button?.label?.trim() || data?.secondaryButton?.label?.trim();
 
     return (
-        <section className="relative overflow-hidden bg-[#0b0b14] py-[60px] sm:py-[80px] xl:py-[110px] 2xl:py-[140px] 3xl:py-[170px]">
+        <section className="relative overflow-hidden bg-[#0b0b14] py-[60px] sm:py-[70px] xl:py-[90px] 2xl:py-[100px] 3xl:py-[130px]">
             {/* background image + dark overlay so the text stays readable */}
             {data?.image?.url && (
                 <Image

@@ -16,7 +16,7 @@ export default function AIBenefits({ data }) {
         .map((entry) => entry.value);
 
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[100px] bg-linear-to-b from-[#F0F5FF] to-[#F6F9FC] dark:from-[#0f1011] dark:to-[#0f1011] transition-colors duration-300">
+        <section className="relative py-[40px] xl:py-[50px] 2xl:py-[60px] 3xl:py-[70px] bg-linear-to-b from-[#F0F5FF] to-[#F6F9FC] dark:from-[#0f1011] dark:to-[#0f1011] transition-colors duration-300">
             <div className="container">
 
                 {/* Heading (left) + paragraph (right) */}
