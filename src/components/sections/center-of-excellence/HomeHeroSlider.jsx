@@ -244,12 +244,12 @@ export default function HomeHeroSlider({ data }) {
                                 {/* Content, bottom left */}
                                 <div className="relative z-10 h-full">
                                     <div className="container h-full flex items-end pb-[30px] sm:pb-[40px] lg:pb-[40px] 2xl:pb-[50px] 3xl:pb-[70px]">
-                                        <div className="w-full max-w-[560px] sm:max-w-[700px] lg:max-w-[860px] 2xl:max-w-[1000px] 3xl:max-w-[1200px] text-white">
+                                        <div className="w-full max-w-[560px] sm:max-w-[800px] lg:max-w-[960px] 2xl:max-w-[1000px] 3xl:max-w-[1500px] text-white">
                                             {slide?.title && (
                                                 <h2
                                                     className={cn(
                                                         reveal,
-                                                        "delay-200 text-[28px] sm:text-[35px] xl:text-[45px] 2xl:text-[50px] 3xl:text-[60px] leading-[1.1] font-bold max-w-[350px] xl:max-w-[450px] 2xl:max-w-[550px] 3xl:max-w-[650px] text-white",
+                                                        "delay-200 text-[28px] sm:text-[35px] xl:text-[45px] 2xl:text-[50px] 3xl:text-[60px] leading-[1.1] font-bold max-w-[350px] xl:max-w-[650px] 2xl:max-w-[750px] 3xl:max-w-[850px] text-white",
                                                     )}
                                                 >
                                                     {withLineBreaks(slide.title)}

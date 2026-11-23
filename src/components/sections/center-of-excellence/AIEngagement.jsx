@@ -9,7 +9,7 @@ export default function AIEngagement({ data }) {
     const maxHeight = data?.maxHeight ?? 320;
 
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[100px] bg-white dark:bg-[#101010] transition-colors duration-300">
+        <section className="relative py-[40px] xl:py-[50px] 2xl:py-[60px] 3xl:py-[80px] bg-white dark:bg-[#101010] transition-colors duration-300">
             <div className="container">
                 {data?.heading && (
                     <h2 className="cmn_Title font-bold leading-[1.1] text-center text-[#212121] dark:text-white mb-10">
@@ -20,7 +20,7 @@ export default function AIEngagement({ data }) {
                 {rows.length > 0 && (
                     // scroll box: vertical scroll after maxHeight, horizontal scroll on small screens.
                     // data-lenis-prevent stops Lenis smooth scroll from hijacking the wheel over the box.
-                    <TableScrollBox className="h-[450px] overflow-auto">
+                    <TableScrollBox className="max-h-[450px] overflow-auto">
                         <table className="w-full min-w-[640px] border-separate border-spacing-0 text-[15px] xl:text-[17px] 2xl:text-[18px] border border-black">
                             <thead>
                                 <tr>

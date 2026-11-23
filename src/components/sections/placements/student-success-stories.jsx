@@ -256,7 +256,7 @@ function StoryCard({ story, variant }) {
                                     src={story.avatar || "/images/home-testimonial-avatar-1.jpg"}
                                     alt={story.name || "Student"}
                                     fill
-                                    className="object-cover"
+                                    className="object-cover !object-top"
                                 />
                             </div>
 

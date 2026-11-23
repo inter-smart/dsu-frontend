@@ -91,7 +91,7 @@ export default function IdeaToExecution({ data }) {
   const steps = data?.steps || [];
 
   return (
-    <section className="relative py-10 lg:py-14 2xl:py-[90px] 3xl:py-[110px]">
+    <section className="relative py-10 lg:py-[40px] 2xl:py-[60px] 3xl:py-[70px]">
       <div className="container">
         <div
           ref={topRef}

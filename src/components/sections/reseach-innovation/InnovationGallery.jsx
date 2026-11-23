@@ -1,10 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react"; // ADDED: useEffect
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+
+import { Fancybox } from "@fancyapps/ui"; // ADDED
+import "@fancyapps/ui/dist/fancybox/fancybox.css"; // ADDED
 
 import Image from "next/image";
 
@@ -20,6 +23,17 @@ export default function InnovationGallery({ data }) {
     const [prevEl, setPrevEl] = useState(null);
     const [nextEl, setNextEl] = useState(null);
 
+    // ADDED: bind Fancybox to the gallery tiles, clean up on unmount
+    useEffect(() => {
+        Fancybox.bind('[data-fancybox^="innovation-gallery"]', {
+            Hash: false,
+        });
+        return () => {
+            Fancybox.unbind('[data-fancybox^="innovation-gallery"]');
+            Fancybox.close();
+        };
+    }, []);
+
     if (!data) return null;
 
     const images = (Array.isArray(data?.images) ? data.images : []).filter(
@@ -27,14 +41,21 @@ export default function InnovationGallery({ data }) {
     );
     if (images.length === 0) return null;
 
-    const renderTile = (item, idx) => (
-        <div className={tileClass}>
+    // ADDED: third argument "group" (the 4 data-* attributes below are also new)
+    const renderTile = (item, idx, group) => (
+        <div
+            className={tileClass}
+            data-fancybox={group} // ADDED
+            data-src={item.url} // ADDED
+            data-type="image" // ADDED
+            data-caption={item.alternativeText || ""} // ADDED
+        >
             <Image
                 src={item.url}
                 alt={item.alternativeText || `Gallery image ${idx + 1}`}
                 fill
                 sizes="(max-width: 768px) 85vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 !object-top"
             />
         </div>
     );
@@ -59,7 +80,7 @@ export default function InnovationGallery({ data }) {
                     >
                         {images.map((item, idx) => (
                             <SwiperSlide key={item.id ?? idx} className="!h-auto">
-                                {renderTile(item, idx)}
+                                {renderTile(item, idx, "innovation-gallery-mobile")} {/* ADDED: group */}
                             </SwiperSlide>
                         ))}
                     </Swiper>
@@ -113,7 +134,9 @@ export default function InnovationGallery({ data }) {
                     className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-x-[20px] gap-y-[20px] lg:gap-y-[32px] 3xl:gap-x-[24px] 3xl:gap-y-[36px]"
                 >
                     {images.map((item, idx) => (
-                        <div key={item.id ?? idx}>{renderTile(item, idx)}</div>
+                        <div key={item.id ?? idx}>
+                            {renderTile(item, idx, "innovation-gallery-desktop")} {/* ADDED: group */}
+                        </div>
                     ))}
                 </div>
 

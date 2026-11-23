@@ -154,7 +154,7 @@ export default function WhoCanEngage({ data }) {
     setState({ start: s.isBeginning, end: s.isEnd, locked: s.isLocked });
 
   return (
-    <section className="relative overflow-hidden bg-[#F4F7FD] py-10 lg:py-14 2xl:py-[100px] 3xl:py-[120px] dark:bg-[#0a0a0a]">
+    <section className="relative overflow-hidden bg-[#F4F7FD] py-10 lg:py-[40px] 2xl:py-[50px] 3xl:py-[70px] dark:bg-[#0a0a0a]">
       <div className="container">
         {/* ───────── heading ───────── */}
         <div ref={headRef} className="mb-6 text-center lg:mb-9 2xl:mb-[45px]">
