@@ -29,7 +29,7 @@ export default function AIApplications({ data }) {
     );
 
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[100px] bg-white dark:bg-[#101010] transition-colors duration-300">
+        <section className="relative py-[40px] xl:py-[50px] 2xl:py-[60px] 3xl:py-[80px] bg-white dark:bg-[#101010] transition-colors duration-300">
             <div className="container">
 
                 {/* Heading (left) + paragraph (right) */}
