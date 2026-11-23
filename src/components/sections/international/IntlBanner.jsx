@@ -7,6 +7,12 @@ export default function IntlBanner({ data, formData }) {
     const { image, subtitle, title, button, scholarship } = data;
     const breadcrumb = data.breadcrumb || [];
 
+    // ADDED: contact details. Uses CMS fields if present, otherwise the values from the design
+    const phones = Array.isArray(data.phones) && data.phones.length
+        ? data.phones
+        : ["+91 9606022149", "+91 9606022150"];
+    const email = data.email || "international-admissions@dsu.edu.in";
+
     return (
         <section className="relative w-full overflow-hidden bg-black lg:min-h-screen flex items-end">
             {/* Background image + overlays */}
@@ -111,6 +117,53 @@ export default function IntlBanner({ data, formData }) {
                                 </div>
                             )}
                         </div>
+
+                        {/* ADDED: Phone + email row */}
+                        {/* {(phones.length > 0 || email) && ( */}
+                            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-[14px] font-medium text-white lg:text-[16px] 2xl:mt-[36px] 2xl:gap-x-6 2xl:text-[18px]">
+                                {phones.length > 0 && (
+                                    <div className="flex items-center gap-3">
+                                        {/* Phone icon */}
+                                        <svg className="size-[22px] shrink-0 text-[#FBBF24] 2xl:size-[26px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                            <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z" />
+                                        </svg>
+                                        {phones.map((phone, i) => (
+                                            <div key={phone} className="flex items-center gap-5 2xl:gap-6">
+                                                {i > 0 && (
+                                                    <span className="h-5 w-px bg-white/60" aria-hidden="true" />
+                                                )}
+                                                <a
+                                                    href={`tel:${String(phone).replace(/[^\d+]/g, "")}`}
+                                                    className="transition-opacity duration-300 hover:text-[#dc2626]"
+                                                >
+                                                    {phone}
+                                                </a>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+
+                                {phones.length > 0 && email && (
+                                    <span className="hidden h-5 w-px bg-white/60 sm:block" aria-hidden="true" />
+                                )}
+
+                                {email && (
+                                    <div className="flex items-center gap-3">
+                                        {/* Mail icon */}
+                                        <svg className="size-[24px] shrink-0 text-[#FBBF24] 2xl:size-[28px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                            <path d="M3 5h18a1 1 0 0 1 1 1v.51l-10 6.25L2 6.51V6a1 1 0 0 1 1-1zm-1 4.86V18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V9.86l-9.47 5.92a1 1 0 0 1-1.06 0L2 9.86z" />
+                                        </svg>
+                                        <a
+                                            href={`mailto:${email}`}
+                                            className="break-all transition-opacity duration-300 hover:text-[#dc2626]"
+                                        >
+                                            {email}
+                                        </a>
+                                    </div>
+                                )}
+                            </div>
+                        {/* )} */}
+                        {/* END ADDED */}
                     </div>
 
                     {/* Right: enquiry form (only when its section has content) */}
