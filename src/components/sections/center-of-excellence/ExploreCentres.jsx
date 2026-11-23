@@ -45,7 +45,7 @@ function RichText({ content }) {
   return typeof content === "string" ? (
     <div className="typography" dangerouslySetInnerHTML={{ __html: content }} />
   ) : (
-    <BlocksRenderer content={content} />
+    <BlocksRenderer content={content} className="text_1" />
   );
 }
 
@@ -168,7 +168,7 @@ function HighlightPanel({ highlight, className = "", style }) {
       className={`flex flex-col justify-center rounded-[8px] border border-[#9fa2a76b] bg-[#FFF8EE]/70 dark:bg-white/[0.03] ${className}`}
     >
       {highlight?.heading && (
-        <h3 className="text-[24px] font-bold leading-tight tracking-tight text-[#212121] md:text-[32px] xl:text-[44px] 2xl:text-[52px] 3xl:text-[58px] dark:text-white">
+        <h3 className="text-[24px] font-bold leading-tight tracking-tight text-[#212121] md:text-[28px] xl:text-[35px] 2xl:text-[45px] 3xl:text-[58px] dark:text-white">
           {highlight.heading}
         </h3>
       )}
@@ -266,7 +266,7 @@ export default function ExploreCentres({ data }) {
   const highlight = data?.highlight;
 
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-[#FFF7EB] to-[#FFF1E0] py-10 lg:py-16 2xl:py-[100px] 3xl:py-[120px] dark:from-[#0a0a0a] dark:to-[#111111]">
+    <section className="relative overflow-hidden bg-linear-to-b from-[#FFF7EB] to-[#FFF1E0] py-10 lg:py-12 2xl:py-[70px] 3xl:py-[80px] dark:from-[#0a0a0a] dark:to-[#111111]">
       <div className="container">
         {/* ───────── heading row ───────── */}
         <div
@@ -316,7 +316,7 @@ export default function ExploreCentres({ data }) {
               style={{
                 transitionDelay: `${Math.ceil(centres.length / 3) * 80 + 200}ms`,
               }}
-              className={`col-span-2 p-6 xl:p-[35px] 2xl:px-[60px] 2xl:py-[70px] ${fadeUp(gridInView)}`}
+              className={`col-span-2 p-6 xl:p-[25px] 2xl:px-[30px] 2xl:py-[50px] ${fadeUp(gridInView)}`}
             />
           )}
         </div>

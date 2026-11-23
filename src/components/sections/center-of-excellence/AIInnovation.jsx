@@ -24,7 +24,7 @@ export default function AIInnovation({ data }) {
         "size-[40px] xl:size-[44px] rounded-full border border-[#F15A24] flex items-center justify-center text-[#F15A24] transition-colors duration-300 hover:bg-[#F15A24] hover:text-white disabled:opacity-40 disabled:pointer-events-none";
 
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[100px] bg-[#FFF7EB] dark:bg-[#101010] transition-colors duration-300">
+        <section className="relative py-[40px] xl:py-[40px] 2xl:py-[70px] 3xl:py-[70px] bg-[#FFF7EB] dark:bg-[#101010] transition-colors duration-300">
             <div className="container">
 
                 {/* ───────── Part 1: heading + paragraph + stats ───────── */}
@@ -36,7 +36,7 @@ export default function AIInnovation({ data }) {
                             </h2>
                         )}
                         {data?.description && (
-                            <p className="text_1 3xl:text-[20px] leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:w-[48%] xl:w-[45%] 2xl:w-[42%] shrink-0">
+                            <p className="text_1 3xl:text-[20px]   text-[#4A5565] dark:text-[#9CA3AF] lg:w-[48%] xl:w-[45%] 2xl:w-[42%] shrink-0">
                                 {data.description}
                             </p>
                         )}
@@ -44,18 +44,18 @@ export default function AIInnovation({ data }) {
                 )}
 
                 {stats.length > 0 && (
-                    <ul className="list-none p-0 m-0 mt-[30px] xl:mt-[50px] py-[25px] xl:py-[40px] border-y border-black/10 dark:border-white/10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-[25px]">
+                    <ul className="list-none p-0 m-0 mt-[30px] 3xl:mt-[50px] py-[25px] xl:py-[40px] border-y border-black/10 dark:border-white/10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-[25px]">
                         {stats.map((stat, index) => (
                             <li
                                 key={stat?.id ?? index}
-                                className="pr-[15px] lg:pr-[10px] lg:pl-[30px] xl:pl-[50px] lg:border-l lg:border-black/10 dark:lg:border-white/10 lg:first:border-l-0 lg:first:pl-0"
+                                className="pr-[15px] lg:pr-[20px] lg:pl-[30px] 3xl:pl-[50px] lg:border-l lg:border-black/10 dark:lg:border-white/10 lg:first:border-l-0 lg:first:pl-0"
                             >
                                 <div className="flex items-baseline gap-[8px] leading-none">
-                                    <span className="text-[34px] sm:text-[40px] xl:text-[52px] 2xl:text-[60px] font-bold bg-linear-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
+                                    <span className="text-[34px] sm:text-[40px] 2xl:text-[52px] 3xl:text-[60px] font-bold bg-linear-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
                                         {stat?.value}
                                     </span>
                                     {stat?.unit && (
-                                        <span className="text-[14px] xl:text-[22px] font-bold text-[#F97316]">
+                                        <span className="text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[22px] font-bold text-[#F97316]">
                                             {stat.unit}
                                         </span>
                                     )}

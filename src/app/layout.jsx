@@ -10,6 +10,7 @@ import FileLinkTarget from "@/components/providers/file-link-target";
 import PreviewBanner from "@/components/layout/common/preview-banner";
 import ScrollReveal from "@/components/providers/scroll-reveal";
 import SidebarWidget from "@/components/layout/common/sidebar-widget";
+import PageLoader from "@/components/providers/PageLoader";
 
 const roboto = Roboto({
   variable: "--font-sans",
@@ -57,8 +58,10 @@ export default async function RootLayout({ children }) {
             <FileLinkTarget />
             <PreviewBanner />
           </SmoothScrollProvider>
+          <PageLoader />
         </ThemeProvider>
       </body>
     </html>
   );
 }
+  
