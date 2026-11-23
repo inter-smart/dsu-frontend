@@ -5,8 +5,7 @@ import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { hasContent } from "@/lib/has-content";
 
-export default function AboutWelcome({ data }) {
-  // Hooks first: the panel cards light up one after another (same look as hover) while on screen; hover takes over.
+export default function AboutWelcome({ data }) { 
   const panelRef = useRef(null);
   const [cycle, setCycle] = useState(0);
   const [inView, setInView] = useState(false);

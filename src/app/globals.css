@@ -356,7 +356,13 @@ html.lenis body {
     ol > li {
       @apply list-decimal text-(--text-color);
     }
-
+    ul {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+    ul li {
+      list-style: none;    
+    }
     caption {
       @apply pb-2 text-left text-[13px] font-medium opacity-80;
     }
