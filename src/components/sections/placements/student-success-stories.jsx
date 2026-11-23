@@ -2,11 +2,16 @@
 
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import React, { useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import "swiper/css";
 
-export default function StudentSuccessStories({ data, variant }) {
+export default function StudentSuccessStories({ data, variant, slug }) {
+    // life-dsu and the school pages (/schools/…, /ai-enabled/school-…) show the stories as a static grid; every other page keeps the slider
+    const pathname = usePathname() || "";
+    const isGrid = slug === "life-dsu" || pathname.startsWith("/schools/") || pathname.startsWith("/ai-enabled/school-");
   
     const otherSwiperRef = useRef(null); 
 
@@ -71,7 +76,7 @@ export default function StudentSuccessStories({ data, variant }) {
 
                         {/* Orange Arrow Navigation Buttons */}
                         {/* ADDED: relative z-10 so no other layer can sit on top of the buttons and swallow the tap */}
-                        <div className={`relative z-10 flex items-center gap-2 2xl:gap-1 shrink-0 ml-0 sm:ml-4 ${otherCanSlide ? "" : "hidden"}`}>
+                        <div className={`relative z-10 flex items-center gap-2 2xl:gap-1 shrink-0 ml-0 sm:ml-4 ${!isGrid && otherCanSlide ? "" : "hidden"}`}>
                             <button
                                 type="button"
                                 aria-label="Previous stories"
@@ -101,6 +106,13 @@ export default function StudentSuccessStories({ data, variant }) {
 
                     {/* Stories Swiper Carousel */}
                     <div className="w-full">
+                        {isGrid ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5">
+                                {stories?.map((story, idx) => (
+                                    <StoryCard key={story.id || idx} story={story} variant={variant} />
+                                ))}
+                            </div>
+                        ) : (
                         <Swiper
                             onSwiper={(swiper) => {
                                 otherSwiperRef.current = swiper;
@@ -141,70 +153,11 @@ export default function StudentSuccessStories({ data, variant }) {
                         >
                             {stories?.map((story, idx) => (
                                 <SwiperSlide key={story.id || idx} className="!h-auto flex">
-                                    <div className={`w-full h-full ${variant === "bg-gradient" ? "bg-white": "bg-[#F8FAFC]"}  dark:bg-[#151618] rounded-[4px] p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-md`}>
-                                        {/* Top Content */}
-                                        <div>
-                                            {/* Double Orange Quotation Marks */}
-                                            <div className="mb-8">
-                                                <svg width="51" height="41" viewBox="0 0 51 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M19.2246 20.2406H5.06016V20.2207C5.06016 16.326 6.99258 12.7201 10.2299 10.5586L19.115 4.63184C20.2805 3.85488 20.5893 2.29102 19.8123 1.12559C19.3242 0.398437 18.5273 0 17.7006 0C17.2225 0 16.7344 0.139453 16.2961 0.42832L7.41094 6.35508C2.7791 9.44297 0 14.6326 0 20.2207V21.2566V39.4652C0 40.0231 0.448242 40.4813 1.01602 40.4813H19.2246C19.7824 40.4813 20.2406 40.033 20.2406 39.4652V21.2566C20.2406 20.6889 19.7924 20.2406 19.2246 20.2406Z" fill="url(#paint0_linear_5391_105857)" />
-                                                    <path d="M49.5856 20.2406H35.4212V20.2207C35.4212 16.326 37.3536 12.7201 40.5909 10.5586L49.4761 4.63184C50.6415 3.85488 50.9503 2.29102 50.1733 1.12559C49.6853 0.398437 48.8884 0 48.0616 0C47.5835 0 47.0954 0.139453 46.6571 0.42832L37.772 6.35508C33.1202 9.45293 30.3511 14.6326 30.3511 20.2207V21.2566V39.4652C30.3511 40.0231 30.7993 40.4813 31.3671 40.4813H49.5856C50.1435 40.4813 50.6017 40.033 50.6017 39.4652V21.2566C50.6017 20.6889 50.1435 20.2406 49.5856 20.2406Z" fill="url(#paint1_linear_5391_105857)" />
-                                                    <defs>
-                                                        <linearGradient id="paint0_linear_5391_105857" x1="0" y1="20.2406" x2="20.2406" y2="20.2406" gradientUnits="userSpaceOnUse">
-                                                            <stop stopColor="#DC2626" />
-                                                            <stop offset="1" stopColor="#F97316" />
-                                                        </linearGradient>
-                                                        <linearGradient id="paint1_linear_5391_105857" x1="30.3511" y1="20.2406" x2="50.6017" y2="20.2406" gradientUnits="userSpaceOnUse">
-                                                            <stop stopColor="#DC2626" />
-                                                            <stop offset="1" stopColor="#F97316" />
-                                                        </linearGradient>
-                                                    </defs>
-                                                </svg>
-
-                                            </div>
-
-                                            {/* Story Title */}
-                                            <h4 className="cmn_Txt font-bold text-[#1F1F1F] dark:text-white leading-[1.3] mb-3">
-                                                {story.title}
-                                            </h4>
-
-                                            {/* Story Quote Text */}
-                                            <p className="text_1 text-[#64748B] dark:text-[#94A3B8]  ">
-                                                {story.quote}
-                                            </p>
-                                        </div>
-
-                                        {/* Bottom Author Row */}
-                                        <div className="pt-6 mt-8 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
-                                            <div className="flex gap-3 min-w-0">
-                                                {/* Student Avatar */}
-                                                <div className="relative w-[65px] h-[65px] rounded-lg overflow-hidden shrink-0 bg-neutral-200 dark:bg-neutral-700">
-                                                    <Image
-                                                        src={story.avatar || "/images/home-testimonial-avatar-1.jpg"}
-                                                        alt={story.name || "Student"}
-                                                        fill
-                                                        className="object-cover"
-                                                    />
-                                                </div>
-
-                                                {/* Student Information */}
-                                                <div className="min-w-0">
-                                                    <h5 className="text-[14px] sm:text-[14.5px] 2xl:text-[16px] 3xl:text-[20px] font-bold text-[#212121] dark:text-white leading-tight truncate mb-[3px]">
-                                                        {story.name}
-                                                    </h5>
-                                                    <p className="text-[11.5px] sm:text-[12px] text-[#212121] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate lg:text-[14px] xl:text-[14px] 2xl:text-[14px]">
-                                                        {story.role}
-                                                    </p>
-                                                    <p className="text-[11px] sm:text-[11.5px] text-[#212121] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate lg:text-[13.5px] xl:text-[13.5px] 2xl:text-[14px]">
-                                                        {story.degree}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <StoryCard story={story} variant={variant} />
                                 </SwiperSlide>
                             ))}
                         </Swiper>
+                        )}
                     </div>
                 </div>
             </div>
@@ -239,5 +192,110 @@ export default function StudentSuccessStories({ data, variant }) {
                 </div>
             )}
         </section>
+    );
+}
+
+// Quotes longer than this are clamped on the card and read in full in a popup
+const LONG_QUOTE = 220;
+
+function StoryCard({ story, variant }) {
+    const [open, setOpen] = useState(false);
+    const long = (story.quote?.length || 0) > LONG_QUOTE;
+    return (
+        <>
+                <div className={`w-full h-full ${variant === "bg-gradient" ? "bg-white": "bg-[#F8FAFC]"}  dark:bg-[#151618] rounded-[4px] p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-md`}>
+                    {/* Top Content */}
+                    <div>
+                        {/* Double Orange Quotation Marks */}
+                        <div className="mb-8">
+                            <svg width="51" height="41" viewBox="0 0 51 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.2246 20.2406H5.06016V20.2207C5.06016 16.326 6.99258 12.7201 10.2299 10.5586L19.115 4.63184C20.2805 3.85488 20.5893 2.29102 19.8123 1.12559C19.3242 0.398437 18.5273 0 17.7006 0C17.2225 0 16.7344 0.139453 16.2961 0.42832L7.41094 6.35508C2.7791 9.44297 0 14.6326 0 20.2207V21.2566V39.4652C0 40.0231 0.448242 40.4813 1.01602 40.4813H19.2246C19.7824 40.4813 20.2406 40.033 20.2406 39.4652V21.2566C20.2406 20.6889 19.7924 20.2406 19.2246 20.2406Z" fill="url(#paint0_linear_5391_105857)" />
+                                <path d="M49.5856 20.2406H35.4212V20.2207C35.4212 16.326 37.3536 12.7201 40.5909 10.5586L49.4761 4.63184C50.6415 3.85488 50.9503 2.29102 50.1733 1.12559C49.6853 0.398437 48.8884 0 48.0616 0C47.5835 0 47.0954 0.139453 46.6571 0.42832L37.772 6.35508C33.1202 9.45293 30.3511 14.6326 30.3511 20.2207V21.2566V39.4652C30.3511 40.0231 30.7993 40.4813 31.3671 40.4813H49.5856C50.1435 40.4813 50.6017 40.033 50.6017 39.4652V21.2566C50.6017 20.6889 50.1435 20.2406 49.5856 20.2406Z" fill="url(#paint1_linear_5391_105857)" />
+                                <defs>
+                                    <linearGradient id="paint0_linear_5391_105857" x1="0" y1="20.2406" x2="20.2406" y2="20.2406" gradientUnits="userSpaceOnUse">
+                                        <stop stopColor="#DC2626" />
+                                        <stop offset="1" stopColor="#F97316" />
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_5391_105857" x1="30.3511" y1="20.2406" x2="50.6017" y2="20.2406" gradientUnits="userSpaceOnUse">
+                                        <stop stopColor="#DC2626" />
+                                        <stop offset="1" stopColor="#F97316" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+
+                        </div>
+
+                        {/* Story Title */}
+                        <h4 className="cmn_Txt font-bold text-[#1F1F1F] dark:text-white leading-[1.3] mb-3">
+                            {story.title}
+                        </h4>
+
+                        {/* Story Quote Text */}
+                        <p className={`text_1 text-[#64748B] dark:text-[#94A3B8] ${long ? "line-clamp-5" : ""}`}>
+                            {story.quote}
+                        </p>
+                        {long && (
+                            <button
+                                type="button"
+                                onClick={() => setOpen(true)}
+                                className="mt-3 inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#DC2626] transition-colors hover:text-[#F97316] focus-visible:rounded-[2px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#DC2626] 2xl:text-[15px]"
+                            >
+                                Read more
+                                <span aria-hidden="true">→</span>
+                                <span className="sr-only"> of {story.name || "this"} story</span>
+                            </button>
+                        )}
+                    </div>
+
+                    {/* Bottom Author Row */}
+                    <div className="pt-6 mt-8 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
+                        <div className="flex gap-3 min-w-0">
+                            {/* Student Avatar */}
+                            <div className="relative w-[65px] h-[65px] rounded-lg overflow-hidden shrink-0 bg-neutral-200 dark:bg-neutral-700">
+                                <Image
+                                    src={story.avatar || "/images/home-testimonial-avatar-1.jpg"}
+                                    alt={story.name || "Student"}
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+
+                            {/* Student Information */}
+                            <div className="min-w-0">
+                                <h5 className="text-[14px] sm:text-[14.5px] 2xl:text-[16px] 3xl:text-[20px] font-bold text-[#212121] dark:text-white leading-tight truncate mb-[3px]">
+                                    {story.name}
+                                </h5>
+                                <p className="text-[11.5px] sm:text-[12px] text-[#212121] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate lg:text-[14px] xl:text-[14px] 2xl:text-[14px]">
+                                    {story.role}
+                                </p>
+                                <p className="text-[11px] sm:text-[11.5px] text-[#212121] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate lg:text-[13.5px] xl:text-[13.5px] 2xl:text-[14px]">
+                                    {story.degree}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {long && (
+                <Dialog open={open} onOpenChange={setOpen}>
+                    <DialogContent className="z-[999999] flex max-w-[720px] flex-col !overflow-hidden bg-linear-to-b from-[#FFF9F2] to-[#FFF3E0] dark:from-[#1c1815] dark:to-[#131416]">
+                        <div className="flex shrink-0 items-center gap-3 border-b border-black/10 pb-4 pr-8 dark:border-white/10">
+                            <div className="relative size-[56px] shrink-0 overflow-hidden rounded-lg bg-neutral-200 dark:bg-neutral-700">
+                                <Image src={story.avatar || "/images/home-testimonial-avatar-1.jpg"} alt={story.name || "Student"} fill className="object-cover" />
+                            </div>
+                            <div className="min-w-0">
+                                <DialogTitle className="!m-0 text-[16px] font-bold leading-tight text-[#212121] dark:text-white 2xl:text-[18px]">{story.name}</DialogTitle>
+                                {story.role && <p className="!mb-0 !mt-1 text-[13px] leading-tight text-[#212121] dark:text-[#CBD5E1] 2xl:text-[14px]">{story.role}</p>}
+                                {story.degree && <p className="!mb-0 !mt-1 text-[13px] leading-tight text-[#212121] dark:text-[#CBD5E1] 2xl:text-[14px]">{story.degree}</p>}
+                            </div>
+                        </div>
+                        {/* only the story scrolls; the author header stays in view */}
+                        <div data-lenis-prevent className="-mr-3 min-h-0 flex-1 overflow-y-auto overscroll-contain pr-3 sm:-mr-4 sm:pr-4">
+                            {story.title && <h4 className="cmn_Txt mb-3 font-bold leading-[1.3] text-[#1F1F1F] dark:text-white">{story.title}</h4>}
+                            <p className="text_1 whitespace-pre-line text-[#475569] dark:text-[#94A3B8]">{story.quote}</p>
+                        </div>
+                    </DialogContent>
+                </Dialog>
+            )}
+        </>
     );
 }

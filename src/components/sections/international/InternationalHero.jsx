@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Grip } from "lucide-react";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // One paragraph: a plain string, or an array of strings and { bold } parts
 function Paragraph({ content }) {
@@ -66,7 +67,7 @@ export default function InternationalHero({ data }) {
                     {/* Text */}
                     <div className="2xl:pr-[40px]">
                         <h1 className="font-bold leading-[1.12] tracking-[-0.01em] text-[#1a1a1a] cmn_Title">
-                            {title}
+                            {withLineBreaks(title)}
                         </h1>
 
                         <div className="mt-5 space-y-4 2xl:mt-[40px] 2xl:max-w-[790px] 2xl:space-y-[29px]">

@@ -24,43 +24,43 @@ const sidebarMenu = [
   },
   {
     label: "Collections",
-    slug: "/ai-enabled/library/collections",
+    slug: "/library/collection",
   },
   {
     label: "E Resources",
-    slug: "/ai-enabled/library/e-resources",
+    slug: "/library/E-resource",
   },
   {
     label: "Anti-Plagiarism Tools",
-    slug: "/ai-enabled/library/anti-plagiarism-tools",
+    slug: "/library/Anti-Plagiarism",
   },
   {
     label: "Corporate Membership",
-    slug: "/ai-enabled/library/corporate-membership",
+    slug: "/library/corporate-membership",
   },
   {
     label: "Useful URL’s",
-    slug: "/ai-enabled/library/useful-urls",
+    slug: "/library/useful-urls",
   },
   {
     label: "Brochure",
-    slug: "/ai-enabled/library/brochure",
+    slug: "/library/brochure",
   },
   {
     label: "Constituent Libraries",
-    slug: "/ai-enabled/library/constituent-libraries",
+    slug: "/library/constituent-libraries",
   },
   {
     label: "Rules & Regulations",
-    slug: "/ai-enabled/library/rules-regulations",
+    slug: "/library/rules-regulations",
   },
   {
     label: "Gallery",
-    slug: "/ai-enabled/library/gallery",
+    slug: "/library/gallery",
   },
   {
     label: "Ask us",
-    slug: "/ai-enabled/library/ask-us",
+    slug: "/library/ask-us",
   },
 ];
 
@@ -206,7 +206,7 @@ export default function LibrarySidebar({
                               className="w-full flex items-center justify-between gap-2 py-[6px] 2xl:py-[8px] pl-[15px] text-left cursor-pointer group/sub"
                             >
                               <span
-                                className={`text_1 text-[13px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px] transition-colors duration-300 group-hover/sub:text-[#F97316] ${
+                                className={`text_1 text-[16px] xl:text-[16px] 2xl:text-[16px] 3xl:text-[18px] transition-colors duration-300 group-hover/sub:text-[#F97316] ${
                                   isSubActive
                                     ? "text-[#F97316] font-semibold"
                                     : "text-[#212121]/80"
@@ -220,7 +220,7 @@ export default function LibrarySidebar({
                                   active={isSubActive}
                                   className="group-hover/sub:translate-x-[2px]"
                                   pathClassName="group-hover/sub:fill-[#F97316] group-hover/sub:stroke-[#F97316]"
-                                />
+                                  />
                               </span>
                             </button>
                           </li>

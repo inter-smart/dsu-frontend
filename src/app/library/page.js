@@ -2,21 +2,11 @@ import InnerHero from "@/components/layout/common/InnerHero";
 import AboutLibrary from "@/components/sections/library/About-Library";
 
 const local_data = {
-    id: 24,
-    documentId: "a67zp5r21a35cb8qlzrjp54s",
-    createdAt: "2026-06-05T05:56:45.609Z",
-    updatedAt: "2026-06-11T06:26:08.249Z",
-    publishedAt: "2026-06-11T06:26:08.337Z",
-    seo: {
-        id: 21,
-        metaTitle: "Overview page title",
-        metaDescription: "Overview page description ",
-        canonicalUrl: null,
-    },
+    
     hero: {
         id: 25,
         heroMedia: {
-            alternativeText: "Overview page title",
+            alternativeText: "library page title",
             mime: "image/jpg",
             // if video - mime: "video/mp4",
             url: "/images/academic-banner.jpg",

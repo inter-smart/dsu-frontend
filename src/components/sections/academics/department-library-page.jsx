@@ -1,3 +1,4 @@
+import FlexibleSections from "@/components/flexible/FlexibleSections";
 import SchoolTabShell from "@/components/sections/academics/school-tab-shell";
 import LibraryServices from "@/components/sections/ai-enabled/library/library-services";
 import LibraryDownloads from "@/components/sections/ai-enabled/library/library-download";
@@ -22,6 +23,8 @@ export async function libraryPageMetadata(schoolSlug, departmentSlug, pageSlug) 
 function Template({ page, menu, departmentSlug }) {
     const content = page.content ?? {};
     switch (page.template) {
+        case "flexible-page":
+            return <FlexibleSections sections={page.sections} menu={menu} libraryLayout />;
         case "services":
             return <LibraryServices data={adapt.libraryServicesContent(content)} menu={menu} />;
         case "downloads":

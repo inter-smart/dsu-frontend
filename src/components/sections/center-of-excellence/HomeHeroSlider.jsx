@@ -1,4 +1,5 @@
 "use client";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -251,7 +252,7 @@ export default function HomeHeroSlider({ data }) {
                                                         "delay-200 text-[28px] sm:text-[35px] xl:text-[45px] 2xl:text-[50px] 3xl:text-[60px] leading-[1.1] font-bold max-w-[350px] xl:max-w-[450px] 2xl:max-w-[550px] 3xl:max-w-[650px] text-white",
                                                     )}
                                                 >
-                                                    {slide.title}
+                                                    {withLineBreaks(slide.title)}
                                                 </h2>
                                             )}
                                             {slide?.description && (

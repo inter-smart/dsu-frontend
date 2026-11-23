@@ -89,12 +89,13 @@ const loadDynamicItems = () => {
     admissionsPromise = getAdmissions().then((entries) =>
       (entries || [])
         // the Programme entry is the static "Programme" item below, not a second menu item
-        .filter((e) => e.slug && e.template !== "programme")
+        .filter((e) => e.slug)
         .map((e) => ({
           label: e.menuLabel || e.title,
           href: `/admission/${e.slug}`,
           slug: e.slug,
           template: e.template,
+          order: typeof e.menuOrder === "number" ? e.menuOrder : null,
         })),
     );
   }
@@ -106,20 +107,32 @@ const templateRank = (item) => {
   return rank === -1 ? TEMPLATE_ORDER.length : rank;
 };
 
-// Overview tab goes first (before Programme); the rest follow TEMPLATE_ORDER
-// (stable sort, so entries sharing a template keep CMS order).
-// Prefer the "overview" slug, since more than one entry may use the overview template.
-const buildMenuItems = (dynamicItems) => {
+// Default order: Overview, Programme, then TEMPLATE_ORDER (stable sort, so entries
+// sharing a template keep CMS order). Prefer the "overview" slug, since more than
+// one entry may use the overview template.
+const buildDefaultOrder = (dynamicItems) => {
   const overview =
     dynamicItems.find((item) => item.slug === "overview") ||
     dynamicItems.find((item) => item.template === "overview");
+  const programme = dynamicItems.find((item) => item.template === "programme");
   const others = dynamicItems
-    .filter((item) => item !== overview)
+    .filter((item) => item !== overview && item !== programme)
     .sort((a, b) => templateRank(a) - templateRank(b));
   return [
     ...(overview ? [overview] : []),
-    ...STATIC_ITEMS_BEFORE,
+    ...(programme ? [programme] : STATIC_ITEMS_BEFORE),
     ...others,
+  ];
+};
+
+// Entries with a "Menu Order" set in the CMS come first, lowest number first;
+// the rest follow in the default order (stable sort keeps it).
+const buildMenuItems = (dynamicItems) => {
+  const hasOrder = (item) => typeof item.order === "number";
+  const defaults = buildDefaultOrder(dynamicItems);
+  return [
+    ...defaults.filter(hasOrder).sort((a, b) => a.order - b.order),
+    ...defaults.filter((item) => !hasOrder(item)),
   ];
 };
 

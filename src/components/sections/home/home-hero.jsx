@@ -11,6 +11,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { buttonVariants } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
 import LazyVideo from "@/components/ui/lazy-video";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Only the first slide is the page <h1>; later slides use a <p> to avoid several h1s.
 function SlideTitle({ first, ...props }) {
@@ -162,7 +163,7 @@ export default function HomeHero({ data }) {
                       </div>
                       )}
                       <SlideTitle first={slideIndex === 0} className="text-3xl sm:text-[34px] lg:text-[40px] 2xl:text-5xl 3xl:text-6xl max-w-[500px] 2xl:max-w-[615px] leading-[1.1] font-bold text-white mb-5 sm:mb-3.75 2xl:mb-5 3xl:mb-6.25">
-                        {item?.title}
+                        {withLineBreaks(item?.title)}
                       </SlideTitle>
                       <div className="text-sm lg:text-base 2xl:text-lg 3xl:text-2xl leading-[1.1] font-normal text-white">
                         {item?.description?.text}

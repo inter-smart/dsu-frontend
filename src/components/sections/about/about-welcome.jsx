@@ -5,8 +5,7 @@ import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { hasContent } from "@/lib/has-content";
 
-export default function AboutWelcome({ data }) {
-  // Hooks first: the panel cards light up one after another (same look as hover) while on screen; hover takes over.
+export default function AboutWelcome({ data }) { 
   const panelRef = useRef(null);
   const [cycle, setCycle] = useState(0);
   const [inView, setInView] = useState(false);
@@ -57,9 +56,10 @@ export default function AboutWelcome({ data }) {
               >
                 <div className="xl:max-w-[350px] 2xl:max-w-[420px] 3xl:max-w-[520px]">
                   {data?.title && (
-                    <h2 className="mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white">
-                      {data.title}
-                    </h2>
+                    <h2
+                      className="mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white"
+                      dangerouslySetInnerHTML={{ __html: data.title }}
+                    />
                   )}
 
                   {Array.isArray(data?.description) &&
@@ -152,7 +152,7 @@ export default function AboutWelcome({ data }) {
                       data-reveal-stagger
                       onMouseEnter={() => setHovered(true)}
                       onMouseLeave={() => setHovered(false)}
-                      className="flex flex-col gap-[5px] lg:gap-[8px] xl:gap-[10px] 3xl:gap-[15px] max-w-[75%] w-full"
+                      className="flex flex-col gap-[5px] lg:gap-[8px] xl:gap-[10px] 3xl:gap-[15px] max-w-[45%] xl:max-w-[70%] w-full"
                     >
                       {panelItems.map((item, id) => (
                         <div

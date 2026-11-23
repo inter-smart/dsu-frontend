@@ -6,10 +6,10 @@ export default function AdmissionHostelFee({ data }) {
     <section className="w-full h-auto py-10 sm:py-[50px_60px] lg:py-[60px_70px] 2xl:py-[70px_90px] 3xl:py-[80px_110px] bg-linear-to-br from-[#EFF6FF] to-[#F9FAFB] block">
       <div className="container">
         <div className="w-full h -auto block mb-5 sm:mb-7.5 2xl:mb-7.5 3xl:mb-10">
-          <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-3.75">
+          <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-3.75 cmn_Title">
             {data?.title}
           </Heading>
-          <Text>{data?.description}</Text>
+          <Text className="text_1">{data?.description}</Text>
         </div>
         <div className="w-full h-auto gap-2.5 2xl:gap-3.75 3xl:gap-5 grid sm:grid-cols-2">
           {data?.hostelFees?.map((item) => (
@@ -28,7 +28,7 @@ export default function AdmissionHostelFee({ data }) {
                   <div className="text-lg 2xl:text-[22px] 3xl:text-[28px] leading-[1.1] font-semibold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit">
                     {item?.feeValue}
                   </div>
-                  <div className="text-sm 3xl:text-base leading-[1.1] font-normal text-[#4A5565]">
+                  <div className="text_1 leading-[1.1] font-normal text-[#4A5565]">
                     {item?.title}
                   </div>
                 </div>
@@ -36,10 +36,10 @@ export default function AdmissionHostelFee({ data }) {
                   {item?.hostelFeeDetails?.map((detail) => (
                     <div key={detail?.id} className="w-full h-auto">
                       <div className="w-full h-full p-[10px_15px] bg-linear-to-b from-[#FFF8EE] to-[#FFF3E0] rounded-md 2xl:rounded-[10px] gap-1.25 overflow-hidden flex flex-col">
-                        <div className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-[#212121]">
+                        <div className="text_1 leading-[1.1] font-medium text-[#212121]">
                           {detail?.title}
                         </div>
-                        <div className="text-[13px] 2xl:text-sm 3xl:text-base leading-[1.1] font-normal text-[#4A5565]">
+                        <div className="text_1 font-normal text-[#4A5565]">
                           {detail?.value}
                         </div>
                       </div>

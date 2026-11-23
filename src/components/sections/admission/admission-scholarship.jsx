@@ -26,10 +26,10 @@ export default function AdmissionScholarship({ data }) {
     <section className="w-full h-auto py-10 sm:py-12.5 lg:py-[70px_60px] 2xl:py-[80px_70px] 3xl:py-[110px_90px] block">
       <div className="container">
         <div className="w-full h -auto block mb-5 sm:mb-6.25 2xl:mb-7.5 3xl:mb-10">
-          <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-5">
+          <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-5 cmn_Title">
             {data?.title}
           </Heading>
-          <Text>{data?.description}</Text>
+          <Text className="text_1">{data?.description}</Text>
         </div>
         <div className="w-full h-auto pb-7.5 sm:pb-10 lg:pb-12.5 2xl:pb-15 3xl:pb-18.75 mb-7.5 sm:mb-10 lg:mb-15 2xl:mb-17.5 3xl:mb-22.5 border-b border-black/30 grid grid-cols-1 gap-2.5 lg:gap-3.75 3xl:gap-5 lg:grid-cols-2">
           <div className="w-full h-full p-[20px_15px] sm:p-[25px_15px] 2xl:p-[30px_20px] rounded-md 2xl:rounded-[10px] border border-black/10 overflow-hidden block">

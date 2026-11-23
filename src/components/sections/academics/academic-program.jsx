@@ -38,8 +38,16 @@ export default function AcademicProgram({ data, variant }) {
                                     <div className="text-[14px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] 3xl:text-[28px] font-bold bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent ">{item.label}</div>
                                 </div>
                             )}
-                            {item.description && (
-                                <p className="lg:max-w-[98%] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.description}</p>
+                            {Array.isArray(item.description) ? (
+                                item.description.length > 0 && (
+                                    <div className="lg:max-w-[98%] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                        <BlocksRenderer content={item.description} />
+                                    </div>
+                                )
+                            ) : (
+                                item.description && (
+                                    <p className="lg:max-w-[98%] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.description}</p>
+                                )
                             )}
                             <div className={`flex flex-wrap ${item.badge || item.label || item.description ? "mt-[30px]" : ""}`}>
                                 {item.programs?.map((program, idx) => (

@@ -27,20 +27,20 @@ export default function AdmissionSeatcapacity({ data }) {
                     )}
 
                     {description?.length > 0 && (
-                        <div className="typography mt-2.5 sm:mt-3 text-[13px] sm:text-[14px] xl:text-[15px] 3xl:text-[17px] text-[#6B7280] dark:text-[#9CA3AF]  leading-relaxed">
+                        <div className="typography mt-2.5 sm:mt-3 text_1 text-[#6B7280] dark:text-[#9CA3AF]  leading-relaxed">
                             {Array.isArray(description) ? (
                                 <BlocksRenderer
                                     content={description}
                                     blocks={{
                                         paragraph: ({ children }) => (
-                                            <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                            <p className="!my-0 !text-inherit leading-relaxed text_1">
                                                 {children}
                                             </p>
                                         ),
                                     }}
                                 />
                             ) : (
-                                <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                <p className="!my-0 !text-inherit leading-relaxed text_1">
                                     {description}
                                 </p>
                             )}
@@ -54,14 +54,14 @@ export default function AdmissionSeatcapacity({ data }) {
                                     content={note}
                                     blocks={{
                                         paragraph: ({ children }) => (
-                                            <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                            <p className="!my-0 !text-inherit leading-relaxed text_1">
                                                 {children}
                                             </p>
                                         ),
                                     }}
                                 />
                             ) : (
-                                <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                                <p className="!my-0 !text-inherit leading-relaxed text_1">
                                     {note}
                                 </p>
                             )}

@@ -171,6 +171,7 @@ import IntlLeadersSection from "@/components/sections/international/intl-leaders
 import IntlLinkCardsSection from "@/components/sections/international/intl-link-cards-section";
 import IntlPartnersSection from "@/components/sections/international/intl-partners-section";
 import IntlTabbedGallery from "@/components/sections/gallery/gallery";
+import IntlGallerySection from "@/components/sections/international/intl-gallery-section";
 import IntlAccordionSection from "@/components/sections/international/intl-accordion-section";
 import TeamSection from "@/components/sections/placements/Team-section";
 import IntlTextCTASection from "../sections/international/IntlTextCTASection";
@@ -216,17 +217,17 @@ function adapted(Component, adapter) {
 }
 
 // Library landing section; the side menu is the flexible page's own Sidebar links
-function libraryOverview({ data, menu }) {
+function libraryOverview({ data, menu, embedded }) {
     const props = adapt.librarySection(data);
-    return props ? <LibraryOverview data={props} menu={menu || []} /> : null;
+    return props ? <LibraryOverview data={props} menu={menu || []} embedded={embedded} /> : null;
 }
 
 // Library sub-page templates as sections (same components as the Library sub-pages); the side menu is the
 // flexible page's own Sidebar links
 function libraryTemplate(Component, adapter) {
-    return function LibraryTemplate({ data, menu }) {
+    return function LibraryTemplate({ data, menu, embedded }) {
         const props = adapter(data);
-        return props ? <Component data={props} menu={menu || []} /> : null;
+        return props ? <Component data={props} menu={menu || []} embedded={embedded} /> : null;
     };
 }
 
@@ -275,7 +276,7 @@ const flexibleRegistry = {
 
   // career-development (src/app/placement/[slug]/page.js)
   "placement.career-overview-section": { Component: CareerPlacement },
-  "placement.career-key-focus-section": { Component: KeyFocus },
+  "placement.career-key-focus-section": { Component: KeyFocus, flow: true },
   "placement.career-goal-section": { Component: CareerGoal },
   "placement.career-campus-drive-section": { Component: CampusDrives },
   "placement.career-professional-section": { Component: ProfessionalCertification },
@@ -393,12 +394,12 @@ const flexibleRegistry = {
   "department.engagement-section": { Component: adapted(AiRecentClinic, adapt.recentEngagementSection) },
   "department.partner-with-us-section": { Component: adapted(AiPartnerwithus, adapt.partnerWithUsSection) },
   "department.chapters-section": { Component: adapted(AiAcademicChapters, adapt.chaptersSection) },
-  "department.library-section": { Component: libraryOverview },
-  "department.library-services-template": { Component: libraryTemplate(LibraryServices, adapt.libraryServicesContent) },
-  "department.library-files-template": { Component: libraryTemplate(LibraryDownloads, adapt.libraryFilesContent) },
-  "department.library-automation-template": { Component: libraryTemplate(LibraryAutomation, adapt.libraryAutomationContent) },
-  "department.library-faqs-template": { Component: libraryTemplate(LibraryFaq, adapt.libraryFaqsContent) },
-  "department.library-gallery-template": { Component: libraryTemplate(LibraryGallery, adapt.libraryGalleryContent) },
+  "department.library-section": { Component: libraryOverview, library: true },
+  "department.library-services-template": { Component: libraryTemplate(LibraryServices, adapt.libraryServicesContent), library: true },
+  "department.library-files-template": { Component: libraryTemplate(LibraryDownloads, adapt.libraryFilesContent), library: true },
+  "department.library-automation-template": { Component: libraryTemplate(LibraryAutomation, adapt.libraryAutomationContent), library: true },
+  "department.library-faqs-template": { Component: libraryTemplate(LibraryFaq, adapt.libraryFaqsContent), library: true },
+  "department.library-gallery-template": { Component: libraryTemplate(LibraryGallery, adapt.libraryGalleryContent), library: true },
   "department.placement-collaborations-section": { Component: AcademicCollaboration },
   "department.placement-partners-section": { Component: AcademicPartners },
 
@@ -472,7 +473,7 @@ const flexibleRegistry = {
   "international.leaders-section": { Component: IntlLeadersSection },
   "international.link-cards-section": { Component: IntlLinkCardsSection },
   "international.partners-section": { Component: IntlPartnersSection },
-  "international.gallery": { Component: IntlTabbedGallery },
+  "international.gallery": { Component: IntlGallerySection },
   // standalone gallery page (src/app/gallery/page.js)
   "gallery.gallery-section": { Component: IntlTabbedGallery },
   "international.accordion-section": { Component: IntlAccordionSection },
@@ -480,10 +481,10 @@ const flexibleRegistry = {
   "international.IntlTextCTASection": { Component: IntlTextCTASection }, // legacy key
 
   // Pdf Reports pages: one PDF in an iframe, or a list of PDFs
-  "pdf-report.reports-section": { Component: PdfReports },
+  "pdf-report.reports-section": { Component: PdfReports, flow: true },
 
-  // Common sections (every flexible page)
-  "common.title-description": { Component: TitleDescription },
+  // Common sections (every flexible page); `flow` = shared tight vertical spacing (see FlexibleSections)
+  "common.title-description": { Component: TitleDescription, flow: true },
   "common.committee": { Component: Committee },
   "common.gallery": { Component: CommonTabGallery },
   // centres of excellence listing (src/app/center-of-excellence/page.js)
@@ -552,5 +553,15 @@ const flexibleRegistry = {
   // department industry connect (src/components/sections/academics/department-page.jsx)
   "department.industry-engagement-section": { Component: AiIndustryEngagement },
 };
+
+// Spacing: every section is `flow` (shared tight vertical padding, see FlexibleSections) so stacked sections
+// don't pile up big gaps, except the designed landing-page sections, heroes/banners and the large school /
+// department blocks, which keep their own padding. An entry can still set `flow` itself to override this.
+const KEEP_OWN_SPACING =
+  /^(home|about|ai-first|nvidia|sii|isv|school|department|coe)\.|^shared\.|hero|banner|^international\.(about|awards|courses|innovation|instructions|admission-process|enquiry-form|text-cta|IntlTextCTASection)$/i;
+
+for (const [key, entry] of Object.entries(flexibleRegistry)) {
+  if (entry.flow === undefined) entry.flow = !KEEP_OWN_SPACING.test(key);
+}
 
 export default flexibleRegistry;

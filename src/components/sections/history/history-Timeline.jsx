@@ -9,14 +9,25 @@ import "swiper/css/thumbs";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import { Thumbs, FreeMode, Navigation, EffectFade } from "swiper/modules";
+import { Thumbs, FreeMode, EffectFade } from "swiper/modules";
 
 export default function HistoryTimeline({ data }) {
   const decades = data?.decades || [];
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const timelineRef = useRef(null); // ADDED
+  const timelineSwiperRef = useRef(null);
   const lenis = useLenis(); // ADDED
+
+  const navigateDecades = (direction) => {
+    const nextIndex = activeIndex + direction;
+    if (nextIndex < 0 || nextIndex >= decades.length) return;
+
+    timelineSwiperRef.current?.slideTo(nextIndex);
+    if (thumbsSwiper && !thumbsSwiper.destroyed) {
+      thumbsSwiper.slideTo(nextIndex);
+    }
+  };
 
   // ADDED: when the timeline list is already at its top (scrolling up) or bottom (scrolling down),
   // pass the wheel to the page so the page keeps scrolling instead of getting stuck.
@@ -82,7 +93,7 @@ export default function HistoryTimeline({ data }) {
           <h2 className="cmn_Title">
             {data?.title || "Our History of Timeline"}
           </h2>
-          <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+          <p className="text_1 ">
             {data?.subtitle ||
               "The Dayananda Sagar Schools and Colleges of Science, Arts and Commerce are pioneering institutions"}
           </p>
@@ -116,6 +127,8 @@ export default function HistoryTimeline({ data }) {
           {/* Prev Navigation Button */}
           <button
             type="button"
+            onClick={() => navigateDecades(-1)}
+            disabled={activeIndex === 0}
             className="thumb-prev-btn w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white dark:bg-[#18191B] border border-[#FDE6E0] dark:border-white/10 shadow-sm flex items-center justify-center text-[#212121] dark:text-white hover:bg-[#EA580C] hover:text-white hover:border-[#EA580C] transition-all cursor-pointer shrink-0 z-20 disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Previous Decade"
           >
@@ -139,10 +152,6 @@ export default function HistoryTimeline({ data }) {
               onSwiper={setThumbsSwiper}
               watchSlidesProgress={true}
               freeMode={true}
-              navigation={{
-                prevEl: ".thumb-prev-btn",
-                nextEl: ".thumb-next-btn",
-              }}
               slidesPerView={3.2}
               spaceBetween={0}
               breakpoints={{
@@ -150,7 +159,7 @@ export default function HistoryTimeline({ data }) {
                 640: { slidesPerView: 5.5 },
                 1024: { slidesPerView: 7 },
               }}
-              modules={[Thumbs, FreeMode, Navigation]}
+              modules={[Thumbs, FreeMode]}
               className="w-full"
             >
               {decades.map((decade, idx) => {
@@ -171,11 +180,10 @@ export default function HistoryTimeline({ data }) {
                     >
                       {/* Decade Title Label */}
                       <span
-                        className={`text-xs sm:text-sm md:text-[15px] lg:text-[16px] xl:text-[18px] 3xl:text-[25px] pb-3 transition-all duration-200 whitespace-nowrap px-1 ${
-                          isActive
+                        className={`text-xs sm:text-sm md:text-[15px] lg:text-[16px] xl:text-[18px] 3xl:text-[25px] pb-3 transition-all duration-200 whitespace-nowrap px-1 ${isActive
                             ? "text-[#1F1F1F] dark:text-white font-bold scale-105"
                             : "text-[#A3A3A3] dark:text-[#6B7280] font-medium group-hover:text-[#4B5563] dark:group-hover:text-white"
-                        }`}
+                          }`}
                       >
                         {decade.decadeLabel}
                       </span>
@@ -183,9 +191,8 @@ export default function HistoryTimeline({ data }) {
                       {/* Continuous Dynamic Full-Width Baseline Segment */}
                       <div className="w-full h-[6px] relative flex items-center">
                         <div
-                          className={`w-full h-full transition-colors duration-300 ${segmentBg} ${
-                            idx === 0 ? "rounded-l-full" : ""
-                          } ${idx === decades.length - 1 ? "rounded-r-full" : ""}`}
+                          className={`w-full h-full transition-colors duration-300 ${segmentBg} ${idx === 0 ? "rounded-l-full" : ""
+                            } ${idx === decades.length - 1 ? "rounded-r-full" : ""}`}
                         />
                       </div>
                     </button>
@@ -198,6 +205,8 @@ export default function HistoryTimeline({ data }) {
           {/* Next Navigation Button */}
           <button
             type="button"
+            onClick={() => navigateDecades(1)}
+            disabled={activeIndex >= decades.length - 1}
             className="thumb-next-btn w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white dark:bg-[#18191B] border border-[#FDE6E0] dark:border-white/10 shadow-sm flex items-center justify-center text-[#212121] dark:text-white hover:bg-[#EA580C] hover:text-white hover:border-[#EA580C] transition-all cursor-pointer shrink-0 z-20 disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Next Decade"
           >
@@ -224,6 +233,9 @@ export default function HistoryTimeline({ data }) {
           className="relative lg:max-w-[75%] mx-auto h-[340px] sm:h-[400px] md:h-[900px]"
         >
           <Swiper
+            onSwiper={(swiper) => {
+              timelineSwiperRef.current = swiper;
+            }}
             direction="vertical"
             slidesPerView={1}
             spaceBetween={0}
@@ -234,7 +246,12 @@ export default function HistoryTimeline({ data }) {
               swiper:
                 thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
             }}
-            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+            onSlideChange={(swiper) => {
+              setActiveIndex(swiper.activeIndex);
+              if (thumbsSwiper && !thumbsSwiper.destroyed) {
+                thumbsSwiper.slideTo(swiper.activeIndex);
+              }
+            }}
             modules={[Thumbs, EffectFade]}
             className="h-full w-full rounded-2xl"
           >
@@ -265,19 +282,27 @@ export default function HistoryTimeline({ data }) {
 
                           {/* Event Card Content Box */}
                           <div
-                            className={`w-full md:w-1/2 pl-16 md:pl-0 ${
-                              isEven
+                            className={`w-full md:w-1/2 pl-16 md:pl-0 ${isEven
                                 ? "md:order-2 md:pl-12 text-left"
                                 : "md:order-1 md:pr-12 md:text-left"
-                            }`}
+                              }`}
                           >
-                            <div className="bg-[#fff] dark:bg-[#18191B] border border-[#EFD8CA] dark:border-white/10 rounded-md p-3 sm:p-5 shadow-[0_8px_25px_-5px_rgba(234,88,12,0.06)] hover:shadow-[0_12px_32px_-5px_rgba(234,88,12,0.12)] transition-all duration-300 transform hover:-translate-y-1">
-                              <h3 className="text-[15px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] font-semibold text-[#212121] dark:text-white mb-2 leading-snug">
-                                {event.title}
-                              </h3>
-                              <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                {event.description}
-                              </p>
+                            <div className="group relative overflow-hidden bg-[#fff] dark:bg-[#18191B] border border-[#EFD8CA] dark:border-white/10 rounded-md p-3 sm:p-5 shadow-[0_8px_25px_-5px_rgba(234,88,12,0.06)] hover:shadow-[0_12px_32px_-5px_rgba(234,88,12,0.25)] hover:border-transparent transition-all duration-300 transform hover:-translate-y-1">
+                              {/* Gradient layer (fades in on hover) */}
+                              <span
+                                aria-hidden="true"
+                                className="pointer-events-none absolute inset-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                              />
+
+                              {/* Content sits above the gradient */}
+                              <div className="relative z-10">
+                                <h3 className="text-[15px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] font-semibold text-[#212121] dark:text-white mb-2 leading-snug transition-colors duration-300 group-hover:text-white">
+                                  {event.title}
+                                </h3>
+                                <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] transition-colors duration-300 group-hover:text-white dark:group-hover:text-white">
+                                  {event.description}
+                                </p>
+                              </div>
                             </div>
                           </div>
 
@@ -301,9 +326,8 @@ export default function HistoryTimeline({ data }) {
 
                           {/* Empty Spacer Column for Desktop Grid Alignment */}
                           <div
-                            className={`hidden md:block md:w-1/2 ${
-                              isEven ? "md:order-1" : "md:order-2"
-                            }`}
+                            className={`hidden md:block md:w-1/2 ${isEven ? "md:order-1" : "md:order-2"
+                              }`}
                           />
                         </div>
                       );

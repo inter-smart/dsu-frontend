@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
-
 export default function SchoolCampus({ data }) {
     // slug of the school whose programme list is open (cards with `groups` are clickable)
     const [openSlug, setOpenSlug] = useState(null);
@@ -145,7 +144,7 @@ export default function SchoolCampus({ data }) {
                                                     {item.subtitle}
                                                 </div>
                                             )}
-                                            {item?.address && <p>{item.address}</p>}
+                                            {item?.address && <BlocksRenderer content={item.address} />}
                                             {item?.directions?.href && (
                                             <Link
                                                 href={item.directions.href || "#"}

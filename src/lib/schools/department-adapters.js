@@ -82,19 +82,38 @@ function libraryTable(rows, legacy, columns) {
   };
 }
 
+// Membership table from the fixed 5-column fields (header 1-5, rows label + value..value4). Only as many columns as hold
+// something are shown, so filling a 3rd / 4th / 5th column in the CMS adds it to the table.
+function membershipItemsTable(s) {
+  const heads = [1, 2, 3, 4, 5].map((i) => (s[`membershipColumn${i}`] ?? "").trim());
+  const rows = (s.membershipItems ?? [])
+    .map((r, i) => ({ id: r.id ?? i, cells: [r.label, r.value, r.value2, r.value3, r.value4].map((v) => (v ?? "").trim()) }))
+    .filter((r) => r.cells.some(Boolean));
+  if (!rows.some((r) => r.cells.slice(1).some(isReal))) return null;
+  const width = Math.max(2, ...heads.map((h, i) => (h ? i + 1 : 0)), ...rows.map((r) => r.cells.reduce((w, c, i) => (c ? i + 1 : w), 0)));
+  return {
+    columns: heads.slice(0, width),
+    rows: rows.map((r) => ({ id: r.id, label: r.cells[0], values: r.cells.slice(1, width) })),
+  };
+}
+
 // Library landing page → LibraryOverview props (which reads every nested group unguarded).
 export function librarySection(s) {
   if (!s) return null;
   return {
     heading: s.heading,
     description: s.description,
+    mediaType: s.mediaType ?? "image",
     image: s.image,
+    video: s.video,
+    youtubeUrl: s.youtubeUrl,
     infoCards: (s.infoCards ?? []).map((c) => ({ id: c.id, title: c.title, items: label(c.items) })),
     libraryCollections: { heading: s.collectionsHeading, statisticsDate: s.statisticsDate, table: libraryTable(s.collectionRows, s.collections, s.collectionsColumns) },
+    extraContent: s.extraContent,
     membershipSection: {
       heading: s.membershipHeading,
       description: s.membershipDescription,
-      membershipTable: { heading: s.membershipHeading, note: s.membershipNote, table: libraryTable(s.membershipRows, s.membership, s.membershipColumns) },
+      membershipTable: { table: membershipItemsTable(s) },
       documentsRequired: { description: s.documentsDescription, items: label(s.documentsRequired) },
     },
   };

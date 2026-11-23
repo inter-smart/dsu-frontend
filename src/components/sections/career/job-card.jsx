@@ -7,7 +7,7 @@ export default function JobCard({ job, onViewDetail }) {
       <h3 className="text-xl xl:text-2xl 2xl:text-[28px] leading-tight font-bold text-[#212121] dark:text-white mb-1.5 xl:mb-2">
         {job?.title}
       </h3>
-      <div className="text-sm xl:text-base leading-normal font-semibold text-[#212121] dark:text-gray-200 mb-3.75 xl:mb-5">
+      <div className="text_1 leading-normal font-semibold text-[#212121] dark:text-gray-200 mb-3.75 xl:mb-5">
         {job?.department}
       </div>
       <ul className="flex flex-col gap-1.5 xl:gap-2 mb-5 xl:mb-6.25 grow">

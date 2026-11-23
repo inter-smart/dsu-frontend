@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 
 // Top banner of the International Student Services page
 export default function ServiceBanner({ data }) {
@@ -10,7 +11,7 @@ export default function ServiceBanner({ data }) {
             {/* Background image + overlays */}
             <Image
                 src={image.url}
-                alt={image.alternativeText || title}
+                alt={image.alternativeText || plainTitle(title)}
                 fill
                 priority
                 sizes="100vw"
@@ -59,7 +60,7 @@ export default function ServiceBanner({ data }) {
                         </p>
                     )}
                     <h1 className="mt-1 max-w-[750px] text-[34px] font-bold leading-tight lg:text-[44px] xl:text-[48px] 2xl:text-[45px] 3xl:text-[60.9px]">
-                        {title}
+                        {withLineBreaks(title)}
                     </h1>
 
                     {button && (
