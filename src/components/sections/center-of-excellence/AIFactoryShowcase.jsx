@@ -61,10 +61,13 @@ export default function AIFactorySlider({ data }) {
             onUnlock={sync}
             className="!overflow-hidden"
           >
-            {data.slides?.map((slide) => (
+            {data.slides?.map((slide, idx) => ( // CHANGED: added idx
               <SwiperSlide
                 key={slide.id}
-                className={sizeClass[slide.size] || sizeClass.wide}
+                className={
+                  sizeClass[slide.size] ||
+                  (idx % 2 === 0 ? sizeClass.wide : sizeClass.narrow) // CHANGED: was sizeClass.wide
+                }
               >
                 <div className="relative h-[200px] overflow-hidden rounded-xl sm:h-[250px] lg:h-[300px] xl:h-[400px] 2xl:h-[500px]">
                   <Image
