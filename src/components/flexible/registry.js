@@ -217,17 +217,17 @@ function adapted(Component, adapter) {
 }
 
 // Library landing section; the side menu is the flexible page's own Sidebar links
-function libraryOverview({ data, menu }) {
+function libraryOverview({ data, menu, embedded }) {
     const props = adapt.librarySection(data);
-    return props ? <LibraryOverview data={props} menu={menu || []} /> : null;
+    return props ? <LibraryOverview data={props} menu={menu || []} embedded={embedded} /> : null;
 }
 
 // Library sub-page templates as sections (same components as the Library sub-pages); the side menu is the
 // flexible page's own Sidebar links
 function libraryTemplate(Component, adapter) {
-    return function LibraryTemplate({ data, menu }) {
+    return function LibraryTemplate({ data, menu, embedded }) {
         const props = adapter(data);
-        return props ? <Component data={props} menu={menu || []} /> : null;
+        return props ? <Component data={props} menu={menu || []} embedded={embedded} /> : null;
     };
 }
 
@@ -394,12 +394,12 @@ const flexibleRegistry = {
   "department.engagement-section": { Component: adapted(AiRecentClinic, adapt.recentEngagementSection) },
   "department.partner-with-us-section": { Component: adapted(AiPartnerwithus, adapt.partnerWithUsSection) },
   "department.chapters-section": { Component: adapted(AiAcademicChapters, adapt.chaptersSection) },
-  "department.library-section": { Component: libraryOverview },
-  "department.library-services-template": { Component: libraryTemplate(LibraryServices, adapt.libraryServicesContent) },
-  "department.library-files-template": { Component: libraryTemplate(LibraryDownloads, adapt.libraryFilesContent) },
-  "department.library-automation-template": { Component: libraryTemplate(LibraryAutomation, adapt.libraryAutomationContent) },
-  "department.library-faqs-template": { Component: libraryTemplate(LibraryFaq, adapt.libraryFaqsContent) },
-  "department.library-gallery-template": { Component: libraryTemplate(LibraryGallery, adapt.libraryGalleryContent) },
+  "department.library-section": { Component: libraryOverview, library: true },
+  "department.library-services-template": { Component: libraryTemplate(LibraryServices, adapt.libraryServicesContent), library: true },
+  "department.library-files-template": { Component: libraryTemplate(LibraryDownloads, adapt.libraryFilesContent), library: true },
+  "department.library-automation-template": { Component: libraryTemplate(LibraryAutomation, adapt.libraryAutomationContent), library: true },
+  "department.library-faqs-template": { Component: libraryTemplate(LibraryFaq, adapt.libraryFaqsContent), library: true },
+  "department.library-gallery-template": { Component: libraryTemplate(LibraryGallery, adapt.libraryGalleryContent), library: true },
   "department.placement-collaborations-section": { Component: AcademicCollaboration },
   "department.placement-partners-section": { Component: AcademicPartners },
 
