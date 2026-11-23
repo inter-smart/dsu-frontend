@@ -181,7 +181,8 @@ export default function DSUWomenRedressal({ data, menu }) {
                 </div>
               )}
 
-              {activities?.items?.length > 0 && (
+              {(activities?.items?.length > 0 ||
+                activities?.description?.length > 0) && (
                 <div className="w-full  mb-[25px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]">
                   <h2 className="cmn_Title">{activities?.heading}</h2>
 
@@ -193,6 +194,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                       <BlocksRenderer content={activities.description} />
                     )}
                   </div>
+                  {activities?.items?.length > 0 && (
                   <Accordion
                     type="single"
                     collapsible
@@ -232,6 +234,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                       </AccordionItem>
                     ))}
                   </Accordion>
+                  )}
                 </div>
               )}
               {validDocuments.length > 0 && (
