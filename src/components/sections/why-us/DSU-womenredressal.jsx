@@ -127,7 +127,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                     )}
                   </div>
                   <div className="w-full overflow-x-auto">
-                    <div className="min-w-[500px] rounded-[0px] border border-[#707070] overflow-hidden">
+                    <div className="min-w-[500px] rounded-[0px]   overflow-hidden">
                       <table className="w-full border-collapse">
                         <thead>
                           <tr className="bg-[#F97316] text-white">
