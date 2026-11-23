@@ -139,59 +139,14 @@ export default function PageLoader() {
           </span>
 
           <div className="dsu-badge">
-            <svg
-              className="dsu-torch-icon"
-              viewBox="0 0 64 64"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient
-                  id="dsu-flame-grad"
-                  x1="32"
-                  y1="6"
-                  x2="32"
-                  y2="44"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop offset="0%" stopColor="#fb923c" />
-                  <stop offset="50%" stopColor="#f97316" />
-                  <stop offset="100%" stopColor="#dc2626" />
-                </linearGradient>
-                <linearGradient
-                  id="dsu-base-grad"
-                  x1="16"
-                  y1="44"
-                  x2="48"
-                  y2="58"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop offset="0%" stopColor="#dc2626" />
-                  <stop offset="100%" stopColor="#b91c1c" />
-                </linearGradient>
-              </defs>
-              {/* Luminous Torch Flame */}
-              <path
-                d="M32 6C32 6 38 15 38 22C38 25.5 36.5 28.5 34 30.5C36 30 38 28.5 39.5 26.5C42.5 30.5 43 35.5 40.5 39.5C38.5 42.5 35 44 32 44C29 44 25.5 42.5 23.5 39.5C21 35.5 21.5 30.5 24.5 26.5C26 28.5 28 30 30 30.5C27.5 28.5 26 25.5 26 22C26 15 32 6 32 6Z"
-                fill="url(#dsu-flame-grad)"
-              />
-              <path
-                d="M32 18C32 18 35 23 35 26C35 28 33.5 30 32 30C30.5 30 29 28 29 26C29 23 32 18 32 18Z"
-                fill="#fef08a"
-                opacity="0.95"
-              />
-              {/* Torch Pedestal */}
-              <path
-                d="M22 46C26 44.5 32 44 32 44C32 44 38 44.5 42 46C43.5 46.5 44 48 43 49.5L41.5 52C41 53 39.5 53.5 38.5 53.5H25.5C24.5 53.5 23 53 22.5 52L21 49.5C20 48 20.5 46.5 22 46Z"
-                fill="url(#dsu-base-grad)"
-              />
-              <path
-                d="M26 53.5L25 58H39L38 53.5H26Z"
-                fill="#991b1b"
-                opacity="0.85"
-              />
-            </svg>
-            <span className="dsu-monogram">DSU</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/logo-emblem.png"
+              alt="Dayananda Sagar University"
+              className="dsu-emblem-img"
+              width={76}
+              height={76}
+            />
           </div>
         </div>
 
