@@ -12,8 +12,9 @@ import "swiper/css";
 // A card is a link only when it has a real url; otherwise it is a plain block
 function InnovationCard({ card, priority }) {
     const { title, description, url, isExternal, image } = card;
+    // Same tile design as /research-innovation/innovation (IndustryCentres)
     const cardClass =
-        "group relative block aspect-[325/292] w-full overflow-hidden rounded-[6px] bg-[#111] shadow-[0_2px_8px_rgba(0,0,0,0.25)] outline-none focus-visible:ring-2 focus-visible:ring-(--basecolor) focus-visible:ring-offset-2";
+        "group relative block aspect-[325/292] w-full overflow-hidden rounded-[8px] xl:rounded-[10px] bg-[#1f2937] outline-none focus-visible:ring-2 focus-visible:ring-(--basecolor) focus-visible:ring-offset-2";
     const Wrapper = url ? Link : "div";
     const wrapperProps = url
         ? { href: url, target: isExternal ? "_blank" : undefined, rel: isExternal ? "noopener noreferrer" : undefined }
@@ -21,28 +22,52 @@ function InnovationCard({ card, priority }) {
 
     return (
         <Wrapper {...wrapperProps} className={cardClass}>
-            <Image
-                src={image.url}
-                alt={image.alternativeText || title}
-                fill
-                priority={priority}
-                sizes="(max-width: 639px) 85vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, (max-width: 1535px) 25vw, 20vw"
-                className="object-cover transition-transform duration-500 ease-out group-hover:scale-105 motion-reduce:transition-none"
-            />
+            {image?.url && (
+                <Image
+                    src={image.url}
+                    alt={image.alternativeText || title}
+                    fill
+                    priority={priority}
+                    sizes="(max-width: 639px) 85vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, (max-width: 1535px) 25vw, 20vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+            )}
 
-            {/* Dark gradient so text stays readable on every photo */}
+            {/* bottom gradient */}
             <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-linear-to-t from-black/90 via-black/55 to-black/5"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent via-[45%]"
             />
 
-            <div className="absolute inset-x-0 bottom-0 px-5 pb-5 lg:px-6 lg:pb-6">
-                <h3 className="max-w-[9ch] text-[20px] font-semibold leading-[1.3] text-white lg:text-[22px] 2xl:text-[26px] 2xl:leading-[34px]">
+            {/* text */}
+            <div className="absolute inset-x-0 bottom-0 z-[2] flex flex-col pl-[20px] pr-[64px] pb-[20px] xl:pl-[22px] xl:pr-[64px] xl:pb-[22px] 2xl:pl-[24px] 2xl:pr-[68px] 2xl:pb-[26px] transition-transform duration-300 group-hover:-translate-y-[2px]">
+                <h3 className="whitespace-pre-line text-[18px] sm:text-[20px] xl:text-[20px] 2xl:text-[24px] font-bold leading-[1.15] text-white mb-[8px] xl:mb-[10px]">
                     {title}
                 </h3>
-                <p className="mt-3 text-[14px] leading-[1.6] text-white/95 2xl:mt-[18px] 2xl:leading-[29px] lg:text-[17px] xl:text-[17px] 2xl:text-[18px]">
-                    {description}
-                </p>
+                {description && (
+                    <p className="text-[13px] sm:text-[14px] xl:text-[14px] 2xl:text-[16px] leading-[1.35] font-normal text-white">
+                        {description}
+                    </p>
+                )}
+            </div>
+
+            {/* arrow button (frosted glass) */}
+            <div
+                aria-hidden="true"
+                style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}
+                className="absolute right-[16px] bottom-[18px] xl:right-[18px] xl:bottom-[20px] 2xl:right-[20px] 2xl:bottom-[24px] z-[2] flex h-[34px] w-[34px] xl:h-[40px] xl:w-[40px] items-center justify-center rounded-full border border-white/20 bg-gradient-to-br from-white/20 to-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.45),0_4px_14px_rgba(0,0,0,0.25)] transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316] group-hover:border-transparent group-hover:scale-110"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-[50%] w-[50%] text-[#FF6D00] transition-all duration-300 group-hover:text-white group-hover:translate-x-[2px]"
+                >
+                    <path d="M9 4l8 8-8 8" />
+                </svg>
             </div>
         </Wrapper>
     );
