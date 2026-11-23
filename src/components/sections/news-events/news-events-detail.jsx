@@ -211,10 +211,10 @@ export default function NewsEventsDetail({
                 }}
               />
 
-              {data?.detailGallery?.length > 0 && (
+              {data?.gallery?.length > 0 && (
                 <div className="w-full h-auto mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-5 3xl:gap-7.5">
-                    {data.detailGallery.map((media, idx) =>
+                    {data.gallery.map((media, idx) =>
                       media?.mime?.startsWith("video/") ? (
                         <video
                           key={media?.url || idx}
