@@ -182,6 +182,7 @@ export default function DSUWomenRedressal({ data, menu }) {
               )}
 
               {(activities?.items?.length > 0 ||
+                activities?.heading ||
                 activities?.description?.length > 0) && (
                 <div className="w-full  mb-[25px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]">
                   <h2 className="cmn_Title">{activities?.heading}</h2>
