@@ -122,7 +122,7 @@ export default function TakeIdeasForward({ data }) {
   const buttons = data?.buttons || [];
 
   return (
-    <section className="relative py-8 lg:py-12 2xl:py-[90px] 3xl:py-[110px]">
+    <section className="relative py-8 lg:py-12 2xl:py-[70px] 3xl:py-[80px]">
       <div className="container">
         <div
           ref={ref}

@@ -113,7 +113,7 @@ export default function InnovationEcosystem({ data }) {
   const stats = data?.stats || [];
 
   return (
-    <section className="relative py-10 lg:py-14 2xl:py-[90px] 3xl:py-[110px]">
+    <section className="relative py-10 lg:py-14 2xl:py-[90px] 3xl:py-[90px]">
       <div className="container">
         {/* ───────── top row: text + media ───────── */}
         <div
@@ -182,7 +182,7 @@ export default function InnovationEcosystem({ data }) {
         {stats.length > 0 && (
           <div
             ref={statsRef}
-            className="mt-10 grid grid-cols-2 gap-y-8 border-y border-[#E5E7EB] py-7 lg:mt-14 sm:grid-cols-[376fr_411fr_456fr_486fr] lg:gap-y-0 lg:py-[26px] 2xl:mt-[97px] dark:border-white/15"
+            className="mt-5 grid grid-cols-2 gap-y-8 border-y border-[#E5E7EB] py-7 lg:mt-8 sm:grid-cols-[376fr_411fr_456fr_486fr] lg:gap-y-0 lg:py-[26px] 2xl:mt-[30px] dark:border-white/15"
           >
             {stats.map((stat, index) => (
               <div
