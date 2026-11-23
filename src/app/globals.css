@@ -238,6 +238,7 @@ html.lenis body {
     animation: spec-flip-in 0.7s cubic-bezier(0.25, 0.5, 0.75, 1) both;
     will-change: transform, opacity, filter;
   }
+
   .typography {
     --text-color: #212121;
 
@@ -347,22 +348,48 @@ html.lenis body {
     ul > li a {
       @apply  block hover:text-[#f97316];
     }
-    ul l::before{
+    /* ul l::before{
       display: none;
-    }
+    } */
     ol {
       @apply !my-0 !ml-4 my-5 pl-[10px]
     }
     ol > li {
       @apply list-decimal text-(--text-color);
     }
-    ul {
-        padding-left: 0 !important;
-        margin-left: 0 !important;
-    }
-    ul li {
-      list-style: none;    
-    }
+   
+    /* bullet list: one point per row, gradient dot */
+   ul {
+    list-style: none;
+    margin: 3px 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+   ul > li {
+    position: relative;
+    margin: 0;
+    padding-left: 19px;
+  }
+   ul > li {
+    list-style: none;
+}
+ ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(0.8em - 3.5px);
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background: black;
+  }
+.none::before{
+  display:none;
+}
     caption {
       @apply pb-2 text-left text-[13px] font-medium opacity-80;
     }
@@ -395,6 +422,15 @@ html.lenis body {
       }
     }
   }
+
+  ul {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+ul li {
+list-style: none;    
+}
+
 @keyframes spec-flip-in {
   0% {
     opacity: 0;
@@ -497,6 +533,7 @@ body {
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);
 }
+
 
 .dark {
   --background: #000000;
@@ -948,4 +985,183 @@ strong, b{
 }
 p a:hover{
   color: #F97316;
+}
+/* =========================================================
+   DSU PAGE LOADER (white background, gradient text)
+   ========================================================= */
+#dsu-loader {
+  --dl-c1: #d92d20;   /* red    */
+  --dl-c2: #ff7a1a;   /* orange */
+  --dl-grad: linear-gradient(to right, var(--dl-c1), var(--dl-c2));
+  --dl-bg: rgba(255, 255, 255) ;    /* solid background */
+
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  overflow: hidden;
+  color: #1a1a1a;
+  font-family: var(--font-sans, Roboto, system-ui, sans-serif);
+}
+html.no-loader #dsu-loader { display: none; }
+
+/* Curtain panels */
+.dsu-panel {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50.5%;
+  background: var(--dl-bg);
+  transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+.dsu-panel-top { top: 0; }
+.dsu-panel-bottom { bottom: 0; }
+.dsu-panel-top.is-open { transform: translateY(-101%); }
+.dsu-panel-bottom.is-open { transform: translateY(101%); }
+
+/* Content */
+.dsu-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.2rem;
+  padding: 0 1.5rem;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.dsu-content.is-hidden { opacity: 0; transform: scale(0.94); }
+
+/* Emblem */
+.dsu-emblem {
+  position: relative;
+  width: 148px;
+  height: 148px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dsu-badge {
+  position: relative;
+  z-index: 2;
+  width: 104px;
+  height: 104px;
+  border-radius: 9999px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border + shadow so the white badge stays visible on white */
+  border: 1px solid rgba(217, 45, 32, 0.12);
+  box-shadow: 0 8px 30px rgba(217, 45, 32, 0.18), 0 2px 8px rgba(0, 0, 0, 0.06);
+  animation: dsu-pulse 2.2s ease-in-out infinite;
+}
+.dsu-badge img { width: 84%; height: 84%; object-fit: contain; }
+.dsu-mono {
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  background: var(--dl-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dsu-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: conic-gradient(from 0deg, transparent 0%, var(--dl-c1) 45%, var(--dl-c2) 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+}
+.dsu-ring-outer { animation: dsu-spin 1.5s linear infinite; }
+.dsu-ring-inner { inset: 10px; opacity: 0.5; animation: dsu-spin 2.4s linear infinite reverse; }
+
+.dsu-orbit { position: absolute; inset: -10px; animation: dsu-spin 3.2s linear infinite; }
+.dsu-dot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  margin-left: -4.5px;
+  border-radius: 9999px;
+  background: var(--dl-grad);
+  box-shadow: 0 0 12px 2px rgba(255, 122, 26, 0.55);
+}
+
+.dsu-ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1.5px solid var(--dl-c2);
+  opacity: 0;
+  animation: dsu-ripple 2.6s ease-out infinite;
+}
+.dsu-ripple-2 { animation-delay: 1.3s; }
+
+/* Gradient text: tagline, status and percentage */
+.dsu-text { text-align: center; }
+.dsu-tag,
+.dsu-meta span {
+  background: var(--dl-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.dsu-tag {
+  display: inline-block;          /* gradient spans the text, not the full row */
+  font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* Progress */
+.dsu-progress-wrap { width: min(18rem, 78vw); }
+.dsu-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(217, 45, 32, 0.12);
+  overflow: hidden;
+}
+.dsu-bar {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--dl-c1), var(--dl-c2), var(--dl-c1));
+  background-size: 200% 100%;
+  box-shadow: 0 0 10px rgba(255, 122, 26, 0.5);
+  transition: width 0.25s ease-out;
+  animation: dsu-shine 1.6s linear infinite;
+}
+.dsu-meta {
+  margin-top: 0.55rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Entrance */
+.dsu-rise {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: dsu-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Keyframes */
+@keyframes dsu-spin { to { transform: rotate(360deg); } }
+@keyframes dsu-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+@keyframes dsu-ripple { 0% { transform: scale(0.75); opacity: 0.6; } 100% { transform: scale(1.6); opacity: 0; } }
+@keyframes dsu-shine { to { background-position: -200% 0; } }
+@keyframes dsu-rise { to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .dsu-ring, .dsu-orbit, .dsu-badge, .dsu-ripple, .dsu-bar { animation-duration: 6s; }
+  .dsu-panel { transition-duration: 0.01s; }
 }

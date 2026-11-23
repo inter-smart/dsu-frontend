@@ -87,7 +87,7 @@ export default function DSUWomenRedressal({ data, menu }) {
               )}
               {data?.sections?.map((item, id) => (
                 <div
-                  className="w-full relative mb-[25px] xl:mb-[30px] 2xl:mb-[50px] 3xl:mb-[75px] border-b border-black/10 last-of-type:mb-0 last-of-type:pb-0 last-of-type:border-none"
+                  className="w-full typography relative mb-[25px] xl:mb-[30px] 2xl:mb-[50px] 3xl:mb-[75px] border-b border-black/10 last-of-type:mb-0 last-of-type:pb-0 last-of-type:border-none"
                   key={id}
                 >
                   <h2 className="cmn_Title">{item.heading}</h2>
@@ -115,7 +115,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                 </div>
               ))}
               {committee?.rows?.length > 0 && (
-                <div className="w-full mb-[25px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[70px]">
+                <div className="w-full typography mb-[25px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[70px]">
                   <h2 className="cmn_Title">{committee?.heading}</h2>
 
                   <div
@@ -182,7 +182,7 @@ export default function DSUWomenRedressal({ data, menu }) {
               )}
 
               {activities?.items?.length > 0 && (
-                <div className="w-full  mb-[25px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]">
+                <div className="w-full typography mb-[25px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]">
                   <h2 className="cmn_Title">{activities?.heading}</h2>
 
                   <div
@@ -235,7 +235,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                 </div>
               )}
               {validDocuments.length > 0 && (
-                <div className="w-full mb-[25px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[70px]">
+                <div className="w-full typography mb-[25px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[70px]">
                   <h2 className="cmn_Title">{documentsSection?.heading}</h2>
 
                   <div
@@ -246,7 +246,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                       <BlocksRenderer content={documentsSection.description} />
                     )}
                   </div>
-                  <div className="flex flex-wrap -m-[5px] md:-m-[8px] xl:-m-[10px]">
+                  <div className="flex typography flex-wrap -m-[5px] md:-m-[8px] xl:-m-[10px]">
                     {validDocuments.map((item, idx) => (
                       <div
                         className="w-full sm:w-1/2 p-[5px] md:p-[8px] xl:p-[10px]"
@@ -330,7 +330,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                         <div className="w-full">
                           <ul>
                             {reachOut?.contact?.name && (
-                              <li className="py-[5px] lg:py-[8px]">
+                              <li className="py-[5px] lg:py-[8px] none">
                                 <div className="flex gap-[10px] group">
                                   <div className="w-[25px] xl:w-[30px] 3xl:w-[35px] h-[25px] xl:h-[30px] 3xl:h-[35px] bg-black rounded-full overflow-hidden p-[5px] xl:p-[8px] flex shrink-0">
                                     <svg
@@ -370,7 +370,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                               </li>
                             )}
                             {reachOut?.contact?.phone && (
-                              <li className="py-[5px] lg:py-[8px]">
+                              <li className="py-[5px] lg:py-[8px] none">
                                 <Link
                                   href={`tel:${reachOut?.contact?.phone}`}
                                   className="group flex gap-[10px] group"
@@ -397,7 +397,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                               </li>
                             )}
                             {reachOut?.contact?.email && (
-                              <li className="py-[5px] lg:py-[8px]">
+                              <li className="py-[5px] lg:py-[8px] none">
                                 <Link
                                   href={`mailto:${reachOut?.contact?.email}`}
                                   className="group flex gap-[10px] group"
