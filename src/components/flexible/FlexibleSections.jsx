@@ -19,10 +19,14 @@ export default function FlexibleSections({ sections, libraryLayout = false, ...s
             const node = (
                 <Component {...shared} index={index} prev={list[index - 1]?.component} next={list[index + 1]?.component} prevData={list[index - 1]?.data} nextData={list[index + 1]?.data} data={item.data} {...(entry.props || {})} embedded />
             );
-            // generic sections draw their own section + container: drop that padding so they sit inside the content column
+            // generic sections draw their own section + container: drop that padding so they sit inside the content column.
+            // Library sections already draw their own outer border; generic ones get the same box so every section matches.
+            const box = entry.library
+                ? ""
+                : " w-full rounded-[10px] border border-black/10 dark:border-white/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_30px] 2xl:p-[40px_40px] 3xl:p-[50px]";
             return [
                 <SectionBoundary key={`${item.component}-${item.id}`}>
-                    <div className="[&_.container]:!max-w-none [&_.container]:!px-0 [&>section]:!py-0">{node}</div>
+                    <div className={`[&_.container]:!max-w-none [&_.container]:!px-0 [&>section]:!py-0${box}`}>{node}</div>
                 </SectionBoundary>,
             ];
         });
