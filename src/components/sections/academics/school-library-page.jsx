@@ -27,14 +27,14 @@ export async function SchoolLibraryOverview({ slug }) {
     );
 }
 
-async function loadSubpage(slug, pageSlug) {
-    const res = await getSchoolLibraryPage(slug, pageSlug);
+async function loadSubpage(slug, pageSlug, flexSlug) {
+    const res = await getSchoolLibraryPage(slug, pageSlug, flexSlug ? { flex: flexSlug } : undefined);
     if (!res?.slug || !res.page?.slug) notFound();
     return res;
 }
 
-export async function schoolLibraryPageMetadata(slug, pageSlug) {
-    const res = await loadSubpage(slug, pageSlug);
+export async function schoolLibraryPageMetadata(slug, pageSlug, flexSlug) {
+    const res = await loadSubpage(slug, pageSlug, flexSlug);
     // the API fills an unset Meta Title with the page title, so anything else was typed in Strapi: use it as is
     const custom = res.page.seo?.metaTitle && res.page.seo.metaTitle !== res.page.title;
     return seoMetadata({
@@ -44,7 +44,7 @@ export async function schoolLibraryPageMetadata(slug, pageSlug) {
 }
 
 // The template picked for the sub-page in the CMS decides the component; each takes the side menu as `menu`.
-function Template({ page, menu, schoolSlug }) {
+function Template({ page, menu, schoolSlug, flexSlug }) {
     const content = page.content ?? {};
     switch (page.template) {
         case "flexible-page":
@@ -59,15 +59,15 @@ function Template({ page, menu, schoolSlug }) {
         case "faqs":
             return <LibraryFaq data={adapt.libraryFaqsContent(content)} menu={menu} />;
         case "gallery":
-            return <LibraryGallery data={adapt.libraryGalleryContent(content)} menu={menu} schoolSlug={schoolSlug} pageSlug={page.slug} />;
+            return <LibraryGallery data={adapt.libraryGalleryContent(content)} menu={menu} schoolSlug={schoolSlug} pageSlug={page.slug} flexSlug={flexSlug} />;
         default:
             return null;
     }
 }
 
 // One Library sub-page of a school, authored in the school's Library entry (Subpages).
-export async function SchoolLibrarySubpage({ slug, pageSlug }) {
-    const res = await loadSubpage(slug, pageSlug);
+export async function SchoolLibrarySubpage({ slug, pageSlug, flexSlug }) {
+    const res = await loadSubpage(slug, pageSlug, flexSlug);
     const hero = {
         ...res.hero,
         heroMedia: res.hero?.heroMedia?.url ? res.hero.heroMedia : FALLBACK_HERO_MEDIA,
@@ -77,13 +77,17 @@ export async function SchoolLibrarySubpage({ slug, pageSlug }) {
                   { label: "Home", href: "/" },
                   { label: "Schools", href: "/schools" },
                   { label: res.name, href: `/schools/${slug}` },
-                  { label: "Library", href: schoolLibraryHref(slug) },
-                  { label: res.page.title, href: schoolLibraryHref(slug, pageSlug) },
+                  ...(flexSlug
+                      ? [{ label: res.page.title, href: `/schools/${slug}/${flexSlug}/${pageSlug}` }]
+                      : [
+                            { label: "Library", href: schoolLibraryHref(slug) },
+                            { label: res.page.title, href: schoolLibraryHref(slug, pageSlug) },
+                        ]),
               ],
     };
     return (
         <SchoolTabShell hero={hero} slug={slug} hasDepartments={usesDepartments(res)}>
-            <Template page={res.page} menu={schoolLibrarySidebarItems(slug, res.sidebar)} schoolSlug={slug} />
+            <Template page={res.page} menu={schoolLibrarySidebarItems(slug, res.sidebar, flexSlug)} schoolSlug={slug} flexSlug={flexSlug} />
         </SchoolTabShell>
     );
 }

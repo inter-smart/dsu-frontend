@@ -3,66 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLenis } from "lenis/react";
-
-// CHANGED: menu items now match the design (About Library ... Ask us). Replace the slugs with your real routes.
-const sidebarMenu = [
-  {
-    label: "About Library",
-    slug: "/library",
-  },
-  {
-    label: "Library Vision & Mission",
-    slug: "/library/Vision-Mission",
-  },
-  {
-    label: "Our Team",
-    slug: "/library/ourTeam",
-  },
-  {
-    label: "Library Advisory Committee",
-    slug: "/library/Advisory-committee",
-  },
-  {
-    label: "Collections",
-    slug: "/library/collection",
-  },
-  {
-    label: "E Resources",
-    slug: "/library/E-resource",
-  },
-  {
-    label: "Anti-Plagiarism Tools",
-    slug: "/library/Anti-Plagiarism",
-  },
-  {
-    label: "Corporate Membership",
-    slug: "/library/corporate-membership",
-  },
-  {
-    label: "Useful URL’s",
-    slug: "/library/useful-urls",
-  },
-  {
-    label: "Brochure",
-    slug: "/library/brochure",
-  },
-  {
-    label: "Constituent Libraries",
-    slug: "/library/constituent-libraries",
-  },
-  {
-    label: "Rules & Regulations",
-    slug: "/library/rules-regulations",
-  },
-  {
-    label: "Gallery",
-    slug: "/library/gallery",
-  },
-  {
-    label: "Ask us",
-    slug: "/library/ask-us",
-  },
-];
+import { LIBRARY_STATIC_MENU } from "@/lib/library-menu";
 
 // right-pointing chevron; hover colour comes from the row's group via pathClassName
 function ChevronIcon({ active, className = "", pathClassName = "" }) {
@@ -86,7 +27,7 @@ export default function LibrarySidebar({
   isOpen = false,
   onClose,
   title = "Library Menu",
-  data = sidebarMenu,
+  data = LIBRARY_STATIC_MENU,
   // optional in-page sub-menu shown under the active item: [{ id, label }]
   subItems = [],
   activeSubId,

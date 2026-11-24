@@ -114,8 +114,9 @@ export async function loadDepartmentFlexPage(schoolSlug, departmentSlug, pageSlu
       // breadcrumb items added on the page itself win over the generated trail
       ...(page.hero?.breadcrumb?.length ? { breadcrumb: page.hero.breadcrumb } : {}),
     },
-    // side menu for Library sections: the page's own Sidebar links, else the department's Library menu (Overview + sub-pages)
-    sidebar: page.sidebar?.length ? page.sidebar : librarySidebarItems(schoolSlug, departmentSlug, res.librarySubpages ?? []),
+    // side menu for Library sections: only when sub-pages exist; Overview (this page) first, then the sub-pages
+    // (this page's own sub-pages, not the department Library tab's)
+    libraryMenu: page.librarySubpages?.length ? librarySidebarItems(schoolSlug, departmentSlug, page.librarySubpages, pageSlug) : [],
     menuItems: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs, res.menuOrder),
     menuHome: base,
   };
@@ -155,8 +156,9 @@ export async function loadDepartmentPage(schoolSlug, departmentSlug, tab) {
 
 // One Library sub-page of a department (/ai-enabled/[school]/[department]/library/[page]); 404s for an
 // unknown department, a department of another school, or a page the Library entry does not list.
-export async function loadDepartmentLibraryPage(schoolSlug, departmentSlug, pageSlug) {
-  const res = await getDepartmentLibraryPage(departmentSlug, pageSlug);
+// `flexSlug`: the sub-page belongs to that Flexible Page's own Library Sub-pages (.../[flexSlug]/[page]) instead of the Library tab.
+export async function loadDepartmentLibraryPage(schoolSlug, departmentSlug, pageSlug, flexSlug) {
+  const res = await getDepartmentLibraryPage(departmentSlug, pageSlug, flexSlug ? { flex: flexSlug } : undefined);
   if (!res?.slug || res.school?.slug !== schoolSlug || !res.page?.slug) notFound();
 
   const available = new Set(res.availableTabs ?? []);
@@ -166,15 +168,17 @@ export async function loadDepartmentLibraryPage(schoolSlug, departmentSlug, page
   const trail = [
     { label: res.school.name, href: `/schools/${schoolSlug}` },
     { label: res.name, href: base },
-    { label: "Library", href: libraryHref(schoolSlug, departmentSlug) },
-    { label: res.page.title, href: libraryHref(schoolSlug, departmentSlug, pageSlug) },
+    ...(flexSlug ? [{ label: res.page.title, href: `${base}/${flexSlug}/${pageSlug}` }] : [
+      { label: "Library", href: libraryHref(schoolSlug, departmentSlug) },
+      { label: res.page.title, href: libraryHref(schoolSlug, departmentSlug, pageSlug) },
+    ]),
   ];
 
   return {
     school: res.school,
     department: res,
     page: res.page,
-    sidebar: librarySidebarItems(schoolSlug, departmentSlug, res.sidebar),
+    sidebar: librarySidebarItems(schoolSlug, departmentSlug, res.sidebar, flexSlug),
     hero: {
       ...buildHero(res.hero, trail, res.hero?.title || res.page.title),
       ...(res.hero?.breadcrumb?.length ? { breadcrumb: res.hero.breadcrumb } : {}),
