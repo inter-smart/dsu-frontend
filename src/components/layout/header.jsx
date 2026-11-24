@@ -2161,7 +2161,7 @@ function NavigationMenu({
           )}
           <span
             className={cn(
-              "w-[15px] h-[15px] lg:w-2 lg:h-2 lg:border-r-1 2xl:border-r-2 lg:border-b-1 2xl:border-b-2 border-white transition-transform duration-300 ease-out",
+              "w-[15px] h-[15px] lg:w-1.25 2xl:w-2 lg:h-1.25 2xl:h-2 lg:border-r-1 2xl:border-r-2 lg:border-b-1 2xl:border-b-2 border-white transition-transform duration-300 ease-out",
               isMenuOpen
                 ? "lg:rotate-[225deg]"
                 : "lg:rotate-45 -translate-y-0.5",
