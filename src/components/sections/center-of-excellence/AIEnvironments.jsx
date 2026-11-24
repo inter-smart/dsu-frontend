@@ -37,13 +37,13 @@ export default function AIEnvironments({ data }) {
                             return (
                                 <div
                                     key={item?.id ?? index}
-                                    className="grid grid-cols-1 lg:grid-cols-2 gap-[18px] xl:gap-[22px]"
+                                    className="flex flex-col lg:flex-row gap-[18px] xl:gap-[22px]"
                                 >
                                     {/* Image: on top on mobile, left or right on lg+ */}
                                     {item?.image?.url && (
                                         <div
                                             className={
-                                                "relative min-h-[220px] sm:min-h-[300px] overflow-hidden rounded-[8px] bg-[#e5e7eb] dark:bg-[#18191B]" +
+                                                "relative min-h-[350px] sm:min-h-[450px] overflow-hidden rounded-[8px] bg-[#e5e7eb] dark:bg-[#18191B] lg:grow lg:min-w-0 lg:basis-[calc(50%-9px)] xl:basis-[calc(50%-11px)]" + // CHANGED: was lg:flex-1 lg:min-w-0
                                                 (imageRight ? " lg:order-2" : "")
                                             }
                                         >
@@ -52,13 +52,13 @@ export default function AIEnvironments({ data }) {
                                                 alt={item.image.alternativeText || item?.title || "Environment"}
                                                 fill
                                                 sizes="(max-width: 1024px) 100vw, 50vw"
-                                                className="object-cover"
+                                                className="object-cover object-top"
                                             />
                                         </div>
                                     )}
 
                                     {/* Card */}
-                                    <div className="rounded-[8px] bg-white dark:bg-[#18191B] px-[22px] py-[28px] xl:px-[35px] xl:py-[40px] 2xl:px-[45px] 2xl:py-[50px] 2xl:min-h-[414px] flex flex-col justify-center">
+                                    <div className="rounded-[8px] bg-white dark:bg-[#18191B] px-[22px] py-[28px] xl:px-[35px] xl:py-[40px] 2xl:px-[45px] 2xl:py-[50px] 2xl:min-h-[414px] flex flex-col justify-center lg:grow lg:min-w-0 lg:basis-[calc(50%-9px)] xl:basis-[calc(50%-11px)]"> {/* CHANGED: was lg:flex-1 lg:min-w-0 */}
                                         {item?.title && (
                                             <h3 className="text-[24px] xl:text-[30px] 2xl:text-[36px] font-semibold leading-[1.2] text-[#212121] dark:text-white">
                                                 {item.title}
