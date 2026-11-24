@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getDepartmentLibraryPage, getDepartmentTab, getProgrammeTab, getSchoolBySlug } from "@/lib/api";
 import { getSchoolTabs } from "@/lib/schools/tabs";
 import { getFlexiblePageBySlug } from "@/lib/api/flexible-page";
@@ -94,7 +94,11 @@ function buildHero(apiHero, trail, title) {
 // Shell data for a Flexible Page that belongs to a department (/ai-enabled/[school]/[department]/[slug]).
 export async function loadDepartmentFlexPage(schoolSlug, departmentSlug, pageSlug) {
   const page = await getFlexiblePageBySlug(pageSlug);
-  if (page?.department?.slug !== departmentSlug || page.department.school?.slug !== schoolSlug) notFound();
+  if (!page?.department?.slug || !page.department.school?.slug) notFound();
+  // wrong school/department in the URL: send to the page's real address instead of a 404
+  if (page.department.slug !== departmentSlug || page.department.school.slug !== schoolSlug) {
+    redirect(`${departmentHref(page.department.school.slug, page.department.slug)}/${pageSlug}`);
+  }
 
   const res = await getDepartmentTab(departmentSlug, "overview");
   if (!res?.slug || res.school?.slug !== schoolSlug) notFound();
@@ -191,7 +195,11 @@ export async function loadDepartmentLibraryPage(schoolSlug, departmentSlug, page
 // Shell data for a Flexible Page that belongs to a programme (/ai-enabled/[school]/programs/[programme]/[slug]).
 export async function loadProgramFlexPage(schoolSlug, programmeSlug, pageSlug) {
   const page = await getFlexiblePageBySlug(pageSlug);
-  if (page?.programme?.slug !== programmeSlug || page.programme.school?.slug !== schoolSlug) notFound();
+  if (!page?.programme?.slug || !page.programme.school?.slug) notFound();
+  // wrong school/programme in the URL: send to the page's real address instead of a 404
+  if (page.programme.slug !== programmeSlug || page.programme.school.slug !== schoolSlug) {
+    redirect(`${programmeBase(page.programme.school.slug, page.programme.slug)}/${pageSlug}`);
+  }
 
   const res = await getProgrammeTab(programmeSlug, "overview");
   if (!res?.slug || res.school?.slug !== schoolSlug) notFound();

@@ -1,5 +1,5 @@
 import { FALLBACK_HERO_MEDIA } from "@/lib/schools/entity";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import SchoolTabShell from "@/components/sections/academics/school-tab-shell";
 import FlexibleSections from "@/components/flexible/FlexibleSections";
 import { getFlexiblePageBySlug } from "@/lib/api/flexible-page";
@@ -10,7 +10,9 @@ import { usesDepartments } from "@/lib/schools/tab-page";
 // A Flexible Page that belongs to a school: /schools/<school>/<page-slug>, with the school's tab menu.
 async function load(slug, pageSlug) {
     const page = await getFlexiblePageBySlug(pageSlug);
-    if (!page || page.school?.slug !== slug) notFound();
+    if (!page?.school?.slug) notFound();
+    // wrong school in the URL: send to the page's real address instead of a 404
+    if (page.school.slug !== slug) redirect(`/schools/${page.school.slug}/${pageSlug}`);
     const school = await getSchoolBySlug(slug);
     return { page, school };
 }
