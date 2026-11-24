@@ -70,7 +70,7 @@ export default function IntlCourses({ data, catalog }) {
 
                             <AccordionContent className="pb-5">
                                 <div className="space-y-6 2xl:space-y-[32px]">
-                                    {school.programs.map((program) => (
+                                    {(school.programs ?? []).map((program) => (
                                         <div key={program.id}>
                                             {/* Program heading with hairline */}
                                             <div className="flex items-center gap-4">
