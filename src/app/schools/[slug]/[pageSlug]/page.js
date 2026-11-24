@@ -4,6 +4,7 @@ import SchoolTabShell from "@/components/sections/academics/school-tab-shell";
 import FlexibleSections from "@/components/flexible/FlexibleSections";
 import { getFlexiblePageBySlug } from "@/lib/api/flexible-page";
 import { getSchoolBySlug } from "@/lib/api";
+import { schoolLibrarySidebarItems } from "@/lib/schools/items";
 import { usesDepartments } from "@/lib/schools/tab-page";
 
 // A Flexible Page that belongs to a school: /schools/<school>/<page-slug>, with the school's tab menu.
@@ -38,10 +39,12 @@ export default async function Page({ params }) {
             ],
     };
     const sidebar = page.sidebar || [];
+    // Library sections: this page's own sub-pages only; none = no side menu
+    const libraryMenu = page.librarySubpages?.length ? schoolLibrarySidebarItems(slug, page.librarySubpages, pageSlug) : [];
 
     return (
         <SchoolTabShell hero={hero} slug={slug} hasDepartments={usesDepartments(school)}>
-            <FlexibleSections sections={page.sections} sidebar={sidebar} menu={sidebar} slug={page.slug} />
+            <FlexibleSections sections={page.sections} sidebar={sidebar} menu={libraryMenu} slug={page.slug} />
         </SchoolTabShell>
     );
 }

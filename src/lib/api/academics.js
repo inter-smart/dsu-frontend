@@ -28,8 +28,8 @@ export async function getSchoolLibraryPage(slug, page, params) {
 }
 
 // Paged images of a school Library gallery sub-page ("Load More"): { data: [image], pagination }
-export async function getSchoolLibraryGalleryPaged(slug, page, pageNumber, pageSize) {
-  const res = await getSchoolLibraryPage(slug, page, { page: pageNumber, pageSize });
+export async function getSchoolLibraryGalleryPaged(slug, page, pageNumber, pageSize, flexSlug) {
+  const res = await getSchoolLibraryPage(slug, page, { page: pageNumber, pageSize, ...(flexSlug ? { flex: flexSlug } : {}) });
   const content = res?.page?.content;
   if (!content?.images || !content?.pagination) return null;
   return { data: content.images, pagination: content.pagination };
@@ -51,8 +51,8 @@ export async function getDepartmentLibraryPage(slug, page, params) {
 }
 
 // Paged images of a Library gallery sub-page ("Load More"): { data: [image], pagination }
-export async function getDepartmentLibraryGalleryPaged(slug, page, pageNumber, pageSize) {
-  const res = await getDepartmentLibraryPage(slug, page, { page: pageNumber, pageSize });
+export async function getDepartmentLibraryGalleryPaged(slug, page, pageNumber, pageSize, flexSlug) {
+  const res = await getDepartmentLibraryPage(slug, page, { page: pageNumber, pageSize, ...(flexSlug ? { flex: flexSlug } : {}) });
   const content = res?.page?.content;
   if (!content?.images || !content?.pagination) return null;
   return { data: content.images, pagination: content.pagination };
