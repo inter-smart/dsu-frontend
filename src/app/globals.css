@@ -1133,7 +1133,7 @@ html.no-loader #dsu-loader { display: none; }
 
 .dsu-orbit {
   position: absolute;
-  inset: -6px;
+  inset: -3px;
   animation: dsu-spin 2s linear infinite;
 }
 .dsu-dot {

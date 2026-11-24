@@ -16,12 +16,12 @@ export default function AIOffer({ data }) {
     const renderCard = (item) => (
         <div className="h-full rounded-[8px] border border-black/10 dark:border-white/10 bg-white dark:bg-[#18191B] shadow-[0_1px_3px_rgba(0,0,0,0.04)] px-[22px] py-[28px] xl:px-[32px] xl:py-[45px_35px] 2xl:px-[40px_20px] 2xl:py-[60px_30px] 2xl:min-h-[268px]">
             {item?.title && (
-                <h3 className="text-[18px] xl:text-[20px] 2xl:text-[24px] font-medium leading-[1.3] text-[#212121] dark:text-white">
+                <h3 className="text-[20px] xl:text-[22px] 2xl:text-[26px] font-medium leading-[1.3] text-[#212121] dark:text-white">
                     {item.title}
                 </h3>
             )}
             {item?.description && (
-                <p className="text_1 2xl:text-[20px] mt-[10px] xl:mt-[14px]  text-[#4A5565] dark:text-[#9CA3AF]">
+                <p className="!text_1  mt-[10px] xl:mt-[14px]  text-[#4A5565] dark:text-[#9CA3AF]">
                     {item.description}
                 </p>
             )}

@@ -379,7 +379,7 @@ export default function FacultyDirectoryListing({ data }) {
                           )}
                         </button>
                         {isExpanded && (
-                          <ul className="w-full h-auto !p-[3px_10px] !2xl:p-[5px_25px]">
+                          <ul className="w-full h-auto !p-[3px_10px] 2xl:!p-[5px_25px]">
                             {department.children.map((child) => (
                               <li key={child.value}>
                                 <button
@@ -518,7 +518,7 @@ function FacultyCard({ member }) {
             alt={member?.name}
             width={150}
             height={150}
-            className="size-full object-cover"
+            className="size-full object-cover object-top"
           />
         </div>
         <div className="w-full h-auto text-center">
