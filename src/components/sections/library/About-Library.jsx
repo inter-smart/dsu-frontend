@@ -20,8 +20,9 @@ export default function AboutLibrary({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
     const noticeSwiperRef = useRef(null);
 
-    const { title, image, notice, description, constituent } = data || {};
-    const hasNotice = Boolean(notice?.text || notice?.linkLabel);
+    const { title, image, description, constituent } = data || {};
+    const notices = (data?.notices || (data?.notice ? [data.notice] : [])).filter((n) => n?.text || n?.linkLabel);
+    const hasNotice = notices.length > 0;
     const hasConstituent = constituent?.items?.length > 0;
     // description can be a plain string array or Strapi blocks (rich text)
     const isPlainText = typeof description?.[0] === "string";
@@ -124,19 +125,23 @@ export default function AboutLibrary({ data, menu }) {
                                             <SwiperSlide key={copy} className="w-auto! h-auto">
                                                 <div
                                                     aria-hidden={copy > 0}
-                                                    className="flex items-center gap-3 pr-10 lg:pr-16 py-4 md:py-5 lg:py-7 whitespace-nowrap text-[14px] md:text-[15px] 2xl:text-[17px] leading-none text-black dark:text-white"
+                                                    className="flex items-center py-4 md:py-5 lg:py-7 whitespace-nowrap text-[14px] md:text-[15px] 2xl:text-[17px] leading-none text-black dark:text-white"
                                                 >
-                                                    {notice?.linkLabel && (
-                                                        <Link
-                                                            href={notice?.linkUrl || "#!"}
-                                                            tabIndex={copy > 0 ? -1 : undefined}
-                                                            {...externalProps(notice)}
-                                                            className="underline underline-offset-2 hover:text-(--basecolor) transition-colors duration-300"
-                                                        >
-                                                            {notice.linkLabel}
-                                                        </Link>
-                                                    )}
-                                                    {notice?.text && <span>{notice.text}</span>}
+                                                    {notices.map((notice, i) => (
+                                                        <span key={notice.id ?? i} className="flex items-center gap-3 pr-10 lg:pr-16">
+                                                            {notice.linkLabel && (
+                                                                <Link
+                                                                    href={notice.linkUrl || "#!"}
+                                                                    tabIndex={copy > 0 ? -1 : undefined}
+                                                                    {...externalProps(notice)}
+                                                                    className="underline underline-offset-2 hover:text-(--basecolor) transition-colors duration-300"
+                                                                >
+                                                                    {notice.linkLabel}
+                                                                </Link>
+                                                            )}
+                                                            {notice.text && <span>{notice.text}</span>}
+                                                        </span>
+                                                    ))}
                                                 </div>
                                             </SwiperSlide>
                                         ))}

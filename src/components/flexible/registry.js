@@ -15,6 +15,7 @@ import CoeAIGallery from "@/components/sections/center-of-excellence/AIGallery";
 import CoeAICentres from "@/components/sections/center-of-excellence/AICentres";
 import CoeAIEngagement from "@/components/sections/center-of-excellence/AIEngagement";
 import CoeAICta from "@/components/sections/center-of-excellence/AICta";
+import AboutLibrary from "@/components/sections/library/About-Library";
 import AdmissionContactTemplate from "@/components/sections/admission/templates/contact-template";
 import AdmissionDatesTemplate from "@/components/sections/admission/templates/dates-template";
 import AdmissionDownloadTemplate from "@/components/sections/admission/templates/download-template";
@@ -506,6 +507,9 @@ const flexibleRegistry = {
   "common.gallery": { Component: CommonTabGallery },
   // centres of excellence listing (src/app/center-of-excellence/page.js)
   "coe.gallery-section": { Component: CommonGallery },
+
+  // university Library page (/library): notices, description, schools' libraries
+  "library.about-library-template": { Component: AboutLibrary },
   "coe.hero-slider": { Component: CoeHomeHeroSlider },
   "coe.innovation-ecosystem": { Component: CoeInnovationEcosystem },
   "coe.explore-centres": { Component: CoeExploreCentres },
@@ -592,7 +596,7 @@ const flexibleRegistry = {
 // don't pile up big gaps, except the designed landing-page sections, heroes/banners and the large school /
 // department blocks, which keep their own padding. An entry can still set `flow` itself to override this.
 const KEEP_OWN_SPACING =
-  /^(home|about|ai-first|nvidia|sii|isv|school|department|coe)\.|^shared\.|hero|banner|^international\.(about|awards|courses|innovation|instructions|admission-process|enquiry-form|text-cta|IntlTextCTASection)$/i;
+  /^(home|about|ai-first|nvidia|sii|isv|school|department|coe|library)\.|^shared\.|hero|banner|^international\.(about|awards|courses|innovation|instructions|admission-process|enquiry-form|text-cta|IntlTextCTASection)$/i;
 
 for (const [key, entry] of Object.entries(flexibleRegistry)) {
   if (entry.flow === undefined) entry.flow = !KEEP_OWN_SPACING.test(key);
