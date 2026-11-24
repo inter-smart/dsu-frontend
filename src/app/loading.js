@@ -29,11 +29,14 @@ export default function Loading() {
           style={{ animationDirection: "reverse", animationDuration: "3.5s" }}
         />
 
-        {/* Core emblem with DSU monogram */}
-        <div className="relative z-10 flex h-9 w-9 items-center justify-center rounded-full border border-red-500/20 bg-white/95 shadow-sm backdrop-blur-sm dark:border-red-500/30 dark:bg-zinc-900/95">
-          <span className="bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-[10px] font-black tracking-widest text-transparent">
-            DSU
-          </span>
+        {/* Core emblem with official DSU logo emblem */}
+        <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-red-500/20 bg-white/95 p-1 shadow-sm backdrop-blur-sm dark:border-red-500/30 dark:bg-zinc-900/95">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/logo-emblem.png"
+            alt="Dayananda Sagar University"
+            className="h-full w-full object-contain"
+          />
         </div>
       </div>
 

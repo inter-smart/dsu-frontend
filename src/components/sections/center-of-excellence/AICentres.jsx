@@ -1,4 +1,5 @@
 "use client";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 
 import { useRef, useState } from "react";
 import Image from "next/image";
@@ -19,13 +20,13 @@ export default function AICentres({ data }) {
         <Link
             href={item?.link || "#!"}
             {...(item?.isExternal && { target: "_blank", rel: "noopener noreferrer" })}
-            aria-label={[item?.prefix, item?.title].filter(Boolean).join(" ")}
+            aria-label={[item?.prefix, plainTitle(item?.title)].filter(Boolean).join(" ")}
             className="group relative block w-full aspect-[563/500] overflow-hidden rounded-[6px] bg-[#1f2937]"
         >
             {item?.image?.url && (
                 <Image
                     src={item.image.url}
-                    alt={item.image.alternativeText || item?.title || "Centre"}
+                    alt={item.image.alternativeText || plainTitle(item?.title) || "Centre"}
                     fill
                     sizes="(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 33vw"
                     draggable={false}
@@ -49,7 +50,7 @@ export default function AICentres({ data }) {
                     )}
                     {item?.title && (
                         <h3 className="mt-[2px] text-[20px] xl:text-[24px] 2xl:text-[28px] font-bold leading-[1.2]">
-                            {item.title}
+                            {withLineBreaks(item.title)}
                         </h3>
                     )}
                 </div>
@@ -77,7 +78,7 @@ export default function AICentres({ data }) {
     );
 
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[100px] bg-linear-to-b from-[#F0F5FF] to-[#F6F9FC] dark:from-[#0f1011] dark:to-[#0f1011] transition-colors duration-300">
+        <section className="relative py-[40px] xl:py-[50px] 2xl:py-[60px] 3xl:py-[80px] bg-linear-to-b from-[#F0F5FF] to-[#F6F9FC] dark:from-[#0f1011] dark:to-[#0f1011] transition-colors duration-300">
             <div className="container">
 
                 {/* Heading (left) + paragraph (right) */}
@@ -85,7 +86,7 @@ export default function AICentres({ data }) {
                     <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-[15px] lg:gap-[40px]">
                         {data?.heading && (
                             <h2 className="cmn_Title font-bold leading-[1.1] text-[#212121] dark:text-white whitespace-pre-line">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
                         {data?.description && (

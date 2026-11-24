@@ -197,11 +197,11 @@ export default function AiFaculty({ data }) {
 
                 {categories.map((category, catIdx) => (
                     <div key={category.id || catIdx} className="mb-10 last:mb-0">
-                        {category.label && (
+                        {/* {category.label && (
                             <h3 className="text-[14px] sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[28px] font-bold inline-block bg-gradient-to-r from-[#DC2626] to-[#F97316] from-[60%] bg-clip-text text-transparent mb-5 sm:mb-6">
                                 {category.label}
                             </h3>
-                        )}
+                        )} */}
 
                         <div className="hidden lg:grid lg:grid-cols-4 gap-3 sm:gap-4 2xl:gap-4">
                             {category.faculty?.map((member, memberIdx) => (

@@ -1,4 +1,5 @@
 "use client";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 
 import { useRef, useState } from "react";
 import Image from "next/image";
@@ -36,7 +37,7 @@ export default function AIFactorySlider({ data }) {
         {/* Heading */}
         <div className="mx-auto text-center">
           <h2 className="font-bold leading-[1.15] tracking-tight text-black cmn_Title">
-            {data.title}
+            {withLineBreaks(data.title)}
           </h2>
           <p className="mx-auto mt-4 max-w-[1360px] text-[clamp(0.9375rem,0.8rem+0.4vw,1.25rem)] leading-relaxed text-slate-600 md:mt-6">
             {data.description}
@@ -72,7 +73,7 @@ export default function AIFactorySlider({ data }) {
                 <div className="relative h-[200px] overflow-hidden rounded-xl sm:h-[250px] lg:h-[300px] xl:h-[400px] 2xl:h-[500px]">
                   <Image
                     src={slide.image?.url}
-                    alt={slide.image?.alternativeText || slide.title || ""}
+                    alt={slide.image?.alternativeText || plainTitle(slide.title) || ""}
                     fill
                     sizes="(min-width: 1024px) 59vw, 88vw"
                     className="object-cover"

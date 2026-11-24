@@ -1,4 +1,5 @@
 "use client";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,7 +20,7 @@ export default function AIZones({ data }) {
         <div className="relative h-full pl-[20px] xl:pl-[25px] py-[2px] before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[4px] before:bg-linear-to-b before:from-[#DC2626] before:to-[#F97316]">
             {item?.title && (
                 <h3 className="text-[18px] xl:text-[22px] 2xl:text-[26px] font-medium leading-[1.3] text-[#212121] dark:text-white">
-                    {item.title}
+                    {withLineBreaks(item.title)}
                 </h3>
             )}
             {item?.description && (
@@ -39,7 +40,7 @@ export default function AIZones({ data }) {
                     <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-[15px] lg:gap-[40px]">
                         {data?.heading && (
                             <h2 className="cmn_Title font-bold leading-[1.1] text-[#212121] dark:text-white whitespace-pre-line">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
                         {data?.description && (

@@ -1,3 +1,4 @@
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -34,7 +35,7 @@ export default function AICta({ data }) {
     const hasButtons = data?.button?.label?.trim() || data?.secondaryButton?.label?.trim();
 
     return (
-        <section className="relative overflow-hidden bg-[#0b0b14] py-[60px] sm:py-[80px] xl:py-[110px] 2xl:py-[140px] 3xl:py-[170px]">
+        <section className="relative overflow-hidden bg-[#0b0b14] py-[60px] sm:py-[70px] xl:py-[90px] 2xl:py-[100px] 3xl:py-[130px]">
             {/* background image + dark overlay so the text stays readable */}
             {data?.image?.url && (
                 <Image
@@ -59,7 +60,7 @@ export default function AICta({ data }) {
                     )}
                     {data?.heading && (
                         <h2 className="cmn_Title mt-[8px] xl:mt-[10px] font-bold leading-[1.15] text-white">
-                            {data.heading}
+                            {withLineBreaks(data.heading)}
                         </h2>
                     )}
                     {data?.description && (

@@ -10,10 +10,11 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 // A card is a link only when it has a real url; otherwise it is a plain block
-function InnovationCard({ card, priority }) {
+function InnovationCard({ card, priority, ratio = "aspect-[562/353]" }) {
     const { title, description, url, isExternal, image } = card;
+    // Same tile design as /research-innovation/innovation (IndustryCentres)
     const cardClass =
-        "group relative block aspect-[325/292] w-full overflow-hidden rounded-[6px] bg-[#111] shadow-[0_2px_8px_rgba(0,0,0,0.25)] outline-none focus-visible:ring-2 focus-visible:ring-(--basecolor) focus-visible:ring-offset-2";
+        ratio + " group relative block w-full overflow-hidden rounded-[8px] xl:rounded-[10px] bg-[#1f2937] outline-none focus-visible:ring-2 focus-visible:ring-(--basecolor) focus-visible:ring-offset-2";
     const Wrapper = url ? Link : "div";
     const wrapperProps = url
         ? { href: url, target: isExternal ? "_blank" : undefined, rel: isExternal ? "noopener noreferrer" : undefined }
@@ -21,28 +22,52 @@ function InnovationCard({ card, priority }) {
 
     return (
         <Wrapper {...wrapperProps} className={cardClass}>
-            <Image
-                src={image.url}
-                alt={image.alternativeText || title}
-                fill
-                priority={priority}
-                sizes="(max-width: 639px) 85vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, (max-width: 1535px) 25vw, 20vw"
-                className="object-cover transition-transform duration-500 ease-out group-hover:scale-105 motion-reduce:transition-none"
-            />
+            {image?.url && (
+                <Image
+                    src={image.url}
+                    alt={image.alternativeText || title}
+                    fill
+                    priority={priority}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+            )}
 
-            {/* Dark gradient so text stays readable on every photo */}
+            {/* bottom gradient */}
             <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-linear-to-t from-black/90 via-black/55 to-black/5"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent via-[45%]"
             />
 
-            <div className="absolute inset-x-0 bottom-0 px-5 pb-5 lg:px-6 lg:pb-6">
-                <h3 className="max-w-[9ch] text-[20px] font-semibold leading-[1.3] text-white lg:text-[22px] 2xl:text-[26px] 2xl:leading-[34px]">
+            {/* text */}
+            <div className="absolute inset-x-0 bottom-0 z-[2] flex flex-col pl-[20px] pr-[70px] pb-[20px] xl:pl-[26px] xl:pr-[80px] xl:pb-[24px] 2xl:pl-[32px] 2xl:pr-[90px] 2xl:pb-[30px] 3xl:pl-[30px] 3xl:pr-[90px] 3xl:pb-[38px] transition-transform duration-300 group-hover:-translate-y-[2px]">
+                <h3 className="whitespace-pre-line text-[18px] sm:text-[20px] xl:text-[22px] 2xl:text-[26px] 3xl:text-[32px] font-bold leading-[1.15] text-white mb-[8px] xl:mb-[10px]">
                     {title}
                 </h3>
-                <p className="mt-3 text-[14px] leading-[1.6] text-white/95 2xl:mt-[18px] 2xl:leading-[29px] lg:text-[17px] xl:text-[17px] 2xl:text-[18px]">
-                    {description}
-                </p>
+                {description && (
+                    <p className="text-[13px] sm:text-[14px] xl:text-[15px] 2xl:text-[17px] 3xl:text-[18px] leading-[1.35] font-normal text-white">
+                        {description}
+                    </p>
+                )}
+            </div>
+
+            {/* arrow button (frosted glass) */}
+            <div
+                aria-hidden="true"
+                style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}
+                className="absolute right-[16px] bottom-[18px] xl:right-[20px] xl:bottom-[22px] 2xl:right-[25px] 2xl:bottom-[28px] 3xl:right-[32px] 3xl:bottom-[36px] z-[2] flex h-[34px] w-[34px] xl:h-[40px] xl:w-[40px] 3xl:h-[45px] 3xl:w-[45px] items-center justify-center rounded-full border border-white/20 bg-gradient-to-br from-white/20 to-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.45),0_4px_14px_rgba(0,0,0,0.25)] transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#DC2626] group-hover:to-[#F97316] group-hover:border-transparent group-hover:scale-110"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-[50%] w-[50%] text-[#FF6D00] transition-all duration-300 group-hover:text-white group-hover:translate-x-[2px]"
+                >
+                    <path d="M9 4l8 8-8 8" />
+                </svg>
             </div>
         </Wrapper>
     );
@@ -88,30 +113,35 @@ export default function IntlInnovation({ data }) {
                         )}
                     </div>
 
-                    {/* Hidden automatically when all cards fit (e.g. 5 cards on 2xl) */}
+                    {/* Mobile slider only; md and up shows a grid */}
                     {!nav.locked && (
-                        <div className="flex shrink-0 gap-3">
+                        <div className="flex shrink-0 gap-3 md:hidden">
                             <NavButton direction="prev" disabled={nav.begin} onClick={() => swiper?.slidePrev()} />
                             <NavButton direction="next" disabled={nav.end} onClick={() => swiper?.slideNext()} />
                         </div>
                     )}
                 </div>
 
-                {/* Slider */}
+                {/* md and up: grid, 2 per row then 3 per row (same as /research-innovation/innovation) */}
+                <div className="mt-6 hidden grid-cols-2 gap-[20px] md:grid lg:mt-8 xl:grid-cols-3 xl:gap-[23px] xl:gap-y-[30px] 2xl:mt-[34px] 2xl:gap-[25px] 3xl:gap-[30px]">
+                    {cards.map((card, i) => (
+                        <InnovationCard key={card.id ?? i} card={card} priority={i < 3} />
+                    ))}
+                </div>
+
+                {/* Mobile: slider */}
                 <Swiper
                     modules={[Autoplay]}
-                    className="-mx-1 mt-6 px-1 py-1 lg:mt-8 2xl:mt-[34px] [&_.swiper-slide]:h-auto"
-                    slidesPerView={1.15}
-                    spaceBetween={16}
+                    className="-mx-1 mt-6 px-1 py-1 md:!hidden [&_.swiper-slide]:h-auto"
+                    slidesPerView={1.1}
+                    spaceBetween={14}
                     grabCursor
                     watchOverflow
                     rewind
                     autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }}
                     breakpoints={{
-                        640: { slidesPerView: 2, spaceBetween: 16 },
-                        1024: { slidesPerView: 3, spaceBetween: 20 },
-                        1280: { slidesPerView: 4, spaceBetween: 22 },
-                        1536: { slidesPerView: 5, spaceBetween: 24 },
+                        480: { slidesPerView: 1.4, spaceBetween: 16 },
+                        640: { slidesPerView: 1.7, spaceBetween: 18 },
                     }}
                     onSwiper={(s) => {
                         setSwiper(s);
@@ -125,7 +155,7 @@ export default function IntlInnovation({ data }) {
                 >
                     {cards.map((card, i) => (
                         <SwiperSlide key={card.id ?? i}>
-                            <InnovationCard card={card} priority={i < 2} />
+                            <InnovationCard card={card} priority={i < 2} ratio="aspect-[4/3]" />
                         </SwiperSlide>
                     ))}
                 </Swiper>
