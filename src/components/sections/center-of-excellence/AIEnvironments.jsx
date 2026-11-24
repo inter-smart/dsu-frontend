@@ -78,9 +78,9 @@ export default function AIEnvironments({ data }) {
                                                     >
                                                         <span
                                                             aria-hidden="true"
-                                                            className="size-[10px] xl:size-[12px] !text_1 shrink-0 rounded-full bg-linear-to-br from-[#DC2626] to-[#F97316]"
+                                                            className="size-[8px] xl:size-[10px]   shrink-0 rounded-full bg-linear-to-br from-[#DC2626] to-[#F97316]"
                                                         />
-                                                        {bullet}
+                                                       <span>{bullet}</span> 
                                                     </li>
                                                 ))}
                                             </ul>
