@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import FlexibleSections from "@/components/flexible/FlexibleSections";
 import { hasContent } from "@/lib/has-content";
 import AIApplications from "@/components/sections/center-of-excellence/AIApplications";
 import AIBenefits from "@/components/sections/center-of-excellence/AIBenefits";
@@ -31,6 +32,9 @@ export default async function Page({ params }) {
   const d = await getCentreBySlug(slug);
 
   if (!d) notFound();
+
+  // template "flexible-page": the centre's own mix of template blocks
+  if (d.template === "flexible-page") return <FlexibleSections sections={d.flexiblePage?.sections} slug={d.slug} />;
 
   return (
     <>
