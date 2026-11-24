@@ -1,3 +1,21 @@
+import CoeHomeHeroSlider from "@/components/sections/center-of-excellence/HomeHeroSlider";
+import CoeInnovationEcosystem from "@/components/sections/center-of-excellence/InnovationEcosystem";
+import CoeExploreCentres from "@/components/sections/center-of-excellence/ExploreCentres";
+import CoeIdeaToExecution from "@/components/sections/center-of-excellence/IdeaToExecution";
+import CoeWhoCanEngage from "@/components/sections/center-of-excellence/WhoCanEngage";
+import CoeTakeIdeasForward from "@/components/sections/center-of-excellence/TakeIdeasForward";
+import CoeAIFactoryShowcase from "@/components/sections/center-of-excellence/AIFactoryShowcase";
+import CoeAIInnovation from "@/components/sections/center-of-excellence/AIInnovation";
+import CoeAIOffer from "@/components/sections/center-of-excellence/AIOffer";
+import CoeAIEnvironments from "@/components/sections/center-of-excellence/AIEnvironments";
+import CoeAIApplications from "@/components/sections/center-of-excellence/AIApplications";
+import CoeAIBenefits from "@/components/sections/center-of-excellence/AIBenefits";
+import CoeAIZones from "@/components/sections/center-of-excellence/AIZones";
+import CoeAIGallery from "@/components/sections/center-of-excellence/AIGallery";
+import CoeAICentres from "@/components/sections/center-of-excellence/AICentres";
+import CoeAIEngagement from "@/components/sections/center-of-excellence/AIEngagement";
+import CoeAICta from "@/components/sections/center-of-excellence/AICta";
+import AboutLibrary from "@/components/sections/library/About-Library";
 import AdmissionContactTemplate from "@/components/sections/admission/templates/contact-template";
 import AdmissionDatesTemplate from "@/components/sections/admission/templates/dates-template";
 import AdmissionDownloadTemplate from "@/components/sections/admission/templates/download-template";
@@ -490,6 +508,26 @@ const flexibleRegistry = {
   // centres of excellence listing (src/app/center-of-excellence/page.js)
   "coe.gallery-section": { Component: CommonGallery },
 
+  // university Library page (/library): notices, description, schools' libraries
+  "library.about-library-template": { Component: AboutLibrary },
+  "coe.hero-slider": { Component: CoeHomeHeroSlider },
+  "coe.innovation-ecosystem": { Component: CoeInnovationEcosystem },
+  "coe.explore-centres": { Component: CoeExploreCentres },
+  "coe.idea-to-execution": { Component: CoeIdeaToExecution },
+  "coe.who-can-engage": { Component: CoeWhoCanEngage },
+  "coe.take-ideas-forward": { Component: CoeTakeIdeasForward },
+  "coe.showcase": { Component: CoeAIFactoryShowcase },
+  "coe.innovation": { Component: CoeAIInnovation },
+  "coe.offer-section": { Component: CoeAIOffer },
+  "coe.environments": { Component: CoeAIEnvironments },
+  "coe.applications-section": { Component: CoeAIApplications },
+  "coe.benefits-section": { Component: CoeAIBenefits },
+  "coe.zones-section": { Component: CoeAIZones },
+  "coe.gallery": { Component: CoeAIGallery },
+  "coe.related-centres": { Component: CoeAICentres },
+  "coe.engagement": { Component: CoeAIEngagement },
+  "coe.cta": { Component: CoeAICta },
+
   // Innovation (Research & Innovation pages)
   "innovation.phd-programmes-section": { Component: PhdProgrammes },
   "innovation.doctoral-cards-section": { Component: DoctoralResearchCards },
@@ -558,7 +596,7 @@ const flexibleRegistry = {
 // don't pile up big gaps, except the designed landing-page sections, heroes/banners and the large school /
 // department blocks, which keep their own padding. An entry can still set `flow` itself to override this.
 const KEEP_OWN_SPACING =
-  /^(home|about|ai-first|nvidia|sii|isv|school|department|coe)\.|^shared\.|hero|banner|^international\.(about|awards|courses|innovation|instructions|admission-process|enquiry-form|text-cta|IntlTextCTASection)$/i;
+  /^(home|about|ai-first|nvidia|sii|isv|school|department|coe|library)\.|^shared\.|hero|banner|^international\.(about|awards|courses|innovation|instructions|admission-process|enquiry-form|text-cta|IntlTextCTASection)$/i;
 
 for (const [key, entry] of Object.entries(flexibleRegistry)) {
   if (entry.flow === undefined) entry.flow = !KEEP_OWN_SPACING.test(key);

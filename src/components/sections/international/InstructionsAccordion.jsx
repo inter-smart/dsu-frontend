@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import RichText from "@/components/ui/rich-text";
 import { Plus, Minus } from "lucide-react";
 import {
     Accordion,
@@ -52,7 +53,7 @@ export default function InstructionsAccordion({ data }) {
                             </AccordionTrigger>
 
                             <AccordionContent className="px-4 pb-6 pt-1 text-[14px] leading-[1.7] text-[#4B5563] lg:px-5 2xl:px-6 2xl:pb-[49px] 2xl:pt-[11px] 2xl:text-[18px] 2xl:leading-[29px]">
-                                {item.content}
+                                <RichText value={item.content} />
                             </AccordionContent>
                         </AccordionItem>
                     ))}

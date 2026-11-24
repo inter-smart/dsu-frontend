@@ -1,4 +1,5 @@
 "use client";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,7 +18,7 @@ export default function AIOffer({ data }) {
         <div className="h-full rounded-[8px] border border-black/10 dark:border-white/10 bg-white dark:bg-[#18191B] shadow-[0_1px_3px_rgba(0,0,0,0.04)] px-[22px] py-[28px] xl:px-[32px] xl:py-[45px_35px] 2xl:px-[40px_20px] 2xl:py-[60px_30px] 2xl:min-h-[268px]">
             {item?.title && (
                 <h3 className="text-[20px] xl:text-[22px] 2xl:text-[26px] font-medium leading-[1.3] text-[#212121] dark:text-white">
-                    {item.title}
+                    {withLineBreaks(item.title)}
                 </h3>
             )}
             {item?.description && (
@@ -33,7 +34,7 @@ export default function AIOffer({ data }) {
             <div className="container">
                 {data?.heading && (
                     <h2 className="cmn_Title font-bold leading-[1.1] text-[#212121] dark:text-white">
-                        {data.heading}
+                        {withLineBreaks(data.heading)}
                     </h2>
                 )}
                 {data?.description && (

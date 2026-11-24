@@ -1,3 +1,4 @@
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 import Image from "next/image";
 
 export default function AIEnvironments({ data }) {
@@ -14,7 +15,7 @@ export default function AIEnvironments({ data }) {
                     <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-[15px] lg:gap-[40px]">
                         {data?.heading && (
                             <h2 className="cmn_Title font-bold leading-[1.1] text-[#212121] dark:text-white whitespace-pre-line">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
                         {data?.description && (
@@ -49,7 +50,7 @@ export default function AIEnvironments({ data }) {
                                         >
                                             <Image
                                                 src={item.image.url}
-                                                alt={item.image.alternativeText || item?.title || "Environment"}
+                                                alt={item.image.alternativeText || plainTitle(item?.title) || "Environment"}
                                                 fill
                                                 sizes="(max-width: 1024px) 100vw, 50vw"
                                                 className="object-cover object-top"
@@ -61,7 +62,7 @@ export default function AIEnvironments({ data }) {
                                     <div className="rounded-[8px] bg-white dark:bg-[#18191B] px-[22px] py-[28px] xl:px-[35px] xl:py-[40px] 2xl:px-[45px] 2xl:py-[50px] 2xl:min-h-[414px] flex flex-col justify-center lg:grow lg:min-w-0 lg:basis-[calc(50%-9px)] xl:basis-[calc(50%-11px)]"> {/* CHANGED: was lg:flex-1 lg:min-w-0 */}
                                         {item?.title && (
                                             <h3 className="text-[24px] xl:text-[30px] 2xl:text-[36px] font-semibold leading-[1.2] text-[#212121] dark:text-white">
-                                                {item.title}
+                                                {withLineBreaks(item.title)}
                                             </h3>
                                         )}
                                         {item?.description && (

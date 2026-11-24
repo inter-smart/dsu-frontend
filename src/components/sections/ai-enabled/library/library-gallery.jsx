@@ -7,7 +7,7 @@ import { getDepartmentLibraryGalleryPaged, getSchoolLibraryGalleryPaged } from "
 import { toGalleryItems } from "@/lib/schools/department-adapters";
 
 // Pages come from the API (`data.pagination`); without it (static reference page) every item is shown.
-export default function LibraryGallery({ data, menu, departmentSlug, schoolSlug, pageSlug, embedded }) {
+export default function LibraryGallery({ data, menu, departmentSlug, schoolSlug, pageSlug, flexSlug, embedded }) {
     const [items, setItems] = useState(data?.gallery ?? []);
     const [pagination, setPagination] = useState(data?.pagination ?? null);
     const [loading, setLoading] = useState(false);
@@ -20,8 +20,8 @@ export default function LibraryGallery({ data, menu, departmentSlug, schoolSlug,
         setLoading(true);
         try {
             const res = departmentSlug
-                ? await getDepartmentLibraryGalleryPaged(departmentSlug, pageSlug, pagination.page + 1, pagination.pageSize)
-                : await getSchoolLibraryGalleryPaged(schoolSlug, pageSlug, pagination.page + 1, pagination.pageSize);
+                ? await getDepartmentLibraryGalleryPaged(departmentSlug, pageSlug, pagination.page + 1, pagination.pageSize, flexSlug)
+                : await getSchoolLibraryGalleryPaged(schoolSlug, pageSlug, pagination.page + 1, pagination.pageSize, flexSlug);
             if (res?.data && res?.pagination) {
                 setItems((prev) => {
                     const seen = new Set(prev.map((item) => item.id));

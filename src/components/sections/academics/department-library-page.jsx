@@ -8,8 +8,8 @@ import LibraryGallery from "@/components/sections/ai-enabled/library/library-gal
 import { loadDepartmentLibraryPage } from "@/lib/schools/entity";
 import * as adapt from "@/lib/schools/department-adapters";
 
-export async function libraryPageMetadata(schoolSlug, departmentSlug, pageSlug) {
-    const { school, department, page } = await loadDepartmentLibraryPage(schoolSlug, departmentSlug, pageSlug);
+export async function libraryPageMetadata(schoolSlug, departmentSlug, pageSlug, flexSlug) {
+    const { school, department, page } = await loadDepartmentLibraryPage(schoolSlug, departmentSlug, pageSlug, flexSlug);
     // the API fills an unset Meta Title with the page title, so anything else was typed in Strapi: use it as is
     const custom = page.seo?.metaTitle && page.seo.metaTitle !== page.title;
     return {
@@ -20,7 +20,7 @@ export async function libraryPageMetadata(schoolSlug, departmentSlug, pageSlug) 
 }
 
 // The template picked for the sub-page in the CMS decides the component; each takes the side menu as `menu`.
-function Template({ page, menu, departmentSlug }) {
+function Template({ page, menu, departmentSlug, flexSlug }) {
     const content = page.content ?? {};
     switch (page.template) {
         case "flexible-page":
@@ -35,19 +35,19 @@ function Template({ page, menu, departmentSlug }) {
         case "faqs":
             return <LibraryFaq data={adapt.libraryFaqsContent(content)} menu={menu} />;
         case "gallery":
-            return <LibraryGallery data={adapt.libraryGalleryContent(content)} menu={menu} departmentSlug={departmentSlug} pageSlug={page.slug} />;
+            return <LibraryGallery data={adapt.libraryGalleryContent(content)} menu={menu} departmentSlug={departmentSlug} pageSlug={page.slug} flexSlug={flexSlug} />;
         default:
             return null;
     }
 }
 
 // One Library sub-page of a department, authored in the department's Library entry (Sub pages).
-export default async function DepartmentLibraryPage({ schoolSlug, departmentSlug, pageSlug }) {
-    const { school, page, sidebar, hero, menuItems, menuHome } = await loadDepartmentLibraryPage(schoolSlug, departmentSlug, pageSlug);
+export default async function DepartmentLibraryPage({ schoolSlug, departmentSlug, pageSlug, flexSlug }) {
+    const { school, page, sidebar, hero, menuItems, menuHome } = await loadDepartmentLibraryPage(schoolSlug, departmentSlug, pageSlug, flexSlug);
 
     return (
         <SchoolTabShell hero={hero} slug={schoolSlug} hasDepartments={school.template === "department"} menuItems={menuItems} menuHome={menuHome} aiMenu>
-            <Template page={page} menu={sidebar} departmentSlug={departmentSlug} />
+            <Template page={page} menu={sidebar} departmentSlug={departmentSlug} flexSlug={flexSlug} />
         </SchoolTabShell>
     );
 }

@@ -323,7 +323,8 @@ export default function EnquiryForm({ data, className = "" }) {
 
     return (
         <div
-            className={`rounded-[4px] bg-[#F5F5F5] p-5 shadow-[0_10px_40px_rgba(0,0,0,0.2)] lg:p-7 2xl:px-[40px] 2xl:pb-[40px] 2xl:pt-[30px] ${className}`}
+            id="enquiry-form"
+            className={`scroll-mt-28 rounded-[4px] bg-[#F5F5F5] p-5 shadow-[0_10px_40px_rgba(0,0,0,0.2)] lg:p-7 2xl:px-[40px] 2xl:pb-[40px] 2xl:pt-[30px] ${className}`}
         >
             <h2 className="text-[26px] font-bold leading-tight tracking-[-0.03em] text-[#1a1a1a] lg:text-[32px] 2xl:text-[36px]">
                 {title}

@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { hasContent } from "@/lib/has-content";
 import AIApplications from "@/components/sections/center-of-excellence/AIApplications";
 import AIBenefits from "@/components/sections/center-of-excellence/AIBenefits";
 import AICentres from "@/components/sections/center-of-excellence/AICentres";
@@ -32,18 +33,18 @@ export default async function Page({ params }) {
 
   return (
     <>
-      {d.heroSlider?.slides?.length > 0 && <HomeHeroSlider data={d.heroSlider} />}
-      {d.showcase && <AIFactoryShowcase data={d.showcase} />}
-      {d.innovation && <AIInnovation data={d.innovation} />}
-      {d.offer && <AIOffer data={d.offer} />}
-      {d.environments && <AIEnvironments data={d.environments} />}
-      {d.applications && <AIApplications data={d.applications} />}
-      {d.benefits && <AIBenefits data={d.benefits} />}
-      {d.zones && <AIZones data={d.zones} />}
-      {d.gallery && <AIGallery data={d.gallery} />}
-      {d.centres && <AICentres data={d.centres} />}
-      {d.engagement && <AIEngagement data={d.engagement} />}
-      {d.cta && <AICta data={d.cta} />}
+      {hasContent(d.heroSlider?.slides) && <HomeHeroSlider data={d.heroSlider} />}
+      {hasContent(d.showcase) && <AIFactoryShowcase data={d.showcase} />}
+      {hasContent(d.innovation) && <AIInnovation data={d.innovation} />}
+      {hasContent(d.offer) && <AIOffer data={d.offer} />}
+      {hasContent(d.environments) && <AIEnvironments data={d.environments} />}
+      {hasContent(d.applications) && <AIApplications data={d.applications} />}
+      {hasContent(d.benefits) && <AIBenefits data={d.benefits} />}
+      {hasContent(d.zones) && <AIZones data={d.zones} />}
+      {hasContent(d.gallery) && <AIGallery data={d.gallery} />}
+      {hasContent(d.centres) && <AICentres data={d.centres} />}
+      {hasContent(d.engagement) && <AIEngagement data={d.engagement} />}
+      {hasContent(d.cta) && <AICta data={d.cta} />}
     </>
   );
 }

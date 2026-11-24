@@ -11,21 +11,27 @@ export const libraryHref = (schoolSlug, departmentSlug, pageSlug) =>
   `${departmentHref(schoolSlug, departmentSlug)}/library${pageSlug ? `/${pageSlug}` : ""}`;
 
 // Library side menu: the landing page, then the department's sub-pages in the order set in the CMS.
-export const librarySidebarItems = (schoolSlug, departmentSlug, sidebar = []) => [
-  { label: "Overview", slug: libraryHref(schoolSlug, departmentSlug) },
-  ...sidebar
-    .filter((p) => p?.slug)
-    .map((p) => ({ label: p.title, slug: libraryHref(schoolSlug, departmentSlug, p.slug) })),
-];
+// `flexSlug`: the menu belongs to a Flexible Page (template "library"): Overview is that page and the sub-pages live under it.
+export const librarySidebarItems = (schoolSlug, departmentSlug, sidebar = [], flexSlug) => {
+  const base = flexSlug ? `${departmentHref(schoolSlug, departmentSlug)}/${flexSlug}` : libraryHref(schoolSlug, departmentSlug);
+  return [
+    { label: "Overview", slug: base },
+    ...sidebar.filter((p) => p?.slug).map((p) => ({ label: p.title, slug: `${base}/${p.slug}` })),
+  ];
+};
 
 // A school's Library landing page, or one of its sub-pages.
 export const schoolLibraryHref = (schoolSlug, pageSlug) => `/schools/${schoolSlug}/library${pageSlug ? `/${pageSlug}` : ""}`;
 
 // School Library side menu: the landing page, then the school's sub-pages in the order set in the CMS.
-export const schoolLibrarySidebarItems = (schoolSlug, sidebar = []) => [
-  { label: "Overview", slug: schoolLibraryHref(schoolSlug) },
-  ...sidebar.filter((p) => p?.slug).map((p) => ({ label: p.title, slug: schoolLibraryHref(schoolSlug, p.slug) })),
-];
+// `flexSlug`: the menu belongs to a Flexible Page (template "library"): Overview is that page and the sub-pages live under it.
+export const schoolLibrarySidebarItems = (schoolSlug, sidebar = [], flexSlug) => {
+  const base = flexSlug ? `/schools/${schoolSlug}/${flexSlug}` : schoolLibraryHref(schoolSlug);
+  return [
+    { label: "Overview", slug: base },
+    ...sidebar.filter((p) => p?.slug).map((p) => ({ label: p.title, slug: `${base}/${p.slug}` })),
+  ];
+};
 
 // Canonical programme URL: every programme (school-direct or department-owned) lives under its school.
 // Tabs are `${programmeBase}/<tab>`; the bare base serves the Overview tab.

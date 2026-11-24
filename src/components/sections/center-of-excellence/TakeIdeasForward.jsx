@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 /* ───────── helpers ───────── */
@@ -132,7 +133,7 @@ export default function TakeIdeasForward({ data }) {
             <h2
               className={`mx-auto text-[28px] font-bold leading-tight tracking-tight text-[#212121] md:text-[38px] xl:text-[48px] 2xl:text-[56px] 3xl:text-[64px] dark:text-white ${fadeUp(inView)}`}
             >
-              {data.heading}
+              {withLineBreaks(data.heading)}
             </h2>
           )}
 

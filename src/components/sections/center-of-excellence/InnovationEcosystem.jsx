@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 /* ───────── helpers ───────── */
@@ -112,7 +113,7 @@ export default function InnovationEcosystem({ data }) {
   const stats = data?.stats || [];
 
   return (
-    <section className="relative py-10 lg:py-14 2xl:py-[90px] 3xl:py-[90px]">
+    <section id="innovation-ecosystem" className="relative py-10 lg:py-14 2xl:py-[90px] 3xl:py-[90px] scroll-mt-24">
       <div className="container">
         {/* ───────── top row: text + media ───────── */}
         <div
@@ -125,7 +126,7 @@ export default function InnovationEcosystem({ data }) {
               <h2
                 className={`max-w-[10.5em] text-balance  font-bold leading-[1.05] tracking-tight text-black cmn_Title dark:text-white ${fadeUp(topInView)}`}
               >
-                {data.heading}
+                {withLineBreaks(data.heading)}
               </h2>
             )}
 
@@ -164,7 +165,7 @@ export default function InnovationEcosystem({ data }) {
                   >
                     <MediaItem
                       item={item}
-                      alt={data.heading}
+                      alt={plainTitle(data.heading)}
                       priority={index === 0}
                     />
                   </div>

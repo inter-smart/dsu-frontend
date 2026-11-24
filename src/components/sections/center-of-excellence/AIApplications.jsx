@@ -1,4 +1,5 @@
 "use client";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,7 +18,7 @@ export default function AIApplications({ data }) {
         <div className="h-full border-l-[4px] border-[#F97316] bg-white dark:bg-[#18191B] shadow-[0_2px_12px_rgba(0,0,0,0.06)] px-[20px] py-[24px] xl:px-[28px] xl:py-[30px] 2xl:py-[35px]">
             {item?.title && (
                 <h3 className="text-[18px] xl:text-[21px] 2xl:text-[24px] font-semibold leading-[1.3] text-[#212121] dark:text-white">
-                    {item.title}
+                    {withLineBreaks(item.title)}
                 </h3>
             )}
             {item?.description && (
@@ -37,7 +38,7 @@ export default function AIApplications({ data }) {
                     <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-[15px] lg:gap-[40px]">
                         {data?.heading && (
                             <h2 className="cmn_Title font-bold leading-[1.1] text-[#212121] dark:text-white whitespace-pre-line">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
                         {data?.description && (

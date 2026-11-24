@@ -1,4 +1,5 @@
 "use client";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -43,7 +44,7 @@ export default function AIGallery({ data }) {
                 <div className="border-t border-black/10 dark:border-white/10 pt-[35px] xl:pt-[60px]">
                     {data?.heading && (
                         <h2 className="cmn_Title font-bold leading-[1.1] text-center text-[#212121] dark:text-white">
-                            {data.heading}
+                            {withLineBreaks(data.heading)}
                         </h2>
                     )}
 

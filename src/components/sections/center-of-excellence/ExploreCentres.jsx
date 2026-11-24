@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -52,7 +53,7 @@ function RichText({ content }) {
 // card background: image or uploaded video (image becomes the poster)
 function CardMedia({ item }) {
   const imageUrl = item?.image?.url;
-  const alt = item?.image?.alternativeText || item?.title || "";
+  const alt = item?.image?.alternativeText || plainTitle(item?.title) || "";
   const mediaClass =
     "object-cover transition-transform duration-700 ease-out group-hover:scale-110";
 
@@ -107,7 +108,7 @@ function CentreCard({ item, className = "", style }) {
             </p>
           )}
           <h3 className="mt-1 text-[18px] font-semibold leading-[1.25] text-white md:text-[22px] 2xl:text-[26px] 3xl:text-[28px]">
-            {item?.title}
+            {withLineBreaks(item?.title)}
           </h3>
 
           {item?.poweredBy?.logo?.url && (
@@ -143,7 +144,7 @@ function CentreCard({ item, className = "", style }) {
   return item?.link ? (
     <Link
       href={item.link}
-      aria-label={`${item?.prefix || ""} ${item?.title || ""}`.trim()}
+      aria-label={`${item?.prefix || ""} ${plainTitle(item?.title) || ""}`.trim()}
       {...(item?.isExternal && {
         target: "_blank",
         rel: "noopener noreferrer",
@@ -169,7 +170,7 @@ function HighlightPanel({ highlight, className = "", style }) {
     >
       {highlight?.heading && (
         <h3 className="text-[24px] font-bold leading-tight tracking-tight text-[#212121] md:text-[28px] xl:text-[35px] 2xl:text-[45px] 3xl:text-[58px] dark:text-white">
-          {highlight.heading}
+          {withLineBreaks(highlight.heading)}
         </h3>
       )}
 
@@ -277,7 +278,7 @@ export default function ExploreCentres({ data }) {
             <h2
               className={`text-[28px] font-bold leading-tight tracking-tight text-[#212121] md:text-[36px] xl:text-[44px] 2xl:text-[52px] 3xl:text-[60px] dark:text-white ${fadeUp(headInView)}`}
             >
-              {data.heading}
+              {withLineBreaks(data.heading)}
             </h2>
           )}
 

@@ -6,6 +6,7 @@ import InnovationEcosystem from "@/components/sections/center-of-excellence/Inno
 import TakeIdeasForward from "@/components/sections/center-of-excellence/TakeIdeasForward";
 import WhoCanEngage from "@/components/sections/center-of-excellence/WhoCanEngage";
 import { getCentresPage } from "@/lib/api";
+import { hasContent } from "@/lib/has-content";
 
 export async function generateMetadata() {
   const pageData = await getCentresPage();
@@ -26,11 +27,11 @@ export default async function Page() {
   return (
     <>
       {heroSlider?.slides?.length > 0 && <HomeHeroSlider data={heroSlider} />}
-      {innovationEcosystem?.heading && <InnovationEcosystem data={innovationEcosystem} />}
-      {(exploreCentres?.centres?.length > 0 || exploreCentres?.heading) && <ExploreCentres data={exploreCentres} />}
-      {ideaToExecution?.steps?.length > 0 && <IdeaToExecution data={ideaToExecution} />}
-      {whoCanEngage?.items?.length > 0 && <WhoCanEngage data={whoCanEngage} />}
-      {takeIdeasForward?.heading && <TakeIdeasForward data={takeIdeasForward} />}
+      {hasContent(innovationEcosystem) && <InnovationEcosystem data={innovationEcosystem} />}
+      {hasContent(exploreCentres) && <ExploreCentres data={exploreCentres} />}
+      {hasContent(ideaToExecution) && <IdeaToExecution data={ideaToExecution} />}
+      {hasContent(whoCanEngage) && <WhoCanEngage data={whoCanEngage} />}
+      {hasContent(takeIdeasForward) && <TakeIdeasForward data={takeIdeasForward} />}
       <FlexibleSections sections={pageData.sections} />
     </>
   );
