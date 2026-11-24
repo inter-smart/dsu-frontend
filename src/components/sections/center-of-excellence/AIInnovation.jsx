@@ -1,4 +1,5 @@
 "use client";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -32,7 +33,7 @@ export default function AIInnovation({ data }) {
                     <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-[15px] lg:gap-[40px]">
                         {data?.heading && (
                             <h2 className="cmn_Title font-bold leading-[1.1] text-[#212121] dark:text-white whitespace-pre-line">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
                         {data?.description && (
@@ -77,7 +78,7 @@ export default function AIInnovation({ data }) {
                             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-[15px] lg:gap-[40px]">
                                 {data?.processHeading && (
                                     <h2 className="cmn_Title font-bold leading-[1.1] text-[#212121] dark:text-white">
-                                        {data.processHeading}
+                                        {withLineBreaks(data.processHeading)}
                                     </h2>
                                 )}
                                 {data?.processDescription && (
@@ -117,7 +118,7 @@ export default function AIInnovation({ data }) {
                                         <SwiperSlide key={step?.id ?? index} className="!h-auto relative">
                                             <div className="mx-auto size-(--c) rounded-full border border-[#F15A24] flex items-center justify-center text-center">
                                                 <h3 className="px-[12px] text-[20px] 2xl:text-[24px] 3xl:text-[28px] font-bold leading-[1.25] text-[#212121] dark:text-white">
-                                                    {step?.title}
+                                                    {withLineBreaks(step?.title)}
                                                 </h3>
                                             </div>
                                             {step?.description && (

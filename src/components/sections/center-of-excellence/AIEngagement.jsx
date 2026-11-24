@@ -1,3 +1,4 @@
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 import TableScrollBox from "@/components/layout/common/TableScrollBox";
 
 export default function AIEngagement({ data }) {
@@ -13,7 +14,7 @@ export default function AIEngagement({ data }) {
             <div className="container">
                 {data?.heading && (
                     <h2 className="cmn_Title font-bold leading-[1.1] text-center text-[#212121] dark:text-white mb-10">
-                        {data.heading}
+                        {withLineBreaks(data.heading)}
                     </h2>
                 )}
 

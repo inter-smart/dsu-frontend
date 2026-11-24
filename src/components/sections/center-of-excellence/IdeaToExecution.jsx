@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 /* ───────── helpers ───────── */
@@ -102,7 +103,7 @@ export default function IdeaToExecution({ data }) {
             <h2
               className={`text-[28px] font-bold leading-tight tracking-tight text-[#212121] md:text-[36px] xl:text-[46px] 2xl:text-[56px] 3xl:text-[64px] dark:text-white ${fadeUp(topInView)}`}
             >
-              {data.heading}
+              {withLineBreaks(data.heading)}
             </h2>
           )}
 
@@ -129,7 +130,7 @@ export default function IdeaToExecution({ data }) {
                   className={`absolute inset-0 transition-transform duration-[1800ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${bodyInView ? "scale-100" : "scale-[1.15]"
                     }`}
                 >
-                  <Media media={data.media} alt={data.heading} />
+                  <Media media={data.media} alt={plainTitle(data.heading)} />
                 </div>
               </div>
             </div>
@@ -154,7 +155,7 @@ export default function IdeaToExecution({ data }) {
 
                   <div className="min-w-0">
                     <h3 className="text-[17px] font-medium leading-tight text-[#212121] transition-colors duration-300 group-hover:text-(--basecolor) md:text-[20px] xl:text-[24px] dark:text-white">
-                      {step?.title}
+                      {withLineBreaks(step?.title)}
                     </h3>
                     {step?.description && (
                       <p className="mt-1.5 !text-[13px] !leading-snug !text-[#364153] md:!text-[15px] xl:mt-2.5 xl:!text-[16px] dark:!text-[#D1D5DB]">

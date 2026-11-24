@@ -1,3 +1,4 @@
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -59,7 +60,7 @@ export default function AICta({ data }) {
                     )}
                     {data?.heading && (
                         <h2 className="cmn_Title mt-[8px] xl:mt-[10px] font-bold leading-[1.15] text-white">
-                            {data.heading}
+                            {withLineBreaks(data.heading)}
                         </h2>
                     )}
                     {data?.description && (

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -88,7 +89,7 @@ function IconTile({ item }) {
 // photo or uploaded video (image becomes the poster)
 function CardMedia({ item }) {
   const imageUrl = item?.image?.url;
-  const alt = item?.image?.alternativeText || item?.title || "";
+  const alt = item?.image?.alternativeText || plainTitle(item?.title) || "";
   const mediaClass =
     "object-cover transition-transform duration-700 ease-out group-hover:scale-110";
 
@@ -162,7 +163,7 @@ export default function WhoCanEngage({ data }) {
             <h2
               className={`text-[28px] font-bold leading-tight tracking-tight text-[#212121] md:text-[36px] xl:text-[46px] 2xl:text-[56px] 3xl:text-[64px] dark:text-white ${fadeUp(headInView)}`}
             >
-              {data.heading}
+              {withLineBreaks(data.heading)}
             </h2>
           )}
           {data?.subheading && (
@@ -170,7 +171,7 @@ export default function WhoCanEngage({ data }) {
               style={{ transitionDelay: "150ms" }}
               className={`mt-1 !text-[14px] !text-[#4A5565] md:!text-[16px] xl:!text-[18px] 3xl:!text-[20px] dark:!text-[#9CA3AF] ${fadeUp(headInView)}`}
             >
-              {data.subheading}
+              {withLineBreaks(data.subheading)}
             </p>
           )}
         </div>
@@ -210,7 +211,7 @@ export default function WhoCanEngage({ data }) {
                   </div>
 
                   <h3 className="mt-4 text-[20px] font-medium leading-tight text-[#212121] transition-colors duration-300 group-hover:text-(--basecolor) md:text-[22px] 2xl:mt-[22px] 2xl:text-[24px] 3xl:text-[26px] dark:text-white">
-                    {item?.title}
+                    {withLineBreaks(item?.title)}
                   </h3>
                   {item?.description && (
                     <p className="mt-1.5 !text-[14px] !leading-snug !text-[#4A5565] md:!text-[15px] 2xl:mt-2.5 2xl:!text-[17px] 3xl:!text-[18px] dark:!text-[#9CA3AF]">
@@ -225,7 +226,7 @@ export default function WhoCanEngage({ data }) {
                   {item?.link ? (
                     <Link
                       href={item.link}
-                      aria-label={item?.title}
+                      aria-label={plainTitle(item?.title)}
                       {...(item?.isExternal && {
                         target: "_blank",
                         rel: "noopener noreferrer",

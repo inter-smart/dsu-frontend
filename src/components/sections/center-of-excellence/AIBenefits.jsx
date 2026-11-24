@@ -1,3 +1,4 @@
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
 import {
     Accordion,
     AccordionContent,
@@ -24,7 +25,7 @@ export default function AIBenefits({ data }) {
                     <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-[15px] lg:gap-[40px]">
                         {data?.heading && (
                             <h2 className="cmn_Title font-bold leading-[1.1] text-[#212121] dark:text-white whitespace-pre-line">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
                         {data?.description && (
@@ -55,7 +56,7 @@ export default function AIBenefits({ data }) {
                                         className="items-center rounded-[10px] border-transparent px-[18px] py-[18px] xl:px-[24px] xl:py-[22px] aria-expanded:pb-[8px] xl:aria-expanded:pb-[10px] text-left hover:no-underline focus-visible:ring-0 focus-visible:border-transparent [&_svg]:hidden! after:content-['+'] aria-expanded:after:content-['−'] after:text-[26px] after:leading-none after:font-normal after:text-[#212121] dark:after:text-white after:shrink-0 after:ml-[16px]"
                                     >
                                         <span className="text-[18px] xl:text-[22px] 2xl:text-[24px] font-medium leading-[1.3] text-[#212121] dark:text-white">
-                                            {item?.title}
+                                            {withLineBreaks(item?.title)}
                                         </span>
                                     </AccordionTrigger>
 
