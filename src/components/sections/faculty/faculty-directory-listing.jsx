@@ -242,7 +242,7 @@ export default function FacultyDirectoryListing({ data }) {
     setVisibleCount(initialVisibleCount);
   };
   return (
-    <section className="w-full h-auto sm:py-[0_50px] 2xl:py-[0_60px] 3xl:py-[0_80px] bg-linear-to-t from-[#FFF3E0]/50 to-[#FFF8EE]/50 block">
+    <section className="w-full h-auto py-[30px] sm:py-[0_50px] 2xl:py-[0_60px] 3xl:py-[0_80px] bg-linear-to-t from-[#FFF3E0]/50 to-[#FFF8EE]/50 block sm:mt-[-3%]">
       <div className="container">
         <div className="sm:[--gap:15px] lg:[--gap:20px] 2xl:[--gap:30px] 3xl:[--gap:35px] [--rounded:10px] sm:[--rounded:15px] lg:[--rounded:20px] 2xl:[--rounded:25px] 3xl:[--rounded:30px] w-full h-auto p-[15px_20px] sm:p-[20px_25px] lg:p-[25px_30px] 2xl:p-[30px_40px] 3xl:p-[35px_50px] mb-3.75 sm:mb-5 lg:mb-5 2xl:mb-10 3xl:mb-12.5 rounded-(--rounded) translate-y-[-15%] xl:-translate-y-1/2 flex flex-wrap items-center relative  before:size-full before:rounded-(--rounded) before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:-translate-y-0.75 2xl:before:-translate-y-1.25 before:absolute before:-z-2 before:inset-0 after:size-full after:bg-white after:rounded-(--rounded) after:absolute after:-z-1 z-0  after:inset-0">
           <div className="w-full md:w-[35%] md:pr-(--gap) max-md:mb-5">
@@ -379,7 +379,7 @@ export default function FacultyDirectoryListing({ data }) {
                           )}
                         </button>
                         {isExpanded && (
-                          <ul className="w-full h-auto p-[0_var(--spacing)_10px_var(--spacing)] lg:p-[0_var(--spacing)_20px_var(--spacing)]">
+                          <ul className="w-full h-auto !p-[3px_10px] !2xl:p-[5px_25px]">
                             {department.children.map((child) => (
                               <li key={child.value}>
                                 <button

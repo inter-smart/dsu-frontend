@@ -29,7 +29,7 @@ export default function AIBenefits({ data }) {
                             </h2>
                         )}
                         {data?.description && (
-                            <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:w-[48%] xl:w-[40%] 2xl:w-[38%] shrink-0">
+                            <p className="!!text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:w-[48%] xl:w-[40%] 2xl:w-[38%] shrink-0">
                                 {data.description}
                             </p>
                         )}
@@ -62,7 +62,7 @@ export default function AIBenefits({ data }) {
 
                                     {item?.description && (
                                         <AccordionContent className="px-[18px] pt-0 pb-[18px] xl:px-[24px] xl:pb-[24px]">
-                                            <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF]">
+                                            <p className="!text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF]">
                                                 {item.description}
                                             </p>
                                         </AccordionContent>

@@ -20,6 +20,14 @@ const reveal =
 const secondaryButtonClass =
     "bg-transparent text-white border border-transparent [border-image:linear-gradient(90deg,#e32b1f,#f97316)_1] hover:text-white hover:bg-[linear-gradient(90deg,#e32b1f,#f97316)]";
 
+// ADDED: static breadcrumb. Edit the labels and links here.
+// The last item is the current page (no href needed).
+const STATIC_BREADCRUMB = [
+    { label: "Home", href: "/" },
+    { label: "International Admission" },
+];
+// END ADDED
+
 // slide helpers (image | video | youtube)
 const getSlideType = (slide) => {
     if (slide?.mediaType === "youtube" || (!slide?.mediaType && slide?.youtubeUrl)) return "youtube";
@@ -245,6 +253,40 @@ export default function HomeHeroSlider({ data }) {
                                 <div className="relative z-10 h-full">
                                     <div className="container h-full flex items-end pb-[30px] sm:pb-[40px] lg:pb-[40px] 2xl:pb-[50px] 3xl:pb-[70px]">
                                         <div className="w-full max-w-[560px] sm:max-w-[800px] lg:max-w-[960px] 2xl:max-w-[1000px] 3xl:max-w-[1500px] text-white">
+                                            {/* ADDED: Static breadcrumb, just above the title */}
+                                            <nav
+                                                aria-label="Breadcrumb"
+                                                className={cn(reveal, "delay-100 mb-3 sm:mb-4 2xl:mb-[18px]")}
+                                            >
+                                                <ol className="text_1 flex flex-wrap items-center gap-2 text-white">
+                                                    {STATIC_BREADCRUMB.map((crumb, i) => {
+                                                        const isLast = i === STATIC_BREADCRUMB.length - 1;
+                                                        return (
+                                                            <li key={`${crumb.label}-${i}`} className="flex items-center gap-2">
+                                                                {isLast || !crumb.href ? (
+                                                                    <span
+                                                                        aria-current={isLast ? "page" : undefined}
+                                                                        className="font-medium text-white"
+                                                                    >
+                                                                        {crumb.label}
+                                                                    </span>
+                                                                ) : (
+                                                                    <Link
+                                                                        href={safeHref(crumb.href, "#")}
+                                                                        className="font-light text-white transition-opacity duration-300 hover:opacity-70"
+                                                                    >
+                                                                        {crumb.label}
+                                                                    </Link>
+                                                                )}
+                                                                {!isLast && (
+                                                                    <span className="size-[6px] rounded-full bg-[#F04A23]" aria-hidden="true" />
+                                                                )}
+                                                            </li>
+                                                        );
+                                                    })}
+                                                </ol>
+                                            </nav>
+                                            {/* END ADDED */}
                                             {slide?.title && (
                                                 <h2
                                                     className={cn(

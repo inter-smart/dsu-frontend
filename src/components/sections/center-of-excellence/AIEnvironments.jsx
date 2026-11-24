@@ -19,7 +19,7 @@ export default function AIEnvironments({ data }) {
                             </h2>
                         )}
                         {data?.description && (
-                            <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:w-[48%] xl:w-[40%] 2xl:w-[38%] shrink-0">
+                            <p className="!text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:w-[48%] xl:w-[40%] 2xl:w-[38%] shrink-0">
                                 {data.description}
                             </p>
                         )}
@@ -66,7 +66,7 @@ export default function AIEnvironments({ data }) {
                                             </h3>
                                         )}
                                         {item?.description && (
-                                            <p className="text_1 mt-[12px] xl:mt-[16px] leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] 2xl:max-w-[92%]">
+                                            <p className="!text_1 mt-[12px] xl:mt-[16px] leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] 2xl:max-w-[92%]">
                                                 {item.description}
                                             </p>
                                         )}
@@ -75,11 +75,11 @@ export default function AIEnvironments({ data }) {
                                                 {bullets.map((bullet, bulletIndex) => (
                                                     <li
                                                         key={bulletIndex}
-                                                        className="flex items-center gap-[12px] xl:gap-[14px] text-[16px] xl:text-[18px] 2xl:text-[20px] font-semibold leading-[1.3] text-[#212121] dark:text-white"
+                                                        className="flex items-center gap-[12px] xl:gap-[14px] !text_1 font-semibold leading-[1.3] text-[#212121] dark:text-white"
                                                     >
                                                         <span
                                                             aria-hidden="true"
-                                                            className="size-[10px] xl:size-[12px] shrink-0 rounded-full bg-linear-to-br from-[#DC2626] to-[#F97316]"
+                                                            className="size-[10px] xl:size-[12px] !text_1 shrink-0 rounded-full bg-linear-to-br from-[#DC2626] to-[#F97316]"
                                                         />
                                                         {bullet}
                                                     </li>

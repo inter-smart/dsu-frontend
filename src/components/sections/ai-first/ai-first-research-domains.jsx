@@ -1,10 +1,9 @@
 "use client";
-
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
-import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback, useEffect, useState } from "react";
 
 function DomainCard({ domain }) {
   return (
@@ -17,7 +16,7 @@ function DomainCard({ domain }) {
           height={48}
           className="mb-3 size-9 object-contain transition-[filter] duration-300 group-hover:brightness-0 group-hover:invert xl:size-12"
         />
-      )} 
+      )}
       <h3 className="mb-2 text-[18px] font-semibold text-[#212121] transition-colors duration-300 group-hover:text-white dark:text-white xl:text-[22px]">
         {domain.title}
       </h3>
@@ -102,7 +101,9 @@ export default function ResearchDomains({ data }) {
           <div className="mx-auto mb-10 max-w-[765px] text-center xl:mb-14">
             {data.title && <h2 className="cmn_Title">{data.title}</h2>}
             {data.description && (
-              <p className="text_1 3xl:text-[18px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data.description}</p>
+              <p className="text_1 3xl:text-[18px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                {data.description}
+              </p>
             )}
           </div>
         )}
@@ -123,7 +124,7 @@ export default function ResearchDomains({ data }) {
           )}
 
           {data?.image?.url && (
-            <div className="group relative w-full overflow-hidden rounded-[10px] lg:w-1/2">
+            <div className="group relative w-full overflow-hidden rounded-[10px] lg:w-1/2 max-lg:max-h-95">
               <Image
                 src={data.image.url}
                 alt={data.image.alternativeText || "Research & innovation"}

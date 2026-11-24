@@ -7,7 +7,8 @@ import Autoplay from "embla-carousel-autoplay";
 import { Heading } from "@/components/ui/heading";
 import useEmblaCarousel from "embla-carousel-react";
 import CtaButton from "@/components/ui/cta-button";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react"; // CHANGED: added useRef
+import TableScrollBox from "@/components/layout/common/TableScrollBox";
 
 export default function HomeAcademic({ data }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -206,6 +207,42 @@ function DotPagination({ total, current, onDotClick }) {
   );
 }
 
+// CHANGED: new helper. Scrolls the list while it can move in the wheel direction.
+// At the top/bottom (or when the content is short) the event is left alone,
+// so the smooth-scroll library (Lenis) scrolls the page as normal.
+function WheelScrollList({ className, children }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const onWheel = (e) => {
+      if (e.ctrlKey) return; // pinch zoom
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // sideways
+
+      const max = el.scrollHeight - el.clientHeight;
+      if (max <= 1) return; // nothing to scroll: page handles it
+
+      const atTop = el.scrollTop <= 0;
+      const atBottom = el.scrollTop >= max - 1;
+      const canMove = (e.deltaY < 0 && !atTop) || (e.deltaY > 0 && !atBottom);
+
+      // list can still move: keep the event away from Lenis so the list scrolls natively
+      if (canMove) e.stopPropagation();
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: true });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
+
+  return (
+    <div ref={ref} className={className}>
+      {children}
+    </div>
+  );
+}
+
 function AcademicCard({ item }) {
   return (
     <div className="group [--gap:20px_15px] 2xl:[--gap:25px_20px] w-full h-full aspect-335/355 rounded-[7px] 2xl:rounded-[10px] overflow-hidden block relative z-0 bg-linear-to-br from-[#0B2148] to-[#E84E1B]/70 before:content-[''] before:w-full before:h-[40%] before:bg-linear-to-t before:from-[#090909] before:to-[#0B2148]/0 before:opacity-50 before:absolute before:z-1 before:inset-[auto_0_0_0]">
@@ -239,33 +276,58 @@ function AcademicCard({ item }) {
         )}
       </h3>
       <div className="w-full h-full max-lg:hidden bg-black/50 backdrop-blur-[10px] opacity-0 pointer-events-none transition-opacity duration-500 block absolute z-1 inset-0 overflow-hidden group-hover:opacity-100 group-hover:pointer-events-auto">
-        <div className="w-full h-[90%] p-[20px_10px_40px_10px] 2xl:p-[35px_15px_40px_15px] overflow-y-auto overscroll-contain [scrollbar-width:thin] [scrollbar-color:rgba(8,12,21,0.35)_transparent] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_88%,transparent_100%)] [mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_88%,transparent_100%)]">
-          <div className="w-full h-auto block">
-            {item?.courses_list?.map((item) => (
-              <div
-                key={item?.id}
-                className="w-full h-auto not-last:pb-2.5 2xl:not-last:pb-3.75 not-last:mb-2.5 2xl:not-last:mb-3.75 not-last:border-b border-white/20 block"
-              >
-                <div className="text-sm 2xl:text-lg 3xl:text-xl leading-[1.1] font-semibold text-white mb-2.5 2xl:mb-3.75">
-                  {item?.title}
+        <TableScrollBox className="h-full">
+          {/* CHANGED: plain div became WheelScrollList; removed data-lenis-prevent; overscroll-contain became overscroll-auto */}
+          <WheelScrollList className="w-full h-[90%] p-[20px_10px_40px_10px] 2xl:p-[35px_15px_40px_15px] overflow-y-auto overscroll-auto [scrollbar-width:thin] [scrollbar-color:rgba(8,12,21,0.35)_transparent] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_88%,transparent_100%)] [mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_88%,transparent_100%)]">
+            <div
+              className={
+                item?.courses_list?.length
+                  ? "w-full h-auto block"
+                  : "w-full h-full flex items-center justify-center"
+              }
+            >
+              {item?.courses_list?.map((item) => (
+                <div
+                  key={item?.id}
+                  className="w-full h-auto not-last:pb-2.5 2xl:not-last:pb-3.75 not-last:mb-2.5 2xl:not-last:mb-3.75 not-last:border-b border-white/20 block"
+                >
+                  <div className="text-sm 2xl:text-lg 3xl:text-xl leading-[1.1] font-semibold text-white mb-2.5 2xl:mb-3.75">
+                    {item?.title}
+                  </div>
+                  <div className="w-full h-auto gap-1.25 2xl:gap-2.5 3xl:gap-3.75 flex flex-wrap">
+                    {item?.courses?.map((course) => (
+                      <div key={course?.id} className="w-auto h-auto inline">
+                        <Link
+                          href={safeHref(course?.link, "/academics")}
+                          aria-label={course?.label}
+                          className="text-[13px] 2xl:text-[15px] leading-[1.25] font-normal text-white w-auto h-auto max-w-full p-[5px_10px] bg-black/10 rounded-[16px] border border-white/20 transition duration-500 inline-block hover:text-white hover:bg-[#ffffff4d] hover:border-[#ffffff4d]"
+                        >
+                          {course?.label}
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="w-full h-auto gap-1.25 2xl:gap-2.5 3xl:gap-3.75 flex flex-wrap">
-                  {item?.courses?.map((course) => (
-                    <div key={course?.id} className="w-auto h-auto inline">
-                      <Link
-                        href={safeHref(course?.link, "/academics")}
-                        aria-label={course?.label}
-                        className="text-[13px] 2xl:text-[15px] leading-[1.25] font-normal text-white w-auto h-auto max-w-full p-[5px_10px] bg-black/10 rounded-[16px] border border-white/20 transition duration-500 inline-block hover:text-white hover:bg-[#ffffff4d] hover:border-[#ffffff4d]"
-                      >
-                        {course?.label}
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+              ))}
+              {/* CHANGED: styled "View more", shown only when there is no course list */}
+              {!item?.courses_list?.length && (
+                <Link
+                  href={safeHref(item?.link, "/academics")}
+                  className="inline-flex h-[34px] items-center gap-2 rounded-sm bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-3 text-[12px] font-bold leading-none whitespace-nowrap text-white transition-colors duration-300 ease-in-out hover:from-(--basecolor2) hover:to-(--basecolor) 2xl:h-[40px] 2xl:gap-3 2xl:px-4 2xl:text-[14.4px] 3xl:h-[50px] 3xl:gap-4 3xl:px-5 3xl:text-[18px]"
+                >
+                  View more
+                  <Image
+                    src="/images/icon-btn.svg"
+                    alt=""
+                    width={15}
+                    height={15}
+                    className="size-3.75"
+                  />
+                </Link>
+              )}
+            </div>
+          </WheelScrollList>
+        </TableScrollBox>
       </div>
     </div>
   );
