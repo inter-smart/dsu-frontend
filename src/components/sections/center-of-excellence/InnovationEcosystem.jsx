@@ -185,7 +185,7 @@ export default function InnovationEcosystem({ data }) {
               <div
                 key={stat?.id ?? index}
                 style={{ transitionDelay: `${index * 150}ms` }}
-                className={`relative lg:pl-[70px] xl:pl-[100px] 2xl:pl-[133px] lg:first:pl-0 lg:before:absolute lg:before:left-0 lg:before:top-1/2 lg:before:h-[75px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-black/10 lg:before:content-[''] lg:first:before:hidden dark:lg:before:bg-white/15 ${fadeUp(statsInView)}`}
+                className={`relative lg:pl-[70px] xl:pl-[100px] 2xl:pl-[133px] lg:first:pl-0 lg:before:absolute lg:before:left-0  lg:before:top-1/2 lg:before:h-[75px] lg:before:w-px lg:before:-translate-y-1/2 lg:before:bg-black/10 lg:before:content-[''] lg:first:before:hidden dark:lg:before:bg-white/15 ${fadeUp(statsInView)}`}
               >
                 <div className="bg-linear-to-r from-[#DC2626] to-[#F97316] !bg-clip-text !text-transparent [-webkit-text-fill-color:transparent] [&_*]:![-webkit-text-fill-color:transparent] [&_*]:!text-transparent cmn_Title font-bold leading-none w-fit">
                   <Counter

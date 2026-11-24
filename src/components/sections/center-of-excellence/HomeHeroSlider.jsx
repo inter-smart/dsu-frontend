@@ -46,12 +46,12 @@ const getSlideType = (slide) => {
 
 // Accepts watch?v=, youtu.be/, embed/, shorts/, live/ links, or a bare 11 character id
 const getYouTubeId = (url = "") => {
-  const value = String(url).trim();
-  if (/^[\w-]{11}$/.test(value)) return value;
-  const match = value.match(
-    /(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/|v\/))([\w-]{11})/,
-  );
-  return match ? match[1] : null;
+    const value = String(url).trim();
+    if (/^[\w-]{11}$/.test(value)) return value;
+    const match = value.match(
+        /(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/|v\/))([\w-]{11})/,
+    );
+    return match ? match[1] : null;
 };
 
 // How long a slide stays (ms). undefined = the global autoplayDelay.
@@ -99,7 +99,7 @@ function SlideVideo({ src, mime, active, loop, onDone }) {
         if (active) {
             el.currentTime = 0;
             const playing = el.play();
-            if (playing?.catch) playing.catch(() => {});
+            if (playing?.catch) playing.catch(() => { });
         } else {
             el.pause();
         }
@@ -166,8 +166,8 @@ export default function HomeHeroSlider({ data, breadcrumb }) {
             slide.type === "image"
                 ? slide?.image?.url
                 : slide.type === "video"
-                  ? slide?.video?.url
-                  : slide.youtubeId,
+                    ? slide?.video?.url
+                    : slide.youtubeId,
         );
     if (!slides.length) return null;
 
@@ -219,7 +219,7 @@ export default function HomeHeroSlider({ data, breadcrumb }) {
                                     className={cn(
                                         "absolute inset-0",
                                         slide.type === "image" &&
-                                            "scale-105 transition-transform duration-[6000ms] ease-out group-[.swiper-slide-active]:scale-100",
+                                        "scale-105 transition-transform duration-[6000ms] ease-out group-[.swiper-slide-active]:scale-100",
                                     )}
                                 >
                                     {slide?.image?.url && (
@@ -230,7 +230,7 @@ export default function HomeHeroSlider({ data, breadcrumb }) {
                                             priority={index === 0}
                                             sizes="100vw"
                                             draggable={false}
-                                            className={cn("object-cover select-none", slide?.mobileImage?.url && "max-sm:hidden")}
+                                            className={cn("object-cover select-none object-right", slide?.mobileImage?.url && "max-sm:hidden")}
                                         />
                                     )}
                                     {slide?.mobileImage?.url && (
@@ -262,12 +262,12 @@ export default function HomeHeroSlider({ data, breadcrumb }) {
                                 </div>
 
                                 {/* Bottom gradient: above the background, below the text */}
-                                <div className="absolute left-0 bottom-0 w-full h-[35%] pointer-events-none bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_0%,#000_100%)]" />
+                                <div className="absolute left-0 bottom-0 w-[70%] h-full pointer-events-none bg-[linear-gradient(270deg,rgba(0,0,0,0.01)_0%,rgba(0,0,0,0.7)_100%)]" />
 
                                 {/* Content, bottom left */}
                                 <div className="relative z-10 h-full">
-                                    <div className="container h-full flex items-end pb-[30px] sm:pb-[40px] lg:pb-[40px] 2xl:pb-[50px] 3xl:pb-[70px]">
-                                        <div className="w-full max-w-[560px] sm:max-w-[800px] lg:max-w-[960px] 2xl:max-w-[1000px] 3xl:max-w-[1500px] text-white">
+                                    <div className="container h-full flex items-end pb-[30px] sm:pb-[70px] lg:pb-[160px] 2xl:pb-[190px] 3xl:pb-[170px]">
+                                        <div className="w-full max-w-[560px] sm:max-w-[800px] lg:max-w-[900px] 2xl:max-w-[1000px] 3xl:max-w-[1500px] text-white">
                                             {/* ADDED: Static breadcrumb, just above the title */}
                                             <nav
                                                 aria-label="Breadcrumb"
@@ -302,44 +302,46 @@ export default function HomeHeroSlider({ data, breadcrumb }) {
                                                 </ol>
                                             </nav>
                                             {/* END ADDED */}
-                                            {slide?.title && (
-                                                <h2
-                                                    className={cn(
-                                                        reveal,
-                                                        "delay-200 text-[28px] sm:text-[35px] xl:text-[45px] 2xl:text-[50px] 3xl:text-[60px] leading-[1.1] font-bold max-w-[350px] xl:max-w-[650px] 2xl:max-w-[750px] 3xl:max-w-[850px] text-white",
-                                                    )}
-                                                >
-                                                    {withLineBreaks(slide.title)}
-                                                </h2>
-                                            )}
-                                            {slide?.description && (
-                                                <p
-                                                    className={cn(
-                                                        reveal,
-                                                        "delay-300 my-[10px] text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[23px] leading-[1.4] font-bold text-white",
-                                                    )}
-                                                >
-                                                    {slide.description}
-                                                </p>
-                                            )}
+                                            <div className=" max-w-[350px] xl:max-w-[650px] 2xl:max-w-[750px] 3xl:max-w-[850px]">
+                                                {slide?.title && (
+                                                    <h2
+                                                        className={cn(
+                                                            reveal,
+                                                            "delay-200 text-[28px] sm:text-[35px] xl:text-[45px] 2xl:text-[50px] 3xl:text-[60px] leading-[1.1] font-bold text-white",
+                                                        )}
+                                                    >
+                                                        {withLineBreaks(slide.title)}
+                                                    </h2>
+                                                )}
+                                                {slide?.description && (
+                                                    <p
+                                                        className={cn(
+                                                            reveal,
+                                                            "delay-300 my-[10px] text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[17px] 2xl:text-[18px] 3xl:text-[20px] leading-[1.4] font-semibold text-white",
+                                                        )}
+                                                    >
+                                                        {slide.description}
+                                                    </p>
+                                                )}
+                                            </div>
 
                                             {/* CTA buttons: primary + optional secondary */}
                                             {(slide?.button?.label?.trim() ||
                                                 slide?.secondaryButton?.label?.trim()) && (
-                                                <div
-                                                    className={cn(
-                                                        reveal,
-                                                        "delay-500 flex flex-wrap items-center gap-[12px] sm:gap-[17px]",
-                                                    )}
-                                                >
-                                                    <SlideButton button={slide.button} />
-                                                    <SlideButton
-                                                        button={slide.secondaryButton}
-                                                        variant="outline"
-                                                        className={secondaryButtonClass}
-                                                    />
-                                                </div>
-                                            )}
+                                                    <div
+                                                        className={cn(
+                                                            reveal,
+                                                            "delay-500 flex flex-wrap items-center gap-[12px] sm:gap-[17px]",
+                                                        )}
+                                                    >
+                                                        <SlideButton button={slide.button} />
+                                                        <SlideButton
+                                                            button={slide.secondaryButton}
+                                                            variant="outline"
+                                                            className={secondaryButtonClass}
+                                                        />
+                                                    </div>
+                                                )}
                                         </div>
                                     </div>
                                 </div>

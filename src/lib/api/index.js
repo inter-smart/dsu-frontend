@@ -14,3 +14,4 @@ export * from "./admission";
 export * from "./layout";
 export * from "./search";
 export * from "./centres";
+export * from "./campus";

@@ -21,7 +21,7 @@ export default function AIEngagement({ data }) {
                 {rows.length > 0 && (
                     // scroll box: vertical scroll after maxHeight, horizontal scroll on small screens.
                     // data-lenis-prevent stops Lenis smooth scroll from hijacking the wheel over the box.
-                    <TableScrollBox className="max-h-[450px] overflow-auto">
+                    // <TableScrollBox className="max-h-[450px] overflow-auto">
                         <table className="w-full min-w-[640px] border-separate border-spacing-0 text-[15px] xl:text-[17px] 2xl:text-[18px] border border-black">
                             <thead>
                                 <tr>
@@ -71,7 +71,7 @@ export default function AIEngagement({ data }) {
                                 })}
                             </tbody>
                         </table>
-                    </TableScrollBox> 
+                    // </TableScrollBox> 
                 )}
         </div>
         </section >
