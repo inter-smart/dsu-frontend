@@ -254,7 +254,10 @@ export default function Events({ data }) {
                             </div>
                           </div>
                           <Link
-                            href={safeHref(item?.link, "/announcements")}
+                            href={safeHref(item?.externalLink || item?.link, "/announcements")}
+                            {...(item?.externalLink
+                              ? { target: "_blank", rel: "noopener noreferrer" }
+                              : {})}
                             className="text-sm leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
                           >
                             Read More &gt;
