@@ -52,12 +52,15 @@ const byMenuOrder = (items, order) => {
   const rank = (i) => { const r = order.indexOf(i.key === "vision-mission" ? "overview" : i.key); return (r < 0 ? order.length : r) + (i.key === "vision-mission" ? 0.5 : 0); };
   return items.map((i, n) => [i, n]).sort(([a, x], [b, y]) => rank(a) - rank(b) || x - y).map(([i]) => i);
 };
-const stripKey = ({ key, ...item }) => item;
+// A Flexible Page tab ("page-<slug>") links under the page's own base URL, so the link always matches the
+// address being viewed (and the menu highlight) whatever slug the API put in its href.
+const extraHref = (base, t) => (t.key?.startsWith("page-") ? `${base}/${t.key.slice(5)}` : t.href);
+const stripKey =({ key, ...item }) => item;
 
 const menuFor = (tabs, base, extra = [], order) =>
   byMenuOrder([
     ...tabs.map((t) => ({ key: t.key, label: t.label, href: menuHref(base, t.key) })),
-    ...extra.map((t) => ({ key: t.key, label: t.label, href: t.href })),
+    ...extra.map((t) => ({ key: t.key, label: t.label, href: extraHref(base, t) })),
   ], order).map(stripKey);
 
 // Vision & Mission has no page of its own: it is the #vision-mission section of the department Overview.
@@ -74,7 +77,7 @@ function departmentMenu(tabs, base, schoolSlug, departmentSlug, librarySubpages 
     return t.key === "overview"
       ? [item, { key: "vision-mission", label: VISION_MISSION_ITEM.label, href: `${menuHref(base, "overview")}#${VISION_MISSION_ITEM.anchor}` }]
       : [item];
-  }), ...extra.map((t) => ({ key: t.key, label: t.label, href: t.href }))], order).map(stripKey);
+  }), ...extra.map((t) => ({ key: t.key, label: t.label, href: extraHref(base, t) }))], order).map(stripKey);
 }
 
 // Hero for an entity page: the API hero (its own banner or the school's), full breadcrumb.
