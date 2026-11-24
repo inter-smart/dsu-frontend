@@ -40,9 +40,9 @@ export default async function Page({ params }) {
       {d.applications && <AIApplications data={d.applications} />}
       {d.benefits && <AIBenefits data={d.benefits} />}
       {d.zones && <AIZones data={d.zones} />}
+      {d.gallery && <AIGallery data={d.gallery} />}
       {d.centres && <AICentres data={d.centres} />}
       {d.engagement && <AIEngagement data={d.engagement} />}
-      {d.gallery && <AIGallery data={d.gallery} />}
       {d.cta && <AICta data={d.cta} />}
     </>
   );

@@ -7,7 +7,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
-export default function WhySection({ data }) {
+// `compact` (set by the overview template for specific pages only) tightens the gaps around the banner image
+export default function WhySection({ data, compact = false }) {
   if (!data) return null;
 
   return (
@@ -22,17 +23,26 @@ export default function WhySection({ data }) {
           </div>
         )}
         {data?.media?.url && (
-          <div className="w-full aspect-[1730/540] rounded-[10px] overflow-hidden my-[30px]">
+          <div
+            className={`w-full aspect-[1730/540] rounded-[10px] overflow-hidden ${
+              compact ? "mt-[20px] xl:mt-[25px]" : "my-[30px]"
+            }`}
+          >
             <Image
               src={data?.media?.url}
               width={1730}
               height={540}
               alt={data?.media?.alternativeText}
+              className={compact ? "w-full h-full object-cover" : undefined}
             />
           </div>
         )}
         {data?.points?.length > 0 && (
-        <div className={`w-full relative mt-[40px] 2xl:mt-[60px] `}>
+        <div
+          className={`w-full relative ${
+            compact ? "mt-[20px] xl:mt-[30px]" : "mt-[40px] 2xl:mt-[60px] "
+          }`}
+        >
           <Swiper
             modules={[Autoplay]}
             slidesPerView={1}

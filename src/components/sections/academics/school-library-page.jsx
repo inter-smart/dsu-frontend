@@ -48,7 +48,7 @@ function Template({ page, menu, schoolSlug }) {
     const content = page.content ?? {};
     switch (page.template) {
         case "flexible-page":
-            return <FlexibleSections sections={page.sections} menu={menu} />;
+            return <FlexibleSections sections={page.sections} menu={menu} libraryLayout />;
         case "services":
             return <LibraryServices data={adapt.libraryServicesContent(content)} menu={menu} />;
         case "downloads":

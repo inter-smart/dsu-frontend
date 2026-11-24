@@ -56,9 +56,10 @@ export default function AboutWelcome({ data }) {
               >
                 <div className="xl:max-w-[350px] 2xl:max-w-[420px] 3xl:max-w-[520px]">
                   {data?.title && (
-                    <h2 className="mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white">
-                      {data.title}
-                    </h2>
+                    <h2
+                      className="mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white"
+                      dangerouslySetInnerHTML={{ __html: data.title }}
+                    />
                   )}
 
                   {Array.isArray(data?.description) &&

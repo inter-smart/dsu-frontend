@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import RichText from "@/components/ui/rich-text";
-import LibrarySidebar from "./library-sidemenubar";
+import LibraryFrame from "./library-frame";
 
 // Video id of a YouTube link (watch / youtu.be / embed / shorts) or a bare 11-character id; "" when it is not one.
 const youtubeId = (input) => {
@@ -94,25 +93,11 @@ function LibraryTable({ heading, note, table, className = "" }) {
     );
 }
 
-export default function LibraryOverview({ data, menu }) {
-    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-    // only the "Overview" entry (no sub-pages) means no sidebar: the content takes the full width
-    const hasMenu = !Array.isArray(menu) || menu.length > 1; // no menu passed = the sidebar's built-in default list
+export default function LibraryOverview({ data, menu, embedded }) {
 
     return (
-        <section className="relative py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px] dark:bg-[#101010]">
-            <div className="container">
-                <div className="cmnFlx">
-                    <div className={hasMenu ? "leftBx lg:sticky lg:top-[140px] lg:left-0 lg:h-full" : "hidden"}>
-                        <LibrarySidebar
-                            data={menu}
-                            isOpen={isMobileSidebarOpen}
-                            onClose={() => setIsMobileSidebarOpen(false)}
-                        />
-                    </div>
-                    <div className={hasMenu ? "rtBx" : "w-full"}>
-                        
-                        <div className="w-full lg:h-full rounded-[10px] border border-black/10 dark:border-white/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_30px] 2xl:p-[40px_40px] 3xl:p-[50px]">
+        <LibraryFrame menu={menu} embedded={embedded} className="py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px] dark:bg-[#101010]">
+<div className="w-full lg:h-full rounded-[10px] border border-black/10 dark:border-white/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_30px] 2xl:p-[40px_40px] 3xl:p-[50px]">
                             <h2 className="cmn_Title dark:text-white mb-[25px]">
                                 {data.heading}
                             </h2>
@@ -169,9 +154,6 @@ export default function LibraryOverview({ data, menu }) {
                             </div>
 
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </LibraryFrame>
     )
 }
