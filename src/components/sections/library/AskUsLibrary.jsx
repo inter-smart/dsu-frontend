@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import LibrarySidebar from "./LibrarySidebar";
+import LibraryHtml from "./LibraryHtml";
 
 const infoCard =
     "rounded-[8px] border-l-[5px] border-[#DC2626] bg-linear-to-br from-[#FFF6E9] to-[#FFEFD9] dark:from-white/5 dark:to-white/5";
@@ -68,7 +69,7 @@ export default function AskUsLibrary({ data, menu }) {
 
                             {intro && (
                                 <div className="text_1 mb-6 md:mb-8 lg:mb-10 text-[#4A5565]">
-                                    <p>{intro}</p>
+                                    <LibraryHtml value={intro} />
                                 </div>
                             )}
 

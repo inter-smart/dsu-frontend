@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import LibrarySidebar from "./LibrarySidebar";
+import LibraryHtml from "./LibraryHtml";
 
 function InfoBlock({ icon, title, children }) {
     return (
@@ -73,7 +74,7 @@ export default function VisionMissionLibrary({ data, menu }) {
 
                             {vision && (
                                 <InfoBlock icon={vision.icon} title={vision.title}>
-                                    <p className="text-[#4A5565]">{vision.description}</p>
+                                    <LibraryHtml value={vision.description} className="text-[#4A5565]" />
                                 </InfoBlock>
                             )}
 

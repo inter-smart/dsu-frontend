@@ -3,6 +3,7 @@ import { withLineBreaks } from "@/lib/line-breaks";
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "@/components/ui/safe-image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, A11y } from "swiper/modules";
@@ -20,13 +21,21 @@ const reveal =
 const secondaryButtonClass =
     "bg-transparent text-white border border-transparent [border-image:linear-gradient(90deg,#e32b1f,#f97316)_1] hover:text-white hover:bg-[linear-gradient(90deg,#e32b1f,#f97316)]";
 
-// ADDED: static breadcrumb. Edit the labels and links here.
-// The last item is the current page (no href needed).
-const STATIC_BREADCRUMB = [
-    { label: "Home", href: "/" },
-    { label: "International Admission" },
-];
-// END ADDED
+// Fallback breadcrumb built from the URL (used when no `breadcrumb` is passed).
+// The last item is the current page (no href).
+const prettify = (s) =>
+    decodeURIComponent(s).replace(/[-_]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+
+const breadcrumbFromPath = (pathname = "") => {
+    const parts = pathname.split("/").filter(Boolean);
+    return [
+        { label: "Home", href: "/" },
+        ...parts.map((p, i) => ({
+            label: prettify(p),
+            href: i < parts.length - 1 ? "/" + parts.slice(0, i + 1).join("/") : undefined,
+        })),
+    ];
+};
 
 // slide helpers (image | video | youtube)
 const getSlideType = (slide) => {
@@ -134,7 +143,13 @@ function SlideYouTube({ id, title }) {
     );
 }
 
-export default function HomeHeroSlider({ data }) {
+export default function HomeHeroSlider({ data, breadcrumb }) {
+    const pathname = usePathname();
+    const crumbs = breadcrumb?.length
+        ? breadcrumb
+        : data?.breadcrumb?.length
+          ? data.breadcrumb
+          : breadcrumbFromPath(pathname);
     const swiperRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -259,8 +274,8 @@ export default function HomeHeroSlider({ data }) {
                                                 className={cn(reveal, "delay-100 mb-3 sm:mb-4 2xl:mb-[18px]")}
                                             >
                                                 <ol className="text_1 flex flex-wrap items-center gap-2 text-white">
-                                                    {STATIC_BREADCRUMB.map((crumb, i) => {
-                                                        const isLast = i === STATIC_BREADCRUMB.length - 1;
+                                                    {crumbs.map((crumb, i) => {
+                                                        const isLast = i === crumbs.length - 1;
                                                         return (
                                                             <li key={`${crumb.label}-${i}`} className="flex items-center gap-2">
                                                                 {isLast || !crumb.href ? (

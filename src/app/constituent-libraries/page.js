@@ -1,53 +1,20 @@
-import InnerHero from "@/components/layout/common/InnerHero"; 
-import ConstituentLibrariesLibrary from "@/components/sections/library/ConstituentLibrariesLibrary";
+import { notFound } from "next/navigation";
+import CmsPageView from "@/components/flexible/CmsPageView";
+import { getLibraryBySlug } from "@/lib/api/library";
+import { seoMetadata } from "@/lib/seo";
+import { libraryMenu } from "@/lib/library-menu";
 
-const local_data = {
-    // ...id, seo stay as you have them
+// Library sub-page "constituent-libraries": a "Library" entry with this slug (template: Constituent Libraries)
+const SLUG = "constituent-libraries";
 
-    hero: {
-        id: 25,
-        heroMedia: {
-            alternativeText: "Constituent Libraries",
-            mime: "image/jpg",
-            url: "/images/academic-banner.jpg",
-        },
-        title: "Library",
-        breadcrumb: [
-            { label: "Home", href: "/" },
-            { label: "Student Life", href: "/" },
-            { label: "Library", href: "/" },
-            { label: "Constituent Libraries", href: "/" },
-        ],
-    },
+export async function generateMetadata() {
+    const page = await getLibraryBySlug(SLUG);
+    return seoMetadata(page?.seo, page?.hero?.title || page?.title || "Library");
+}
 
-    constituentLibraries: {
-        title: "Constituent Libraries",
-        intro:
-            "The following Objectives and Responsibilities of the Library Advisory Committee Members",
-        libraries: [
-            { label: "School of Engineering", url: "/" },
-            { label: "School of Commerce & Management Studies", url: "/" },
-            { label: "School of Law", url: "/" },
-            { label: "School of Basic & Applied Sciences", url: "/" },
-            { label: "College of Physiotherapy", url: "/" },
-            { label: "School of Computer Application", url: "/" },
-            { label: "College of Journalism & Mass Communication", url: "/" },
-            { label: "School of Basic & Applied Sciences", url: "/" },
-            { label: "College of Pharmaceutical Sciences", url: "/" },
-            { label: "College of Nursing Sciences", url: "/" },
-        ],
-    },
+export default async function Page() {
+    const page = await getLibraryBySlug(SLUG);
+    if (!page) notFound();
 
-    menu: [/* same menu data you pass to AboutLibrary */],
-};
-
-export default function page() {
-    return (
-        <>
-            <InnerHero data={local_data.hero} />
-            <ConstituentLibrariesLibrary
-                data={local_data.constituentLibraries} 
-            />
-        </>
-    );
+    return <CmsPageView page={{ ...page, sidebar: libraryMenu(page.menu) }} />;
 }

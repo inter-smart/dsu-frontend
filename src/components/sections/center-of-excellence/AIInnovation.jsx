@@ -73,7 +73,13 @@ export default function AIInnovation({ data }) {
 
                 {/* ───────── Part 2: From Concept To Creation (Swiper) ───────── */}
                 {(data?.processHeading || steps.length > 0) && (
-                    <div className="mt-[50px] xl:mt-[90px] border-t border-black/10 dark:border-white/10 pt-[40px] xl:pt-[70px]">
+                    <div
+                        className={
+                            data?.heading || data?.description || stats.length > 0
+                                ? "mt-[50px] xl:mt-[90px] border-t border-black/10 dark:border-white/10 pt-[40px] xl:pt-[70px]"
+                                : ""
+                        }
+                    >
                         {(data?.processHeading || data?.processDescription) && (
                             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-[15px] lg:gap-[40px]">
                                 {data?.processHeading && (

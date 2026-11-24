@@ -3,14 +3,17 @@
 import { useState } from "react";
 import { Menu } from "lucide-react";
 import LibrarySidebar from "./LibrarySidebar";
+import LibraryHtml from "./LibraryHtml";
 
 const cell = "border border-[#6B7280] dark:border-white/30";
 
 export default function AdvisoryCommitteeLibrary({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
-    const { title, headers, members, intro, sections } = data || {};
-    const [h1, h2, h3] = headers || ["Sl No", "Designation", "Role"];
+    // the table is whatever the editor builds: any columns, any rows (a row's cells follow the column order)
+    const { title, columns = [], rows = [], showSerialNumber = true, serialNumberLabel = "Sl No", intro, sections } = data || {};
+    const colCount = Math.max(columns.length, ...rows.map((r) => r.length), 0);
+    const heads = Array.from({ length: colCount }, (_, i) => columns[i] ?? "");
 
     return (
         <section className="relative py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px] dark:bg-[#101010]">
@@ -48,34 +51,30 @@ export default function AdvisoryCommitteeLibrary({ data, menu }) {
                             )}
 
                             {/* ─── Committee table ─── */}
-                            {members?.length > 0 && (
+                            {rows.length > 0 && colCount > 0 && (
                                 <div className="w-full overflow-x-auto">
                                     <table className="w-full min-w-[520px] border-collapse">
                                         <thead>
                                             <tr className="bg-[#F97B22] text-white">
-                                                <th className={`${cell} w-[16%] px-3 py-3 text-center   font-medium`}>
-                                                    {h1}
-                                                </th>
-                                                <th className={`${cell} w-[42%] px-3 py-3 text-center   font-medium`}>
-                                                    {h2}
-                                                </th>
-                                                <th className={`${cell} w-[42%] px-3 py-3 text-center  font-medium`}>
-                                                    {h3}
-                                                </th>
+                                                {showSerialNumber && (
+                                                    <th className={`${cell} w-[16%] px-3 py-3 text-center font-medium`}>{serialNumberLabel}</th>
+                                                )}
+                                                {heads.map((h, i) => (
+                                                    <th key={i} className={`${cell} px-3 py-3 text-center font-medium`}>{h}</th>
+                                                ))}
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {members.map((m, i) => (
-                                                <tr key={m?.id ?? i}>
-                                                    <td className={`${cell} px-3 py-3 lg:py-4 text-center  text-black dark:text-white`}>
-                                                        {i + 1}
-                                                    </td>
-                                                    <td className={`${cell} px-3 py-3 lg:py-4 text-center   text-black dark:text-white`}>
-                                                        {m?.designation}
-                                                    </td>
-                                                    <td className={`${cell} px-3 py-3 lg:py-4 text-center  text-black dark:text-white`}>
-                                                        {m?.role}
-                                                    </td>
+                                            {rows.map((row, i) => (
+                                                <tr key={i}>
+                                                    {showSerialNumber && (
+                                                        <td className={`${cell} px-3 py-3 lg:py-4 text-center text-black dark:text-white`}>{i + 1}</td>
+                                                    )}
+                                                    {heads.map((_, j) => (
+                                                        <td key={j} className={`${cell} px-3 py-3 lg:py-4 text-center text-black dark:text-white`}>
+                                                            {row[j]}
+                                                        </td>
+                                                    ))}
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -86,7 +85,7 @@ export default function AdvisoryCommitteeLibrary({ data, menu }) {
                             {/* ─── Intro line ─── */}
                             {intro && (
                                 <div className="text_1 mt-8 md:mt-10 lg:mt-12">
-                                    <p>{intro}</p>
+                                    <LibraryHtml value={intro} />
                                 </div>
                             )}
 

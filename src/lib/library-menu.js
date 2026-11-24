@@ -9,55 +9,55 @@ export const LIBRARY_STATIC_MENU = [
   },
   {
     label: "Library Vision & Mission",
-    slug: "/library/Vision-Mission",
+    slug: "/Vision-Mission",
   },
   {
     label: "Our Team",
-    slug: "/library/ourTeam",
+    slug: "/ourTeam",
   },
   {
     label: "Library Advisory Committee",
-    slug: "/library/Advisory-committee",
+    slug: "/Advisory-committee",
   },
   {
     label: "Collections",
-    slug: "/library/collection",
+    slug: "/collection",
   },
   {
     label: "E Resources",
-    slug: "/library/E-resource",
+    slug: "/E-resource",
   },
   {
     label: "Anti-Plagiarism Tools",
-    slug: "/library/Anti-Plagiarism",
+    slug: "/Anti-Plagiarism",
   },
   {
     label: "Corporate Membership",
-    slug: "/library/corporate-membership",
+    slug: "/corporate-membership",
   },
   {
     label: "Useful URL’s",
-    slug: "/library/useful-urls",
+    slug: "/useful-urls",
   },
   {
     label: "Brochure",
-    slug: "/library/brochure",
+    slug: "/brochure",
   },
   {
     label: "Constituent Libraries",
-    slug: "/library/constituent-libraries",
+    slug: "/constituent-libraries",
   },
   {
     label: "Rules & Regulations",
-    slug: "/library/rules-regulations",
+    slug: "/rules-regulations",
   },
   {
     label: "Gallery",
-    slug: "/library/gallery",
+    slug: "/library-gallery",
   },
   {
     label: "Ask us",
-    slug: "/library/ask-us",
+    slug: "/ask-us",
   },
 ];
 

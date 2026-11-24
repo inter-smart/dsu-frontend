@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import LibrarySidebar from "./LibrarySidebar";
+import LibraryHtml from "./LibraryHtml";
 
 const cell = "border border-[#6B7280] dark:border-white/30";
 const th = `${cell} px-3 py-3 text-center text-[14px] md:text-[15px] 2xl:text-[16px] font-medium leading-tight`;
@@ -48,11 +49,9 @@ export default function AntiPlagiarismLibrary({ data, menu }) {
                         <div className="w-full lg:h-full rounded-[10px] border border-black/10 dark:border-white/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_30px] 2xl:p-[40px_40px] 3xl:p-[50px]">
                             {title && <h2 className="cmn_Title mb-3 md:mb-4">{title}</h2>}
 
-                            {description?.length > 0 && (
+                            {description && (
                                 <div className="text_1 mb-8 md:mb-10 lg:mb-12 [&_p+p]:mt-4 lg:[&_p+p]:mt-6">
-                                    {description.map((para, i) => (
-                                        <p key={i}>{para}</p>
-                                    ))}
+                                    <LibraryHtml value={description} />
                                 </div>
                             )}
 

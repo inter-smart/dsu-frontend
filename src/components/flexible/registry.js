@@ -16,6 +16,19 @@ import CoeAICentres from "@/components/sections/center-of-excellence/AICentres";
 import CoeAIEngagement from "@/components/sections/center-of-excellence/AIEngagement";
 import CoeAICta from "@/components/sections/center-of-excellence/AICta";
 import AboutLibrary from "@/components/sections/library/About-Library";
+import VisionMissionLibrary from "@/components/sections/library/VisionMission";
+import OurTeamLibrary from "@/components/sections/library/OurTeamLibrary";
+import AdvisoryCommitteeLibrary from "@/components/sections/library/AdvisoryCommitteeLibrary";
+import CollectionsLibrary from "@/components/sections/library/CollectionsLibrary";
+import EResourcesLibrary from "@/components/sections/library/EResourcesLibrary";
+import AntiPlagiarismLibrary from "@/components/sections/library/AntiPlagiarismLibrary";
+import CorporateMembershipLibrary from "@/components/sections/library/CorporateMembershipLibrary";
+import UsefulUrlsLibrary from "@/components/sections/library/UsefulUrlsLibrary";
+import BrochureLibrary from "@/components/sections/library/BrochureLibrary";
+import ConstituentLibrariesLibrary from "@/components/sections/library/ConstituentLibrariesLibrary";
+import RulesRegulationsLibrary from "@/components/sections/library/RulesRegulationsLibrary";
+import GalleryLibrary from "@/components/sections/library/GalleryLibrary";
+import AskUsLibrary from "@/components/sections/library/AskUsLibrary";
 import AdmissionContactTemplate from "@/components/sections/admission/templates/contact-template";
 import AdmissionDatesTemplate from "@/components/sections/admission/templates/dates-template";
 import AdmissionDownloadTemplate from "@/components/sections/admission/templates/download-template";
@@ -510,6 +523,19 @@ const flexibleRegistry = {
 
   // university Library page (/library): notices, description, schools' libraries
   "library.about-library-template": { Component: AboutLibrary },
+  "library.vision-mission-template": { Component: VisionMissionLibrary },
+  "library.our-team-template": { Component: OurTeamLibrary },
+  "library.advisory-committee-template": { Component: AdvisoryCommitteeLibrary },
+  "library.collections-template": { Component: CollectionsLibrary },
+  "library.e-resources-template": { Component: EResourcesLibrary },
+  "library.anti-plagiarism-template": { Component: AntiPlagiarismLibrary },
+  "library.corporate-membership-template": { Component: CorporateMembershipLibrary },
+  "library.useful-urls-template": { Component: UsefulUrlsLibrary },
+  "library.brochure-template": { Component: BrochureLibrary },
+  "library.constituent-libraries-template": { Component: ConstituentLibrariesLibrary },
+  "library.rules-regulations-template": { Component: RulesRegulationsLibrary },
+  "library.gallery-template": { Component: GalleryLibrary },
+  "library.ask-us-template": { Component: AskUsLibrary },
   "coe.hero-slider": { Component: CoeHomeHeroSlider },
   "coe.innovation-ecosystem": { Component: CoeInnovationEcosystem },
   "coe.explore-centres": { Component: CoeExploreCentres },

@@ -13,6 +13,7 @@ import AIOffer from "@/components/sections/center-of-excellence/AIOffer";
 import AIZones from "@/components/sections/center-of-excellence/AIZones";
 import HomeHeroSlider from "@/components/sections/center-of-excellence/HomeHeroSlider";
 import { getCentreBySlug } from "@/lib/api";
+import { plainTitle } from "@/lib/line-breaks";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -33,17 +34,24 @@ export default async function Page({ params }) {
 
   return (
     <>
-      {hasContent(d.heroSlider?.slides) && <HomeHeroSlider data={d.heroSlider} />}
+      {hasContent(d.heroSlider?.slides) && <HomeHeroSlider
+          data={d.heroSlider}
+          breadcrumb={[
+            { label: "Home", href: "/" },
+            { label: "Centres of Excellence", href: "/center-of-excellence" },
+            { label: plainTitle(d.title) || d.title },
+          ]}
+        />}
       {hasContent(d.showcase) && <AIFactoryShowcase data={d.showcase} />}
       {hasContent(d.innovation) && <AIInnovation data={d.innovation} />}
       {hasContent(d.offer) && <AIOffer data={d.offer} />}
       {hasContent(d.environments) && <AIEnvironments data={d.environments} />}
       {hasContent(d.applications) && <AIApplications data={d.applications} />}
+      {hasContent(d.engagement) && <AIEngagement data={d.engagement} />}
       {hasContent(d.benefits) && <AIBenefits data={d.benefits} />}
       {hasContent(d.zones) && <AIZones data={d.zones} />}
       {hasContent(d.gallery) && <AIGallery data={d.gallery} />}
       {hasContent(d.centres) && <AICentres data={d.centres} />}
-      {hasContent(d.engagement) && <AIEngagement data={d.engagement} />}
       {hasContent(d.cta) && <AICta data={d.cta} />}
     </>
   );

@@ -9,6 +9,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import LibrarySidebar from "./LibrarySidebar";
+import LibraryHtml from "./LibraryHtml";
 
 const cardBg =
     "rounded-[10px] border border-black/10 bg-linear-to-br from-white to-[#EEF3FB] dark:border-white/10 dark:from-white/5 dark:to-white/5";
@@ -165,9 +166,7 @@ export default function CollectionsLibrary({ data, menu }) {
                             )}
 
                             {eResources && (
-                                <p className="mt-10 md:mt-14 lg:mt-20 text-[14px] md:text-[15px] 2xl:text-[17px] font-semibold leading-relaxed text-[#F97B22]">
-                                    {eResources}
-                                </p>
+                                <LibraryHtml value={eResources} className="mt-10 md:mt-14 lg:mt-20 text-[14px] md:text-[15px] 2xl:text-[17px] font-semibold leading-relaxed text-[#F97B22]" />
                             )}
                         </div>
                     </div>

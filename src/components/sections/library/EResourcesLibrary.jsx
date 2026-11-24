@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import LibrarySidebar from "./LibrarySidebar";
+import LibraryHtml from "./LibraryHtml";
 
 const cell = "border border-[#6B7280] dark:border-white/30";
 const th = `${cell} px-3 py-3 text-center text-[14px] md:text-[15px] 2xl:text-[16px] font-medium leading-tight`;
@@ -66,7 +67,7 @@ export default function EResourcesLibrary({ data, menu }) {
 
                             {intro && (
                                 <div className="text_1 mb-5 md:mb-6 lg:mb-8">
-                                    <p>{intro}</p>
+                                    <LibraryHtml value={intro} />
                                 </div>
                             )}
 

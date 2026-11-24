@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Menu } from "lucide-react";
 import LibrarySidebar from "./LibrarySidebar";
+import LibraryHtml from "./LibraryHtml";
 
 const externalProps = (b) =>
     b?.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
@@ -48,7 +49,7 @@ export default function BrochureLibrary({ data, menu }) {
 
                             {intro && (
                                 <div className="text_1 mb-6 md:mb-8 lg:mb-10">
-                                    <p>{intro}</p>
+                                    <LibraryHtml value={intro} />
                                 </div>
                             )}
 

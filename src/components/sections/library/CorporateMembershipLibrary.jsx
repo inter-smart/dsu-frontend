@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import LibrarySidebar from "./LibrarySidebar";
+import LibraryHtml from "./LibraryHtml"
 
 const cell = "border border-[#6B7280] dark:border-white/30";
 const th = `${cell} px-3 py-3 text-center text-[15px] md:text-[16px] 2xl:text-[16px] font-medium leading-tight`;
@@ -53,7 +54,7 @@ export default function CorporateMembershipLibrary({ data, menu }) {
 
                             {intro && (
                                 <div className="text_1 mb-6 md:mb-8 lg:mb-10">
-                                    <p>{intro}</p>
+                                    <LibraryHtml value={intro} />
                                 </div>
                             )}
 
@@ -105,7 +106,7 @@ export default function CorporateMembershipLibrary({ data, menu }) {
                                                                 {m.url}
                                                             </a>
                                                         )}
-                                                        {m.note && <p className="m-0 font-medium">{m.note}</p>}
+                                                        <LibraryHtml value={m.note} className="font-medium" />
                                                     </td>
 
                                                     <td className={`${td} px-3 lg:px-4`}>
