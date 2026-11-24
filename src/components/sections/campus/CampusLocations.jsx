@@ -215,7 +215,7 @@ export default function CampusLocations({ data }) {
     return (
         <section className="w-full h-auto py-10 sm:py-12 lg:py-14 2xl:py-20 3xl:py-24 bg-white dark:bg-[#0F1012]">
             <div className="container">
-                <Tabs defaultValue={String(tabs[0].id)} className="w-full gap-0">
+                <Tabs defaultValue={String(tabs[0].id)} onValueChange={setActive} className="w-full gap-0">
                     {/* Header: text left, tab buttons right */}
                     <div className="w-full h-auto grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-12 2xl:gap-15 lg:items-end mb-6 sm:mb-8 lg:mb-10 2xl:mb-12">
                         <div className="w-full h-auto">
