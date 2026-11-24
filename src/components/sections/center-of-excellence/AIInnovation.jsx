@@ -49,7 +49,7 @@ export default function AIInnovation({ data }) {
                         {stats.map((stat, index) => (
                             <li
                                 key={stat?.id ?? index}
-                                className="pr-[15px] lg:pr-[20px] lg:pl-[20px] 3xl:pl-[50px] lg:border-l lg:border-black/10 dark:lg:border-white/10 lg:first:border-l-0 lg:first:pl-0"
+                                className="pr-[15px] lg:pr-[20px] lg:pl-[20px] 3xl:pl-[50px] lg:border-l last-of-type:!pr-0 lg:border-black/10 dark:lg:border-white/10 lg:first:border-l-0 lg:first:pl-0"
                             >
                                 <div className="flex flex-wrap items-baseline gap-[8px] leading-none">
                                     <span className="text-[30px] xl:text-[35px] 2xl:text-[40px] 3xl:text-[45px] font-bold bg-linear-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent">
