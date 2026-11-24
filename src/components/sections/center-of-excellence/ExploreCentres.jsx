@@ -174,7 +174,7 @@ function HighlightPanel({ highlight, className = "", style }) {
       )}
 
       {highlight?.description && (
-        <div className="mt-4 xl:mt-7 [&_p]:mb-4 [&_p]:text-[14px] [&_p]:leading-[1.8] [&_p]:text-[#4A5565] md:[&_p]:text-[16px] 3xl:[&_p]:text-[18px] [&_p:last-child]:mb-0 dark:[&_p]:text-[#9CA3AF] 2xl:[&_p]:mb-[26px]">
+        <div className="mt-4 xl:mt-7 [&_p]:mb-4 [&_p]:text_1 !text_1 [&_p]:leading-[1.8] [&_p]:text-[#4A5565]   [&_p:last-child]:mb-0 dark:[&_p]:text-[#9CA3AF] 2xl:[&_p]:mb-[26px]">
           <RichText content={highlight.description} />
         </div>
       )}

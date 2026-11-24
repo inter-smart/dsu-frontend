@@ -126,7 +126,7 @@ export default function TakeIdeasForward({ data }) {
       <div className="container">
         <div
           ref={ref}
-          className="rounded-[10px] bg-linear-to-b from-[#FFF7EB] to-[#FFF1E0] px-5 py-12 text-center md:px-10 md:py-16 xl:py-20 2xl:px-[60px] 2xl:py-[82px] 3xl:py-[100px] dark:from-white/[0.04] dark:to-white/[0.02]"
+          className="rounded-[10px] bg-linear-to-b from-[#FFF7EB] to-[#FFF1E0] px-5 py-12 text-center md:px-10 md:py-16 xl:py-20 2xl:px-[50px] 2xl:py-[62px] 3xl:py-[70px] dark:from-white/[0.04] dark:to-white/[0.02]"
         >
           {data?.heading && (
             <h2

@@ -110,7 +110,7 @@ export default function IdeaToExecution({ data }) {
           {data?.description && (
             <div
               style={{ transitionDelay: "150ms" }}
-              className={`[&_p]:text-[14px] [&_p]:leading-[1.8] [&_p]:text-[#4A5565] md:[&_p]:text-[15px] 3xl:[&_p]:text-[17px] dark:[&_p]:text-[#9CA3AF] ${fadeUp(topInView)}`}
+              className={`[&_p]:!text_1 [&_p]:leading-[1.8] [&_p]:text-[#4A5565] !text_1  dark:[&_p]:text-[#9CA3AF] ${fadeUp(topInView)}`}
             >
               <RichText content={data.description} />
             </div>
@@ -157,7 +157,7 @@ export default function IdeaToExecution({ data }) {
                       {step?.title}
                     </h3>
                     {step?.description && (
-                      <p className="mt-1.5 !text-[13px] !leading-snug !text-[#364153] md:!text-[15px] xl:mt-2.5 xl:!text-[16px] dark:!text-[#D1D5DB]">
+                      <p className="mt-1.5 !text_1 !leading-snug !text-[#364153]   xl:mt-2.5   dark:!text-[#D1D5DB]">
                         {step.description}
                       </p>
                     )}

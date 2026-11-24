@@ -43,7 +43,7 @@ export default function AICentres({ data }) {
             <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-[14px] px-[18px] pb-[18px] xl:px-[22px] xl:pb-[22px] 2xl:px-[24px] 2xl:pb-[26px]">
                 <div className="min-w-0 text-white">
                     {item?.prefix && (
-                        <p className="text-[14px] xl:text-[17px] 2xl:text-[20px] text-white leading-[1.3] font-normal">
+                        <p className="!text_1 text-white leading-[1.3] font-normal">
                             {item.prefix}
                         </p>
                     )}
@@ -89,7 +89,7 @@ export default function AICentres({ data }) {
                             </h2>
                         )}
                         {data?.description && (
-                            <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:w-[48%] xl:w-[45%] 2xl:w-[44%] shrink-0">
+                            <p className="!text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:w-[48%] xl:w-[45%] 2xl:w-[44%] shrink-0">
                                 {data.description}
                             </p>
                         )}

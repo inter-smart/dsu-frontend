@@ -1,8 +1,15 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { Heading } from "@/components/ui/heading";
 import NewsCard from "@/components/layout/common/news-card";
 import { getOrdinal } from "@/lib/utils";
+// ADDED
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, A11y } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+// END ADDED
 
 export default function NewsEventsDetail({
   data,
@@ -328,13 +335,64 @@ export default function NewsEventsDetail({
                 <div className="text-xl sm:text-2xl lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.1] font-bold text-[#212121] mb-5 sm:mb-7.5 3xl:mb-11.25">
                   {data?.relatedNewsTitle}
                 </div>
-                <div className="w-full h-auto lg:space-y-5 2xl:space-y-8.75 grid sm:grid-cols-2 gap-2.5 lg:block">
-                  {data?.relatedNews?.map((item) => (
-                    <div key={item?.id} className="w-full h-full">
-                      <NewsCard item={item} />
-                    </div>
-                  ))}
+
+                {/* ADDED: Swiper replaces the grid container */}
+                <div className="w-full h-auto min-w-0">
+                  <Swiper
+                    modules={[Navigation, Pagination, A11y]}
+                    slidesPerView={1}
+                    spaceBetween={16}
+                    breakpoints={{
+                      640: { slidesPerView: 2, spaceBetween: 16 }, // same as your sm:grid-cols-2
+                      1024: { slidesPerView: 1, spaceBetween: 20 }, // same as your lg single column
+                    }}
+                    navigation={{
+                      prevEl: ".related-news-prev",
+                      nextEl: ".related-news-next",
+                    }}
+                    pagination={{
+                      el: ".related-news-pagination",
+                      clickable: true,
+                    }}
+                    watchOverflow
+                    grabCursor
+                    className="!w-full"
+                  >
+                    {data?.relatedNews?.map((item) => (
+                      <SwiperSlide key={item?.id} className="!h-auto">
+                        <div className="w-full h-full">
+                          <NewsCard item={item} />
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+
+                  {/* Nav buttons + pagination dots */}
+                  <div className="mt-5 flex items-center justify-between gap-4 sm:mt-6 [&:has(.swiper-button-lock)]:hidden">
+                    <button
+                      type="button"
+                      aria-label="Previous news"
+                      className="related-news-prev flex size-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white shadow-[0_4px_14px_rgba(220,38,38,0.3)] transition-all duration-300 active:scale-95 [&.swiper-button-disabled]:pointer-events-none [&.swiper-button-disabled]:opacity-40 [&.swiper-button-disabled]:shadow-none"
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="h-[45%] w-[45%]" aria-hidden="true">
+                        <path d="M15 4l-8 8 8 8" />
+                      </svg>
+                    </button>
+
+                    {/* CHANGED: gradient active pill, size-2.5 dots, hover state */}
+                    <div className="related-news-pagination flex flex-1 items-center justify-center gap-2 [--swiper-pagination-color:#F97316] [--swiper-pagination-bullet-inactive-color:#000] [--swiper-pagination-bullet-inactive-opacity:0.2] [&_.swiper-pagination-bullet]:m-0 [&_.swiper-pagination-bullet]:size-2.5 [&_.swiper-pagination-bullet]:cursor-pointer [&_.swiper-pagination-bullet]:rounded-full [&_.swiper-pagination-bullet]:transition-all [&_.swiper-pagination-bullet]:duration-300 [&_.swiper-pagination-bullet-active]:!bg-[#F97316] [&_.swiper-pagination-bullet-active]:!opacity-100" />
+                    <button
+                      type="button"
+                      aria-label="Next news"
+                      className="related-news-next flex size-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#DC2626] to-[#F97316] text-white shadow-[0_4px_14px_rgba(220,38,38,0.3)] transition-all duration-300 active:scale-95 [&.swiper-button-disabled]:pointer-events-none [&.swiper-button-disabled]:opacity-40 [&.swiper-button-disabled]:shadow-none"
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="h-[45%] w-[45%]" aria-hidden="true">
+                        <path d="M9 4l8 8-8 8" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
+                {/* END ADDED */}
               </div>
             )}
           </div>
