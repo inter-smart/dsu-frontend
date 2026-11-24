@@ -114,6 +114,8 @@ export async function loadDepartmentFlexPage(schoolSlug, departmentSlug, pageSlu
       // breadcrumb items added on the page itself win over the generated trail
       ...(page.hero?.breadcrumb?.length ? { breadcrumb: page.hero.breadcrumb } : {}),
     },
+    // side menu for Library sections: the page's own Sidebar links, else the department's Library menu (Overview + sub-pages)
+    sidebar: page.sidebar?.length ? page.sidebar : librarySidebarItems(schoolSlug, departmentSlug, res.librarySubpages ?? []),
     menuItems: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs, res.menuOrder),
     menuHome: base,
   };

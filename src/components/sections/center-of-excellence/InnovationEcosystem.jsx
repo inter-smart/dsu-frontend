@@ -113,7 +113,7 @@ export default function InnovationEcosystem({ data }) {
   const stats = data?.stats || [];
 
   return (
-    <section className="relative py-10 lg:py-14 2xl:py-[90px] 3xl:py-[90px]">
+    <section id="innovation-ecosystem" className="relative py-10 lg:py-14 2xl:py-[90px] 3xl:py-[90px] scroll-mt-24">
       <div className="container">
         {/* ───────── top row: text + media ───────── */}
         <div

@@ -19,8 +19,7 @@ export default async function Page({ params }) {
     const { schoolSlug, departmentSlug, tab } = await params;
     if (isOwnTab(tab)) return <DepartmentPage schoolSlug={schoolSlug} departmentSlug={departmentSlug} tab={tab} />;
 
-    const { school, page, hero, menuItems, menuHome } = await loadDepartmentFlexPage(schoolSlug, departmentSlug, tab);
-    const sidebar = page.sidebar || [];
+    const { school, page, hero, menuItems, menuHome, sidebar } = await loadDepartmentFlexPage(schoolSlug, departmentSlug, tab);
     return (
         <SchoolTabShell hero={hero} slug={schoolSlug} hasDepartments={school.template === "department"} menuItems={menuItems} menuHome={menuHome} aiMenu>
             <FlexibleSections sections={page.sections} sidebar={sidebar} menu={sidebar} slug={page.slug} />
