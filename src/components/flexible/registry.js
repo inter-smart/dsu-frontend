@@ -199,6 +199,7 @@ import StudentSuccessStories from "@/components/sections/placements/student-succ
 import IntlTextSection from "@/components/sections/international/intl-text-section";
 import TitleDescription from "@/components/sections/common/title-description";
 import Committee from "@/components/sections/common/committee";
+import AccordionTable from "@/components/sections/common/accordion-table";
 import CommonTabGallery from "@/components/sections/common/gallery";
 import IntlButtonSection from "@/components/sections/international/intl-button-section";
 import IntlTextButtonSection from "@/components/sections/international/intl-text-button-section";
@@ -524,6 +525,7 @@ const flexibleRegistry = {
   // Common sections (every flexible page); `flow` = shared tight vertical spacing (see FlexibleSections)
   "common.title-description": { Component: TitleDescription, flow: true },
   "common.committee": { Component: Committee },
+  "common.accordion-table": { Component: AccordionTable, flow: true },
   "common.gallery": { Component: CommonTabGallery },
   // centres of excellence listing (src/app/centres-of-excellence/page.js)
   "coe.gallery-section": { Component: CommonGallery },
