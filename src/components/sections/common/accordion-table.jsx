@@ -30,7 +30,7 @@ function ItemTable({ headers = [], rows = [] }) {
     const columns = Array.from({ length: columnCount }, (_, idx) => idx);
 
     return (
-        <div className="w-full rounded-[10px] max-lg:overflow-x-auto mt-[10px]">
+        <div className="not-typography w-full rounded-[10px] max-lg:overflow-x-auto mt-[10px]">
             <table
                 className="w-full table-fixed border-separate border-spacing-y-[10px]"
                 style={{ minWidth: Math.max(600, columnCount * 180) }}
@@ -141,14 +141,12 @@ export default function AccordionTable({ data }) {
                                     </div>
                                 </AccordionTrigger>
                                 {(item.answer || hasTable) && (
-                                    <AccordionContent className="p-[8px_10px] md:p-[15px] xl:p-[18px] 3xl:p-[20px_25px] pt-0! text_1 [&_p]:text_1 [&_p]:3xl:text-[20px] [&_p]:text-[#212121] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px]">
+                                    <AccordionContent className="typography p-[8px_10px] md:p-[15px] xl:p-[18px] 3xl:p-[20px_25px] pt-0! text_1 [&_p]:text_1 [&_p]:3xl:text-[20px] [&_p]:text-[#212121] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_p]:last-of-type:mb-[10px]">
                                         {item.answer && (
-                                            <div className="w-full typography">
-                                                <div
-                                                    className="ck-content blocks-html w-full overflow-x-auto"
-                                                    dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.answer) }}
-                                                />
-                                            </div>
+                                            <div
+                                                className="ck-content blocks-html w-full overflow-x-auto"
+                                                dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.answer) }}
+                                            />
                                         )}
                                         {hasTable && <ItemTable headers={item.headers} rows={item.rows} />}
                                     </AccordionContent>

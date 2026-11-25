@@ -16,5 +16,5 @@ export default async function Page() {
     const page = await getLibraryBySlug(SLUG);
     if (!page) notFound();
 
-    return <CmsPageView page={{ ...page, sidebar: libraryMenu(page.menu) }} />;
+    return <CmsPageView page={{ ...page, sidebar: libraryMenu(page.menu) }} sidebarLayout={page.template === "flexible-page"} />;
 }
