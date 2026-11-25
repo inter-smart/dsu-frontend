@@ -33,13 +33,6 @@ function CardLink({ link }) {
 function ContactLine({ item }) {
     const value = item?.value;
     if (!value) return null;
-    if (item.type === "text")
-        return (
-            <p>
-                {item.label && <>{item.label}: </>}
-                {value}
-            </p>
-        );
     const href =
         item.type === "email"
             ? `mailto:${value}`
@@ -139,8 +132,11 @@ export default function AskUsLibrary({ data, menu }) {
                                                 className={`${infoCard} px-5 py-4 md:px-6 md:py-5 lg:py-6`}
                                             >
                                                 {card.title && <h3 className={cardTitle}>{card.title}</h3>}
-                                                {card.contacts?.length > 0 && (
+                                                {(card.lines?.length > 0 || card.contacts?.length > 0) && (
                                                     <div className="text_1 mt-2 md:mt-3">
+                                                        {card.lines?.map((line, j) => (
+                                                            <p key={j}>{line}</p>
+                                                        ))}
                                                         {card.contacts?.map((c, j) => (
                                                             <ContactLine key={c.id ?? j} item={c} />
                                                         ))}
