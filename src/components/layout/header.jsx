@@ -494,11 +494,13 @@ const local_data = {
 const TOP_BAR_ICONS = [
   { src: "/images/header-360-icon.svg", alt: "Virtual Tour" },
   { src: "/images/header-brochure-icon.svg", alt: "E-Brochure" },
+  { src: "/images/header-coffee-table-icon.svg", alt: "Coffee Table" },
 ];
 
 const MOBILE_TOP_BAR_ICONS = [
   "/images/header-360-icon-black.svg",
   "/images/header-brochure-icon-black.svg",
+  "/images/header-coffee-table-icon-black.svg",
 ];
 
 export default function Header({ data = local_data }) {
