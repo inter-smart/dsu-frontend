@@ -246,25 +246,26 @@ html.lenis body {
       --text-color: #f9fafb;
     }
     /* ---------- Tables ---------- */
-    table {
+    /* Tables inside a `.not-typography` wrapper keep their own styling */
+    table:not(.not-typography *) {
       @apply my-[18px] w-full table-auto border-collapse text-[14px] md:text-[15px] lg:text-[16px] 3xl:text-[18px];
     }
 
-    th,
-    td {
+    th:not(.not-typography *),
+    td:not(.not-typography *) {
       @apply border border-[#9fa2a76b] px-3 py-2 text-left align-top break-words md:min-w-[110px];
     }
 
-    td a {
+    td a:not(.not-typography *) {
       color: var(--basecolor2);
       letter-spacing: 0.6px
     }
     /* FIXED: "important" -> "!important" (without the ! the whole declaration was ignored) */
-    td a:hover {
+    td a:not(.not-typography *):hover {
       color: green !important;
       letter-spacing: 0.6px
     }
-    th {
+    th:not(.not-typography *) {
       @apply font-semibold text-white;
       background: linear-gradient(
         to right,
@@ -273,12 +274,12 @@ html.lenis body {
       );
     }
 
-    tbody tr:nth-child(even) {
+    tbody tr:not(.not-typography *):nth-child(even) {
       @apply bg-black/[0.03] dark:bg-white/[0.04];
     }
 
-    td p,
-    th p {
+    td p:not(.not-typography *),
+    th p:not(.not-typography *) {
       @apply mb-0;
     }
     /* * {
@@ -1321,4 +1322,9 @@ html.no-loader #dsu-loader { display: none; }
   .dsu-panel {
     transition-duration: 0.01s !important;
   }
+}
+
+@keyframes megaMenuIn {
+  from { opacity: 0; transform: translateY(-4px) scale(0.99); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
