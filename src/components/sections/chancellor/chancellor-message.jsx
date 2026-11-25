@@ -17,6 +17,17 @@ const toTelHref = (phone) => {
 const isRealLink = (url) =>
   typeof url === "string" && url.trim() !== "" && url.trim() !== "#";
 
+// CHANGED: styles for ul / ol / li coming from the editor (gradient bullets, orange numbers).
+// Every li is its own block context (flow-root), so with a floated sidebar the marker is never hidden behind it.
+const richList = [
+  "[&_ul]:!list-none [&_ul]:!p-0 [&_ul]:!m-0 [&_ul]:!mb-[15px] xl:[&_ul]:!mb-[25px]",
+  "[&_ol]:!list-none [&_ol]:!p-0 [&_ol]:!m-0 [&_ol]:!mb-[15px] xl:[&_ol]:!mb-[25px] [&_ol]:[counter-reset:rich-item]",
+  "[&_li]:relative [&_li]:flow-root [&_li]:!pl-[26px] [&_li]:!mb-[20px] [&_li]:leading-[1.6] [&_li:last-child]:!mb-0 [&_li_p]:!mb-0",
+  "[&_ul>li]:before:content-[''] [&_ul>li]:before:absolute [&_ul>li]:before:left-[4px] [&_ul>li]:before:top-[0.6em] [&_ul>li]:before:size-[8px] [&_ul>li]:before:rounded-full [&_ul>li]:before:bg-linear-to-br [&_ul>li]:before:from-[#DC2626] [&_ul>li]:before:to-[#F97316]",
+  "[&_ol>li]:[counter-increment:rich-item] [&_ol>li]:before:content-[counter(rich-item)_'.'] [&_ol>li]:before:absolute [&_ol>li]:before:left-0 [&_ol>li]:before:font-bold [&_ol>li]:before:text-[#DC2626]",
+  "[&_li_ul]:!mt-[10px] [&_li_ol]:!mt-[10px]",
+].join(" ");
+
 export default function ChancellorMessage({ data }) {
   const email = typeof data?.email === "string" ? data.email.trim() : "";
   const hasEmail = EMAIL_RE.test(email);
@@ -39,9 +50,11 @@ export default function ChancellorMessage({ data }) {
   return (
     <section className="relative py-[40px] xl:py-[65px] 2xl:py-[90px] 3xl:py-[120px] bg-white dark:bg-[#101010]">
       <div className="container">
-        <div className="flex flex-wrap xl:max-w-[90%] m-auto max-lg:gap-[15px]">
+        {/* CHANGED: added lg:flow-root (a block that contains the float from lg up). Below lg it stays flex as before */}
+        <div className="flex flex-wrap lg:flow-root xl:max-w-[90%] m-auto max-lg:gap-[15px]">
           {hasSidebar && (
-            <div className="w-full lg:w-[320px] 2xl:w-[335px] 3xl:w-[420px]  ">
+            /* CHANGED: added lg:float-left, a right margin (the gap that used to be the content's left padding) and a bottom margin */
+            <div className="w-full lg:w-[320px] 2xl:w-[335px] 3xl:w-[420px] lg:float-left lg:mr-[40px] xl:mr-[80px] 2xl:mr-[100px] 3xl:mr-[120px] lg:mb-[20px]">
               {hasImage && (
                 <div className="w-full max-lg:max-w-70 lg:aspect-[420/420] mb-[15px] rounded-[10px] overflow-hidden">
                   <Image
@@ -253,9 +266,8 @@ export default function ChancellorMessage({ data }) {
           )}
           <div
             className={
-              hasSidebar
-                ? "lg:w-[calc(100%-320px)] 2xl:w-[calc(100%-335px)] 3xl:w-[calc(100%-420px)] lg:pl-[40px] xl:pl-[80px] 2xl:pl-[100px] 3xl:pl-[120px]"
-                : "w-full"
+              /* CHANGED: with a sidebar, the content no longer needs a fixed width or left padding on lg (the float's margin handles the gap) */
+              hasSidebar ? "min-w-0" : "w-full"
             }
           >
             {data?.name && (
@@ -264,17 +276,19 @@ export default function ChancellorMessage({ data }) {
               </div>
             )}
             {data?.designation && (
+              /* CHANGED: added lg:flow-root so the underline bar (absolutely positioned) stays beside the floated sidebar instead of drawing over it */
               <div
-                className="text-[13px] md:text-[14px]! lg:text-[16px]! xl:text-[18px]! 3xl:text-[20px]! text-[#DC2626] font-semibold relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px]
+                className="lg:flow-root text-[13px] md:text-[14px]! lg:text-[16px]! xl:text-[18px]! 3xl:text-[20px]! text-[#DC2626] font-semibold relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px]
                                      after:w-[30px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316] "
               >
                 {data.designation}
               </div>
             )}
             {hasContent(data?.description) && (
+              /* CHANGED: removed xl:max-w-[590px] 2xl:max-w-[790px] 3xl:max-w-[820px] (they squeeze the text beside the float) and added ${richList} for the list styles */
               <div
-                className="text_1 typography leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
-                        w-full xl:max-w-[590px] 2xl:max-w-[790px] 3xl:max-w-[820px]"
+                className={`text_1 typography leading-[1.2] text-[#000] dark:text-[#9CA3AF] [&_p]:text-[#000] dark:[&_p]:text-[#9CA3AF] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]
+                        w-full ${richList}`}
               >
                 {Array.isArray(data.description) && (
                   <BlocksRenderer content={data.description} />
