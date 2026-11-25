@@ -4,7 +4,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
-import { useEffect, useLayoutEffect, useState, useRef } from "react"; // CHANGED: added useLayoutEffect
+import { Fragment, useEffect, useLayoutEffect, useState, useRef } from "react"; // CHANGED: added useLayoutEffect
 import { createPortal } from "react-dom"; // ADDED
 import { useLenis } from "lenis/react";
 import { Home, ChevronRight, ChevronDown, X, User, LogOut } from "lucide-react";
@@ -496,6 +496,11 @@ const TOP_BAR_ICONS = [
   { src: "/images/header-brochure-icon.svg", alt: "E-Brochure" },
 ];
 
+const MOBILE_TOP_BAR_ICONS = [
+  "/images/header-360-icon-black.svg",
+  "/images/header-brochure-icon-black.svg",
+];
+
 export default function Header({ data = local_data }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -884,34 +889,68 @@ export default function Header({ data = local_data }) {
                           {/* Top Red-Orange Banner Bar */}
                           <div className="w-full bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-3 py-2.5 flex items-center justify-between text-white shrink-0">
                             <div className="flex items-center gap-2 min-w-0">
-                              <Link
-                                href="/"
-                                className="w-30 flex items-center gap-1.5 shrink-0"
-                              >
-                                <Image
-                                  src="/images/dsu-logo.svg"
-                                  alt="DSU Logo"
-                                  width={32}
-                                  height={32}
-                                  className="size-full object-contain"
-                                />
-                              </Link>
-                              <div className="h-6 w-[1px] bg-white/30 shrink-0" />
-                              <div className="w-15 flex items-center shrink-0">
-                                <Image
-                                  src="/images/header-logo-2.svg"
-                                  alt="NAAC A+"
-                                  width={32}
-                                  height={22}
-                                  className="size-full object-contain"
-                                />
-                              </div>
-                              <div className="h-6 w-[1px] bg-white/30 shrink-0" />
-                              <span className="text-[9.5px] leading-tight font-medium opacity-95 shrink-0">
-                                India&apos;s AI-First
-                                <br />
-                                University
-                              </span>
+                              {data?.logo?.mainlogo?.url && (
+                                <Link
+                                  href={data?.logo?.mainlogo?.link || "/"}
+                                  {...(data?.logo?.mainlogo?.isExternal && {
+                                    target: "_blank",
+                                    rel: "noopener noreferrer",
+                                  })}
+                                  aria-label={data?.logo?.mainlogo?.alternativeTxt}
+                                  className="w-30 flex items-center gap-1.5 shrink-0"
+                                >
+                                  <Image
+                                    src={data?.logo?.mainlogo?.url}
+                                    alt={
+                                      data?.logo?.mainlogo?.alternativeTxt ||
+                                      data?.logo?.mainlogo?.alt ||
+                                      "Logo"
+                                    }
+                                    width={120}
+                                    height={40}
+                                    className="size-full object-contain"
+                                  />
+                                </Link>
+                              )}
+                              {data?.logo?.alternativelogo?.url && (
+                                <>
+                                  <div className="h-6 w-[1px] bg-white/30 shrink-0" />
+                                  <Link
+                                    href={data?.logo?.alternativelogo?.link || "/"}
+                                    {...(data?.logo?.alternativelogo
+                                      ?.isExternal && {
+                                      target: "_blank",
+                                      rel: "noopener noreferrer",
+                                    })}
+                                    aria-label={
+                                      data?.logo?.alternativelogo?.alternativeTxt
+                                    }
+                                    className="w-15 flex items-center shrink-0"
+                                  >
+                                    <Image
+                                      src={data?.logo?.alternativelogo?.url}
+                                      alt={
+                                        data?.logo?.alternativelogo
+                                          ?.alternativeTxt || "Logo"
+                                      }
+                                      width={60}
+                                      height={27}
+                                      className="size-full object-contain"
+                                    />
+                                  </Link>
+                                </>
+                              )}
+                              {data?.logo?.logoText && (
+                                <>
+                                  <div className="h-6 w-[1px] bg-white/30 shrink-0" />
+                                  <div
+                                    className="text-[9.5px] leading-tight font-medium opacity-95 shrink-0"
+                                    dangerouslySetInnerHTML={{
+                                      __html: data?.logo?.logoText,
+                                    }}
+                                  />
+                                </>
+                              )}
                             </div>
                             <SheetClose className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors text-white shrink-0 ml-1">
                               <X size={18} />
@@ -921,37 +960,36 @@ export default function Header({ data = local_data }) {
                           {/* Utility Bar */}
                           <div className="w-full bg-[#FFF4E8] dark:bg-[#232427] border-b border-black/8 dark:border-white/0 px-3 py-2 flex items-center justify-between text-[11px] font-medium text-[#333] dark:text-white/90 overflow-x-auto">
                             <div className="flex items-center gap-1.5 shrink-0 text-black dark:text-white">
-                              <Link
-                                href="#!"
-                                className="flex items-center gap-1 hover:text-(--basecolor)"
-                              >
-                                <span className="dark:text-white">
-                                  Virtual Tour
-                                </span>
-                                <Image
-                                  src="/images/header-360-icon-black.svg"
-                                  alt="Tour"
-                                  width={13}
-                                  height={13}
-                                  className="w-3.5 h-3.5 dark:invert"
-                                />
-                              </Link>
-                              <span className="text-black/20 dark:text-white/20">
-                                |
-                              </span>
-                              <Link
-                                href="#!"
-                                className="flex items-center gap-1 hover:text-(--basecolor)"
-                              >
-                                <span>E-Brochure</span>
-                                <Image
-                                  src="/images/header-brochure-icon-black.svg"
-                                  alt="Brochure"
-                                  width={13}
-                                  height={13}
-                                  className="w-3.5 h-3.5 dark:invert"
-                                />
-                              </Link>
+                              {data?.topBar?.topBarLinkIcons?.map((item, index) => (
+                                <Fragment key={item?.id ?? index}>
+                                  {index > 0 && (
+                                    <span className="text-black/20 dark:text-white/20">
+                                      |
+                                    </span>
+                                  )}
+                                  <Link
+                                    href={item?.url || "#"}
+                                    {...(item?.isExternal && {
+                                      target: "_blank",
+                                      rel: "noopener noreferrer",
+                                    })}
+                                    className="flex items-center gap-1 hover:text-(--basecolor) whitespace-nowrap"
+                                  >
+                                    <span className="dark:text-white">
+                                      {item?.label}
+                                    </span>
+                                    {MOBILE_TOP_BAR_ICONS[index] && (
+                                      <Image
+                                        src={MOBILE_TOP_BAR_ICONS[index]}
+                                        alt=""
+                                        width={13}
+                                        height={13}
+                                        className="w-3.5 h-3.5 dark:invert"
+                                      />
+                                    )}
+                                  </Link>
+                                </Fragment>
+                              ))}
                               {isValidLoginButton(
                                 data?.topBar?.loginButton,
                               ) && (
@@ -993,18 +1031,19 @@ export default function Header({ data = local_data }) {
                               variant="mobile"
                             />
                             <div className="flex items-center gap-1.25">
-                              <Link
-                                href="/#"
-                                className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
-                              >
-                                CDSIMER
-                              </Link>
-                              <Link
-                                href="/#"
-                                className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
-                              >
-                                DSU Online
-                              </Link>
+                              {data?.topBar?.topBarButtons?.map((item, index) => (
+                                <Link
+                                  key={item?.id ?? index}
+                                  href={item?.url || "#"}
+                                  {...(item?.isExternal && {
+                                    target: "_blank",
+                                    rel: "noopener noreferrer",
+                                  })}
+                                  className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
+                                >
+                                  {item?.label}
+                                </Link>
+                              ))}
                             </div>
                           </div>
 

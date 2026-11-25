@@ -241,22 +241,26 @@ export default function HomeTestimonials({ data }) {
                           </div>
                         </div>
                       </div>
-                      <div className="w-[25%]">
-                        <div className="w-auto h-full aspect-80/65 p-1.25 2xl:p-2.5 border border-white/10 rounded-[6px] 2xl:rounded-[10px] overflow-hidden flex flex-col items-center justify-center">
-                          <div className="w-5 2xl:w-6.25 h-auto aspect-square mb-1.25 2xl:mb-2.5 overflow-hidden block">
-                            <Image
-                              src={item?.badge?.url}
-                              width={20}
-                              height={20}
-                              alt={item?.badge?.alternativeText || "Badge Icon"}
-                              className="w-full h-full object-contain"
-                            />
-                          </div>
-                          <div className="text-[13px] 2xl:text-[11px] leading-[1] font-normal text-white">
-                            {item?.badge?.title}
+                      {(item?.badge?.url || item?.badge?.title) && (
+                        <div className="w-[25%]">
+                          <div className="w-auto h-full aspect-80/65 p-1.25 2xl:p-2.5 border border-white/10 rounded-[6px] 2xl:rounded-[10px] overflow-hidden flex flex-col items-center justify-center">
+                            {item?.badge?.url && (
+                              <div className="w-5 2xl:w-6.25 h-auto aspect-square mb-1.25 2xl:mb-2.5 overflow-hidden block">
+                                <Image
+                                  src={item.badge.url}
+                                  width={20}
+                                  height={20}
+                                  alt={item?.badge?.alternativeText || "Badge Icon"}
+                                  className="w-full h-full object-contain"
+                                />
+                              </div>
+                            )}
+                            <div className="text-[13px] 2xl:text-[11px] leading-[1] font-normal text-white">
+                              {item?.badge?.title}
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </Link>
                 </div>
