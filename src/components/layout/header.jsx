@@ -7,7 +7,7 @@ import { ThemeToggle } from "../theme-toggle";
 import { Fragment, useEffect, useLayoutEffect, useState, useRef } from "react"; // CHANGED: added useLayoutEffect
 import { createPortal } from "react-dom"; // ADDED
 import { useLenis } from "lenis/react";
-import { Home, ChevronRight, ChevronDown, X, User, LogOut } from "lucide-react";
+import { Home, ChevronRight, ChevronDown, X, User, LogOut, DivideCircle } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -691,7 +691,7 @@ export default function Header({ data = local_data }) {
                     TopHeaderTextStyle,
                   )}
                 >
-                  <span className="w-[calc(100%-10px)] sm:w-[calc(100%-15px)]">
+                  <span className="w-[calc(100%-10px)] sm:w-[calc(100%-15px)] whitespace-nowrap">
                     {item?.label}
                   </span>
                   {TOP_BAR_ICONS[index] && (
@@ -1254,7 +1254,6 @@ function LoginButton({ button, className, iconSrc, iconClassName }) {
       <div className="w-auto h-auto">
         <DropdownMenu>
           <DropdownMenuTrigger
-            nativeButton
             render={
               <button
                 type="button"
@@ -1314,11 +1313,10 @@ const externalProps = (b) =>
 // NRI/Foreigners + Others + "Apply Here" badge. Each one only shows with a label and url.
 // The header hides desktop apply buttons below 1280px.
 function ApplyButtons({ buttons, variant = "desktop", className }) {
-  const { nri, others } = buttons || {};
+  const { applyHere, nri, others } = buttons || {};
+  const showApply = isValidButton(applyHere);
   const showNri = isValidButton(nri);
   const showOthers = isValidButton(others);
-  // "Apply Here" is a static badge (not a link), so it needs no CMS data.
-  const showApply = showNri || showOthers;
   if (!showApply && !showNri && !showOthers) return null;
 
   const isMobile = variant === "mobile";
@@ -1326,17 +1324,46 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
     ? "text-[15px] sm:text-[11px]"
     : "text-[10px] sm:text-[11px]";
 
+  // --nw / --nh = width / height of the notch tab, --nf = size of the curved shoulders.
+  // mobile variant = the menu sheet (one size). desktop variant = the header row, sized per breakpoint.
+  const notchSize = isMobile
+    ? "[--nw:76px] [--nh:15px] [--nf:5px]"
+    : "[--nw:54px] [--nh:12px] [--nf:4px] sm:[--nw:65px] sm:[--nh:12px] sm:[--nf:5px] 2xl:[--nw:75px] 2xl:[--nh:14px] 3xl:[--nw:85px] 3xl:[--nh:19px] 3xl:[--nf:6px]";
+
   return (
     <div
       className={cn(
-        "w-auto ml-1.25 rounded-[3px] 2xl:rounded-[5px] overflow-x-clip flex items-center relative z-0",
-        "bg-linear-to-r from-(--basecolor) to-(--basecolor2) transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)",
+        "group w-auto ml-1.25 rounded-[3px] 2xl:rounded-[5px] flex items-center relative z-0",
+        // the gradient lives on the notched layer below, so the notch can be see-through
+        "bg-none pt-[calc(var(--nh)*0.6)]",
+        notchSize,
         isMobile
           ? "h-11.25"
           : "min-h-9 sm:min-h-10 min-[1170px]:min-h-0 min-[1170px]:h-10 3xl:h-12.5",
         className,
       )}
     >
+      {/* Gradient layer with a transparent notch cut from the top centre.
+          The notch has curved shoulders at the top and rounded bottom corners. */}
+      <style>{`
+        .apply-notch {
+          -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 86 15' preserveAspectRatio='none'%3E%3Cpath d='M0 0H86Q81 0 81 5V10Q81 15 76 15H10Q5 15 5 10V5Q5 0 0 0Z'/%3E%3C/svg%3E"), linear-gradient(#000, #000);
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 86 15' preserveAspectRatio='none'%3E%3Cpath d='M0 0H86Q81 0 81 5V10Q81 15 76 15H10Q5 15 5 10V5Q5 0 0 0Z'/%3E%3C/svg%3E"), linear-gradient(#000, #000);
+          -webkit-mask-size: calc(var(--nw) + var(--nf) * 2) var(--nh), 100% 100%;
+          mask-size: calc(var(--nw) + var(--nf) * 2) var(--nh), 100% 100%;
+          -webkit-mask-position: 50% 0, 0 0;
+          mask-position: 50% 0, 0 0;
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+        }
+      `}</style>
+      <span
+        aria-hidden="true"
+        className="apply-notch pointer-events-none absolute inset-0 -z-10 block rounded-[inherit] bg-linear-to-r from-(--basecolor) to-(--basecolor2) transition-colors duration-500 group-hover:from-(--basecolor2) group-hover:to-(--basecolor)"
+      />
+
       {showNri && (
         <div className="w-auto h-full">
           <Link
@@ -1371,15 +1398,23 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
         </div>
       )}
 
-      {showApply && (
-        <button
-          type="button"
-          tabIndex={-1}
-          className="text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold text-black w-fit h-auto p-[3px_5px] mx-auto bg-white rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0] cursor-default"
-        >
-          Apply Here
-        </button>
-      )}
+      {/* {showApply && ( */}
+      <div
+        // href={applyHere.url}
+        // aria-label={applyHere.label}
+        // {...externalProps(applyHere)}
+        className={cn(
+          // transparent tab sitting exactly over the cut-out, at every screen size
+          "absolute text-black xl:text-white left-1/2 top-0 z-10 flex h-(--nh) w-(--nw) -translate-x-1/2 items-center justify-center whitespace-nowrap bg-transparent font-bold leading-none  -top-[3px]",
+          isMobile
+            ? // menu sheet: cream (light) / dark (dark) background behind the notch
+            "text-[11px] text-black xl:text-white dark:text-white"
+            : "text-[9px] sm:text-[11px] 2xl:text-xs 3xl:text-sm text-black xl:text-white",
+        )}
+      >
+        Apply Here
+      </div>
+      {/* )} */}
     </div>
   );
 }
@@ -1552,6 +1587,12 @@ function MegaMenuPanel({
           animation: "megaMenuIn 0.18s cubic-bezier(0.16,1,0.3,1) both",
         }}
       >
+        <style>{`
+          @keyframes megaMenuIn {
+            from { opacity: 0; transform: translateY(-4px) scale(0.99); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+          }
+        `}</style>
         <div className="w-fit max-w-full overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.22)] rounded-b-[8px]">
           {/* ADDED: max height on the row; the sidebar and the right panel each scroll on their own */}
           <div

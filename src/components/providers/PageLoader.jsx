@@ -17,8 +17,6 @@ export default function PageLoader() {
   const [progress, setProgress] = useState(0);
 
   const prevPathnameRef = useRef(pathname);
-  const isNavigatingRef = useRef(false);
-  const transitionStartRef = useRef(0);
   const timersRef = useRef([]);
 
   const clearAllTimers = useCallback(() => {
@@ -27,7 +25,7 @@ export default function PageLoader() {
   }, []);
 
   // Safe dismiss function: smoothly opens curtains and cleans up
-  const dismissLoader = useCallback((minHoldMs = 180) => {
+  const dismissLoader = useCallback((minHoldMs = 150) => {
     setProgress(100);
     const body = typeof document !== "undefined" ? document.body : null;
 
@@ -36,18 +34,17 @@ export default function PageLoader() {
       if (body) {
         body.classList.remove("dsu-loader-active");
       }
-      isNavigatingRef.current = false;
 
       const t2 = setTimeout(() => {
         setPhase("gone");
-      }, 850);
+      }, 800);
       timersRef.current.push(t2);
     }, minHoldMs);
 
     timersRef.current.push(t1);
   }, []);
 
-  // 1. Initial Page Load (works 100% reliably on ANY page, never hangs)
+  // 1. Initial Page Load (runs smoothly on initial mount / page refresh, never hangs)
   useEffect(() => {
     const body = document.body;
     body.classList.add("dsu-loader-active");
@@ -70,16 +67,15 @@ export default function PageLoader() {
       clearInterval(interval);
 
       const elapsed = performance.now() - startTime;
-      const minDisplayTime = 800; // snappier so it never feels slow
+      const minDisplayTime = 750;
       const wait = Math.max(0, minDisplayTime - elapsed);
 
       const t = setTimeout(() => {
-        dismissLoader(180);
+        dismissLoader(150);
       }, wait);
       timersRef.current.push(t);
     };
 
-    // If document is already interactive or complete, wrap up smoothly
     if (document.readyState === "complete" || document.readyState === "interactive") {
       onInitialReady();
     } else {
@@ -87,8 +83,8 @@ export default function PageLoader() {
       window.addEventListener("load", onInitialReady, { once: true });
     }
 
-    // Safety fallback ensures user is NEVER blocked on ANY page even if external assets hang
-    const failSafe = setTimeout(onInitialReady, 2400);
+    // Fail-safe ceiling ensures user is never blocked on ANY page
+    const failSafe = setTimeout(onInitialReady, 2200);
     timersRef.current.push(failSafe);
 
     return () => {
@@ -100,112 +96,22 @@ export default function PageLoader() {
     };
   }, [clearAllTimers, dismissLoader]);
 
-  // 2. Intercept Internal Link Clicks & Browser History for Seamless Route Transitions
-  useEffect(() => {
-    const startTransition = () => {
-      clearAllTimers();
-      isNavigatingRef.current = true;
-      transitionStartRef.current = performance.now();
-      setProgress(25);
-      setPhase("show");
-
-      // Progressively advance towards 85% while route loads
-      const interval = setInterval(() => {
-        if (!isNavigatingRef.current) {
-          clearInterval(interval);
-          return;
-        }
-        setProgress((prev) => {
-          if (prev >= 85) return prev;
-          return prev + Math.max(0.6, (85 - prev) * 0.1);
-        });
-      }, 50);
-
-      // Safety fallback: if navigation takes longer than 2500ms, dismiss gracefully
-      const safety = setTimeout(() => {
-        clearInterval(interval);
-        if (isNavigatingRef.current) {
-          dismissLoader(100);
-        }
-      }, 2500);
-      timersRef.current.push(safety);
-    };
-
-    const handleAnchorClick = (e) => {
-      if (e.defaultPrevented) return;
-
-      const anchor = e.target.closest("a");
-      if (!anchor) return;
-
-      const href = anchor.getAttribute("href");
-      if (!href) return;
-
-      // Ignore external, download, protocols, or new-tab navigations
-      if (
-        anchor.target === "_blank" ||
-        anchor.hasAttribute("download") ||
-        href.startsWith("http://") ||
-        href.startsWith("https://") ||
-        href.startsWith("mailto:") ||
-        href.startsWith("tel:") ||
-        href.startsWith("javascript:") ||
-        href.startsWith("#") ||
-        e.ctrlKey ||
-        e.metaKey ||
-        e.altKey ||
-        e.shiftKey
-      ) {
-        return;
-      }
-
-      // Check URL against current location
-      try {
-        const targetUrl = new URL(anchor.href, window.location.origin);
-        if (targetUrl.origin !== window.location.origin) return;
-        // If clicking link to the exact same page & search, don't trigger loader
-        if (
-          targetUrl.pathname === window.location.pathname &&
-          targetUrl.search === window.location.search
-        ) {
-          return;
-        }
-
-        startTransition();
-      } catch {
-        /* invalid URL, ignore */
-      }
-    };
-
-    const handlePopState = () => {
-      startTransition();
-    };
-
-    document.addEventListener("click", handleAnchorClick, { capture: true });
-    window.addEventListener("popstate", handlePopState);
-
-    return () => {
-      document.removeEventListener("click", handleAnchorClick, { capture: true });
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, [clearAllTimers, dismissLoader]);
-
-  // 3. Listen to Route Changes (pathname) to finish transition and reveal new page
+  // 2. Genuine Page & Tab Redirection (fires ONLY when pathname changes, NEVER on in-page <a> clicks)
   useEffect(() => {
     if (prevPathnameRef.current !== pathname) {
       prevPathnameRef.current = pathname;
 
-      if (isNavigatingRef.current) {
-        // Minimum visible duration so transition is smooth without jarring flashes
-        const elapsed = performance.now() - transitionStartRef.current;
-        const hold = Math.max(0, 320 - elapsed);
+      // Real route or tab redirection has occurred
+      clearAllTimers();
+      setProgress(60);
+      setPhase("show");
 
-        const t = setTimeout(() => {
-          dismissLoader(150);
-        }, hold);
-        timersRef.current.push(t);
-      }
+      const t = setTimeout(() => {
+        dismissLoader(120);
+      }, 160);
+      timersRef.current.push(t);
     }
-  }, [pathname, dismissLoader]);
+  }, [pathname, clearAllTimers, dismissLoader]);
 
   if (phase === "gone") return null;
 
