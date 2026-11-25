@@ -1322,3 +1322,8 @@ html.no-loader #dsu-loader { display: none; }
     transition-duration: 0.01s !important;
   }
 }
+
+@keyframes megaMenuIn {
+  from { opacity: 0; transform: translateY(-4px) scale(0.99); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
