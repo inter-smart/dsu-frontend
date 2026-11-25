@@ -36,8 +36,7 @@ function useInView(threshold = 0.15) {
 
 // fade + slide up
 const fadeUp = (inView) =>
-  `transition-all duration-700 ease-out motion-reduce:transition-none ${
-    inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+  `transition-all duration-700 ease-out motion-reduce:transition-none ${inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
   }`;
 
 // block array (Strapi) or HTML string (CKEditor)
@@ -267,7 +266,7 @@ export default function ExploreCentres({ data }) {
   const highlight = data?.highlight;
 
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-[#FFF7EB] to-[#FFF1E0] py-10 lg:py-12 2xl:py-[70px] 3xl:py-[80px] dark:from-[#0a0a0a] dark:to-[#111111]">
+    <section id="explore-centres" className="relative overflow-hidden bg-linear-to-b from-[#FFF7EB] to-[#FFF1E0] py-10 lg:py-12 2xl:py-[70px] 3xl:py-[80px] dark:from-[#0a0a0a] dark:to-[#111111]">
       <div className="container">
         {/* ───────── heading row ───────── */}
         <div

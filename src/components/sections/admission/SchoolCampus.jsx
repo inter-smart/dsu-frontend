@@ -94,14 +94,24 @@ export default function SchoolCampus({ data }) {
                                                 <ul className="grid gap-x-[20px] gap-y-[6px] sm:grid-cols-2 lg:grid-cols-3">
                                                     {group.programmes.map((programme) => (
                                                         <li key={programme.id}>
-                                                            <Link href={programme.href} className="text_1 hover:text-(--basecolor) hover:underline">
-                                                                {programme.title}
-                                                                {(programme.academicLevel || programme.meta) && (
-                                                                    <span className="text-[#4A5565] dark:text-[#9CA3AF]">
-                                                                        {` (${[programme.academicLevel, programme.meta].filter(Boolean).join(", ")})`}
-                                                                    </span>
-                                                                )}
-                                                            </Link>
+                                                            {(() => {
+                                                                const label = (
+                                                                    <>
+                                                                        {programme.title}
+                                                                        {(programme.academicLevel || programme.meta) && (
+                                                                            <span className="text-[#4A5565] dark:text-[#9CA3AF]">
+                                                                                {` (${[programme.academicLevel, programme.meta].filter(Boolean).join(", ")})`}
+                                                                            </span>
+                                                                        )}
+                                                                    </>
+                                                                );
+                                                                // no Overview page: no link
+                                                                return programme.href ? (
+                                                                    <Link href={programme.href} className="text_1 hover:text-(--basecolor) hover:underline">{label}</Link>
+                                                                ) : (
+                                                                    <span className="text_1">{label}</span>
+                                                                );
+                                                            })()}
                                                         </li>
                                                     ))}
                                                 </ul>

@@ -46,7 +46,8 @@ export function programmeItems(schoolSlug, programmes = []) {
     .map((p) => ({
       id: p.documentId ?? p.id ?? p.slug,
       title: p.title,
-      href: programmeHref(schoolSlug, p.slug),
+      // a programme without an Overview page has no link (every programme link lands on Overview)
+      href: p.hasOverview === false ? undefined : programmeHref(schoolSlug, p.slug),
       academicLevel: p.academicLevel ?? LEVEL_CODES[p.level] ?? p.level ?? "",
       meta: p.duration || undefined,
     }));

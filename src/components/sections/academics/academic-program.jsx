@@ -52,8 +52,16 @@ export default function AcademicProgram({ data, variant }) {
                             <div className={`flex flex-wrap ${item.badge || item.label || item.description ? "mt-[30px]" : ""}`}>
                                 {item.programs?.map((program, idx) => (
                                     <div key={idx} className={`${variant === "aiprogram" ? "w-full lg:w-1/2" : "w-full"}`}>
+                                        {/* a programme without an Overview page has no url: plain title, no link */}
+                                        {!program?.url ? (
+                                            <div className="flex items-center justify-between font-medium py-[15px] 2xl:py-[18px] 3xl:py-[22px] max-lg:w-full lg:max-w-[90%] border-b border-black/20 dark:border-white/10 px-0">
+                                                <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black dark:text-[#F3F4F6]">
+                                                    {program.title}
+                                                </div>
+                                            </div>
+                                        ) : (
                                         <Link
-                                            href={program?.url}
+                                            href={program.url}
                                             className="group flex items-center justify-between font-medium py-[15px] 2xl:py-[18px] 3xl:py-[22px] max-lg:w-full max-lg:gap-[20px] lg:max-w-[90%] border-b border-black/20 dark:border-white/10 px-0 transition-colors duration-300"
                                         >
                                             <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black dark:text-[#F3F4F6] transition-colors duration-300 group-hover:text-[#F97316] dark:group-hover:text-[#F97316]">
@@ -65,6 +73,7 @@ export default function AcademicProgram({ data, variant }) {
                                                 </svg>
                                             </div>
                                         </Link>
+                                        )}
                                     </div>
                                 ))}
                             </div>

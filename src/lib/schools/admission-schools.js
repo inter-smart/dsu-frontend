@@ -17,7 +17,7 @@ export function buildSchoolCards(schools, departments, programmes) {
     .map((school) => {
       const seen = new Set();
       // a programme appears once per school, even if it is listed under both its department and the programme list
-      const unseen = (items) => items.filter((i) => !seen.has(i.href) && seen.add(i.href));
+      const unseen = (items) => items.filter((i) => !seen.has(i.id) && seen.add(i.id));
 
       const groups = allDepartments
         .filter((d) => d?.slug && d.school?.slug === school.slug)

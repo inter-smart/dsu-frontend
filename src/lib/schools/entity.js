@@ -274,7 +274,8 @@ export function departmentProgramsSection(schoolSlug, department, programmes = d
   const programItem = (p) => ({
     id: p.slug,
     title: p.title,
-    url: programmeHref(schoolSlug, p.slug),
+    // no Overview page: no link
+    url: p.hasOverview === false ? undefined : programmeHref(schoolSlug, p.slug),
     degree: p.level,
     duration: p.duration,
   });
