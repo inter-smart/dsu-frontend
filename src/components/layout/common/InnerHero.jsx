@@ -196,7 +196,7 @@ export default function InnerHero({ data, placementMenuItems, className }) {
 
               {/* Title */}
               {data?.title && (
-                <h1 className="w-full text-[18px] font-bold leading-tight text-white sm:text-[22px] md:text-[26px] lg:text-[32px] xl:text-[40px] 3xl:text-[60px] max-w-70 sm:max-w-87.5 md:max-w-112.5 lg:max-w-137.5 xl:max-w-175 3xl:max-w-225">
+                <h1 className="w-full text-[18px] font-bold leading-tight text-white sm:text-[22px] md:text-[24px] lg:text-[28px] xl:text-[35px] 3xl:text-[50px] max-w-70 sm:max-w-87.5 md:max-w-112.5 lg:max-w-137.5 xl:max-w-175 3xl:max-w-225">
                   {withLineBreaks(data.title)}
                 </h1>
               )}

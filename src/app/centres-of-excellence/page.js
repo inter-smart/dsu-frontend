@@ -30,6 +30,7 @@ export default async function Page({ viaSlug } = {}) {
     <>
       {heroSlider?.slides?.length > 0 && <HomeHeroSlider
           data={heroSlider}
+          variant="homeBanner"
           breadcrumb={[{ label: "Home", href: "/" }, { label: "Centres of Excellence" }]}
         />}
       {hasContent(innovationEcosystem) && <InnovationEcosystem data={innovationEcosystem} />}

@@ -153,15 +153,18 @@ export default function AcademicQualitySection({ data }) {
                             (tabData?.bestPractices?.[1]?.value || tabData?.bestPractices?.[0]?.value);
 
                         return (
-                            <TabsContent key={tab.id} value={tab.value} className="mt-[10px] min-h-[300px]">
-                                {/* Section Heading */}
+                          <TabsContent
+                                key={tab.id}
+                                value={tab.value}
+                                className="mt-[10px] min-h-[300px] "
+                            >    {/* Section Heading */}
                                 {tabData?.heading && (
                                     <h2 className="cmn_Title">{tabData.heading}</h2>
                                 )}
 
                                 {/* Description */}
                                 {tabData?.description && (
-                                    <RichText value={tabData.description} className="mb-[20px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[45px]" />
+                                    <RichText value={tabData.description} className="mb-[20px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[45px] [&>ul]:flex [&>ul]:md:!flex-row [&>ul]:flex-wrap [&>li]:md:!w-1/2 [&>ul>li]:w-1/2 [&>ul]:lg:max-w-[50%] [&>ul]:gap-0 [&>ul]:gap-y-2" />
                                 )}
 
                                 {/* Quick Links */}

@@ -312,7 +312,7 @@ export default function AiBSCMenubar({ title = "BSC Menu", className = "", items
                 <div className="container">
                     <div className="relative rounded-[12px] lg:rounded-[15px] xl:rounded-[20px] 2xl:rounded-[23px] 3xl:rounded-[30px] bg-white border border-[#F3DFD2] dark:bg-[#1a1a1a] dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-hidden transition-colors duration-300">
                         {/* Menu content */}
-                        <div className="flex flex-wrap items-center max-w-[75%]  xl:max-w-[70%] xl:max-w-[75%] 3xl:max-w-[70%] m-auto justify-center gap-[8px] xl:gap-[10px] 2xl:gap-[12px] 3xl:gap-[14px] p-[20px_15px] md:p-[20px] lg:p-[25px_20px] xl:p-[30px_50px] 2xl:p-[30px_60px] 3xl:p-[35px_0px]">
+                        <div className="flex flex-wrap items-center   m-auto justify-center gap-[8px] xl:gap-[10px] 2xl:gap-[12px] 3xl:gap-[14px] p-[20px_15px] md:p-[20px] lg:p-[25px_20px] xl:p-[30px_50px] 2xl:p-[30px_60px] 3xl:p-[35px_30px]">
                             
 
                             {/* Menu items */}
