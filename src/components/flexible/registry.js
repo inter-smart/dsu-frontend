@@ -525,7 +525,7 @@ const flexibleRegistry = {
   "common.title-description": { Component: TitleDescription, flow: true },
   "common.committee": { Component: Committee },
   "common.gallery": { Component: CommonTabGallery },
-  // centres of excellence listing (src/app/center-of-excellence/page.js)
+  // centres of excellence listing (src/app/centres-of-excellence/page.js)
   "coe.gallery-section": { Component: CommonGallery },
 
   // university Library page (/library): notices, description, schools' libraries

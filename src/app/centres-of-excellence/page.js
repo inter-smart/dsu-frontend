@@ -6,6 +6,7 @@ import InnovationEcosystem from "@/components/sections/center-of-excellence/Inno
 import TakeIdeasForward from "@/components/sections/center-of-excellence/TakeIdeasForward";
 import WhoCanEngage from "@/components/sections/center-of-excellence/WhoCanEngage";
 import { getCentresPage } from "@/lib/api";
+import { redirectToSlug } from "@/lib/page-routes";
 import { hasContent } from "@/lib/has-content";
 
 export async function generateMetadata() {
@@ -18,7 +19,8 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Page() {
+export default async function Page({ viaSlug } = {}) {
+  await redirectToSlug("centres-of-excellence", viaSlug);
   const pageData = await getCentresPage();
   if (!pageData) return null;
 

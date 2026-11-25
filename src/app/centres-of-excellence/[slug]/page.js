@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import FlexibleSections from "@/components/flexible/FlexibleSections";
 import { hasContent } from "@/lib/has-content";
 import AIApplications from "@/components/sections/center-of-excellence/AIApplications";
@@ -14,6 +14,7 @@ import AIOffer from "@/components/sections/center-of-excellence/AIOffer";
 import AIZones from "@/components/sections/center-of-excellence/AIZones";
 import HomeHeroSlider from "@/components/sections/center-of-excellence/HomeHeroSlider";
 import { getCentreBySlug } from "@/lib/api";
+import { getPageSlugs } from "@/lib/page-routes";
 import { plainTitle } from "@/lib/line-breaks";
 
 export async function generateMetadata({ params }) {
@@ -27,8 +28,11 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Page({ params }) {
+export default async function Page({ params, viaSlug } = {}) {
   const { slug } = await params;
+  // the Centres listing page may live at a different slug set in the CMS
+  const base = (await getPageSlugs())?.["centres-of-excellence"];
+  if (!viaSlug && base && base !== "centres-of-excellence") redirect(`/${base}/${slug}`);
   const d = await getCentreBySlug(slug);
 
   if (!d) notFound();
@@ -42,7 +46,7 @@ export default async function Page({ params }) {
           data={d.heroSlider}
           breadcrumb={[
             { label: "Home", href: "/" },
-            { label: "Centres of Excellence", href: "/center-of-excellence" },
+            { label: "Centres of Excellence", href: `/${base || "centres-of-excellence"}` },
             { label: plainTitle(d.title) || d.title },
           ]}
         />}

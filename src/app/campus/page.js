@@ -1,4 +1,5 @@
 import FlexibleSections from "@/components/flexible/FlexibleSections";
+import { redirectToSlug } from "@/lib/page-routes";
 import { getCampusPage } from "@/lib/api";
 
 // The Campus page comes from the "Campus Page" single type. Every section is a block of its "Sections"
@@ -14,7 +15,8 @@ export async function generateMetadata() {
     };
 }
 
-export default async function Page() {
+export default async function Page({ viaSlug } = {}) {
+    await redirectToSlug("campus", viaSlug);
     const pageData = await getCampusPage();
     if (!pageData) return null;
 

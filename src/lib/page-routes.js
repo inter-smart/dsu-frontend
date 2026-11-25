@@ -17,6 +17,8 @@ export const PAGE_ROUTES = {
   "national-ranking": { route: "national-ranking", load: () => import("@/app/national-ranking/page") },
   "international-ranking": { route: "international-Ranking", load: () => import("@/app/international-Ranking/page") },
   announcements: { route: "announcements", load: () => import("@/app/announcements/page") },
+  campus: { route: "campus", load: () => import("@/app/campus/page") },
+  "centres-of-excellence": { route: "centres-of-excellence", load: () => import("@/app/centres-of-excellence/page") },
 };
 
 export const getPageSlugs = () => fetchAPI("/api/page-slugs");
