@@ -164,7 +164,7 @@ export default function AcademicQualitySection({ data }) {
 
                                 {/* Description */}
                                 {tabData?.description && (
-                                    <RichText value={tabData.description} className="mb-[20px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[45px] [&>ul]:flex [&>ul]:!flex-row [&>ul]:flex-wrap [&>li]:md:!w-1/2 [&>ul>li]:w-1/2 [&>ul]:md:max-w-[50%] [&>ul]:gap-0 [&>ul]:gap-y-2" />
+                                    <RichText value={tabData.description} className="mb-[20px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[45px] [&>ul]:flex [&>ul]:md:!flex-row [&>ul]:flex-wrap [&>li]:md:!w-1/2 [&>ul>li]:w-1/2 [&>ul]:lg:max-w-[50%] [&>ul]:gap-0 [&>ul]:gap-y-2" />
                                 )}
 
                                 {/* Quick Links */}
