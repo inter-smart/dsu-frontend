@@ -26,7 +26,7 @@ export default async function Page() {
 
   return (
     <>
-      {heroSlider?.slides?.length > 0 && <HomeHeroSlider data={heroSlider} />}
+      {heroSlider?.slides?.length > 0 && <HomeHeroSlider data={heroSlider} variant="homeBanner" />}
       {hasContent(innovationEcosystem) && <InnovationEcosystem data={innovationEcosystem} />}
       {hasContent(exploreCentres) && <ExploreCentres data={exploreCentres} />}
       {hasContent(ideaToExecution) && <IdeaToExecution data={ideaToExecution} />}

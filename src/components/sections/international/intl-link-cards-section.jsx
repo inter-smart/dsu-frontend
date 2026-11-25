@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "@/components/ui/safe-image";
 import { safeHref } from "@/lib/utils";
+import TableScrollBox from "@/components/layout/common/TableScrollBox";
 
 // People without links but with a description (Scholars in Residence, student testimonials):
 // portrait cards ("Name, Role" title + text below), so faces and text are never cropped
@@ -146,56 +147,62 @@ export default function IntlLinkCardsSection({ data, slug }) {
                         ))}
                     </ul>
                 ) : (
-                <div className="grid grid-cols-1 gap-[15px] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-[25px] 3xl:gap-[35px]">
-                    {data.items.map((item) => {
-                        const card = (
-                            <>
-                                {item.image?.url && (
-                                    <Image
-                                        src={item.image.url}
-                                        alt={item.image.alternativeText || ""}
-                                        fill
-                                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                    />
-                                )}
-                                <span className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                                <span className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-(--basecolor2) to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                                <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-[12px] p-[18px] xl:p-[24px]">
-                                    <span className="min-w-0">
-                                        <span className="block text-[18px] font-bold leading-tight text-white xl:text-[22px] 2xl:text-[26px] 3xl:text-[34px]">{item.title}</span>
-                                        {item.description && (
-                                            // Shown on hover/keyboard focus; touch screens (no hover) always show it
-                                            <span className="grid grid-rows-[0fr] opacity-0 transition-all duration-500 group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-visible:grid-rows-[1fr] group-focus-visible:opacity-100 [@media(hover:none)]:grid-rows-[1fr] [@media(hover:none)]:opacity-100">
-                                                <span className="overflow-hidden">
-                                                    <span className="mt-[6px] block text-[13px] leading-[1.5] text-white 2xl:text-[15px]">{item.description}</span>
-                                                </span>
+                    <div className="grid grid-cols-1 gap-[15px] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-[25px] 3xl:gap-[35px]">
+                        {data.items.map((item) => {
+                            const card = (
+                                <>
+                                    {item.image?.url && (
+                                        <Image
+                                            src={item.image.url}
+                                            alt={item.image.alternativeText || ""}
+                                            fill
+                                            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                        />
+                                    )}
+                                    <span className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                                    <span className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-(--basecolor2) to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                                    {/* CHANGED: new dark layer over the orange on hover (always on for touch screens, where the text is always shown) */}
+                                    <span className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:opacity-100" />
+                                    <span className="absolute inset-0 flex items-end justify-between gap-[12px] p-[18px] xl:p-[24px]">
+                                        <TableScrollBox className="min-w-0 max-h-full overflow-y-auto overflow-x-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                                            <span className="block min-w-0">
+                                                {/* CHANGED: added text-shadow */}
+                                                <span className="block text-[18px] font-bold leading-tight text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.6)] xl:text-[22px] 2xl:text-[26px] 3xl:text-[34px]">{item.title}</span>
+                                                {item.description && (
+                                                    // Shown on hover/keyboard focus; touch screens (no hover) always show it
+                                                    <span className="grid grid-rows-[0fr] opacity-0 transition-all duration-500 group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-visible:grid-rows-[1fr] group-focus-visible:opacity-100 [@media(hover:none)]:grid-rows-[1fr] [@media(hover:none)]:opacity-100">
+                                                        <span className="overflow-hidden">
+                                                            {/* CHANGED: added text-shadow */}
+                                                            <span className="mt-[6px] block text_1 leading-[1.5] text-white [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]">{item.description}</span>
+                                                        </span>
+                                                    </span>
+                                                )}
                                             </span>
+                                        </TableScrollBox>
+                                        {item.url && (
+                                            <span aria-hidden="true" className="flex size-[36px] shrink-0 items-center justify-center rounded-full bg-white text-[18px] text-(--basecolor) transition-transform duration-300 group-hover:translate-x-[4px] xl:size-[44px]">→</span>
                                         )}
                                     </span>
-                                    {item.url && (
-                                        <span aria-hidden="true" className="flex size-[36px] shrink-0 items-center justify-center rounded-full bg-white text-[18px] text-(--basecolor) transition-transform duration-300 group-hover:translate-x-[4px] xl:size-[44px]">→</span>
-                                    )}
-                                </span>
-                            </>
-                        );
-                        const cls = "group relative block aspect-[4/3] overflow-hidden rounded-[16px] bg-black shadow-[0_6px_20px_rgba(0,0,0,0.12)] transition-shadow duration-300 hover:shadow-[0_14px_36px_rgba(249,115,22,0.3)] xl:aspect-[5/4]";
+                                </>
+                            );
+                            const cls = "group relative block aspect-[4/3] overflow-hidden rounded-[16px] bg-black shadow-[0_6px_20px_rgba(0,0,0,0.12)] transition-shadow duration-300 hover:shadow-[0_14px_36px_rgba(249,115,22,0.3)] xl:aspect-[5/4]";
 
-                        return item.url ? (
-                            <Link
-                                key={item.id}
-                                href={safeHref(item.url)}
-                                target={item.isExternal ? "_blank" : undefined}
-                                rel={item.isExternal ? "noopener noreferrer" : undefined}
-                                className={cls}
-                            >
-                                {card}
-                            </Link>
-                        ) : (
-                            <div key={item.id} className={cls}>{card}</div>
-                        );
-                    })}
-                </div>
+                            return item.url ? (
+                                <Link
+                                    key={item.id}
+                                    href={safeHref(item.url)}
+                                    target={item.isExternal ? "_blank" : undefined}
+                                    rel={item.isExternal ? "noopener noreferrer" : undefined}
+                                    className={cls}
+                                >
+                                    {card}
+                                </Link>
+                            ) : (
+                                <div key={item.id} className={cls}>{card}</div>
+                            );
+                        })}
+                    </div>
                 )}
             </div>
         </section>

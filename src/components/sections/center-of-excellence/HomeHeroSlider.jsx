@@ -134,7 +134,7 @@ function SlideYouTube({ id, title }) {
     );
 }
 
-export default function HomeHeroSlider({ data }) {
+export default function HomeHeroSlider({ data, variant }) {
     const swiperRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -251,7 +251,7 @@ export default function HomeHeroSlider({ data }) {
 
                                 {/* Content, bottom left */}
                                 <div className="relative z-10 h-full">
-                                    <div className="container h-full flex items-end pb-[30px] sm:pb-[70px] lg:pb-[160px] 2xl:pb-[190px] 3xl:pb-[170px]">
+                                    <div className={`container h-full flex items-end  ${variant=="homeBanner"? "pb-[30px] sm:pb-[70px] lg:pb-[160px] 2xl:pb-[190px] 3xl:pb-[170px]":"pb-[30px] 2xl:pb-[40px] 3xl:pb-[60px] "}`}>
                                         <div className="w-full max-w-[560px] sm:max-w-[800px] lg:max-w-[900px] 2xl:max-w-[1000px] 3xl:max-w-[1500px] text-white">
                                             {/* ADDED: Static breadcrumb, just above the title */}
                                             <nav
