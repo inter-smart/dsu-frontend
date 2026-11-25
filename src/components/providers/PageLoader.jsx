@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
+import { usePathname } from "next/navigation";
 
 const STATUS_MILESTONES = [
   { threshold: 22, text: "Initialising campus experience..." },
@@ -10,93 +11,201 @@ const STATUS_MILESTONES = [
   { threshold: 100, text: "Welcome to Dayananda Sagar University" },
 ];
 
-const SESSION_KEY = "dsu_first_load_completed";
-
 export default function PageLoader() {
+  const pathname = usePathname();
   const [phase, setPhase] = useState("show"); // "show" -> "hide" -> "gone"
   const [progress, setProgress] = useState(0);
 
+  const prevPathnameRef = useRef(pathname);
+  const isNavigatingRef = useRef(false);
+  const transitionStartRef = useRef(0);
+  const timersRef = useRef([]);
+
+  const clearAllTimers = useCallback(() => {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+  }, []);
+
+  // Safe dismiss function: smoothly opens curtains and cleans up
+  const dismissLoader = useCallback((minHoldMs = 180) => {
+    setProgress(100);
+    const body = typeof document !== "undefined" ? document.body : null;
+
+    const t1 = setTimeout(() => {
+      setPhase("hide");
+      if (body) {
+        body.classList.remove("dsu-loader-active");
+      }
+      isNavigatingRef.current = false;
+
+      const t2 = setTimeout(() => {
+        setPhase("gone");
+      }, 850);
+      timersRef.current.push(t2);
+    }, minHoldMs);
+
+    timersRef.current.push(t1);
+  }, []);
+
+  // 1. Initial Page Load (works 100% reliably on ANY page, never hangs)
   useEffect(() => {
-    // Avoid double-locking on re-render
     const body = document.body;
     body.classList.add("dsu-loader-active");
 
-    const isRepeat = (() => {
-      try {
-        return sessionStorage.getItem(SESSION_KEY) === "1";
-      } catch {
-        return false;
-      }
-    })();
-
-    const minDisplayTime = isRepeat ? 700 : 1350;
-    const maxWaitTime = 3800; // Fail-safe fallback timeout
     const startTime = performance.now();
-    let isFinished = false;
-    const timeouts = [];
+    let completed = false;
 
-    // Smooth nonlinear progress simulation
+    // Smooth nonlinear progress simulation towards 95%
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 95) return prev;
-        const delta = Math.max(0.4, (95 - prev) * 0.08);
+        const delta = Math.max(0.5, (95 - prev) * 0.08);
         return Math.min(95, prev + delta);
       });
-    }, 45);
+    }, 40);
 
-    const completeLoader = () => {
-      if (isFinished) return;
-      isFinished = true;
+    const onInitialReady = () => {
+      if (completed) return;
+      completed = true;
       clearInterval(interval);
 
       const elapsed = performance.now() - startTime;
-      const remainingWait = Math.max(0, minDisplayTime - elapsed);
+      const minDisplayTime = 800; // snappier so it never feels slow
+      const wait = Math.max(0, minDisplayTime - elapsed);
 
-      timeouts.push(
-        setTimeout(() => {
-          // Snap progress to 100%
-          setProgress(100);
-
-          timeouts.push(
-            setTimeout(() => {
-              // Initiate curtain split & release scroll lock
-              setPhase("hide");
-              body.classList.remove("dsu-loader-active");
-
-              try {
-                sessionStorage.setItem(SESSION_KEY, "1");
-              } catch {
-                /* noop */
-              }
-
-              // After curtains slide open completely (850ms), unmount
-              timeouts.push(
-                setTimeout(() => {
-                  setPhase("gone");
-                }, 900)
-              );
-            }, 300)
-          );
-        }, remainingWait)
-      );
+      const t = setTimeout(() => {
+        dismissLoader(180);
+      }, wait);
+      timersRef.current.push(t);
     };
 
-    if (document.readyState === "complete") {
-      completeLoader();
+    // If document is already interactive or complete, wrap up smoothly
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+      onInitialReady();
     } else {
-      window.addEventListener("load", completeLoader, { once: true });
+      window.addEventListener("DOMContentLoaded", onInitialReady, { once: true });
+      window.addEventListener("load", onInitialReady, { once: true });
     }
 
-    // Safety timeout ensures user is never blocked
-    timeouts.push(setTimeout(completeLoader, maxWaitTime));
+    // Safety fallback ensures user is NEVER blocked on ANY page even if external assets hang
+    const failSafe = setTimeout(onInitialReady, 2400);
+    timersRef.current.push(failSafe);
 
     return () => {
       clearInterval(interval);
-      timeouts.forEach(clearTimeout);
-      window.removeEventListener("load", completeLoader);
+      clearAllTimers();
+      window.removeEventListener("DOMContentLoaded", onInitialReady);
+      window.removeEventListener("load", onInitialReady);
       body.classList.remove("dsu-loader-active");
     };
-  }, []);
+  }, [clearAllTimers, dismissLoader]);
+
+  // 2. Intercept Internal Link Clicks & Browser History for Seamless Route Transitions
+  useEffect(() => {
+    const startTransition = () => {
+      clearAllTimers();
+      isNavigatingRef.current = true;
+      transitionStartRef.current = performance.now();
+      setProgress(25);
+      setPhase("show");
+
+      // Progressively advance towards 85% while route loads
+      const interval = setInterval(() => {
+        if (!isNavigatingRef.current) {
+          clearInterval(interval);
+          return;
+        }
+        setProgress((prev) => {
+          if (prev >= 85) return prev;
+          return prev + Math.max(0.6, (85 - prev) * 0.1);
+        });
+      }, 50);
+
+      // Safety fallback: if navigation takes longer than 2500ms, dismiss gracefully
+      const safety = setTimeout(() => {
+        clearInterval(interval);
+        if (isNavigatingRef.current) {
+          dismissLoader(100);
+        }
+      }, 2500);
+      timersRef.current.push(safety);
+    };
+
+    const handleAnchorClick = (e) => {
+      if (e.defaultPrevented) return;
+
+      const anchor = e.target.closest("a");
+      if (!anchor) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+
+      // Ignore external, download, protocols, or new-tab navigations
+      if (
+        anchor.target === "_blank" ||
+        anchor.hasAttribute("download") ||
+        href.startsWith("http://") ||
+        href.startsWith("https://") ||
+        href.startsWith("mailto:") ||
+        href.startsWith("tel:") ||
+        href.startsWith("javascript:") ||
+        href.startsWith("#") ||
+        e.ctrlKey ||
+        e.metaKey ||
+        e.altKey ||
+        e.shiftKey
+      ) {
+        return;
+      }
+
+      // Check URL against current location
+      try {
+        const targetUrl = new URL(anchor.href, window.location.origin);
+        if (targetUrl.origin !== window.location.origin) return;
+        // If clicking link to the exact same page & search, don't trigger loader
+        if (
+          targetUrl.pathname === window.location.pathname &&
+          targetUrl.search === window.location.search
+        ) {
+          return;
+        }
+
+        startTransition();
+      } catch {
+        /* invalid URL, ignore */
+      }
+    };
+
+    const handlePopState = () => {
+      startTransition();
+    };
+
+    document.addEventListener("click", handleAnchorClick, { capture: true });
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      document.removeEventListener("click", handleAnchorClick, { capture: true });
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [clearAllTimers, dismissLoader]);
+
+  // 3. Listen to Route Changes (pathname) to finish transition and reveal new page
+  useEffect(() => {
+    if (prevPathnameRef.current !== pathname) {
+      prevPathnameRef.current = pathname;
+
+      if (isNavigatingRef.current) {
+        // Minimum visible duration so transition is smooth without jarring flashes
+        const elapsed = performance.now() - transitionStartRef.current;
+        const hold = Math.max(0, 320 - elapsed);
+
+        const t = setTimeout(() => {
+          dismissLoader(150);
+        }, hold);
+        timersRef.current.push(t);
+      }
+    }
+  }, [pathname, dismissLoader]);
 
   if (phase === "gone") return null;
 
@@ -117,7 +226,7 @@ export default function PageLoader() {
       <div className="dsu-backdrop" />
       <div className="dsu-grid-pattern" />
 
-      {/* Cinematic split curtains with laser seam */}
+      {/* Cinematic split curtains */}
       <div
         className={`dsu-panel dsu-panel-top ${isHiding ? "is-open" : ""}`}
         aria-hidden="true"
