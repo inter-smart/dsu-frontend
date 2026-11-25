@@ -7,7 +7,7 @@ import { ThemeToggle } from "../theme-toggle";
 import { useEffect, useLayoutEffect, useState, useRef } from "react"; // CHANGED: added useLayoutEffect
 import { createPortal } from "react-dom"; // ADDED
 import { useLenis } from "lenis/react";
-import { Home, ChevronRight, ChevronDown, X, User, LogOut } from "lucide-react";
+import { Home, ChevronRight, ChevronDown, X, User, LogOut, DivideCircle } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -686,7 +686,7 @@ export default function Header({ data = local_data }) {
                     TopHeaderTextStyle,
                   )}
                 >
-                  <span className="w-[calc(100%-10px)] sm:w-[calc(100%-15px)]">
+                  <span className="w-[calc(100%-10px)] sm:w-[calc(100%-15px)] whitespace-nowrap">
                     {item?.label}
                   </span>
                   {TOP_BAR_ICONS[index] && (
@@ -1360,10 +1360,10 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
       )}
 
       {showApply && (
-        <Link
-          href={applyHere.url}
-          aria-label={applyHere.label}
-          {...externalProps(applyHere)}
+        <div
+          // href={applyHere.url}
+          // aria-label={applyHere.label}
+          // {...externalProps(applyHere)}
           className={cn(
             // transparent tab sitting exactly over the cut-out, at every screen size
             "absolute left-1/2 top-0 z-10 flex h-(--nh) w-(--nw) -translate-x-1/2 items-center justify-center whitespace-nowrap bg-transparent font-bold leading-none  -top-[3px]",
@@ -1374,7 +1374,7 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
           )}
         >
           {applyHere.label}
-        </Link>
+        </div>
       )}
     </div>
   );
