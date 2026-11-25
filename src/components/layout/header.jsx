@@ -1359,15 +1359,23 @@ function ApplyButtons({ buttons, variant = "desktop", className }) {
         </div>
       )}
 
-    {showApply && (
-          <button
-            type="button"
-            tabIndex={-1}
-            className="text-[10px] 2xl:text-xs 3xl:text-base leading-[1.1] font-bold text-black w-fit h-auto p-[3px_5px] mx-auto bg-white rounded-[2px] 2xl:rounded-[3px] -translate-y-1.25 overflow-hidden inline absolute z-1 inset-[0_0_auto_0] cursor-default"
-          >
-            Apply Here
-          </button>
+      {/* {showApply && ( */}
+      <div
+        // href={applyHere.url}
+        // aria-label={applyHere.label}
+        // {...externalProps(applyHere)}
+        className={cn(
+          // transparent tab sitting exactly over the cut-out, at every screen size
+          "absolute text-black xl:text-white left-1/2 top-0 z-10 flex h-(--nh) w-(--nw) -translate-x-1/2 items-center justify-center whitespace-nowrap bg-transparent font-bold leading-none  -top-[3px]",
+          isMobile
+            ? // menu sheet: cream (light) / dark (dark) background behind the notch
+            "text-[11px] text-black xl:text-white dark:text-white"
+            : "text-[9px] sm:text-[11px] 2xl:text-xs 3xl:text-sm text-black xl:text-white",
         )}
+      >
+        Apply Here
+      </div>
+      {/* )} */}
     </div>
   );
 }
