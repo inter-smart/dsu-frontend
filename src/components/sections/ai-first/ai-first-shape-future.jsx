@@ -40,6 +40,8 @@ export default function ShapeFuture({ data }) {
                   <Link
                     key={cta.label}
                     href={cta.href || "#"}
+                    target={cta.openInNewTab ? "_blank" : undefined}
+                    rel={cta.openInNewTab ? "noopener noreferrer" : undefined}
                     className={
                       cta.variant === "outline"
                         ? "group inline-flex items-center gap-2.5 rounded-[4px] border border-(--basecolor) px-4 py-3 text-[13px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-(--basecolor)/10 hover:shadow-lg active:translate-y-0 xl:px-5 xl:py-4 xl:text-[16px]"

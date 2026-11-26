@@ -34,6 +34,8 @@ export default function ReadyCta({ data }) {
               <Link
                 key={cta.label}
                 href={cta.href || "#"}
+                target={cta.openInNewTab ? "_blank" : undefined}
+                rel={cta.openInNewTab ? "noopener noreferrer" : undefined}
                 className={
                   cta.variant === "white"
                     ? "group inline-flex items-center gap-2.5 rounded-[4px] border border-white bg-white px-5 py-3 text-[13px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-(--basecolor) to-(--basecolor2) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 xl:px-6 xl:py-4 xl:text-[16px]"
