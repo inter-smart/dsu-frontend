@@ -176,6 +176,15 @@ const local_data = {
           { text: " / " },
           { text: "080 49092800", href: "tel:08049092800", bold: true },
         ],
+        // ADDED: View Location (replace the map link with your exact one)
+        [
+          {
+            text: "View Location",
+            href: "https://www.google.com/maps/search/?api=1&query=Dayananda+Sagar+University+Harohalli",
+            location: true,
+            bold: true,
+          },
+        ],
       ],
     },
     {
@@ -273,6 +282,15 @@ const local_data = {
             bold: true,
           },
         ],
+        // ADDED: View Location (replace the map link with your exact one)
+        [
+          {
+            text: "View Location",
+            href: "https://www.google.com/maps/search/?api=1&query=Dayananda+Sagar+University+Kudlu+Gate+Bengaluru",
+            location: true,
+            bold: true,
+          },
+        ],
       ],
     },
     {
@@ -308,6 +326,15 @@ const local_data = {
           { text: "080 46461800", href: "tel:08046461800", bold: true },
           { text: " / " },
           { text: "080 49092800", href: "tel:08049092800", bold: true },
+        ],
+        // ADDED: View Location (replace the map link with your exact one)
+        [
+          {
+            text: "View Location",
+            href: "https://www.google.com/maps/search/?api=1&query=Dayananda+Sagar+University+Kumaraswamy+Layout+Bengaluru",
+            location: true,
+            bold: true,
+          },
         ],
       ],
     },
@@ -744,6 +771,10 @@ function FooterGroup({ title, open, onToggle, className = "", gridClassName, chi
   );
 }
 
+// ADDED: true for a "View Location" entry (flagged with location: true, or the CMS text "View Location")
+const isLocationItem = (item) =>
+  Boolean(item?.location) || /^\s*view\s+location\s*$/i.test(item?.text || "");
+
 function LinkCard({ items }) {
   return (
     <div className="w-full h-auto lg:first:pl-5 block">
@@ -757,7 +788,32 @@ function LinkCard({ items }) {
             className="text-[13px] lg:text-xs 2xl:text-[13px] 3xl:text-[15px] leading-[1.4] text-black dark:text-white whitespace-pre-line"
           >
             {item?.map((item, index) =>
-              item?.innerTitle ? (
+              /* ADDED: View Location link with a map-pin icon */
+              isLocationItem(item) ? (
+                <span key={index} className="leading-[1.6] pr-1.25 inline-block font-medium">
+                  <Link
+                    href={item?.href || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-1.5 py-0.5 min-h-6 hover:text-(--basecolor) transition-colors"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="size-3.5 2xl:size-4 3xl:size-5 shrink-0 text-(--basecolor2) group-hover:text-(--basecolor) transition-colors"
+                      aria-hidden="true"
+                    >
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    {item?.text}
+                  </Link>
+                </span>
+              ) : item?.innerTitle ? (
                 <span
                   key={index}
                   className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit my-[15px_10px] lg:my-[20px_10px] 2xl:my-[30px_15px] uppercase inline-block"

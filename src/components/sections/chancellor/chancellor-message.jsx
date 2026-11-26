@@ -17,13 +17,12 @@ const toTelHref = (phone) => {
 const isRealLink = (url) =>
   typeof url === "string" && url.trim() !== "" && url.trim() !== "#";
 
-// CHANGED: styles for ul / ol / li coming from the editor (gradient bullets, orange numbers).
-// Every li is its own block context (flow-root), so with a floated sidebar the marker is never hidden behind it.
+ 
 const richList = [
   "[&_ul]:!list-none [&_ul]:!p-0 [&_ul]:!m-0 [&_ul]:!mb-[15px] xl:[&_ul]:!mb-[25px]",
   "[&_ol]:!list-none [&_ol]:!p-0 [&_ol]:!m-0 [&_ol]:!mb-[15px] xl:[&_ol]:!mb-[25px] [&_ol]:[counter-reset:rich-item]",
-  "[&_li]:relative [&_li]:flow-root [&_li]:!pl-[26px] [&_li]:!mb-[20px] [&_li]:leading-[1.6] [&_li:last-child]:!mb-0 [&_li_p]:!mb-0",
-  "[&_ul>li]:before:content-[''] [&_ul>li]:before:absolute [&_ul>li]:before:left-[4px] [&_ul>li]:before:top-[0.6em] [&_ul>li]:before:size-[8px] [&_ul>li]:before:rounded-full [&_ul>li]:before:bg-linear-to-br [&_ul>li]:before:from-[#DC2626] [&_ul>li]:before:to-[#F97316]",
+  "[&_li]:relative [&_li]:flow-root [&_li]:!pl-[26px] [&_li]:!mb-[0px] [&_li]:leading-[1.6] [&_li:last-child]:!mb-0 [&_li_p]:!mb-0",
+  "[&_ul>li]:before:content-[''] [&_ul>li]:before:absolute [&_ul>li]:before:left-[4px]  [&_ul>li]:before:size-[8px] [&_ul>li]:before:rounded-full [&_ul>li]:before:bg-linear-to-br [&_ul>li]:before:from-[#DC2626] [&_ul>li]:before:to-[#F97316]",
   "[&_ol>li]:[counter-increment:rich-item] [&_ol>li]:before:content-[counter(rich-item)_'.'] [&_ol>li]:before:absolute [&_ol>li]:before:left-0 [&_ol>li]:before:font-bold [&_ol>li]:before:text-[#DC2626]",
   "[&_li_ul]:!mt-[10px] [&_li_ol]:!mt-[10px]",
 ].join(" ");
