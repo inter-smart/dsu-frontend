@@ -14,6 +14,10 @@ import { useEffect, useCallback, useState } from "react";
 import { ShineBorder } from "@/components/ui/shine-border";
 import LazyVideo from "@/components/ui/lazy-video";
 
+// 11-character id from a youtube watch / share / embed / shorts link (or a bare id)
+const getYoutubeId = (url = "") =>
+  String(url).match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|^)([\w-]{11})(?:[?&#/]|$)/)?.[1] || "";
+
 export default function HomeTestimonials({ data }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
@@ -192,7 +196,11 @@ export default function HomeTestimonials({ data }) {
                     href={safeHref(item?.media?.url)}
                     data-caption={item?.name}
                     data-type={
-                      item?.media?.type === "video" ? "html5video" : "image"
+                      item?.media?.type === "video"
+                        ? "html5video"
+                        : item?.media?.type === "youtube"
+                          ? "youtube"
+                          : "image"
                     }
                     className="w-full h-full rounded-[7px] 2xl:rounded-[10px] overflow-hidden block relative z-0 before:content-[''] before:w-7.5 2xl:before:w-8.75 3xl:before:w-11.25 before:h-auto before:aspect-square before:rounded-full before:m-3.75 2xl:before:m-5 before:bg-[url('data:image/svg+xml,%3Csvg%20width=%2243%22%20height=%2243%22%20viewBox=%220%200%2043%2043%22%20fill=%22none%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath%20d=%22M21.5%200C9.62588%200%200%209.62588%200%2021.5C0%2033.3741%209.62588%2043%2021.5%2043C33.3741%2043%2043%2033.3741%2043%2021.5%2043.9874%209.63119%2033.3689%200.0126877%2021.5%200ZM30.5545%2022.185C30.4057%2022.4836%2030.1637%2022.7257%2029.865%2022.8745V22.8821L17.5793%2029.025C16.8206%2029.4041%2015.8983%2029.0965%2015.5191%2028.3377C15.4113%2028.1221%2015.3558%2027.884%2015.3571%2027.6429V15.3572C15.3567%2014.509%2016.0439%2013.8212%2016.8921%2013.8207C17.1307%2013.8206%2017.366%2013.8761%2017.5793%2013.9827L29.865%2020.1256C30.6241%2020.5039%2030.9329%2021.4259%2030.5545%2022.185Z%22%20fill=%22white%22%20fill-opacity=%220.8%22/%3E%3C/svg%3E')] before:bg-contain before:bg-no-repeat before:bg-center before:absolute before:z-1 before:inset-[0_0_auto_auto] after:content-[''] after:w-full after:h-[30%] after:bg-linear-to-t after:from-[#090909] after:to-[#0B2148]/0 after:absolute after:z-0 after:inset-[auto_0_0_0] after:transition-colors after:duration-500 hover:after:from-(--basecolor2)"
                   >
@@ -209,7 +217,13 @@ export default function HomeTestimonials({ data }) {
                         />
                       ) : (
                         <Image
-                          src={item?.media?.url}
+                          src={
+                            item?.media?.type === "youtube"
+                              ? item?.media?.poster ||
+                                (getYoutubeId(item?.media?.url) &&
+                                  `https://i.ytimg.com/vi/${getYoutubeId(item.media.url)}/hqdefault.jpg`)
+                              : item?.media?.url
+                          }
                           alt={item?.name || "Testimonial media"}
                           fill
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
