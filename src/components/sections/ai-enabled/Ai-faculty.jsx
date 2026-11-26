@@ -172,7 +172,7 @@ export default function AiFaculty({ data }) {
     if (!data) return null;
 
     const section = data?.facultiesSection || data;
-    const heading = section?.heading || "Faculties College of Nursing Sciences";
+    const heading = section?.heading || data?.fallbackHeading || "Faculty";
     const description = section?.description;
     const categories = section?.categories || [];
 

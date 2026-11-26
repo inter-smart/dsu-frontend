@@ -16,7 +16,7 @@ export default async function Page({ params }) {
 
     return (
         <SchoolTabShell hero={hero} slug={slug} hasDepartments={hasDepartments}>
-            {hasContent(data.facultiesSection?.categories) && <AiFaculty data={{ facultiesSection: data.facultiesSection }} />}
+            {hasContent(data.facultiesSection?.categories) && <AiFaculty data={{ facultiesSection: data.facultiesSection, fallbackHeading: hero?.title ? `Faculty – ${hero.title}` : "Faculty" }} />}
         </SchoolTabShell>
     );
 }

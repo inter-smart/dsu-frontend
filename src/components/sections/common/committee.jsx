@@ -20,6 +20,8 @@ export default function Committee({ data, title, governancePages = [] }) {
     const columnCount = Math.max(headers.length, ...rows.map((row) => row.cells?.length || 0), 1);
     const columns = Array.from({ length: columnCount }, (_, idx) => idx);
     const withSidebar = governancePages.length > 0;
+    // Only on flexible pages (no governance sidebar): center the image + name in the first cell.
+    const centerFirstCell = !withSidebar;
 
     const content = (
         <>
@@ -68,7 +70,7 @@ export default function Committee({ data, title, governancePages = [] }) {
                                     {columns.map((idx) =>
                                         idx === 0 ? (
                                             <td key={idx} className={`first:rounded-l-[10px] last:rounded-r-[10px] p-[15px_18px] xl:p-[15px_20px] 2xl:p-[18px_30px] 3xl:p-[20px_40px] ${cellDivider}`}>
-                                                <div className="flex items-center">
+                                                <div className={`flex items-center ${centerFirstCell ? "justify-center text-center" : ""}`}>
                                                     {row.image && (
                                                         <div className="h-[50px] xl:h-[61px] 2xl:h-[73px] 3xl:h-[92px] w-[50px] xl:w-[61px] 2xl:w-[73px] 3xl:w-[92px] shrink-0 overflow-hidden rounded-full">
                                                             <Image
