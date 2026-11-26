@@ -7,7 +7,7 @@ export default function Aieligibility({ data }) {
         (data?.seatsSection?.tableRows?.length ?? 0) > 0;
 
     return (
-        <section className="realtive py-[10px_0px] xl:py-[50px_0] 2xl:py-[70px_0] 3xl:py-[90px_0] dark:bg-[#101010]">
+        <section className="realtive py-[10px_30px] xl:py-[50px_30px] 2xl:py-[70px_40px] 3xl:py-[90px_40px] dark:bg-[#101010]">
             <div className="container">
                 {data?.heading && (
                     <h2 className="cmn_Title mb-[15px] xl:mb-[20px] 2xl:mb-[25px] text-black dark:text-white">

@@ -14,7 +14,7 @@ export default function PoPsoSection({ data }) {
             <h2 className="cmn_Title mb-[10px] xl:mb-[15px]">
               {data.po.heading}
             </h2>
-            <p className="text_1 dark:text-white mb-[30px] lg:mb-[40px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+            <p className="text_1 dark:text-white mb-[30px]  ">
               {data.po.subtitle}
             </p>
 
@@ -24,7 +24,7 @@ export default function PoPsoSection({ data }) {
                   <h3 className="cmn_Txt mb-[5px] xl:mb-[10px]">
                     {item.title}
                   </h3>
-                  <p className="text_1 text-[#4A5565] dark:text-white lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+                  <p className="text_1 text-[#4A5565] dark:text-white  ">
                     {item.description}
                   </p>
                 </div>
@@ -90,7 +90,7 @@ export default function PoPsoSection({ data }) {
             <h2 className="cmn_Title mb-[8px] xl:mb-[10px]">
               {data.pso.heading}
             </h2>
-            <p className="text_1 text-[#4A5565] dark:text-white mb-[30px] lg:mb-[40px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
+            <p className="text_1 text-[#4A5565] dark:text-white mb-[30px] lg:mb-[40px]  ">
               {data.pso.subtitle}
             </p>
 
@@ -100,7 +100,7 @@ export default function PoPsoSection({ data }) {
                   <h3 className="cmn_Txt mb-[5px] xl:mb-[10px]">
                     {item.title}
                   </h3>
-                  <p className="text_1 lg:text-[14px] xl:text-base!">
+                  <p className="text_1  ">
                     {item.description}
                   </p>
                 </div>
@@ -136,7 +136,7 @@ export default function PoPsoSection({ data }) {
                         <path d="M14.6316 27.5023H8.77889C8.00277 27.5023 7.25844 27.1547 6.70965 26.5358C6.16085 25.9169 5.85254 25.0776 5.85254 24.2023C5.85254 23.3271 6.16085 22.4878 6.70965 21.8689C7.25844 21.25 8.00277 20.9023 8.77889 20.9023H14.6316C15.4077 20.9023 16.152 21.25 16.7008 21.8689C17.2496 22.4878 17.5579 23.3271 17.5579 24.2023C17.5579 25.0776 17.2496 25.9169 16.7008 26.5358C16.152 27.1547 15.4077 27.5023 14.6316 27.5023ZM8.77889 23.0989C8.53687 23.1254 8.31226 23.2525 8.14883 23.4556C7.98541 23.6586 7.89487 23.923 7.89487 24.1972C7.89487 24.4714 7.98541 24.7358 8.14883 24.9388C8.31226 25.1418 8.53687 25.269 8.77889 25.2955H14.6316C14.8736 25.269 15.0982 25.1418 15.2616 24.9388C15.4251 24.7358 15.5156 24.4714 15.5156 24.1972C15.5156 23.923 15.4251 23.6586 15.2616 23.4556C15.0982 23.2525 14.8736 23.1254 14.6316 23.0989H8.77889Z" />
                       </svg>
                     </div>
-                    <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-black dark:text-white group-hover:text-[#DC2626]">
+                    <div className="text_1 text-black dark:text-white group-hover:text-[#DC2626]">
                       {data.pso.button.label}
                     </div>
                   </div>
@@ -166,7 +166,7 @@ export default function PoPsoSection({ data }) {
             <h2 className="cmn_Title mb-[10px] xl:mb-[15px]">
               {data.peo.heading}
             </h2>
-            <p className="text_1 text-[#4A5565] dark:text-white mb-[30px] lg:mb-[40px] lg:text-[14px] xl:text-[16px]!">
+            <p className="text_1 text-[#4A5565] dark:text-white mb-[30px] lg:mb-[40px]  ">
               {data.peo.subtitle}
             </p>
 
@@ -176,7 +176,7 @@ export default function PoPsoSection({ data }) {
                   <h3 className="cmn_Txt mb-[5px] xl:mb-[10px]">
                     {item.title}
                   </h3>
-                  <p className="text_1 lg:text-[14px] xl:text-base">
+                  <p className="text_1  ">
                     {item.description}
                   </p>
                 </div>
@@ -212,7 +212,7 @@ export default function PoPsoSection({ data }) {
                         <path d="M14.6316 27.5023H8.77889C8.00277 27.5023 7.25844 27.1547 6.70965 26.5358C6.16085 25.9169 5.85254 25.0776 5.85254 24.2023C5.85254 23.3271 6.16085 22.4878 6.70965 21.8689C7.25844 21.25 8.00277 20.9023 8.77889 20.9023H14.6316C15.4077 20.9023 16.152 21.25 16.7008 21.8689C17.2496 22.4878 17.5579 23.3271 17.5579 24.2023C17.5579 25.0776 17.2496 25.9169 16.7008 26.5358C16.152 27.1547 15.4077 27.5023 14.6316 27.5023ZM8.77889 23.0989C8.53687 23.1254 8.31226 23.2525 8.14883 23.4556C7.98541 23.6586 7.89487 23.923 7.89487 24.1972C7.89487 24.4714 7.98541 24.7358 8.14883 24.9388C8.31226 25.1418 8.53687 25.269 8.77889 25.2955H14.6316C14.8736 25.269 15.0982 25.1418 15.2616 24.9388C15.4251 24.7358 15.5156 24.4714 15.5156 24.1972C15.5156 23.923 15.4251 23.6586 15.2616 23.4556C15.0982 23.2525 14.8736 23.1254 14.6316 23.0989H8.77889Z" />
                       </svg>
                     </div>
-                    <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-black dark:text-white group-hover:text-[#DC2626]">
+                    <div className="text_1 text-black dark:text-white group-hover:text-[#DC2626]">
                       {data.peo.button.label}
                     </div>
                   </div>
