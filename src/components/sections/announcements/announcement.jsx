@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Heading } from "@/components/ui/heading";
 import { getAnnouncementsPaged } from "@/lib/api";
+import { safeHref } from "@/lib/utils";
 
 export default function Announcement({ data }) {
   const [items, setItems] = useState(data?.announcements ?? []);
@@ -75,7 +76,10 @@ export default function Announcement({ data }) {
                     </div>
                   </div>
                   <Link
-                    href={item?.link || "/announcements"}
+                    href={safeHref(item?.externalLink || item?.link, "/announcements")}
+                    {...(item?.externalLink
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                     className="text-sm 3xl:text-base leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
                   >
                     Read More &gt;
