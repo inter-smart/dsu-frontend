@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 import LibrarySidebar from "./LibrarySidebar";
 import LibraryHtml from "./LibraryHtml";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const infoCard =
     "rounded-[8px] border-l-[5px] border-[#DC2626] bg-linear-to-br from-[#FFF6E9] to-[#FFEFD9] dark:from-white/5 dark:to-white/5";
@@ -24,7 +25,7 @@ function CardLink({ link }) {
     const href = link.email ? `mailto:${link.email}` : link.url || "#!";
     return (
         <Link href={href} {...externalProps(link)} className={linkCls}>
-            {link.label}
+            {withLineBreaks(link.label)}
         </Link>
     );
 }

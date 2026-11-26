@@ -1,6 +1,7 @@
 "use client";
 
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const getText = (block) => (block?.children || []).map((c) => c.text).join("");
 
@@ -75,7 +76,7 @@ export default function CareerCounselling({ data }) {
                             <div className=" h-full">
                                 {section.heading && (
                                     <h2 className="cmn_Title text-black dark:text-white">
-                                        {section.heading}
+                                        {withLineBreaks(section.heading)}
                                     </h2>
                                 )}
                                 {section.subheading && (

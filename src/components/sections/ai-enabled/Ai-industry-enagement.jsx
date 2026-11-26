@@ -7,6 +7,7 @@ import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 import "swiper/css";
 import "swiper/css/grid";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AiIndustryEngagement({ data }) {
     return (
@@ -15,7 +16,7 @@ export default function AiIndustryEngagement({ data }) {
                 <div className="w-full">
                     {data?.heading && (
                         <div className={` cmn_Title`}>
-                            {data.heading}
+                            {withLineBreaks(data.heading)}
                         </div>
                     )}
                     {Array.isArray(data?.description) ? (
@@ -76,7 +77,7 @@ export default function AiIndustryEngagement({ data }) {
                                             {indus.value}
                                         </div>
                                         <div className="text_1">
-                                            {indus.label}
+                                            {withLineBreaks(indus.label)}
                                         </div>
                                     </div>
                                 </SwiperSlide>

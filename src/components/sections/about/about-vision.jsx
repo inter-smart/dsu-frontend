@@ -5,6 +5,7 @@ import Image from "next/image";
 import { jarallax } from "jarallax";
 import "jarallax/dist/jarallax.css";
 import TiltCard from "@/components/ui/tilt-card";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AboutVision({ data }) {
   const sectionRef = useRef(null);
@@ -59,7 +60,7 @@ export default function AboutVision({ data }) {
                                         before:w-[30px] before:bg-gradient-to-r before:from-[#DC2626]
                                         before:to-[#F97316] "
                 >
-                  {data.label}
+                  {withLineBreaks(data.label)}
                 </div>
               )}
               {data.heading && (
@@ -67,7 +68,7 @@ export default function AboutVision({ data }) {
                   className="mb-[25px] md:mb-[55px] 2xl:mb-[90px] 3xl:mb-[120px] text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px]
                                     xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-white max-w-[230px] xl:max-w-[300px] 2xl:max-w-[400px] 3xl:max-w-[510px]"
                 >
-                  {data.heading}
+                  {withLineBreaks(data.heading)}
                 </h2>
               )}
 
@@ -88,7 +89,7 @@ export default function AboutVision({ data }) {
                       )}
                       <div className="w-full">
                         <div className="text-[14px] md:text-[16px] 2xl:text-[20px] 3xl:text-[25px] text-white font-bold mb-[8px] [transform:translateZ(28px)]">
-                          {item.title}
+                          {withLineBreaks(item.title)}
                         </div>
                         <div className="[transform:translateZ(14px)]">
                           {typeof item.description === "string" &&
@@ -131,7 +132,7 @@ export default function AboutVision({ data }) {
                 <div className="w-full max-w-[95%]">
                   {values?.title && (
                     <div className="text-[14px] md:text-[16px] 2xl:text-[20px] 3xl:text-[25px]   text-white font-bold mb-[15px] md:mb-[20px] xl:mb-[25px] 2xl:mb-[35px] 3xl:mb-[40px]">
-                      {values.title}
+                      {withLineBreaks(values.title)}
                     </div>
                   )}
                   <div className="flex flex-col gap-[10px] xl:gap-[12px]">
@@ -179,7 +180,7 @@ export default function AboutVision({ data }) {
                             <span
                               className={`flex-1 text-[14px] xl:text-[17px] 2xl:text-[21px] 3xl:text-[26px] leading-[1.2] font-bold transition-colors duration-300 ${open ? "text-[#F97316]" : "text-white"}`}
                             >
-                              {item.title}
+                              {withLineBreaks(item.title)}
                             </span>
                             {hasText && (
                               <span

@@ -10,6 +10,7 @@ import {
   SliderArrow,
   FilterPill,
 } from "@/components/sections/placements/slider-controls";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function IndustryPartnerships({ data }) {
   const [school, setSchool] = useState("all");
@@ -60,7 +61,7 @@ export default function IndustryPartnerships({ data }) {
               as="h2"
               className="text-[25px] leading-[1.1] mb-[12px] 3xl:mb-[16px] max-w-[560px] dark:text-white"
             >
-              {data?.title}
+              {withLineBreaks(data?.title)}
             </Heading>
             <div className="text_1 [--text-color:#4A5565] dark:[--text-color:#f9fafb] space-y-[16px] 3xl:space-y-[28px] typography">
               <BlocksRenderer content={data?.description || []} />
@@ -82,7 +83,7 @@ export default function IndustryPartnerships({ data }) {
                 />
                 <div>
                   <h3 className="text-[16px] 2xl:text-[19px] 3xl:text-[25px] leading-[1.1] font-bold text-[#212121] dark:text-white mb-[4px]">
-                    {item?.title}
+                    {withLineBreaks(item?.title)}
                   </h3>
                   <p>{item?.description}</p>
                 </div>
@@ -108,7 +109,7 @@ export default function IndustryPartnerships({ data }) {
                 active={school === s?.value}
                 onClick={() => setSchool(s?.value)}
               >
-                {s?.label}
+                {withLineBreaks(s?.label)}
               </FilterPill>
             ))}
           </div>
@@ -164,13 +165,13 @@ export default function IndustryPartnerships({ data }) {
                       </div>
                       <div className="p-[42px_15px_25px] md:pt-[52px] 2xl:pt-[60px] 3xl:p-[72px_15px_63px]">
                         <h3 className="text-[22px] 2xl:text-[26px] 3xl:text-[36px] leading-tight font-bold text-[#212121] dark:text-white">
-                          {item?.name}
+                          {withLineBreaks(item?.name)}
                         </h3>
                         <div className="text-[13px] 2xl:text-[15px] 3xl:text-[18px] font-semibold text-[#4A5565] dark:text-[#CBD5E1] mt-[4px] pb-[16px] 3xl:pb-[24px] mb-[16px] 3xl:mb-[24px] border-b border-black/10 dark:border-white/10">
                           {item?.school_label}
                         </div>
                         <p className="mb-[16px] 3xl:mb-[24px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                          {item?.description}
+                          {withLineBreaks(item?.description)}
                         </p>
                         <ul className="flex flex-wrap gap-[10px] 3xl:gap-[18px]">
                           {item?.tags?.map((tag) => (

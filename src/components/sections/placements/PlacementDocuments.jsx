@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const arrowBtn =
     "w-[30px] h-[30px] xl:w-[34px] xl:h-[34px] rounded-full bg-white dark:bg-[#18191B] border border-[#F97316]/40 text-[#F97316] flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#DC2626] hover:to-[#F97316] hover:text-white hover:border-transparent disabled:opacity-30 disabled:cursor-not-allowed";
@@ -63,7 +64,7 @@ export default function PlacementDocuments({ data }) {
                                     {/* Content */}
                                     <div className="w-full">
                                         <div className="text-[18px] lg:text-[20px] xl:text-[24px] 2xl:text-[28px] 3xl:text-[35px] font-semibold leading-[1.2] text-[#212121] dark:text-white mb-[6px] xl:mb-[8px]">
-                                            {card.title}
+                                            {withLineBreaks(card.title)}
                                         </div>
                                         {/* rich text (blocks) on the Placement page; plain text on Recruit */}
                                         {Array.isArray(card.description) ? (
@@ -75,7 +76,7 @@ export default function PlacementDocuments({ data }) {
                                         ) : (
                                             card.description && (
                                                 <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.5] mb-[10px] xl:mb-[12px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                                    {card.description}
+                                                    {withLineBreaks(card.description)}
                                                 </p>
                                             )
                                         )}
@@ -87,7 +88,7 @@ export default function PlacementDocuments({ data }) {
                                                 className="group inline-flex items-center gap-[10px] w-fit"
                                             >
                                                 <span className="inline-block text_1 font-normal tracking-tighter bg-gradient-to-r from-[#DC2626] from-[50%] to-[#F97316] bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
-                                                    {card.cta.label}
+                                                    {withLineBreaks(card.cta.label)}
                                                 </span>
                                                 <svg
                                                     width="18"

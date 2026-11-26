@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function PlacementContact(props) {
     const data = props?.data || props;
@@ -27,10 +28,10 @@ export default function PlacementContact(props) {
                     {data?.contact && (
                         <div className="flex flex-col">
                             <div className="text-[16px] sm:text-[17px] xl:text-[18px] 2xl:text-[20px] font-bold text-[#1F1F1F] dark:text-white mb-1">
-                                {data.contact.name}
+                                {withLineBreaks(data.contact.name)}
                             </div>
                             <div className="text_1 text-[#4A5565] dark:text-[#CBD5E1] leading-relaxed">
-                                {data.contact.designation}
+                                {withLineBreaks(data.contact.designation)}
                             </div>
                             <div className="text_1 text-[#4A5565] dark:text-[#CBD5E1] leading-relaxed">
                                 {data.contact.organization}
@@ -43,7 +44,7 @@ export default function PlacementContact(props) {
                             {data.details.map((item) => (
                                 <div key={item?.id || item?.label} className="text-[13px] sm:text-[14px] 2xl:text-[15px] 3xl:text-[18px] text-[#1F1F1F] dark:text-white whitespace-nowrap">
                                     <span className="text_! font-bold text-[#1F1F1F] dark:text-white mr-1.5">
-                                        {item?.label}
+                                        {withLineBreaks(item?.label)}
                                     </span>
                                     {item?.href ? (
                                         <a

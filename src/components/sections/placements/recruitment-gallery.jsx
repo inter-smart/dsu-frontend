@@ -6,6 +6,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { SliderArrow } from "@/components/sections/placements/slider-controls";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function RecruitmentGallery({ data }) {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center" });
@@ -24,7 +25,7 @@ export default function RecruitmentGallery({ data }) {
         <section className="py-[40px] xl:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] overflow-hidden transition-colors duration-300">
             <div className="container mb-[25px] 3xl:mb-[40px]">
                 <Heading as="h2" className="text-[25px] leading-[1.1] mb-[8px] 3xl:mb-[16px] dark:text-white">
-                    {data?.title}
+                    {withLineBreaks(data?.title)}
                 </Heading>
                 <Text>{data?.description}</Text>
             </div>
@@ -52,7 +53,7 @@ export default function RecruitmentGallery({ data }) {
                                                 className={`absolute inset-x-0 bottom-0 p-[20px] 3xl:p-[40px] bg-linear-to-t from-black/60 to-transparent text-white text-[16px] 2xl:text-[20px] 3xl:text-[30px] font-semibold transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"
                                                     }`}
                                             >
-                                                {item.caption}
+                                                {withLineBreaks(item.caption)}
                                             </div>
                                         )}
                                     </div>

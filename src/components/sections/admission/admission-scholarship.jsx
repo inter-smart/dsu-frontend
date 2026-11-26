@@ -4,6 +4,7 @@ import { Text } from "@/components/ui/text";
 import Autoplay from "embla-carousel-autoplay";
 import { Heading } from "@/components/ui/heading";
 import useEmblaCarousel from "embla-carousel-react";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionScholarship({ data }) {
   const [criteriaEmblaRef] = useEmblaCarousel(
@@ -27,7 +28,7 @@ export default function AdmissionScholarship({ data }) {
       <div className="container">
         <div className="w-full h -auto block mb-5 sm:mb-6.25 2xl:mb-7.5 3xl:mb-10">
           <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-5 cmn_Title">
-            {data?.title}
+            {withLineBreaks(data?.title)}
           </Heading>
           <Text className="text_1">{data?.description}</Text>
         </div>
@@ -35,17 +36,17 @@ export default function AdmissionScholarship({ data }) {
           <div className="w-full h-full p-[20px_15px] sm:p-[25px_15px] 2xl:p-[30px_20px] rounded-md 2xl:rounded-[10px] border border-black/10 overflow-hidden block">
             <div className="w-full h-auto pb-3.75 sm:pb-5 3xl:pb-7.5 mb-3.75 sm:mb-5 3xl:mb-7.5 gap-2.5 border-b border-black/10 flex flex-col">
               <div className="text-[15px] 3xl:text-lg leading-[1.1] font-semibold text-[#212121]">
-                {data?.dsatScholarship?.title}
+                {withLineBreaks(data?.dsatScholarship?.title)}
               </div>
               <div className="text-lg 2xl:text-[22px] 3xl:text-[28px] leading-[1.1] font-semibold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit">
                 {data?.dsatScholarship?.amount}
               </div>
               <div className="text-sm 3xl:text-base leading-[1.7] font-normal text-[#4A5565]">
-                {data?.dsatScholarship?.label}
+                {withLineBreaks(data?.dsatScholarship?.label)}
               </div>
             </div>
             <div className="text-sm 3xl:text-base leading-[1.6] font-normal text-[#4A5565] mb-3.75 lg:mb-6.25 2xl:mb-7.5 3xl:mb-10">
-              {data?.dsatScholarship?.description}
+              {withLineBreaks(data?.dsatScholarship?.description)}
             </div>
             <ul className="space-y-2.5 3xl:space-y-3.75">
               {data?.dsatScholarship?.eligibility?.map((item) => (
@@ -66,10 +67,10 @@ export default function AdmissionScholarship({ data }) {
           <div className="w-full h-full p-[20px_15px] sm:p-[25px_15px] 2xl:p-[30px_20px] rounded-md 2xl:rounded-[10px] border border-black/10 overflow-hidden block">
             <div className="w-full h-auto mb-5 gap-2.5 flex flex-col">
               <div className="text-[15px] 3xl:text-lg leading-[1.1] font-semibold text-[#212121]">
-                {data?.otherScholarships?.title}
+                {withLineBreaks(data?.otherScholarships?.title)}
               </div>
               <div className="text-sm 3xl:text-base leading-[1.7] font-normal text-[#4A5565]">
-                {data?.otherScholarships?.description}
+                {withLineBreaks(data?.otherScholarships?.description)}
               </div>
             </div>
             <div className="w-full h-auto border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden">
@@ -111,7 +112,7 @@ export default function AdmissionScholarship({ data }) {
         <div className="w-full h-auto block">
           <div className="w-full h-auto block mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5">
             <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-5">
-              {data?.education?.title}
+              {withLineBreaks(data?.education?.title)}
             </Heading>
             <Text>{data?.education?.description}</Text>
           </div>
@@ -124,10 +125,10 @@ export default function AdmissionScholarship({ data }) {
                 >
                   <div className="w-full h-full p-[20px_15px] lg:p-[30px_20px] 2xl:p-[40px_30px] rounded-md 2xl:rounded-[10px] border border-[#212121]/10 block hover:border-(--basecolor) hover:bg-(--basecolor2)/10 transition-colors duration-300">
                     <div className="text-xl sm:text-[22px] lg:text-[27px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.4] font-semibold text-[#212121] mb-3.75 3xl:mb-6.25">
-                      {item?.title}
+                      {withLineBreaks(item?.title)}
                     </div>
                     <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.6] font-normal text-[#4A5565]">
-                      {item?.description}
+                      {withLineBreaks(item?.description)}
                     </div>
                   </div>
                 </div>

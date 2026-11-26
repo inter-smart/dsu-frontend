@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Menu } from "lucide-react";
 import LibrarySidebar from "./LibrarySidebar";
 import LibraryHtml from "./LibraryHtml";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const cell = "border border-[#6B7280] dark:border-white/30";
 
@@ -99,7 +100,7 @@ export default function AdvisoryCommitteeLibrary({ data, menu }) {
                                         >
                                             {section.title && (
                                                 <h3 className="mb-3 md:mb-4 text-[20px] md:text-[22px] 2xl:text-[24px] font-semibold leading-tight text-[#1F1F1F] dark:text-white">
-                                                    {section.title}
+                                                    {withLineBreaks(section.title)}
                                                 </h3>
                                             )}
                                             <ul  >

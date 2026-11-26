@@ -8,6 +8,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function IQACReport({ data }) {
 
@@ -17,7 +18,7 @@ export default function IQACReport({ data }) {
 
                 <div className="w-full">
                     <h2 className="cmn_Title">
-                        {data?.heading}
+                        {withLineBreaks(data?.heading)}
                     </h2>
 
                     <div className="text_1 typography leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565] mb-[30px] 3xl:mb-[50px] [&_p]:mb-[15px] [&_p]:xl:mb-[25px] [&_p]:3xl:mb-[30px]

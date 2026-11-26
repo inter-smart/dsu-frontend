@@ -23,7 +23,7 @@ export default function AIOffer({ data }) {
             )}
             {item?.description && (
                 <p className="!text_1  mt-[10px] xl:mt-[14px]  text-[#4A5565] dark:text-[#9CA3AF]">
-                    {item.description}
+                    {withLineBreaks(item.description)}
                 </p>
             )}
         </div>
@@ -39,7 +39,7 @@ export default function AIOffer({ data }) {
                 )}
                 {data?.description && (
                     <p className="text_1 2xl:text-[20px] mt-[12px] xl:mt-[18px] leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF]">
-                        {data.description}
+                        {withLineBreaks(data.description)}
                     </p>
                 )}
 

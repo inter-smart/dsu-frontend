@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "@/components/ui/safe-image";
 import { safeHref } from "@/lib/utils";
 import TableScrollBox from "@/components/layout/common/TableScrollBox";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // People without links but with a description (Scholars in Residence, student testimonials):
 // portrait cards ("Name, Role" title + text below), so faces and text are never cropped
@@ -102,7 +103,7 @@ export default function IntlLinkCardsSection({ data, slug }) {
             <div className="container">
                 {data.title && (
                     <h2 className="relative mx-auto mb-[22px] pb-[14px] text-center text-[24px] font-bold leading-[1.25] text-[#212121] after:absolute after:bottom-0 after:left-1/2 after:h-[3px] after:w-[56px] after:-translate-x-1/2 after:rounded-full after:bg-gradient-to-r after:from-(--basecolor) after:to-(--basecolor2) after:content-[''] dark:text-white xl:mb-[32px] xl:text-[32px] xl:after:w-[72px] 2xl:text-[38px] 3xl:text-[52px]">
-                        {data.title}
+                        {withLineBreaks(data.title)}
                     </h2>
                 )}
                 {ARTICLE_PAGES.includes(slug) && data.display === "cards" ? (

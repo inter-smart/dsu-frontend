@@ -1,5 +1,6 @@
 "use client";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 
 // Bullet lists inside the description render as the same dotted rows the separate opportunity list uses.
@@ -40,7 +41,7 @@ export default function CareerSection({ data }) {
             <div className="container">
                 <div className="w-full">
                     <h2 className="cmn_Title mb-[25px]">
-                        {data.heading}
+                        {withLineBreaks(data.heading)}
                     </h2>
                     {/* the [&_:is(ul,ol)+...] classes give a gap to any paragraph/heading that follows a list */}
                     <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px] [&_:is(ul,ol)+:is(p,h1,h2,h3,h4,h5,h6)]:!mt-[20px] xl:[&_:is(ul,ol)+:is(p,h1,h2,h3,h4,h5,h6)]:!mt-[25px] typography">
@@ -53,7 +54,7 @@ export default function CareerSection({ data }) {
                                      <span className="text-[#4A5565] dark:text-[#9CA3AF]">
                                         {item.description.map((segment, i) => (
                                             <span key={i} className={segment.bold ? "font-semibold text-[#4A5565] dark:text-white" : ""}>
-                                                {segment.text}
+                                                {withLineBreaks(segment.text)}
                                             </span>
                                         ))}
                                     </span>

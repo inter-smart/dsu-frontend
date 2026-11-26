@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLenis } from "lenis/react";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Same design as the Admission / Placement menu bar: pill tabs on desktop, a drawer on mobile.
 // items: [{ label, href }] - one per International page
@@ -81,7 +82,7 @@ export default function InternationalMenubar({ items = [], title = "Internationa
                                         isActive(item.href) ? "text-[#F97316]" : "text-[#212121]"
                                     }`}
                                 >
-                                    {item.label}
+                                    {withLineBreaks(item.label)}
                                 </Link>
                             </li>
                         ))}
@@ -117,7 +118,7 @@ export default function InternationalMenubar({ items = [], title = "Internationa
                                                     : "bg-white text-black group-hover:text-[#DC2626]"
                                             }`}
                                         >
-                                            {item.label}
+                                            {withLineBreaks(item.label)}
                                         </span>
                                     </Link>
                                 );

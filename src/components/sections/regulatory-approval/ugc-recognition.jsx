@@ -13,6 +13,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import RegulatorySidebarSection from "@/components/sections/regulatory-approval/regulatorySidebarSection";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const DEFAULT_DOCUMENT_LABEL = "Download Document";
 
@@ -51,7 +52,7 @@ export default function UgcRegnition({ data, menu = [] }) {
                         </button>
                         <div className="w-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_40px] 2xl:p-[40px_45px] 3xl:p-[50px_55px]">
                             <h2 className="cmn_Title">
-                                {data.title}
+                                {withLineBreaks(data.title)}
                             </h2>
                             {data?.description?.length > 0 && (
                                 <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]  typography">
@@ -75,7 +76,7 @@ export default function UgcRegnition({ data, menu = [] }) {
                                     <div className="lg:w-1/3 grow-1" key={id}>
                                         <div className="w-full h-full  rounded-[8px] lg:rounded-[10px] xl:rounded-[12px] 2xl:rounded-[15px] 3xl:rounded-[20px] border border-black/10 overflow-hidden p-[10px_15px] xl:p-[15px_20px] 2xl:p-[17px_25px] 3xl:p-[22px_30px]">
                                             <div className="text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] text-black font-bold mb-[3px]">
-                                                {item.label}
+                                                {withLineBreaks(item.label)}
                                             </div>
                                             <div className={`text_1 text-[#4A5565] ${id === 0 ? "!font-bold text-[#248B4A]" : "font-normal"}`}>
                                                 {item.value}
@@ -95,7 +96,7 @@ export default function UgcRegnition({ data, menu = [] }) {
                                         <li key={id} className="relative flex items-start gap-[15px] w-full md:w-1/2 before:block before:h-[13px] before:w-[13px] before:relative before:top-[10px] before:shrink-0 before:bg-[url('/images/ugc/round_icon.svg')] before:bg-contain before:bg-center before:bg-no-repeat before:content-['']">
                                             <div>
                                                 <div className="text_1 text-[#212121] font-bold">
-                                                    {item.title}
+                                                    {withLineBreaks(item.title)}
                                                 </div>
                                                 <div className="text_1 leading-[1.2] text-[#4A5565] mb-[10px] lg:mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]  typography">
                                                     <BlocksRenderer content={item.description} />

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function PlacementOverview({ data }) {
     if (!data) return null;
@@ -42,7 +43,7 @@ export default function PlacementOverview({ data }) {
                         )} 
                         {data?.heading && (
                             <h2 className="cmn_Title mb-[15px] xl:mb-[20px] 2xl:mb-[25px] text-black dark:text-white">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
 

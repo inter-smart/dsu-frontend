@@ -8,6 +8,7 @@ import { FreeMode, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const defaultDownloadData = {
   heading: "Downloads",
@@ -205,7 +206,7 @@ export default function AdmissionDownload({ data }) {
                           : "bg-white dark:bg-[#18191B] text-[#1E1E1E] dark:text-white border border-[#FED7AA] dark:border-white/10 hover:border-[#EA580C]/50 hover:bg-[#FFFBF7] dark:hover:bg-white/5"
                       }`}
                     >
-                      {tab.label}
+                      {withLineBreaks(tab.label)}
                     </button>
                   </SwiperSlide>
                 );
@@ -272,7 +273,7 @@ export default function AdmissionDownload({ data }) {
                       </svg>
                     </div>
                     <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black dark:text-white group-hover:text-[#DC2626]">
-                      {doc.label}
+                      {withLineBreaks(doc.label)}
                     </div>
                   </div>
                   <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex group-hover:translate-x-[-6px] transition-transform duration-300">

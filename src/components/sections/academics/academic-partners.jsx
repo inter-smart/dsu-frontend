@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import "swiper/css";
 import "swiper/css/grid";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AcademicPartners({ data, varient }) {
     if (!data) return null;
@@ -16,7 +17,7 @@ export default function AcademicPartners({ data, varient }) {
                 <div className="w-full">
                     {data?.label && (
                         <div className={` ${varient === "AiChapter" ? "cmn_Title dark:text-white mb-[25px]" : "text-[11px] xl:text-[12px] 2xl:text-[14px] uppercase tracking-wider text-black/40 dark:text-white/50 font-normal mb-[25px] xl:mb-[35px] 2xl:mb-[45px] "} text-center `}>
-                            {data.label}
+                            {withLineBreaks(data.label)}
                         </div>
                     )}
                     {data?.description && (

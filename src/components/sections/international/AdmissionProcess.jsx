@@ -6,6 +6,7 @@ import { Pagination } from "swiper/modules";
 import { Grip } from "lucide-react";
 import "swiper/css";
 import "swiper/css/pagination";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionProcess({ data }) {
     const { title, subtitle, button, steps } = data;
@@ -31,7 +32,7 @@ export default function AdmissionProcess({ data }) {
                         href={button.href}
                         className="inline-flex h-[35px] 2xl:h-[40px] 3xl:h-[44px] w-fit shrink-0 items-center gap-4 rounded-[3px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-5 text-[15px] font-medium text-white transition-opacity duration-300 hover:opacity-90 2xl:h-[50px] 2xl:gap-[18px] 2xl:text-[18px]"
                     >
-                        {button.label}
+                        {withLineBreaks(button.label)}
                         <Grip className="size-4 text-white/80 2xl:size-[18px]" strokeWidth={2} />
                     </Link>
                 </div>
@@ -60,10 +61,10 @@ export default function AdmissionProcess({ data }) {
                                 </div>
 
                                 <h3 className="mt-3 whitespace-pre-line text-[16px] font-semibold leading-[1.15] tracking-[-0.02em] text-[#1a1a1a] lg:mt-4 xl:text-[20px] 2xl:text-[24px] 3xl:text-[30px]">
-                                    {step.title}
+                                    {withLineBreaks(step.title)}
                                 </h3>
                                 <p className="mt-2 whitespace-pre-line text-[14px] leading-[1.6] text-[#555] 2xl:leading-[29px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
-                                    {step.description}
+                                    {withLineBreaks(step.description)}
                                 </p>
 
                                 {/* Dotted connector to the next step (desktop only) */}

@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function IQACTeam({ data }) {
   const swiperRef = useRef(null);
@@ -129,7 +130,7 @@ export default function IQACTeam({ data }) {
                             : "bg-white dark:bg-[#1E1E1E] text-[#212121] dark:text-[#E5E7EB] border border-[#FDBA74]/70 dark:border-white/10 hover:border-[#F97316] hover:text-[#F97316] dark:hover:border-[#F97316] dark:hover:text-[#F97316]"
                         }`}
                       >
-                        {tab.label}
+                        {withLineBreaks(tab.label)}
                       </button>
                     </SwiperSlide>
                   );
@@ -190,10 +191,10 @@ export default function IQACTeam({ data }) {
                     className="border-b border-[#E5E7EB] dark:border-white/10 last:border-b-0 hover:bg-[#FFF7ED]/50 dark:hover:bg-white/5 transition-colors"
                   >
                     <td className="px-[16px] sm:px-[20px] xl:px-[24px] py-[12px] sm:py-[14px] xl:py-[16px] text_1 text-[#374151] dark:text-[#D1D5DB] font-medium border-r border-[#E5E7EB] dark:border-white/10 last:border-r-0">
-                      {row.designation}
+                      {withLineBreaks(row.designation)}
                     </td>
                     <td className="px-[16px] sm:px-[20px] xl:px-[24px] py-[12px] sm:py-[14px] xl:py-[16px] text_1 text-[#111827] dark:text-white font-medium border-r border-[#E5E7EB] dark:border-white/10 last:border-r-0">
-                      {row.name}
+                      {withLineBreaks(row.name)}
                     </td>
                     <td className="px-[16px] sm:px-[20px] xl:px-[24px] py-[12px] sm:py-[14px] xl:py-[16px] text_1 text-[#374151] dark:text-[#D1D5DB] font-medium border-r border-[#E5E7EB] dark:border-white/10 last:border-r-0">
                       {row.role || row.position}

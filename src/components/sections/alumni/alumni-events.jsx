@@ -10,6 +10,7 @@ import AiAcademicMenubar from "../ai-enabled/Ai-academicMenubar";
 import LibrarySidebar from "../ai-enabled/library/library-sidemenubar";
 import { getAlumniEventsPaged } from "@/lib/api";
 import AlumniFileList from "./alumni-file-list";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AlumniEvents({ data }) {
   const [items, setItems] = useState(data?.events ?? []);
@@ -68,7 +69,7 @@ export default function AlumniEvents({ data }) {
                         size: "default",
                       })}
                     >
-                      {data.button.label}
+                      {withLineBreaks(data.button.label)}
                       <Image
                         src="/images/icon-btn.svg"
                         alt="home-btn"
@@ -109,7 +110,7 @@ export default function AlumniEvents({ data }) {
                         </div>
                         <div className="w-full h-auto p-5 2xl:p-6.25 3xl:p-7.5 bg-linear-to-t from-[#FFF3E0] to-[#FFF8EE] block">
                           <div className="text-base 2xl:text-lg 3xl:text-2xl leading-[1.1] font-bold text-[#212121] mb-2.5 3xl:mb-3.75 line-clamp-1">
-                            {item?.title}
+                            {withLineBreaks(item?.title)}
                           </div>
                           <Link
                             href={item?.link?.startsWith("/") ? item.link : `/alumni/events/${item?.link}`}

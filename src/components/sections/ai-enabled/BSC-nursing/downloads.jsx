@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function BscDownloads({ data, varient }) {
 
@@ -8,10 +9,10 @@ export default function BscDownloads({ data, varient }) {
             <div className="container">
                 <div className="w-full">
                     <h2 className="cmn_Title mb-[25px]">
-                        {data.heading}
+                        {withLineBreaks(data.heading)}
                     </h2>
                     <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
-                        {data.description}
+                        {withLineBreaks(data.description)}
                     </div>
                     <div className={`flex flex-wrap ${varient==="Bsc-nursing" ? "lg:w-[85%]": "w-full"} `}>
                         {data?.files.map((item, id) => (

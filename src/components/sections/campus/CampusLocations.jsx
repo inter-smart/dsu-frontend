@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 
 import "swiper/css";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Circle buttons inside the slider below 2xl, plain chevrons outside from 2xl
 const NAV_BTN =
@@ -118,7 +119,7 @@ function MediaTile({ item, galleryId, index }) {
             {item?.title && (
                 <span className="absolute inset-x-0 bottom-0 pt-16 px-4 lg:px-5 2xl:px-6 pb-4 lg:pb-5 2xl:pb-6 bg-linear-to-t from-black/75 via-black/30 to-transparent">
                     <span className="block text-base lg:text-lg 2xl:text-2xl leading-tight font-bold text-white">
-                        {item.title}
+                        {withLineBreaks(item.title)}
                     </span>
                 </span>
             )}
@@ -230,7 +231,7 @@ export default function CampusLocations({ data }) {
                             <h2 className="cmn_Title lg:max-w-[55%] xl:max-w-[50%]">{data?.title}</h2>
                             {data?.description && (
                                 <p className="text_1 mt-3 lg:mt-4 leading-[1.6] font-normal text-[#4A5565] dark:text-[#9CA3AF]">
-                                    {data.description}
+                                    {withLineBreaks(data.description)}
                                 </p>
                             )}
                         </div>
@@ -250,7 +251,7 @@ export default function CampusLocations({ data }) {
                                                 : "border-(--basecolor)! bg-white! text-[#212121]! hover:bg-(--basecolor)/5! dark:bg-transparent! dark:text-white!",
                                         )}
                                     >
-                                        {tab.label}
+                                        {withLineBreaks(tab.label)}
                                     </TabsTrigger>
                                 );
                             })}
@@ -271,7 +272,7 @@ export default function CampusLocations({ data }) {
                             href={data.button.href || "/"}
                             className="group inline-flex items-center gap-3 h-11 lg:h-12 2xl:h-12.5 px-5 rounded-[3px] 2xl:rounded-[4px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-base 2xl:text-lg leading-none font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,0,0,0.18)]"
                         >
-                            {data.button.label}
+                            {withLineBreaks(data.button.label)}
                             <DotsIcon className="w-4 h-4 2xl:w-4.5 2xl:h-4.5 transition-transform duration-500 group-hover:rotate-90" />
                         </Link>
                     </div>

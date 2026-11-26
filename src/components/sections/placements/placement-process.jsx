@@ -5,6 +5,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function PlacementProcess({ data, variant }) {
     return (
@@ -20,7 +21,7 @@ export default function PlacementProcess({ data, variant }) {
                         </div>
                     )}
                     <div className="cmn_Title mb-[15px]">
-                        {data?.heading}
+                        {withLineBreaks(data?.heading)}
                     </div>
                     <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography">
                         <BlocksRenderer content={data?.description} />

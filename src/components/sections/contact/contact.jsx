@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function Contact({ data }) {
   return (
@@ -32,7 +33,7 @@ export default function Contact({ data }) {
                     </div>
                   </div>
                   <div className="text-base sm:text-lg lg:text-xl 2xl:text-[25px] 3xl:text-[32px] leading-[1.1] font-semibold text-(--text-color) mb-2.5 2xl:mb-3.75 3xl:mb-5">
-                    {item?.title}
+                    {withLineBreaks(item?.title)}
                   </div>
                   <div className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] mb-2.5 lg:mb-3.75 3xl:mb-5">
                     {item?.address}
@@ -90,7 +91,7 @@ export default function Contact({ data }) {
                         </div>
                         <div className="w-[calc(100%-var(--icon-size))] pl-2.5">
                           <div className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-[#212121] mb-1.25 2xl:mb-2.5">
-                            {item?.label}
+                            {withLineBreaks(item?.label)}
                           </div>
                           <div className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-snug font-medium text-[#4A5565] flex flex-wrap items-center gap-y-1">
                             {item?.values?.map((value, index) => (
@@ -124,7 +125,7 @@ export default function Contact({ data }) {
                 <div className="w-full h-auto mt-3.75 sm:mt-5 lg:mt-6.25 2xl:mt-7.5 3xl:mt-8.75 block">
                   <div className="w-full h-auto mb-2.5 2xl:mb-3.75 3xl:mb-5">
                     <div className="text-base sm:text-lg lg:text-xl 2xl:text-[25px] 3xl:text-[32px] leading-[1.1] font-semibold text-(--text-color) mb-2.5 2xl:mb-3.75 3xl:mb-5">
-                      {item?.infoCenter?.title}
+                      {withLineBreaks(item?.infoCenter?.title)}
                     </div>
                     <div className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] mb-2.5 lg:mb-3.75 3xl:mb-5">
                       {item?.infoCenter?.address}
@@ -180,7 +181,7 @@ export default function Contact({ data }) {
                           </div>
                           <div className="w-[calc(100%-var(--icon-size))] pl-2.5">
                             <div className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-[#212121] dark:text-white mb-1.25 2xl:mb-2.5">
-                              {item?.label}
+                              {withLineBreaks(item?.label)}
                             </div>
                             <div className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-snug font-medium text-[#4A5565] dark:text-[#9CA3AF] flex flex-wrap items-center gap-y-1">
                               {item?.values?.map((value, index) => (

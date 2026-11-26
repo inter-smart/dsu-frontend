@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function PlacementTeam({ data }) {
     if (!data) return null;
@@ -83,11 +84,11 @@ export default function PlacementTeam({ data }) {
                                         {/* Top Section: Name and Designation */}
                                         <div>
                                             <h3 className="text-[17px] sm:text-[18px] xl:text-[20px] 2xl:text-[22px] 3xl:text-[25px] font-bold text-[#1F1F1F] dark:text-white leading-tight mb-2">
-                                                {member.name}
+                                                {withLineBreaks(member.name)}
                                             </h3>
                                             {member.designation && (
                                                 <p className="text-[13px] sm:text-[13.5px] 3xl:text-[18px] mb-[4px] font-normal leading-[1.45] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit lg:text-[15.5px] xl:text-[16px] 2xl:text-[15px]">
-                                                    {member.designation}
+                                                    {withLineBreaks(member.designation)}
                                                 </p>
                                             )}
                                             {member.post && (
@@ -109,7 +110,7 @@ export default function PlacementTeam({ data }) {
                                                         className="text-[13px] sm:text-[13.5px] xl:text-[14px] 2xl:text-[15px] text-[#222222] dark:text-white leading-relaxed flex flex-col sm:flex-row sm:items-start"
                                                     >
                                                         <span className="font-bold text-[#1F1F1F] dark:text-white mr-2 shrink-0">
-                                                            {detail.label}
+                                                            {withLineBreaks(detail.label)}
                                                         </span>
 
                                                         {detail.values && Array.isArray(detail.values) ? (

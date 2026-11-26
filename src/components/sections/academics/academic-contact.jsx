@@ -17,6 +17,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"; 
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const inputStyle = `h-[40px] 2xl:h-[45px] 3xl:h-[60px] w-full border border-black/10 rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px] border-[#E5E7EB] dark:border-[#333] bg-white dark:bg-[#1f1f1f]  text-[11px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[16px]  font-normal placeholder:text-[#4A5565]/50 text-[#212121] dark:text-[#F9FAFB]`
 
@@ -231,7 +232,7 @@ export default function AcademicContact({ data, schoolSlug }) {
                                                         value={course.title}
                                                         className="text-[13px] py-2 px-3 text-[#374151] dark:text-[#D1D5DB] hover:bg-[#FFF8F0] dark:hover:bg-[#2a2a2a] cursor-pointer"
                                                     >
-                                                        {course.title}
+                                                        {withLineBreaks(course.title)}
                                                     </SelectItem>
                                                 ))}
                                             </SelectContent>
@@ -257,7 +258,7 @@ export default function AcademicContact({ data, schoolSlug }) {
                                                         value={state.slug}
                                                         className="text-[13px] py-2 px-3 text-[#374151] dark:text-[#D1D5DB] hover:bg-[#FFF8F0] dark:hover:bg-[#2a2a2a] cursor-pointer"
                                                     >
-                                                        {state.title}
+                                                        {withLineBreaks(state.title)}
                                                     </SelectItem>
                                                 ))}
                                             </SelectContent>
@@ -345,14 +346,14 @@ export default function AcademicContact({ data, schoolSlug }) {
                             {/* Heading */}
                             {contactInfo.title && (
                                 <h2 className="cmn_Title mb-[10px] xl:mb-[12px] text-black dark:text-white">
-                                    {contactInfo.title}
+                                    {withLineBreaks(contactInfo.title)}
                                 </h2>
                             )}
 
                             {/* Subtitle */}
                             {contactInfo.description && (
                                 <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[24px] xl:mb-[28px] lg:max-w-[85%] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                    {contactInfo.description}
+                                    {withLineBreaks(contactInfo.description)}
                                 </p>
                             )}
 
@@ -485,7 +486,7 @@ export default function AcademicContact({ data, schoolSlug }) {
                                         <div key={i}>
                                             {d.label && (
                                                 <div className="text_1 text-[#212121] font-medium dark:text-white leading-tight mb-[4px]">
-                                                    {d.label}
+                                                    {withLineBreaks(d.label)}
                                                 </div>
                                             )}
                                             <div className="text_1 text-[#4A5565] dark:text-[#D1D5DB]">

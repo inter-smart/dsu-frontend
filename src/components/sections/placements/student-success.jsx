@@ -5,6 +5,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Heading } from "@/components/ui/heading";
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useCallback, useState } from "react";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 function StoriesCarousel({ item, index }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -114,10 +115,10 @@ function StoriesCarousel({ item, index }) {
                   </div>
                   <div className="w-full h-auto p-[10px_15px] 2xl:p-[15px_20px] space-y-1.25 2xl:space-y-2.5">
                     <div className="text-base 2xl:text-lg 3xl:text-xl leading-[1.2] font-medium text-[#212121] dark:text-white">
-                      {item?.title}
+                      {withLineBreaks(item?.title)}
                     </div>
                     <div className="text-xs 2xl:text-[13px] 3xl:text-sm leading-[1.2] font-medium text-[#4A5565] dark:text-[#9CA3AF]">
-                      {item?.description}
+                      {withLineBreaks(item?.description)}
                     </div>
                     <div className="w-20 2xl:w-25 3xl:w-30 h-auto p-2.5 2xl:p-3.75 aspect-120/65 bg-white rounded-md 2xl:rounded-[10px] overflow-hidden">
                       <Image
@@ -163,10 +164,10 @@ export default function StudentSuccess({ data }) {
                 }
               >
                 <div className="[--before-size:20px] 2xl:[--before-size:25px] text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit h-auto pl-[calc(var(--before-size)+5px)] 2xl:pl-[calc(var(--before-size)+10px)] mb-2.5 relative z-0 before:content-[''] before:w-(--before-size) before:h-0.5 2xl:before:h-0.75 before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:absolute before:z-1 before:inset-[0_auto_0_0]">
-                  {item?.label}
+                  {withLineBreaks(item?.label)}
                 </div>
                 <Heading className="mb-2.5 lg:mb-3.75 2xl:mb-5 3xl:mb-6.25 dark:text-white">
-                  {item?.title}
+                  {withLineBreaks(item?.title)}
                 </Heading>
                 <Text className="dark:text-[#9CA3AF]">{item?.description}</Text>
               </div>

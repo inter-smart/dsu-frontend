@@ -10,6 +10,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import TableScrollBox from "@/components/layout/common/TableScrollBox";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const sanitizeHtml = (html) =>
     DOMPurify.sanitize(html || "", {
@@ -180,7 +181,7 @@ export default function AccordionTable({ data }) {
                     <div className="flex flex-wrap justify-between mb-[30px] 2xl:mb-[45px]">
                         {data.heading && (
                             <div className="text-[18px] lg:text-[25px] xl:text-[32px] 2xl:text-[40px] 3xl:text-[45px] font-semibold">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </div>
                         )}
                         {hasDescription && (

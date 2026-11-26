@@ -8,6 +8,7 @@ import { FreeMode, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionAccomodation({ data }) {
   // each block renders only when the CMS provides it
@@ -41,7 +42,7 @@ export default function AdmissionAccomodation({ data }) {
 
                 {/* Heading */}
                 <h2 className="cmn_Title leading-[1.15] font-bold text-[#1E1E1E] dark:text-white tracking-tight mb-4 sm:mb-5 xl:mb-6">
-                  {hero.heading}
+                  {withLineBreaks(hero.heading)}
                 </h2>
 
                 {/* Description */}
@@ -83,7 +84,7 @@ export default function AdmissionAccomodation({ data }) {
                           </defs>
                         </svg>
                         <span className="text-[13px] sm:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-[#4A5565] dark:text-white">
-                          {item.label}
+                          {withLineBreaks(item.label)}
                         </span>
                       </li>
                     ))}
@@ -117,10 +118,10 @@ export default function AdmissionAccomodation({ data }) {
                       className="relative overflow-hidden border border-[#f974162f] dark:border-white/8 rounded-[6px] sm:rounded-[8px] bg-white dark:bg-[#141414] p-[15px_10px] 2xl:p-[20px_15px] 3xl:p-[35px_10px] mb-[10px] 2xl:mb-[20px] 3xl:mb-[35px] last-of-type:mb-0"
                     >
                       <h4 className="text-[15px] sm:text-[16px] 2xl:text-[18px] 3xl:text-[22px] font-bold text-[#1E1E1E] dark:text-white max-w-[50%] leading-[1.3] mb-1.5 2xl:mb-4">
-                        {highlight.title}
+                        {withLineBreaks(highlight.title)}
                       </h4>
                       <p className="text-[12px] sm:text-[13px] 3xl:text-[16px] text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6] lg:text-[15px] xl:text-[15px] 2xl:text-[14px]">
-                        {highlight.description}
+                        {withLineBreaks(highlight.description)}
                       </p>
                     </div>
                   ))}
@@ -143,7 +144,7 @@ export default function AdmissionAccomodation({ data }) {
 
             {/* Heading */}
             <h2 className="cmn_Title leading-[1.15] font-bold text-[#1E1E1E] dark:text-white tracking-tight mb-3 sm:mb-4">
-              {options.heading}
+              {withLineBreaks(options.heading)}
             </h2>
 
             {/* Description */}
@@ -252,7 +253,7 @@ export default function AdmissionAccomodation({ data }) {
 
                         {/* Description */}
                         <p className="text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6] mb-4 sm:mb-5 xl:mb-6 flex-1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                          {room.description}
+                          {withLineBreaks(room.description)}
                         </p>
 
                         {/* Tag */}

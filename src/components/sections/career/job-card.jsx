@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function JobCard({ job, onViewDetail }) {
   return (
     <div className="w-full h-full bg-white dark:bg-white/5 border border-black/10 rounded-md 2xl:rounded-[10px] p-5 xl:p-6.25 2xl:p-7.5 flex flex-col">
       <h3 className="text-xl xl:text-2xl 2xl:text-[28px] leading-tight font-bold text-[#212121] dark:text-white mb-1.5 xl:mb-2">
-        {job?.title}
+        {withLineBreaks(job?.title)}
       </h3>
       <div className="text_1 leading-normal font-semibold text-[#212121] dark:text-gray-200 mb-3.75 xl:mb-5">
         {job?.department}

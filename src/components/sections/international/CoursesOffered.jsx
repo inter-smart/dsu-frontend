@@ -6,6 +6,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function CoursesOffered({ data }) {
     const { title, subtitle, sections = [] } = data;
@@ -51,7 +52,7 @@ export default function CoursesOffered({ data }) {
                                         </span>
                                         <span className="min-w-0 text-left">
                                             <span className="block text-[14px] font-medium leading-tight text-[#111] lg:text-[20px] 2xl:text-[22px]">
-                                                {section.title}
+                                                {withLineBreaks(section.title)}
                                             </span>
                                             <span className="mt-1 block text-[10px] font-normal text-[#666] lg:text-[15px] 2xl:text-[16px]">
                                                 {count} {count === 1 ? "Program" : "Programs"}
@@ -73,7 +74,7 @@ export default function CoursesOffered({ data }) {
                                                 {/* Group heading with hairline */}
                                                 <div className="flex items-center gap-4">
                                                     <h4 className="text-[17px] font-medium text-[#4A5565] lg:text-[20px] 2xl:text-[24px]">
-                                                        {group.title}
+                                                        {withLineBreaks(group.title)}
                                                     </h4>
                                                     <span className="h-px flex-1 bg-black/10" />
                                                 </div>

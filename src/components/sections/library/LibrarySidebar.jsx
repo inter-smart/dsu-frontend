@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLenis } from "lenis/react";
 import { LIBRARY_STATIC_MENU } from "@/lib/library-menu";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // right-pointing chevron; hover colour comes from the row's group via pathClassName
 function ChevronIcon({ active, className = "", pathClassName = "" }) {
@@ -119,7 +120,7 @@ export default function LibrarySidebar({
                         isActive ? "text-[#F97316]" : "text-[#212121]"
                       }`}
                     >
-                      {item.label}
+                      {withLineBreaks(item.label)}
                     </div>
 
                     <div className="flex h-[8px] 3xl:h-[12px] w-[8px] 3xl:w-[10px] items-center justify-center">
@@ -153,7 +154,7 @@ export default function LibrarySidebar({
                                     : "text-[#212121]/80"
                                 }`}
                               >
-                                {sub.label}
+                                {withLineBreaks(sub.label)}
                               </span>
 
                               <span className="flex h-[7px] 3xl:h-[10px] w-[7px] 3xl:w-[8px] shrink-0 items-center justify-center">

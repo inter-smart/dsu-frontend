@@ -14,6 +14,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const tabClass =
     "w-full !text-[12px] xl:!text-[14px] 2xl:!text-[14px] 3xl:!text-[18px] font-medium text-[#212121] dark:text-white h-[32px] xl:h-[36px] 2xl:h-[40px] px-[10px] 2xl:px-[24px] 3xl:px-[32px] rounded-[6px] border border-[#F3D8CC] dark:border-white/10 bg-white dark:bg-[#18191B] whitespace-nowrap transition-all duration-300 hover:bg-[#F97316]/10 data-active:border-transparent data-active:bg-gradient-to-r data-active:from-[#DC2626] data-active:to-[#F97316] data-active:!text-white data-[state=active]:border-transparent data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#DC2626] data-[state=active]:to-[#F97316] data-[state=active]:!text-white";
@@ -40,7 +41,7 @@ export default function InternshipOpportunities({ data }) {
         <section className="relative py-[30px] xl:py-[45px] 2xl:py-[60px] 3xl:py-[75px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-none dark:bg-[#101010]">
             <div className="container">
                 <h2 className="cmn_Title dark:text-white mb-[10px] xl:mb-[15px]">
-                    {data.heading}
+                    {withLineBreaks(data.heading)}
                 </h2>
                 {data?.description?.length > 0 && (
                     <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] mb-[20px] xl:mb-[25px]  typography">
@@ -89,7 +90,7 @@ export default function InternshipOpportunities({ data }) {
                                 {data.tabs.map((tab) => (
                                     <SwiperSlide key={tab.id} className="!w-auto">
                                         <TabsTrigger value={String(tab.id)} className={tabClass}>
-                                            {tab.label}
+                                            {withLineBreaks(tab.label)}
                                         </TabsTrigger>
                                     </SwiperSlide>
                                 ))}
@@ -113,11 +114,11 @@ export default function InternshipOpportunities({ data }) {
                         <TabsContent key={tab.id} value={String(tab.id)} className="mt-0">
                             <div className="w-full bg-white dark:bg-[#18191B] rounded-[8px] border border-[#F97316]/20 dark:border-white/10 p-[15px] sm:p-[20px] xl:p-[25px] 2xl:p-[30px]">
                                 <h3 className="text-[18px] xl:text-[24px] 2xl:text-[28px] 3xl:text-[35px] font-bold text-[#212121] dark:text-white mb-[6px] xl:mb-[10px]">
-                                    {tab.title}
+                                    {withLineBreaks(tab.title)}
                                 </h3>
                                 {tab.description && (
                                     <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] mb-[15px] xl:mb-[20px]  ">
-                                        {tab.description}
+                                        {withLineBreaks(tab.description)}
                                     </p>
                                 )}
 
@@ -135,14 +136,14 @@ export default function InternshipOpportunities({ data }) {
                                                 className="border border-black/10 dark:border-white/10 rounded-[6px] p-[12px_15px] xl:p-[18px_22px] mb-[10px] xl:mb-[15px]"
                                             >
                                                 <AccordionTrigger className="relative p-0 pr-[30px] hover:no-underline !text-[#212121] dark:!text-white text-[18px] xl:text-[17px] 2xl:text-[18px] 3xl:text-[20px] font-bold after:absolute after:right-[5px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[20px] after:font-bold data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden">
-                                                    {programme.name}
+                                                    {withLineBreaks(programme.name)}
                                                 </AccordionTrigger>
 
                                                 {(programme.description || programme.internships?.length > 0 || programme.cta) && (
                                                     <AccordionContent className="p-0 pt-[8px] xl:pt-[12px]">
                                                         {programme.description && (
                                                             <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] lg:max-w-[60%] mb-[15px] ">
-                                                                {programme.description}
+                                                                {withLineBreaks(programme.description)}
                                                             </p>
                                                         )}
 
@@ -178,7 +179,7 @@ export default function InternshipOpportunities({ data }) {
                                                                         <path d="M7.6875 9.60938V1.92188" stroke="white" strokeWidth="1.28125" strokeLinecap="round" strokeLinejoin="round" />
                                                                     </svg>
                                                                 </div>
-                                                                {programme.cta.label}
+                                                                {withLineBreaks(programme.cta.label)}
                                                             </Link>
                                                         )}
                                                     </AccordionContent>

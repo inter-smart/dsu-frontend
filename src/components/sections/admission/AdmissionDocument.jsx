@@ -2,6 +2,7 @@
 
 import React from "react";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionDocument({ data }) {
     if (!data) return null;
@@ -86,12 +87,12 @@ export default function AdmissionDocument({ data }) {
                     <div className="w-full rounded-[8px] xl:rounded-[10px] bg-[#FFF8EE] dark:bg-[#1C1917] border border-[#FED7AA]/50 dark:border-white/10 p-4 sm:p-5 xl:p-6 2xl:p-7 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
                         {note?.title && (
                             <h4 className="text-[14px] sm:text-[15px] xl:text-[16px] 2xl:text-[17px] 3xl:text-[22px] inline-flex font-semibold bg-gradient-to-r from-[#DC2626] from-[50%] to-[#F97316] tracking-tighter bg-clip-text text-transparent mb-1 sm:mb-1.5 leading-snug">
-                                {note.title}
+                                {withLineBreaks(note.title)}
                             </h4>
                         )}
                         {note?.description && (
                             <p className="text_1 text-[#4A5565] dark:text-[#D1D5DB] leading-relaxed !my-0 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                {note.description}
+                                {withLineBreaks(note.description)}
                             </p>
                         )}
                     </div>

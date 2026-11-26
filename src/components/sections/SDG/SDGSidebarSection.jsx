@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // `menu`: [{ label, slug }] - slug is the goal page URL
 export default function SDGSidebarSection({ menu = [], isOpen = false, onClose, title = "SDG Menu" }) {
@@ -61,7 +62,7 @@ export default function SDGSidebarSection({ menu = [], isOpen = false, onClose, 
                                                     isActive ? "text-[#F97316]" : "text-[#212121]"
                                                 }`}
                                             >
-                                                {item.label}
+                                                {withLineBreaks(item.label)}
                                             </div>
     
                                            

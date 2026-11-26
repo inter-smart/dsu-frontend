@@ -9,6 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { fileLinkProps } from "@/lib/schools/link-props";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function CareerJourney({ data }) {
   return (
@@ -25,7 +26,7 @@ export default function CareerJourney({ data }) {
         <div className="flex max-lg:flex-wrap gap-[10px] lg:gap-[20px]">
           <div className="w-full lg:w-1/2">
             <div className="text-[18px] xl:text-[22px] 2xl:text-[25px] 3xl:text-[30px] text-[#212121] dark:text-white font-semibold my-[20px]">
-              {data?.faqSection?.heading}
+              {withLineBreaks(data?.faqSection?.heading)}
             </div>
             <Accordion
               type="single"
@@ -59,7 +60,7 @@ export default function CareerJourney({ data }) {
           </div>
           <div className="w-full lg:w-1/2">
             <div className="text-[18px] xl:text-[22px] 2xl:text-[25px] 3xl:text-[30px] text-[#212121] dark:text-white font-semibold my-[20px]">
-              {data?.downloadsSection?.heading}
+              {withLineBreaks(data?.downloadsSection?.heading)}
             </div>
             <div className="w-full  border border-black/10 dark:border-white/10 dark:bg-[#18191B] rounded-[10px] p-[20px] sm:p-[25px_20px] lg:p-[30px_25px] xl:p-[35px_30px] 2xl:p-[45px_35px] 3xl:p-[55px_45px]">
               {data?.downloadsSection?.links?.map((item, i) => (
@@ -91,7 +92,7 @@ export default function CareerJourney({ data }) {
                         </svg>
                       </div>
                       <div className="text_1 text-black dark:text-white group-hover:text-[#DC2626]">
-                        {item.label}
+                        {withLineBreaks(item.label)}
                       </div>
                     </div>
                     <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex group-hover:translate-x-[-6px] transition-transform duration-300">

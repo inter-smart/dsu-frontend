@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { withLineBreaks } from "@/lib/line-breaks";
 // END ADDED
 
 export default function NewsEventsDetail({
@@ -120,14 +121,14 @@ export default function NewsEventsDetail({
 
                 {/* Title */}
                 <h1 className="mb-3.75 sm:mb-5 lg:mb-6.25 2xl:mb-8.75 cmn_Title">
-                  {data?.title}
+                  {withLineBreaks(data?.title)}
                 </h1>
 
                 {/* Organiser */}
                 {data?.organized?.name && (
                   <div className="text_1 text-[#212121] dark:text-white">
                     <span className="font-bold pr-1.25">Organized by:</span>
-                    {data.organized.name}
+                    {withLineBreaks(data.organized.name)}
                   </div>
                 )}
               </div>
@@ -145,7 +146,7 @@ export default function NewsEventsDetail({
                   >
                     {group?.title && (
                       <div className="text-lg sm:text-xl 2xl:text-2xl 3xl:text-3xl leading-[1.1] font-bold text-[#212121] max-sm:mt-5 mb-5 2xl:mb-7.5">
-                        {group?.title}
+                        {withLineBreaks(group?.title)}
                       </div>
                     )}
                     {group?.chiefPatronsTitle && (
@@ -175,12 +176,12 @@ export default function NewsEventsDetail({
                               )}
                               <div className="w-[calc(100%-var(--width))] pl-3.75 3xl:pl-5">
                                 <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-bold text-[#4A5565] mb-3.75">
-                                  {member?.name}
+                                  {withLineBreaks(member?.name)}
                                 </div>
                                 <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.6] font-normal text-[#4A5565]">
                                   {member?.designation && (
                                     <span className="block">
-                                      {member?.designation}
+                                      {withLineBreaks(member?.designation)}
                                     </span>
                                   )}
                                   {member?.organization && (

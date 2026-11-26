@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const defaultData = {
     heading: "From Day One: Your Learning Journey",
@@ -155,10 +156,10 @@ export default function JourneySection({ data }) {
                                         {/* Card Title */}
                                         <h3 className="text-[17px] sm:text-[19px] xl:text-[21px] 2xl:text-[22px] 3xl:text-[25px] text-[#1E1E1E] dark:text-white mb-5 sm:mb-6 leading-tight">
                                             <span className="font-normal text-[#212121] dark:text-[#E5E7EB]">
-                                                {stage.label}
+                                                {withLineBreaks(stage.label)}
                                             </span>{" "}
                                             <span className="font-semibold text-[#212121] dark:text-white">
-                                                {stage.title}
+                                                {withLineBreaks(stage.title)}
                                             </span>
                                         </h3>
  
@@ -177,7 +178,7 @@ export default function JourneySection({ data }) {
 
                                                         </div>
                                                         <span className="text-[13px] sm:text-[14px] xl:text-[15px] 2xl:text-[15.5px] 3xl:text-[18px] text-[#4B5563] dark:text-[#D1D5DB] leading-[1.6]">
-                                                            {point.label}
+                                                            {withLineBreaks(point.label)}
                                                         </span>
                                                     </li>
                                                 ))}

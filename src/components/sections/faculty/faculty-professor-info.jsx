@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function FacultyProfessorInfo({ data }) {
   return (
@@ -38,7 +39,7 @@ export default function FacultyProfessorInfo({ data }) {
                 {data?.professorName}
               </div>
               <div className="text-sm 2xl:text-lg 3xl:text-[22px] leading-[1.1] font-medium bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit">
-                {data?.designation}
+                {withLineBreaks(data?.designation)}
               </div>
             </div>
             <div className="w-full h-auto py-2.5 sm:py-3.75 2xl:py-5 3xl:py-7.5 space-y-2.5 2xl:space-y-3.75 3xl:space-y-5 border-y border-black/10 dark:border-white/10">

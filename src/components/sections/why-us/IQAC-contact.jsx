@@ -1,4 +1,5 @@
 "use client";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function IQACContact({ data }) {
     if (!data) return null;
@@ -13,10 +14,10 @@ export default function IQACContact({ data }) {
                     {/* Left Column - Title & Description */}
                     <div className="lg:w-[30%] xl:w-[28%] shrink-0 flex flex-col justify-center">
                         <h3 className="cmn_Title">
-                            {data?.title}
+                            {withLineBreaks(data?.title)}
                         </h3>
                         <p className="text_1 leading-[1.65] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                            {data?.description}
+                            {withLineBreaks(data?.description)}
                         </p>
                     </div>
 
@@ -26,7 +27,7 @@ export default function IQACContact({ data }) {
                         {/* Address Card */}
                         <div className="flex-1 bg-white dark:bg-[#1F1F1F] rounded-[8px] xl:rounded-[10px] 2xl:rounded-[12px] p-[22px] xl:p-[28px] 2xl:p-[32px] 3xl:p-[36px] shadow-[0_2px_12px_rgba(0,0,0,0.05)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.3)] border border-transparent dark:border-white/5">
                             <h4 className="text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[22px] font-bold text-[#111827] dark:text-white mb-[12px] xl:mb-[16px]">
-                                {data?.address?.label}
+                                {withLineBreaks(data?.address?.label)}
                             </h4>
                             <div className="text_1 leading-[1.7] text-[#4A5565] dark:text-[#9CA3AF]">
                                 {data?.address?.lines?.map((line, idx) => (
@@ -43,7 +44,7 @@ export default function IQACContact({ data }) {
                             <div className="flex-1 bg-white dark:bg-[#1F1F1F] rounded-[8px] xl:rounded-[10px] 2xl:rounded-[12px] p-[22px] xl:p-[28px] 2xl:p-[32px] 3xl:p-[36px] flex flex-col gap-[15px] shadow-[0_2px_12px_rgba(0,0,0,0.05)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.3)] border border-transparent dark:border-white/5">
                                 <div className="w-full">
                                     <h4 className="text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[22px] font-bold text-[#111827] dark:text-white mb-[8px] xl:mb-[10px]">
-                                        {data?.email?.label}
+                                        {withLineBreaks(data?.email?.label)}
                                     </h4>
                                     <a
                                         href={`mailto:${data?.email?.value}`}
@@ -54,7 +55,7 @@ export default function IQACContact({ data }) {
                                 </div>
                                 <div className="w-full">
                                     <h4 className="text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[22px] font-bold text-[#111827] dark:text-white mb-[8px] xl:mb-[10px]">
-                                        {data?.phone?.label}
+                                        {withLineBreaks(data?.phone?.label)}
                                     </h4>
                                     <a
                                         href={`tel:${data?.phone?.value?.replace(/\s/g, '')}`}

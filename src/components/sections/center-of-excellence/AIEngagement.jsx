@@ -64,7 +64,7 @@ export default function AIEngagement({ data }) {
                                                     rowBorder
                                                 }
                                             >
-                                                {row?.description}
+                                                {withLineBreaks(row?.description)}
                                             </td>
                                         </tr>
                                     );

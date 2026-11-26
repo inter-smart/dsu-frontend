@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Button styles per variant (matches the 3 buttons in the design)
 const buttonVariants = {
@@ -69,7 +70,7 @@ export default function CtaBanner({ data }) {
                                 rel={btn.isExternal ? "noopener noreferrer" : undefined}
                                 className={`inline-flex h-[44px] w-full items-center justify-between gap-4 rounded-[3px] px-5 text-[15px] font-medium transition-colors duration-300 sm:w-auto 2xl:h-[50px] 2xl:gap-[18px] 2xl:text-[18px] ${buttonVariants[btn.variant] ?? buttonVariants.light}`}
                             >
-                                {btn.label}
+                                {withLineBreaks(btn.label)}
                                 {btn.icon && (
                                     <Image
                                         src={btn.icon.url}

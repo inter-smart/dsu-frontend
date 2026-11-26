@@ -6,6 +6,7 @@ import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { ShineBorder } from "@/components/ui/shine-border";
 import "swiper/css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AiRecentClinic({ data }) {
     return (
@@ -13,7 +14,7 @@ export default function AiRecentClinic({ data }) {
             <div className="container">
                 {data?.heading && (
                     <div className="cmn_Title">
-                        {data.heading}
+                        {withLineBreaks(data.heading)}
                     </div>
                 )}
                 {data?.description && (
@@ -77,7 +78,7 @@ export default function AiRecentClinic({ data }) {
                                     </div>
                                     <div className="w-full h-full p-[15px_15px_25px] 2xl:p-[15px_25px] 3xl:p-[20px_30px] flex flex-col justify-between">
                                         <div className="text-base 2xl:text-lg 3xl:text-[23px] leading-normal font-bold line-clamp-3 text-[#212121] dark:text-white w-[90%]  3xl:mb-7.5">
-                                            {engage?.title}
+                                            {withLineBreaks(engage?.title)}
                                         </div>
                                         <p className="mb-[10px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{engage.description}</p>
                                         <div className="flex flex-wrap justify-between w-full gap-[10px]">

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function ExaminationCareer({ data }) {
   return (
@@ -10,10 +11,10 @@ export default function ExaminationCareer({ data }) {
         <div className="[--width:100%] md:[--width:370px] lg:[--width:470px] xl:[--width:570px] 2xl:[--width:680px] 3xl:[--width:850px] w-full h-auto flex flex-wrap">
           <div className="w-(--width) md:w-[calc(100%-var(--width))] md:pr-7.5 lg:pr-12.5 xl:pr-17.5 2xl:pr-25 3xl:pr-30 mb-5 sm:mb-7.5 md:mb-0">
             <Heading className="mb-5 sm:mb-6.25 lg:mb-7.5 2xl:mb-8.75 3xl:mb-11.25">
-              {data?.title}
+              {withLineBreaks(data?.title)}
             </Heading>
             <Text className="mb-3.75 sm:mb-5 lg:mb-6.25 2xl:mb-7.5 3xl:mb-10">
-              {data?.description}
+              {withLineBreaks(data?.description)}
             </Text>
             <span className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-bold text-(--basecolor2)">
               Write to us at{" "}

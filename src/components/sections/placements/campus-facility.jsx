@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function CampusFacility({ data }) {
     const fallbackImage = "/images/campus-img.jpg";
@@ -24,7 +25,7 @@ export default function CampusFacility({ data }) {
                         <div>
                             {data?.heading && (
                                 <h2 className="cmn_Title mb-[12px] xl:mb-[16px] text-black dark:text-white">
-                                    {data.heading}
+                                    {withLineBreaks(data.heading)}
                                 </h2>
                             )}
 
@@ -47,10 +48,10 @@ export default function CampusFacility({ data }) {
                                             className="bg-white dark:bg-[#151618] border border-[#E5E7EB] dark:border-[#26282B] rounded-[6px] xl:rounded-[8px] 3xl:rounded-[10px] p-[18px] sm:p-[20px] xl:p-[24px] 2xl:p-[35px_20px] 3xl:p-[45px_25px] flex flex-col justify-start transition-all duration-300 hover:shadow-sm hover:border-[#D1D5DB] dark:hover:border-[#383B40]"
                                         >
                                             <h3 className="font-bold cmn_Txt font-semibold text-[#212121] dark:text-white mb-[8px] leading-[1.3]">
-                                                {facility.title}
+                                                {withLineBreaks(facility.title)}
                                             </h3>
                                             <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.55] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                                {facility.description}
+                                                {withLineBreaks(facility.description)}
                                             </p>
                                         </div>
                                     ))}
@@ -82,12 +83,12 @@ export default function CampusFacility({ data }) {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-[24px] sm:p-[30px] xl:p-[36px] z-10">
                                     {data.media.overlay.heading && (
                                         <h3 className="text-white font-bold text-[20px] sm:text-[22px] xl:text-[28px] 2xl:text-[35px] 3xl:text-[45px] mb-[8px] xl:mb-[10px] leading-[1.25]">
-                                            {data.media.overlay.heading}
+                                            {withLineBreaks(data.media.overlay.heading)}
                                         </h3>
                                     )}
                                     {data.media.overlay.description && (
                                         <p className="text-white/90 text_1 leading-[1.5] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                            {data.media.overlay.description}
+                                            {withLineBreaks(data.media.overlay.description)}
                                         </p>
                                     )}
                                 </div>

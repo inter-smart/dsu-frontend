@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function CommunityActivities({ data }) {
   const firstOpenItem = data?.items?.find((item) => item?.defaultOpen);
@@ -38,7 +39,7 @@ export default function CommunityActivities({ data }) {
                     {item?.date}
                   </div>
                   <div className="text-lg xl:text-xl 2xl:text-2xl 3xl:text-[30px] leading-tight font-semibold text-[#212121] dark:text-white">
-                    {item?.title}
+                    {withLineBreaks(item?.title)}
                   </div>
                 </div>
               </AccordionTrigger>
@@ -50,7 +51,7 @@ export default function CommunityActivities({ data }) {
                     >
                       {item?.description && (
                         <p className="text_1 mb-3.75 xl:mb-5 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                          {item.description}
+                          {withLineBreaks(item.description)}
                         </p>
                       )}
                       <Link

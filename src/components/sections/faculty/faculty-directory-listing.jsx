@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { getFacultyList } from "@/lib/api";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const PAGE_SIZE = 9;
 
@@ -292,7 +293,7 @@ export default function FacultyDirectoryListing({ data }) {
                       : "text-[#1e293b] hover:opacity-90 [border:1px_solid_transparent] [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(to_right,#f7a8b8,#ffe5cf)_border-box]"
                   }`}
                 >
-                  {category.label}
+                  {withLineBreaks(category.label)}
                   <span
                     className={`ml-1 font-normal ${
                       activeCategory === category.value
@@ -394,7 +395,7 @@ export default function FacultyDirectoryListing({ data }) {
                                     "text-[#e63221]"
                                   }`}
                                 >
-                                  {child.label}
+                                  {withLineBreaks(child.label)}
                                 </button>
                               </li>
                             ))}
@@ -426,7 +427,7 @@ export default function FacultyDirectoryListing({ data }) {
                           : "bg-[#fff0e9] text-[#655e5c] hover:bg-[#ffe2d4]"
                       }`}
                     >
-                      {area.label}
+                      {withLineBreaks(area.label)}
                     </button>
                   ))}
                 </div>
@@ -509,7 +510,7 @@ function FacultyCard({ member }) {
   return (
     <div className="[--gap:15px] 2xl:[--gap:25px] [--rounded:6px] 2xl:[--rounded:10px] w-full h-full bg-white rounded-(--rounded) border border-[#E7E1D8] block relative z-0 before:size-full before:bg-[#E7E1D8] before:rounded-(--rounded) before:translate-y-0.75 2xl:before:translate-y-1 before:absolute before:-z-1 before:inset-0 after:size-full after:bg-white after:rounded-(--rounded) after:absolute after:-z-1 after:inset-0 hover:before:bg-linear-to-r hover:before:from-(--basecolor) hover:before:to-(--basecolor2) hover:border-transparent hover:[background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(to_right,#e52d27,#f0742b)_border-box] [border:1px_solid_#E7E1D8] 2xl:[border:2px_solid_#E7E1D8]">
       <span className="text-[10px] 2xl:text-[13px] 3xl:text-base leading-[1.1] font-normal text-[#4A5565] w-auto h-auto p-[5px_10px] my-(--gap) rounded-[0_100px_100px_0] bg-linear-to-r from-(--basecolor)/10 to-(--basecolor2)/10 absolute z-1 inset-[0_auto_auto_0]">
-        {member?.category?.label}
+        {withLineBreaks(member?.category?.label)}
       </span>
       <div className="w-full h-auto py-3.75 lg:py-6.25 border-b border-black/10">
         <div className="w-22.5 sm:w-25 2xl:w-30 3xl:w-37.5 h-auto mx-auto mb-2.5 2xl:mb-3.75 3xl:mb-5 aspect-square rounded-full overflow-hidden block">
@@ -523,10 +524,10 @@ function FacultyCard({ member }) {
         </div>
         <div className="w-full h-auto text-center">
           <div className="text-[15px] 2xl:text-base 3xl:text-xl leading-[1.1] font-semibold text-[#212121] mb-1.25 3xl:mb-2.5">
-            {member?.name}
+            {withLineBreaks(member?.name)}
           </div>
           <div className="text-[13px] sm:text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mx-auto mb-1.25">
-            {member?.designation}
+            {withLineBreaks(member?.designation)}
           </div>
           <div className="text-[13px] sm:text-sm 2xl:text-[13px] 3xl:text-base leading-[1.1] font-normal text-[#4A5565]">
             {member?.department}

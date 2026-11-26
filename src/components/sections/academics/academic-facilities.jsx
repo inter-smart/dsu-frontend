@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AcademicFacilities({ data }) {
     if (!data) return null;
@@ -82,7 +83,7 @@ export default function AcademicFacilities({ data }) {
                                 <div className="w-full lg:w-1/2 flex items-center">
                                     <div className="w-full px-[15px] lg:px-[30px] xl:px-[40px] 2xl:px-[50px] 3xl:px-[65px] py-[20px] lg:py-0">
                                         <h3 className="text-[22px] xl:text-[28px] 2xl:text-[34px] 3xl:text-[42px] font-bold text-[#1F1F1F] dark:text-white leading-[1.2] mb-[8px] xl:mb-[10px] 2xl:mb-[12px] 3xl:mb-[15px]">
-                                            {item.title}
+                                            {withLineBreaks(item.title)}
                                         </h3>
                                         <div className="w-[40px] xl:w-[50px] 2xl:w-[55px] 3xl:w-[65px] h-[3px] xl:h-[4px] bg-[#EA580C] mb-[12px] xl:mb-[16px] 2xl:mb-[20px] 3xl:mb-[25px] rounded-full" />
                                         <div className="text_1 leading-[1.5] xl:leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px] typography [&_p]:text-[14px] [&_p]:md:text-[15px] [&_p]:lg:text-[14px] [&_p]:xl:text-[14px] [&_p]:2xl:text-[14.4px] [&_p]:3xl:text-[18px] [&_p]:leading-[1.5] [&_p]:xl:leading-[1.6] [&_p]:tracking-tight [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF]">

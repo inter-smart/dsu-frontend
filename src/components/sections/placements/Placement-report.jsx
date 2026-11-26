@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const DocIcon = () => (
     <svg width="18" height="22" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
@@ -27,7 +28,7 @@ export default function PlacementReport({ data }) {
         <section className="relative py-[30px] xl:py-[45px] 2xl:py-[60px] 3xl:py-[75px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-none dark:bg-[#000]">
             <div className="container">
                 <h2 className="cmn_Title dark:text-white mb-[10px] xl:mb-[15px]">
-                    {data.heading}
+                    {withLineBreaks(data.heading)}
                 </h2>
 
                 {data?.description && (
@@ -72,7 +73,7 @@ export default function PlacementReport({ data }) {
                                 >
                                     <span className="flex items-center gap-[10px] text-[12px] xl:text-[13px] 2xl:text-[15px] 3xl:text-[18px] text-[#212121] dark:text-white">
                                         <DocIcon />
-                                        {row.title}
+                                        {withLineBreaks(row.title)}
                                     </span>
                                     <ArrowIcon />
                                 </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 import { usePathname } from "next/navigation"; // ADDED
 
 const sidebarMenu = [
@@ -100,7 +101,7 @@ export default function RegulatorySidebarSection({
                           : "text-[#212121] group-hover:text-[#F97316]"
                       }`}
                     >
-                      {item.title}
+                      {withLineBreaks(item.title)}
                     </div>
 
                     <div className="flex h-[8px] 3xl:h-[12px] w-[8px] 3xl:w-[10px] items-center justify-center  ">

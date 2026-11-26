@@ -25,7 +25,7 @@ export default function AIZones({ data }) {
             )}
             {item?.description && (
                 <p className="text_1 mt-[6px] xl:mt-[8px] leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] 2xl:max-w-[92%]">
-                    {item.description}
+                    {withLineBreaks(item.description)}
                 </p>
             )}
         </div>
@@ -45,7 +45,7 @@ export default function AIZones({ data }) {
                         )}
                         {data?.description && (
                             <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:w-[48%] xl:w-[45%] 2xl:w-[44%] shrink-0">
-                                {data.description}
+                                {withLineBreaks(data.description)}
                             </p>
                         )}
                     </div>

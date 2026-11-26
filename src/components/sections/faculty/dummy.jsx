@@ -11,12 +11,13 @@ import {
   SlidersHorizontal,
   X,
 } from "lucide-react";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 function FacultyCard({ member }) {
   return (
     <article className="relative flex min-h-[146px] flex-col justify-between rounded-md border border-[#e9e2da] bg-white shadow-[0_1px_2px_rgba(30,30,30,0.05)] transition hover:border-[#f97316] hover:shadow-md">
       <span className="absolute left-0 top-[9px] rounded-r-full bg-[#fff0e8] px-1.5 py-0.5 text-[8px] leading-none text-[#76655d]">
-        {member.category.label}
+        {withLineBreaks(member.category.label)}
       </span>
       <div className="px-2 pb-2 pt-[10px] text-center">
         <Link
@@ -36,10 +37,10 @@ function FacultyCard({ member }) {
           href={member.href}
           className="line-clamp-1 text-[9px] font-semibold text-[#252525] hover:text-[#df321e]"
         >
-          {member.name}
+          {withLineBreaks(member.name)}
         </Link>
         <p className="mt-0.5 line-clamp-1 text-[8px] font-medium leading-tight text-[#e43b27] lg:text-[10px] xl:text-[10px] 2xl:text-[8px]">
-          {member.designation}
+          {withLineBreaks(member.designation)}
         </p>
         <p className="mt-0.5 line-clamp-1 text-[7px] leading-tight text-[#667085] lg:text-[9px] xl:text-[9px] 2xl:text-[7px]">
           {member.department}
@@ -405,7 +406,7 @@ export default function FacultyDirectoryListing() {
                     : "border-[#f1ded4] bg-white text-[#343434] hover:border-[#ee8b6d]"
                 }`}
               >
-                {category.label}
+                {withLineBreaks(category.label)}
                 <span
                   className={`ml-1 ${activeCategory === category.label ? "text-white/75" : "text-[#87909e]"}`}
                 >

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // "080 4909 2910 / 11 / 22" -> 080 4909 2910, 080 4909 2911, 080 4909 2922.
 // A short digit-only part after "/" replaces the trailing digits of the base.
@@ -57,7 +58,7 @@ export default function PhoneNumbers({ value, className, linkClassName }) {
             title={n.isSuffix ? n.full : undefined}
             className={linkClassName}
           >
-            {n.label}
+            {withLineBreaks(n.label)}
           </Link>
         </React.Fragment>
       ))}

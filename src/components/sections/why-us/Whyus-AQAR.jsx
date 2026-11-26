@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { fileLinkProps } from "@/lib/schools/link-props";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function WhyusAQAR({ data }) {
     const defaultTab = data.yearFilters[0]?.slug;
@@ -31,7 +32,7 @@ export default function WhyusAQAR({ data }) {
                                 data-[state=active]:text-white"
                             >
                                 <div className="text_1 flex h-full w-full items-center justify-center gap-[10px] rounded-[5px] bg-white px-[15px] font-bold text-[#212121] !no-underline transition-all duration-100 ease-in-out group-hover:bg-transparent group-hover:text-white group-data-active:bg-transparent group-data-active:text-white group-data-[state=active]:bg-transparent group-data-[state=active]:text-white">
-                                    {item.label}
+                                    {withLineBreaks(item.label)}
                                 </div>
                             </TabsTrigger>
                         ))}

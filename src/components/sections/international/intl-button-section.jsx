@@ -3,6 +3,7 @@ import Image from "@/components/ui/safe-image";
 import { buttonVariants } from "@/components/ui/button";
 import { safeHref } from "@/lib/utils";
 import { isStructured } from "./intl-structured-text";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export function IntlButton({ button }) {
     const newTab = button.isExternal || button.isFile;
@@ -13,7 +14,7 @@ export function IntlButton({ button }) {
             rel={newTab ? "noopener noreferrer" : undefined}
             className={buttonVariants({ variant: "default", size: "default" })}
         >
-            {button.label}
+            {withLineBreaks(button.label)}
             <Image
                 src={button.icon?.url || "/images/icon-btn.svg"}
                 alt=""

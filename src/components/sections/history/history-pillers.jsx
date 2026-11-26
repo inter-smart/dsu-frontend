@@ -80,6 +80,7 @@
 
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function HistoryPillers({ data }) {
     const items = Array.isArray(data?.items) ? data.items : [];
@@ -147,12 +148,12 @@ export default function HistoryPillers({ data }) {
                                 {/* name, role, story */}
                                 <div className="relative min-w-0 flex-1 text-center lg:text-left">
                                     <h3 className="text-[18px] font-bold leading-[1.2] text-[#212121] sm:text-[21px] xl:text-[25px] 2xl:text-[29px] 3xl:text-[37px] dark:text-white">
-                                        {itemList?.name}
+                                        {withLineBreaks(itemList?.name)}
                                     </h3>
 
                                     {itemList?.designation && (
                                         <div className="mt-[6px] text-[13px] text-[#6A7282] xl:mt-[8px] xl:text-[15px] 2xl:text-[16px] 3xl:text-[20px] dark:text-white/60">
-                                            {itemList.designation}
+                                            {withLineBreaks(itemList.designation)}
                                         </div>
                                     )}
 

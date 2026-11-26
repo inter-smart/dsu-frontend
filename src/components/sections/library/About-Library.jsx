@@ -9,6 +9,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer"; 
 import LibrarySidebar from "./LibrarySidebar";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const externalProps = (b) =>
     b?.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
@@ -165,7 +166,7 @@ export default function AboutLibrary({ data, menu }) {
                                 <div className="mt-8 md:mt-10 lg:mt-12 2xl:mt-16">
                                     {constituent?.title && (
                                         <h2 className="cmn_Title mb-5 md:mb-6 lg:mb-8 2xl:mb-10">
-                                            {constituent.title}
+                                            {withLineBreaks(constituent.title)}
                                         </h2>
                                     )}
                                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-5 2xl:gap-x-16 gap-y-4 md:gap-y-6 lg:gap-y-8 2xl:gap-y-10 p-0 m-0">

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import SectionHeader from "./ServiceShared";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function InternationalTeam({ data }) {
     const { number, eyebrow, title, description, card } = data;
@@ -15,7 +16,7 @@ export default function InternationalTeam({ data }) {
                     <div>
                         {card.title && (
                             <h3 className="text-[18px] font-medium leading-tight tracking-[-0.02em] text-[#111] lg:text-[22px] 2xl:text-[26px]">
-                                {card.title}
+                                {withLineBreaks(card.title)}
                             </h3>
                         )}
                         {card.text && (
@@ -60,7 +61,7 @@ export default function InternationalTeam({ data }) {
                         rel={card.button.isExternal ? "noopener noreferrer" : undefined}
                         className="inline-flex h-[44px] w-fit shrink-0 items-center gap-4 rounded-[3px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-5 text-[15px] font-medium text-white no-underline! transition-opacity duration-300 hover:opacity-90 2xl:mr-[75px] 2xl:h-[50px] 2xl:text-[18px]"
                     >
-                        {card.button.label}
+                        {withLineBreaks(card.button.label)}
                         <div className="size-[16px] flex items-center justify-center">
                             <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="7.68152" cy="1.37879" r="1.37879" fill="white" />

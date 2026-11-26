@@ -10,6 +10,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function DSUWomenRedressal({ data, menu }) {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
@@ -107,7 +108,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                           className="text_1 relative before:absolute before:content-[''] before:top-[8px]  before:lg:top-[12px] before:left-0 before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] pl-[15px] lg:pl-[20px]"
                           key={id}
                         >
-                          {item.text}
+                          {withLineBreaks(item.text)}
                         </li>
                       ))}
                     </ul>
@@ -154,12 +155,12 @@ export default function DSUWomenRedressal({ data, menu }) {
                                 <td
                                   className={`border-r border-[#707070] px-[10px] py-[13px] text-center text_1 text-[#212121] font-medium last:border-r-0 lg:text-[15px] `}
                                 >
-                                  {item.name}
+                                  {withLineBreaks(item.name)}
                                 </td>
                                 <td
                                   className={`border-r border-[#707070] px-[10px] py-[13px] text-center text_1 text-[#212121] font-medium  last:border-r-0 lg:text-[15px] `}
                                 >
-                                  {item.designation}
+                                  {withLineBreaks(item.designation)}
                                 </td>
                                 <td
                                   className={`border-r border-[#707070] px-[10px] py-[13px] text-center text_1 text-[#212121] font-medium last:border-r-0 lg:text-[15px] `}
@@ -211,7 +212,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                         <AccordionTrigger className="relative p-0  font-medium !text-black text-[11px] hover:no-underline  md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]  3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold after:text-base2 data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden">
                           <div className="w-full">
                             <div className="text-[15px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[30px] text-[#212121] font-semibold mb-[4px]">
-                              {item.title}
+                              {withLineBreaks(item.title)}
                             </div>
                             {item.date && (
                               <div className="text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] text-[#565656] font-normal">
@@ -290,7 +291,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                               </svg>
                             </div>
                             <div className="text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black transition-colors group-hover:text-(--basecolor)">
-                              {item.label}
+                              {withLineBreaks(item.label)}
                             </div>
                           </div>
                           <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex">
@@ -368,7 +369,7 @@ export default function DSUWomenRedressal({ data, menu }) {
                                     </svg>
                                   </div>
                                   <div className="text_1 font-normal text-[#212121] w-[calc(100%-25px)] 2xl:w-[calc(100%-30px)] 3xl:w-[calc(100%-35px)]">
-                                    {reachOut?.contact?.name}
+                                    {withLineBreaks(reachOut?.contact?.name)}
                                   </div>
                                 </div>
                               </li>

@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const hasFeeValue = (value) => {
   const trimmed = typeof value === "string" ? value.trim() : value;
@@ -39,7 +40,7 @@ export default function AdmissionFee({ data }) {
       <div className="container">
         <div className="w-full h -auto block mb-5 sm:mb-7.5 lg:mb-10 2xl:mb-12.5 3xl:mb-15">
           <Heading className="mb-2.5 lg:mb-3.75 2xl:mb-5 3xl:mb-6.25 cmn_Title">
-            {data?.title}
+            {withLineBreaks(data?.title)}
           </Heading>
           <Text className="text_1">{data?.description}</Text>
         </div>
@@ -51,7 +52,7 @@ export default function AdmissionFee({ data }) {
                 value={items?.id}
                 className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-[#212121] w-auto h-8.75 2xl:h-10 3xl:h-12.5 px-6.25 2xl:px-7.5 3xl:px-10 flex-none rounded-md 2xl:rounded-[10px] border border-[#F3D8CC] bg-white hover:bg-(--basecolor2)/20 data-active:border-transparent data-active:bg-linear-to-r data-active:from-(--basecolor) data-active:to-(--basecolor2) data-active:text-white data-active:shadow-none data-active:pointer-events-none"
               >
-                {items?.label}
+                {withLineBreaks(items?.label)}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -74,7 +75,7 @@ export default function AdmissionFee({ data }) {
                         </div>
                         <div className="flex-1 pl-2.5 sm:pl-3.75 2xl:pl-5 3xl:pl-7.5">
                           <div className="text-[15px] lg:text-base 2xl:text-lg 3xl:text-[22px] leading-[1.2] font-semibold text-[#212121] mb-1.25 3xl:mb-2.5">
-                            {item?.name}
+                            {withLineBreaks(item?.name)}
                           </div>
                           <div className="text-xs 2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-[#4A5565]">
                             {String(item?.items?.length || 0).padStart(2, "0")}{" "}
@@ -107,7 +108,7 @@ export default function AdmissionFee({ data }) {
                               <div className="w-full h-auto py-2.5 2xl:py-3.75 3xl:py-5 flex flex-wrap items-center">
                                 <div className="w-full lg:w-1/2 h-auto gap-1.75 2xl:gap-2.5 max-lg:mb-3.75 flex flex-col">
                                   <span className="text-sm lg:text-base 3xl:text-xl leading-[1.2] font-medium text-[#212121] lg:max-w-[80%]">
-                                    {item?.title}
+                                    {withLineBreaks(item?.title)}
                                   </span>
                                   <span className="text-xs lg:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] shrink-0 flex items-center gap-2">
                                     {item?.level}
@@ -127,7 +128,7 @@ export default function AdmissionFee({ data }) {
                                         className="w-full h-full gap-2.5 bg-linear-to-b from-[#FFF8EE]/30 to-[#FFF3E0]/30 border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col justify-between"
                                       >
                                         <div className="text-[10px] 3xl:text-xs leading-[1.2] font-semibold text-[#4A5565]">
-                                          {fee.label}
+                                          {withLineBreaks(fee.label)}
                                         </div>
                                         <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.2] font-medium text-[#212121]">
                                           {fee.value}

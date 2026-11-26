@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import "swiper/css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function StudentSuccessStories({ data, variant, slug }) {
     // life-dsu and the school pages (/schools/…, /ai-enabled/school-…) show the stories as a static grid; every other page keeps the slider
@@ -227,12 +228,12 @@ function StoryCard({ story, variant }) {
 
                         {/* Story Title */}
                         <h4 className="cmn_Txt font-bold text-[#1F1F1F] dark:text-white leading-[1.3] mb-3">
-                            {story.title}
+                            {withLineBreaks(story.title)}
                         </h4>
 
                         {/* Story Quote Text */}
                         <p className={`text_1 text-[#64748B] dark:text-[#94A3B8] ${long ? "line-clamp-5" : ""}`}>
-                            {story.quote}
+                            {withLineBreaks(story.quote)}
                         </p>
                         {long && (
                             <button
@@ -263,7 +264,7 @@ function StoryCard({ story, variant }) {
                             {/* Student Information */}
                             <div className="min-w-0">
                                 <h5 className="text-[14px] sm:text-[14.5px] 2xl:text-[16px] 3xl:text-[20px] font-bold text-[#212121] dark:text-white leading-tight truncate mb-[3px]">
-                                    {story.name}
+                                    {withLineBreaks(story.name)}
                                 </h5>
                                 <p className="text-[11.5px] sm:text-[12px] text-[#212121] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate lg:text-[14px] xl:text-[14px] 2xl:text-[14px]">
                                     {story.role}

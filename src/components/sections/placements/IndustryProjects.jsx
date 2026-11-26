@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const arrowBtn =
     "w-[30px] h-[30px] xl:w-[34px] xl:h-[34px] rounded-full bg-white dark:bg-[#18191B] border border-[#F97316]/40 text-[#F97316] flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#DC2626] hover:to-[#F97316] hover:text-white hover:border-transparent disabled:opacity-30 disabled:cursor-not-allowed";
@@ -40,7 +41,7 @@ export default function IndustryProjects({ data }) {
 
                     <div>
                         <h2 className="cmn_Title dark:text-white mb-[12px] xl:mb-[18px]">
-                            {data.heading}
+                            {withLineBreaks(data.heading)}
                         </h2>
                         {data?.subheading && (
                             <p className="text_1 font-semibold text-[#4A5565] dark:text-white leading-[1.6] mb-[12px] xl:mb-[18px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
@@ -87,7 +88,7 @@ export default function IndustryProjects({ data }) {
                                 <SwiperSlide key={card.id} className="!h-auto">
                                     <div className="w-full h-full bg-white dark:bg-[#18191B] rounded-[8px] border border-black/5 dark:border-white/10 shadow-[0px_4px_30px_0px_rgba(0,0,0,0.06)] p-[20px] xl:p-[25px] 2xl:p-[30px] 3xl:p-[40px]">
                                         <div className="text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[25px] font-semibold text-[#212121] dark:text-white mb-[12px] xl:mb-[18px]">
-                                            {card.title}
+                                            {withLineBreaks(card.title)}
                                         </div>
                                         <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.7] [&_strong]:font-semibold [&_strong]:text-[#212121] dark:[&_strong]:text-white  typography">
                                             <BlocksRenderer content={card.description} />

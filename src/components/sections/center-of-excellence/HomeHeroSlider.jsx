@@ -76,7 +76,7 @@ function SlideButton({ button, variant = "default", className }) {
             })}
             className={cn(buttonVariants({ variant, size: "default" }), className)}
         >
-            {button.label}
+            {withLineBreaks(button.label)}
             <Image
                 src="/images/icon-btn.svg"
                 alt=""
@@ -283,14 +283,14 @@ export default function HomeHeroSlider({ data, breadcrumb, variant }) {
                                                                         aria-current={isLast ? "page" : undefined}
                                                                         className="font-medium text-white"
                                                                     >
-                                                                        {crumb.label}
+                                                                        {withLineBreaks(crumb.label)}
                                                                     </span>
                                                                 ) : (
                                                                     <Link
                                                                         href={safeHref(crumb.href, "#")}
                                                                         className="font-light text-white transition-opacity duration-300 hover:opacity-70"
                                                                     >
-                                                                        {crumb.label}
+                                                                        {withLineBreaks(crumb.label)}
                                                                     </Link>
                                                                 )}
                                                                 {!isLast && (
@@ -320,7 +320,7 @@ export default function HomeHeroSlider({ data, breadcrumb, variant }) {
                                                             "delay-300 my-[10px] text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[17px] 2xl:text-[18px] 3xl:text-[20px] leading-[1.4] font-semibold text-white",
                                                         )}
                                                     >
-                                                        {slide.description}
+                                                        {withLineBreaks(slide.description)}
                                                     </p>
                                                 )}
                                             </div>

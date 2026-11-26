@@ -23,7 +23,7 @@ export default function AIApplications({ data }) {
             )}
             {item?.description && (
                 <p className="!text_1 mt-[8px] xl:mt-[12px] leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF]">
-                    {item.description}
+                    {withLineBreaks(item.description)}
                 </p>
             )}
         </div>
@@ -43,7 +43,7 @@ export default function AIApplications({ data }) {
                         )}
                         {data?.description && (
                             <p className="!text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:w-[48%] xl:w-[40%] 2xl:w-[38%] shrink-0">
-                                {data.description}
+                                {withLineBreaks(data.description)}
                             </p>
                         )}
                     </div>

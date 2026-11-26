@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"; // CHANGED: added useEffect, useRef
 import Image from "next/image";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // ADDED: inline icons for the share pill (no image files needed)
 const shareIcons = {
@@ -257,7 +258,7 @@ export default function SidebarWidget({
                 className={`pointer-events-none absolute right-full mr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 bg-neutral-900/95 dark:bg-neutral-800/95 text-white text-[11px] sm:text-xs 2xl:text-sm font-medium px-2.5 py-1.5 rounded-[4px] shadow-lg whitespace-nowrap select-none ${isShare && shareOpen ? "hidden" : ""
                   }`}
               >
-                {item.label}
+                {withLineBreaks(item.label)}
               </span>
 
               <a

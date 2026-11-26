@@ -8,6 +8,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function NAACAquarSection({ data }) {
     // data.years -> tabs -> parts (accordion) -> documents
@@ -85,7 +86,7 @@ export default function NAACAquarSection({ data }) {
                                                                     >
                                                                         <div className="w-full">
                                                                             <div className="text-[15px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[30px] text-[#212121] font-semibold mb-[4px]">
-                                                                                {part.title}
+                                                                                {withLineBreaks(part.title)}
                                                                             </div>
                                                                         </div>
                                                                     </AccordionTrigger>

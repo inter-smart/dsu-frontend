@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function GetInvolved({ data }) {
   return (
@@ -33,7 +34,7 @@ export default function GetInvolved({ data }) {
                   </span>
                 )}
                 <span className="text-base xl:text-lg 3xl:text-xl leading-normal text-[#212121] dark:text-white">
-                  {contact.label}
+                  {withLineBreaks(contact.label)}
                 </span>
               </div>
             ))}

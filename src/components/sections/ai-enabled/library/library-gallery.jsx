@@ -5,6 +5,7 @@ import LibraryFrame from "./library-frame";
 import Image from "next/image";
 import { getDepartmentLibraryGalleryPaged, getSchoolLibraryGalleryPaged } from "@/lib/api";
 import { toGalleryItems } from "@/lib/schools/department-adapters";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Pages come from the API (`data.pagination`); without it (static reference page) every item is shown.
 export default function LibraryGallery({ data, menu, departmentSlug, schoolSlug, pageSlug, flexSlug, embedded }) {
@@ -37,7 +38,7 @@ export default function LibraryGallery({ data, menu, departmentSlug, schoolSlug,
         <LibraryFrame menu={menu} embedded={embedded} className="py-[20px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
 <div className="w-full lg:h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_30px] 2xl:p-[40px_40px] 3xl:p-[50px]">
                             <h2 className="cmn_Title mb-[20px]">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                             <div className="flex flex-wrap -m-[5px] 2xl:-m-[7px]">
                                 {items.map((item) => (

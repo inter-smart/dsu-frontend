@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link";
 import LibraryFrame from "./library-frame";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function LibraryServices({ data, menu, embedded }) {
 
@@ -11,7 +12,7 @@ export default function LibraryServices({ data, menu, embedded }) {
         <LibraryFrame menu={menu} embedded={embedded} className="py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px] dark:bg-[#101010]">
 <div className="w-full lg:h-full rounded-[10px] border border-black/10 dark:border-white/10 p-[15px] md:p-[15px] lg:p-[20px] xl:p-[35px_25px] 2xl:p-[40px_30px] 3xl:p-[40px]">
                             <h2 className="cmn_Title dark:text-white mb-[25px]">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                             <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]  typography">
                                 {data.description && <BlocksRenderer content={data.description} />}
@@ -27,7 +28,7 @@ export default function LibraryServices({ data, menu, embedded }) {
                                     className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 dark:border-white/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] dark:bg-none dark:bg-[#18191B] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
                                 >
                                     <h2 className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] text-black dark:text-white font-semibold mb-[25px]">
-                                        {section.title}
+                                        {withLineBreaks(section.title)}
                                     </h2>
 
                                     {section.content ? (
@@ -48,7 +49,7 @@ export default function LibraryServices({ data, menu, embedded }) {
                                                     className="text_1 text-[#4A5565] dark:text-[#9CA3AF] relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]"
                                                     key={idx}
                                                 >
-                                                    {listItem.label}
+                                                    {withLineBreaks(listItem.label)}
                                                 </li>
                                             ))}
                                         </ul>
@@ -68,7 +69,7 @@ export default function LibraryServices({ data, menu, embedded }) {
                                     className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 dark:border-white/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] dark:bg-none dark:bg-[#18191B] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
                                 >
                                     <h2 className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] text-black dark:text-white font-semibold mb-[25px]">
-                                        {data?.journalsSection.heading}
+                                        {withLineBreaks(data?.journalsSection.heading)}
                                     </h2>
 
                                     {data?.journalsSection.items && (
@@ -78,7 +79,7 @@ export default function LibraryServices({ data, menu, embedded }) {
                                                     className="text_1 text-[#4A5565] dark:text-[#9CA3AF] relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]"
                                                     key={idx}
                                                 >
-                                                    {listItem.label}
+                                                    {withLineBreaks(listItem.label)}
                                                 </li>
                                             ))}
                                         </ul>
@@ -91,7 +92,7 @@ export default function LibraryServices({ data, menu, embedded }) {
                                     )}
                                     <div className="w-full lg:max-w-full mt-[15px]">
                                         <div className="cmn_Txt text-[#212121] dark:text-white font-bold mb-[20px]">
-                                            {data?.journalsSection?.printJournals?.heading}
+                                            {withLineBreaks(data?.journalsSection?.printJournals?.heading)}
                                         </div>
                                         <div className="w-full overflow-x-auto mb-[30px]">
                                             <div className="min-w-[700px] rounded-[8px] border border-[#707070] dark:border-white/20 overflow-hidden">
@@ -130,7 +131,7 @@ export default function LibraryServices({ data, menu, embedded }) {
                                                                     colSpan={2}
                                                                     className="border-r border-[#707070] dark:border-white/20 px-[15px] py-[13px] text-right text_1 text-[#212121] dark:text-white last:border-r-0 lg:text-[15px]"
                                                                 >
-                                                                    {data.journalsSection.printJournals.total.label}
+                                                                    {withLineBreaks(data.journalsSection.printJournals.total.label)}
                                                                 </td>
                                                                 <td className="px-[15px] py-[13px] text-center text_1 text-[#212121] dark:text-white lg:text-[15px]">
                                                                     {data.journalsSection.printJournals.total.count}
@@ -151,7 +152,7 @@ export default function LibraryServices({ data, menu, embedded }) {
                                 >
                                     <div className="w-full lg:max-w-full mt-[15px]">
                                         <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] text-[#212121] dark:text-white font-bold ">
-                                            {data?.dailiesSection?.heading}
+                                            {withLineBreaks(data?.dailiesSection?.heading)}
                                         </div>
                                         <p className="text_1 dark:text-[#9CA3AF] mb-[20px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{data?.dailiesSection.description}</p>
 
@@ -218,10 +219,10 @@ export default function LibraryServices({ data, menu, embedded }) {
                                     className="w-full mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px] border border-black/10 dark:border-white/10 bg-[linear-gradient(135deg,_#FFF_0%,_#FCFDFF_16.67%,_#F9FBFE_33.33%,_#F6F9FE_50%,_#F4F8FD_66.67%,_#F1F6FD_83.33%,_#EEF4FC_100%)] dark:bg-none dark:bg-[#18191B] rounded-[10px] p-[20px_15px] 3xl:p-[30px_25px]"
                                 >
                                     <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] font-semibold text-[#212121] dark:text-white mb-[15px] xl:mb-[25px]">
-                                        {data?.informationLiteracy.heading}
+                                        {withLineBreaks(data?.informationLiteracy.heading)}
                                     </div>
                                     <div className="text_1 dark:text-[#9CA3AF]">
-                                        {data?.informationLiteracy.description}
+                                        {withLineBreaks(data?.informationLiteracy.description)}
                                     </div>
 
                                 </div>
@@ -229,7 +230,7 @@ export default function LibraryServices({ data, menu, embedded }) {
                             {data?.newArrivals && (
                                 <div className="flex items-center mt-[20px]">
                                     <div className="text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[30px] 3xl:text-[35px] font-semibold text-[#212121] dark:text-white">
-                                        {data?.newArrivals.heading}
+                                        {withLineBreaks(data?.newArrivals.heading)}
                                     </div>
                                     {data?.newArrivals?.cta?.link && (
                                     <Link
@@ -238,7 +239,7 @@ export default function LibraryServices({ data, menu, embedded }) {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        {data?.newArrivals?.cta?.label}
+                                        {withLineBreaks(data?.newArrivals?.cta?.label)}
                                     </Link>
                                     )}
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 function renderTextNodes(nodes) {
     return nodes.map((node, i) =>
@@ -36,10 +37,10 @@ export default function StackSection({ data }) {
                                         </div>
                                         <div className="w-[calc(100%-60px)] xl:w-[calc(100%-72px)] 2xl:w-[calc(100%-85px)] 3xl:w-[calc(100%-106px)]">
                                             <div className="text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[25px] leading-[13px] xl:leading-[16px] 2xl:leading-[18px] 3xl:leading-[25px]  text-black dark:text-white font-semibold mb-[5px] 2xl:mb-[8px] 3xl:mb-[10px]">
-                                                {item?.title}
+                                                {withLineBreaks(item?.title)}
                                             </div>
                                             <div className="text_1 dark:text-[#9CA3AF] lg:max-w-[80%]">
-                                                {item?.description}
+                                                {withLineBreaks(item?.description)}
                                             </div>
                                         </div>
                                     </div>
@@ -61,12 +62,12 @@ export default function StackSection({ data }) {
                     <div className="mt-[30px] lg:mt-[40px] xl:mt-[50px] 2xl:mt-[60px]">
                         {data?.whyStack?.heading && (
                             <h3 className="text-[18px] sm:text-[20px] xl:text-[24px] 2xl:text-[28px] font-bold text-[#212121] dark:text-white leading-[1.25] mb-[8px] xl:mb-[10px]">
-                                {data.whyStack.heading}
+                                {withLineBreaks(data.whyStack.heading)}
                             </h3>
                         )}
                         {data?.whyStack?.description && (
                             <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] w-full lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                {data.whyStack.description}
+                                {withLineBreaks(data.whyStack.description)}
                             </p>
                         )}
                     </div>

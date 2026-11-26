@@ -10,6 +10,7 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import { Thumbs, FreeMode, EffectFade } from "swiper/modules";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function HistoryTimeline({ data }) {
   const decades = data?.decades || [];
@@ -297,10 +298,10 @@ export default function HistoryTimeline({ data }) {
                               {/* Content sits above the gradient */}
                               <div className="relative z-10">
                                 <h3 className="text-[15px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[28px] font-semibold text-[#212121] dark:text-white mb-2 leading-snug transition-colors duration-300 group-hover:text-white">
-                                  {event.title}
+                                  {withLineBreaks(event.title)}
                                 </h3>
                                 <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] transition-colors duration-300 group-hover:text-white dark:group-hover:text-white">
-                                  {event.description}
+                                  {withLineBreaks(event.description)}
                                 </p>
                               </div>
                             </div>

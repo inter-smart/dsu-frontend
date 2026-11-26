@@ -5,6 +5,7 @@ import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import NewsCard from "@/components/layout/common/news-card";
 import CtaButton from "@/components/ui/cta-button";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function News({ data }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -24,7 +25,7 @@ export default function News({ data }) {
       <div className="container">
         <div data-reveal className="w-full h-auto mb-7.5 sm:mb-5 2xl:mb-6.25 3xl:mb-7.5 flex items-center flex-wrap justify-between">
           <h2 className="text-3xl 3xl:text-[40px] leading-normal font-bold text-[#212121] dark:text-white">
-            {data?.title}
+            {withLineBreaks(data?.title)}
           </h2>
           <div className="[--size:30px] gap-1.25 flex justify-end">
             <button

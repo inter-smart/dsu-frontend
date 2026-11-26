@@ -11,6 +11,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { useEffect, useCallback, useState } from "react";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // A header button only when it has a label (the CMS sends empty strings for an unset one).
 function HeaderButton({ button }) {
@@ -20,7 +21,7 @@ function HeaderButton({ button }) {
       href={safeHref(button?.link)}
       className={buttonVariants({ variant: "default", size: "default" })}
     >
-      {button.label}
+      {withLineBreaks(button.label)}
       <Image
         src="/images/icon-btn.svg"
         alt="home-btn"
@@ -151,7 +152,7 @@ export default function HomeResearch({ data }) {
             align="center"
             className="mb-1.25 lg:mb-2.5"
           >
-            {data?.title}
+            {withLineBreaks(data?.title)}
           </Heading>
           <Text>{data?.description}</Text>
         </div>
@@ -186,10 +187,10 @@ export default function HomeResearch({ data }) {
             <div className="w-full h-auto block">
               <div className="w-full h-auto mb-5 lg:mb-6.25 3xl:mb-8.75 flex flex-wrap max-md:gap-2">
                 <div className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-[45px] leading-[1.1] font-bold text-[#212121] dark:text-white w-full md:w-[35%] max-sm:mb-2.5">
-                  {data?.research?.header?.title}
+                  {withLineBreaks(data?.research?.header?.title)}
                 </div>
                 <div className="text-sm sm:text-[14px] 2xl:text-[15px] 3xl:text-lg leading-[1.5] font-normal text-[#4A5565] dark:text-white w-full md:w-[45%]">
-                  {data?.research?.header?.description}
+                  {withLineBreaks(data?.research?.header?.description)}
                 </div>
                 <div className="w-full md:w-[20%] hidden md:flex justify-end">
                   <HeaderButton button={data?.research?.header?.button} />
@@ -256,7 +257,7 @@ export default function HomeResearch({ data }) {
                             </div>
                             <div className="[--icon-size:25px] sm:[--icon-size:30px] 2xl:[--icon-size:35px] 3xl:[--icon-size:45px] w-full h-auto p-[15px_10px] sm:p-[25px_15px] flex items-center justify-between absolute z-1 inset-[auto_0_0_0]">
                               <h3 className="text-base 2xl:text-lg 3xl:text-2xl leading-[1.2] font-medium text-white w-[clac(100%-var(--icon-size))] 2xl:max-w-[70%] pr-2.5">
-                                {item?.title}
+                                {withLineBreaks(item?.title)}
                               </h3>
                               <span className="w-(--icon-size) h-auto aspect-square p-1.75 sm:p-2 2xl:p-2.5 bg-[#D9D9D9]/20 rounded-full backdrop-blur-[5px] overflow-hidden transition-colors duration-500 shrink-0 flex items-center justify-center relative z-0 group-hover:bg-black/70">
                                 <ShineBorder
@@ -357,7 +358,7 @@ export default function HomeResearch({ data }) {
                         className="size-7.5 sm:size-6.25 3xl:size-8.75"
                         data-icon="inline-end"
                       />
-                      {data?.research?.ctaButton?.label}
+                      {withLineBreaks(data?.research?.ctaButton?.label)}
                     </Link>
                     )}
                     <div className="w-full h-auto mt-7.5 col-span-12 flex items-center md:hidden justify-center">
@@ -371,10 +372,10 @@ export default function HomeResearch({ data }) {
           <TabsContent value="incubation">
             <div className="w-full h-auto mb-5 lg:mb-6.25 3xl:mb-8.75 flex flex-wrap max-md:gap-2">
               <h3 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-[45px] leading-[1.1] font-bold text-[#212121] dark:text-white w-full md:w-[35%] max-sm:mb-2.5">
-                {data?.incubation?.header?.title}
+                {withLineBreaks(data?.incubation?.header?.title)}
               </h3>
               <div className="text-sm sm:text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.5] font-normal text-[#4A5565] dark:text-white w-full md:w-[45%]">
-                {data?.incubation?.header?.description}
+                {withLineBreaks(data?.incubation?.header?.description)}
               </div>
               <div className="w-full md:w-[20%] hidden sm:flex md:justify-end">
                 <HeaderButton button={data?.incubation?.header?.button} />
@@ -411,10 +412,10 @@ export default function HomeResearch({ data }) {
                           {item?.tag}
                         </div>
                         <h4 className="text-base lg:text-lg 2xl:text-[22px] 3xl:text-[25px] leading-[1.2] font-bold text-white mb-2.5 3xl:mb-3.75 line-clamp-1">
-                          {item?.title}
+                          {withLineBreaks(item?.title)}
                         </h4>
                         <div className="text-xs 2xl:text-base 3xl:text-lg leading-[1.4] font-normal text-white mb-3.75 lg:mb-5 2xl:mb-6.25 3xl:mb-7.5 line-clamp-2">
-                          {item?.description}
+                          {withLineBreaks(item?.description)}
                         </div>
                         <div className="text-[13px] 3xl:text-[15px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit">
                           {data?.incubation?.cardLinkLabel || "Explore"} {" > "}
@@ -429,10 +430,10 @@ export default function HomeResearch({ data }) {
           <TabsContent value="innovation">
             <div className="w-full h-auto mb-5 lg:mb-6.25 xl:mb-12.5 2xl:mb-17.5 3xl:mb-20 flex flex-wrap">
               <h3 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-[45px] leading-[1.1] font-bold text-[#212121] dark:text-white w-full sm:w-[35%] max-sm:mb-2.5">
-                {data?.innovation?.header?.title}
+                {withLineBreaks(data?.innovation?.header?.title)}
               </h3>
               <div className="text-sm sm:text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.5] font-normal text-[#4A5565] dark:text-white w-full sm:w-[45%]">
-                {data?.innovation?.header?.description}
+                {withLineBreaks(data?.innovation?.header?.description)}
               </div>
               <div className="w-full sm:w-[20%] hidden sm:flex justify-end">
                 <HeaderButton button={data?.innovation?.header?.button} />
@@ -472,7 +473,7 @@ export default function HomeResearch({ data }) {
 
                         <div className="[--icon-size:25px] sm:[--icon-size:30px] 2xl:[--icon-size:35px] 3xl:[--icon-size:45px] w-full h-auto flex items-center justify-between">
                           <div className="text-[13px] 2xl:text-base 3xl:text-lg leading-[1.2] font-normal text-white w-[clac(100%-var(--icon-size))] pr-2.5 line-clamp-2">
-                            {item?.description}
+                            {withLineBreaks(item?.description)}
                           </div>
                           <span className="w-(--icon-size) h-auto aspect-square p-1.75 sm:p-2 2xl:p-2.5 bg-[#D9D9D9]/20 rounded-full backdrop-blur-[5px] overflow-hidden transition-colors duration-500 shrink-0 flex items-center justify-center relative z-0 group-hover:bg-black/70">
                             <ShineBorder

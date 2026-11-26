@@ -1,6 +1,9 @@
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { TextAnimate } from "@/components/ui/text-animate";
+import { withLineBreaks, plainTitle } from "@/lib/line-breaks";
+
+const HAS_BR = /<br\s*\/?>/i;
 
 const headingVariants = cva("leading-[1.1] font-bold", {
   variants: {
@@ -69,13 +72,13 @@ function Heading({
         className={cn(headingVariants({ size, align, className }))}
         {...props}
       >
-        <span className="sr-only">{children}</span>
+        <span className="sr-only">{plainTitle(children)}</span>
         <span
           className={auroraInnerClass}
           style={gradientStyle}
           aria-hidden="true"
         >
-          {children}
+          {withLineBreaks(children)}
         </span>
       </Component>
     );
@@ -86,7 +89,7 @@ function Heading({
       className={cn(headingVariants({ size, align, className }))}
       {...props}
     >
-      {animation && typeof children === "string" ? (
+      {animation && typeof children === "string" && !HAS_BR.test(children) ? (
         <TextAnimate
           by={by}
           animation={animation}
@@ -97,7 +100,7 @@ function Heading({
           {children}
         </TextAnimate>
       ) : (
-        children
+        withLineBreaks(children)
       )}
     </Component>
   );

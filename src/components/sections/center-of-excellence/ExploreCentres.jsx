@@ -114,7 +114,7 @@ function CentreCard({ item, className = "", style }) {
             <div className="mt-2 flex items-center gap-2">
               {item.poweredBy.label && (
                 <span className="text-[9px] font-semibold text-white md:text-[10px]">
-                  {item.poweredBy.label}
+                  {withLineBreaks(item.poweredBy.label)}
                 </span>
               )}
               <Image

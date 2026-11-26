@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Heading } from "@/components/ui/heading";
 import ExaminationSidebar from "./examination-sidebar";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function ExaminationContact({ data, sidebar }) {
   return (
@@ -25,12 +26,12 @@ export default function ExaminationContact({ data, sidebar }) {
                     <div className="w-full h-full block">
                       {data?.title && (
                         <div className="text-base sm:text-lg lg:text-xl 2xl:text-[25px] 3xl:text-[32px] leading-[1.2] font-semibold text-[#212121] mb-2.5 sm:mb-3.75 lg:mb-5 2xl:mb-7.5 3xl:mb-10">
-                          {item?.title}
+                          {withLineBreaks(item?.title)}
                         </div>
                       )}
                       <div className="w-full h-auto mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-15">
                         <div className="text-base lg:text-lg 2xl:text-[22px] 3xl:text-[28px] leading-[1.2] font-semibold text-[#4A5565] mb-1.25 3xl:mb-2.5">
-                          {item?.addressDetail?.title}
+                          {withLineBreaks(item?.addressDetail?.title)}
                         </div>
                         <div
                           className="typography text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.8] font-normal text-[#4A5565] [&_p]:[font:inherit] [&_p]:[color:inherit] [&_p]:[letter-spacing:inherit]"
@@ -66,7 +67,7 @@ export default function ExaminationContact({ data, sidebar }) {
                               >
                                 {item?.title && (
                                   <div className="text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-[#212121] mb-0.5 sm:mb-1.25 2xl:mb-2.5">
-                                    {item?.title}
+                                    {withLineBreaks(item?.title)}
                                   </div>
                                 )}
                                 <div className="w-full h-auto block">

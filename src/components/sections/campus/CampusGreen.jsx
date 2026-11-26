@@ -9,6 +9,7 @@ import { Fancybox } from "@fancyapps/ui";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function CampusGreen({ data }) {
     const swiperRef = useRef(null);
@@ -63,7 +64,7 @@ export default function CampusGreen({ data }) {
                     )}
 
                     <h2 className="cmn_Title text-white">
-                        {data.title}
+                        {withLineBreaks(data.title)}
                     </h2>
                     <div className="space-y-6 text_1 text-white [&>p]:text-white">
                         {data.description?.map((para, i) => (
@@ -76,7 +77,7 @@ export default function CampusGreen({ data }) {
                             href={data.button.href}
                             className="mt-10 inline-flex items-center gap-3 rounded-[3px] bg-gradient-to-r from-[#E8402A] to-[#F26B21] px-7 py-2.5 text-base font-semibold text-white transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                         >
-                            {data.button.label}
+                            {withLineBreaks(data.button.label)}
                             <span>
                                 <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="7.68348" cy="1.37879" r="1.37879" fill="white" />

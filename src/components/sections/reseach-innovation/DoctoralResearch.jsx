@@ -6,6 +6,7 @@ import "swiper/css";
 import Image from "next/image";
 import Link from "next/link";
 import { ctaLinkProps } from "@/lib/schools/link-props";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 
 export default function DoctoralResearch({ data }) {
@@ -19,7 +20,7 @@ export default function DoctoralResearch({ data }) {
             <div className="container">
                 {data?.heading && (
                     <h2 className="text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] mb-[25px] xl:mb-[35px] 3xl:mb-[45px] text-black dark:text-white">
-                        {data.heading}
+                        {withLineBreaks(data.heading)}
                     </h2>
                 )}
 
@@ -54,7 +55,7 @@ export default function DoctoralResearch({ data }) {
 
                                     {/* title */}
                                     <div className="absolute left-[18px] bottom-[18px] xl:left-[18px] xl:bottom-[20px] 2xl:left-[22px] 2xl:bottom-[24px] 3xl:left-[28px] 3xl:bottom-[30px] z-[2] max-w-[65%] whitespace-pre-line text-[20px] xl:text-[22px] 2xl:text-[26px] 3xl:text-[32px] font-medium leading-[1.2] text-white transition-transform duration-300 group-hover:-translate-y-[2px]">
-                                        {item.title}
+                                        {withLineBreaks(item.title)}
                                     </div>
 
                                     {/* arrow button */}

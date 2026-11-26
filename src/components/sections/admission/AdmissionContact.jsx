@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import PhoneNumbers from "@/components/ui/phone-numbers";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionContact({ data }) {
   const contactData = data;
@@ -76,11 +77,11 @@ export default function AdmissionContact({ data }) {
             <div className="w-full h-auto mb-3.75 sm:mb-5 flex justify-between flex-wrap">
               <div className="w-auto">
                 <h3 className="text-base sm:text-lg lg:text-xl 2xl:text-[25px] 3xl:text-[32px] leading-[1.1] font-semibold text-(--text-color)">
-                  {mainOffice.heading}
+                  {withLineBreaks(mainOffice.heading)}
                 </h3>
                 {mainOffice.subtitle && (
                   <p className="text_1 leading-[1.1] font-normal text-[#4A5565] dark:text-[#9CA3AF] mt-1.5 sm:mt-2 ">
-                    {mainOffice.subtitle}
+                    {withLineBreaks(mainOffice.subtitle)}
                   </p>
                 )}
               </div>
@@ -95,7 +96,7 @@ export default function AdmissionContact({ data }) {
                     className="group relative inline-flex h-[36px] sm:h-[40px] xl:h-[44px] 3xl:h-[50px] items-center justify-center gap-[10px] overflow-hidden rounded-[5px] bg-gradient-to-r from-[#DC2626] to-[#F97316] px-[20px] sm:px-[24px] text_1 font-bold capitalize text-white transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.35)] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                   >
                     <span className="relative z-[1] transition-transform duration-300">
-                      {enquireBtn.label}
+                      {withLineBreaks(enquireBtn.label)}
                     </span>
 
                     <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[3px] group-hover:scale-110">
@@ -151,7 +152,7 @@ export default function AdmissionContact({ data }) {
                   >
                     <div className="w-full bg-[#25d366] h-full overflow-hidden rounded-[4px] flex items-center gap-[10px] px-6">
                       <span className="relative z-[1] text-white transition-transform duration-300 w-full  ">
-                        {whatsappBtn.label}
+                        {withLineBreaks(whatsappBtn.label)}
                       </span>
 
                       <div className="relative z-[1] flex h-[30px] w-[30px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
@@ -193,7 +194,7 @@ export default function AdmissionContact({ data }) {
               {addressCol && (
                 <div className="bg-white dark:bg-[#202225] rounded-[6px] 2xl:rounded-[8px] p-4 sm:p-5 2xl:p-6 border border-black/10 dark:border-white/10 flex flex-col justify-between shadow-xs">
                   <div className="text_1 font-semibold tracking-wider text-[#212121] dark:text-gray-400 uppercase mb-2">
-                    {addressCol.label}
+                    {withLineBreaks(addressCol.label)}
                   </div>
                   <div className="flex items-center   gap-3">
                     <div className="text-[13px] 2xl:text-[15px] 3xl:text-[18px] leading-snug font-normal text-[#4A5565] dark:text-gray-200">
@@ -227,7 +228,7 @@ export default function AdmissionContact({ data }) {
                           />
                         </div>
                         <div className="text_1 leading-[1.1] font-semibold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit pl-1.5 transition-all duration-300 group-hover:underline">
-                          {addressCol.directions.label}
+                          {withLineBreaks(addressCol.directions.label)}
                         </div>
                       </Link>
                     )}
@@ -239,7 +240,7 @@ export default function AdmissionContact({ data }) {
               {helplineCol && (
                 <div className="bg-white dark:bg-[#202225] rounded-[6px] 2xl:rounded-[8px] p-4 sm:p-5 2xl:p-6 border border-black/10 dark:border-white/10 flex flex-col   shadow-xs">
                   <div className="text_1 font-semibold tracking-wider text-[#212121] dark:text-gray-400 uppercase mb-3">
-                    {helplineCol.label}
+                    {withLineBreaks(helplineCol.label)}
                   </div>
                   <div className="text_1 leading-snug font-normal text-[#4A5565] dark:text-gray-200 flex flex-col gap-1">
                     {helplineCol.values?.map((item, idx) => (
@@ -258,7 +259,7 @@ export default function AdmissionContact({ data }) {
               {emailCol && (
                 <div className="bg-white dark:bg-[#202225] rounded-[6px] 2xl:rounded-[8px] p-4 sm:p-5 2xl:p-6 border border-black/10 dark:border-white/10 flex flex-col  shadow-xs">
                   <div className="text_1 tracking-wider font-semibold text-[#212121] dark:text-gray-400 uppercase mb-2">
-                    {emailCol.label}
+                    {withLineBreaks(emailCol.label)}
                   </div>
                   <div className="text_1 leading-snug font-normal text-[#4A5565] dark:text-gray-200">
                     {emailCol.values?.map((item, idx) => (
@@ -309,10 +310,10 @@ export default function AdmissionContact({ data }) {
 
                     <div className="min-w-0">
                       <div className="text-lg sm:text-xl lg:text-[24px] 2xl:text-[30px] 3xl:text-[36px] leading-[1.1] font-bold text-(--text-color)">
-                        {item?.name}
+                        {withLineBreaks(item?.name)}
                       </div>
                       <div className="mt-0.5 text-sm sm:text-base lg:text-lg 2xl:text-xl 3xl:text-2xl leading-[1.2] font-medium text-[#4A5565] dark:text-[#9CA3AF]">
-                        {item?.subtitle}
+                        {withLineBreaks(item?.subtitle)}
                       </div>
                     </div>
                   </div>
@@ -338,7 +339,7 @@ export default function AdmissionContact({ data }) {
                         />
                       </div>
                       <span className="text_1 leading-[1.1] font-semibold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent">
-                        {item?.directions?.label}
+                        {withLineBreaks(item?.directions?.label)}
                       </span>
                     </Link>
                   )}
@@ -361,7 +362,7 @@ export default function AdmissionContact({ data }) {
                         </div>
                         <div className="min-w-0 flex-1">
                           <div className="text-sm 2xl:text-base leading-[1.2] font-medium text-[#4A5565] dark:text-[#9CA3AF] mb-1.5">
-                            {item.email.label}
+                            {withLineBreaks(item.email.label)}
                           </div>
                           <div className="text_1 leading-snug font-medium text-[#212121] dark:text-white flex flex-wrap gap-y-1">
                             {item.email.values?.map((emailVal, idx) => (
@@ -399,7 +400,7 @@ export default function AdmissionContact({ data }) {
                         </div>
                         <div className="min-w-0 flex-1">
                           <div className="text-sm 2xl:text-base leading-[1.2] font-medium text-[#4A5565] dark:text-[#9CA3AF] mb-1.5">
-                            {contact.label}
+                            {withLineBreaks(contact.label)}
                           </div>
                           <div className="text_1 leading-snug font-medium text-[#212121] dark:text-white flex flex-wrap gap-y-1">
                             {contact.values?.map((phoneVal, vIdx) => (
@@ -434,12 +435,12 @@ export default function AdmissionContact({ data }) {
               <div className="mb-6 sm:mb-8">
                 {visitCampus?.heading && (
                   <h2 className="text-2xl sm:text-3xl lg:text-[36px] 2xl:text-[42px] 3xl:text-[48px] leading-[1.15] font-bold text-(--text-color) tracking-tight">
-                    {visitCampus.heading}
+                    {withLineBreaks(visitCampus.heading)}
                   </h2>
                 )}
                 {visitCampus?.description && (
                   <p className="mt-2 sm:mt-2.5 text_1 leading-relaxed text-[#4A5565] dark:text-[#9CA3AF]">
-                    {visitCampus.description}
+                    {withLineBreaks(visitCampus.description)}
                   </p>
                 )}
               </div>
@@ -453,7 +454,7 @@ export default function AdmissionContact({ data }) {
                     className="group flex items-center justify-between bg-white dark:bg-[#18191B] border border-[#FED7AA]/60 dark:border-white/10 hover:border-[#EA580C]/40 rounded-[6px] sm:rounded-[8px] px-4 sm:px-5 py-3 sm:py-3.5 transition-all duration-200 shadow-2xs hover:shadow-xs"
                   >
                     <span className="text_1 font-semibold text-[#1E1E1E] dark:text-white leading-tight">
-                      {visitItem.name}
+                      {withLineBreaks(visitItem.name)}
                     </span>
                     <span className="text_1 font-semibold text-[#EA580C] group-hover:text-[#C2410C] transition-colors leading-tight">
                       Get Directions &gt;

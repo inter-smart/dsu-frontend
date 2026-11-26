@@ -2,6 +2,7 @@ import { markdownToHtml } from "@/lib/markdown";
 import Link from "next/link";
 import Image from "@/components/ui/safe-image";
 import { safeHref } from "@/lib/utils";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function Journey({ data }) {
   const ctaStyles = [
@@ -34,7 +35,7 @@ export default function Journey({ data }) {
       <div className="w-full h-full bg-black/70 dark:bg-linear-to-r dark:from-(--basecolor)/60 dark:to-(--basecolor2)/60 pointer-events-none absolute -z-1 inset-0" />
       <div className="container xl:max-w-290 2xl:max-w-431.25 mx-auto">
         <h2 className="text-[22px] sm:text-[26px] lg:text-3xl xl:text-[37px] 2xl:text-[55px] leading-normal font-bold text-center text-white mb-2.5 2xl:mb-3.75">
-          {data?.title}
+          {withLineBreaks(data?.title)}
         </h2>
         <div
           className="text-[8px] sm:text-[13px] xl:text-sm 2xl:text-lg leading-normal font-normal text-center [&>*]:text-[#FFF2F2] mb-3.75 2xl:mb-6.25 [&_br]:max-md:hidden"
@@ -53,7 +54,7 @@ export default function Journey({ data }) {
                 rel={cta?.isExternal ? "noopener noreferrer" : undefined}
                 className={`text_1 leading-normal font-bold w-auto h-8 sm:h-9 xl:h-10 2xl:h-12.5 px-2.5 sm:px-3.75 2xl:px-5 gap-2.5 xl:gap-3.75 2xl:gap-5 rounded-[3px] xl:rounded-[5px] overflow-hidden transition-colors duration-500 inline-flex items-center justify-center ${style.className}`}
               >
-                {cta?.label}
+                {withLineBreaks(cta?.label)}
                 <span className="w-2.5 sm:w-3 2xl:w-3.75 h-auto aspect-square overflow-hidden flex items-center justify-center">
                   <Image
                     src={style.icon}
@@ -88,7 +89,7 @@ export default function Journey({ data }) {
                   </div>
                 )}
                 <div className="text_1 leading-normal font-normal text-white flex-1">
-                  {item?.label}
+                  {withLineBreaks(item?.label)}
                 </div>
               </div>
             </div>

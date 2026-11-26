@@ -38,7 +38,7 @@ function AnnouncementBar({ items }) {
             className="flex items-center whitespace-nowrap text-[14px] text-[#222] lg:text-[16px] 2xl:text-[18px]"
           >
             <span className="pl-4 lg:pl-[17px]">
-              {item.text}
+              {withLineBreaks(item.text)}
               {item.highlight && (
                 <strong className="ml-1.5 font-semibold">
                   {item.highlight}
@@ -87,7 +87,7 @@ export default function InternationalHero({ data }) {
                   : {})}
                 className="mt-6 inline-flex min-h-[44px] items-center gap-4 rounded-[3px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-5 py-2 text-[15px] font-medium text-white transition-opacity duration-300 hover:opacity-90 2xl:mt-[50px] 2xl:h-[50px] 2xl:gap-[18px] 2xl:py-0 2xl:text-[18px]"
               >
-                {button.label}
+                {withLineBreaks(button.label)}
                 <div className="size-[16px] flex items-center justify-center">
                   <svg
                     width="16"
@@ -148,7 +148,7 @@ export default function InternationalHero({ data }) {
                 />
                 <span className="h-8 w-px bg-white/30 2xl:h-[44px]" />
                 <span className="text-[11px] leading-[1.25] text-white lg:text-[14px] 2xl:text-[17px]">
-                  {badge.text}
+                  {withLineBreaks(badge.text)}
                 </span>
               </div>
             )}

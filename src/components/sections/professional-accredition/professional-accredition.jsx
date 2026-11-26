@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function ProfessionalAccredition({ data, isLink = true }) {
   return (
@@ -25,10 +26,10 @@ export default function ProfessionalAccredition({ data, isLink = true }) {
                 </div>
 
                 <div className="text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[28px] text-[#212121] font-bold mb-[10px]">
-                  {item.title}
+                  {withLineBreaks(item.title)}
                 </div>
                 <p className="text_1 leading-[1.6] text-[#4A5565] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                  {item.description}
+                  {withLineBreaks(item.description)}
                 </p>
 
                 {/* HIde the link if no URL is provided */}

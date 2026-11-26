@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 /* Grid + list reset live in plain CSS so the global `typography` class and
    Tailwind breakpoint config can't interfere. */
@@ -70,7 +71,7 @@ export default function AiVisionMission({ data }) {
                                             />
                                         </div>}
                                     <div className="w-full text-[20px] xl:text-[24px] 2xl:text-[28px] 3xl:text-[34px] leading-tight tracking-[-0.01em] text-black dark:text-white font-bold transition-colors duration-300 group-hover:text-[#DC2626] dark:group-hover:text-[#F97316]">
-                                        {item.title}
+                                        {withLineBreaks(item.title)}
                                     </div>
                                 </div>
 

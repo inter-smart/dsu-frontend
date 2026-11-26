@@ -13,6 +13,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function DSUDEADC({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
@@ -47,7 +48,7 @@ export default function DSUDEADC({ data, menu }) {
                         </button>
                         <div className="w-full lg:h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[20px] xl:p-[35px_30px] 2xl:p-[40px_35px] 3xl:p-[50px_45px]">
                             <h2 className="cmn_Title">
-                                {data?.heading}
+                                {withLineBreaks(data?.heading)}
                             </h2>
 
                             <div className="text_1 typography leading-[1.2] text-[#4A5565] [&_p]:text-[#4A5565]  
@@ -62,7 +63,7 @@ export default function DSUDEADC({ data, menu }) {
                                         >
                                             <div className="w-full">
                                                 <div className="text-[15px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] text-[#212121] font-semibold mb-[4px]">
-                                                    {item.title}
+                                                    {withLineBreaks(item.title)}
                                                 </div>
                                             </div>
                                         </AccordionTrigger>

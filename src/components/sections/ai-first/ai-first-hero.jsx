@@ -27,7 +27,7 @@ export default function AiFirstHero({ data }) {
         )}
         {data?.subtitle && (
           <p className="mb-6 w-full max-w-[750px] text-[14px] leading-relaxed text-white sm:text-[16px] md:text-[18px] 3xl:text-[23px] lg:text-[20px] xl:text-[22px] 2xl:text-[20px]">
-            {data.subtitle}
+            {withLineBreaks(data.subtitle)}
           </p>
         )}
 
@@ -45,7 +45,7 @@ export default function AiFirstHero({ data }) {
                     : "group base-gradient inline-flex items-center gap-2.5 rounded-[4px] px-4 py-3 text-[13px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-(--basecolor)/30 active:translate-y-0 xl:px-5 xl:py-4 xl:text-[16px]"
                 }
               >
-                {cta.label}
+                {withLineBreaks(cta.label)}
                 <Image
                   src="/images/ai-first/icons/cta-dots.svg"
                   alt=""

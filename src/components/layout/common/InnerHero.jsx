@@ -170,14 +170,14 @@ export default function InnerHero({ data, placementMenuItems, className }) {
                           <BreadcrumbItem>
                             {isLast ? (
                               <BreadcrumbPage className="text-[10px] font-semibold text-white xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px]">
-                                {item.label}
+                                {withLineBreaks(item.label)}
                               </BreadcrumbPage>
                             ) : (
                               <BreadcrumbLink
                                 render={<Link href={item.href || "#"} />}
                                 className="text-[10px] font-light text-white transition-opacity hover:text-white hover:opacity-70 xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px]"
                               >
-                                {item.label}
+                                {withLineBreaks(item.label)}
                               </BreadcrumbLink>
                             )}
                           </BreadcrumbItem>
@@ -236,14 +236,14 @@ export default function InnerHero({ data, placementMenuItems, className }) {
                         <BreadcrumbItem>
                           {isLast ? (
                             <BreadcrumbPage className="text-[10px] font-semibold text-[#FFB63B] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px]">
-                              {item.label}
+                              {withLineBreaks(item.label)}
                             </BreadcrumbPage>
                           ) : (
                             <BreadcrumbLink
                               render={<Link href={item.href || "#"} />}
                               className="text-[10px] font-normal text-[#0F0F0F] transition-opacity hover:text-[#0F0F0F] hover:opacity-70 xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px]"
                             >
-                              {item.label}
+                              {withLineBreaks(item.label)}
                             </BreadcrumbLink>
                           )}
                         </BreadcrumbItem>

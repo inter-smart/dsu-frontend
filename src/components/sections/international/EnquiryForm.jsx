@@ -14,6 +14,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 
@@ -155,7 +156,7 @@ function SelectField({ name, label, placeholder, options, hint, disabled, values
                 <SelectContent>
                     {options.map((option) => (
                         <SelectItem key={option.value} value={option.value}>
-                            {option.label}
+                            {withLineBreaks(option.label)}
                         </SelectItem>
                     ))}
                 </SelectContent>

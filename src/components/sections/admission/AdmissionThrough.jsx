@@ -130,6 +130,7 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const COLS = 4;
 
@@ -162,13 +163,13 @@ function RouteCard({ item, className = "" }) {
 
             {item?.title && (
                 <h3 className="mt-2  text-[18px] leading-[1.15] text-[#1A1A1A] sm:text-[20px] 2xl:text-[24px] 3xl:text-[30px] dark:text-white">
-                    {item.title}
+                    {withLineBreaks(item.title)}
                 </h3>
             )}
 
             {item?.description && (
                 <p className="mt-3 text_1 leading-relaxed text-[#4B4B4B]   dark:text-[#9CA3AF]">
-                    {item.description}
+                    {withLineBreaks(item.description)}
                 </p>
             )}
 
@@ -231,12 +232,12 @@ function CtaBlock({ cta, row = false }) {
                 )}
                 {cta.title && (
                     <h3 className="mt-2  text-[26px] leading-[1.15] sm:text-[28px] xl:text-[32px] 2xl:text-[36px] text-black">
-                        {cta.title}
+                        {withLineBreaks(cta.title)}
                     </h3>
                 )}
                 {cta.description && (
                     <p className="mt-2 text-[13px] leading-relaxed text-black/90 xl:text-[14px]">
-                        {cta.description}
+                        {withLineBreaks(cta.description)}
                     </p>
                 )}
             </div>
@@ -248,7 +249,7 @@ function CtaBlock({ cta, row = false }) {
                     className={`group/btn relative inline-flex w-fit shrink-0 items-center justify-center gap-2 overflow-hidden bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-5 py-3 text_1 font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-linear-to-l hover:shadow-xl ${row ? "" : "mt-auto"
                         }`}
                 >
-                    {cta.button.label}
+                    {withLineBreaks(cta.button.label)}
                     <ArrowRight
                         strokeWidth={2.5}
                         className="size-4 transition-transform duration-300 group-hover/btn:translate-x-1"

@@ -2,6 +2,7 @@
 import Image from "next/image";
 import AcademicCta from "./academic-cta";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function DeanMessage({ data, varient, hideSignature }) {
   if (!data) return null;
@@ -55,11 +56,11 @@ export default function DeanMessage({ data, varient, hideSignature }) {
                     {/* Text Info */}
                     <div>
                       <div className="text-[15px] xl:text-[17px] 2xl:text-[20px] 3xl:text-[24px] font-bold text-white leading-snug">
-                        {featuredPerson.name}
+                        {withLineBreaks(featuredPerson.name)}
                       </div>
                       {featuredPerson.designation && (
                         <div className="text-[11px] xl:text-[12px] 2xl:text-[13px] 3xl:text-[15px] text-white/85 font-normal leading-snug mt-0.5">
-                          {featuredPerson.designation}
+                          {withLineBreaks(featuredPerson.designation)}
                         </div>
                       )}
                       {featuredPerson.institution && (
@@ -132,11 +133,11 @@ export default function DeanMessage({ data, varient, hideSignature }) {
               {/* Text Info */}
               <div>
                 <div className="text-[14px] xl:text-[17px] 2xl:text-[22px] 3xl:text-[25px] font-bold text-[#212121] dark:text-[#F9FAFB] leading-snug">
-                  {featuredPerson.name}
+                  {withLineBreaks(featuredPerson.name)}
                 </div>
                 {featuredPerson.designation && (
                   <div className="text-[11px] xl:text-[12px] 2xl:text-[13.5px] 3xl:text-[16px] text-[#212121] dark:text-[#D1D5DB] font-normal leading-snug mt-0.5">
-                    {featuredPerson.designation}
+                    {withLineBreaks(featuredPerson.designation)}
                   </div>
                 )}
                 {featuredPerson.institution && (

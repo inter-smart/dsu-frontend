@@ -1,5 +1,6 @@
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const textVariants = cva("leading-normal font-normal tracking-[0.020rem]", {
   variants: {
@@ -16,12 +17,14 @@ const textVariants = cva("leading-normal font-normal tracking-[0.020rem]", {
   },
 });
 
-function Text({ as: Component = "div", size = "default", className, ...props }) {
+function Text({ as: Component = "div", size = "default", className, children, ...props }) {
   return (
     <Component
       className={cn(textVariants({ size, className }))}
       {...props}
-    />
+    >
+      {withLineBreaks(children)}
+    </Component>
   );
 }
 

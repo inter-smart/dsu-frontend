@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/accordion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const clean = (v = "") => String(v).toLowerCase().replace(/^\/+|\/+$/g, "");
 
@@ -92,7 +93,7 @@ export default function NIRFSidebar({
                                                             : "!text-[#212121] group-hover:!text-[#F97316]"
                                                     }`}
                                                 >
-                                                    {item.label}
+                                                    {withLineBreaks(item.label)}
                                                 </div>
 
                                                 <div className="flex h-[8px] 3xl:h-[12px] w-[8px] 3xl:w-[10px] items-center justify-center transition-transform duration-300 group-data-[state=open]:rotate-90">
@@ -139,7 +140,7 @@ export default function NIRFSidebar({
                                                                                 : "!text-[#212121] font-medium group-hover:!text-[#F97316]"
                                                                         }`}
                                                                     >
-                                                                        {sub.label}
+                                                                        {withLineBreaks(sub.label)}
                                                                     </div>
                                                                 </Link>
                                                             </li>
@@ -167,7 +168,7 @@ export default function NIRFSidebar({
                                                         : "!text-[#212121] group-hover:!text-[#F97316]"
                                                 }`}
                                             >
-                                                {item.label}
+                                                {withLineBreaks(item.label)}
                                             </div>
 
                                             <div className="flex h-[8px] 3xl:h-[12px] w-[8px] 3xl:w-[10px] items-center justify-center">

@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 import { cn } from "@/lib/utils";
 import { FaqAccordion } from "./AdmissionPolicies";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Category-wise admission FAQs: one pill per category, the selected category's questions below.
 // data: { heading, description, categories: [{ id, name, faqs: [{ id, question, answer }] }] }
@@ -76,7 +77,7 @@ export default function AdmissionFaqCategories({ data }) {
                                             : "border-[#E5E7EB] bg-white text-[#4A5565] hover:border-[#F97316]/50 hover:text-[#1E1E1E] dark:border-white/10 dark:bg-white/[0.03] dark:text-[#9CA3AF] dark:hover:text-white",
                                     )}
                                 >
-                                    {category.name}
+                                    {withLineBreaks(category.name)}
                                     <span className={cn("ml-2 text-[12px] font-medium", selected ? "text-white/80" : "text-[#9CA3AF]")}>
                                         {category.faqs.filter((item) => item?.question).length}
                                     </span>

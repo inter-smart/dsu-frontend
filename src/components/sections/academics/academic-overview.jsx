@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { sanitizeRichHtml } from "@/lib/sanitize-rich-html";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // A rich-text value is CKEditor HTML (department overview) or Strapi blocks (school / static data).
 // HTML goes straight into the styled container (no extra wrapper, so text still flows around floats).
@@ -55,7 +56,7 @@ export default function AcademicOverview({ data }) {
                                             {stat.value}
                                         </div>
                                         <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF]">
-                                            {stat.label}
+                                            {withLineBreaks(stat.label)}
                                         </div>
                                     </div>
                                 ))}
@@ -97,7 +98,7 @@ export default function AcademicOverview({ data }) {
 
                         {data?.heading && (
                             <h2 className="cmn_Title mb-[15px] xl:mb-[20px] 2xl:mb-[25px] text-black dark:text-white">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
 

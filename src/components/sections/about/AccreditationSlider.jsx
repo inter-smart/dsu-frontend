@@ -6,6 +6,7 @@ import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 
 import "swiper/css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Accepts a Strapi media object ({ url }), a plain string URL, or a { url } link object.
 const getUrl = (value) => {
@@ -52,7 +53,7 @@ function AccreditationCard({ item }) {
                     title={item.name}
                     className="text_1 mt-[12px] w-fit max-w-full mx-auto text-center font-normal leading-tight whitespace-nowrap overflow-hidden text-ellipsis bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-black dark:text-white transition-colors duration-300 group-hover:text-transparent"
                 >
-                    {item.name}
+                    {withLineBreaks(item.name)}
                 </div>
             )}
         </>
@@ -99,7 +100,7 @@ export default function AccreditationSlider({ data }) {
                         {data?.heading && <div className="cmn_Title">{data.heading}</div>}
                         {data?.description && (
                             <p className="text_1 mt-[8px] text-[#4A5565] dark:text-[#9CA3AF]">
-                                {data.description}
+                                {withLineBreaks(data.description)}
                             </p>
                         )}
                     </div>

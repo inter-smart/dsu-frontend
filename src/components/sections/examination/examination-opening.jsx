@@ -5,6 +5,7 @@ import { Dialog } from "@base-ui/react/dialog";
 import { ChevronRight, X } from "lucide-react";
 import { Heading } from "@/components/ui/heading";
 import { buttonVariants } from "@/components/ui/button";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function ExaminationOpening({ data }) {
   return (
@@ -14,7 +15,7 @@ export default function ExaminationOpening({ data }) {
           align="center"
           className="mb-5 sm:mb-7.5 lg:mb-10 2xl:mb-15 3xl:mb-22.5"
         >
-          {data?.title}
+          {withLineBreaks(data?.title)}
         </Heading>
         <div className="[--gap:5px] 2xl:[--gap:10px] w-full h-auto -mx-(--gap) flex flex-wrap">
           {data?.openings.map((item) => (
@@ -25,10 +26,10 @@ export default function ExaminationOpening({ data }) {
               <div className="w-full h-full p-[20px_20px_20px_15px] sm:p-[30px_30px_30px_15px] 3xl:p-[40px_40px_40px_20px] bg-white rounded-[6px] 2xl:rounded-[10px] overflow-hidden block">
                 <div className="w-full h-auto mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5">
                   <div className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-[45px] leading-[1.1] font-bold text-[#212121] mb-2.5 sm:mb-3.75 2xl:mb-5 3xl:mb-7.5">
-                    {item?.title}
+                    {withLineBreaks(item?.title)}
                   </div>
                   <div className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-semibold text-[#212121]">
-                    {item?.description}
+                    {withLineBreaks(item?.description)}
                   </div>
                 </div>
                 <div className="w-full h-auto mb-5 sm:mb-6.25 lg:mb-7.5 3xl:mb-10 block">
@@ -88,10 +89,10 @@ export default function ExaminationOpening({ data }) {
                             <div className="w-full h-full p-[20px_20px_40px_15px] sm:p-[30px_30px_50px_30px] lg:p-[40px_40px_60px_40px] 2xl:p-[50px_50px_80px_50px] 3xl:p-[60px_60px_100px_60px]">
                               <div className="w-full h-auto mb-5 sm:mb-6.25 2xl:mb-7.5 3xl:mb-10">
                                 <div className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-[45px] leading-[1.1] font-bold text-[#212121] mb-2.5 sm:mb-3.75 2xl:mb-5 3xl:mb-7.5">
-                                  {item?.title}
+                                  {withLineBreaks(item?.title)}
                                 </div>
                                 <div className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-semibold text-[#212121]">
-                                  {item?.description}
+                                  {withLineBreaks(item?.description)}
                                 </div>
                               </div>
                               <div className="w-full h-auto mb-5 sm:mb-6.25 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5 -mx-2.5 sm:-mx-7.5 xl:-mx-10 2xl:-mx-15 flex flex-wrap">

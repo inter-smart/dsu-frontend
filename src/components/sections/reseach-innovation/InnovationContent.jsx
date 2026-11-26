@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { hasContent } from "@/lib/has-content";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 
 const renderText = (value) =>
@@ -40,7 +41,7 @@ export default function InnovationContent({ data }) {
                     <div className="mb-[35px] xl:mb-[45px] 3xl:mb-[60px]">
                         {data?.heading && (
                             <h2 className="text-[18px] sm:text-[20px] xl:text-[22px] 2xl:text-[24px] 3xl:text-[28px] font-semibold leading-[1.3] mb-[12px] xl:mb-[16px] text-[#212121] dark:text-white">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
                         {points.length > 0 && (
@@ -75,7 +76,7 @@ export default function InnovationContent({ data }) {
                                             <div key={groupIdx}>
                                                 {group?.title && (
                                                     <h3 className={`${subHeadingClass} mb-[6px] xl:mb-[8px]`}>
-                                                        {group.title}
+                                                        {withLineBreaks(group.title)}
                                                     </h3>
                                                 )}
                                                 {Array.isArray(group?.items) && group.items.length > 0 && (
@@ -124,7 +125,7 @@ export default function InnovationContent({ data }) {
                                     >
                                         <div>
                                             <div className="text-[16px] sm:text-[18px] xl:text-[20px] 2xl:text-[21px] 3xl:text-[24px] font-medium leading-[1.3] text-[#212121] dark:text-white">
-                                                {item.title}
+                                                {withLineBreaks(item.title)}
                                             </div>
                                             {item.duration && (
                                                 <div className="mt-[4px] text-[14px] sm:text-[15px] xl:text-[17px] 3xl:text-[19px] leading-[1.3] text-[#4A5565] dark:text-[#9CA3AF]">

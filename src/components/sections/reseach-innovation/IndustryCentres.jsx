@@ -11,6 +11,7 @@ import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { ctaLinkProps } from "@/lib/schools/link-props";
 import { hasContent } from "@/lib/has-content";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 
 const renderText = (value) =>
@@ -51,7 +52,7 @@ export default function IndustryCentres({ data }) {
                 {/* text */}
                 <div className="absolute inset-x-0 bottom-0 z-[2] flex flex-col pl-[20px] pr-[70px] pb-[20px] xl:pl-[26px] xl:pr-[80px] xl:pb-[24px] 2xl:pl-[32px] 2xl:pr-[90px] 2xl:pb-[30px] 3xl:pl-[30px] 3xl:pr-[90px] 3xl:pb-[38px] transition-transform duration-300 group-hover:-translate-y-[2px]">
                     <div className="whitespace-pre-line text-[18px] sm:text-[20px] xl:text-[22px] 2xl:text-[26px] 3xl:text-[32px] font-bold leading-[1.15] text-white mb-[8px] xl:mb-[10px]">
-                        {item.title}
+                        {withLineBreaks(item.title)}
                     </div>
                     {hasDesc && (
                         <div className="text-[13px] sm:text-[14px] xl:text-[15px] 2xl:text-[17px] 3xl:text-[18px] leading-[1.35] font-normal text-white [&_p]:text-white typography">

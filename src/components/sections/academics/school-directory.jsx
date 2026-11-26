@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Shared list for the school Programs and Departments tabs: departments (each with its
 // programmes), or programmes grouped UG / PG / other. Items with an `href` link to their page.
@@ -38,7 +39,7 @@ function ItemGrid({ items }) {
                                 {item.children.map((c) => (
                                     <li key={c.id}>
                                         <Link href={c.href} className="text-[#4A5565] hover:text-[#F97316] dark:text-white/80">
-                                            {c.title}
+                                            {withLineBreaks(c.title)}
                                         </Link>
                                     </li>
                                 ))}

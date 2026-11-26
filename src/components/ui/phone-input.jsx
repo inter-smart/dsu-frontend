@@ -4,6 +4,7 @@ import * as React from "react";
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown, Search, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export const COUNTRIES = [
     { name: "India", code: "in", dialCode: "+91" },
@@ -210,7 +211,7 @@ export const PhoneInput = React.forwardRef(
                                             <div className="flex items-center gap-2.5 truncate mr-2">
                                                 <FlagImage code={country.code} alt={country.name} className="w-[18px] h-[13px]" />
                                                 <span className="text-[#374151] dark:text-[#E5E7EB] truncate">
-                                                    {country.name}
+                                                    {withLineBreaks(country.name)}
                                                 </span>
                                             </div>
                                             <div className="flex items-center gap-1.5 shrink-0 text-[#6B7280] dark:text-[#9CA3AF]">

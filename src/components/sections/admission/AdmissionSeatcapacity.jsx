@@ -5,6 +5,7 @@ import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionSeatcapacity({ data }) {
     if (!data) return null;
@@ -124,7 +125,7 @@ export default function AdmissionSeatcapacity({ data }) {
                                         {/* Step Title */}
                                         {step?.title && (
                                             <h3 className="text-[16px] sm:text-[18px] xl:text-[20px] 2xl:text-[23px] 3xl:text-[26px] font-bold text-[#1E1E1E] dark:text-white whitespace-nowrap shrink-0">
-                                                {step.title}
+                                                {withLineBreaks(step.title)}
                                             </h3>
                                         )}
 

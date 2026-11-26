@@ -15,6 +15,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import RichText from "@/components/ui/rich-text";
 import { ctaLinkProps, fileLinkProps } from "@/lib/schools/link-props";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AcademicQualitySection({ data }) {
     const tabs = data?.tabs || [];
@@ -115,7 +116,7 @@ export default function AcademicQualitySection({ data }) {
                                                 data-active:after:!opacity-100 data-[state=active]:after:!opacity-100
                                                 ${idx !== tabs.length - 1 ? "before:absolute before:content-[''] before:right-0 before:w-[1px] before:h-[75%] before:bg-[rgba(33,33,33,0.1)] before:top-0 before:bottom-0 before:m-auto" : ""}`}
                                             >
-                                                {tab.label}
+                                                {withLineBreaks(tab.label)}
                                             </TabsTrigger>
                                         </SwiperSlide>
                                     ))}
@@ -177,7 +178,7 @@ export default function AcademicQualitySection({ data }) {
                                                     {...ctaLinkProps(link)}
                                                     className="text_1 text-[#212121] font-bold underline underline-offset-3 hover:text-[#F97316] transition-colors"
                                                 >
-                                                    {link.label}
+                                                    {withLineBreaks(link.label)}
                                                 </Link>
                                             </div>
                                         ))}
@@ -198,14 +199,14 @@ export default function AcademicQualitySection({ data }) {
                                                         after:absolute after:right-[15px] after:md:right-[18px] after:xl:right-[25px] after:2xl:right-[30px] after:3xl:right-[35px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:xl:text-[22px] after:2xl:text-[24px] after:font-bold after:text-[#212121] 
                                                         data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] data-open:after:!content-['-'] [&>svg]:!hidden"
                                                 >
-                                                    {practice.title}
+                                                    {withLineBreaks(practice.title)}
                                                 </AccordionTrigger>
 
                                                 <AccordionContent className="px-[15px] md:px-[18px] xl:px-[25px] 2xl:px-[30px] 3xl:px-[35px] pb-[15px] xl:pb-[20px] 2xl:pb-[25px] 3xl:pb-[30px] pt-0">
                                                     {/* Description */}
                                                     {practice.description && (
                                                         <p className="text_1   text-[#4A5565] mb-[15px] xl:mb-[20px] 2xl:mb-[25px]  whitespace-pre-line">
-                                                            {practice.description}
+                                                            {withLineBreaks(practice.description)}
                                                         </p>
                                                     )}
 

@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Tile widths inside a slide (wide + narrow pair, like the design)
 const TILE_WIDTH = {
@@ -211,7 +212,7 @@ export default function CampusSmart({ data }) {
                   href={data?.button?.href || "/"}
                   className="group inline-flex items-center gap-3 h-11 lg:h-12 2xl:h-12.5 px-4 lg:px-5 rounded-[3px] 2xl:rounded-[4px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-base 2xl:text-lg leading-none font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,0,0,0.18)]"
                 >
-                  {data.button.label}
+                  {withLineBreaks(data.button.label)}
                   <DotsIcon className="w-4 h-4 2xl:w-4.5 2xl:h-4.5 transition-transform duration-500 group-hover:rotate-90" />
                 </Link>
               </Reveal>

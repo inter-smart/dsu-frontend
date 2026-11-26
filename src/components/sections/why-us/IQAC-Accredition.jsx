@@ -7,6 +7,7 @@ import Link from "next/link";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function IQACAccredition({ data }) {
     const accreditationsCards = data?.cards || [];
@@ -57,7 +58,7 @@ export default function IQACAccredition({ data }) {
                                         : "bg-white dark:bg-[#1E1E1E] text-[#374151] dark:text-[#D1D5DB] border border-[#E5E7EB] dark:border-white/10 hover:border-[#F97316] hover:text-[#F97316] dark:hover:border-[#F97316] dark:hover:text-[#F97316]"
                                         }`}
                                 >
-                                    {tab.label}
+                                    {withLineBreaks(tab.label)}
                                 </button>
                             );
                         })}
@@ -111,7 +112,7 @@ export default function IQACAccredition({ data }) {
                                     )}
 
                                     <div className="text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[28px] text-[#212121] dark:text-white font-bold mb-[10px]">
-                                        {item.title}
+                                        {withLineBreaks(item.title)}
                                     </div>
                                     {item.description && (
                                         <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{item.description}</p>

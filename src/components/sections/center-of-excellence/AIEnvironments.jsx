@@ -20,7 +20,7 @@ export default function AIEnvironments({ data }) {
                         )}
                         {data?.description && (
                             <p className="!text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:w-[48%] xl:w-[40%] 2xl:w-[38%] shrink-0">
-                                {data.description}
+                                {withLineBreaks(data.description)}
                             </p>
                         )}
                     </div>
@@ -67,7 +67,7 @@ export default function AIEnvironments({ data }) {
                                         )}
                                         {item?.description && (
                                             <p className="!text_1 mt-[12px] xl:mt-[16px] leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] 2xl:max-w-[92%]">
-                                                {item.description}
+                                                {withLineBreaks(item.description)}
                                             </p>
                                         )}
                                         {bullets.length > 0 && (

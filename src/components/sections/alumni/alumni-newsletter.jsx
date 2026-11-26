@@ -6,6 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import AiAcademicMenubar from "../ai-enabled/Ai-academicMenubar";
 import LibrarySidebar from "../ai-enabled/library/library-sidemenubar";
 import AlumniFileList from "./alumni-file-list";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AlumniNewsletter({ data }) {
   return (
@@ -35,7 +36,7 @@ export default function AlumniNewsletter({ data }) {
                         size: "default",
                       })}
                     >
-                      {data.button.label}
+                      {withLineBreaks(data.button.label)}
                       <Image
                         src="/images/icon-btn.svg"
                         alt="home-btn"

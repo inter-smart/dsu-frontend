@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function WhysetupSection({ data }) {
     const swiperRef = useRef(null);
@@ -38,7 +39,7 @@ export default function WhysetupSection({ data }) {
                 <div className="flex flex-wrap items-center">
                     <div className="w-full lg:w-3/12">
                         <div className="cmn_Title text-white mb-[20px]">
-                            {data?.heading}
+                            {withLineBreaks(data?.heading)}
                         </div>
                         {data?.description && (
                             <div className="typography text_1 ">
@@ -55,7 +56,7 @@ export default function WhysetupSection({ data }) {
                                     />
                                 ) : (
                                     <p className="!my-0 !text-inherit !text-white leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                        {data?.description}
+                                        {withLineBreaks(data?.description)}
                                     </p>
                                 )}
                             </div>
@@ -160,7 +161,7 @@ export default function WhysetupSection({ data }) {
                                             )}
                                             {cards.title && (
                                                 <div className="cmn_Txt text-[#212121] dark:text-white font-semibold mb-[15px]">
-                                                    {cards.title}
+                                                    {withLineBreaks(cards.title)}
                                                 </div>
                                             )}
                                             {cards?.list?.length > 0 && (
@@ -176,7 +177,7 @@ export default function WhysetupSection({ data }) {
                                                             </span>
 
                                                             <span className="text_1 text-[#4A5565] dark:text-[#D1D5DB] font-normal leading-snug">
-                                                                {point.label}
+                                                                {withLineBreaks(point.label)}
                                                             </span>
                                                         </li>
                                                     ))}

@@ -5,6 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Fancybox } from "@fancyapps/ui";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 function youtubeId(url = "") {
     const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/);
@@ -108,7 +109,7 @@ export default function IntlVideoSection({ data }) {
                     <div className="mb-8 sm:mb-10 xl:mb-12">
                         {data.title && (
                             <h2 className="text-[26px] font-bold leading-[1.2] tracking-tight text-[#1E1E1E] dark:text-white sm:text-[32px] md:text-[38px] xl:text-[44px] 2xl:text-[48px]">
-                                {data.title}
+                                {withLineBreaks(data.title)}
                             </h2>
                         )}
                         {data.description?.length > 0 && (

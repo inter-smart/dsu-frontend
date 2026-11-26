@@ -1,5 +1,6 @@
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionHostelFee({ data }) {
   return (
@@ -7,7 +8,7 @@ export default function AdmissionHostelFee({ data }) {
       <div className="container">
         <div className="w-full h -auto block mb-5 sm:mb-7.5 2xl:mb-7.5 3xl:mb-10">
           <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-3.75 cmn_Title">
-            {data?.title}
+            {withLineBreaks(data?.title)}
           </Heading>
           <Text className="text_1">{data?.description}</Text>
         </div>
@@ -29,7 +30,7 @@ export default function AdmissionHostelFee({ data }) {
                     {item?.feeValue}
                   </div>
                   <div className="text_1 leading-[1.1] font-normal text-[#4A5565]">
-                    {item?.title}
+                    {withLineBreaks(item?.title)}
                   </div>
                 </div>
                 <div className="w-full h-auto gap-2.5 grid lg:grid-cols-2">
@@ -37,7 +38,7 @@ export default function AdmissionHostelFee({ data }) {
                     <div key={detail?.id} className="w-full h-auto">
                       <div className="w-full h-full p-[10px_15px] bg-linear-to-b from-[#FFF8EE] to-[#FFF3E0] rounded-md 2xl:rounded-[10px] gap-1.25 overflow-hidden flex flex-col">
                         <div className="text_1 leading-[1.1] font-medium text-[#212121]">
-                          {detail?.title}
+                          {withLineBreaks(detail?.title)}
                         </div>
                         <div className="text_1 font-normal text-[#4A5565]">
                           {detail?.value}

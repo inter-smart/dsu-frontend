@@ -13,6 +13,7 @@ import CtaButton from "@/components/ui/cta-button";
 import { useEffect, useCallback, useState } from "react";
 import { ShineBorder } from "@/components/ui/shine-border";
 import LazyVideo from "@/components/ui/lazy-video";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function HomeTestimonials({ data }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -96,7 +97,7 @@ export default function HomeTestimonials({ data }) {
             align="center"
             className="mb-1.25 3xl:mb-2.5"
           >
-            {data?.title}
+            {withLineBreaks(data?.title)}
           </Heading>
           <Text>{data?.description}</Text>
         </div>
@@ -123,7 +124,7 @@ export default function HomeTestimonials({ data }) {
                   />
                 </div>
                 <div className="text-sm sm:text-[13px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] dark:text-white transition-colors duration-500 group-hover:text-white">
-                  {item?.label}
+                  {withLineBreaks(item?.label)}
                 </div>
               </div>
             </div>
@@ -240,10 +241,10 @@ export default function HomeTestimonials({ data }) {
                           </div>
                           <div className="w-[calc(100%-(var(--avatar-size))] pl-2.5">
                             <h3 className="text-sm md:text-[15px] 3xl:text-xl leading-[1] font-medium text-white mb-1.25">
-                              {item?.name}
+                              {withLineBreaks(item?.name)}
                             </h3>
                             <div className="text-[11px] md:text-[13px] 3xl:text-sm leading-[1] font-normal text-white mb-1.25 3xl:mb-2.5">
-                              {item?.designation}
+                              {withLineBreaks(item?.designation)}
                             </div>
                             <div className="text-[11px] md:text-[12px] 3xl:text-sm leading-[1] font-normal text-white/50">
                               {item?.education}
@@ -266,7 +267,7 @@ export default function HomeTestimonials({ data }) {
                               </div>
                             )}
                             <div className="text-[13px] 2xl:text-[11px] leading-[1] font-normal text-white">
-                              {item?.badge?.title}
+                              {withLineBreaks(item?.badge?.title)}
                             </div>
                           </div>
                         </div>

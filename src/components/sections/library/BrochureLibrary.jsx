@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Menu } from "lucide-react";
 import LibrarySidebar from "./LibrarySidebar";
 import LibraryHtml from "./LibraryHtml";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const externalProps = (b) =>
     b?.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
@@ -75,7 +76,7 @@ export default function BrochureLibrary({ data, menu }) {
                                                     </span>
 
                                                     <span className="min-w-0 transition-colors duration-300 group-hover:text-(--basecolor)">
-                                                        {b?.label}
+                                                        {withLineBreaks(b?.label)}
                                                     </span>
                                                 </span>
 

@@ -6,6 +6,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { fileLinkProps } from "@/lib/schools/link-props";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function BscCurriculum({ data }) {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -113,7 +114,7 @@ export default function BscCurriculum({ data }) {
                                                 : "bg-white dark:bg-transparent border-[#DC2626]/30 dark:border-white/20 text-black dark:text-white hover:border-[#DC2626]"
                                             }`}
                                     >
-                                        {item.label}
+                                        {withLineBreaks(item.label)}
                                     </button>
                                 </SwiperSlide>
                             ))}
@@ -167,7 +168,7 @@ export default function BscCurriculum({ data }) {
                                                 </svg>
                                             </div>
                                             <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-black dark:text-white group-hover:text-[#DC2626] transition-colors duration-300">
-                                                {item.documentLink.label}
+                                                {withLineBreaks(item.documentLink.label)}
                                             </div>
                                         </div>
                                         <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex group-hover:translate-x-[-6px] transition-transform duration-300">

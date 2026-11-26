@@ -5,6 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { SliderArrow } from "@/components/sections/placements/slider-controls";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function RecruiterTestimonials({ data }) {
     const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", containScroll: "trimSnaps" });
@@ -17,7 +18,7 @@ export default function RecruiterTestimonials({ data }) {
                 <div className="flex items-end justify-between gap-[20px] mb-[25px] 3xl:mb-[40px]">
                     <div>
                         <Heading as="h2" className="text-[25px] leading-[1.1] mb-[8px] 3xl:mb-[16px] dark:text-white">
-                            {data?.title}
+                            {withLineBreaks(data?.title)}
                         </Heading>
                         <Text>{data?.description}</Text>
                     </div>
@@ -51,7 +52,7 @@ export default function RecruiterTestimonials({ data }) {
                                     </blockquote>
                                     <figcaption>
                                         <div className="text-[15px] 2xl:text-[17px] 3xl:text-[20px] font-medium text-[#212121] dark:text-white">
-                                            {item?.name}
+                                            {withLineBreaks(item?.name)}
                                         </div>
                                         <div className="text-[12px] 3xl:text-[14px] text-[#212121] dark:text-[#CBD5E1] mt-[4px]">
                                             {item?.company}

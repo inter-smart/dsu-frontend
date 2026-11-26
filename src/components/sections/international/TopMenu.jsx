@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useLenis } from "lenis/react";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function TopMenu({ data = [] }) {
     const [activeId, setActiveId] = useState("");
@@ -112,7 +113,7 @@ export default function TopMenu({ data = [] }) {
                                             : "text-[#111] hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:bg-clip-text hover:text-transparent"
                                     }`}
                                 >
-                                    {item.label}
+                                    {withLineBreaks(item.label)}
                                 </Link>
                             </li>
                         );

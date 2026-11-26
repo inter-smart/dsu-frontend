@@ -8,6 +8,7 @@ import { FreeMode, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const defaultData = {
     heading: "Your AI Training Arsenal",
@@ -245,7 +246,7 @@ export default function AiTrainingSection({ data }) {
                                 {dgx.title || "DGX B200"}
                             </h3>
                             <p className="text-[13px] sm:text-[14px] text-white/80 mt-1 leading-snug max-w-[700px] lg:text-[16px] xl:text-[17px] 2xl:text-[16px]">
-                                {dgx.description}
+                                {withLineBreaks(dgx.description)}
                             </p>
                         </div>
                     </div>
@@ -272,10 +273,10 @@ export default function AiTrainingSection({ data }) {
                                     {/* Text Content */}
                                     <div>
                                         <h4 className="text-[15px] sm:text-[16px] xl:text-[17.5px] 2xl:text-[19px] 3xl:text-[25px] font-bold text-white leading-snug transition-colors duration-300 group-hover:text-[#F97316]">
-                                            {item.title}
+                                            {withLineBreaks(item.title)}
                                         </h4>
                                         <p className="text-[12px] sm:text-[12.5px] 3xl:text-[18px] text-white/75 leading-relaxed mt-1 lg:text-[14.5px] xl:text-[15px] 2xl:text-[14px]">
-                                            {item.description}
+                                            {withLineBreaks(item.description)}
                                         </p>
                                         {item.note && (
                                             <span className="text-[12px] sm:text-[12.5px] xl:text-[13px] 2xl:text-[14px] 3xl:text-[20px] font-normal text-[#F97316] mt-1.5 block tracking-tight">
@@ -326,13 +327,13 @@ export default function AiTrainingSection({ data }) {
                                             </div>
                                             <div>
                                                 <span className="text-[11px] sm:text-[11.5px] xl:text-[12px] 2xl:text-[13px] 3xl:text-[18px] text-white font-normal block leading-none">
-                                                    {stat.title}
+                                                    {withLineBreaks(stat.title)}
                                                 </span>
                                                 <span className="text-[19px] sm:text-[21px] xl:text-[23px] 2xl:text-[25px] font-bold text-white tracking-tight leading-tight my-0.5 block transition-colors duration-300 group-hover:text-[#F97316]">
                                                     {stat.value}
                                                 </span>
                                                 <span className="text_1 text-white font-normal block leading-snug">
-                                                    {stat.label}
+                                                    {withLineBreaks(stat.label)}
                                                 </span>
                                             </div>
                                         </div>
@@ -364,7 +365,7 @@ export default function AiTrainingSection({ data }) {
                                 />
                             ) : (
                                 <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                    {jetson.description}
+                                    {withLineBreaks(jetson.description)}
                                 </p>
                             )}
                         </div>
@@ -444,7 +445,7 @@ export default function AiTrainingSection({ data }) {
                                                         {item.badge}
                                                     </span>
                                                     <h4 className="text-[15px] sm:text-[16px] xl:text-[17px] 2xl:text-[18.5px] 3xl:text-[25px] font-bold text-[#1E1E1E] dark:text-white leading-tight mb-[10px] py-[0_10px] border-b border-black/10 transition-colors duration-300 group-hover:text-[#F97316]">
-                                                        {item.title}
+                                                        {withLineBreaks(item.title)}
                                                     </h4>
                                                     <div className="mt-2">
                                                         <span className="text_1 text-[#9CA3AF] font-normal block leading-none">

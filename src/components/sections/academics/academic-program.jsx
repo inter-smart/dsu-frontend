@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 import AcademicCta from "./academic-cta";
+import { withLineBreaks } from "@/lib/line-breaks";
 export default function AcademicProgram({ data, variant }) {
     if (!data) return null;
 
@@ -56,7 +57,7 @@ export default function AcademicProgram({ data, variant }) {
                                         {!program?.url ? (
                                             <div className="flex items-center justify-between font-medium py-[15px] 2xl:py-[18px] 3xl:py-[22px] max-lg:w-full lg:max-w-[90%] border-b border-black/20 dark:border-white/10 px-0">
                                                 <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black dark:text-[#F3F4F6]">
-                                                    {program.title}
+                                                    {withLineBreaks(program.title)}
                                                 </div>
                                             </div>
                                         ) : (
@@ -65,7 +66,7 @@ export default function AcademicProgram({ data, variant }) {
                                             className="group flex items-center justify-between font-medium py-[15px] 2xl:py-[18px] 3xl:py-[22px] max-lg:w-full max-lg:gap-[20px] lg:max-w-[90%] border-b border-black/20 dark:border-white/10 px-0 transition-colors duration-300"
                                         >
                                             <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black dark:text-[#F3F4F6] transition-colors duration-300 group-hover:text-[#F97316] dark:group-hover:text-[#F97316]">
-                                                {program.title}
+                                                {withLineBreaks(program.title)}
                                             </div>
                                             <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex transition-all duration-300 group-hover:translate-x-[3px]">
                                                 <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="[&_path]:transition-colors [&_path]:duration-300 [&_path]:fill-[#212121] dark:[&_path]:fill-[#E5E7EB] group-hover:[&_path]:fill-[#F97316] dark:group-hover:[&_path]:fill-[#F97316]">

@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const defaultBuildData = {
     heading: "What You'll Build Here",
@@ -325,7 +326,7 @@ export default function BuildSection({ data }) {
                                             </h3>
 
                                             <p className="text_1 text-white line-clamp-2 font-normal !my-0 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                                {project.description}
+                                                {withLineBreaks(project.description)}
                                             </p>
                                         </div>
                                     </div>

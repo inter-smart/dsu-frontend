@@ -1,5 +1,6 @@
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { hasContent } from "@/lib/has-content";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 
 const renderText = (value) =>
@@ -20,7 +21,7 @@ export default function InnovationObjectives({ data }) {
 
                 {data?.heading && (
                     <h2 className="text-[20px] sm:text-[22px] xl:text-[26px] 2xl:text-[26px] 3xl:text-[32px] font-semibold leading-[1.3] mb-[30px] xl:mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px] text-[#212121] dark:text-white">
-                        {data.heading}
+                        {withLineBreaks(data.heading)}
                     </h2>
                 )}
 
@@ -39,7 +40,7 @@ export default function InnovationObjectives({ data }) {
                                 className="group relative pl-[14px] sm:pl-[16px] 2xl:pl-[18px] 3xl:pl-[22px] lg:pr-[30px] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[4px] 2xl:before:w-[5px] before:rounded-[1px] before:bg-gradient-to-b before:from-[#DC2626] before:to-[#F97316] before:content-[''] before:transition-all before:duration-300 hover:before:w-[7px]"
                             >
                                 <div className="text-[16px] sm:text-[17px] xl:text-[18px] 2xl:text-[18px] 3xl:text-[22px] font-semibold leading-[1.4] text-[#212121] dark:text-white">
-                                    {item.title}
+                                    {withLineBreaks(item.title)}
                                 </div>
                                 {hasBody && (
                                     <div className="mt-[2px] text-[14px] sm:text-[15px] xl:text-[17px] 2xl:text-[18px] 3xl:text-[21px] leading-[1.55] text-[#4A5565] dark:text-[#9CA3AF] [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF] typography">

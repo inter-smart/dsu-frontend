@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionSection({data}) {
     if (!data?.cards?.length) return null;
@@ -18,7 +19,7 @@ export default function AdmissionSection({data}) {
 
                                     {item?.heading && (
                                         <div className="text-[12px] lg:text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[31px] font-semibold text-[#212121] dark:text-black mb-[8px]">
-                                            {item.heading}
+                                            {withLineBreaks(item.heading)}
                                         </div>
                                     )}
                                     {item?.description?.length > 0 && (
@@ -35,7 +36,7 @@ export default function AdmissionSection({data}) {
                                         
                                     >
                                         <span className="relative z-[1] transition-transform duration-300">
-                                            {item.button.label}
+                                            {withLineBreaks(item.button.label)}
                                         </span>
 
                                           <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">

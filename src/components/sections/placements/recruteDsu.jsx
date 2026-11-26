@@ -15,6 +15,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const inputStyle = `h-[40px] 2xl:h-[45px] 3xl:h-[50px] w-full border border-black/10 rounded-[4px] 2xl:rounded-[6px] border-[#E5E7EB] dark:border-[#333] bg-white dark:bg-[#1f1f1f] text-[11px] xl:text-[13px] 2xl:text-[14px] font-normal placeholder:text-[#9CA3AF] text-[#212121] dark:text-[#F9FAFB] focus-visible:ring-1 focus-visible:ring-[#F97316]`;
 
@@ -165,11 +166,11 @@ export default function RecruiteDsu({ data }) {
                         {/* Content */}
                         <div className="relative z-10 p-6 sm:p-8 xl:p-10 2xl:p-12 flex flex-col justify-end h-full">
                             <h2 className="cmn_Title text-white max-w-[85%]">
-                                {leftCard.title}
+                                {withLineBreaks(leftCard.title)}
                             </h2>
 
                             <p className="text-[13px] sm:text-[14px] text-white/85 font-normal leading-relaxed mb-6 sm:mb-8 max-w-[560px] lg:text-[16px] xl:text-[17px] 2xl:text-[16px]">
-                                {leftCard.description}
+                                {withLineBreaks(leftCard.description)}
                             </p>
 
                             {/* Divider Line */}
@@ -211,10 +212,10 @@ export default function RecruiteDsu({ data }) {
                     <div className="bg-[#FAF5EE] dark:bg-[#18181A]  dark:border-[#2C2C2E] rounded-[6px] sm:rounded-[8px] 2xl:rounded-[10px] p-4 sm:p-8 xl:p-8 2xl:p-[40px] 3xl:p-[50px] flex flex-col justify-center">
                         <div className="mb-6 sm:mb-7">
                             <h3 className="text-[24px] sm:text-[28px] xl:text-[32px] 2xl:text-[36px] font-bold text-[#1F1F1F] dark:text-white leading-tight mb-2 tracking-tight">
-                                {formCard.title}
+                                {withLineBreaks(formCard.title)}
                             </h3>
                             <p className="text-[13px] sm:text-[14px] text-[#5A6472] dark:text-[#9CA3AF] leading-relaxed lg:text-[16px] xl:text-[17px] 2xl:text-[15px]">
-                                {formCard.description}
+                                {withLineBreaks(formCard.description)}
                             </p>
                         </div>
 

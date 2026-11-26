@@ -10,6 +10,7 @@ import "swiper/css/pagination";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Pulls the 11 character video id out of any YouTube link (watch, youtu.be, embed, shorts)
 const getYouTubeId = (url = "") =>
@@ -96,7 +97,7 @@ function GalleryCard({ item, group }) {
 
             {item.caption && (
                 <span className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 to-transparent px-[20px] pb-[30px] pt-[28px] text_1 font-semibold leading-tight text-white">
-                    {item.caption}
+                    {withLineBreaks(item.caption)}
                 </span>
             )}
         </a>
@@ -138,7 +139,7 @@ export default function CommonGallery({ data }) {
             <div className="container">
                 {data?.title && (
                     <Heading as="h2" className="cmn_Title leading-[1.1] mb-[8px] 3xl:mb-[16px] dark:text-white">
-                        {data.title}
+                        {withLineBreaks(data.title)}
                     </Heading>
                 )}
                 {Array.isArray(data?.description) ? (

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function ResearchEngagement({ data }) {
   return (
@@ -20,7 +21,7 @@ export default function ResearchEngagement({ data }) {
         <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-12 lg:gap-[15px_10px] 2xl:gap-[20px_10px] 3xl:gap-[25px_15px]">
           <div className="lg:max-w-105 2xl:max-w-130 3xl:max-w-170 pb-5 2xl:pb-10 3xl:pb-15 sm:col-span-2 lg:col-span-6 lg:self-center">
             <Heading className="text-white mb-3.75 lg:mb-6.25 2xl:mb-7.5 3xl:mb-10">
-              {data?.title}
+              {withLineBreaks(data?.title)}
             </Heading>
             <Text className="text-white">{data?.description}</Text>
           </div>
@@ -53,10 +54,10 @@ export default function ResearchEngagement({ data }) {
                     </div>
                     <div className="flex-1 min-w-0 pl-2.5 2xl:pl-5">
                       <div className="text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-semibold text-[#212121] transition-colors duration-300 group-hover/card:text-white mb-1.25 2xl:mb-2.5">
-                        {industry?.title}
+                        {withLineBreaks(industry?.title)}
                       </div>
                       <div className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] transition-colors duration-300 group-hover/card:text-white">
-                        {industry?.description}
+                        {withLineBreaks(industry?.description)}
                       </div>
                     </div>
                   </div>
@@ -112,7 +113,7 @@ export default function ResearchEngagement({ data }) {
                     />
                   </div>
                   <div className="text-[15px] lg:text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-semibold text-white">
-                    {persona.title}
+                    {withLineBreaks(persona.title)}
                   </div>
                 </div>
                 <ul className="space-y-2.5 2xl:space-y-3.75 3xl:space-y-5">

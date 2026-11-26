@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 export default function SchoolCampus({ data }) {
     // slug of the school whose programme list is open (cards with `groups` are clickable)
     const [openSlug, setOpenSlug] = useState(null);
@@ -16,7 +17,7 @@ export default function SchoolCampus({ data }) {
             <div className="container">
                 {data?.heading && (
                     <div className="cmn_Title">
-                        {data.heading}
+                        {withLineBreaks(data.heading)}
                     </div>
                 )}
                 {data?.description?.length > 0 && (
@@ -28,7 +29,7 @@ export default function SchoolCampus({ data }) {
                     <div className="w-full">
                         {data.schoolsSection.heading && (
                             <div className="lg:text-[24px] xl:text-[32px] 2xl:text-[40px] 3xl:text-[45px] text-[#212121] dark:text-white font-semibold mb-[20px] 3xl:mb-[30px]">
-                                {data.schoolsSection.heading}
+                                {withLineBreaks(data.schoolsSection.heading)}
                             </div>
                         )}
                         <div className="flex flex-wrap -m-[5px] md:-m-[10px_5px] xl:-m-[15px_5px] 3xl:-m-[20px_10px]">
@@ -39,7 +40,7 @@ export default function SchoolCampus({ data }) {
                                     <>
                                         {item?.title && (
                                             <div className="text-[12px] xl:text-[14px] 2xl:text-[17px] 3xl:text-[22px] text-[#212121] dark:text-white font-semibold">
-                                                {item.title}
+                                                {withLineBreaks(item.title)}
                                             </div>
                                         )}
                                         {item?.programCount && (
@@ -70,7 +71,7 @@ export default function SchoolCampus({ data }) {
                             <div id="school-programmes-panel" className="w-full mt-[15px] xl:mt-[25px] border border-black/10 rounded-[10px] bg-white dark:bg-[#242424] p-[15px] xl:p-[25px_30px]">
                                 <div className="flex flex-wrap items-center justify-between gap-[10px] mb-[15px]">
                                     <div className="text-[16px] xl:text-[22px] 2xl:text-[28px] text-[#212121] dark:text-white font-semibold">
-                                        {openSchool.title}
+                                        {withLineBreaks(openSchool.title)}
                                     </div>
                                     {openSchool.href && (
                                         <Link href={openSchool.href} className="text-[12px] xl:text-[14px] 2xl:text-[16px] font-bold underline underline-offset-4 text-(--basecolor)">
@@ -97,7 +98,7 @@ export default function SchoolCampus({ data }) {
                                                             {(() => {
                                                                 const label = (
                                                                     <>
-                                                                        {programme.title}
+                                                                        {withLineBreaks(programme.title)}
                                                                         {(programme.academicLevel || programme.meta) && (
                                                                             <span className="text-[#4A5565] dark:text-[#9CA3AF]">
                                                                                 {` (${[programme.academicLevel, programme.meta].filter(Boolean).join(", ")})`}
@@ -129,7 +130,7 @@ export default function SchoolCampus({ data }) {
                     <div className="w-full mt-[30px] lg:mt-[40px] xl:mt-[50px] 2xl:mt-[60px] 3xl:mt-[80px] pt-[30px] xl:pt-[40px] 2xl:pt-[50px] 3xl:pt-[60px] border-t border-[#212121]">
                         {data.campusesSection.heading && (
                             <div className="lg:text-[24px] xl:text-[32px] 2xl:text-[40px] 3xl:text-[45px] text-[#212121] dark:text-white font-semibold mb-[20px] 3xl:mb-[30px]">
-                                {data.campusesSection.heading}
+                                {withLineBreaks(data.campusesSection.heading)}
                             </div>
                         )}
                         <div className="flex flex-wrap -m-[5px] 3xl:-m-[10px]">
@@ -145,13 +146,13 @@ export default function SchoolCampus({ data }) {
                                                 )}
                                                 {item?.name && (
                                                     <div className="text-[18px] lg:text-[24px] xl:text-[28px] 2xl:text-[35px] 3xl:text-[40px] text-[#212121] dark:text-white font-semibold">
-                                                        {item.name}
+                                                        {withLineBreaks(item.name)}
                                                     </div>
                                                 )}
                                             </div>
                                             {item?.subtitle && (
                                                 <div className="text-[12px] lg:text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[31px] font-semibold text-[#212121] dark:text-white mb-[8px]">
-                                                    {item.subtitle}
+                                                    {withLineBreaks(item.subtitle)}
                                                 </div>
                                             )}
                                             {item?.address && <BlocksRenderer content={item.address} />}

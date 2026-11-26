@@ -8,6 +8,7 @@ import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { SliderArrow, FilterPill } from "@/components/sections/placements/slider-controls";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function IndustryEngagement({ data }) {
     const [category, setCategory] = useState(data?.categories?.[0]?.value);
@@ -37,7 +38,7 @@ export default function IndustryEngagement({ data }) {
         <section className="py-[40px] xl:py-[60px] 2xl:py-[75px] 3xl:py-[90px] bg-white dark:bg-[#0f1011] transition-colors duration-300">
             <div className="container">
                 <Heading as="h2" className="text-[25px] leading-[1.1] mb-[8px] 3xl:mb-[16px] dark:text-white">
-                    {data?.title}
+                    {withLineBreaks(data?.title)}
                 </Heading>
                 {Array.isArray(data?.description) ? (
                     <div className="text_1 typography">
@@ -50,7 +51,7 @@ export default function IndustryEngagement({ data }) {
                 <div className="flex gap-[10px] 3xl:gap-[16px] mt-[20px] 2xl:mt-[30px] 3xl:mt-[47px] mb-[25px] 3xl:mb-[55px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     {data?.categories?.map((c) => (
                         <FilterPill key={c?.value} active={category === c?.value} onClick={() => setCategory(c?.value)}>
-                            {c?.label}
+                            {withLineBreaks(c?.label)}
                         </FilterPill>
                     ))}
                 </div>
@@ -83,7 +84,7 @@ export default function IndustryEngagement({ data }) {
                                                     {item?.displayDate}
                                                 </time>
                                                 <h3 className="text-[17px] 2xl:text-[19px] 3xl:text-[24px] leading-tight font-semibold text-[#212121] dark:text-white mb-[12px] 3xl:mb-[18px]">
-                                                    {item?.title}
+                                                    {withLineBreaks(item?.title)}
                                                 </h3>
                                                 <p>{item?.description}</p>
                                             </div>

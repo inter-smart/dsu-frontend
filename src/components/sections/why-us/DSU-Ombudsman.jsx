@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import StudentSupportSidebar from "./StudentSupportSidebar";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function DSUOmbudsman({ data, menu }) {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
@@ -267,7 +268,7 @@ export default function DSUOmbudsman({ data, menu }) {
                 >
                   {data?.name && (
                     <div className="text-[18px] 2xl:text-[20px] 3xl:text-[25px] text-black font-bold mb-[6px]">
-                      {data.name}
+                      {withLineBreaks(data.name)}
                     </div>
                   )}
                   {data?.designation && (
@@ -275,7 +276,7 @@ export default function DSUOmbudsman({ data, menu }) {
                       className="text-[13px] 2xl:text-[16px] 3xl:text-[20px] text-[#DC2626] font-semibold relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px]
                                           after:w-[40px] after:xl:w-[40px] after:2xl:w-[50px] after:3xl:w-[60px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316] "
                     >
-                      {data.designation}
+                      {withLineBreaks(data.designation)}
                     </div>
                   )}
                   {Array.isArray(data?.description) &&

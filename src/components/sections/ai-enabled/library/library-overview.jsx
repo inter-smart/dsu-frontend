@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import RichText from "@/components/ui/rich-text";
 import LibraryFrame from "./library-frame";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Video id of a YouTube link (watch / youtu.be / embed / shorts) or a bare 11-character id; "" when it is not one.
 const youtubeId = (input) => {
@@ -99,7 +100,7 @@ export default function LibraryOverview({ data, menu, embedded }) {
         <LibraryFrame menu={menu} embedded={embedded} className="py-[40px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px] dark:bg-[#101010]">
 <div className="w-full lg:h-full rounded-[10px] border border-black/10 dark:border-white/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_30px] 2xl:p-[40px_40px] 3xl:p-[50px]">
                             <h2 className="cmn_Title dark:text-white mb-[25px]">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                             <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]  typography">
                                 {data.description && <BlocksRenderer content={data.description} />}
@@ -112,7 +113,7 @@ export default function LibraryOverview({ data, menu, embedded }) {
                                             <div className="cmn_Txt dark:text-white mb-[10px]">{item.title}</div>
                                             {item?.items.map((card) => (
                                                 <div key={card.id ?? card.label} className="text_1 font-semibold text-[#4A5565] dark:text-[#9CA3AF]">
-                                                    {card.label}
+                                                    {withLineBreaks(card.label)}
                                                 </div>
                                             ))}
                                         </div>
@@ -142,12 +143,12 @@ export default function LibraryOverview({ data, menu, embedded }) {
                                     />
                                 )}
                                 <div className="text_1 dark:text-[#9CA3AF] mb-[20px]">
-                                    {data?.membershipSection?.documentsRequired.description}
+                                    {withLineBreaks(data?.membershipSection?.documentsRequired.description)}
                                 </div>
                                 <ul>
                                     {data?.membershipSection?.documentsRequired?.items.map((item, id) => (
                                         <li className="text_1 text-[#4A5565] dark:text-[#9CA3AF] relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]" key={id}>
-                                            {item.label}
+                                            {withLineBreaks(item.label)}
                                         </li>
                                     ))}
                                 </ul>

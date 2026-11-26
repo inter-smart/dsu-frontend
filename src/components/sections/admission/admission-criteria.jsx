@@ -7,6 +7,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Heading } from "@/components/ui/heading";
 import useEmblaCarousel from "embla-carousel-react";
 import { buttonVariants } from "@/components/ui/button";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionCriteria({ data, variant }) {
   const [criteriaEmblaRef] = useEmblaCarousel(
@@ -31,10 +32,10 @@ export default function AdmissionCriteria({ data, variant }) {
         <div className="w-full h-auto mb-6.25 sm:mb-7.5 lg:mb-8.75 2xl:mb-10 3xl:mb-12.5 max-md:gap-3.75 flex flex-wrap md:items-end">
           <div className="w-full md:w-[75%]">
             <div className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mb-2.5 2xl:mb-3.75 3xl:mb-5 relative z-0 [--size:15px] 2xl:[--size:20px] 3xl:[--size:25px] before:content-[''] before:w-(--size) before:h-0.5 2xl:before:h-0.75 pl-[calc(var(--size)+8px)] before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:inline-block before:absolute before:z-1 before:inset-[0_auto_0_0]">
-              {data?.subTitle}
+              {withLineBreaks(data?.subTitle)}
             </div>
             <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-5 cmn_Title">
-              {data?.title}
+              {withLineBreaks(data?.title)}
             </Heading>
             <Text>{data?.description}</Text>
           </div>
@@ -51,7 +52,7 @@ export default function AdmissionCriteria({ data, variant }) {
                   size: "default",
                 })}
               >
-                {data?.button?.label}
+                {withLineBreaks(data?.button?.label)}
                 <Image
                   src="/images/icon-btn.svg"
                   alt="home-btn"
@@ -79,14 +80,14 @@ export default function AdmissionCriteria({ data, variant }) {
                 >
                   {item?.label && (
                     <div className="text-sm 2xl:text-base 3xl:text-xl leading-[1.2] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mb-1.25 lg:mb-2.5">
-                      {item?.label}
+                      {withLineBreaks(item?.label)}
                     </div>
                   )}
                   <div className="text-xl sm:text-[22px] lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.2] font-semibold text-[#212121] mb-2.5 lg:mb-3.75">
-                    {item?.title}
+                    {withLineBreaks(item?.title)}
                   </div>
                   <div className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.6] font-normal text-[#4A5565]">
-                    {item?.description}
+                    {withLineBreaks(item?.description)}
                   </div>
                 </div>
               </div>

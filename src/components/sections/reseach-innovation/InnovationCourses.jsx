@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { ctaLinkProps } from "@/lib/schools/link-props";
 import { hasContent } from "@/lib/has-content";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 
 const renderText = (value) =>
@@ -33,7 +34,7 @@ export default function InnovationCourses({ data }) {
 
                 {data?.heading && (
                     <h2 className="cmn_Title font-semibold leading-[1.3] mb-[30px] xl:mb-[45px] 2xl:mb-[55px] text-[#212121] dark:text-white">
-                        {data.heading}
+                        {withLineBreaks(data.heading)}
                     </h2>
                 )}
 
@@ -68,7 +69,7 @@ export default function InnovationCourses({ data }) {
                                 <div className="w-full lg:flex-1 min-w-0">
                                     {item?.title && (
                                         <h3 className="font-medium uppercase leading-[1.3] mb-[12px] xl:mb-[20px] 2xl:mb-[24px] 3xl:mb-[30px] text-[#212121] dark:text-white">
-                                            {item.title}
+                                            {withLineBreaks(item.title)}
                                         </h3>
                                     )}
 

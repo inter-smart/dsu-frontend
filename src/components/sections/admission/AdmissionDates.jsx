@@ -1,4 +1,5 @@
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const defaultDatesData = {
     heading: "Important Dates",
@@ -59,7 +60,7 @@ export default function AdmissionDates({ data }) {
                         <div key={group.id} className="border-b border-black/10 pb-[30px] xl:pb-[40px] 2xl:pb-[50px] 3xl:pb-[65px]">
                             {/* Group Heading */}
                             <h3 className="text-lg sm:text-xl lg:text-[22px] 2xl:text-[26px] 3xl:text-[30px] font-bold text-[#1E1E1E] dark:text-white tracking-tight mb-5 sm:mb-6 xl:mb-8 2xl:mb-10">
-                                {group.heading}
+                                {withLineBreaks(group.heading)}
                             </h3>
 
                             {/* Date Items */}
@@ -81,11 +82,11 @@ export default function AdmissionDates({ data }) {
                                         {/* Title & Description */}
                                         <div className="flex-1 min-w-0">
                                             <h4 className="cmn_Txt font-semibold text-[#1E1E1E] dark:text-white leading-[1.3]">
-                                                {item.title}
+                                                {withLineBreaks(item.title)}
                                             </h4>
                                             {item.description && (
                                                 <p className="mt-0.5 sm:mt-1 text_1 text-[#6B7280] dark:text-[#9CA3AF]  ">
-                                                    {item.description}
+                                                    {withLineBreaks(item.description)}
                                                 </p>
                                             )}
                                         </div>
@@ -102,10 +103,10 @@ export default function AdmissionDates({ data }) {
                     <div className="mt-2 sm:mt-6 xl:mt-8 2xl:mt-10 3xl:mt-12">
                         <div className="w-full h-full p-[20px] 2xl:p-[25px] 3xl:p-[30px] rounded-[3px] xl:rounded-[4px] 2xl:rounded-[6px] 3xl:rounded-[10px] bg-[linear-gradient(180deg,#FFF8EE_0%,#FFF3E0_100%)]">
                             <h4 className="text-[12px] sm:text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[22px] font-semibold text-[#1E1E1E] dark:text-white">
-                                {note.title}
+                                {withLineBreaks(note.title)}
                             </h4>
                             <p className="mt-1 sm:mt-1.5 text-[11px] sm:text-[12px] 3xl:text-[15px] text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6] max-w-[800px] lg:text-[14px] xl:text-[14px] 2xl:text-[13px]">
-                                {note.description}
+                                {withLineBreaks(note.description)}
                             </p>
                         </div>
                     </div>

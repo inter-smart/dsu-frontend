@@ -1,6 +1,7 @@
 "use client";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { hasContent } from "@/lib/has-content";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // an item is shown only with a label and a real url or file url
 const hasRealLink = (link) =>
@@ -23,7 +24,7 @@ function Chip({ link }) {
             rel={newTab ? "noopener noreferrer" : undefined}
             className={className}
         >
-            {link?.label}
+            {withLineBreaks(link?.label)}
         </a>
     );
 }
@@ -43,7 +44,7 @@ export default function AboutRecognition({ data }) {
             <div className="container">
                 {data.heading && (
                     <h2 className="mb-[10px] text-[25px] font-bold leading-[30px] text-black xl:text-[36px] xl:leading-[40px] 2xl:text-[44px] 2xl:leading-[50px] 3xl:text-[55px] 3xl:leading-[60px] dark:text-white">
-                        {data.heading}
+                        {withLineBreaks(data.heading)}
                     </h2>
                 )}
                 {hasContent(data.subheading) && (
@@ -62,7 +63,7 @@ export default function AboutRecognition({ data }) {
                             className="rounded-[20px] bg-[#FFF6EA] p-[20px] md:p-[24px] xl:rounded-[24px] xl:p-[30px] 2xl:p-[36px] 3xl:rounded-[30px] 3xl:p-[48px] dark:bg-[#18191B]"
                         >
                             <h3 className="mb-[14px] text-[14px] font-bold uppercase leading-[1.2] tracking-[0.14em] text-[#F97316] xl:mb-[18px] xl:text-[16px] 2xl:text-[18px] 3xl:mb-[26px] 3xl:text-[24px]">
-                                {col.title}
+                                {withLineBreaks(col.title)}
                             </h3>
                             <div className="flex flex-wrap gap-[10px] xl:gap-[14px] 3xl:gap-[20px]">
                                 {col.items.map((item, id) => (

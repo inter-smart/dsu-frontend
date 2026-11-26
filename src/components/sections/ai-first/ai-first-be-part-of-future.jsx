@@ -3,6 +3,7 @@ import { ShineBorder } from "@/components/ui/shine-border";
 import { Text } from "@/components/ui/text";
 import Image from "next/image";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function BePartOfFuture({ data }) {
   return (
@@ -40,7 +41,7 @@ export default function BePartOfFuture({ data }) {
                         : "group base-gradient inline-flex items-center gap-2.5 rounded-[4px] px-4 py-3 text-[13px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-(--basecolor)/30 active:translate-y-0 xl:px-5 xl:py-4 xl:text-[16px]"
                     }
                   >
-                    {cta.label}
+                    {withLineBreaks(cta.label)}
                     <Image
                       src="/images/ai-first/icons/cta-dots.svg"
                       alt=""
@@ -76,10 +77,10 @@ export default function BePartOfFuture({ data }) {
                 )}
                 <div className="w-full h-auto py-[0px_20px] 2xl:py-[10px_30px] 3xl:py-[10px_50px]">
                 <h3 className="mb-2 px-1 text-base font-semibold text-white 2xl:text-xl 3xl:text-[25px]">
-                  {card.title}
+                  {withLineBreaks(card.title)}
                 </h3>
                 <p className="px-1 text-[13px] leading-relaxed text-white/90 3xl:text-lg lg:text-[15px] xl:text-[15px] 2xl:text-[16px]">
-                  {card.description}
+                  {withLineBreaks(card.description)}
                 </p>
                 </div>
               </div>

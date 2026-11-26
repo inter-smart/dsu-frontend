@@ -17,7 +17,7 @@ function CtaButton({ button, className }) {
             {...(button.isExternal && { target: "_blank", rel: "noopener noreferrer" })}
             className={className}
         >
-            {button.label}
+            {withLineBreaks(button.label)}
             <Image
                 src="/images/icon-btn.svg"
                 alt=""
@@ -65,7 +65,7 @@ export default function AICta({ data }) {
                     )}
                     {data?.description && (
                         <p className="text_1 mt-[12px] xl:mt-[16px] leading-[1.6] text-white">
-                            {data.description}
+                            {withLineBreaks(data.description)}
                         </p>
                     )}
 

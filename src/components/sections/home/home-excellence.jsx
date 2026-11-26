@@ -14,6 +14,7 @@ import {
 import { Heading } from "@/components/ui/heading";
 import { buttonVariants } from "@/components/ui/button";
 import { ShineBorder } from "@/components/ui/shine-border";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Pinned scroll-scrub needs room to pin (desktop-size viewport) and is skipped for reduced motion.
 const PIN_QUERY =
@@ -420,7 +421,7 @@ export default function HomeExcellence({ data }) {
               align="center"
               className="mb-1.25 lg:mb-2.5"
             >
-              {data?.title}
+              {withLineBreaks(data?.title)}
             </Heading>
             <Text className="text-center">{data?.description}</Text>
           </div>
@@ -443,7 +444,7 @@ export default function HomeExcellence({ data }) {
                         className="hidden dark:block"
                       />
                       <div className="text-sm sm:text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-bold text-[#212121] dark:text-white mb-0.75 2xl:mb-1.25">
-                        {item?.title}
+                        {withLineBreaks(item?.title)}
                       </div>
                       <div className="text-xs sm:text-[13px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-normal text-[#4A5565] dark:text-white">
                         {item?.description ?? item?.text}
@@ -546,7 +547,7 @@ export default function HomeExcellence({ data }) {
                   <div className="w-full h-full flex flex-col justify-between">
                     <div className="w-full h-auto">
                       <div className="text-sm sm:text-xl 2xl:text-[25px] 3xl:text-[32px] leading-[1.2] font-normal text-[#212121] dark:text-white mb-2.5 2xl:mb-3.75">
-                        {activeItem?.excellenceContent?.heading?.title}
+                        {withLineBreaks(activeItem?.excellenceContent?.heading?.title)}
                         <span className="text-[21px] sm:text-[28px] 2xl:text-[34px] 3xl:text-[42px] font-bold block">
                           {activeItem?.excellenceContent?.heading?.highlightTxt}
                         </span>
@@ -575,7 +576,7 @@ export default function HomeExcellence({ data }) {
                           "lg:text-[14px]! 2xl:text-[16px]! 3xl:text-[18px]!"
                         }
                       >
-                        {activeItem?.excellenceContent?.description}
+                        {withLineBreaks(activeItem?.excellenceContent?.description)}
                       </Text>
                     </div>
                     {activeItem?.excellenceContent?.button?.label?.trim() && (
@@ -590,7 +591,7 @@ export default function HomeExcellence({ data }) {
                             size: "default",
                           })}
                         >
-                          {activeItem?.excellenceContent?.button?.label}
+                          {withLineBreaks(activeItem?.excellenceContent?.button?.label)}
                           <Image
                             src="/images/icon-btn.svg"
                             alt="home-btn"
@@ -618,7 +619,7 @@ export default function HomeExcellence({ data }) {
                     size: "default",
                   })}
                 >
-                  {activeItem?.excellenceContent?.button?.label}
+                  {withLineBreaks(activeItem?.excellenceContent?.button?.label)}
                   <Image
                     src="/images/icon-btn.svg"
                     alt="home-btn"

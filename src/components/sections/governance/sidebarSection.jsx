@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const title = "Governance Menu";
 
@@ -129,7 +130,7 @@ export default function SidebarSection({ menu = [],isOpen = false, onClose, titl
                                                     ? "!text-[#F97316]"
                                                     : "text-[#212121] group-hover:text-[#F97316]"
                                             }`}>
-                                                {item.name}
+                                                {withLineBreaks(item.name)}
                                             </div>
                                         </div>
 

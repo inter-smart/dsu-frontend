@@ -4,6 +4,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function IntershipSupport({ data }) {
     return (
@@ -19,7 +20,7 @@ export default function IntershipSupport({ data }) {
                             <ul className="space-y-4 mt-[15px] 3xl:mt-[25px]">
                                 {data?.list.map((item, id) => (
                                     <li className="cmn_Txt text-[#212121] dark:text-[#9CA3AF] font-semibold border-b border-black/10 pb-[10px] last-of-type:border-none relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]" key={id}>
-                                        {item.label}
+                                        {withLineBreaks(item.label)}
                                     </li>
                                 ))}
                             </ul>

@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import "swiper/css";
 import "swiper/css/grid";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function CareerPartners({ data }) {
     return (
@@ -13,7 +14,7 @@ export default function CareerPartners({ data }) {
             <div className="w-full shadow-[0px_4px_30px_0px_rgba(0,0,0,0.1)] dark:shadow-[0px_4px_30px_0px_rgba(0,0,0,0.5)] relative z-1 p-[20px_10px] md:p-[25px]  bg-white dark:bg-[#18191B] dark:border dark:border-white/10 text-center">
                 {data?.label && (
                     <div className="text-[11px] xl:text-[12px] 2xl:text-[14px] uppercase tracking-wider text-black/40 dark:text-white/50 font-normal mb-[25px] xl:mb-[35px] 2xl:mb-[45px] " >
-                        {data.label}
+                        {withLineBreaks(data.label)}
                     </div>
                 )}
                 {data?.description && (

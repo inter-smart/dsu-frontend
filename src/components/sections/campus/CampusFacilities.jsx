@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 import "swiper/css";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Section backgrounds (alternate white / light blue)
 const BG = {
@@ -134,7 +135,7 @@ function FacilitySection({ section, index }) {
 
                     <div className="w-full h-auto">
                         <p className="text_1 leading-[1.6] font-normal text-[#4A5565] dark:text-[#9CA3AF]">
-                            {section?.description}
+                            {withLineBreaks(section?.description)}
                         </p>
 
                         {section?.button?.label && (
@@ -142,7 +143,7 @@ function FacilitySection({ section, index }) {
                                 href={section?.button?.href || "/"}
                                 className="group mt-4 lg:mt-5 inline-flex items-center gap-3 h-11 lg:h-12 2xl:h-12.5 px-4 lg:px-5 rounded-[3px] 2xl:rounded-[4px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-base 2xl:text-lg leading-none font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,0,0,0.18)]"
                             >
-                                {section.button.label}
+                                {withLineBreaks(section.button.label)}
                                 <DotsIcon className="w-4 h-4 2xl:w-4.5 2xl:h-4.5 transition-transform duration-500 group-hover:rotate-90" />
                             </Link>
                         )}
@@ -223,7 +224,7 @@ function FacilitySection({ section, index }) {
                                                 )}
                                             >
                                                 <span className="block text-base lg:text-lg 2xl:text-2xl leading-tight font-bold text-white">
-                                                    {item.title}
+                                                    {withLineBreaks(item.title)}
                                                 </span>
                                             </span>
                                         )}

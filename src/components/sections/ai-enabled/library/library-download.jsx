@@ -4,6 +4,7 @@ import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link";
 import { fileLinkProps } from "@/lib/schools/link-props";
 import LibraryFrame from "./library-frame";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function LibraryDownloads({ data, menu, embedded }) {
 
@@ -11,10 +12,10 @@ export default function LibraryDownloads({ data, menu, embedded }) {
         <LibraryFrame menu={menu} embedded={embedded} className="py-[20px_60px] xl:py-[55px_80px] 2xl:py-[65px_100px] 3xl:py-[75px_170px]">
 <div className="w-full lg:h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_30px] 2xl:p-[40px_40px] 3xl:p-[50px]">
                             <h2 className="cmn_Title mb-[25px]">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                             <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-white mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]">
-                                {data.description}
+                                {withLineBreaks(data.description)}
                             </div>
 
                             {data?.files?.map((item, id) => (

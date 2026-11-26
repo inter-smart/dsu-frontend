@@ -2,6 +2,7 @@ import Image from "next/image";
 import RichText from "@/components/ui/rich-text";
 import Link from "next/link";
 import { CalendarDays, Clock3 } from "lucide-react";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const ZoomIcon = () => (
     <svg className="w-[18px] h-[18px] shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -85,7 +86,7 @@ export default function IQACActivities({ data }) {
             <div className="container">
                 {data.heading && (
                     <h2 className="cmn_Title mb-[12px] xl:mb-[16px] 2xl:mb-[20px] dark:text-white">
-                        {data.heading}
+                        {withLineBreaks(data.heading)}
                     </h2>
                 )}
                 {data.description && (
@@ -119,7 +120,7 @@ export default function IQACActivities({ data }) {
                             )}
                             <div className="min-w-0 flex-1 md:pl-[30px] xl:pl-[40px] 2xl:pl-[45px]">
                                 <h3 className="text-[18px] md:text-[20px] xl:text-[22px] 2xl:text-[24px] font-bold leading-[1.3] text-[#111827] dark:text-white mb-[12px]">
-                                    {item.title}
+                                    {withLineBreaks(item.title)}
                                 </h3>
                                 {item.description && (
                                     <RichText value={item.description} className="mb-[18px]" />

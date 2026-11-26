@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionEligibility({ data }) {
   return (
@@ -15,7 +16,7 @@ export default function AdmissionEligibility({ data }) {
       <div className="container">
         <div className="w-full h-auto block mb-5 sm:mb-7.5 lg:mb-10 2xl:mb-12.5 3xl:mb-15">
           <Heading className="mb-2.5 lg:mb-3.75 2xl:mb-5 3xl:mb-6.25 cmn_Title">
-            {data?.title}
+            {withLineBreaks(data?.title)}
           </Heading>
           <Text className="text_1">{data?.description}</Text>
         </div>
@@ -27,7 +28,7 @@ export default function AdmissionEligibility({ data }) {
                 value={items?.id}
                 className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-center text-[#212121] w-auto h-8.75 2xl:h-10 3xl:h-12.5 px-6.25 2xl:px-7.5 3xl:px-10 flex-none rounded-md 2xl:rounded-[10px] border border-[#F3D8CC] bg-white hover:bg-(--basecolor2)/20 data-active:border-transparent data-active:bg-linear-to-r data-active:from-(--basecolor) data-active:to-(--basecolor2) data-active:text-white data-active:shadow-none data-active:pointer-events-none"
               >
-                {items?.label}
+                {withLineBreaks(items?.label)}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -44,7 +45,7 @@ export default function AdmissionEligibility({ data }) {
                     className="[--gap:10px_15px] lg:[--gap:15px_20px] 2xl:[--gap:20px_30px] 3xl:[--gap:25px_40px] w-full h-auto bg-linear-to-b from-[#FFF8EE] to-[#FFF3E0] border border-black/10 rounded-md 2xl:rounded-[10px] overflow-hidden"
                   >
                     <AccordionTrigger className="text-base lg:text-lg 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-semibold text-[#212121] w-full h-auto p-(--gap) items-center hover:no-underline [&>svg]:hidden! after:ml-3 after:text-lg after:font-bold after:content-['+'] after:content-text-inherit aria-expanded:after:content-['-']">
-                      {item?.name}
+                      {withLineBreaks(item?.name)}
                     </AccordionTrigger>
                     <AccordionContent>
                       <Accordion

@@ -9,6 +9,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import LibrarySidebar from "./LibrarySidebar";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const cell = "border border-[#6B7280] dark:border-white/30";
 const th = `${cell} px-3 py-3 text-center text-[14px] md:text-[15px] 2xl:text-[16px] font-medium leading-tight`;
@@ -121,7 +122,7 @@ export default function UsefulUrlsLibrary({ data, menu }) {
                                             className="rounded-[10px] border border-black/10 bg-white last:border-b p-[10px_16px] md:p-[15px_20px] lg:p-[20px_25px] dark:border-white/10 dark:bg-white/5"
                                         >
                                             <AccordionTrigger className={triggerTitle}>
-                                                {section.title}
+                                                {withLineBreaks(section.title)}
                                             </AccordionTrigger>
 
                                             {section.items?.length > 0 && (

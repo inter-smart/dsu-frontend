@@ -1,4 +1,5 @@
 import SectionHeader, { toneClass } from "./ServiceShared";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function SupportServices({ data }) {
     const { number, tone = "blue", eyebrow, title, description, cards } = data;
@@ -12,10 +13,10 @@ export default function SupportServices({ data }) {
                     {cards.map((card) => (
                         <article key={card.id} className="rounded-[8px] border border-black/10 bg-white p-5 lg:p-6 2xl:px-[24px] 2xl:py-[28px]">
                             <h3 className="text-[18px] font-medium leading-tight tracking-[-0.02em] text-[#111] lg:text-[22px] 2xl:text-[26px]">
-                                {card.title}
+                                {withLineBreaks(card.title)}
                             </h3>
                             <p className="mt-3 text-[14px] leading-[1.6] text-[#444] 2xl:mt-[20px] 2xl:leading-[29px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
-                                {card.description}
+                                {withLineBreaks(card.description)}
                             </p>
                         </article>
                     ))}

@@ -13,6 +13,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import RegulatorySidebarSection from "@/components/sections/regulatory-approval/regulatorySidebarSection";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function OtherApproval({ data, menu = [] }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
@@ -47,7 +48,7 @@ export default function OtherApproval({ data, menu = [] }) {
                         </button>
                         <div className="w-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_40px] 2xl:p-[40px_45px] 3xl:p-[50px_55px]">
                             <h2 className="cmn_Title">
-                                {data.title}
+                                {withLineBreaks(data.title)}
                             </h2>
                             {data?.description?.length > 0 && (
                                 <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]  typography">
@@ -72,7 +73,7 @@ export default function OtherApproval({ data, menu = [] }) {
                                                     </div>
                                                     <div className="w-[calc(100%-35px)] lg:w-[calc(100%-45px)] xl:w-[calc(100%-55px)] 2xl:w-[calc(100%-65px)] 3xl:w-[calc(100%-70px)] ">
                                                         <div className="font-medium !text-black hover:no-underline text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] mb-[2px] xl:mb-[4px]">
-                                                            {item.title}
+                                                            {withLineBreaks(item.title)}
                                                         </div>
                                                         <div className="text_1 font-normal text-[#4A5565]">{item.shortDescription}</div>
                                                     </div>
@@ -82,7 +83,7 @@ export default function OtherApproval({ data, menu = [] }) {
                                             <AccordionContent className=" text-[12px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] [&_p]:text-[12px] [&_p]:lg:text-[14px] [&_p]:xl:text-[14px] [&_p]:2xl:text-[16px] [&_p]:3xl:text-[20px] [&_p]:text-[#4A5565] [&_p]:leading-normal [&_p]:font-normal [&_p]:mb-[30px] [&_a]:no-underline [&_a]:hover:no-underline text-[#797979] px-[15px] xl:px-[20px] 2xl:px-[25px] 3xl:px-[30px]">
                                                 {item?.content?.description && (
                                                     <div className="text_1 text-[#4A5565] mb-[10px]">
-                                                        {item.content.description}
+                                                        {withLineBreaks(item.content.description)}
                                                     </div>
                                                 )}
                                                 {item?.content?.approvedProgrammesTitle && (
@@ -108,7 +109,7 @@ export default function OtherApproval({ data, menu = [] }) {
                                                         >
                                                             <div className="text_1 text-[#212121] font-bold bg-white w-full h-full flex items-center justify-between !no-underline gap-[10px] rounded-[5px] px-[15px] transition-all duration-100 ease-in-out hover:bg-transparent hover:text-white">
                                                                 <span className="!no-underline transition-transform duration-100 ease-in-out hover:translate-x-[3px]">
-                                                                    {doc.title}
+                                                                    {withLineBreaks(doc.title)}
                                                                 </span>
 
                                                                 <div className="w-[12px] 2xl:w-[15px] h-[12px] 2xl:h-[15px] transition-transform duration-500 ease-in-out group-hover:translate-x-[3px]">

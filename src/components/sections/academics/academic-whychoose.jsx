@@ -5,6 +5,7 @@ import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Image from "next/image";
 
 import AcademicCta from "./academic-cta";
+import { withLineBreaks } from "@/lib/line-breaks";
 export default function AcademicWhychoose({ data }) {
     return (
         <section className="relative py-[40px] lg:py-[40px_50px] xl:py-[40px_60px] 2xl:py-[50px_80px] 3xl:py-[60px_100px] bg-[#FFF8ED] dark:bg-[#101010]">
@@ -12,7 +13,7 @@ export default function AcademicWhychoose({ data }) {
                 <div className="grid grid-cols-1 lg:grid-cols-12 max-lg:gap-[12px] mb-[25px] 2xl:mb-[40px] 3xl:mb-[60px]">
                     <div className="lg:col-span-4">
                         <div className="cmn_Title max-lg:mb-0">
-                            {data.heading}
+                            {withLineBreaks(data.heading)}
                         </div>
                     </div>
                     <div className="lg:col-span-6">
@@ -31,7 +32,7 @@ export default function AcademicWhychoose({ data }) {
                         <div className="break-inside-avoid" key={id}>
                             <div className="text-[11px] lg:text-[12px] xl:text-[14px] 2xl:text-[17px] 3xl:text-[20px] text-[#212121] dark:text-white font-normal relative pb-[15px] xl:pb-[20px] 2xl:pb-[25px] border-b border-black/20 dark:border-white/10 mb-[15px] pl-[25px] 2xl:pl-[30px]  
                                     before:absolute before:content-[''] before:top-0 before:left-0 before:w-[15px] before:h-[15px] before:lg:w-[18px] before:lg:h-[18px] before:2xl:w-[22px] before:2xl:h-[22px] before:bg-[url(/images/tick.svg)] before:bg-contain before:bg-no-repeat">
-                                {item.title}
+                                {withLineBreaks(item.title)}
                             </div>
                         </div>
                     ))}

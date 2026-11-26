@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { safeHref } from "@/lib/utils";
 import { ShineBorder } from "@/components/ui/shine-border";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function NewsCard({ item }) {
   return (
@@ -30,7 +31,7 @@ export default function NewsCard({ item }) {
       </div>
       <div className="w-full h-full p-[15px_25px] 2xl:p-[15px_25px] 3xl:p-[20px_30px] flex flex-col justify-between">
         <h3 className="text-base 2xl:text-lg 3xl:text-[23px] leading-normal font-bold line-clamp-3 text-[#212121] dark:text-white w-[90%] mb-5 3xl:mb-7.5">
-          {item?.title}
+          {withLineBreaks(item?.title)}
         </h3>
         <Link
           href={safeHref(item?.link, "/news-events")}

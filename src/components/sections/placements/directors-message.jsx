@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function DirectorMessage({ data }) {
     return (
@@ -47,10 +48,10 @@ export default function DirectorMessage({ data }) {
                                 )}
                             </div>
                             <div className="text-[13px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] text-black font-bold mb-[6px] dark:text-white">
-                                {data.name}
+                                {withLineBreaks(data.name)}
                             </div>
                             <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#4A5565] font-normal relative pb-[8px] dark:text-white ">
-                                {data.designation}
+                                {withLineBreaks(data.designation)}
                             </div>
                         </div>
                     </div>

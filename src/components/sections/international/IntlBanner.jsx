@@ -44,7 +44,7 @@ export default function IntlBanner({ data, formData }) {
                                                     aria-current={isLast ? "page" : undefined}
                                                     className="font-medium text-white"
                                                 >
-                                                    {crumb.label}
+                                                    {withLineBreaks(crumb.label)}
                                                 </span>
                                             ) : (
                                                 <Link
@@ -53,7 +53,7 @@ export default function IntlBanner({ data, formData }) {
                                                     rel={crumb.isExternal ? "noopener noreferrer" : undefined}
                                                     className="font-light text-white transition-colors hover:text-white"
                                                 >
-                                                    {crumb.label}
+                                                    {withLineBreaks(crumb.label)}
                                                 </Link>
                                             )}
                                             {!isLast && (
@@ -83,7 +83,7 @@ export default function IntlBanner({ data, formData }) {
                                 rel={button.isExternal ? "noopener noreferrer" : undefined}
                                 className="inline-flex h-[44px] items-center gap-4 rounded-[3px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-5 text-[15px] font-medium text-white transition-opacity duration-300 hover:opacity-90 2xl:h-[50px] 2xl:gap-[18px] 2xl:text-[18px]"
                             >
-                                {button.label}
+                                {withLineBreaks(button.label)}
                                 <div className="size-[16px] flex items-center justify-center">
                                     <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="7.68152" cy="1.37879" r="1.37879" fill="white" />
@@ -108,7 +108,7 @@ export default function IntlBanner({ data, formData }) {
                                     />
                                     <div>
                                         <p className="text-[20px] font-semibold leading-tight text-white lg:text-[28px] xl:text-[28px] 2xl:text-[30px]">
-                                            {scholarship.title}
+                                            {withLineBreaks(scholarship.title)}
                                         </p>
                                         <p className="mt-0.5 text-[14px] text-white/85 lg:text-[16px] xl:text-[16px] 2xl:text-[18px]">
                                             {scholarship.note}

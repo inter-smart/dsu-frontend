@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function CorporateConnect({ data }) {
     return (
@@ -36,7 +37,7 @@ export default function CorporateConnect({ data }) {
 
                         {data?.heading && (
                             <h2 className="cmn_Title mb-[15px] 2xl:mb-[20px] 3xl:mb-[25px] text-black dark:text-white">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
 
@@ -49,7 +50,7 @@ export default function CorporateConnect({ data }) {
                             <ul className="space-y-1 3xl:space-y-2">
                                 {data?.list.map((item, id) => (
                                     <li className="text_1 text-[#212121] dark:text-[#9CA3AF] font-medium relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]" key={id}>
-                                        {item.label}
+                                        {withLineBreaks(item.label)}
                                     </li>
                                 ))}
                             </ul>

@@ -159,7 +159,7 @@ export default function IdeaToExecution({ data }) {
                     </h3>
                     {step?.description && (
                       <p className="mt-1.5 !text_1 !leading-snug !text-[#364153]   xl:mt-2.5   dark:!text-[#D1D5DB]">
-                        {step.description}
+                        {withLineBreaks(step.description)}
                       </p>
                     )}
                   </div>

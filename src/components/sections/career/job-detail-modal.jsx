@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function JobDetailModal({ job, open, onOpenChange }) {
   return (
@@ -16,7 +17,7 @@ export default function JobDetailModal({ job, open, onOpenChange }) {
           <div>
             <div className="w-full h-auto border-t border-black/10 pt-5 xl:pt-6.25 mb-5 xl:mb-6.25">
               <h3 className="text-xl xl:text-2xl 2xl:text-3xl leading-tight font-bold text-[#212121] dark:text-white mb-1.5">
-                {job.title}
+                {withLineBreaks(job.title)}
               </h3>
               <div className="text-sm xl:text-base font-semibold text-[#212121] dark:text-gray-200 mb-3.75 xl:mb-5">
                 {job.department}

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AiLeadership({ data }) {
   return (
@@ -50,7 +51,7 @@ export default function AiLeadership({ data }) {
                     </div>
                     <div className="w-full h-auto block">
                       <h3 className="mb-2.5 sm:mb-3.75 font-semibold text-[#212121] dark:text-white lg:text-base 2xl:text-xl 3xl:text-[25px]">
-                        {card.title}
+                        {withLineBreaks(card.title)}
                       </h3>
                       <ul className="space-y-2.5 2xl:space-y-3.75">
                         {card.points?.map((point) => (

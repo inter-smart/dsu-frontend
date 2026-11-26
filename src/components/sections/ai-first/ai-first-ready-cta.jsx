@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function ReadyCta({ data }) {
   return (
@@ -20,12 +21,12 @@ export default function ReadyCta({ data }) {
       <div className="container flex flex-col items-center text-center">
         {data?.title && (
           <h2 className="mb-4 max-w-[895px] text-[26px] font-bold text-white sm:text-[32px] xl:text-[50px] 3xl:text-[55px]">
-            {data.title}
+            {withLineBreaks(data.title)}
           </h2>
         )}
         {data?.description && (
           <p className="mb-8 xl:max-w-[45%] text-[14px] leading-relaxed text-[#fff2f2] sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[18px]">
-            {data.description}
+            {withLineBreaks(data.description)}
           </p>
         )}
         {data?.ctas?.length > 0 && (
@@ -42,7 +43,7 @@ export default function ReadyCta({ data }) {
                     : "group base-gradient inline-flex items-center gap-2.5 rounded-[4px] px-5 py-3 text-[13px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-(--basecolor)/30 active:translate-y-0 xl:px-6 xl:py-4 xl:text-[16px]"
                 }
               >
-                {cta.label}
+                {withLineBreaks(cta.label)}
                 <Image
                   src={
                     cta.variant === "white"

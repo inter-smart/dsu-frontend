@@ -9,6 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function CareerGoal({ data }) {
   const [activeVideoModal, setActiveVideoModal] = useState(null);
@@ -42,10 +43,10 @@ export default function CareerGoal({ data }) {
           <div className="relative flex items-start justify-between border-l-[4px] border-[#F97316] bg-[#FFF7ED] dark:bg-[#F97316]/10 rounded-r-[6px] p-[15px_20px] xl:p-[20px_30px] 2xl:p-[25px_35px] 3xl:p-[30px_40px] mt-[30px] xl:mt-[40px] 2xl:mt-[50px]">
             <div>
               <div className="text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[22px] font-semibold text-[#212121] dark:text-white italic leading-snug">
-                {data.highlight.title}
+                {withLineBreaks(data.highlight.title)}
               </div>
               <div className="text_1   dark:text-[#9CA3AF] mt-[4px] xl:mt-[6px]">
-                {data.highlight.description}
+                {withLineBreaks(data.highlight.description)}
               </div>
             </div>
             <div className="flex-shrink-0 text-right ml-[20px]">
@@ -89,7 +90,7 @@ export default function CareerGoal({ data }) {
                       {/* Description */}
                       {item.description && (
                         <p className="text_1   dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] !mb-[15px] xl:!mb-[20px] ">
-                          {item.description}
+                          {withLineBreaks(item.description)}
                         </p>
                       )}
 
@@ -101,7 +102,7 @@ export default function CareerGoal({ data }) {
                               key={tag.id}
                               className="inline-block px-[14px] xl:px-[18px] 2xl:px-[20px] py-[6px] xl:py-[8px] 2xl:py-[9px] text_1 font-medium text-[#212121] dark:text-white bg-transparent dark:bg-white/10 border border-[#E5E9EE] dark:border-white/15 rounded-[6px]"
                             >
-                              {tag.label}
+                              {withLineBreaks(tag.label)}
                             </span>
                           ))}
                         </div>

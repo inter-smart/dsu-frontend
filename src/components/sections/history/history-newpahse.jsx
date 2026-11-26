@@ -3,6 +3,7 @@
 
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function HistoryNewpahse({ data }) {
     const isVideo = data?.media?.mime?.includes("video");
@@ -29,7 +30,7 @@ export default function HistoryNewpahse({ data }) {
             <div className="container">
                 <div className="max-w-[500px] xl:max-w-[500px] 2xl:max-w-[600px] 3xl:max-w-[890px] m-auto relative z-10 text-center"> 
                      <h2 className="cmn_Title text-white mb-[15px] xl:mb-[25px] 2xl:mb-[35px] 3xl:mb-[45px]">
-                                {data.title}
+                                {withLineBreaks(data.title)}
                             </h2>
                       <div className="text_1 leading-[1.2] text-white mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[20px] [&_p]:xl:mb-[25px] [&_p]:2xl:mb-[30px] [&_p]:3xl:mb-[40px] [&_p]:text-white  typography">
                                 <BlocksRenderer content={data?.description || []} />

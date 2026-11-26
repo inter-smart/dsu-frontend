@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import TiltCard from "@/components/ui/tilt-card";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // CHANGED: shared list styles so editor lists look like the points list
 const richTextLists = [
@@ -91,7 +92,7 @@ export default function AcademicVisionMission({ data }) {
                                     {/* Mission Title */}
                                     {mission.heading && (
                                         <h3 className="text-[14px] sm:text-[16px] xl:text-[18px] 2xl:text-[20px]  3xl:text-[25px] font-bold text-white mb-[8px] xl:mb-[12px]">
-                                            {mission.heading}
+                                            {withLineBreaks(mission.heading)}
                                         </h3>
                                     )}
 
@@ -123,7 +124,7 @@ export default function AcademicVisionMission({ data }) {
                                 {/* Vision Title */}
                                 {vision.heading && (
                                     <h3 className="text-[14px] sm:text-[16px] xl:text-[18px] 2xl:text-[20px]  3xl:text-[25px] font-bold text-white mb-[8px] xl:mb-[12px]">
-                                        {vision.heading}
+                                        {withLineBreaks(vision.heading)}
                                     </h3>
                                 )}
 

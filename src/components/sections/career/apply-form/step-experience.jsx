@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { inputStyle } from "./form-constants";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const EXPERIENCE_TYPES = [
   { key: "teaching", label: "Teaching" },
@@ -85,7 +86,7 @@ export default function StepExperience({ formData, setFormData }) {
           return (
             <div key={type.key}>
               <h4 className="text-base xl:text-lg font-bold text-[#212121] dark:text-white mb-2.5 xl:mb-3.75">
-                {type.label}
+                {withLineBreaks(type.label)}
               </h4>
               <div className="grid sm:grid-cols-2 gap-5 xl:gap-6.25">
                 <div>

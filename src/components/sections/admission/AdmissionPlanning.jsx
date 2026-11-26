@@ -1,13 +1,14 @@
 "use client";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 export default function AdmissionPlanning({ data }) {
     return (
         <section className='relative py-[40px] xl:py-[50px] 2xl:py-[70px]   bg-white dark:bg-black '>
             <div className="container">
                 <div className="lg:max-w-[50%] m-auto text-center">
                     <h2 className='cmn_Title mb-[25px] lg:mb-[45px]'>
-                        {data.heading}
+                        {withLineBreaks(data.heading)}
                     </h2>
                     <div className="text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6]   mb-8 sm:mb-10 xl:mb-12  typography">
                         {data?.description?.length > 0 && <BlocksRenderer content={data.description} />}
@@ -21,7 +22,7 @@ export default function AdmissionPlanning({ data }) {
 
                         >
                             <span className="relative z-[1] transition-transform duration-300">
-                                {data.button.label}
+                                {withLineBreaks(data.button.label)}
                             </span>
 
                             <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">

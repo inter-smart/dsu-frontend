@@ -6,6 +6,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { hasContent } from "@/lib/has-content";
 import { cn } from "@/lib/utils";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // One legacy card: hover-capable devices reveal the description on hover; others use explicit controls.
 function LegacyCard({ item, index, active, onToggle, className }) {
@@ -67,7 +68,7 @@ function LegacyCard({ item, index, active, onToggle, className }) {
               onClick={onToggle}
               className="rounded-[4px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F97316]"
             >
-              {item.title}
+              {withLineBreaks(item.title)}
             </button>
           ) : (
             item.title

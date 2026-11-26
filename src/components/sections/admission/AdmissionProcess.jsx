@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionProcess({ data }) {
     if (!data) return null;
@@ -82,12 +83,12 @@ export default function AdmissionProcess({ data }) {
                                 <div className="pt-2 sm:pt-2.5 xl:pt-3 max-w-3xl">
                                     {step?.title && (
                                         <h3 className="cmn_Title font-bold text-[#1E1E1E] dark:text-white leading-snug">
-                                            {step.title}
+                                            {withLineBreaks(step.title)}
                                         </h3>
                                     )}
                                     {step?.description && (
                                         <p className="mt-1 sm:mt-1.5 text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-relaxed  ">
-                                            {step.description}
+                                            {withLineBreaks(step.description)}
                                         </p>
                                     )}
                                 </div>
@@ -107,7 +108,7 @@ export default function AdmissionProcess({ data }) {
                             className="group relative inline-flex h-[36px] sm:h-[40px] xl:h-[44px] 3xl:h-[50px] items-center justify-center gap-[10px] overflow-hidden rounded-[5px] bg-gradient-to-r from-[#DC2626] to-[#F97316] px-[20px] sm:px-[24px] text-[13px] sm:text-[14px] xl:text-[15px] font-bold capitalize text-white transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.35)] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                         >
                             <span className="relative z-[1] transition-transform duration-300">
-                                {button.label}
+                                {withLineBreaks(button.label)}
                             </span>
 
                             <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[3px] group-hover:scale-110">

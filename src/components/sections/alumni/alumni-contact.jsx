@@ -2,6 +2,7 @@ import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
 import AiAcademicMenubar from "../ai-enabled/Ai-academicMenubar";
 import LibrarySidebar from "../ai-enabled/library/library-sidemenubar";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AlumniContact({ data }) {
   return (
@@ -19,7 +20,7 @@ export default function AlumniContact({ data }) {
             <div className="w-full h-auto p-[20px_00px_30px_20px] sm:p-[30px_0px_40px_30px] md:p-[30px_30px_70px_30px] lg:p-[30px_80px_40px_30px] 2xl:p-[40px_100px_50px_40px] 3xl:p-[50px_120px_50px_50px] border border-black/10 rounded-[10px] sm:rounded-[13px] 2xl:rounded-[20px] overflow-hidden">
               <div className="w-full h-auto mb-6.25 lg:mb-6.25 2xl:mb-7.5 3xl:mb-10">
                 <Heading className={"mb-3.75 2xl:mb-6.25"}>
-                  {data?.title}
+                  {withLineBreaks(data?.title)}
                 </Heading>
                 <Text className={"text-[#4A5565]"}>{data?.description}</Text>
               </div>
@@ -31,7 +32,7 @@ export default function AlumniContact({ data }) {
                   >
                     <div className="w-full overflow-x-auto">
                       <div className="text-base 2xl:text-lg 3xl:text-2xl leading-[1.1] font-bold text-[#212121] mb-3.75 2xl:mb-5 3xl:mb-7.5">
-                        {item?.title}
+                        {withLineBreaks(item?.title)}
                       </div>
                       <table className="w-full min-w-160 table-fixed border-collapse text-center text-[10px] sm:text-xs">
                         <thead className="bg-[#F97316] text-white">

@@ -11,6 +11,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Used only when the /api/placements request fails
 const fallbackMenuItems = [
@@ -216,7 +217,7 @@ export default function PlacementmenuBarClient({ items = null, title = "Placemen
                                                             className={`text_1 font-semibold transition-colors duration-300 group-hover:text-[#F97316] text-[13px] ${isActive ? "text-[#F97316]" : "text-[#212121] dark:text-[#F9FAFB]"
                                                                 }`}
                                                         >
-                                                            {item.label}
+                                                            {withLineBreaks(item.label)}
                                                         </div>
                                                     </Link>
 
@@ -246,7 +247,7 @@ export default function PlacementmenuBarClient({ items = null, title = "Placemen
                                                                             className={`text_1 text-[12px] transition-colors duration-300 hover:text-[#F97316] ${isSubActive ? "text-[#F97316] font-semibold" : "text-[#212121]/80 dark:text-[#F9FAFB]/80"
                                                                                 }`}
                                                                         >
-                                                                            {subItem.label}
+                                                                            {withLineBreaks(subItem.label)}
                                                                         </span>
                                                                     </Link>
                                                                 </li>
@@ -278,7 +279,7 @@ export default function PlacementmenuBarClient({ items = null, title = "Placemen
                                             className={`text_1 font-semibold transition-colors duration-300 group-hover:text-[#F97316] text-[13px] ${isActive ? "text-[#F97316]" : "text-[#212121] dark:text-[#F9FAFB]"
                                                 }`}
                                         >
-                                            {item.label}
+                                            {withLineBreaks(item.label)}
                                         </div>
 
                                         <div className="flex h-[8px] w-[8px] items-center justify-center">
@@ -346,7 +347,7 @@ export default function PlacementmenuBarClient({ items = null, title = "Placemen
                                                 }
                                             `}
                                         >
-                                            {item.label}
+                                            {withLineBreaks(item.label)}
                                         </span>
                                     </Link>
                                 );

@@ -8,6 +8,7 @@ import { Navigation } from "swiper/modules";
 import { cn } from "@/lib/utils";
 
 import "swiper/css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Section backgrounds (alternate white / light blue)
 const BG = {
@@ -84,7 +85,7 @@ export default function CampusSustainability({ data }) {
 
                         {data?.description && (
                             <p className="text_1 mt-3 lg:mt-4 leading-[1.6] font-normal text-[#4A5565] dark:text-[#9CA3AF] lg:max-w-[90%]">
-                                {data.description}
+                                {withLineBreaks(data.description)}
                             </p>
                         )}
 
@@ -93,7 +94,7 @@ export default function CampusSustainability({ data }) {
                                 href={data.button.href || "/"}
                                 className="group mt-4 lg:mt-5 inline-flex items-center gap-3 h-11 lg:h-12 2xl:h-12.5 px-4 lg:px-5 rounded-[3px] 2xl:rounded-[4px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-base 2xl:text-lg leading-none font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,0,0,0.18)]"
                             >
-                                {data.button.label}
+                                {withLineBreaks(data.button.label)}
                                 <DotsIcon className="w-4 h-4 2xl:w-4.5 2xl:h-4.5 transition-transform duration-500 group-hover:rotate-90" />
                             </Link>
                         )}
@@ -151,7 +152,7 @@ export default function CampusSustainability({ data }) {
                                             {item?.title && (
                                                 <div className="absolute inset-x-0 bottom-0 pt-16 px-3 lg:px-3.5 pb-3 lg:pb-3.5 bg-linear-to-t from-black/80 via-black/40 to-transparent">
                                                     <h3 className="text-base lg:text-lg 2xl:text-xl leading-tight font-bold text-white">
-                                                        {item.title}
+                                                        {withLineBreaks(item.title)}
                                                     </h3>
                                                 </div>
                                             )}
@@ -159,7 +160,7 @@ export default function CampusSustainability({ data }) {
 
                                         {/* Description */}
                                         <p className="grow px-3 lg:px-3.5 py-4 lg:py-5 text-sm lg:text-base 2xl:text-lg leading-[1.6] font-normal text-[#4A5565] dark:text-[#9CA3AF]">
-                                            {item?.description}
+                                            {withLineBreaks(item?.description)}
                                         </p>
                                     </article>
                                 </SwiperSlide>

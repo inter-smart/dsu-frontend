@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function NBABoard({ data }) {
     return (
@@ -11,7 +12,7 @@ export default function NBABoard({ data }) {
                 <div className="flex flex-wrap">
                     <div className="lg:w-1/3">
                         <h2 className="cmn_Title">
-                            {data.title}
+                            {withLineBreaks(data.title)}
                         </h2>
                     </div>
                     <div className="lg:w-2/3">
@@ -26,7 +27,7 @@ export default function NBABoard({ data }) {
                                     >
                                         <div className="text_1 text-[#212121] font-bold bg-white w-full h-full flex items-center justify-between !no-underline gap-[10px] rounded-[5px] px-[15px] transition-all duration-100 ease-in-out hover:bg-transparent hover:text-white">
                                             <span className="!no-underline transition-transform duration-100 ease-in-out hover:translate-x-[3px]">
-                                                {data?.Button.title}
+                                                {withLineBreaks(data?.Button.title)}
                                             </span>
 
                                             <div className="w-[12px] 2xl:w-[15px] h-[12px] 2xl:h-[15px] transition-transform duration-500 ease-in-out group-hover:translate-x-[3px]">

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link";
 import StudentSupportSidebar from "./StudentSupportSidebar";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function DSUCommitee({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
@@ -42,7 +43,7 @@ export default function DSUCommitee({ data, menu }) {
 
                             <div className="w-full lg:max-w-[95%]">
                                 <h2 className="cmn_Title">
-                                    {data.heading}
+                                    {withLineBreaks(data.heading)}
                                 </h2>
                                 <div className="text_1 leading-[1.2] text-[#4A5565] mb-[15px] xl:mb-[20px] 2xl:mb-[30px] 3xl:mb-[40px]  typography">
                                     <BlocksRenderer content={data.description} />
@@ -71,12 +72,12 @@ export default function DSUCommitee({ data, menu }) {
                                                         <td
                                                             className={`border-r border-[#707070] px-[10px] py-[13px] text-center text_1 text-[#212121] font-medium last:border-r-0 lg:text-[15px] `}
                                                         >
-                                                            {item.name}
+                                                            {withLineBreaks(item.name)}
                                                         </td>
                                                         <td
                                                             className={`border-r border-[#707070] px-[10px] py-[13px] text-center text_1 text-[#212121] font-medium  last:border-r-0 lg:text-[15px] `}
                                                         >
-                                                            {item.designation}
+                                                            {withLineBreaks(item.designation)}
                                                         </td>
                                                         <td
                                                             className={`border-r border-[#707070] px-[10px] py-[13px] text-center text_1 text-[#212121] font-medium last:border-r-0 lg:text-[15px] `}

@@ -11,6 +11,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import CtaButton from "@/components/ui/cta-button";
 import { ShineBorder } from "@/components/ui/shine-border";
 import React, { useState, useEffect, useCallback } from "react";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function HomeAbout({ data }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -101,7 +102,7 @@ export default function HomeAbout({ data }) {
                       />
                     </div>
                     <div className="text-sm 2xl:text-base 3xl:text-[22px] leading-[1.1] font-normal text-[#4A5565] dark:text-white transition-colors duration-400 group-hover:text-white">
-                      {item?.label}
+                      {withLineBreaks(item?.label)}
                     </div>
                   </div>
                 </div>
@@ -133,7 +134,7 @@ export default function HomeAbout({ data }) {
                   />
                 </span>
                 <span className="text-[11px] lg:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-normal text-white w-[calc(100%-20px)] 2xl:w-[calc(100%-25px)] 3xl:w-[calc(100%-30px)] pl-1.25 2xl:pl-1.75">
-                  {data?.virtualTour?.label}
+                  {withLineBreaks(data?.virtualTour?.label)}
                 </span>
               </Link>
             </div>
@@ -148,10 +149,10 @@ export default function HomeAbout({ data }) {
                     size="p0"
                     className={"dark:text-white tracking-[25%] w-fit mb-2.5"}
                   >
-                    {data?.leadership?.subTitle}
+                    {withLineBreaks(data?.leadership?.subTitle)}
                   </Text>
                   <Heading as="h2" aurora speed={2}>
-                    {data?.leadership?.title}
+                    {withLineBreaks(data?.leadership?.title)}
                   </Heading>
                 </div>
                 <div data-reveal className="w-full h-auto block" style={{ "--reveal-delay": "120ms" }}>
@@ -187,19 +188,19 @@ export default function HomeAbout({ data }) {
                                   "text-base! 3xl:text-lg! font-semibold text-[#003463]"
                                 }
                               >
-                                {item?.name}
+                                {withLineBreaks(item?.name)}
                               </Text>
                               <Text
                                 className={
                                   "text-sm! 3xl:text-lg! text-[#003463] mb-3.75 sm:mb-2.5 3xl:mb-3.75"
                                 }
                               >
-                                {item?.designation}
+                                {withLineBreaks(item?.designation)}
                               </Text>
                               <Text
                                 className={"text-sm 3xl:text-lg text-[#121212]"}
                               >
-                                {item?.description}
+                                {withLineBreaks(item?.description)}
                               </Text>
                               <div className="w-full h-auto flex items-center justify-end space-x-2.5 absolute z-1 inset-[calc(var(--avatarWidth)-20px)_0_auto_auto]">
                                 {scrollSnaps.map((_, snapIdx) => {
@@ -262,7 +263,7 @@ export default function HomeAbout({ data }) {
                   "dark:text-white tracking-[25%] w-fit mb-2.5 sm:mb-3.75 xl:mb-5 3xl:mb-7.5"
                 }
               >
-                {data?.aboutInfo?.subTitle}
+                {withLineBreaks(data?.aboutInfo?.subTitle)}
               </Text>
               <Heading
                 as="h2"
@@ -270,10 +271,10 @@ export default function HomeAbout({ data }) {
                 speed={2}
                 className="mb-2.5 sm:mb-3.75 xl:mb-5 2xl:mb-6.25"
               >
-                {data?.aboutInfo?.title}
+                {withLineBreaks(data?.aboutInfo?.title)}
               </Heading>
               <Text className={"mb-3.75 sm:mb-5 2xl:mb-6.25 3xl:mb-7.5"}>
-                {data?.aboutInfo?.description}
+                {withLineBreaks(data?.aboutInfo?.description)}
               </Text>
               <div className="w-full h-auto flex items-center">
                 <div className="text-[25px] sm:text-[28px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[50px] leading-[1.2] font-bold bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent transition-colors duration-500 group-hover:text-white">

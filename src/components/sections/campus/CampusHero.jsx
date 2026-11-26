@@ -72,7 +72,7 @@ export default function CampusHero({ data }) {
                             {withLineBreaks(data?.title)}
                         </h1>
                         <p className="text_1 text-white ">
-                            {data?.description}
+                            {withLineBreaks(data?.description)}
                         </p>
                     </div>
 
@@ -108,7 +108,7 @@ export default function CampusHero({ data }) {
                                             <circle cx="19.0662" cy="10.3533" r="0.542768" fill="#EFF9FF" />
                                         </svg>
 
-                                        {tour?.label}
+                                        {withLineBreaks(tour?.label)}
                                     </span>
                                 </span>
                             </Link>

@@ -4,6 +4,7 @@ import { Info, Plus } from "lucide-react";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { IntlButton } from "./intl-button-section";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // International flexible section: a title, an optional description and collapsible items.
 export default function IntlAccordionSection({ data }) {
@@ -29,7 +30,7 @@ export default function IntlAccordionSection({ data }) {
                             {/* brand bar on the open card */}
                             <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[4px] origin-top scale-y-0 bg-gradient-to-b from-[#DC2626] to-[#F97316] transition-transform duration-300 in-data-open:scale-y-100 xl:w-[5px]" />
                             <AccordionTrigger className="group min-h-[60px] items-center gap-[16px] rounded-none px-[18px] py-[14px] text-[16px] font-semibold leading-snug text-[#212121] hover:no-underline focus-visible:ring-inset aria-expanded:pb-[10px] aria-expanded:text-[#DC2626] dark:text-white xl:aria-expanded:pb-[12px] xl:min-h-[72px] xl:px-[26px] xl:text-[18px] 2xl:text-[20px] 3xl:min-h-[92px] 3xl:px-[34px] 3xl:text-[26px] [&>svg]:!hidden">
-                                {item.title}
+                                {withLineBreaks(item.title)}
                                 <span aria-hidden="true" className="flex size-[34px] shrink-0 items-center justify-center rounded-full bg-[#F97316]/10 text-[#DC2626] transition-all duration-300 group-hover:bg-[#F97316]/20 group-aria-expanded:rotate-45 group-aria-expanded:bg-gradient-to-r group-aria-expanded:from-[#DC2626] group-aria-expanded:to-[#F97316] group-aria-expanded:text-white group-aria-expanded:shadow-[0_4px_12px_rgba(220,38,38,0.3)] xl:size-[40px] 3xl:size-[50px]">
                                     <Plus className="size-[18px] xl:size-[20px]" strokeWidth={2.5} />
                                 </span>

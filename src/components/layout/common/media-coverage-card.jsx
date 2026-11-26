@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function MediaCoverageCard({ item }) {
   return (
@@ -22,7 +23,7 @@ export default function MediaCoverageCard({ item }) {
             {item?.source} {item?.source && item?.date ? "|" : ""} {item?.date}
           </div>
           <div className="text-base 2xl:text-lg 3xl:text-[23px] leading-normal font-bold text-[#212121] dark:text-white">
-            {item?.title}
+            {withLineBreaks(item?.title)}
           </div>
         </div>
         <span className="mt-5 3xl:mt-7.5 text-sm 3xl:text-[15px] leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 group-hover:opacity-50">

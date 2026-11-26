@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Static pages still pass the three named groups; fold them into the same list the CMS adapter returns.
 const legacyGroups = (d) => [
@@ -44,7 +45,7 @@ export default function AiClinicalFacility({ data }) {
                                         <ul className={short ? "columns-1 md:columns-2 gap-x-[40px] xl:gap-x-[48px] max-w-[650px] mb-[10px]" : "mb-[10px]"}>
                                             {items.map((item, id) => (
                                                 <li className="text_1 text-[#4A5565] dark:text-[#fff] relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]" key={item.id ?? id}>
-                                                    {item.label}
+                                                    {withLineBreaks(item.label)}
                                                 </li>
                                             ))}
                                         </ul>

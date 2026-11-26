@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { ctaLinkProps } from "@/lib/schools/link-props";
 import { hasContent } from "@/lib/has-content"; 
+import { withLineBreaks } from "@/lib/line-breaks";
 
 
 const renderText = (value) =>
@@ -33,7 +34,7 @@ export default function PhdProgrammes({ data }) {
                         <div className="w-full">
                             {data?.heading && (
                                 <h1 className="text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] mb-[10px] xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white">
-                                    {data.heading}
+                                    {withLineBreaks(data.heading)}
                                 </h1>
                             )}
                             {Array.isArray(data?.description) && hasContent(data.description) && (

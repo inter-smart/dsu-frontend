@@ -6,6 +6,7 @@ import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 function FacultyCard({ member, categoryLabel }) {
     const profileHref = member.profileUrl || "#";
@@ -52,13 +53,13 @@ function FacultyCard({ member, categoryLabel }) {
                 <div className="text-center mt-1">
                     <Link href={profileHref} className="block">
                         <h4 className="font-bold text-[14px] sm:text-[15px] xl:text-[16px] 2xl:text-[20px] text-[#212121] dark:text-[#F3F4F6] group-hover:text-[#E05338] dark:group-hover:text-[#F97316] transition-colors line-clamp-1 leading-snug mb-[2px]">
-                            {member.name}
+                            {withLineBreaks(member.name)}
                         </h4>
                     </Link>
 
                     {member.designation && (
                         <div className="text_1 inline-block bg-gradient-to-r from-[#DC2626] to-[#F97316] bg-clip-text text-transparent tracking-tighter leading-tight mb-[4px]">
-                            {member.designation}
+                            {withLineBreaks(member.designation)}
                         </div>
                     )}
 
@@ -199,7 +200,7 @@ export default function AiFaculty({ data }) {
                     <div key={category.id || catIdx} className="mb-10 last:mb-0">
                         {/* {category.label && (
                             <h3 className="text-[14px] sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[28px] font-bold inline-block bg-gradient-to-r from-[#DC2626] to-[#F97316] from-[60%] bg-clip-text text-transparent mb-5 sm:mb-6">
-                                {category.label}
+                                {withLineBreaks(category.label)}
                             </h3>
                         )} */}
 

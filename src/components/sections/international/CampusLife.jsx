@@ -7,6 +7,7 @@ import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { NumberBadge, Eyebrow, bodyClass } from "./ServiceShared";
 import MediaFrame from "./MediaFrame";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const spanClass = { 1: "", 2: "md:col-span-2" };
 
@@ -19,7 +20,7 @@ function TileOverlay({ card }) {
                 {card.icon && (
                     <Image src={card.icon} alt="" width={28} height={28} className="size-6 shrink-0 object-contain 2xl:size-7" />
                 )}
-                {card.label}
+                {withLineBreaks(card.label)}
             </span>
         </>
     );
@@ -88,7 +89,7 @@ function CampusIntro({ data }) {
                     rel={button.isExternal ? "noopener noreferrer" : undefined}
                     className="mt-5 inline-flex h-[44px] items-center gap-4 rounded-[3px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) px-5 text-[15px] font-medium text-white no-underline! transition-opacity duration-300 hover:opacity-90 2xl:mt-[30px] 2xl:h-[50px] 2xl:text-[18px]"
                 >
-                    {button.label}
+                    {withLineBreaks(button.label)}
                     <div className="size-[16px] flex items-center justify-center">
                         <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="7.68152" cy="1.37879" r="1.37879" fill="white" />

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function GalleryCard({ item }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, watchDrag: (item?.images?.length || 0) > 1 });
@@ -110,7 +111,7 @@ export default function GalleryCard({ item }) {
         )}
       </div>
       <div className="text-base 2xl:text-lg 3xl:text-[23px] leading-normal font-bold text-[#212121] dark:text-white pt-4 xl:pt-5 3xl:pt-6">
-        {item?.title}
+        {withLineBreaks(item?.title)}
       </div>
     </div>
   );

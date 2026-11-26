@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { hasContent } from "@/lib/has-content";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AboutWelcome({ data }) { 
   const panelRef = useRef(null);
@@ -144,7 +145,7 @@ export default function AboutWelcome({ data }) {
                       data-reveal
                       className="text-[20px] xl:text-[25px] 2xl:text-[30px] 3xl:text-[37px] text-white font-bold leading-[25px] xl:leading-[30px] 2xl:leading-[35px] 3xl:leading-[40px] relative mb-[20px]"
                     >
-                      {panel.title}
+                      {withLineBreaks(panel.title)}
                     </div>
                   )}
                   {panelItems.length > 0 && (
@@ -166,7 +167,7 @@ export default function AboutWelcome({ data }) {
                             className="absolute inset-0 -z-1 bg-gradient-to-r from-[#DC2626] to-[#F97316] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-data-[active=true]:opacity-100"
                           />
                           <div className="text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[25px] text-white font-bold mb-[5px]">
-                            {item.title}
+                            {withLineBreaks(item.title)}
                           </div>
                           {Array.isArray(item.description) &&
                             hasContent(item.description) && (

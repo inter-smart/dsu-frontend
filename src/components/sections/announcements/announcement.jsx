@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Heading } from "@/components/ui/heading";
 import { getAnnouncementsPaged } from "@/lib/api";
 import { safeHref } from "@/lib/utils";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function Announcement({ data }) {
   const [items, setItems] = useState(data?.announcements ?? []);
@@ -69,10 +70,10 @@ export default function Announcement({ data }) {
                 <div className="w-[calc(100%-var(--image-size))] h-auto pl-2.5 lg:pl-10 2xl:pl-12.5 3xl:pl-16.25 py-1">
                   <div className="w-full h-auto sm:mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5">
                     <div className="lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl leading-tight font-bold text-[#212121] dark:text-white mb-1 line-clamp-1 transition-colors duration-500 group-hover:!text-(--basecolor2)">
-                      {item?.title}
+                      {withLineBreaks(item?.title)}
                     </div>
                     <div className="text-sm 2xl:text-base 3xl:text-lg leading-normal font-normal text-[#4A5565] dark:text-white sm:max-w-[95%] mb-2 line-clamp-1 transition-colors duration-500 group-hover:!text-(--basecolor2)">
-                      {item?.description}
+                      {withLineBreaks(item?.description)}
                     </div>
                   </div>
                   <Link

@@ -6,6 +6,7 @@ import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 /* Desktop layout by card position (24-column grid):
    0-2 = top row, 3 = tall, 4 = wide, 5-6 = right stack */
@@ -35,10 +36,10 @@ function Card({ item }) {
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full p-[10px] xl:p-[14px] 2xl:p-[15px] 3xl:p-[18px] text-white text-left">
         <div className="text_1 font-medium  text-white leading-[1.3]">
-          {item.title}
+          {withLineBreaks(item.title)}
         </div>
         <div className="text_1 text-white font-medium mt-[3px]  ">
-          {item.subtitle}
+          {withLineBreaks(item.subtitle)}
         </div>
       </div>
     </div>

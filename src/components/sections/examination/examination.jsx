@@ -5,6 +5,7 @@ import { Heading } from "@/components/ui/heading";
 import { buttonVariants } from "@/components/ui/button";
 import ExaminationSidebar from "./examination-sidebar";
 import { renderHTML } from "@/lib/utils";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function Examination({ data, sidebar }) {
   return (
@@ -30,7 +31,7 @@ export default function Examination({ data, sidebar }) {
                       size: "default",
                     })}
                   >
-                    {data.button.label}
+                    {withLineBreaks(data.button.label)}
                     <Image
                       src="/images/icon-btn.svg"
                       alt="home-btn"
@@ -44,7 +45,7 @@ export default function Examination({ data, sidebar }) {
               </div>
               <div>
                 <div className="text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-bold text-[#212121] mb-3.75">
-                  {data?.unversity?.title}
+                  {withLineBreaks(data?.unversity?.title)}
                 </div>
                 <div className="w-full h-auto space-y-2.5 2xl:space-y-3.75">
                   {data?.unversity?.universityList?.map((item, index) => (

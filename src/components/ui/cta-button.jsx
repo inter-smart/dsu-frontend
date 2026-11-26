@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "@/components/ui/safe-image";
 import { buttonVariants } from "@/components/ui/button";
 import { safeHref } from "@/lib/utils";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // A CMS button ({ label, url, target }). Renders nothing when it is switched off or has no label or link.
 export default function CtaButton({ button, icon = "/images/icon-btn.svg", className }) {
@@ -20,7 +21,7 @@ export default function CtaButton({ button, icon = "/images/icon-btn.svg", class
         className,
       })}
     >
-      {button.label}
+      {withLineBreaks(button.label)}
       <Image
         src={icon}
         alt=""

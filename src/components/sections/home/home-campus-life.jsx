@@ -10,6 +10,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import CtaButton from "@/components/ui/cta-button";
 import LazyVideo from "@/components/ui/lazy-video";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function HomeCampusLife({ data }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -76,16 +77,16 @@ export default function HomeCampusLife({ data }) {
                 </div>
                 <div className="w-(--width) lg:w-[calc(100%-var(--width))] lg:pl-6.25 2xl:pl-7.5 3xl:pl-10">
                   <div className="[--before-size:20px] 2xl:[--before-size:25px] text-sm 2xl:text-base 3xl:text-xl leading-[1.1] tracking-widest font-normal text-[#F57F2A] w-fit h-auto pl-[calc(var(--before-size)+5px)] 2xl:pl-[calc(var(--before-size)+10px)] mb-2.5 relative z-0 before:content-[''] before:w-(--before-size) before:h-0.5 2xl:before:h-1.25 before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:absolute before:z-1 before:inset-[0_auto_0_0]">
-                    {data?.campusInfo?.title}
+                    {withLineBreaks(data?.campusInfo?.title)}
                   </div>
                   <h2 className="text-3xl sm:text-[34px] lg:text-[40px] xl:text-[54px] 2xl:text-[64px] 3xl:text-[80px] leading-[1.1] font-bold text-[#212121] dark:text-white lg:mb-3.75 2xl:mb-7.5 3xl:mb-10">
-                    {data?.campusInfo?.heading?.text}
+                    {withLineBreaks(data?.campusInfo?.heading?.text)}
                     <span className="italic bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit pr-1.25 block relative z-0 before:content-[''] before:w-full before:h-1 before:bg-white before:opacity-0 dark:before:opacity-100 before:absolute before:z-1 before:inset-[auto_0_-5px_0]">
                       {data?.campusInfo?.heading?.highlight}
                     </span>
                   </h2>
                   <div className="text-sm 2xl:text-base 3xl:text-lg leading-[1.4] font-normal line-clamp-4 text-[#4A5565] dark:text-white">
-                    {data?.campusInfo?.description}
+                    {withLineBreaks(data?.campusInfo?.description)}
                   </div>
                   <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25">
                     <CtaButton button={data?.campusInfo?.button} />
@@ -108,7 +109,7 @@ export default function HomeCampusLife({ data }) {
               </div>
               <div className="w-full h-full xl:aspect-425/400 sm:p-[20px_20px_40px_25px] 2xl:p-[30px_20px_40px_25px] 3xl:p-[40px_25px_60px_35px] bg-linear-to-r from-[#9C2727] to-[#F97316C9]/80 rounded-[10px] overflow-hidden flex flex-col justify-center">
                 <div className="text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.7] font-normal text-white w-[95%] sm:mb-5 2xl:mb-7.5 3xl:mb-10 line-clamp-3 overflow-visible">
-                  {data?.statistics?.description}
+                  {withLineBreaks(data?.statistics?.description)}
                 </div>
                 <div className="w-full h-auto flex flex-wrap">
                   {data?.statistics?.items?.slice(0, 4).map((item, index) => (
@@ -128,7 +129,7 @@ export default function HomeCampusLife({ data }) {
                           />
                         </div>
                         <div className="text-sm 2xl:text-[15px] 3xl:text-[21px] leading-[1.1] font-normal text-white">
-                          {item?.label}
+                          {withLineBreaks(item?.label)}
                         </div>
                       </div>
                     </div>
@@ -151,10 +152,10 @@ export default function HomeCampusLife({ data }) {
           <div data-reveal className="w-full h-auto mb-3.75 flex">
             <div className="w-1/2">
               <div className="[--before-size:20px] 2xl:[--before-size:25px] text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal text-[#F57F2A] w-fit h-auto pl-[calc(var(--before-size)+5px)] 2xl:pl-[calc(var(--before-size)+10px)] mb-2.5 relative z-0 before:content-[''] before:w-(--before-size) before:h-0.5 2xl:before:h-1.25 before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:absolute before:z-1 before:inset-[0_auto_0_0]">
-                {data?.campusInfo?.title}
+                {withLineBreaks(data?.campusInfo?.title)}
               </div>
               <h2 className="text-[31px] lg:text-[40px] xl:text-[54px] 2xl:text-[64px] 3xl:text-[80px] leading-[1.2] font-bold text-[#212121] dark:text-white lg:mb-3.75 2xl:mb-7.5 3xl:mb-10">
-                {data?.campusInfo?.heading?.text}
+                {withLineBreaks(data?.campusInfo?.heading?.text)}
                 <span className="italic bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit pr-1.25 block">
                   {data?.campusInfo?.heading?.highlight}
                 </span>
@@ -162,7 +163,7 @@ export default function HomeCampusLife({ data }) {
             </div>
             <div className="w-1/2 pl-2.5">
               <div className="text-sm 2xl:text-base 3xl:text-lg leading-[1.4] font-normal line-clamp-3 !overflow-visible text-[#4A5565] dark:text-white">
-                {data?.campusInfo?.description}
+                {withLineBreaks(data?.campusInfo?.description)}
               </div>
               <div className="mt-2.5 2xl:mt-3.75 3xl:mt-6.25">
                 <CtaButton button={data?.campusInfo?.button} />
@@ -171,7 +172,7 @@ export default function HomeCampusLife({ data }) {
           </div>
           <div data-reveal className="w-full h-auto p-[30px_30px_40px_20px] mb-5 bg-linear-to-r from-[#9C2727] to-(--basecolor2)/80 rounded-[10px] overflow-hidden max-lg:flex max-lg:flex-col max-lg:justify-center">
             <div className="text-sm leading-[1.7] font-normal text-white mb-5">
-              {data?.statistics?.description}
+              {withLineBreaks(data?.statistics?.description)}
             </div>
             <div className="w-full h-auto flex flex-wrap">
               {data?.statistics?.items?.slice(0, 4).map((item, index) => (
@@ -191,7 +192,7 @@ export default function HomeCampusLife({ data }) {
                       />
                     </div>
                     <div className="text-sm leading-[1.1] font-normal text-white">
-                      {item?.label}
+                      {withLineBreaks(item?.label)}
                     </div>
                   </div>
                 </div>
@@ -312,7 +313,7 @@ function FeatureCard({ item, className }) {
           )}
         </div>
         <h3 className="text-sm sm:text-base 2xl:text-xl 3xl:text-[25px] leading-normal font-medium text-white w-[calc(100%-var(--icon-size))] pl-1.25 2xl:pl-2.5">
-          {item?.title}
+          {withLineBreaks(item?.title)}
         </h3>
       </div>
     </Link>

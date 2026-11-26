@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
 import AiFirstYoutubePlayer from "./ai-first-youtube-player";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AboutInitiative({ data }) {
   return (
@@ -11,7 +12,7 @@ export default function AboutInitiative({ data }) {
           <div className="w-full lg:w-[25%] max-lg:mb-(--gap)">
             <div className="w-full h-auto lg:pr-5">
               <Heading className="mb-3.75 sm:mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5">
-                {data?.title}
+                {withLineBreaks(data?.title)}
               </Heading>
               <Text>{data?.description}</Text>
             </div>
@@ -66,10 +67,10 @@ export default function AboutInitiative({ data }) {
                     </div>
                     <div className="w-[calc(100%-var(--icon-size))] pl-2.5 2xl:pl-3.75">
                       <div className="text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-bold text-[#212121] lg:mb-2.5 2xl:mb-3.75 3xl:mb-5">
-                        {item?.title}
+                        {withLineBreaks(item?.title)}
                       </div>
                       <div className="text-xs 2xl:text-sm 3xl:text-lg leading-[1.6] font-normal text-[#4A5565]">
-                        {item?.description}
+                        {withLineBreaks(item?.description)}
                       </div>
                     </div>
                   </div>

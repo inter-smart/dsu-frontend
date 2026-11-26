@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function ContactDetails({ data }) {
   const { title, image, items } = data;
@@ -33,7 +34,7 @@ export default function ContactDetails({ data }) {
 
                 <div className="min-w-0">
                   <p className="text-[15px] font-medium leading-tight text-[#111] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
-                    {item.label}
+                    {withLineBreaks(item.label)}
                   </p>
                   <p className="flex flex-wrap gap-2.5 mt-1.5 break-words text-[14px] leading-[1.5] text-[#444] 2xl:mt-[8px] lg:text-[18px] xl:text-[18px] 2xl:text-[18px]">
                     {item.values.map((value, i) => (
@@ -46,7 +47,7 @@ export default function ContactDetails({ data }) {
                             : {})}
                           className="no-underline! transition-colors duration-300 font-medium text-[#4A5565] hover:text-(--basecolor)"
                         >
-                          {value.text}
+                          {withLineBreaks(value.text)}
                         </Link>
                       </Fragment>
                     ))}

@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const defaultAiToolsData = {
     heading: "The Tools You'll Master",
@@ -155,7 +156,7 @@ export default function AiTools({ data }) {
                                         </span>
 
                                         <span className="text_1 text-[#4A5565] dark:text-[#D1D5DB] font-normal leading-snug">
-                                            {item.label}
+                                            {withLineBreaks(item.label)}
                                         </span>
                                     </li>
                                 ))}
@@ -204,13 +205,13 @@ export default function AiTools({ data }) {
                                         {/* Content */}
                                         <div className="flex-1">
                                             <span className="block text_1 text-[#6B7280] dark:text-[#9CA3AF] font-normal leading-none mb-[4px] xl:mb-[6px]">
-                                                {item.label}
+                                                {withLineBreaks(item.label)}
                                             </span>
                                             <h4 className="cmn_Txt font-bold text-black dark:text-white leading-tight my-[5px]">
-                                                {item.title}
+                                                {withLineBreaks(item.title)}
                                             </h4>
                                             <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] !my-0 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                                {item.description}
+                                                {withLineBreaks(item.description)}
                                             </p>
                                         </div>
                                     </div>
@@ -265,11 +266,11 @@ export default function AiTools({ data }) {
                                         </div>
                                         <div className="w-auto">
                                             <h4 className="text-[13.5px] xl:text-[15px] 2xl:text-[16px] 3xl:text-[17px] font-bold text-black dark:text-white leading-[1.25] mb-[5px] whitespace-pre-line tracking-tight">
-                                                {item.title}
+                                                {withLineBreaks(item.title)}
                                             </h4>
 
                                             <p className="text-[11.5px] 3xl:text-[14px] text-[#64748B] dark:text-[#9CA3AF] leading-snug !my-0 lg:text-[13.5px] xl:text-[14.5px] 2xl:text-[13px]">
-                                                {item.description}
+                                                {withLineBreaks(item.description)}
                                             </p>
                                         </div>
                                     </div>

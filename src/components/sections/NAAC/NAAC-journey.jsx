@@ -1,6 +1,7 @@
 "use client"; 
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link"; 
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const hasBlocksText = (node) => {
     if (!node) return false;
@@ -25,7 +26,7 @@ export default function NAACJourney({ data }) {
               bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-none dark:bg-[#101010]">
             <div className="container">
                 <h2 className="cmn_Title">
-                    {data.title}
+                    {withLineBreaks(data.title)}
                 </h2>
                 <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px]  typography">
                     <BlocksRenderer content={data.description} />
@@ -51,7 +52,7 @@ export default function NAACJourney({ data }) {
 
                                     </div>
                                     <span className="!no-underline transition-transform duration-100 ease-in-out hover:translate-x-[3px] mb-0">
-                                        {doc.label}
+                                        {withLineBreaks(doc.label)}
                                     </span>
                                 </div>
                                 <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex">

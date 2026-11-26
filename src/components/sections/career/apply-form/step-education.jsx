@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { inputStyle } from "./form-constants";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const LEVELS = [
   { key: "puc", label: "PUC / 10+2 / Diploma" },
@@ -31,7 +32,7 @@ export default function StepEducation({ formData, setFormData }) {
           return (
             <div key={level.key} className="pb-6.25 xl:pb-7.5 not-last:border-b border-black/10">
               <h4 className="text-base xl:text-lg font-bold text-[#212121] dark:text-white mb-3.75 xl:mb-5">
-                {level.label}
+                {withLineBreaks(level.label)}
               </h4>
               <div className="grid sm:grid-cols-3 gap-5 xl:gap-6.25 mb-5 xl:mb-6.25">
                 <div>

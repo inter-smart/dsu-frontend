@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const PlayIcon = () => (
     <svg width="43" height="43" viewBox="0 0 43 43" fill="none" >
@@ -162,7 +163,7 @@ export default function CampusDrives({ data }) {
                                     value={String(tab.id)}
                                     className="text_1 !font-medium text-[#212121] dark:text-white h-[30px] xl:h-[35px] 2xl:h-[36px] 3xl:h-[46px] min-w-[115px] 2xl:min-w-[125px] 3xl:min-w-[135px] px-[18px] xl:px-[24px] 2xl:px-[35px] flex-none rounded-[4px] lg:rounded-[10px] border border-[#F3D8CC] dark:border-white/10 bg-white dark:bg-[#18191B] transition-all duration-300 hover:bg-[#F97316]/10 data-active:border-transparent data-active:bg-gradient-to-r data-active:from-[#DC2626] data-active:to-[#F97316] data-active:!text-white data-active:shadow-none data-[state=active]:border-transparent data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#DC2626] data-[state=active]:to-[#F97316] data-[state=active]:!text-white data-[state=active]:shadow-none"
                                 >
-                                    {tab.label}
+                                    {withLineBreaks(tab.label)}
                                 </TabsTrigger>
                             ))}
                         </TabsList>

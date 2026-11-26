@@ -6,6 +6,7 @@ import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 
 
@@ -66,7 +67,7 @@ export default function Events({ data }) {
               speed={2}
               className="mb-1.25 xl:mb-2.5 3xl:mb-3.75 dark:!bg-none dark:!text-white [&_span]:dark:!bg-none [&_span]:dark:text-white"
             >
-              {data?.title}
+              {withLineBreaks(data?.title)}
             </Heading>
             <Text>{data?.description}</Text>
           </div>
@@ -119,7 +120,7 @@ export default function Events({ data }) {
                       target={data.latestButton.target === "_blank" ? "_blank" : undefined}
                       className="text-sm 3xl:text-base leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
                     >
-                      {data.latestButton.label}
+                      {withLineBreaks(data.latestButton.label)}
                     </Link>
                   )}
                 </div>
@@ -145,10 +146,10 @@ export default function Events({ data }) {
                         </div>
                         <div className="sm:w-[85%] h-auto p-2.5 sm:p-5 absolute z-1 inset-[auto_auto_0_0]">
                           <div className="text-[16px] sm:text-[20px] xl:text-[24px] 2xl:text-[30px] 3xl:text-[36px] leading-[1.1] font-bold text-white mb-[10px] line-clamp-1">
-                            {item?.title}
+                            {withLineBreaks(item?.title)}
                           </div>
                           <div className="text-[14px] sm:text-[16px] 3xl:text-[16px] leading-normal font-normal text-white mb-[10px] sm:mb-[20px] line-clamp-3">
-                            {item?.description}
+                            {withLineBreaks(item?.description)}
                           </div>
                           <Link
                             href={safeHref(item?.link, "/news-events")}
@@ -211,7 +212,7 @@ export default function Events({ data }) {
                       target={data.announcementsButton.target === "_blank" ? "_blank" : undefined}
                       className="text-[14px] 3xl:text-[16px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
                     >
-                      {data.announcementsButton.label}
+                      {withLineBreaks(data.announcementsButton.label)}
                     </Link>
                   )}
                 </div>
@@ -246,10 +247,10 @@ export default function Events({ data }) {
                         <div className="w-[calc(100%-var(--image-size))] h-auto pl-2.5 2xl:pl-3.75 flex flex-col justify-between py-1">
                           <div>
                             <h4 className="lg:text-lg 2xl:text-xl 3xl:text-3xl leading-tight font-bold text-[#212121] dark:text-white mb-1 line-clamp-1 transition-colors duration-500 group-hover:!text-(--basecolor2)">
-                              {item?.title}
+                              {withLineBreaks(item?.title)}
                             </h4>
                             <div className="text-sm 3xl:text-base leading-normal font-normal text-[#4A5565] dark:text-white sm:max-w-[95%] mb-2 line-clamp-2 transition-colors duration-500 group-hover:!text-(--basecolor2)">
-                              {item?.description}
+                              {withLineBreaks(item?.description)}
                             </div>
                           </div>
                           <Link

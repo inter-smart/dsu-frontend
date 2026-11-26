@@ -9,6 +9,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function InstructionsAccordion({ data }) {
     const { title, items = [], defaultOpen } = data;
@@ -45,7 +46,7 @@ export default function InstructionsAccordion({ data }) {
                             <AccordionTrigger
                                 className="group min-h-[64px] items-center gap-4 rounded-none px-4 py-3 text-[16px] font-semibold leading-snug text-[#111] hover:no-underline focus-visible:ring-inset data-[state=open]:min-h-[62px] data-[state=open]:py-0 lg:px-5 2xl:min-h-[82px] 2xl:px-6 2xl:text-[20px] 2xl:data-[state=open]:min-h-[62px] [&>svg]:!hidden"
                             >
-                                {item.title}
+                                {withLineBreaks(item.title)}
                                 <span className="mr-1 shrink-0 text-[#333] 2xl:mr-[28px]" aria-hidden="true">
                                     <Plus className="size-4 group-data-[state=open]:hidden" strokeWidth={4} />
                                     <Minus className="hidden size-3.5 group-data-[state=open]:block" strokeWidth={4} />

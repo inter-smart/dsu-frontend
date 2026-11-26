@@ -10,6 +10,7 @@ import CtaButton from "@/components/ui/cta-button";
 import { useEffect, useRef } from "react";
 import { jarallax } from "jarallax";
 import "jarallax/dist/jarallax.css";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function HomeIndustry({ data }) {
   const sectionJarallaxRef = useRef(null);
@@ -72,7 +73,7 @@ export default function HomeIndustry({ data }) {
       <div className="container">
         <div data-reveal className="w-full h-auto mb-7.5 3xl:mb-8.75 text-center">
           <Heading as="h2" align="center" className="mb-1.25 3xl:mb-2.5 text-white">
-            {data?.title}
+            {withLineBreaks(data?.title)}
           </Heading>
           <Text className={"text-white"}>{data?.description}</Text>
         </div>
@@ -108,7 +109,7 @@ export default function HomeIndustry({ data }) {
                       {item?.tag}
                     </div>
                     <h3 className="text-[16px] sm:text-[18px] lg:text-[20px] xl:text-[22px] 2xl:text-[26px] 3xl:text-[32px] leading-[1.1] font-bold text-white line-clamp-2 max-w-[80%] xl:max-w-[60%]">
-                      {item?.title}
+                      {withLineBreaks(item?.title)}
                     </h3>
                   </div>
                 </Card>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function ShapeFuture({ data }) {
   return (
@@ -26,12 +27,12 @@ export default function ShapeFuture({ data }) {
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-end px-6 text-center pb-10">
             {data?.title && (
               <h2 className="mb-4 text-[26px] font-bold text-white sm:text-[32px] xl:text-[40px] 3xl:text-[55px]">
-                {data.title}
+                {withLineBreaks(data.title)}
               </h2>
             )}
             {data?.description && (
               <p className="mb-6 max-w-[770px] text-[14px] leading-relaxed text-white sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[18px]">
-                {data.description}
+                {withLineBreaks(data.description)}
               </p>
             )}
             {data?.ctas?.length > 0 && (
@@ -48,7 +49,7 @@ export default function ShapeFuture({ data }) {
                         : "group base-gradient inline-flex items-center gap-2.5 rounded-[4px] px-4 py-3 text-[13px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-(--basecolor)/30 active:translate-y-0 xl:px-5 xl:py-4 xl:text-[16px]"
                     }
                   >
-                    {cta.label}
+                    {withLineBreaks(cta.label)}
                     <Image
                       src="/images/ai-first/icons/cta-dots.svg"
                       alt=""

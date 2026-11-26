@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { ctaLinkProps } from "@/lib/schools/link-props";
 import { hasContent } from "@/lib/has-content";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const buttonClass =
   "group relative flex h-[40px] w-fit min-w-[130px] items-center justify-center gap-[14px] overflow-hidden rounded-[4px] bg-gradient-to-r from-[#DC2626] to-[#F97316] px-[20px] text_1 font-bold text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[46px] 2xl:h-[50px] 3xl:h-[60px] 3xl:px-[28px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full";
@@ -38,7 +39,7 @@ export default function InnovationDetail({ data }) {
           <div className="w-full max-lg:order-1">
             {data?.heading && (
               <h1 className="cmn_Title font-bold leading-[1.15] mb-[15px] xl:mb-[20px] 3xl:mb-[28px] text-[#212121] dark:text-white">
-                {data.heading}
+                {withLineBreaks(data.heading)}
               </h1>
             )}
             {hasDescription && (
@@ -55,7 +56,7 @@ export default function InnovationDetail({ data }) {
                     className={buttonClass}
                   >
                     <span className="relative z-[1] transition-transform duration-300 group-hover:translate-x-[-2px]">
-                      {data.pdf.label}
+                      {withLineBreaks(data.pdf.label)}
                     </span>
                     <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">
                       <svg
@@ -109,7 +110,7 @@ export default function InnovationDetail({ data }) {
                     target="_blank"
                   >
                     <span className="relative z-[1] transition-transform duration-300 group-hover:translate-x-[-2px]">
-                      {data.video.label}
+                      {withLineBreaks(data.video.label)}
                     </span>
                     <svg
                       viewBox="0 0 20 20"

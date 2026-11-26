@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Marquee from "react-fast-marquee";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function OverviewSection({ data }) {
     if (!data) return null;
@@ -46,7 +47,7 @@ export default function OverviewSection({ data }) {
                                             )}
                                             {stat?.label && (
                                                 <div className="text_1">
-                                                    {stat.label}
+                                                    {withLineBreaks(stat.label)}
                                                 </div>
                                             )}
                                         </div>
@@ -69,7 +70,7 @@ export default function OverviewSection({ data }) {
 
                         {data?.heading && (
                             <h2 className="cmn_Title mb-[15px] xl:mb-[20px] 2xl:mb-[25px]">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
 
@@ -94,7 +95,7 @@ export default function OverviewSection({ data }) {
                                         }
                                     >
                                         <span className="relative z-[1] transition-transform duration-300">
-                                            {btn.label}
+                                            {withLineBreaks(btn.label)}
                                         </span>
 
                                         {btn.variant !== "secondary" && (

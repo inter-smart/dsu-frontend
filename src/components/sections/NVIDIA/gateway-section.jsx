@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 export default function GatewaySection({ data }) {
     const graduates = data?.graduates
     const recruitements = data?.recruitment
@@ -17,7 +18,7 @@ export default function GatewaySection({ data }) {
                 <div className="w-full">
                     <div className="w-full lg:max-w-[70%] m-auto text-center">
                         <div className="cmn_Title dark:text-white">
-                            {data?.heading}
+                            {withLineBreaks(data?.heading)}
                         </div>
                         {data?.description && (
                             <div className="typography text_1 dark:text-[#9CA3AF] text-center max-w-[650px] mx-auto">
@@ -34,7 +35,7 @@ export default function GatewaySection({ data }) {
                                     />
                                 ) : (
                                     <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                        {data?.description}
+                                        {withLineBreaks(data?.description)}
                                     </p>
                                 )}
                             </div>
@@ -45,7 +46,7 @@ export default function GatewaySection({ data }) {
                             <div className="w-full lg:w-[calc(50%-10px)]" key={item.id}>
                                 <div className="w-full h-full border shadow-[0px_20px_60px_0px_rgba(61,35,122,0.09)] dark:shadow-[0px_20px_60px_0px_rgba(0,0,0,0.5)] border-black/10 dark:border-white/10 rounded-[8px] xl:rounded-[15px] 2xl:rounded-[25px] 3xl:rounded-[30px] bg-white dark:bg-[#18191B] p-[20px] xl:p-[25px] 2xl:p-[30px_30px] 3xl:p-[40px_35px] xl:p-[50px_40px]">
                                     <div className="text-[20px] xl:text-[24px] 2xl:text-[30px] 3xl:text-[35px] text-black dark:text-white font-bold mb-[25px] xl:mb-[30px]">
-                                        {item?.heading}
+                                        {withLineBreaks(item?.heading)}
                                     </div>
                                     {item?.points?.length > 0 && (
                                         <div className="space-y-[20px] xl:space-y-[25px]">
@@ -58,10 +59,10 @@ export default function GatewaySection({ data }) {
                                                     </span>
                                                     <div>
                                                         <div className="text_1 font-semibold text-[#212121] dark:text-white mb-[4px]">
-                                                            {point.title}
+                                                            {withLineBreaks(point.title)}
                                                         </div>
                                                         <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                                            {point.description}
+                                                            {withLineBreaks(point.description)}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -78,7 +79,7 @@ export default function GatewaySection({ data }) {
                     <div className="flex flex-wrap max-lg:gap-[20px]">
                         <div className="w-full lg:w-[260px] xl:w-[300px] 2xl:w-[350px] 3xl:w-[400px] ">
                             <div className="text-[16px] lg:text-[22px] xl:text-[25px] 2xl:text-[30px] 3xl:text-[35px] font-semibold leading-snug max-lg:text-center dark:text-white">
-                                {graduates.heading}
+                                {withLineBreaks(graduates.heading)}
                             </div>
                         </div>
                         <div className="w-full lg:w-[calc(100%-280px)] xl:w-[calc(100%-300px)] 2xl:w-[calc(100%-350px)] 3xl:w-[calc(100%-400px)]">
@@ -133,7 +134,7 @@ export default function GatewaySection({ data }) {
                                                     </div>
                                                     <div className="w-full">
                                                         <div className="text_1 3xl:text-[20px] mb-[10px] font-bold text-[#212121] dark:text-white">
-                                                            {graduate.title}
+                                                            {withLineBreaks(graduate.title)}
                                                         </div>
                                                         <p className="dark:text-[#9CA3AF] !mb-0 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{graduate.description}</p>
                                                     </div>
@@ -149,7 +150,7 @@ export default function GatewaySection({ data }) {
                 {/* recruitement */}
                 <div className="w-full border border-[#F97316]/10 dark:border-white/10 rounded-[8px] lg:rounded-[10px] xl:rounded-[16px] 2xl:rounded-[20px] 3xl:rounded-[28px] bg-white dark:bg-[#18191B] p-[20px_15px] md:p-[25px] lg:p-[35px] xl:p-[45px] 2xl:p-[55px] 3xl:p-[75px] shadow-sm overflow-hidden">
                     <div className="text-[16px] lg:text-[22px] xl:text-[25px] 2xl:text-[30px] 3xl:text-[35px] font-semibold leading-snug text-center mb-[10px] dark:text-white">
-                        {recruitements.heading}
+                        {withLineBreaks(recruitements.heading)}
                     </div>
                     {recruitements?.description && (
                         <div className="typography text_1 dark:text-[#9CA3AF] text-center mb-[15px] lg:mb-[20px] xl:mb-[30px] 2xl:mb-[40px] 3xl:mb-[50px] ">
@@ -166,7 +167,7 @@ export default function GatewaySection({ data }) {
                                 />
                             ) : (
                                 <p className="!my-0 !text-inherit leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                    {recruitements?.description}
+                                    {withLineBreaks(recruitements?.description)}
                                 </p>
                             )}
                         </div>
@@ -223,7 +224,7 @@ export default function GatewaySection({ data }) {
                                             </div>
                                             <div className="w-full">
                                                 <div className="text_1 3xl:text-[20px] mb-[10px] font-bold text-[#212121] dark:text-white">
-                                                    {recruit.title}
+                                                    {withLineBreaks(recruit.title)}
                                                 </div>
                                                 <p className="dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">{recruit.description}</p>
                                             </div>
@@ -238,7 +239,7 @@ export default function GatewaySection({ data }) {
                 {/* note */}
                 <div className="w-full p-[20px] lg:p-[30px] xl:p-[50px] 2xl:p-[60px] 3xl:p-[77px] bg-[#FFEACC] dark:bg-[#F97316]/15 rounded-[10px]">
                     <div className="text-[16px] lg:text-[22px] xl:text-[25px] 2xl:text-[30px] 3xl:text-[35px] text-[#212121] dark:text-white font-semibold leading-snug text-center">
-                        {notes.description}
+                        {withLineBreaks(notes.description)}
                     </div>
                 </div>
 

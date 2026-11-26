@@ -9,6 +9,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import CtaButton from "@/components/ui/cta-button";
 import { useCallback, useEffect, useRef, useState } from "react"; // CHANGED: added useRef
 import TableScrollBox from "@/components/layout/common/TableScrollBox";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function HomeAcademic({ data }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -77,7 +78,7 @@ export default function HomeAcademic({ data }) {
             align="center"
             className="mb-1.25 lg:mb-2.5"
           >
-            {data?.title}
+            {withLineBreaks(data?.title)}
           </Heading>
           <Text>{data?.description}</Text>
         </div>
@@ -269,7 +270,7 @@ function AcademicCard({ item }) {
       <h3 className="text-base lg:text-sm 2xl:text-base 3xl:text-xl leading-[1.2] font-bold text-white w-full h-auto m-(--gap) max-w-[85%] absolute z-1 inset-[auto_0_0_0]">
         {item?.link ? (
           <Link href={safeHref(item.link)} className="hover:underline">
-            {item?.title}
+            {withLineBreaks(item?.title)}
           </Link>
         ) : (
           item?.title
@@ -292,7 +293,7 @@ function AcademicCard({ item }) {
                   className="w-full h-auto not-last:pb-2.5 2xl:not-last:pb-3.75 not-last:mb-2.5 2xl:not-last:mb-3.75 not-last:border-b border-white/20 block"
                 >
                   <div className="text-sm 2xl:text-lg 3xl:text-xl leading-[1.1] font-semibold text-white mb-2.5 2xl:mb-3.75">
-                    {item?.title}
+                    {withLineBreaks(item?.title)}
                   </div>
                   <div className="w-full h-auto gap-1.25 2xl:gap-2.5 3xl:gap-3.75 flex flex-wrap">
                     {item?.courses?.map((course) => (
@@ -302,7 +303,7 @@ function AcademicCard({ item }) {
                           aria-label={course?.label}
                           className="text-[13px] 2xl:text-[15px] leading-[1.25] font-normal text-white w-auto h-auto max-w-full p-[5px_10px] bg-black/10 rounded-[16px] border border-white/20 transition duration-500 inline-block hover:text-white hover:bg-[#ffffff4d] hover:border-[#ffffff4d]"
                         >
-                          {course?.label}
+                          {withLineBreaks(course?.label)}
                         </Link>
                       </div>
                     ))}

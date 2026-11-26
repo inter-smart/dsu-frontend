@@ -40,7 +40,7 @@ export default function AIFactorySlider({ data }) {
             {withLineBreaks(data.title)}
           </h2>
           <p className="mx-auto mt-4 max-w-[1360px] text-[clamp(0.9375rem,0.8rem+0.4vw,1.25rem)] leading-relaxed text-slate-600 md:mt-6">
-            {data.description}
+            {withLineBreaks(data.description)}
           </p>
         </div>
 

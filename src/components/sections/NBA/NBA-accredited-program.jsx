@@ -9,6 +9,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function NBAAccreditedProgram({ data }) {
     const hasDescription = Array.isArray(data?.description)
@@ -49,7 +50,7 @@ export default function NBAAccreditedProgram({ data }) {
             <div className="container">
                 {data.title?.trim() && (
                     <h2 className="cmn_Title">
-                        {data.title}
+                        {withLineBreaks(data.title)}
                     </h2>
                 )}
                 {hasDescription && (
@@ -66,7 +67,7 @@ export default function NBAAccreditedProgram({ data }) {
                                 >
                                     <div className="w-full">
                                         <div className="text-[15px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[30px] text-[#212121] font-semibold mb-[4px]">
-                                            {item.title}
+                                            {withLineBreaks(item.title)}
                                         </div>
                                         <div className="text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] text-[#565656] font-normal">
                                             {item.validity}
@@ -106,7 +107,7 @@ export default function NBAAccreditedProgram({ data }) {
 
                                                         </div>
                                                         <span className="!no-underline transition-transform duration-100 ease-in-out hover:translate-x-[3px] mb-0">
-                                                            {doc.label}
+                                                            {withLineBreaks(doc.label)}
                                                         </span>
                                                     </div>
                                                     <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex">

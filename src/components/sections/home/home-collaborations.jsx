@@ -7,6 +7,7 @@ import Fade from "embla-carousel-fade";
 import useEmblaCarousel from "embla-carousel-react";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { useEffect, useCallback, useState, useRef } from "react";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function HomeCollaborations({ data }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -53,10 +54,10 @@ export default function HomeCollaborations({ data }) {
             <div className="w-full h-full p-[20px_10px] sm:p-[40px_20px_30px_20px] 2xl:p-[50px_20px_40px_20px] 3xl:p-[70px_30px_50px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) overflow-hidden block">
               <div className="w-full h-auto mb-1.25 sm:mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5">
                 <h2 className="text-[31px] lg:text-[38px] 2xl:text-[45px] 3xl:text-[58px] leading-[1.2] font-bold text-white sm:max-w-[85%] mb-2.5 sm:mb-3.75 2xl:mb-5 3xl:mb-7.5">
-                  {data?.title}
+                  {withLineBreaks(data?.title)}
                 </h2>
                 <div className="text-sm lg:text-[13px] 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-normal text-white">
-                  {data?.description}
+                  {withLineBreaks(data?.description)}
                 </div>
               </div>
               <div className="w-full h-auto block relative z-0">
@@ -116,7 +117,7 @@ export default function HomeCollaborations({ data }) {
                       className={`w-auto h-auto mb-2 absolute bottom-full left-1/2 -translate-x-1/2 opacity-0 whitespace-nowrap pointer-events-none transition-opacity duration-200 group-hover:opacity-100 ${activeIndex === index && "hidden"}`}
                     >
                       <div className="text-[10px] leading-normal font-medium text-white p-[5px_10px] bg-black/80 rounded-md backdrop-blur-sm">
-                        {item?.title}
+                        {withLineBreaks(item?.title)}
                       </div>
                     </div>
                   </button>
@@ -143,11 +144,11 @@ export default function HomeCollaborations({ data }) {
                       )}
                       {item?.title && (
                         <div className="text-[20px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[25px] font-medium text-white mb-1.25 lg:mb-1.5">
-                          {item?.title}
+                          {withLineBreaks(item?.title)}
                         </div>
                       )}
                       <div className="text_1 lg:text-[10px] 3xl:text-[17px] font-normal text-white">
-                        {item?.label}
+                        {withLineBreaks(item?.label)}
                       </div>
                     </div>
                   </div>
@@ -195,11 +196,11 @@ export default function HomeCollaborations({ data }) {
                             )}
                           </div>
                           <h3 className="text-[21px] lg:text-2xl 2xl:text-[28px] 3xl:text-[35px] leading-[1.1] font-bold text-white w-[clac(100%-var(--flag-icon-size))] pl-1.75 sm:pl-2.5 2xl:pl-3.75">
-                            {item?.title}
+                            {withLineBreaks(item?.title)}
                           </h3>
                         </div>
                         <div className="text_1 leading-[1.2] font-normal text-white">
-                          {item?.description}
+                          {withLineBreaks(item?.description)}
                         </div>
                       </div>
                       <div className="w-full h-auto p-3.75 sm:p-5 lg:p-4.5 3xl:p-10 bg-black/20 sm:rounded-[10px] overflow-hidden block relative z-0">

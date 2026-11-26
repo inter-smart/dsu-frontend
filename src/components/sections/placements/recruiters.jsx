@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function Recruiters({ data, className }) {
   const [selectedSchool, setSelectedSchool] = useState("all");
@@ -117,7 +118,7 @@ export default function Recruiters({ data, className }) {
                         role="option"
                         aria-selected={selectedSchool === option.value}
                       >
-                        {option.label}
+                        {withLineBreaks(option.label)}
                       </li>
                     ))}
                   </ul>

@@ -12,6 +12,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function SDGInitativeDetails({ data, menu }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
@@ -54,7 +55,7 @@ export default function SDGInitativeDetails({ data, menu }) {
                             {/* Heading */}
                             {data?.heading && (
                                 <h1 className="cmn_Title leading-tight mb-2">
-                                    {data.heading}
+                                    {withLineBreaks(data.heading)}
                                 </h1>
                             )}
 
@@ -62,7 +63,7 @@ export default function SDGInitativeDetails({ data, menu }) {
                             {data?.description && (
                                 typeof data.description === "string" ? (
                                     <p className="leading-relaxed mb-6 lg:mb-8 text-[#4A5565] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                        {data.description}
+                                        {withLineBreaks(data.description)}
                                     </p>
                                 ) : Array.isArray(data.description) ? (
                                     <div className="leading-relaxed mb-6 lg:mb-8 [&_p]:mb-3 text-[#4A5565]  typography">
@@ -120,7 +121,7 @@ export default function SDGInitativeDetails({ data, menu }) {
                                                                 >
                                                                     <div className="flex-1 min-w-0 pr-2">
                                                                         <h4 className="text_1 text-[#4A5565] font-bold mb-1.5">
-                                                                            {indicator.label}
+                                                                            {withLineBreaks(indicator.label)}
                                                                         </h4>
                                                                         {/* {indicator.description && ( */}
                                                                             <p className="text-[#4A5565] font-normal leading-relaxed mb-0 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">

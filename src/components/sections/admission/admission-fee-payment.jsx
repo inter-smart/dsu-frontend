@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionFeePayment({ data }) {
   return (
@@ -10,7 +11,7 @@ export default function AdmissionFeePayment({ data }) {
           <div className="w-full sm:w-1/2 max-sm:mb-3.75">
             <div className="w-full h-auto block mb-5 sm:mb-6.25 lg:mb-7.5 2xl:mb-7.5 3xl:mb-10">
               <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-6.25 cmn_Title">
-                {data?.title}
+                {withLineBreaks(data?.title)}
               </Heading>
               <Text className="text_1">{data?.description}</Text>
             </div>
@@ -33,10 +34,10 @@ export default function AdmissionFeePayment({ data }) {
           <div className="w-full sm:w-1/2">
             <div className="w-full h-auto p-[30px_15px] lg:p-[40px_20px] 2xl:p-[50px_20px] 3xl:p-[60px_30px] bg-white rounded-md 2xl:rounded-[10px] overflow-hidden block">
               <div className="text-xl sm:text-[22px] lg:text-[27px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.1] font-semibold text-[#212121] mb-3.75 lg:mb-5 2xl:mb-6.25 3xl:mb-7.5">
-                {data?.admissionPayments?.title}
+                {withLineBreaks(data?.admissionPayments?.title)}
               </div>
               <Text className="text-[#4A5565]">
-                {data?.admissionPayments?.description}
+                {withLineBreaks(data?.admissionPayments?.description)}
               </Text>
             </div>
           </div>

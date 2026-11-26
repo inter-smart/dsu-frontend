@@ -5,6 +5,7 @@ import Image from "@/components/ui/safe-image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { ctaLinkProps } from "@/lib/schools/link-props";
 import { hasContent } from "@/lib/has-content";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const renderText = (value) =>
     Array.isArray(value) ? <BlocksRenderer content={value} /> : value;
@@ -48,7 +49,7 @@ export default function IntlTextCTASection({ data }) {
                     <div className="mx-auto flex max-w-[1000px] 3xl:max-w-[1200px] flex-col items-center">
                         {data?.heading && (
                             <h2 className="text-[22px] sm:text-[26px] lg:text-3xl xl:text-[37px] 2xl:text-[55px] font-bold leading-normal mb-2.5 2xl:mb-3.75 text-white">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
 
@@ -67,7 +68,7 @@ export default function IntlTextCTASection({ data }) {
                                         className="group flex h-[40px] w-fit min-w-[140px] items-center justify-center gap-[12px] rounded-[3px] bg-white px-[20px] text_1 font-bold text-[#E05128] transition-all duration-500 hover:-translate-y-[2px] hover:bg-(--basecolor)/10 hover:shadow-[0_8px_25px_rgba(0,0,0,0.2)] xl:h-[46px] xl:min-w-[161px] xl:rounded-[5px] 2xl:h-[50px] 3xl:h-[60px] 3xl:min-w-[200px]"
                                     >
                                         <span className="relative z-[1] transition-transform duration-300 group-hover:translate-x-[-2px]">
-                                            {data.cta.label}
+                                            {withLineBreaks(data.cta.label)}
                                         </span>
 
                                         <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">

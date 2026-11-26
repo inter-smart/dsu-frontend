@@ -5,6 +5,7 @@ import { buttonVariants } from "@/components/ui/button";
 import AiAcademicMenubar from "../ai-enabled/Ai-academicMenubar";
 import LibrarySidebar from "../ai-enabled/library/library-sidemenubar";
 import { renderHTML } from "motion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function Alumni({ data }) {
   return (
@@ -53,7 +54,7 @@ export default function Alumni({ data }) {
                       "my-5 sm:my-[30px_20px] 2xl:my-[40px_30px] 3xl:my-[50px_40px]",
                   })}
                 >
-                  {data.button.label}
+                  {withLineBreaks(data.button.label)}
                   <Image
                     src="/images/icon-btn.svg"
                     alt=""
@@ -102,7 +103,7 @@ export default function Alumni({ data }) {
                             )}
                           </div>
                           <div className="text-base 2xl:text-xl 3xl:text-[25px] leading-[1.1] font-bold text-white mb-2.5 sm:mb-3.75 3xl:mb-5">
-                            {item?.title}
+                            {withLineBreaks(item?.title)}
                           </div>
                           <div
                             className="typography text-xs 2xl:text-[15px] 3xl:text-lg leading-[1.4] font-normal text-white"

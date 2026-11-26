@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function PlacementActivities({ data }) {
     const [activeVideoModal, setActiveVideoModal] = useState(null);
@@ -53,7 +54,7 @@ export default function PlacementActivities({ data }) {
 
                                     {item.label && (
                                         <div className="absolute bottom-0 left-0 p-[10px_8px] md:p-[12px] xl:p-[15px] text-white cmn_Txt font-medium text-left">
-                                            {item.label}
+                                            {withLineBreaks(item.label)}
                                         </div>
                                     )}
 

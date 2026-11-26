@@ -4,6 +4,7 @@ import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { ctaLinkProps } from "@/lib/schools/link-props";
 import { hasContent } from "@/lib/has-content";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 
 const renderText = (value) =>
@@ -24,7 +25,7 @@ export default function PostDoctoralCta({ data }) {
                     <div className="mx-auto flex max-w-[1000px] 3xl:max-w-[1200px] flex-col items-center">
                         {data?.heading && (
                             <h2 className="text-[26px] sm:text-[34px] xl:text-[46px] 2xl:text-[54px] 3xl:text-[66px] font-bold leading-[1.15] mb-[12px] xl:mb-[16px] text-[#212121] dark:text-white">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
 
@@ -41,7 +42,7 @@ export default function PostDoctoralCta({ data }) {
                                 className="group relative flex h-[40px] w-fit min-w-[140px] items-center justify-center gap-[12px] overflow-hidden rounded-[4px] bg-gradient-to-r from-[#DC2626] to-[#F97316] px-[20px] text_1 font-bold text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[46px] xl:min-w-[161px] 2xl:h-[50px] 3xl:h-[60px] 3xl:min-w-[200px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                             >
                                 <span className="relative z-[1] transition-transform duration-300 group-hover:translate-x-[-2px]">
-                                    {data.cta.label}
+                                    {withLineBreaks(data.cta.label)}
                                 </span>
 
                                 <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">

@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const DocIcon = () => (
   <svg
@@ -103,7 +104,7 @@ function AccordionGroup({ sectionId, group, variant = "default" }) {
                             </div>
                             <div className="text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-black dark:text-white group-hover:text-[#DC2626]">
                               {" "}
-                              {link.label}
+                              {withLineBreaks(link.label)}
                             </div>
                           </div>
                           <div className="w-[10px] 2xl:w-[18px] 3xl:w-[20px] h-[12px] 2xl:h-[15px] 3xl:h-[18px] flex group-hover:translate-x-[-6px] transition-transform duration-300">
@@ -157,7 +158,7 @@ export default function PlacementSections({ data }) {
                 </div>
               )}
               <h2 className="cmn_Title dark:text-white mb-[10px] xl:mb-[15px]">
-                {section.heading}
+                {withLineBreaks(section.heading)}
               </h2>
               {section.description?.length > 0 && (
                 <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] mb-[20px] xl:mb-[25px]  typography">
@@ -176,7 +177,7 @@ export default function PlacementSections({ data }) {
                         {stat.value}
                       </div>
                       <div className="text_1 dark:text-[#9CA3AF]">
-                        {stat.label}
+                        {withLineBreaks(stat.label)}
                       </div>
                     </div>
                   ))}

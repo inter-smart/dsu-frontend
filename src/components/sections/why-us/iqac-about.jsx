@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function IQACAbout({ data }) {
     if (!data) return null;
@@ -16,7 +17,7 @@ export default function IQACAbout({ data }) {
                         <div className="mb-[30px] xl:mb-[45px] 2xl:mb-[50px]">
                             {data?.heading && (
                                 <h2 className="cmn_Title mb-[15px] xl:mb-[20px] 2xl:mb-[25px] dark:text-white">
-                                    {data?.heading}
+                                    {withLineBreaks(data?.heading)}
                                 </h2>
                             )}
                             {/* Description (supports Strapi rich-text blocks or raw string) */}
@@ -26,7 +27,7 @@ export default function IQACAbout({ data }) {
                                 </div>
                             ) : typeof data?.description === "string" ? (
                                 <p className="text_1 leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] mb-[25px] xl:mb-[30px] max-w-[95%]  ">
-                                    {data?.description}
+                                    {withLineBreaks(data?.description)}
                                 </p>
                             ) : null
                             }
@@ -108,11 +109,11 @@ export default function IQACAbout({ data }) {
 
                                             {/* Title */}
                                             <h3 className="text-[18px] sm:text-[20px] xl:text-[24px] 2xl:text-[28px] font-bold text-[#111827] dark:text-white leading-[1.25] mb-[10px] xl:mb-[14px]">
-                                                {card.title}
+                                                {withLineBreaks(card.title)}
                                             </h3>
                                             {/* Description */}
                                             <p className="text_1 leading-[1.65] text-[#4A5565] dark:text-[#9CA3AF]  ">
-                                                {card.description}
+                                                {withLineBreaks(card.description)}
                                             </p>
                                         </div>
                                     );
@@ -130,7 +131,7 @@ export default function IQACAbout({ data }) {
                                     <div className="flex items-center gap-[12px] mb-[20px] xl:mb-[28px]">
                                         <span className="w-[5px] h-[28px] xl:h-[34px] rounded-full bg-gradient-to-b from-[#DC2626] to-[#F97316]" />
                                         <h3 className="text-[20px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] dark:text-white leading-[1.25]">
-                                            {data.objectives.heading}
+                                            {withLineBreaks(data.objectives.heading)}
                                         </h3>
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-[12px] xl:gap-[20px]">
@@ -155,7 +156,7 @@ export default function IQACAbout({ data }) {
                                     <div className="flex items-center gap-[12px] mb-[8px]">
                                         <span className="w-[5px] h-[28px] xl:h-[34px] rounded-full bg-gradient-to-b from-[#DC2626] to-[#F97316]" />
                                         <h3 className="text-[20px] sm:text-[24px] xl:text-[28px] font-bold text-[#111827] dark:text-white leading-[1.25]">
-                                            {data.functions.heading}
+                                            {withLineBreaks(data.functions.heading)}
                                         </h3>
                                     </div>
                                     {data.functions.intro && (

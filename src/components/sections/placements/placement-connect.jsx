@@ -1,5 +1,6 @@
 import React from "react";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function PlacementConnect({ data }) {
     if (!data) return null;
@@ -40,14 +41,14 @@ export default function PlacementConnect({ data }) {
                                 {/* Group Heading */}
                                 {group.heading && (
                                     <h2 className="text-[18px] sm:text-[20px] xl:text-[22px] 2xl:text-[25px] 3xl:text-[30px] font-bold text-[#1F1F1F] dark:text-white mb-2 sm:mb-2.5">
-                                        {group.heading}
+                                        {withLineBreaks(group.heading)}
                                     </h2>
                                 )}
 
                                 {/* Group Description (e.g., list of degree programs) */}
                                 {group.description && (
                                     <p className="cmn_Txt font-semibold text-[#1F1F1F] dark:text-[#E2E8F0] leading-[1.6] mb-5 sm:mb-6 xl:mb-7 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                        {group.description}
+                                        {withLineBreaks(group.description)}
                                     </p>
                                 )}
 
@@ -62,11 +63,11 @@ export default function PlacementConnect({ data }) {
                                                 {/* Top: Name & Designation */}
                                                 <div>
                                                     <h3 className="cmn_Txt font-bold text-[#212121] dark:text-white leading-tight mb-[8px]">
-                                                        {contact.name}
+                                                        {withLineBreaks(contact.name)}
                                                     </h3>
                                                     {contact.designation && (
                                                         <div className="text-[12px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[18px] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit">
-                                                            {contact.designation}
+                                                            {withLineBreaks(contact.designation)}
                                                         </div>
                                                     )}
                                                 </div>
@@ -83,7 +84,7 @@ export default function PlacementConnect({ data }) {
                                                                 className="text_1 text-[#1F1F1F] dark:text-white leading-relaxed flex flex-wrap items-baseline"
                                                             >
                                                                 <span className="text_1 font-bold text-[#212121] dark:text-white mr-2 shrink-0">
-                                                                    {detail.label}
+                                                                    {withLineBreaks(detail.label)}
                                                                 </span>
 
                                                                 {detail.values && Array.isArray(detail.values) ? (

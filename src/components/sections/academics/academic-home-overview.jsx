@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 import AcademicCta from "./academic-cta";
+import { withLineBreaks } from "@/lib/line-breaks";
 export default function AcademicHomeOverview({ data }) {
     if (!data) return null;
 
@@ -42,7 +43,7 @@ export default function AcademicHomeOverview({ data }) {
                                                 {stat.value}
                                             </div>
                                             <div className="text_1">
-                                                {stat.label}
+                                                {withLineBreaks(stat.label)}
                                             </div>
                                         </div>
                                     ))}
@@ -64,7 +65,7 @@ export default function AcademicHomeOverview({ data }) {
 
                         {data?.heading && (
                             <h2 className="cmn_Title mb-[15px] xl:mb-[20px] 2xl:mb-[25px]">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                         )}
 

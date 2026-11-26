@@ -38,7 +38,7 @@ export default function AIInnovation({ data }) {
                         )}
                         {data?.description && (
                             <p className="text_1 3xl:text-[20px]   text-[#4A5565] dark:text-[#9CA3AF] lg:w-[48%] xl:w-[45%] 2xl:w-[42%] shrink-0">
-                                {data.description}
+                                {withLineBreaks(data.description)}
                             </p>
                         )}
                     </div>
@@ -63,7 +63,7 @@ export default function AIInnovation({ data }) {
                                 </div>
                                 {stat?.label && (
                                     <p className="text_1 mt-[10px] xl:mt-[14px] leading-[1.5] text-[#4A5565] dark:text-[#9CA3AF] whitespace-pre-line">
-                                        {stat.label}
+                                        {withLineBreaks(stat.label)}
                                     </p>
                                 )}
                             </li>
@@ -129,7 +129,7 @@ export default function AIInnovation({ data }) {
                                             </div>
                                             {step?.description && (
                                                 <p className="text_1 mt-[20px] xl:mt-[28px] px-[10px] text-center leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF]">
-                                                    {step.description}
+                                                    {withLineBreaks(step.description)}
                                                 </p>
                                             )}
 

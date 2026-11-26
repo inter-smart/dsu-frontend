@@ -4,6 +4,7 @@ import { useMediaQuery } from "usehooks-ts";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 function DomainCard({ domain }) {
   return (
@@ -18,10 +19,10 @@ function DomainCard({ domain }) {
         />
       )}
       <h3 className="mb-2 text-[18px] font-semibold text-[#212121] transition-colors duration-300 group-hover:text-white dark:text-white xl:text-[22px]">
-        {domain.title}
+        {withLineBreaks(domain.title)}
       </h3>
       <p className="text_1 transition-colors duration-300 group-hover:text-white/90! 3xl:text-[16px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-        {domain.description}
+        {withLineBreaks(domain.description)}
       </p>
     </div>
   );
@@ -102,7 +103,7 @@ export default function ResearchDomains({ data }) {
             {data.title && <h2 className="cmn_Title">{data.title}</h2>}
             {data.description && (
               <p className="text_1 3xl:text-[18px] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                {data.description}
+                {withLineBreaks(data.description)}
               </p>
             )}
           </div>

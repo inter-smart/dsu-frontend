@@ -6,6 +6,7 @@ import { Autoplay, FreeMode, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionSafety({ data }) {
     return (
@@ -18,7 +19,7 @@ export default function AdmissionSafety({ data }) {
                     </span>
                 </div>
                 <h2 className='cmn_Title mb-[35px]'>
-                    {data.heading}
+                    {withLineBreaks(data.heading)}
                 </h2> 
                 <div className="w-full">
                     <Swiper
@@ -46,7 +47,7 @@ export default function AdmissionSafety({ data }) {
                                 <div className="w-full h-full bg-white dark:bg-white/5 border border-black/10 rounded-[8px] p-[15px] xl:p-[20px_25px] 2xl:p-[30px_35px] 3xl:p-[40px_45px]">
 
                                     <div className="text-[15px] lg:text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[31px] font-semibold text-[#212121] dark:text-white mb-[15px]">
-                                        {item.title}
+                                        {withLineBreaks(item.title)}
                                     </div>
                                     {data.description && (
 
@@ -55,7 +56,7 @@ export default function AdmissionSafety({ data }) {
                                     <ul className="mb-[30px] 3xl:mb-[50px]">
                                         {item.list?.map((item, id) => (
                                             <li className="text_1 text-[#4A5565] dark:text-white relative before:absolute before:content-[''] before:top-[8px] before:lg:top-[12px] before:left-0 before:w-[5px] before:h-[5px] before:rounded-full before:bg-[#212121] dark:before:bg-[#F97316] pl-[15px] lg:pl-[20px]" key={id}>
-                                                {item.label}
+                                                {withLineBreaks(item.label)}
                                             </li>
                                         ))}
                                     </ul>

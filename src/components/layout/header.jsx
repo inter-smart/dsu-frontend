@@ -29,6 +29,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // ADDED: flyout items shown to the right of "Pro-Vice Chancellor" (replace labels/urls)
 const proViceChancellorSubMenu = [
@@ -672,7 +673,7 @@ export default function Header({ data = local_data }) {
                     })}
                     className="text-[10px] sm:text-xs 2xl:text-sm 3xl:text-base leading-[1.1] font-medium text-center text-white w-auto h-full min-[1170px]:h-auto p-[6px_4px] sm:p-2.5 max-[1169px]:relative max-[1169px]:after:absolute max-[1169px]:after:inset-x-0 max-[1169px]:after:-inset-y-1 max-[1169px]:after:content-[''] sm:p-[5px_20px] 3xl:p-[5px_30px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) rounded-[3px] 2xl:rounded-[5px] flex items-center justify-center transition-colors duration-500 hover:from-(--basecolor2) hover:to-(--basecolor)"
                   >
-                    {item?.label}
+                    {withLineBreaks(item?.label)}
                   </Link>
                 </div>
               ))}
@@ -694,7 +695,7 @@ export default function Header({ data = local_data }) {
                   )}
                 >
                   <span className="w-[calc(100%-10px)] sm:w-[calc(100%-15px)] whitespace-nowrap">
-                    {item?.label}
+                    {withLineBreaks(item?.label)}
                   </span>
                   {TOP_BAR_ICONS[index] && (
                     <span className="w-2.5 sm:w-3.75 3xl:w-5 h-auto aspect-square overflow-hidden flex items-center justify-center">
@@ -849,7 +850,7 @@ export default function Header({ data = local_data }) {
                         aria-label={item?.label}
                         className="text-[9px] sm:text-[11px] 2xl:text-sm 3xl:text-lg leading-[1.1] font-bold text-center !text-white w-auto h-full min-[1170px]:h-10 3xl:h-12.5 p-1.25 sm:p-2.5 2xl:p-3.75 3xl:p-[15px] border border-[#D1D5DC80]/50 rounded-[3px] 2xl:rounded-[5px] overflow-hidden flex items-center justify-center transition-colors duration-500 hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-(--basecolor2)"
                       >
-                        {item?.label}
+                        {withLineBreaks(item?.label)}
                       </Link>
                     </div>
                   ))}
@@ -978,7 +979,7 @@ export default function Header({ data = local_data }) {
                                     className="flex items-center gap-1 hover:text-(--basecolor) whitespace-nowrap"
                                   >
                                     <span className="dark:text-white">
-                                      {item?.label}
+                                      {withLineBreaks(item?.label)}
                                     </span>
                                     {MOBILE_TOP_BAR_ICONS[index] && (
                                       <Image
@@ -1021,7 +1022,7 @@ export default function Header({ data = local_data }) {
                                 href={item?.url || "#"}
                                 className="px-3 py-2 rounded-[3px] border text-center flex-grow-1  border-[#ea580c] dark:border-[#ea580c] text-xs font-bold text-black dark:text-white shrink-0 hover:bg-(--basecolor)/10 transition-colors"
                               >
-                                {item?.label}
+                                {withLineBreaks(item?.label)}
                               </Link>
                             ))}
                           </div>
@@ -1043,7 +1044,7 @@ export default function Header({ data = local_data }) {
                                   })}
                                   className="h-11.25 px-3 bg-linear-to-r from-(--basecolor) to-(--basecolor2) text-white text-xs font-bold rounded-[2px] flex items-center justify-center shrink-0 shadow-xs hover:opacity-90"
                                 >
-                                  {item?.label}
+                                  {withLineBreaks(item?.label)}
                                 </Link>
                               ))}
                             </div>
@@ -1279,7 +1280,7 @@ function LoginButton({ button, className, iconSrc, iconClassName }) {
                   />
                 }
               >
-                {sub?.label}
+                {withLineBreaks(sub?.label)}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
@@ -1631,7 +1632,7 @@ function MegaMenuPanel({
                           isActive ? "font-semibold" : "font-normal opacity-95",
                         )}
                       >
-                        {child?.label}
+                        {withLineBreaks(child?.label)}
                       </span>
                     </Link>
                   );
@@ -1653,7 +1654,7 @@ function MegaMenuPanel({
                         isActive ? "font-semibold" : "font-normal opacity-95",
                       )}
                     >
-                      {child?.label}
+                      {withLineBreaks(child?.label)}
                     </span>
                   </button>
                 );
@@ -1683,7 +1684,7 @@ function MegaMenuPanel({
                           >
                             {group?.label && (
                               <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
-                                {group?.label}
+                                {withLineBreaks(group?.label)}
                               </span>
                             )}
                             <ul className="flex flex-col gap-[3px] p-0 m-0">
@@ -1699,7 +1700,7 @@ function MegaMenuPanel({
                 ) : activeChild?.children?.length > 0 ? (
                   <div className="min-w-[220px] 2xl:min-w-[250px] 3xl:min-w-[280px] max-w-[360px] shrink-0">
                     <span className="text-[12px] 2xl:text-[13px] 3xl:text-[14px] font-bold uppercase tracking-[0.06em] text-[#ea580c] inline-block mb-2.5">
-                      {activeChild?.label}
+                      {withLineBreaks(activeChild?.label)}
                     </span>
                     <ul className="flex flex-col gap-[3px] p-0 m-0">
                       {activeChild.children.map((leaf) => renderLeafItem(leaf))}
@@ -1712,7 +1713,7 @@ function MegaMenuPanel({
                     {...externalProps(activeChild)}
                     className="inline-flex items-center gap-2 text-[13px] 2xl:text-[15px] font-bold text-[#ea580c] hover:underline"
                   >
-                    {activeChild?.label}
+                    {withLineBreaks(activeChild?.label)}
                   </Link>
                 )}
               </div>
@@ -1913,7 +1914,7 @@ function SubMenuLeaf({ leaf, onKeepOpen, preferLeft = false }) {
                     >
                       <span className="w-[8px] h-[8px] mt-[5px] shrink-0 rounded-full border-[1.5px] border-[#ea580c]" />
                       <span className="min-w-0 flex-1 break-words">
-                        {sub?.label}
+                        {withLineBreaks(sub?.label)}
                       </span>
                     </Link>
                   </li>
@@ -2106,7 +2107,7 @@ function NavigationMenu({
                   : "text-xs font-bold uppercase tracking-wider text-[#ea580c]",
             )}
           >
-            {item?.label}
+            {withLineBreaks(item?.label)}
           </span>
           <button
             type="button"

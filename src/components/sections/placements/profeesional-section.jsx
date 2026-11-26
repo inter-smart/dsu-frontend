@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const arrowBtn =
     "w-[30px] h-[30px] xl:w-[34px] xl:h-[34px] rounded-full bg-white dark:bg-[#18191B] border border-[#F97316]/40 text-[#F97316] flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-[#DC2626] hover:to-[#F97316] hover:text-white hover:border-transparent disabled:opacity-30 disabled:cursor-not-allowed";
@@ -22,7 +23,7 @@ export default function ProfessionalCertification({ data }) {
         <section className="relative py-[30px] xl:py-[45px] 2xl:py-[60px] 3xl:py-[75px] bg-[linear-gradient(180deg,#FFF8EE_0%,#FFFCF8_100%)] dark:bg-none dark:bg-[#101010]">
             <div className="container">
                 <h2 className="cmn_Title dark:text-white mb-[10px] xl:mb-[15px]">
-                    {data.heading}
+                    {withLineBreaks(data.heading)}
                 </h2>
 
                 {data?.description && (
@@ -92,10 +93,10 @@ export default function ProfessionalCertification({ data }) {
                                             </div>
                                         )}
                                         <div className="text-[15px] xl:text-[17px] 2xl:text-[22px] 3xl:text-[25px] font-semibold leading-[1.25] text-[#212121] dark:text-white mb-[8px] xl:mb-[10px]">
-                                            {item.title}
+                                            {withLineBreaks(item.title)}
                                         </div>
                                         <p className="text_1 text-[#4A5565] dark:text-[#9CA3AF] leading-[1.6] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                            {item.description}
+                                            {withLineBreaks(item.description)}
                                         </p>
                                     </div>
                                 </SwiperSlide>

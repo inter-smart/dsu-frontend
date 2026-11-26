@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ctaLinkProps } from "@/lib/schools/link-props";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AiPartnerwithus({ data }) {
     return (
@@ -24,7 +25,7 @@ export default function AiPartnerwithus({ data }) {
                                     }`}
                                 >
                                     <span className="relative z-[1] transition-transform duration-300">
-                                        {item.label}
+                                        {withLineBreaks(item.label)}
                                     </span>
 
                                     <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">

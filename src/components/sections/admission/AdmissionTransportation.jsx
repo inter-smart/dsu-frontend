@@ -1,5 +1,6 @@
 "use client"; 
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionTransportation({ data }) {
     return (
@@ -12,7 +13,7 @@ export default function AdmissionTransportation({ data }) {
                     </span>
                 </div>
                 <h2 className='cmn_Title mb-[45px]'>
-                    {data.heading}
+                    {withLineBreaks(data.heading)}
                 </h2> 
                 {data?.points?.map((item,id) => (
                     <div key={item.id ?? id} className="w-full bg-white  dark:bg-white/10 dark:py-4 relative pl-[20px] lg:pl-[25px] mb-[30px] last-of-type:mb-0 after:absolute after:left-0 after:content-[''] after:top-0 after:h-full after:w-[5px] after:lg:w-[8px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316]">

@@ -16,6 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Bundled social icons, used when the CMS entry has no icon uploaded (keyed by its alternativeText)
 const DEFAULT_SOCIAL_ICONS = {
@@ -553,7 +554,7 @@ export default function Footer({ data = local_data, brochures = [] }) {
               size="p1"
               className="text-sm lg:text-[11px] 2xl:text-xs 3xl:text-base mb-3.75 2xl:mb-5"
             >
-              {data?.description}
+              {withLineBreaks(data?.description)}
             </Text>
             )}
             <div className="w-full h-auto mb-7.5 sm:mb-12.5 lg:mb-15 2xl:mb-17.5 3xl:mb-22.5 gap-2.5 lg:gap-1.75 2xl:gap-2.5 flex flex-wrap">
@@ -609,7 +610,7 @@ export default function Footer({ data = local_data, brochures = [] }) {
                       <SelectLabel>Select Program</SelectLabel>
                       {brochures.map((b) => (
                         <SelectItem key={b.id} value={b.id}>
-                          {b.title}
+                          {withLineBreaks(b.title)}
                         </SelectItem>
                       ))}
                     </SelectGroup>
@@ -676,7 +677,7 @@ export default function Footer({ data = local_data, brochures = [] }) {
                   <div
                     className={`text-base lg:text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-left bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit lg:mb-3.75 3xl:mb-5 uppercase ${openAccordion === index && "max-lg:mb-3.75"}`}
                   >
-                    {item.title}
+                    {withLineBreaks(item.title)}
                   </div>
                   <ChevronDown
                     className={`w-4 h-4 text-[#212121] dark:text-white lg:hidden transition-transform duration-300 ease-in-out ${
@@ -700,7 +701,7 @@ export default function Footer({ data = local_data, brochures = [] }) {
                             {...ctaLinkProps(item)}
                             className="text-[15px] lg:text-xs 2xl:text-[13px] 3xl:text-[15px] leading-[1.2] font-normal text-black dark:text-[#FFFF] py-2.5 lg:py-1.25 3xl:py-2 transition-colors duration-300 block hover:text-(--basecolor) dark:hover:text-(--basecolor)"
                           >
-                            {item?.label}
+                            {withLineBreaks(item?.label)}
                           </Link>
                         </li>
                       ))}
@@ -778,7 +779,7 @@ function LinkCard({ items }) {
   return (
     <div className="w-full h-auto lg:first:pl-5 block">
       <div className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mb-2.5 3xl:mb-3.75 uppercase">
-        {items?.title}
+        {withLineBreaks(items?.title)}
       </div>
       <div className="w-full h-auto flex flex-col">
         {items?.items?.map((item, index) => (
@@ -809,7 +810,7 @@ function LinkCard({ items }) {
                       <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                       <circle cx="12" cy="10" r="3" />
                     </svg>
-                    {item?.text}
+                    {withLineBreaks(item?.text)}
                   </Link>
                 </span>
               ) : item?.innerTitle ? (
@@ -817,7 +818,7 @@ function LinkCard({ items }) {
                   key={index}
                   className="text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit my-[15px_10px] lg:my-[20px_10px] 2xl:my-[30px_15px] uppercase inline-block"
                 >
-                  {item.text}
+                  {withLineBreaks(item.text)}
                 </span>
               ) : (
                 <span
@@ -835,7 +836,7 @@ function LinkCard({ items }) {
                       {...(item?.openInNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className="py-0.5 min-h-6 inline-block hover:text-(--basecolor) transition-colors"
                     >
-                      {item?.text}
+                      {withLineBreaks(item?.text)}
                     </Link>
                   ) : (
                     item?.text

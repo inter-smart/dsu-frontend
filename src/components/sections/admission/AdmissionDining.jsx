@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionDining({ data }) {
     return (
@@ -20,7 +21,7 @@ export default function AdmissionDining({ data }) {
                     </span>
                 </div>
                 <h2 className='cmn_Title'>
-                    {data.heading}
+                    {withLineBreaks(data.heading)}
                 </h2>
                 <div className="text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6]   mb-8 sm:mb-10 xl:mb-12  typography">
                     {data?.description?.length > 0 && <BlocksRenderer content={data.description} />}
@@ -51,7 +52,7 @@ export default function AdmissionDining({ data }) {
                                 <div className="w-full h-full bg-white border border-black/10 rounded-[8px] p-[15px] xl:p-[20px_25px] 2xl:p-[30px_35px] 3xl:p-[40px_45px]">
 
                                     <div className="text-[15px] lg:text-[16px] xl:text-[20px] 2xl:text-[25px] 3xl:text-[31px] font-semibold text-[#212121] dark:text-black mb-[8px]">
-                                        {item.title}
+                                        {withLineBreaks(item.title)}
                                     </div>
                                     <p className="dark:text-black text_1">{item.description}</p>
                                 </div>
@@ -68,7 +69,7 @@ export default function AdmissionDining({ data }) {
 
                         >
                             <span className="relative z-[1] transition-transform duration-300">
-                                {data.button.label}
+                                {withLineBreaks(data.button.label)}
                             </span>
 
                             <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">

@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay } from "swiper/modules";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function NationalRanking({ data }) {
     return (
@@ -59,7 +60,7 @@ export default function NationalRanking({ data }) {
                                     </div>
 
                                     <div className="text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[28px] text-[#212121] dark:text-white font-bold mb-[10px]">
-                                        {itemList.name}
+                                        {withLineBreaks(itemList.name)}
                                     </div>
                                     <p>{itemList.description}</p>
 

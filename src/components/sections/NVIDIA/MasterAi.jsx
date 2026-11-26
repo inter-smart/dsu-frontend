@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function MasterAi({ data }) {
   return (
@@ -20,12 +21,12 @@ export default function MasterAi({ data }) {
       <div className="container relative flex flex-col items-center text-center z-1">
         {data?.title && (
           <h2 className="mb-4 max-w-[895px] text-[26px] font-bold text-white sm:text-[32px] xl:text-[40px] 3xl:text-[55px]">
-            {data.title}
+            {withLineBreaks(data.title)}
           </h2>
         )}
         {data?.description && (
           <p className="mb-8 max-w-[800px] text-[14px] leading-relaxed text-[#fff2f2] sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[18px]">
-            {data.description}
+            {withLineBreaks(data.description)}
           </p>
         )}
         {data?.ctas?.length > 0 && (
@@ -34,6 +35,8 @@ export default function MasterAi({ data }) {
               <Link
                 key={cta.label}
                 href={cta.href || "#"}
+                target={cta.openInNewTab ? "_blank" : undefined}
+                rel={cta.openInNewTab ? "noopener noreferrer" : undefined}
                 className={
                   cta.variant === "white"
                     ? "group inline-flex items-center gap-2.5 rounded-[4px] border border-white !bg-white px-5 py-3 text-[13px]   transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 xl:px-6 xl:py-4 xl:text-[16px]"
@@ -45,7 +48,7 @@ export default function MasterAi({ data }) {
                     ? "group inline-flex items-center   font-bold text-transparent bg-clip-text bg-gradient-to-r from-(--basecolor) to-(--basecolor2) transition-all duration-300"
                     : "group  inline-flex    text-white transition-all duration-300"
                 }>
-                  {cta.label}
+                  {withLineBreaks(cta.label)}
               </span>
                 {cta.variant == "white" && (
                   <Image

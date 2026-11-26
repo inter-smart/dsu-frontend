@@ -215,7 +215,7 @@ export default function WhoCanEngage({ data }) {
                   </h3>
                   {item?.description && (
                     <p className="mt-1.5 !text-[14px] !leading-snug !text-[#4A5565] md:!text-[15px] 2xl:mt-2.5 2xl:!text-[17px] 3xl:!text-[18px] dark:!text-[#9CA3AF]">
-                      {item.description}
+                      {withLineBreaks(item.description)}
                     </p>
                   )}
                 </div>

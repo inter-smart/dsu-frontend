@@ -5,6 +5,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // Courses Offered of /international only. `catalog.schools` comes from Strapi already ordered, numbered
 // and without empty schools or program groups: [{ id, number, title, courseCount, programs: [{ id, title,
@@ -21,12 +22,12 @@ export default function IntlCourses({ data, catalog }) {
                 <div className="text-center">
                     {data.title && (
                         <h2 className="text-[28px] font-bold leading-tight text-[#1a1a1a] lg:text-[40px] 2xl:text-[56px]">
-                            {data.title}
+                            {withLineBreaks(data.title)}
                         </h2>
                     )}
                     {data.subtitle && (
                         <p className="mt-2 text-[14px] text-[#555] 2xl:mt-[12px] lg:text-[17px] xl:text-[17px] 2xl:text-[18px]">
-                            {data.subtitle}
+                            {withLineBreaks(data.subtitle)}
                         </p>
                     )}
                 </div>
@@ -53,7 +54,7 @@ export default function IntlCourses({ data, catalog }) {
                                     </span>
                                     <span className="min-w-0 text-left">
                                         <span className="block text-[14px] font-medium leading-tight text-[#111] lg:text-[20px] 2xl:text-[22px]">
-                                            {school.title}
+                                            {withLineBreaks(school.title)}
                                         </span>
                                         <span className="mt-1 block text-[10px] font-normal text-[#666] lg:text-[15px] 2xl:text-[16px]">
                                             {school.courseCount} {school.courseCount === 1 ? "Program" : "Programs"}
@@ -75,7 +76,7 @@ export default function IntlCourses({ data, catalog }) {
                                             {/* Program heading with hairline */}
                                             <div className="flex items-center gap-4">
                                                 <h3 className="text-[17px] font-medium text-[#4A5565] lg:text-[20px] 2xl:text-[24px]">
-                                                    {program.title}
+                                                    {withLineBreaks(program.title)}
                                                 </h3>
                                                 <span className="h-px flex-1 bg-black/10" />
                                             </div>

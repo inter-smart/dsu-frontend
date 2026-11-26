@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function TechnologySection({ data }) {
     const [imageError, setImageError] = useState(false);
@@ -41,7 +42,7 @@ export default function TechnologySection({ data }) {
 
                                     {/* Item Label */}
                                     <span className="text-[13px] md:text-[14px] lg:text-[18px] xl:text-[20px] 3xl:text-[23px] font-bold text-[#1F2937] dark:text-white tracking-tight">
-                                        {item.title}
+                                        {withLineBreaks(item.title)}
                                     </span>
                                 </div>
                             ))}

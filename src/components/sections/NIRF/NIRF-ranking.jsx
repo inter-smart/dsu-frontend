@@ -7,6 +7,7 @@ import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link";
 import { fileLinkProps } from "@/lib/schools/link-props";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function NIRFRanking({ data, menu = [], basePath = "/national-ranking", activeSlug }) {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
@@ -16,7 +17,7 @@ export default function NIRFRanking({ data, menu = [], basePath = "/national-ran
             <div className="container">
                 {data.title && (
                     <h2 className="cmn_Title mb-[25px]">
-                        {data.title}
+                        {withLineBreaks(data.title)}
                     </h2>
                 )}
                 <div className="cmnFlx">
@@ -48,7 +49,7 @@ export default function NIRFRanking({ data, menu = [], basePath = "/national-ran
                         </button>
                         <div className="w-full rounded-[10px] border border-black/10 p-[10px] md:p-[12px] lg:p-[15px] xl:p-[35px_20px] 2xl:p-[40px_35px] 3xl:p-[50px_45px]">
                             <h2 className="text-[20px] xl:text-[25px] 2xl:text-[30px] 3xl:text-[35px] text-[#212121] mb-[25px] 3xl:mb-[45px] font-bold">
-                                {data.name}
+                                {withLineBreaks(data.name)}
                             </h2>
                             <div className="text_1 leading-[1.2] text-[#4A5565] mb-[25px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] [&_p]:mb-[20px] [&_p]:xl:mb-[25px] [&_p]:2xl:mb-[30px] [&_p]:3xl:mb-[40px]  typography">
                                 <BlocksRenderer content={data.description || []} />
@@ -89,7 +90,7 @@ export default function NIRFRanking({ data, menu = [], basePath = "/national-ran
                                         >
                                             <div className="text_1 text-[#212121] font-bold bg-white w-full h-full flex items-center justify-between !no-underline gap-[10px] rounded-[5px] px-[15px] transition-all duration-100 ease-in-out hover:bg-transparent hover:text-white">
                                                 <span className="!no-underline transition-transform duration-100 ease-in-out hover:translate-x-[3px]">
-                                                    {data.ranking.report.label}
+                                                    {withLineBreaks(data.ranking.report.label)}
                                                 </span>
 
                                                 <div className="w-[12px] 2xl:w-[15px] h-[12px] 2xl:h-[15px] transition-transform duration-500 ease-in-out group-hover:translate-x-[3px]">
@@ -123,7 +124,7 @@ export default function NIRFRanking({ data, menu = [], basePath = "/national-ran
                             {data?.discipline?.items?.length > 0 && (
                             <div className="w-full mb-[20px]">
                                 <div className="text-[25px] text-[#212121] font-bold mb-[20px]">
-                                    {data?.discipline?.title}
+                                    {withLineBreaks(data?.discipline?.title)}
                                 </div>
                                 <div className="flex flex-wrap -m-[5px] lg:max-w-[90%]">
                                     {data?.discipline?.items?.map((item, idx) => (
@@ -148,7 +149,7 @@ export default function NIRFRanking({ data, menu = [], basePath = "/national-ran
                             {data?.historicalPerformance?.items?.length > 0 && (
                             <div id="historical-performance" className="w-full lg:max-w-[90%]">
                                 <div className="text-[25px] text-[#212121] font-bold mb-[20px]">
-                                    {data?.historicalPerformance?.title}
+                                    {withLineBreaks(data?.historicalPerformance?.title)}
                                 </div>
                                 <div className="w-full overflow-x-auto">
                                     <div className="min-w-[700px] rounded-[8px] border border-[#707070] overflow-hidden">
@@ -160,7 +161,7 @@ export default function NIRFRanking({ data, menu = [], basePath = "/national-ran
                                                             key={column.key}
                                                             className="border-r border-white/40 px-[15px] py-[10px] text-center !text_1 font-medium last:border-r-0 text-white"
                                                         >
-                                                            {column.label}
+                                                            {withLineBreaks(column.label)}
                                                         </th>
                                                     ))} 
                                                 </tr>

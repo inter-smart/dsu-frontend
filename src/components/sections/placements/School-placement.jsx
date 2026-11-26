@@ -8,6 +8,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { withLineBreaks } from "@/lib/line-breaks";
 export default function SchoolPlacement({ data }) {
     return (
         <section className="relative py-[20px_40px] lg:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F9FAFB_100%)] dark:bg-[linear-gradient(135deg,#2121,#2121)] transition-colors duration-300">
@@ -15,7 +16,7 @@ export default function SchoolPlacement({ data }) {
 
                 <div className="w-full">
                     <h2 className="cmn_Title">
-                        {data?.heading}
+                        {withLineBreaks(data?.heading)}
                     </h2>
 
                     <Accordion type="single" collapsible defaultValue="item-2" className="mt-[30px] w-full xl:mt-[40px]">

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link";
 import { hasContent } from "@/lib/has-content";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const EASE = "ease-[cubic-bezier(0.22,1,0.36,1)]";
 
@@ -40,7 +41,7 @@ function LeaderCard({ item, featured }) {
               : "text-[15px] xl:text-[15px] 2xl:text-[17px] 3xl:text-[22px]"
           }`}
         >
-          {item.name}
+          {withLineBreaks(item.name)}
         </div>
         {item.designation && (
           <div
@@ -50,7 +51,7 @@ function LeaderCard({ item, featured }) {
                 : "text-[#4A5565] dark:text-[#9CA3AF] text-[15px] xl:text-[15px] 2xl:text-[15px] 3xl:text-[18px]"
             }`}
           >
-            {item.designation}
+            {withLineBreaks(item.designation)}
           </div>
         )}
         {hasBio && (
@@ -100,7 +101,7 @@ export default function AboutLeadership({ data }) {
             className="text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] text-center mb-[10px]
                       xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white"
           >
-            {data.heading}
+            {withLineBreaks(data.heading)}
           </h2>
         )}
         {hasContent(data.description) && (

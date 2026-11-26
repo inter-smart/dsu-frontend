@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { hasContent } from "@/lib/has-content";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -271,7 +272,7 @@ export default function ChancellorMessage({ data }) {
           >
             {data?.name && (
               <div className="text-base md:text-[18px] 2xl:text-[20px] 3xl:text-[25px] text-black dark:text-white font-bold mb-[6px]">
-                {data.name}
+                {withLineBreaks(data.name)}
               </div>
             )}
             {data?.designation && (
@@ -280,7 +281,7 @@ export default function ChancellorMessage({ data }) {
                 className="lg:flow-root text-[13px] md:text-[14px]! lg:text-[16px]! xl:text-[18px]! 3xl:text-[20px]! text-[#DC2626] font-semibold relative pb-[8px] mb-[10px] sm:mb-[20px] lg:mb-[30px] after:absolute after:bottom-0 after:content-[''] after:left-0 after:h-[3px]
                                      after:w-[30px] after:bg-gradient-to-r after:from-[#DC2626] after:to-[#F97316] "
               >
-                {data.designation}
+                {withLineBreaks(data.designation)}
               </div>
             )}
             {hasContent(data?.description) && (

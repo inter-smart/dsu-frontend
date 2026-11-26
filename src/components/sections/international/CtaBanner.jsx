@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function CtaBanner({ data }) {
     const { text, prompt, link } = data;
@@ -18,7 +19,7 @@ export default function CtaBanner({ data }) {
                             {...(link.newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                             className="font-medium text-[#F97316] no-underline! transition-opacity duration-300 hover:opacity-80"
                         >
-                            {link.label}
+                            {withLineBreaks(link.label)}
                         </Link>
                     </p>
                 </div>

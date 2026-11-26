@@ -7,6 +7,7 @@ import { useLenis } from "lenis/react";
 import StickyMenubar from "@/components/layout/common/StickyMenubar";
 import { getSchoolTabs } from "@/lib/schools/tabs";
 import { useSchoolTabs } from "./SchoolTabsContext";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const legacyMenuItems = [
   {
@@ -273,7 +274,7 @@ export default function AcademicMenubar({
                           : "text-[#212121] dark:text-[#F9FAFB]"
                       }`}
                     >
-                      {item.label}
+                      {withLineBreaks(item.label)}
                     </div>
 
                     <div className="flex h-[8px] w-[8px] items-center justify-center">
@@ -404,7 +405,7 @@ export default function AcademicMenubar({
                                             }
                                             `}
                     >
-                      {item.label}
+                      {withLineBreaks(item.label)}
                     </span>
                   </Link>
                 );

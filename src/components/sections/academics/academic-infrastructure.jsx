@@ -5,6 +5,7 @@ import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
 import AcademicCta from "./academic-cta";
+import { withLineBreaks } from "@/lib/line-breaks";
 export default function AcademicInfrastructure({ data }) {
     return (
         <section className="relative py-[30px] sm:py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] dark:bg-[#101010]">
@@ -23,7 +24,7 @@ export default function AcademicInfrastructure({ data }) {
 
                             {data?.heading && (
                                 <h2 className="cmn_Title mb-[15px] xl:mb-[20px] 2xl:mb-[25px]">
-                                    {data.heading}
+                                    {withLineBreaks(data.heading)}
                                 </h2>
                             )}
 
@@ -57,7 +58,7 @@ export default function AcademicInfrastructure({ data }) {
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                                         <div className="absolute bottom-0 left-0 p-[8px] sm:p-[10px] w-full">
                                             <div className="text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[25px] leading-snug text-white font-bold max-w-[50%]">
-                                                {facility.title}
+                                                {withLineBreaks(facility.title)}
                                             </div>
                                         </div>
                                     </div>

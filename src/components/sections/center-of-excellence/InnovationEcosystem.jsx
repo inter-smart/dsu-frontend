@@ -201,7 +201,7 @@ export default function InnovationEcosystem({ data }) {
                 </div>
 
                 <p className="mt-2 text-[13px] leading-snug text-[#364153] md:text-[16px] xl:mt-3 xl:text-[18px] 2xl:text-[20px] dark:text-[#D1D5DB]">
-                  {stat.label}
+                  {withLineBreaks(stat.label)}
                 </p>
               </div>
             ))}

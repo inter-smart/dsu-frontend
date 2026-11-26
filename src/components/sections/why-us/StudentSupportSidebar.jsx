@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const sidebarMenu = [
     {
@@ -120,7 +121,7 @@ export default function StudentSupportSidebar({ isOpen = false, onClose, title =
                                                 isActive ? "text-[#F97316]" : "text-[#212121]"
                                             }`}
                                         >
-                                            {item.label}
+                                            {withLineBreaks(item.label)}
                                         </div>
 
                                         <div className="flex h-[8px] 3xl:h-[12px] w-[8px] 3xl:w-[10px] items-center justify-center  ">

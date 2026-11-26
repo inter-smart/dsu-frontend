@@ -11,6 +11,7 @@ import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link";
 import { ctaLinkProps } from "@/lib/schools/link-props";
 import { hasContent } from "@/lib/has-content";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const renderText = (value) =>
   Array.isArray(value) ? <BlocksRenderer content={value} /> : value;
@@ -143,7 +144,7 @@ export default function AboutHistory({ data }) {
                     className=" text-[25px] xl:text-[36px] 2xl:text-[44px] 3xl:text-[55px] font-bold leading-[30px] mb-[10px]
                                 xl:leading-[40px] 2xl:leading-[50px] 3xl:leading-[60px] text-black dark:text-white"
                   >
-                    {data.heading}
+                    {withLineBreaks(data.heading)}
                   </h2>
                 )}
                 {Array.isArray(data?.description) &&
@@ -177,7 +178,7 @@ export default function AboutHistory({ data }) {
                             </div>
                             <div className="w-[calc(100%-42px)] xl:w-[calc(100%-52px)] 2xl:w-[calc(100%-62px)] 3xl:w-[calc(100%-78px)] pl-[15px] 2xl:pl-[20px] 3xl:pl-[25px] transition-transform duration-300 group-hover:translate-x-1.5">
                               <div className="text_1 text-black dark:text-white font-bold transition-colors duration-300 group-hover:text-[#F97316] 2xl:text-base! 3xl:text-lg!">
-                                {item.name}
+                                {withLineBreaks(item.name)}
                               </div>
                               {item.role && (
                                 <div className="text_1 text-[#4A5565] dark:text-[#9CA3AF] font-normal 2xl:text-base! 3xl:text-lg!">
@@ -189,7 +190,7 @@ export default function AboutHistory({ data }) {
                           {/* Founder Item > Description in Strapi; hidden when empty */}
                           {item.description?.trim() && (
                             <p className="w-full text_1 text-[#4A5565] dark:text-[#9CA3AF] 2xl:text-base! 3xl:text-lg!">
-                              {item.description}
+                              {withLineBreaks(item.description)}
                             </p>
                           )}
                         </div>
@@ -205,7 +206,7 @@ export default function AboutHistory({ data }) {
                     className="group relative flex h-[30px] w-fit min-w-[160px] items-center justify-center gap-[10px] overflow-hidden rounded-[6px] bg-gradient-to-r from-[#DC2626] to-[#F97316] text_1 font-bold capitalize text-white transition-all duration-500 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(220,38,38,0.3)] xl:h-[35px] xl:min-w-[155px]  px-3 2xl:h-[40px] 2xl:min-w-[185px] 2xl:gap-[20px] 2xl:rounded-[4px] 3xl:h-[50px] 3xl:min-w-[230px] before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:content-[''] hover:before:translate-x-full"
                   >
                     <span className="relative z-[1] transition-transform duration-300 group-hover:translate-x-[-2px]">
-                      {data?.cta.label}
+                      {withLineBreaks(data?.cta.label)}
                     </span>
 
                     <div className="relative z-[1] flex h-[13px] w-[15px] items-center justify-center transition-all duration-300 group-hover:translate-x-[4px] group-hover:scale-110">

@@ -9,6 +9,7 @@ import { FreeMode, Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const MONTH_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -164,7 +165,7 @@ export default function AcademicFacultyAchievements({ data }) {
                                                 : "bg-white dark:bg-[#18191B] border border-gray-200/90 dark:border-white/10 text-[#374151] dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
                                             }`}
                                     >
-                                        {tab.label}
+                                        {withLineBreaks(tab.label)}
                                     </button>
                                 );
                             })}
@@ -213,7 +214,7 @@ export default function AcademicFacultyAchievements({ data }) {
                                                         : "bg-transparent dark:bg-[#18191B] border border-gray-300/80 dark:border-white/10 text-[#374151] dark:text-gray-200 hover:border-gray-400 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
                                                     }`}
                                             >
-                                                {filter.label}
+                                                {withLineBreaks(filter.label)}
                                             </button>
                                         </SwiperSlide>
                                     );
@@ -319,7 +320,7 @@ export default function AcademicFacultyAchievements({ data }) {
 
                                         {item.title && (
                                             <h3 className="text-[22px] sm:text-[26px] lg:text-[28px] xl:text-[32px] 2xl:text-[35px] 3xl:text-[45px] font-bold text-[#111827] dark:text-white leading-[1.25] tracking-tight mb-4">
-                                                {item.title}
+                                                {withLineBreaks(item.title)}
                                             </h3>
                                         )}
 
@@ -330,7 +331,7 @@ export default function AcademicFacultyAchievements({ data }) {
                                         ) : (
                                             item.description && (
                                                 <p className="text_1 lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                                                    {item.description}
+                                                    {withLineBreaks(item.description)}
                                                 </p>
                                             )
                                         )}

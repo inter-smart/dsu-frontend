@@ -6,6 +6,7 @@ import "swiper/css";
 import Link from "next/link";
 import Image from "next/image";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 // `compact` (set by the overview template for specific pages only) tightens the gaps around the banner image
 export default function WhySection({ data, compact = false }) {
@@ -81,7 +82,7 @@ export default function WhySection({ data, compact = false }) {
                 <div className="w-full h-full bg-white dark:bg-[#242424] border border-[#E9E6EE] dark:border-white/10 rounded-[12px] p-[25px_15px] 2xl:p-[30px_20px] 3xl:p-[35px_25px]">
                   {process?.title && (
                     <div className="cmn_Txt mb-[10px] leading-tight">
-                      {process.title}
+                      {withLineBreaks(process.title)}
                     </div>
                   )}
                   {process?.description && <p>{process.description}</p>}

@@ -7,6 +7,7 @@ import { Autoplay, FreeMode, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AdmissionHostelFacility({ data }) {
     return (
@@ -19,7 +20,7 @@ export default function AdmissionHostelFacility({ data }) {
                     </span>
                 </div>
                 <h2 className='cmn_Title'>
-                    {data.heading}
+                    {withLineBreaks(data.heading)}
                 </h2>
                 <div className="text_1 text-[#6B7280] dark:text-[#9CA3AF] leading-[1.6]   mb-8 sm:mb-10 xl:mb-12  typography">
                     {data?.description?.length > 0 && <BlocksRenderer content={data.description} />}
@@ -33,10 +34,10 @@ export default function AdmissionHostelFacility({ data }) {
                                     {item.icon?.url && <Image src={item.icon.url} width={55} height={55} alt={item.icon.alternativeText || item.title || "Facility Icon"} className="dark:invert-100"/>}
                                 </div>
                                 <div className="cmn_Txt text-[#212121] dark:text-white font-semibold mt-[15px] mb-[6px]">
-                                    {item.title}
+                                    {withLineBreaks(item.title)}
                                 </div>
                                 <p className="text_1 text-[#6B7280] dark:text-white  ">
-                                    {item.description}
+                                    {withLineBreaks(item.description)}
                                 </p>
                             </div>
                         </div>
@@ -72,10 +73,10 @@ export default function AdmissionHostelFacility({ data }) {
                                         {item.icon?.url && <Image src={item.icon.url} width={55} height={55} alt={item.icon.alternativeText || item.title || "Facility Icon"} className="dark:invert-100" />}
                                     </div>
                                     <div className="cmn_Txt text-[#212121] dark:text-white font-semibold mt-[15px] mb-[6px]">
-                                        {item.title}
+                                        {withLineBreaks(item.title)}
                                     </div>
                                     <p className="text-[13px] sm:text-[14px] text-[#6B7280] dark:text-white leading-[1.5] lg:text-[16px] xl:text-[16px] 2xl:text-[14px]">
-                                        {item.description}
+                                        {withLineBreaks(item.description)}
                                     </p>
                                 </div>
                             </SwiperSlide>

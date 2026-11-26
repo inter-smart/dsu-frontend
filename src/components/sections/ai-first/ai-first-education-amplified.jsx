@@ -7,6 +7,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function EducationAmplified({ data }) {
   const cards = data?.cards || [];
@@ -90,7 +91,7 @@ export default function EducationAmplified({ data }) {
           <div className="w-full h-auto mt-auto relative z-2 flex items-end flex-wrap">
             <div className="w-full lg:w-[35%] lg:pr-12.5 mb-7.5 lg:mb-0">
               <Heading className="text-white mb-2.5 sm:mb-3.75 2xl:mb-6.25 3xl:mb-8.75">
-                {data?.banner?.title}
+                {withLineBreaks(data?.banner?.title)}
               </Heading>
               <Text className="text-white">{data?.banner?.description}</Text>
             </div>
@@ -120,10 +121,10 @@ export default function EducationAmplified({ data }) {
                         )}
                         <div>
                           <h3 className="leading-[1.1] font-bold text-white text-base 2xl:text-xl 3xl:text-[25px] mb-2.5">
-                            {pill.title}
+                            {withLineBreaks(pill.title)}
                           </h3>
                           <p className="leading-snug text-white/90 text-xs 3xl:text-lg lg:text-[14px] xl:text-[14px] 2xl:text-[15px]">
-                            {pill.description}
+                            {withLineBreaks(pill.description)}
                           </p>
                         </div>
                       </div>
@@ -179,10 +180,10 @@ export default function EducationAmplified({ data }) {
                       </div>
                       <div className="absolute inset-[auto_auto_0_0] m-5 2xl:m-[30px_20px]">
                         <h3 className="mb-2.5 text-[18px] font-bold text-white lg:text-lg 2xl:text-[23px] 3xl:text-[28px]">
-                          {card.title}
+                          {withLineBreaks(card.title)}
                         </h3>
                         <p className="text-[13px] leading-snug text-white/90 3xl:text-lg lg:text-[15px] xl:text-[15px] 2xl:text-[15px]">
-                          {card.description}
+                          {withLineBreaks(card.description)}
                         </p>
                       </div>
                     </div>

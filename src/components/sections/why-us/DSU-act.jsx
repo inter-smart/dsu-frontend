@@ -7,6 +7,7 @@ import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import Link from "next/link"; 
 import DsuActSidebarSection from "./dsuActSidebarSection";
 import { fileLinkProps } from "@/lib/schools/link-props";
+import { withLineBreaks } from "@/lib/line-breaks";
 
 const P_CLASS = "text_1 leading-[1.2] text-[#4A5565] mb-[8px] xl:mb-[10px] 2xl:mb-[15px] 3xl:mb-[20px]";
 const UL_CLASS = "mb-[20px] lg:mb-[25px] xl:mb-[30px] 2xl:mb-[35px] 3xl:mb-[40px]";
@@ -57,7 +58,7 @@ export default function DSUAct({ data, menu }) {
                         </button>
                         <div className="w-full lg:h-full rounded-[10px] border border-black/10 p-[15px] md:p-[20px] lg:p-[25px] xl:p-[35px_40px] 2xl:p-[40px_45px] 3xl:p-[50px_55px]">
                             <h2 className="cmn_Title">
-                                {data.heading}
+                                {withLineBreaks(data.heading)}
                             </h2>
                             {data?.content ? (
                                 <div className="typography" dangerouslySetInnerHTML={{ __html: formatContentHtml(data.content) }} />
@@ -72,7 +73,7 @@ export default function DSUAct({ data, menu }) {
                                         <ul className={UL_CLASS}>
                                             {data.points.map((item, id) => (
                                                 <li key={id} className={LI_CLASS}>
-                                                    {item.text}
+                                                    {withLineBreaks(item.text)}
                                                 </li>
                                             ))}
                                         </ul>
