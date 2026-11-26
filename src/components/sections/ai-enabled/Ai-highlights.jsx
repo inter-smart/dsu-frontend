@@ -1,4 +1,5 @@
 import React from 'react'
+import { withLineBreaks } from '@/lib/line-breaks'
 
 export default function AiHighlights({ data }) {
     return (
