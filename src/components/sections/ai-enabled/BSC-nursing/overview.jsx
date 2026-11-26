@@ -6,7 +6,7 @@ import { sanitizeRichHtml as sanitizeHtml } from "@/lib/sanitize-rich-html";
 
 export default function BscOverview({ data }) {
     return (
-        <section className="realtive  py-[10px_0px] xl:py-[50px_0] 2xl:py-[70px_0] 3xl:py-[90px_0]">
+        <section className="realtive  py-[10px_40px] xl:py-[50px_40px] 2xl:py-[70px_40px] 3xl:py-[90px_50px]">
             <div className="container">
                 <div className="relative max-lg:flex max-lg:flex-col-reverse gap-[20px] after:content-[''] after:table after:clear-both ">
                     {data?.media?.url && (

@@ -76,7 +76,7 @@ export default function EducationAmplified({ data }) {
   return (
     <section className="w-full h-auto pb-10 sm:pb-17.5 lg:pb-22.5 2xl:pb-25 3xl:pb-35 block">
       <div className="w-full h-auto max-lg:min-h-125 aspect-1920/810 mb-10 lg:mb-12.5 2xl:mb-17.5 3xl:mb-22.5 pb-5 lg:pb-7.5 2xl:pb-10 overflow-hidden flex relative z-0 before:content-[''] before:w-full before:h-1/2 before:bg-linear-to-t before:from-black before:to-black/0 before:pointer-events-none before:absolute before:z-0 before:inset-[auto_0_0_0] after:content-[''] after:size-full after:bg-black after:pointer-events-none after:opacity-20 after:absolute after:z-1 after:inset-0">
-        <div className="pointer-events-none absolute inset-x-0 top-[-2%] sm:top-[-3.5%] lg:top-[-7%] z-2 w-full whitespace-nowrap text-center text-[clamp(0.75rem,5.4vw,8rem)] leading-[1.8] tracking-[-2%] font-bold uppercase opacity-40 text-transparent bg-clip-text bg-linear-to-t from-[#919191]/0 to-white">
+        <div className="pointer-events-none absolute inset-x-0  top-[3%] lg:top-[2%] z-2 w-full whitespace-nowrap text-center text-[clamp(0.75rem,4.8vw,8rem)] leading-[1.8] tracking-[-2%] font-bold uppercase opacity-80 text-transparent bg-clip-text bg-linear-to-t from-white/30 to-white">
           Entering a Smarter Learning World
         </div>
         <Image
