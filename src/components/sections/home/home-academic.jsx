@@ -312,7 +312,10 @@ function AcademicCard({ item }) {
               {/* CHANGED: styled "View more", shown only when there is no course list */}
               {!item?.courses_list?.length && (
                 <Link
-                  href={safeHref(item?.link, "/academics")}
+                  href={item?.thirdPartyUrl || safeHref(item?.link, "/academics")}
+                  {...(item?.thirdPartyUrl
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   className="inline-flex h-[34px] items-center gap-2 p-[5px_10px] bg-white/20 rounded-[16px] text-white border border-white/20 transition duration-500 inline-block hover:text-white hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-transparent 2xl:h-[40px] 2xl:gap-3 2xl:px-4 2xl:text-[14.4px] 3xl:h-[50px] 3xl:gap-4 3xl:px-5 3xl:text-[18px]" // CHANGED: hover:bg-[#f97316] hover:border-[#ffffff4d] became hover:bg-linear-to-r hover:from-(--basecolor) hover:to-(--basecolor2) hover:border-transparent
                 >
                   View more
