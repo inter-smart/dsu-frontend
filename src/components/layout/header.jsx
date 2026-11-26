@@ -1001,7 +1001,7 @@ export default function Header({ data = local_data }) {
                                     </span>
                                     <LoginButton
                                       button={data?.topBar?.loginButton}
-                                      className="flex items-center gap-1 hover:text-(--basecolor) cursor-pointer"
+                                      className="flex items-center gap-1 hover:text-(--basecolor) cursor-pointer max-sm:hidden"
                                       iconSrc="/images/header-login-black.svg"
                                       iconClassName="w-3.5 h-3.5 flex items-center justify-center dark:invert"
                                     />
