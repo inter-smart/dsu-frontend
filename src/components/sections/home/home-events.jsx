@@ -6,7 +6,6 @@ import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
-import CtaButton from "@/components/ui/cta-button";
 
 
 
@@ -266,9 +265,6 @@ export default function Events({ data }) {
                       </div>
                     </div>
                   ))}
-                </div>
-                <div className="w-full h-auto mt-3.75 sm:mt-7.5 2xl:mt-8.75 3xl:mt-11.25 flex items-center justify-center">
-                  <CtaButton button={data?.button} />
                 </div>
               </div>
             </div>

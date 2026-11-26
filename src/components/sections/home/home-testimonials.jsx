@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "@/components/ui/safe-image";
-import { safeHref } from "@/lib/utils";
+import { safeHref, getYoutubeId } from "@/lib/utils";
 import ClientCountUp from "@/components/ui/client-count-up";
 import { Fancybox } from "@fancyapps/ui";
 import { Text } from "@/components/ui/text";
@@ -13,10 +13,6 @@ import CtaButton from "@/components/ui/cta-button";
 import { useEffect, useCallback, useState } from "react";
 import { ShineBorder } from "@/components/ui/shine-border";
 import LazyVideo from "@/components/ui/lazy-video";
-
-// 11-character id from a youtube watch / share / embed / shorts link (or a bare id)
-const getYoutubeId = (url = "") =>
-  String(url).match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|^)([\w-]{11})(?:[?&#/]|$)/)?.[1] || "";
 
 export default function HomeTestimonials({ data }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(

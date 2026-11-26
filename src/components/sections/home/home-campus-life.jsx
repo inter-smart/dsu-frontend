@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "@/components/ui/safe-image";
-import { cn, safeHref } from "@/lib/utils";
+import { cn, safeHref, getYoutubeId } from "@/lib/utils";
 import { useEffect, useCallback, useState } from "react";
 import ClientCountUp from "@/components/ui/client-count-up";
 import { Fancybox } from "@fancyapps/ui";
@@ -260,7 +260,13 @@ function FeatureCard({ item, className }) {
       data-fancybox="campus"
       href={safeHref(item?.media?.url)}
       data-caption={item?.title}
-      data-type={item?.media?.type === "video" ? "html5video" : "image"}
+      data-type={
+        item?.media?.type === "video"
+          ? "html5video"
+          : item?.media?.type === "youtube"
+            ? "youtube"
+            : "image"
+      }
       className={cn(
         "group w-full h-full rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block relative z-0 before:content-[''] before:w-full before:h-full before:bg-linear-to-t before:from-[#000000] before:to-[rgba(0,0,0,0)] before:opacity-50 before:absolute before:z-1 before:inset-[auto_0_0_0]",
         className,
@@ -279,7 +285,13 @@ function FeatureCard({ item, className }) {
           />
         ) : (
           <Image
-            src={item?.media?.url}
+            src={
+              item?.media?.type === "youtube"
+                ? item?.media?.poster ||
+                  (getYoutubeId(item?.media?.url) &&
+                    `https://i.ytimg.com/vi/${getYoutubeId(item.media.url)}/hqdefault.jpg`)
+                : item?.media?.url
+            }
             alt={item?.title || "Campus Life Image"}
             width={425}
             height={400}

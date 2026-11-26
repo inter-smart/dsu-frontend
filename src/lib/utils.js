@@ -97,3 +97,7 @@ export function getCtaHref(cta) {
 export function safeHref(value, fallback = "/") {
     return typeof value === "string" && value.trim() ? value.trim() : fallback;
 }
+
+// 11-character id from a youtube watch / share / embed / shorts link (or a bare id)
+export const getYoutubeId = (url = "") =>
+  String(url).match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|^)([\w-]{11})(?:[?&#/]|$)/)?.[1] || "";
