@@ -9,6 +9,7 @@ import { buttonVariants } from "@/components/ui/button";
 import AiAcademicMenubar from "../ai-enabled/Ai-academicMenubar";
 import LibrarySidebar from "../ai-enabled/library/library-sidemenubar";
 import { getAlumniEventsPaged } from "@/lib/api";
+import AlumniFileList from "./alumni-file-list";
 
 export default function AlumniEvents({ data }) {
   const [items, setItems] = useState(data?.events ?? []);
@@ -80,7 +81,13 @@ export default function AlumniEvents({ data }) {
                   )}
                 </div>
                 <Text className={"text-[#4A5565]"}>{data?.description}</Text>
+                {data?.files?.length > 0 && (
+                  <div className="mt-2.5 sm:mt-3.75 2xl:mt-5">
+                    <AlumniFileList items={data.files} />
+                  </div>
+                )}
               </div>
+              {items.length > 0 && (
               <div className="w-full lg:max-w-[90%] h-auto block">
                 <div className="w-full h-auto gap-2.5 lg:gap-3.75 3xl:gap-5 grid grid-cols-1 sm:grid-cols-2">
                   {items.map((item) => (
@@ -139,6 +146,7 @@ export default function AlumniEvents({ data }) {
                   </div>
                 )}
               </div>
+              )}
             </div>
           </div>
         </div>

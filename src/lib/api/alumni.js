@@ -15,10 +15,15 @@ export async function getAlumniBySlug(slug) {
 // Fixed-route Alumni pages (/alumni, /alumni/events, /alumni/newsletter, /alumni/contact): the Alumni entry
 // using the given template -> { pageData, landingSlug }
 // (pageData is null when no such entry is published)
-export async function getAlumniTemplatePage(template) {
+// `routeSlug`: the route's last segment ("events" for /alumni/events). An entry switched to another
+// template (e.g. "flexible-page") keeps its link /alumni/<slug>, which lands on this fixed route,
+// so the entry with that slug is used when no entry uses the template.
+export async function getAlumniTemplatePage(template, routeSlug) {
   const entries = await getAlumnis();
   const landingSlug = entries?.[0]?.slug || null;
-  const entry = (entries || []).find((e) => e.template === template);
+  const entry =
+    (entries || []).find((e) => e.template === template) ||
+    (routeSlug ? (entries || []).find((e) => e.slug === routeSlug) : null);
 
   return {
     landingSlug,
@@ -32,7 +37,7 @@ export async function getAlumniLandingPage() {
 }
 
 export async function getAlumniEventsPage() {
-  return getAlumniTemplatePage("alumni-events");
+  return getAlumniTemplatePage("alumni-events", "events");
 }
 
 // Paged Alumni event cards ("Load More"): { data: [card], pagination: { page, pageSize, pageCount, total } }
@@ -41,9 +46,9 @@ export async function getAlumniEventsPaged(page, pageSize = 6) {
 }
 
 export async function getAlumniNewsletterPage() {
-  return getAlumniTemplatePage("alumni-newsletter");
+  return getAlumniTemplatePage("alumni-newsletter", "newsletter");
 }
 
 export async function getAlumniContactPage() {
-  return getAlumniTemplatePage("alumni-contact");
+  return getAlumniTemplatePage("alumni-contact", "contact");
 }
