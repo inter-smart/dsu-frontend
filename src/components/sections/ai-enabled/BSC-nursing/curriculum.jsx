@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -12,7 +12,34 @@ export default function BscCurriculum({ data }) {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
     const swiperRef = useRef(null);
+    const wrapRef = useRef(null);
     const [canSlide, setCanSlide] = useState(false);
+
+    // Arrows are needed only when the total width of all tabs is larger than
+    // the space available in the parent container. This is measured against the
+    // parent (not the swiper), so showing/hiding arrows can't change the result.
+    const checkOverflow = (swiper) => {
+        const s = swiper || swiperRef.current;
+        const parent = wrapRef.current?.parentElement;
+        if (!s || s.destroyed || !parent) return;
+        setCanSlide(s.virtualSize > parent.clientWidth + 1);
+    };
+
+    useEffect(() => {
+        const parent = wrapRef.current?.parentElement;
+        if (!parent) return;
+        const run = () => checkOverflow();
+        const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(run) : null;
+        ro?.observe(parent);
+        window.addEventListener("resize", run);
+        if (document.fonts?.ready) document.fonts.ready.then(run);
+        const t = setTimeout(run, 100);
+        return () => {
+            ro?.disconnect();
+            window.removeEventListener("resize", run);
+            clearTimeout(t);
+        };
+    }, [data]);
 
     if (!data) return null;
 
@@ -25,7 +52,7 @@ export default function BscCurriculum({ data }) {
                 </div>
 
                 {/* Swiper Tab Slider with Nav Buttons */}
-                <div className={`flex items-center gap-[8px] sm:gap-[12px] mb-[30px] xl:mb-[40px] max-w-full ${canSlide ? "w-full" : "w-fit"}`}>
+                <div ref={wrapRef} className={`flex items-center gap-[8px] sm:gap-[12px] mb-[30px] xl:mb-[40px] max-w-full ${canSlide ? "w-full" : "w-fit"}`}>
                     {/* Prev Arrow */}
                     <button
                         ref={prevRef}
@@ -48,7 +75,7 @@ export default function BscCurriculum({ data }) {
                             watchOverflow={true}
                             onSwiper={(swiper) => {
                                 swiperRef.current = swiper;
-                                setCanSlide(!swiper.isLocked);
+                                checkOverflow(swiper);
                                 // Attach navigation after mount
                                 setTimeout(() => {
                                     if (swiper.params && prevRef.current && nextRef.current) {
@@ -60,10 +87,11 @@ export default function BscCurriculum({ data }) {
                                 }, 0);
                             }}
                             onResize={(swiper) => {
-                                setCanSlide(!swiper.isLocked);
+                                checkOverflow(swiper);
                             }}
-                            onLock={() => setCanSlide(false)}
-                            onUnlock={() => setCanSlide(true)}
+                            onUpdate={(swiper) => checkOverflow(swiper)}
+                            onLock={(swiper) => checkOverflow(swiper)}
+                            onUnlock={(swiper) => checkOverflow(swiper)}
                             navigation={{
                                 prevEl: prevRef.current,
                                 nextEl: nextRef.current,
