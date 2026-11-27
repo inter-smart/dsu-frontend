@@ -5,6 +5,13 @@ import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function TeamSection({ data }) {
+  // One table per campus; falls back to the single table older data used
+  const tableGroups = data?.groups?.length
+    ? data.groups.filter((group) => group?.rows?.length > 0)
+    : data?.table?.rows?.length > 0
+      ? [{ campus: "", columns: data.table.columns, rows: data.table.rows }]
+      : [];
+
   return (
     <section className="w-full h-auto py-10 sm:py-15 lg:py-20 2xl:py-25 3xl:py-30 block dark:bg-[#000]">
       <div className="container">
@@ -27,47 +34,60 @@ export default function TeamSection({ data }) {
             )
           )}
         </div>
-        {data?.table?.rows?.length > 0 && (
+        {tableGroups.length > 0 && (
         <div>
-          <TableScrollBox className="w-full overflow-auto max-h-[450px]">
-            <table className="[--padding:10px] sm:[--padding:11px_13px] 3xl:[--padding:20px] text-[13px] sm:text-[15px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] text-left text-[#212121] dark:text-white w-full min-w-170 border-collapse">
-              <thead>
-                <tr className="bg-(--basecolor2) text-white">
-                  {data?.table?.columns?.map((column) => (
-                    <th
-                      key={column}
-                      scope="col"
-                      className="sticky top-0 z-10 bg-(--basecolor2) font-medium text-left text-white p-(--padding) border border-[#E5E7EB] dark:border-white/20"
-                    >
-                      {column}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {data?.table?.rows?.map((row) => (
-                  <tr key={row?.id}>
-                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
-                      {withLineBreaks(row?.designation)}
-                    </td>
-                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
-                      {withLineBreaks(row?.name)}
-                    </td>
-                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
-                      {row?.area}
-                    </td>
-                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
-                      {row?.contact?.map((line, i) => (
-                        <div key={i} className="leading-[2]">
-                          {line}
-                        </div>
+          <div className="flex flex-col gap-8 2xl:gap-10">
+            {tableGroups.map((group, groupIndex) => (
+              <div key={group.campus || groupIndex}>
+                {group.campus && (
+                  <h3 className="text-lg sm:text-xl 2xl:text-2xl 3xl:text-3xl font-semibold text-[#212121] dark:text-white mb-3.75 2xl:mb-5">
+                    {withLineBreaks(group.campus)}
+                  </h3>
+                )}
+                <TableScrollBox className="w-full overflow-auto max-h-[450px]">
+                  <table className="[--padding:10px] sm:[--padding:11px_13px] 3xl:[--padding:20px] text-[13px] sm:text-[15px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] text-left text-[#212121] dark:text-white w-full min-w-170 border-collapse">
+                    <thead>
+                      <tr className="bg-(--basecolor2) text-white">
+                        {group.columns?.map((column) => (
+                          <th
+                            key={column}
+                            scope="col"
+                            className="sticky top-0 z-10 bg-(--basecolor2) font-medium text-left text-white p-(--padding) border border-[#E5E7EB] dark:border-white/20"
+                          >
+                            {column}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {group.rows?.map((row, rowIndex) => (
+                        <tr key={row?.id ?? rowIndex}>
+                          <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                            {withLineBreaks(row?.designation)}
+                          </td>
+                          <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                            {withLineBreaks(row?.name)}
+                          </td>
+                          <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                            {row?.area}
+                          </td>
+                          {group.columns?.length > 3 && (
+                            <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                              {row?.contact?.map((line, i) => (
+                                <div key={i} className="leading-[2]">
+                                  {line}
+                                </div>
+                              ))}
+                            </td>
+                          )}
+                        </tr>
                       ))}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </TableScrollBox>
+                    </tbody>
+                  </table>
+                </TableScrollBox>
+              </div>
+            ))}
+          </div>
 
           {data?.reservation && (
             <div className="mt-10 sm:mt-15 lg:mt-15 2xl:mt-17.5 3xl:mt-22.5 border-t border-black/10 dark:border-white/10 pt-10 sm:pt-10 lg:pt-12.5 2xl:pt-15 3xl:pt-20">

@@ -131,6 +131,28 @@ export default function NewsEventsDetail({
                     {withLineBreaks(data.organized.name)}
                   </div>
                 )}
+
+                {/* Venue */}
+                {data?.venue && (
+                  <div className="text_1 text-[#212121] dark:text-white mt-1.5">
+                    <span className="font-bold pr-1.25">Venue:</span>
+                    {withLineBreaks(data.venue)}
+                  </div>
+                )}
+
+                {/* Categories */}
+                {data?.categories?.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-3.75">
+                    {data.categories.map((category) => (
+                      <span
+                        key={category?.id || category?.name}
+                        className="px-3 py-1 rounded-full border border-(--basecolor2)/40 text-xs 2xl:text-sm font-medium text-(--basecolor2)"
+                      >
+                        {category?.name}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
               <div
                 className="typography [&_p]:text-[#4A5565] [&_p]:mb-2.5 sm:[&_p]:mb-3.75 lg:[&_p]:mb-5 2xl:[&_p]:mb-7.5 3xl:[&_p]:mb-10 [&_h2]:mb-5 sm:[&_h2]:mb-6.25 2xl:[&_h2]:mb-8.75 [&_h3]:mb-3.75 2xl:[&_h3]:mb-5"
@@ -218,6 +240,33 @@ export default function NewsEventsDetail({
                   __html: data?.description2 || "",
                 }}
               />
+
+              {/* PDF download or YouTube video */}
+              {data?.attachment?.type === "YouTube" && data.attachment.embedUrl && (
+                <div className="w-full h-auto aspect-video mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden bg-black">
+                  <iframe
+                    src={data.attachment.embedUrl}
+                    title={data?.title || "Video"}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full border-0"
+                  />
+                </div>
+              )}
+              {data?.attachment?.type === "PDF" && data.attachment.url && (
+                <div className="w-full h-auto mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5">
+                  <a
+                    href={data.attachment.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-sm text-sm 2xl:text-base font-bold text-white bg-linear-to-r from-(--basecolor) to-(--basecolor2) transition-opacity duration-300 hover:opacity-80"
+                  >
+                    View PDF
+                    {data.attachment.name ? ` – ${data.attachment.name}` : ""}
+                  </a>
+                </div>
+              )}
 
               {data?.gallery?.length > 0 && (
                 <div className="w-full h-auto mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5">

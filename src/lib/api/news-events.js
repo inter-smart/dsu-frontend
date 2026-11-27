@@ -1,6 +1,7 @@
 import { fetchAPI, slugPath, NO_STORE } from "./strapi";
 
-// News & Event entries filtered by type ("Announcement", "Community Activities", "Alumni" ...)
+// News & Event entries by list: "Alumni", "Community Activities", or the virtual "Announcement"
+// (a "News and Events" entry whose eventDate is today or later; once it passes it is plain news)
 export async function getNewsEventsByType(type, params = {}, options) {
   return fetchAPI("/api/news-events", { type, ...params }, options);
 }

@@ -20,6 +20,9 @@ export default function News({ data }) {
     () => emblaApi && emblaApi.scrollNext(),
     [emblaApi],
   );
+  // nothing to show: hide the whole section
+  if (!data?.news_list?.length) return null;
+
   return (
     <section className="w-full h-auto py-10 sm:py-12.5 2xl:py-15 3xl:py-20 bg-white dark:bg-[#101010] block">
       <div className="container">

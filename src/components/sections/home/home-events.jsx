@@ -56,6 +56,11 @@ export default function Events({ data }) {
     ? Math.min(selectedIndex + 2, data.announcements_list.length - 1)
     : 2;
 
+  // each column is hidden when it has nothing to show, and the whole section when both are empty
+  const hasLatest = data?.latest_list?.length > 0;
+  const hasAnnouncements = data?.announcements_list?.length > 0;
+  if (!hasLatest && !hasAnnouncements) return null;
+
   return (
     <section className="w-full h-auto bg-white dark:bg-[#101010] block">
       <div className="container">
@@ -72,7 +77,8 @@ export default function Events({ data }) {
             <Text>{data?.description}</Text>
           </div>
           <div className="[--width:100%] lg:[--width:510px] 2xl:[--width:610px] 3xl:[--width:770px] w-full h-auto flex flex-wrap">
-            <div data-reveal className="w-(--width) max-lg:pb-6.25 max-lg:mb-7.5 max-lg:border-b max-lg:border-black/10">
+            {hasLatest && (
+            <div data-reveal className={`w-(--width) ${hasAnnouncements ? "max-lg:pb-6.25 max-lg:mb-7.5 max-lg:border-b max-lg:border-black/10" : ""}`}>
               <div className="w-full h-auto mb-2.5 2xl:mb-3.75 3xl:mb-5 hidden sm:flex items-center flex-wrap justify-between">
                 <div className="flex items-center">
                   <Heading
@@ -152,7 +158,8 @@ export default function Events({ data }) {
                             {withLineBreaks(item?.description)}
                           </div>
                           <Link
-                            href={safeHref(item?.link, "/news-events")}
+                            href={safeHref(item?.externalLink || item?.link, "/news-events")}
+                            {...(item?.externalLink ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                             className="text-[14px] 3xl:text-[15px] leading-normal font-bold uppercase bg-gradient-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
                           >
                             Read More {" > "}
@@ -164,7 +171,9 @@ export default function Events({ data }) {
                 </div>
               </div>
             </div>
-            <div data-reveal style={{ "--reveal-delay": "150ms" }} className="w-(--width) lg:w-[calc(100%-var(--width))] lg:pl-10 xl:pl-27.5 2xl:pl-32.5 3xl:pl-40">
+            )}
+            {hasAnnouncements && (
+            <div data-reveal style={{ "--reveal-delay": "150ms" }} className={`w-(--width) ${hasLatest ? "lg:w-[calc(100%-var(--width))] lg:pl-10 xl:pl-27.5 2xl:pl-32.5 3xl:pl-40" : "lg:!w-full"}`}>
               <div className="w-full h-auto mb-2.5 2xl:mb-3.75 3xl:mb-5 flex items-center flex-wrap justify-between">
                 <div className="flex items-center">
                   <Heading
@@ -269,6 +278,7 @@ export default function Events({ data }) {
                 </div>
               </div>
             </div>
+            )}
           </div>
         </div>
       </div>
