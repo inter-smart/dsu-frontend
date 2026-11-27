@@ -1,9 +1,29 @@
+import { Fragment } from "react";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading"; 
 import TableScrollBox from "@/components/layout/common/TableScrollBox";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
 
+// Campus shown in the last column of a row (first line of `contact`)
+const getCampus = (row) => String(row?.contact?.[0] ?? "").trim();
+
+// Heading text for a campus. Edit the titles here (first match wins).
+// Return null for campuses that should NOT get a heading row.
+const CAMPUS_HEADINGS = [
+  { match: /all\s*campus/i, title: null },
+  { match: /harohalli/i, title: "DSU Main Campus - Harohalli" },
+  { match: /city|innovation/i, title: "DSU City Innovation Campus" },
+];
+
+const getGroupTitle = (campus) => {
+  const found = CAMPUS_HEADINGS.find((h) => h.match.test(campus));
+  // Unknown campus: use its own label as the heading
+  return found ? found.title : campus;
+};
+
 export default function TeamSection({ data }) {
+  const rows = data?.table?.rows ?? [];
+
   return (
     <section className="w-full h-auto py-10 sm:py-15 lg:py-20 2xl:py-25 3xl:py-30 block dark:bg-[#000]">
       <div className="container">
@@ -44,26 +64,46 @@ export default function TeamSection({ data }) {
                 </tr>
               </thead>
               <tbody>
-                {data?.table?.rows?.map((row) => (
-                  <tr key={row?.id}>
-                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
-                      {row?.designation}
-                    </td>
-                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
-                      {row?.name}
-                    </td>
-                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
-                      {row?.area}
-                    </td>
-                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
-                      {row?.contact?.map((line, i) => (
-                        <div key={i} className="leading-[2]">
-                          {line}
-                        </div>
-                      ))}
-                    </td>
-                  </tr>
-                ))}
+                {rows.map((row, index) => {
+                  // A new campus starts here -> insert a heading row before it
+                  const campus = getCampus(row);
+                  const prevCampus = index > 0 ? getCampus(rows[index - 1]) : "";
+                  const groupTitle =
+                    campus && campus !== prevCampus ? getGroupTitle(campus) : null;
+
+                  return (
+                    <Fragment key={row?.id ?? index}>
+                      {groupTitle && (
+                        <tr>
+                          <td
+                            colSpan={data?.table?.columns?.length || 4}
+                            className="text-center font-medium text-white font-semibold bg-(--basecolor2)/80 p-(--padding)  "
+                          >
+                            {groupTitle}
+                          </td>
+                        </tr>
+                      )}
+                      <tr>
+                        <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                          {row?.designation}
+                        </td>
+                        <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                          {row?.name}
+                        </td>
+                        <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                          {row?.area}
+                        </td>
+                        <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                          {row?.contact?.map((line, i) => (
+                            <div key={i} className="leading-[2]">
+                              {line}
+                            </div>
+                          ))}
+                        </td>
+                      </tr>
+                    </Fragment>
+                  );
+                })}
               </tbody>
             </table>
           </TableScrollBox>

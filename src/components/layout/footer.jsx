@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 
-// Bundled social icons, used when the CMS entry has no icon uploaded (keyed by its alternativeText)
 const DEFAULT_SOCIAL_ICONS = {
   facebook: { light: "/images/social-icon-1.svg", dark: "/images/social-icon-1-dark.svg" },
   twitter: { light: "/images/social-icon-2.svg", dark: "/images/social-icon-2-dark.svg" },
@@ -661,8 +660,8 @@ export default function Footer({ data = local_data, brochures = [] }) {
           </div>
         </div>
         <div className="w-full h-auto my-[40px_30px] lg:my-[20px_30px] 2xl:my-[20px_40px] 3xl:my-[30px_50px] lg:border border-[#D4D4D4] lg:rounded-[7px] 2xl:rounded-[10px] overflow-hidden">
-          <div className="w-full h-full grid grid-cols-1 lg:grid-cols-5 gap-2.5 lg:gap-7.5 2xl:gap-12.5 3xl:gap-15">
-            {data?.bottomLinks.length>0 && data?.bottomLinks?.map((item, index) => (
+          <div className="w-full h-full grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.4fr)_minmax(0,0.85fr)_minmax(0,0.85fr)_minmax(0,1.15fr)] gap-1 lg:gap-1 2xl:gap-2 3xl:gap-2">
+             {data?.bottomLinks.length>0 && data?.bottomLinks?.map((item, index) => (
               <div
                 key={index}
                 className="lg:[--gap:25px] 2xl:[--gap:30px] 3xl:[--gap:40px] w-full h-full p-[10px_15px] lg:py-(--gap) lg:first:pl-(--gap) max-lg:border max-lg:border-(--basecolor)/10 md:border-r lg:border-[#D4D4D4] lg:last:border-0 block"
@@ -674,7 +673,7 @@ export default function Footer({ data = local_data, brochures = [] }) {
                   aria-expanded={openAccordion === index}
                 >
                   <div
-                    className={`text-base lg:text-sm 2xl:text-[15px] 3xl:text-lg leading-[1.1] font-medium text-left bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit lg:mb-3.75 3xl:mb-5 uppercase ${openAccordion === index && "max-lg:mb-3.75"}`}
+                    className={`text-base lg:text-sm 2xl:text-[15px] 3xl:text-lg font-medium text-left bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit lg:mb-3.75 3xl:mb-5 uppercase ${openAccordion === index && "max-lg:mb-3.75"}`}
                   >
                     {item.title}
                   </div>
@@ -698,7 +697,7 @@ export default function Footer({ data = local_data, brochures = [] }) {
                           <Link
                             href={item?.url || "#"}
                             {...ctaLinkProps(item)}
-                            className="text-[15px] lg:text-xs 2xl:text-[13px] 3xl:text-[15px] leading-[1.2] font-normal text-black dark:text-[#FFFF] py-2.5 lg:py-1.25 3xl:py-2 transition-colors duration-300 block hover:text-(--basecolor) dark:hover:text-(--basecolor)"
+                            className="text-[15px] lg:text-xs 2xl:text-[13px] 3xl:text-[15px] leading-[1.7] font-normal text-black dark:text-[#FFFF] py-2.5 lg:py-1.25 3xl:py-1.5 transition-colors duration-300 block hover:text-(--basecolor) dark:hover:text-(--basecolor)"
                           >
                             {item?.label}
                           </Link>
@@ -715,10 +714,10 @@ export default function Footer({ data = local_data, brochures = [] }) {
       <div className="w-full h-auto py-5 lg:py-6.25 2xl:py-7.5 3xl:py-10 bg-linear-to-r from-(--basecolor) to-(--basecolor2) block">
         <div className="container">
           <div className="w-full h-auto max-lg:gap-2.5 flex max-lg:flex-col items-center justify-center lg:justify-between">
-            <div className="text-base lg:text-[13px] 3xl:text-base leading-[1.1] font-normal text-white">
+            <div className="text-base lg:text-[13px] 3xl:text-base   font-normal text-white">
               Copyright © 2026 DSU. All Rights Reserved
             </div>
-            <div className="text-sm lg:text-xs 3xl:text-sm leading-[1.1] font-normal text-white gap-2.5 flex items-center">
+            <div className="text-sm lg:text-xs 3xl:text-sm font-normal text-white gap-2.5 flex items-center">
               Designed & developed By:
               <Link
                 href={"https://www.intersmartsolution.com/"}
