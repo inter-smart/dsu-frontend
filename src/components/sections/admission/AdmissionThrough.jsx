@@ -167,9 +167,9 @@ function RouteCard({ item, className = "" }) {
                 </h3>
             )}
 
-            {item?.description && (
+            {item?.subtitle && (
                 <p className="mt-3 text_1 leading-relaxed text-[#4B4B4B]   dark:text-[#9CA3AF]">
-                    {withLineBreaks(item.description)}
+                    {withLineBreaks(item.subtitle)}
                 </p>
             )}
 
