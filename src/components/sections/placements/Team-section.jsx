@@ -47,7 +47,7 @@ export default function TeamSection({ data }) {
             )
           )}
         </div>
-        {tableGroups.length > 0 && (
+        {rows.length > 0 && (
         <div>
           <TableScrollBox className="w-full overflow-auto max-h-[450px]">
             <table className="[--padding:10px] sm:[--padding:11px_13px] 3xl:[--padding:20px] text-[13px] sm:text-[15px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] text-left text-[#212121] dark:text-white w-full min-w-170 border-collapse">
