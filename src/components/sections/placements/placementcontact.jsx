@@ -3,6 +3,49 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { withLineBreaks } from "@/lib/line-breaks";
 
+function ContactPerson({ person }) {
+    return (
+        <>
+            <div className="text-[16px] sm:text-[17px] xl:text-[18px] 2xl:text-[20px] font-bold text-[#1F1F1F] dark:text-white mb-1">
+                {withLineBreaks(person.name)}
+            </div>
+            <div className="text_1 text-[#4A5565] dark:text-[#CBD5E1] leading-relaxed">
+                {withLineBreaks(person.designation)}
+            </div>
+            <div className="text_1 text-[#4A5565] dark:text-[#CBD5E1] leading-relaxed">
+                {person.organization}
+            </div>
+        </>
+    );
+}
+
+function ContactDetails({ details, className = "" }) {
+    if (!details || details.length === 0) return null;
+    return (
+        <div className={`flex flex-col gap-1.5 sm:gap-2 ${className}`}>
+            {details.map((item) => (
+                <div key={item?.id || item?.label} className="text-[13px] sm:text-[14px] 2xl:text-[15px] 3xl:text-[18px] text-[#1F1F1F] dark:text-white whitespace-nowrap">
+                    <span className="text_! font-bold text-[#1F1F1F] dark:text-white mr-1.5">
+                        {withLineBreaks(item?.label)}
+                    </span>
+                    {item?.href ? (
+                        <a
+                            href={item.href}
+                            className="text_1 text-[#374151] dark:text-[#D1D5DB] hover:text-(--basecolor) transition-colors font-medium"
+                        >
+                            {item.value}
+                        </a>
+                    ) : (
+                        <span className="text_1 text-[#374151] dark:text-[#D1D5DB]">
+                            {item.value}
+                        </span>
+                    )}
+                </div>
+            ))}
+        </div>
+    );
+}
+
 export default function PlacementContact(props) {
     const data = props?.data || props;
 
@@ -24,45 +67,33 @@ export default function PlacementContact(props) {
                         </h2>
                     </div>
 
-                    
-                    {data?.contact && (
-                        <div className="flex flex-col">
-                            <div className="text-[16px] sm:text-[17px] xl:text-[18px] 2xl:text-[20px] font-bold text-[#1F1F1F] dark:text-white mb-1">
-                                {withLineBreaks(data.contact.name)}
-                            </div>
-                            <div className="text_1 text-[#4A5565] dark:text-[#CBD5E1] leading-relaxed">
-                                {withLineBreaks(data.contact.designation)}
-                            </div>
-                            <div className="text_1 text-[#4A5565] dark:text-[#CBD5E1] leading-relaxed">
-                                {data.contact.organization}
-                            </div>
+
+                    {data?.morePeople?.length > 0 ? (
+                        // several people: each one's email / phone sits right under their organization
+                        <div className="flex flex-col sm:flex-row gap-6 lg:gap-8 xl:gap-12">
+                            {[
+                                { person: data?.contact, details: data?.details },
+                                ...data.morePeople.map((person) => ({ person, details: person.details })),
+                            ].map(({ person, details }, index) =>
+                                person ? (
+                                    <div key={index} className="flex flex-col">
+                                        <ContactPerson person={person} />
+                                        <ContactDetails details={details} className="mt-3" />
+                                    </div>
+                                ) : null
+                            )}
                         </div>
-                    )}
- 
-                    {data?.details && data.details.length > 0 && (
-                        <div className="flex flex-col gap-1.5 sm:gap-2">
-                            {data.details.map((item) => (
-                                <div key={item?.id || item?.label} className="text-[13px] sm:text-[14px] 2xl:text-[15px] 3xl:text-[18px] text-[#1F1F1F] dark:text-white whitespace-nowrap">
-                                    <span className="text_! font-bold text-[#1F1F1F] dark:text-white mr-1.5">
-                                        {withLineBreaks(item?.label)}
-                                    </span>
-                                    {item?.href ? (
-                                        <a
-                                            href={item.href}
-                                            className="text_1 text-[#374151] dark:text-[#D1D5DB] hover:text-(--basecolor) transition-colors font-medium"
-                                        >
-                                            {item.value}
-                                        </a>
-                                    ) : (
-                                        <span className="text_1 text-[#374151] dark:text-[#D1D5DB]">
-                                            {item.value}
-                                        </span>
-                                    )}
+                    ) : (
+                        <>
+                            {data?.contact && (
+                                <div className="flex flex-col">
+                                    <ContactPerson person={data.contact} />
                                 </div>
-                            ))}
-                        </div>
+                            )}
+                            <ContactDetails details={data?.details} />
+                        </>
                     )}
- 
+
                     {data?.button && (
                         <div className="shrink-0">
                             <Link
