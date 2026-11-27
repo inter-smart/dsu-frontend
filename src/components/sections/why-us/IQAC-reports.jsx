@@ -33,7 +33,7 @@ export default function IQACReport({ data }) {
                                 >
                                     <div className="w-full">
                                         <div className="text-[15px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[30px] text-[#212121] font-semibold mb-[4px]">
-                                            Academic {item.year}
+                                            {item.year}
                                         </div>
                                     </div>
                                 </AccordionTrigger>
