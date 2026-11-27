@@ -4,11 +4,59 @@ import Image from "@/components/ui/safe-image";
 import { safeHref } from "@/lib/utils";
 import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { ArrowRight } from "lucide-react";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { withLineBreaks } from "@/lib/line-breaks";
 
-
+// Static upcoming events. Edit the values here.
+const UPCOMING_EVENTS = [
+  {
+    id: 1,
+    title: "International Conference on AI & Data Science",
+    day: "05",
+    month: "Dec",
+    year: "2026",
+    category: "Conference",
+    link: "/news-events",
+  },
+  {
+    id: 2,
+    title: "Campus Placement Drive 2026",
+    day: "12",
+    month: "Dec",
+    year: "2026",
+    category: "Placement",
+    link: "/news-events",
+  },
+  {
+    id: 3,
+    title: "Hackathon: Build for Bharat",
+    day: "18",
+    month: "Dec",
+    year: "2026",
+    category: "Hackathon",
+    link: "/news-events",
+  },
+  {
+    id: 4,
+    title: "Guest Lecture on Leadership in the Digital Age",
+    day: "08",
+    month: "Jan",
+    year: "2027",
+    category: "Guest Lecture",
+    link: "/news-events",
+  },
+  {
+    id: 5,
+    title: "Annual Cultural Fest – Utsav 2027",
+    day: "22",
+    month: "Jan",
+    year: "2027",
+    category: "Cultural",
+    link: "/news-events",
+  },
+];
 
 export default function Events({ data }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -181,14 +229,14 @@ export default function Events({ data }) {
                     size="h2"
                     className="dark:text-white pr-2.5 2xl:pr-3.75 3xl:pr-5"
                   >
-                    Announcements
+                    Upcoming Events
                   </Heading>
-                  <div className="[--size:30px] gap-[5px] flex justify-end">
+                  <div className="[--size:30px] gap-[5px] flex items-center justify-end">
                     <button
                       type="button"
                       onClick={scrollAnnouncementsPrev}
                       className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center transition-opacity duration-500 hover:opacity-50"
-                      aria-label="Previous announcement"
+                      aria-label="Previous event"
                     >
                       <Image
                         src="/images/left-arrow-button.svg"
@@ -202,7 +250,7 @@ export default function Events({ data }) {
                       type="button"
                       onClick={scrollAnnouncementsNext}
                       className="w-(--size) h-(--size) p-[5px_10px] border border-[#D9D9D9] dark:border-white/10 flex items-center justify-center transition-opacity duration-500 hover:opacity-50"
-                      aria-label="Next announcement"
+                      aria-label="Next event"
                     >
                       <Image
                         src="/images/right-arrow-button.svg"
@@ -212,6 +260,11 @@ export default function Events({ data }) {
                         className="w-full h-full object-contain"
                       />
                     </button>
+                    <span className="ml-1.5 text-xs 3xl:text-sm font-semibold tabular-nums text-[#4A5565] dark:text-gray-300">
+                      {String(selectedIndex + 1).padStart(2, "0")}
+                      <span className="mx-0.5 opacity-50">/</span>
+                      {String(UPCOMING_EVENTS.length).padStart(2, "0")}
+                    </span>
                   </div>
                 </div>
                 <div>
@@ -231,27 +284,29 @@ export default function Events({ data }) {
                 ref={announcementsEmblaRef}
               >
                 <div className="w-full h-full flex flex-col backface-hidden touch-pan-y touch-pinch-zoom">
-                  {data?.announcements_list?.map((item, index) => (
+                  {UPCOMING_EVENTS.map((event) => (
                     <div
-                      key={item?.id}
-                      className="min-h-0 flex-[0_0_calc(100%/3)]"
+                      key={event.id}
+                      className="min-h-0 flex-[0_0_calc(100%/3)] py-1.5"
                     >
-                      <div
-                        className={`group [--image-size:130px] lg:[--image-size:150px] 2xl:[--image-size:175px] 3xl:[--image-size:220px] w-full h-full py-6.25 sm:py-2.5 flex flex-wrap max-sm:items-center ${index === lastVisibleIndex
-                            ? "pb-0 border-b-0"
-                            : "sm:border-b border-black/10"
-                          }`}
+                      <Link
+                        href={safeHref(event.link, "/news-events")}
+                        className="group relative w-full h-full flex items-center gap-3 sm:gap-4 2xl:gap-5 overflow-hidden rounded-2xl bg-[#FFF8EE] dark:bg-white/5 px-3 sm:px-4 2xl:px-5 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(220,38,38,0.22)]"
                       >
-                        <div className="w-(--image-size) h-auto aspect-220/120 rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] overflow-hidden block shrink-0 bg-gray-200 dark:bg-white/10">
-                          {item?.announcement_image?.url && (
-                            <Image
-                              src={item?.announcement_image?.url}
-                              width={220}
-                              height={127}
-                              alt={item?.announcement_image?.alternativeText || "Announcement"}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            />
-                          )}
+                        {/* Hover fill */}
+                        <span
+                          aria-hidden="true"
+                          className="absolute inset-0 z-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                        />
+
+                        {/* Date tile */}
+                        <div className="relative z-10 size-14 sm:size-16 2xl:size-18 3xl:size-22 shrink-0 rounded-xl 3xl:rounded-2xl bg-white dark:bg-[#2a2a2a] shadow-[0_4px_14px_rgba(0,0,0,0.08)] flex flex-col items-center justify-center leading-none">
+                          <span className="text-xl sm:text-2xl 2xl:text-[28px] 3xl:text-4xl font-bold text-[#212121] dark:text-white">
+                            {event.day}
+                          </span>
+                          <span className="mt-1 text-[10px] sm:text-[11px] 3xl:text-sm font-bold uppercase tracking-[0.12em] text-(--basecolor)">
+                            {event.month}
+                          </span>
                         </div>
                         <div className="w-[calc(100%-var(--image-size))] h-auto pl-2.5 2xl:pl-3.75 flex flex-col justify-between py-1">
                           <div>
@@ -272,7 +327,15 @@ export default function Events({ data }) {
                             Read More &gt;
                           </Link>
                         </div>
-                      </div>
+
+                        {/* Arrow */}
+                        <span className="relative z-10 size-8 sm:size-9 3xl:size-11 shrink-0 rounded-full bg-white dark:bg-white/10 text-(--basecolor) shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex items-center justify-center transition-colors duration-500 group-hover:bg-white group-hover:text-(--basecolor)">
+                          <ArrowRight
+                            aria-hidden="true"
+                            className="size-4 3xl:size-5 -rotate-45 transition-transform duration-500 group-hover:rotate-0"
+                          />
+                        </span>
+                      </Link>
                     </div>
                   ))}
                 </div>
