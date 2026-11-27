@@ -169,7 +169,7 @@ export default function InnerHero({ data, placementMenuItems, className }) {
                         <Fragment key={`${item.label}-${index}`}>
                           <BreadcrumbItem>
                             {isLast ? (
-                              <BreadcrumbPage className="text-[10px] font-semibold text-white xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] capitalize">
+                              <BreadcrumbPage className="text-[10px] font-semibold text-white xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px]">
                                 {withLineBreaks(item.label)}
                               </BreadcrumbPage>
                             ) : (
