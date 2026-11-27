@@ -1,12 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, GraduationCap } from "lucide-react";
 import { safeHref } from "@/lib/utils";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { withLineBreaks } from "@/lib/line-breaks";
-
-const VENUE = "Bengaluru";
-const COLLEGE_NAME = "Dayananda Sagar University";
 
 export default function NewsCard({ item }) {
   return (
@@ -24,24 +20,12 @@ export default function NewsCard({ item }) {
             />
           )}
         </div>
-
-        {/* Date badge (bottom left) */}
-        <div className="w-auto h-auto p-[10px_12px] lg:p-[10px_12px] 2xl:p-[15px_15px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) mx-5 lg:mx-5 2xl:mx-6.25 3xl:mx-7.5 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col items-center justify-center absolute z-1 inset-[auto_auto_0_0]">
-          <span className="text-lg lg:text-lg 2xl:text-2xl 3xl:text-[28px] leading-normal font-semibold text-white">
+        <div className="w-auto h-auto p-[12px_15px] 2xl:p-[15px_15px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) mx-7 2xl:mx-6.25 3xl:mx-7.5 rounded-md 2xl:rounded-[10px] overflow-hidden flex flex-col items-center justify-center absolute z-1 inset-[auto_auto_0_0]">
+          <span className="text-xl 2xl:text-2xl 3xl:text-[28px] leading-normal font-semibold text-white">
             {item?.date}
           </span>
-          <span className="text-[11px] 2xl:text-[13px] 3xl:text-sm leading-normal font-normal text-white">
+          <span className="text-xs 2xl:text-[13px] 3xl:text-sm leading-normal font-normal text-white">
             {item?.year}
-          </span>
-        </div>
-
-        {/* College name tag: stays clear of the date badge, long names are cut with an ellipsis */}
-        <div className="absolute z-1 right-3 bottom-10.5 2xl:right-4 2xl:bottom-13 3xl:bottom-15.5 max-w-[calc(100%-125px)] 2xl:max-w-[calc(100%-145px)] 3xl:max-w-[calc(100%-165px)] flex items-center gap-1.5 pl-1.5 pr-2.5 py-1 2xl:pl-2 2xl:pr-3 2xl:py-1.5 rounded-full bg-white/85 dark:bg-[#212121]/90 shadow-[0_2px_10px_rgba(0,0,0,0.18)] backdrop-blur-sm">
-          <span className="size-4.5 2xl:size-6 shrink-0 rounded-full bg-linear-to-r from-(--basecolor) to-(--basecolor2) flex items-center justify-center">
-            <GraduationCap aria-hidden="true" className="size-2.5 2xl:size-3.5 text-white" />
-          </span>
-          <span className="text-[11px] 2xl:text-[13px] 3xl:text-sm leading-normal font-semibold text-[#212121] dark:text-white truncate">
-            {COLLEGE_NAME}
           </span>
         </div>
       </div>
