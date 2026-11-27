@@ -161,7 +161,7 @@ export default function InnerHero({ data, placementMenuItems, className }) {
             >
               {/* Breadcrumb */}
               {breadcrumb.length > 0 && (
-                <Breadcrumb className="mb-1">
+                <Breadcrumb className="mb-0">
                   <BreadcrumbList className="gap-2">
                     {breadcrumb.map((item, index) => {
                       const isLast = index === breadcrumb.length - 1;
@@ -169,13 +169,13 @@ export default function InnerHero({ data, placementMenuItems, className }) {
                         <Fragment key={`${item.label}-${index}`}>
                           <BreadcrumbItem>
                             {isLast ? (
-                              <BreadcrumbPage className="text-[10px] font-semibold text-white xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] capitalize">
+                              <BreadcrumbPage className="text-[10px] font-semibold text-white xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px]">
                                 {withLineBreaks(item.label)}
                               </BreadcrumbPage>
                             ) : (
                               <BreadcrumbLink
                                 render={<Link href={item.href || "#"} />}
-                                className="text-[10px] font-light text-white transition-opacity hover:text-white capitalize hover:opacity-70 xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px]"
+                                className="text-[10px] font-light text-white transition-opacity hover:text-white hover:opacity-70 xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px]"
                               >
                                 {withLineBreaks(item.label)}
                               </BreadcrumbLink>
@@ -184,7 +184,7 @@ export default function InnerHero({ data, placementMenuItems, className }) {
 
                           {!isLast && (
                             <BreadcrumbSeparator>
-                              <span className="block h-[7px] w-[7px] capitalize rounded-full bg-gradient-to-r from-[#DC2626] to-[#F97316]" />
+                              <span className="block h-[7px] w-[7px] rounded-full bg-gradient-to-r from-[#DC2626] to-[#F97316]" />
                             </BreadcrumbSeparator>
                           )}
                         </Fragment>

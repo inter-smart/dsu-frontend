@@ -803,7 +803,7 @@ export default function Header({ data = local_data }) {
 
                   {data?.logo?.alternativelogo?.url && (
                     <div className="w-auto h-auto">
-                      <div
+                      <Link
                         href={data?.logo?.alternativelogo?.link || "/"}
                         {...(data?.logo?.alternativelogo?.isExternal && {
                           target: "_blank",
@@ -822,7 +822,7 @@ export default function Header({ data = local_data }) {
                           height={50}
                           className="w-full h-full object-contain"
                         />
-                      </div>
+                      </Link>
                     </div>
                   )}
                   {/* The tagline moves to the top bar on small screens. */}
@@ -1257,7 +1257,6 @@ function LoginButton({ button, className, iconSrc, iconClassName }) {
       <div className="w-auto h-auto">
         <DropdownMenu>
           <DropdownMenuTrigger
-            nativeButton
             render={
               <button
                 type="button"
