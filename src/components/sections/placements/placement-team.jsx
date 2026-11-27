@@ -1,157 +1,138 @@
-"use client";
-
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import "swiper/css";
+import { Fragment } from "react";
+import { Text } from "@/components/ui/text";
+import { Heading } from "@/components/ui/heading";
+import TableScrollBox from "@/components/layout/common/TableScrollBox";
 import { BlocksRenderer } from "@/components/ui/blocks-renderer";
-import { withLineBreaks } from "@/lib/line-breaks";
 
-export default function PlacementTeam({ data }) {
-    if (!data) return null;
 
-    const {
-        heading = "Meet the Placement Team",
-        description,
-        subheading,
-        team,
-        members,
-    } = data;
+// Campus shown in the last column of a row (first line of contact)
+const getCampus = (row) => String(row?.contact?.[0] ?? "").trim();
 
-    const teamList = team || members || [];
+
+// Heading text for a campus. Edit the titles here (first match wins).
+// Return null for campuses that should NOT get a heading row.
+const CAMPUS_HEADINGS = [
+    { match: /all\s*campus/i, title: null },
+    { match: /harohalli/i, title: "DSU Main Campus - Harohalli" },
+    { match: /city|innovation/i, title: "DSU City Innovation Campus" },
+];
+
+
+const getGroupTitle = (campus) => {
+    const found = CAMPUS_HEADINGS.find((h) => h.match.test(campus));
+    // Unknown campus: use its own label as the heading
+    return found ? found.title : campus;
+};
+
+
+export default function TeamSection({ data }) {
+    const rows = data?.table?.rows ?? [];
+
 
     return (
-        <section className="relative py-[40px] sm:py-[50px] lg:py-[65px] xl:py-[85px] 2xl:py-[100px] bg-[linear-gradient(180deg,#FFF8EE_0%,#FFF3E0_100%)] dark:bg-[linear-gradient(180deg,#0f1011%,#0f1011_100%)] transition-colors duration-300 overflow-hidden">
+        <section className="w-full h-auto py-10 sm:py-15 lg:py-20 2xl:py-25 3xl:py-30 block dark:bg-[#000]">
             <div className="container">
-                {/* Header: Heading and Subtitle */}
-                <div className="mb-[28px] sm:mb-[36px] xl:mb-[44px]">
-                    {heading && (
-                        <h2 className="cmn_Title text-[#1F1F1F]  font-bold tracking-tight mb-2 sm:mb-3">
-                            {heading}
-                        </h2>
-                    )}
-                    {description && Array.isArray(description) ? (
-                        <div className="text_1 text-[#5A6472] dark:!text-black max-w-[850px] leading-relaxed [&_p]:dark:!text-black  typography">
-                            <BlocksRenderer content={description} />
+                <div className="w-full h-auto mb-6.25 2xl:mb-7.5 3xl:mb-10">
+                    {data?.subTitle && (
+                        <div className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mb-2.5 2xl:mb-3.75 3xl:mb-5 relative z-0 [--size:15px] 2xl:[--size:20px] 3xl:[--size:25px] before:content-[''] before:w-(--size) before:h-0.5 2xl:before:h-0.75 pl-[calc(var(--size)+8px)] before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:inline-block before:absolute before:z-1 before:inset-[0_auto_0_0]">
+                            {data.subTitle}
                         </div>
-                    ) : (description || subheading) && (
-                        <p className="text_1 text-[#5A6472] dark:!text-black max-w-[850px] leading-relaxed lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px]">
-                            {description || subheading}
-                        </p>
+                    )}
+                    <Heading className="mb-2.5 2xl:mb-3.75 3xl:mb-5 dark:text-white">
+                        {data?.title}
+                    </Heading>
+                    {Array.isArray(data?.description) ? (
+                        <div className="typography dark:text-[#9CA3AF] [&_p]:dark:text-[#9CA3AF]">
+                            <BlocksRenderer content={data.description} />
+                        </div>
+                    ) : (
+                        data?.description && (
+                            <Text className="dark:text-[#9CA3AF]">{data.description}</Text>
+                        )
                     )}
                 </div>
+                {data?.table?.rows?.length > 0 && (
+                    <div>
+                        <TableScrollBox className="w-full overflow-auto max-h-[450px]">
+                            <table className="[--padding:10px] sm:[--padding:11px_13px] 3xl:[--padding:20px] text-[13px] sm:text-[15px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] text-left text-[#212121] dark:text-white w-full min-w-170 border-collapse">
+                                <thead>
+                                    <tr className="bg-(--basecolor2) text-white">
+                                        {data?.table?.columns?.map((column) => (
+                                            <th
+                                                key={column}
+                                                scope="col"
+                                                className="sticky top-0 z-10 bg-(--basecolor2) font-medium text-left text-white p-(--padding) border border-[#E5E7EB] dark:border-white/20"
+                                            >
+                                                {column}
+                                            </th>
+                                        ))}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {rows.map((row, index) => {
+                                        // A new campus starts here -> insert a heading row before it
+                                        const campus = getCampus(row);
+                                        const prevCampus = index > 0 ? getCampus(rows[index - 1]) : "";
+                                        const groupTitle =
+                                            campus && campus !== prevCampus ? getGroupTitle(campus) : null;
 
-                {/* Team Cards Carousel */}
-                {teamList && teamList.length > 0 && (
-                    <div className="w-full">
-                        <Swiper
-                            modules={[Autoplay]}
-                            slidesPerView={1}
-                            spaceBetween={16}
-                            loop={teamList.length > 4}
-                            autoplay={{
-                                delay: 3500,
-                                disableOnInteraction: false,
-                                pauseOnMouseEnter: true,
-                            }}
-                            breakpoints={{
-                                480: {
-                                    slidesPerView: 1.8,
-                                    spaceBetween: 16,
-                                },
-                                768: {
-                                    slidesPerView: 2.5,
-                                    spaceBetween: 18,
-                                },
-                                1024: {
-                                    slidesPerView: 3.2,
-                                    spaceBetween: 20,
-                                },
-                                1280: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 15,
-                                },
-                                1440: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 20,
-                                },
-                            }}
-                            className="w-full  !overflow-hidden"
-                        >
-                            {teamList.map((member, index) => (
-                                <SwiperSlide key={member.id || index} className="!h-auto">
-                                    <div className="w-full h-full bg-white dark:bg-[#18181A] border border-[#E7E1D8] border-b-4 dark:border-[#2C2C2E] rounded-[8px] xl:rounded-[10px] p-4 2xl:p-6 3xl:p-7 flex flex-col  shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:shadow-md transition-all duration-300">
-                                        {/* Top Section: Name and Designation */}
-                                        <div>
-                                            <h3 className="text-[17px] sm:text-[18px] xl:text-[20px] 2xl:text-[22px] 3xl:text-[25px] font-bold text-[#1F1F1F] dark:text-white leading-tight mb-2">
-                                                {withLineBreaks(member.name)}
-                                            </h3>
-                                            {member.designation && (
-                                                <p className="text-[13px] sm:text-[13.5px] 3xl:text-[18px] mb-[4px] font-normal leading-[1.45] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit lg:text-[15.5px] xl:text-[16px] 2xl:text-[15px]">
-                                                    {withLineBreaks(member.designation)}
-                                                </p>
-                                            )}
-                                            {member.post && (
-                                                <p className="text-[13px] sm:text-[13.5px] 3xl:text-[18px] font-normal leading-[1.45] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit lg:text-[15.5px] xl:text-[16px] 2xl:text-[15px]">
-                                                    {member.post}
-                                                </p>
-                                            )}
-                                        </div>
 
-                                        {/* Divider Line */}
-                                        <div className="w-full h-[1px] bg-[#EFE8DF] dark:bg-[#2C2C2E] my-3 md:my-4 lg:my-5" />
-
-                                        {/* Bottom Section: Contact Details */}
-                                        {member.details && member.details.length > 0 && (
-                                            <div className="flex flex-col gap-3">
-                                                {member.details.map((detail) => (
-                                                    <div
-                                                        key={detail.id || detail.label}
-                                                        className="text-[13px] sm:text-[13.5px] xl:text-[14px] 2xl:text-[15px] text-[#222222] dark:text-white leading-relaxed flex flex-col sm:flex-row sm:items-start"
-                                                    >
-                                                        <span className="font-bold text-[#1F1F1F] dark:text-white mr-2 shrink-0">
-                                                            {withLineBreaks(detail.label)}
-                                                        </span>
-
-                                                        {detail.values && Array.isArray(detail.values) ? (
-                                                            <div className="flex flex-col">
-                                                                {detail.values.map((valObj, valIdx) => (
-                                                                    <React.Fragment key={valIdx}>
-                                                                        {valObj.href ? (
-                                                                            <a
-                                                                                href={valObj.href}
-                                                                                className="text-[#4A5565] font-medium dark:text-[#CBD5E1] hover:text-[#E04828] dark:hover:text-[#F97316] hover:underline transition-colors break-all"
-                                                                            >
-                                                                                {valObj.value}
-                                                                            </a>
-                                                                        ) : (
-                                                                            <span className="text-[#4A5565] font-medium dark:text-[#CBD5E1] break-all">
-                                                                                {valObj.value}
-                                                                            </span>
-                                                                        )}
-                                                                    </React.Fragment>
-                                                                ))}
+                                        return (
+                                            <Fragment key={row?.id ?? index}>
+                                                {groupTitle && (
+                                                    <tr>
+                                                        <td
+                                                            colSpan={data?.table?.columns?.length || 4}
+                                                            className="text-center font-medium text-white font-semibold bg-(--basecolor2)/80 p-(--padding)  "
+                                                        >
+                                                            {groupTitle}
+                                                        </td>
+                                                    </tr>
+                                                )}
+                                                <tr>
+                                                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                                                        {row?.designation}
+                                                    </td>
+                                                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                                                        {row?.name}
+                                                    </td>
+                                                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                                                        {row?.area}
+                                                    </td>
+                                                    <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                                                        {row?.contact?.map((line, i) => (
+                                                            <div key={i} className="leading-[2]">
+                                                                {line}
                                                             </div>
-                                                        ) : detail.href ? (
-                                                            <a
-                                                                href={detail.href}
-                                                                className="text-[#4A5565] dark:text-[#CBD5E1] font-medium hover:text-[#E04828] dark:hover:text-[#F97316] hover:underline transition-colors"
-                                                            >
-                                                                {detail.value}
-                                                            </a>
-                                                        ) : (
-                                                            <span className="text-[#4A5565] font-medium dark:text-[#CBD5E1]">
-                                                                {detail.value}
-                                                            </span>
-                                                        )}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </div>
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
+                                                        ))}
+                                                    </td>
+                                                </tr>
+                                            </Fragment>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                        </TableScrollBox>
+
+
+                        {data?.reservation && (
+                            <div className="mt-10 sm:mt-15 lg:mt-15 2xl:mt-17.5 3xl:mt-22.5 border-t border-black/10 dark:border-white/10 pt-10 sm:pt-10 lg:pt-12.5 2xl:pt-15 3xl:pt-20">
+                                <div className="text-sm 2xl:text-base 3xl:text-xl leading-[1.1] font-normal bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit mb-2.5 2xl:mb-3.75 3xl:mb-5 relative z-0 [--size:15px] 2xl:[--size:20px] 3xl:[--size:25px] before:content-[''] before:w-(--size) before:h-0.5 2xl:before:h-0.75 pl-[calc(var(--size)+8px)] before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:inline-block before:absolute before:z-1 before:inset-[0_auto_0_0]">
+                                    {data.reservation.subTitle}
+                                </div>
+                                <Heading className="mb-3.75 3xl:mb-5 dark:text-white">
+                                    {data.reservation.title}
+                                </Heading>
+                                <div className="w-full h-auto p-3.75 sm:p-5 2xl:p-6.25 3xl:p-8.75 rounded-md 2xl:rounded-[10px] bg-linear-to-r from-[#FFF8EE] to-[#FFF3E0] dark:from-[#F97316]/15 dark:to-[#F97316]/10">
+                                    <h3 className="text-base 2xl:text-lg 3xl:text-[22px] font-semibold text-[#212121] dark:text-white mb-2.5 3xl:mb-3.75">
+                                        {data.reservation.policyTitle}
+                                    </h3>
+                                    <Text className={"text-[#4A5565] dark:text-[#9CA3AF]"}>
+                                        {data.reservation.description}
+                                    </Text>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 )}
             </div>
