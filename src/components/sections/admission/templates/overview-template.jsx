@@ -33,20 +33,21 @@ export default async function OverviewTemplate({ data, slug }) {
     ? { heading: section?.schoolTitle, items: cards }
     : undefined;
 
-  const showOverview = compact
-    ? hasContent(data.programOverviewSection)
-    : Boolean(data.programOverviewSection);
-  const showSchoolCampus = compact
-    ? hasContent(section?.heading) ||
-      hasContent(section?.description) ||
-      Boolean(schoolsSection) ||
-      data.campusesSection?.items?.length > 0
-    : true;
+  // Strapi returns empty components as objects, so a bare truthiness check still renders the
+  // section's padding/background: only show a section that actually holds something.
+  const showOverview = hasContent(data.programOverviewSection);
+  const showWhy = hasContent(data.whyChoose);
+  const showSchoolCampus =
+    hasContent(section?.heading) ||
+    hasContent(section?.description) ||
+    Boolean(schoolsSection) ||
+    data.campusesSection?.items?.length > 0;
+  const showAdmission = hasContent(data.admission);
 
   return (
     <>
       {showOverview && <OverviewSection data={data.programOverviewSection} />}
-      {data.whyChoose && <WhySection data={data.whyChoose} compact={compact} />}
+      {showWhy && <WhySection data={data.whyChoose} compact={compact} />}
       {showSchoolCampus && (
         <SchoolCampus
           data={{
@@ -57,7 +58,7 @@ export default async function OverviewTemplate({ data, slug }) {
           }}
         />
       )}
-      {data.admission && <AdmissionSection data={data.admission} />}
+      {showAdmission && <AdmissionSection data={data.admission} />}
     </>
   );
 }
