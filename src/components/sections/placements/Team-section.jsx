@@ -20,6 +20,10 @@ const getGroupTitle = (campus) => {
   return found ? found.title : campus;
 };
 
+// Shared cell style (thin grey borders like the reference table)
+const cellClass =
+  "font-normal align-middle p-(--padding) border border-[#BFC5CC] dark:border-white/20";
+
 
 export default function TeamSection({ data }) {
   // Backend sends one table per campus in `groups`; older data uses a single `table`.
@@ -30,6 +34,11 @@ export default function TeamSection({ data }) {
         ? [{ campus: "", columns: data.table.columns, rows: data.table.rows }]
         : []
   ).filter((g) => g?.rows?.length > 0);
+
+  // One table for all groups: header comes from the first group
+  const columns = tableGroups[0]?.columns ?? [];
+  const hasContact = columns.includes("Contact");
+  const hasCampus = columns.includes("Campus");
 
   return (
     <section className="w-full h-auto py-10 sm:py-15 lg:py-20 2xl:py-25 3xl:py-30 block dark:bg-[#000]">
@@ -55,48 +64,61 @@ export default function TeamSection({ data }) {
         </div>
         {tableGroups.length > 0 && (
           <div className="flex flex-col gap-10 2xl:gap-12.5">
-            {tableGroups.map((group, gi) => (
-              <div key={group.campus || gi}>
-                {group.campus && getGroupTitle(group.campus) && (
-                  <h3 className="text-center font-semibold text-white bg-(--basecolor2)/80 p-2.5 sm:p-3 3xl:p-5 mb-0">
-                    {getGroupTitle(group.campus)}
-                  </h3>
-                )}
-                <TableScrollBox className="w-full overflow-auto max-h-[450px]">
-                  <table className="[--padding:10px] sm:[--padding:11px_13px] 3xl:[--padding:20px] text-[13px] sm:text-[15px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] text-left text-[#212121] dark:text-white w-full min-w-170 border-collapse">
-                    <thead>
-                      <tr className="bg-(--basecolor2) text-white">
-                        {group.columns?.map((column) => (
-                          <th
-                            key={column}
-                            scope="col"
-                            className="sticky top-0 z-10 bg-(--basecolor2) font-medium text-left text-white p-(--padding) border border-[#E5E7EB] dark:border-white/20"
+            <TableScrollBox className="w-full overflow-auto max-h-[450px]">
+              <table className="[--padding:10px] sm:[--padding:11px_13px] 3xl:[--padding:20px] text-[13px] sm:text-[15px] 2xl:text-[15px] 3xl:text-lg leading-[1.2] text-left text-[#212121] dark:text-white w-full min-w-170 border-collapse">
+                <thead>
+                  <tr>
+                    {columns.map((column) => (
+                      <th
+                        key={column}
+                        scope="col"
+                        className="sticky top-0 z-10 bg-[#F37021] font-medium text-left text-white p-(--padding) border border-[#BFC5CC] dark:border-white/20"
+                      >
+                        {column}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {tableGroups.map((group, gi) => {
+                    const title = group.campus ? getGroupTitle(group.campus) : null;
+                    return [
+                      // Blue campus heading row inside the table (skipped for "All Campus")
+                      title && (
+                        <tr key={`heading-${group.campus || gi}`}>
+                          <td
+                            colSpan={columns.length || 4}
+                            className="text-center font-semibold text-black bg-[#BFC5CC]/80 p-(--padding) border border-[#BFC5CC] dark:border-white/20"
                           >
-                            {column}
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {group.rows.map((row, index) => (
-                        <tr key={row?.id ?? index}>
-                          <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">{row?.designation}</td>
-                          <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">{row?.name}</td>
-                          <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">{row?.area}</td>
-                          {group.columns?.includes("Contact") && (
-                            <td className="font-normal p-(--padding) border border-[#E5E7EB] dark:border-white/20">
+                            {title}
+                          </td>
+                        </tr>
+                      ),
+                      ...group.rows.map((row, index) => (
+                        <tr
+                          key={`row-${group.campus || gi}-${row?.id ?? index}`}
+                          className="bg-white dark:bg-transparent"
+                        >
+                          <td className={cellClass}>{row?.designation}</td>
+                          <td className={cellClass}>{row?.name}</td>
+                          <td className={cellClass}>{row?.area}</td>
+                          {hasCampus && (
+                            <td className={cellClass}>{row?.campus ?? group.campus}</td>
+                          )}
+                          {hasContact && (
+                            <td className={cellClass}>
                               {row?.contact?.map((line, i) => (
                                 <div key={i} className="leading-[2]">{line}</div>
                               ))}
                             </td>
                           )}
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </TableScrollBox>
-              </div>
-            ))}
+                      )),
+                    ];
+                  })}
+                </tbody>
+              </table>
+            </TableScrollBox>
 
             {data?.reservation && (
               <div className="mt-0 border-t border-black/10 dark:border-white/10 pt-10 sm:pt-10 lg:pt-12.5 2xl:pt-15 3xl:pt-20">
