@@ -161,6 +161,12 @@ function RouteCard({ item, className = "" }) {
                 </span>
             )}
 
+            {item?.description && (
+                <p className="mt-2 text_1 leading-relaxed text-[#4B4B4B] dark:text-[#9CA3AF]">
+                    {withLineBreaks(item.description)}
+                </p>
+            )}
+
             {item?.title && (
                 <h3 className="mt-2  text-[18px] leading-[1.15] text-[#1A1A1A] sm:text-[20px] 2xl:text-[24px] 3xl:text-[30px] dark:text-white">
                     {withLineBreaks(item.title)}
