@@ -216,6 +216,8 @@ export default function AdmissionContact({ data }) {
                       <Link
                         href={addressCol.directions.href || "/"}
                         aria-label="Get Directions"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="group inline-flex items-center shrink-0"
                       >
                         <div className="w-5 2xl:w-6 3xl:w-7 h-auto aspect-35/25 overflow-hidden flex items-center justify-center">
@@ -327,6 +329,7 @@ export default function AdmissionContact({ data }) {
                       href={item?.directions?.href || "/"}
                       aria-label="Get Directions"
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="group mt-3 lg:mt-4 inline-flex items-center gap-1.5 py-1.5 pl-2.5 pr-4 rounded-full   dark:border-white/15 transition-colors duration-300 hover:border-(--basecolor) hover:bg-(--basecolor)/5"
                     >
                       <div className="w-5.5 2xl:w-6.5 h-auto aspect-35/25 shrink-0 overflow-hidden flex items-center justify-center">

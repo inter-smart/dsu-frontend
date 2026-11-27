@@ -10,6 +10,9 @@ import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AcademicPartners({ data, varient }) {
     if (!data) return null;
+    // nothing visible (no label, description or partner logo): render no empty blue band
+    const logos = data.partners?.filter((p) => p?.logo?.url) ?? [];
+    if (!data.label && !data.description && logos.length === 0) return null;
 
     return (
         <section className={`relative py-[30px] sm:py-[35px] xl:py-[40px] 2xl:py-[60px] 3xl:py-[90px] bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)] dark:bg-none dark:bg-[#000] ${varient === "home" ? "!pt-[25px]" : ""} `}>
