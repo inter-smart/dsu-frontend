@@ -192,9 +192,9 @@ export default function Events({ data }) {
                             />
                           </div>
                           <div className="sm:w-[85%] h-auto p-2.5 sm:p-5 absolute z-1 inset-[auto_auto_0_0]">
-                            <div className="text-[16px] sm:text-[20px] xl:text-[24px] 2xl:text-[30px] 3xl:text-[36px] leading-[1.1] font-bold text-white mb-[10px] line-clamp-1">
+                            <h4 className="text-[16px] sm:text-[20px] xl:text-[24px] 2xl:text-[30px] 3xl:text-[36px] leading-[1.1] font-bold text-white mb-[10px] line-clamp-1">
                               {withLineBreaks(item?.title)}
-                            </div>
+                            </h4>
                             <div className="text-[14px] sm:text-[16px] 3xl:text-[16px] leading-normal font-normal text-white mb-[10px] sm:mb-[20px] line-clamp-3">
                               {withLineBreaks(item?.description)}
                             </div>

@@ -73,7 +73,7 @@ export default function HomeCampusLife({ data }) {
             <div data-reveal-stagger className="w-full h-auto gap-(--gap) flex xl:flex-col max-lg:grid max-lg:grid-cols-2">
               <div className="sm:[--width:100%] lg:[--width:220px] xl:[--width:270px] 2xl:[--width:320px] 3xl:[--width:400px] w-full h-auto sm:p-2.5 2xl:p-3.75 3xl:p-5 bg-white dark:bg-white/5 dark:border dark:border-white/10 rounded-[7px] 2xl:rounded-[10px] flex max-md:flex-col flex-wrap xl:items-center">
                 <div className="w-(--width) max-lg:mb-5">
-                  <FeatureCard item={data?.featureCards?.[0]} />
+                  <FeatureCard item={data?.featureCards?.[0]} titleAs="div" />
                 </div>
                 <div className="w-(--width) lg:w-[calc(100%-var(--width))] lg:pl-6.25 2xl:pl-7.5 3xl:pl-10">
                   <div className="[--before-size:20px] 2xl:[--before-size:25px] text-sm 2xl:text-base 3xl:text-xl leading-[1.1] tracking-widest font-normal text-[#F57F2A] w-fit h-auto pl-[calc(var(--before-size)+5px)] 2xl:pl-[calc(var(--before-size)+10px)] mb-2.5 relative z-0 before:content-[''] before:w-(--before-size) before:h-0.5 2xl:before:h-1.25 before:my-auto before:bg-linear-to-r before:from-(--basecolor) before:to-(--basecolor2) before:absolute before:z-1 before:inset-[0_auto_0_0]">
@@ -255,7 +255,8 @@ export default function HomeCampusLife({ data }) {
   );
 }
 
-function FeatureCard({ item, className }) {
+// titleAs="div" for a card that sits before the section <h2> in the DOM, so no <h3> precedes its <h2>.
+function FeatureCard({ item, className, titleAs: Title = "h3" }) {
   return (
     <Link
       data-fancybox="campus"
@@ -312,9 +313,9 @@ function FeatureCard({ item, className }) {
             />
           )}
         </div>
-        <h3 className="text-sm sm:text-base 2xl:text-xl 3xl:text-[25px] leading-normal font-medium text-white w-[calc(100%-var(--icon-size))] pl-1.25 2xl:pl-2.5">
+        <Title className="text-sm sm:text-base 2xl:text-xl 3xl:text-[25px] leading-normal font-medium text-white w-[calc(100%-var(--icon-size))] pl-1.25 2xl:pl-2.5">
           {withLineBreaks(item?.title)}
-        </h3>
+        </Title>
       </div>
     </Link>
   );

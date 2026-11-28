@@ -167,7 +167,7 @@ export default function PageLoader() {
 
         {/* University Brand & AI-First Recognition */}
         <div className="dsu-identity">
-          <h1 className="dsu-univ-name">Dayananda Sagar University</h1>
+          <p className="dsu-univ-name">Dayananda Sagar University</p>
           <div className="dsu-ai-badge">
             <span className="dsu-signal-dot" />
             <span>India&apos;s AI-First University</span>
