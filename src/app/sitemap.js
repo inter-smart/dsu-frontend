@@ -32,6 +32,17 @@ const get = (path, params) => fetchAPI(path, params, REVALIDATE);
 const list = (res) => (Array.isArray(res) ? res : Array.isArray(res?.data) ? res.data : []);
 const slugs = (items) => list(items).filter((i) => i?.slug);
 
+// Faculty is paged (the API caps pageSize at 50), so walk every page.
+async function getAllFaculty() {
+  const PAGE_SIZE = 50;
+  const first = await get("/api/faculties", { page: 1, pageSize: PAGE_SIZE });
+  const rest = Math.max(0, (first?.pagination?.pageCount || 1) - 1);
+  const pages = await Promise.all(
+    Array.from({ length: rest }, (_, i) => get("/api/faculties", { page: i + 2, pageSize: PAGE_SIZE }))
+  );
+  return [first, ...pages].flatMap(list);
+}
+
 export default async function sitemap() {
   const entries = new Map();
   const add = (path, lastModified, priority = 0.6) => {
@@ -58,7 +69,7 @@ export default async function sitemap() {
     get("/api/flexible-pages"), get("/api/pdf-report-pages"),
     get("/api/news-events"), get("/api/news-events", { type: "Announcement" }),
     get("/api/news-events", { type: "Community Activities" }), get("/api/news-events", { type: "Alumni" }),
-    get("/api/alumnis"), get("/api/faculties"), get("/api/centre-of-excellence-page"),
+    get("/api/alumnis"), getAllFaculty(), get("/api/centre-of-excellence-page"),
     get("/api/accreditions/accredition"),
     get("/api/admissions"), get("/api/examinations"), get("/api/governance-pages"),
     get("/api/international-pages"), get("/api/rankings"), get("/api/international-rankings"),
@@ -79,6 +90,10 @@ export default async function sitemap() {
   addAll("/examination", examinations);
   addAll("/governance", governance);
   addAll("/national-ranking", rankings);
+  // NIRF discipline sub-pages come from the ranking sidebar menu
+  slugs(await get("/api/rankings", { sidebar: true })).forEach((r) =>
+    (r.subItems || []).forEach((sub) => sub?.slug && add(`/national-ranking/${r.slug}/${sub.slug}`, r.updatedAt))
+  );
   addAll("/international-Ranking", intlRankings);
   addAll("/regulatory-approval", regulatory);
   addAll("/why-us", compliance);
@@ -115,6 +130,10 @@ export default async function sitemap() {
         if (t.href) add(t.href, s.updatedAt, 0.6);
         else if (t.key && !t.anchor) add(`/schools/${s.slug}/${t.key}`, s.updatedAt, 0.6);
       });
+      if ((detail?.tabs || []).some((t) => t.key === "library")) {
+        const lib = await get(`/api/schools/${encodeURIComponent(s.slug)}/library`);
+        slugs(lib?.sidebar).forEach((p) => add(`/schools/${s.slug}/library/${p.slug}`, s.updatedAt, 0.5));
+      }
     })
   );
 
@@ -126,6 +145,10 @@ export default async function sitemap() {
       add(base, d.updatedAt, 0.7);
       const detail = await get(`/api/departments/${encodeURIComponent(d.slug)}/overview`);
       (detail?.availableTabs || []).forEach((t) => add(`${base}/${t}`, d.updatedAt, 0.6));
+      if ((detail?.availableTabs || []).includes("library")) {
+        const lib = await get(`/api/departments/${encodeURIComponent(d.slug)}/library`);
+        slugs(lib?.sidebar).forEach((p) => add(`${base}/library/${p.slug}`, d.updatedAt, 0.5));
+      }
     })
   );
 
