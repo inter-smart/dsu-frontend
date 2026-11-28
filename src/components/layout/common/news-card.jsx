@@ -1,12 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, GraduationCap } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { safeHref } from "@/lib/utils";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { withLineBreaks } from "@/lib/line-breaks";
-
-const VENUE = "Bengaluru";
-const COLLEGE_NAME = "Dayananda Sagar University";
 
 export default function NewsCard({ item }) {
   return (
@@ -36,14 +33,16 @@ export default function NewsCard({ item }) {
         </div>
 
         {/* College name tag: stays clear of the date badge, long names are cut with an ellipsis */}
-        <div className="absolute z-1 right-3 bottom-10.5 2xl:right-4 2xl:bottom-13 3xl:bottom-15.5 max-w-[calc(100%-125px)] 2xl:max-w-[calc(100%-145px)] 3xl:max-w-[calc(100%-165px)] flex items-center gap-1.5 pl-1.5 pr-2.5 py-1 2xl:pl-2 2xl:pr-3 2xl:py-1.5 rounded-full bg-white/85 dark:bg-[#212121]/90 shadow-[0_2px_10px_rgba(0,0,0,0.18)] backdrop-blur-sm">
-          <span className="size-4.5 2xl:size-6 shrink-0 rounded-full bg-linear-to-r from-(--basecolor) to-(--basecolor2) flex items-center justify-center">
-            <GraduationCap aria-hidden="true" className="size-2.5 2xl:size-3.5 text-white" />
-          </span>
-          <span className="text-[11px] 2xl:text-[13px] 3xl:text-sm leading-normal font-semibold text-[#212121] dark:text-white truncate">
-            {COLLEGE_NAME}
-          </span>
-        </div>
+        {item?.venue && (
+          <div className="absolute z-1 right-3 bottom-10.5 2xl:right-4 2xl:bottom-13 3xl:bottom-15.5 max-w-[calc(100%-125px)] 2xl:max-w-[calc(100%-145px)] 3xl:max-w-[calc(100%-165px)] flex items-center gap-1.5 pl-1.5 pr-2.5 py-1 2xl:pl-2 2xl:pr-3 2xl:py-1.5 rounded-full bg-white/85 dark:bg-[#212121]/90 shadow-[0_2px_10px_rgba(0,0,0,0.18)] backdrop-blur-sm">
+            <span className="size-4.5 2xl:size-6 shrink-0 rounded-full bg-linear-to-r from-(--basecolor) to-(--basecolor2) flex items-center justify-center">
+              <MapPin aria-hidden="true" className="size-2.5 2xl:size-3.5 text-white" />
+            </span>
+            <span className="text-[11px] 2xl:text-[13px] 3xl:text-sm leading-normal font-semibold text-[#212121] dark:text-white truncate">
+              {item.venue}
+            </span>
+          </div>
+        )}
       </div>
       <div className="w-full h-full p-[15px_25px] 2xl:p-[15px_25px] 3xl:p-[20px_30px] flex flex-col justify-between">
         <h3 className="text-base 2xl:text-lg 3xl:text-[23px] leading-normal font-bold line-clamp-3 text-[#212121] dark:text-white w-[90%] mb-5 3xl:mb-7.5">

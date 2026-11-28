@@ -18,8 +18,13 @@ export async function getNewsEvents() {
 }
 
 // Paged news cards ("Load More"): { data: [card], pagination: { page, pageSize, pageCount, total } }
-export async function getNewsEventsPaged(page, pageSize = 6) {
-  return fetchAPI("/api/news-events", { page, pageSize }, NO_STORE);
+// Optional `category` / `school` slugs filter on the server.
+export async function getNewsEventsPaged(page, pageSize = 6, { category, school } = {}) {
+  return fetchAPI(
+    "/api/news-events",
+    { page, pageSize, ...(category && { category }), ...(school && { school }) },
+    NO_STORE
+  );
 }
 
 // Detail page: { seo, hero, newsEventsDetail }

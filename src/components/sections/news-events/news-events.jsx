@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { Search, X, LayoutGrid, Newspaper } from "lucide-react";
+import { Search, X, LayoutGrid, Newspaper, GraduationCap } from "lucide-react";
 import { Heading } from "@/components/ui/heading";
 import NewsCard from "@/components/layout/common/news-card";
 import {
@@ -41,10 +41,42 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
 
   const hasMore = pagination && pagination.page < pagination.pageCount;
 
+  // Main listing: categories (all created ones) and schools (that have news) come from the CMS
+  // and filter on the server. School / department listings keep the old in-page filters.
+  const serverMode = !schoolSlug && !departmentSlug && Array.isArray(data?.categories);
+  const categoryOptions = data?.categories ?? [];
+  const schoolOptions = data?.schools ?? [];
+  const [schoolSel, setSchoolSel] = useState(ALL);
+
   const categories = useMemo(
-    () => [...new Set(items.map(getCategory).filter(Boolean))],
-    [items]
+    () => (serverMode ? [] : [...new Set(items.map(getCategory).filter(Boolean))]),
+    [items, serverMode]
   );
+
+  // refetch from the first page whenever a server filter changes
+  const firstRun = useRef(true);
+  useEffect(() => {
+    if (!serverMode) return;
+    if (firstRun.current) {
+      firstRun.current = false;
+      return;
+    }
+    let cancelled = false;
+    setLoading(true);
+    getNewsEventsPaged(1, data?.pagination?.pageSize ?? 6, {
+      category: category === ALL ? undefined : category,
+      school: schoolSel === ALL ? undefined : schoolSel,
+    })
+      .then((res) => {
+        if (cancelled || !res?.data) return;
+        setItems(res.data);
+        setPagination(res.pagination ?? null);
+      })
+      .finally(() => !cancelled && setLoading(false));
+    return () => {
+      cancelled = true;
+    };
+  }, [serverMode, category, schoolSel]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // News list shown in the second dropdown: only the items of the selected category
   const newsOptions = useMemo(
@@ -60,20 +92,25 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
   const filteredItems = useMemo(() => {
     const q = query.trim().toLowerCase();
     return items.filter((item) => {
-      if (category !== ALL && getCategory(item) !== category) return false;
+      if (!serverMode && category !== ALL && getCategory(item) !== category) return false;
       if (newsId !== ALL && getItemId(item) !== newsId) return false;
       if (q && !(item?.title || "").toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [items, query, category, newsId]);
+  }, [items, query, category, newsId, serverMode]);
 
-  const isAllActive = !query && category === ALL && newsId === ALL;
+  const isAllActive = !query && category === ALL && newsId === ALL && schoolSel === ALL;
 
   const resetFilters = () => {
     setQuery("");
     setCategory(ALL);
     setNewsId(ALL);
+    setSchoolSel(ALL);
   };
+
+  const categoryLabel = (slug) =>
+    serverMode ? categoryOptions.find((c) => c.slug === slug)?.name : slug;
+  const schoolLabel = (slug) => schoolOptions.find((x) => x.slug === slug)?.name;
 
   const loadMore = async () => {
     if (!hasMore || loading) return;
@@ -83,7 +120,11 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
         ? (page, size) => getDepartmentNewsPaged(departmentSlug, page, size)
         : schoolSlug
           ? (page, size) => getSchoolNewsPaged(schoolSlug, page, size)
-          : getNewsEventsPaged;
+          : (page, size) =>
+              getNewsEventsPaged(page, size, {
+                category: category === ALL ? undefined : category,
+                school: schoolSel === ALL ? undefined : schoolSel,
+              });
       const res = await fetchPage(pagination.page + 1, pagination.pageSize);
       if (res?.data && res?.pagination) {
         setItems((prev) => {
@@ -153,7 +194,7 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
                   All
                 </button>
 
-                {categories.length > 0 && (
+                {(serverMode ? categoryOptions.length > 0 : categories.length > 0) && (
                   <div className="flex-1 min-w-0 sm:flex-none"> 
                     <Select
                       value={category}
@@ -165,7 +206,7 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
                       <SelectTrigger aria-label="Select news category" className={selectTriggerClass}>
                         <LayoutGrid aria-hidden="true" className="hidden sm:block size-4 shrink-0 text-(--basecolor)" />
                         <SelectValue placeholder="Category">
-                          {category === ALL ? "Categories" : category}
+                          {category === ALL ? "Categories" : categoryLabel(category)}
                         </SelectValue>
                       </SelectTrigger>
                       <SelectContent
@@ -178,6 +219,11 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
                         <SelectItem value={ALL} className={selectItemClass}>
                           <span className={itemTextClass} style={wrapTextStyle}>All Categories</span>
                         </SelectItem>
+                        {categoryOptions.filter(() => serverMode).map((c) => (
+                          <SelectItem key={c.slug} value={c.slug} className={selectItemClass}>
+                            <span className={itemTextClass} style={wrapTextStyle}>{c.name}</span>
+                          </SelectItem>
+                        ))}
                         {categories.map((c) => (
                           <SelectItem key={c} value={c} className={selectItemClass}>
                             <span className={itemTextClass} style={wrapTextStyle}>{c}</span>
@@ -188,7 +234,37 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
                   </div>
                 )}
 
-                <div className="flex-1 min-w-0 sm:flex-none"> 
+                {serverMode && schoolOptions.length > 0 && (
+                  <div className="flex-1 min-w-0 sm:flex-none">
+                    <Select value={schoolSel} onValueChange={setSchoolSel}>
+                      <SelectTrigger aria-label="Select school" className={selectTriggerClass}>
+                        <GraduationCap aria-hidden="true" className="hidden sm:block size-4 shrink-0 text-(--basecolor)" />
+                        <SelectValue placeholder="Schools">
+                          {schoolSel === ALL ? "Schools" : schoolLabel(schoolSel)}
+                        </SelectValue>
+                      </SelectTrigger>
+                      <SelectContent
+                        position="popper"
+                        align="start"
+                        sideOffset={8}
+                        collisionPadding={16}
+                        className={newsContentClass}
+                      >
+                        <SelectItem value={ALL} className={selectItemClass}>
+                          <span className={itemTextClass} style={wrapTextStyle}>All Schools</span>
+                        </SelectItem>
+                        {schoolOptions.map((x) => (
+                          <SelectItem key={x.slug} value={x.slug} className={selectItemClass}>
+                            <span className={itemTextClass} style={wrapTextStyle}>{x.name}</span>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+
+                {!serverMode && (
+                <div className="flex-1 min-w-0 sm:flex-none">
                   <Select value={newsId} onValueChange={setNewsId}>
                     <SelectTrigger aria-label="Select news" className={selectTriggerClass}>
                       <Newspaper aria-hidden="true" className="hidden sm:block size-4 shrink-0 text-(--basecolor)" />
@@ -218,6 +294,7 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
                     </SelectContent>
                   </Select>
                 </div>
+                )}
               </div>
 
               {/* Search (right on desktop, on top on mobile) */}
@@ -259,7 +336,7 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
             {!isAllActive && (
               <div className="flex flex-nowrap sm:flex-wrap items-center gap-2 pt-3 sm:pt-4 border-t border-[#E5E5E5] dark:border-white/15 overflow-x-auto sm:overflow-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 <span className="shrink-0 text-xs sm:text-[13px] font-medium text-[#4A5565] dark:text-gray-300 mr-1">
-                  {filteredItems.length} of {items.length}
+                  {filteredItems.length} of {serverMode ? (pagination?.total ?? items.length) : items.length}
                 </span>
 
                 {query && (
@@ -272,7 +349,7 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
                 )}
                 {category !== ALL && (
                   <span className={chipClass}>
-                    <span className="truncate">{category}</span>
+                    <span className="truncate">{categoryLabel(category)}</span>
                     <button
                       type="button"
                       onClick={() => {
@@ -282,6 +359,14 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
                       aria-label="Remove category filter"
                       className={chipCloseClass}
                     >
+                      <X aria-hidden="true" className="size-3" />
+                    </button>
+                  </span>
+                )}
+                {schoolSel !== ALL && (
+                  <span className={chipClass}>
+                    <span className="truncate">{schoolLabel(schoolSel)}</span>
+                    <button type="button" onClick={() => setSchoolSel(ALL)} aria-label="Remove school filter" className={chipCloseClass}>
                       <X aria-hidden="true" className="size-3" />
                     </button>
                   </span>

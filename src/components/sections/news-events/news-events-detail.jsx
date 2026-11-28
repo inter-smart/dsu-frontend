@@ -18,11 +18,13 @@ export default function NewsEventsDetail({
   backLabel = "Back to News & Events",
 }) {
 
+  const hasRelated = data?.relatedNews?.length > 0;
+
   return (
     <section className="w-full h-auto py-10 sm:py-[70px_80px] lg:py-[90px_110px] 2xl:py-[110px_130px] 3xl:py-[100px] block">
       <div className="container">
-        <div className="[--width:100%] lg:[--width:285px] xl:[--width:330px] 2xl:[--width:390px] 3xl:[--width:500px] w-full h-auto flex flex-wrap">
-          <div className="w-(--width) lg:w-[calc(100%-var(--width))] h-auto lg:pr-3.75 2xl:pr-5 3xl:pr-7.5 max-lg:mb-5">
+        <div className={`${hasRelated ? "[--width:100%] lg:[--width:285px] xl:[--width:330px] 2xl:[--width:390px] 3xl:[--width:500px]" : "[--width:0px]"} w-full h-auto flex flex-wrap`}>
+          <div className={hasRelated ? "w-(--width) lg:w-[calc(100%-var(--width))] h-auto lg:pr-3.75 2xl:pr-5 3xl:pr-7.5 max-lg:mb-5" : "w-full h-auto"}>
             {/* <div className="group w-full h-auto aspect-1210/665 mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden block relative z-0 bg-gray-200 dark:bg-white/10"> */}
             {/* {data?.newsEventsDetailImage?.url && (
                 <Image
@@ -241,11 +243,11 @@ export default function NewsEventsDetail({
                 }}
               />
 
-              {/* PDF download or YouTube video */}
-              {data?.attachment?.type === "YouTube" && data.attachment.embedUrl && (
+              {/* Video: YouTube link or uploaded file */}
+              {data?.video?.type === "YouTube" && data.video.embedUrl && (
                 <div className="w-full h-auto aspect-video mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden bg-black">
                   <iframe
-                    src={data.attachment.embedUrl}
+                    src={data.video.embedUrl}
                     title={data?.title || "Video"}
                     loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -254,16 +256,21 @@ export default function NewsEventsDetail({
                   />
                 </div>
               )}
-              {data?.attachment?.type === "PDF" && data.attachment.url && (
+              {data?.video?.type === "Video" && data.video.url && (
+                <div className="w-full h-auto aspect-video mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5 rounded-[5px] sm:rounded-[7px] 2xl:rounded-[10px] overflow-hidden bg-black">
+                  <video src={data.video.url} controls preload="metadata" className="w-full h-full object-contain" />
+                </div>
+              )}
+              {data?.pdf?.url && (
                 <div className="w-full h-auto mb-5 sm:mb-7.5 2xl:mb-10 3xl:mb-12.5">
                   <a
-                    href={data.attachment.url}
+                    href={data.pdf.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2.5 rounded-sm text-sm 2xl:text-base font-bold text-white bg-linear-to-r from-(--basecolor) to-(--basecolor2) transition-opacity duration-300 hover:opacity-80"
                   >
                     View PDF
-                    {data.attachment.name ? ` – ${data.attachment.name}` : ""}
+                    {data.pdf.name ? ` – ${data.pdf.name}` : ""}
                   </a>
                 </div>
               )}
@@ -362,6 +369,7 @@ export default function NewsEventsDetail({
               </div>
             </div>
           </div>
+          {hasRelated && (
           <div className="w-(--width) lg:top-[70px] lg:sticky h-full">
             {/* {data?.gallery?.length > 0 && (
               <div className="max-lg:gap-2.5 max-lg:grid max-lg:grid-cols-2 mb-5 sm:mb-7.5 2xl:mb-15 3xl:mb-17.5">
@@ -380,10 +388,10 @@ export default function NewsEventsDetail({
                 ))}
               </div>
             )} */}
-            {data?.relatedNews?.length > 0 && (
+            {(
               <div className="w-full h-auto p-[10px_0_10px_10px] sm:p-[15px_0_15px_15px] 3xl:p-[20px_0_20px_20px] border-l border-black/20 block">
                 <div className="text-xl sm:text-2xl lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.1] font-bold text-[#212121] mb-5 sm:mb-7.5 3xl:mb-11.25">
-                  {data?.relatedNewsTitle}
+                  {data?.relatedNewsTitle || "Related News"}
                 </div>
 
                 {/* ADDED: Swiper replaces the grid container */}
@@ -446,6 +454,7 @@ export default function NewsEventsDetail({
               </div>
             )}
           </div>
+          )}
         </div>
       </div>
     </section>
