@@ -13,9 +13,12 @@ const nextConfig: NextConfig = {
     return [];
   },
   async rewrites() {
+    // DEPLOY_ENV=live on the live server (dsu.edu.in); anything else in production is the beta server
     const defaultStrapiUrl =
       process.env.NODE_ENV === "production"
-        ? "https://dsu-beta.intersmarthosting.in"
+        ? process.env.DEPLOY_ENV === "live"
+          ? "https://dsu.edu.in"
+          : "https://dsu-beta.intersmarthosting.in"
         : "http://localhost:1337";
     const configuredStrapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
     const strapiUrl =
@@ -51,6 +54,11 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "dsu.edu.in",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.dsu.edu.in",
         pathname: "/**",
       },
       {
