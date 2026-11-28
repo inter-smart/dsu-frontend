@@ -311,15 +311,15 @@ export default function Events({ data }) {
                         <div className="w-[calc(100%-var(--image-size))] h-auto pl-2.5 2xl:pl-3.75 flex flex-col justify-between py-1">
                           <div>
                             <h4 className="lg:text-lg 2xl:text-xl 3xl:text-3xl leading-tight font-bold text-[#212121] dark:text-white mb-1 line-clamp-1 transition-colors duration-500 group-hover:!text-(--basecolor2)">
-                              {withLineBreaks(item?.title)}
+                              {withLineBreaks(event?.title)}
                             </h4>
                             <div className="text-sm 3xl:text-base leading-normal font-normal text-[#4A5565] dark:text-white sm:max-w-[95%] mb-2 line-clamp-2 transition-colors duration-500 group-hover:!text-(--basecolor2)">
-                              {withLineBreaks(item?.description)}
+                              {withLineBreaks(event?.description)}
                             </div>
                           </div>
                           <Link
-                            href={safeHref(item?.externalLink || item?.link, "/announcements")}
-                            {...(item?.externalLink
+                            href={safeHref(event?.externalLink || event?.link, "/announcements")}
+                            {...(event?.externalLink
                               ? { target: "_blank", rel: "noopener noreferrer" }
                               : {})}
                             className="text-sm leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"

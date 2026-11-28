@@ -1257,6 +1257,7 @@ function LoginButton({ button, className, iconSrc, iconClassName }) {
       <div className="w-auto h-auto">
         <DropdownMenu>
           <DropdownMenuTrigger
+            nativeButton
             render={
               <button
                 type="button"
