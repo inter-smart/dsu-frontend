@@ -120,9 +120,9 @@ export default function NewsEventsDetail({
                 )}
 
                 {/* Title */}
-                <h1 className="mb-3.75 sm:mb-5 lg:mb-6.25 2xl:mb-8.75 cmn_Title">
+                <h2 className="mb-3.75 sm:mb-5 lg:mb-6.25 2xl:mb-8.75 cmn_Title">
                   {withLineBreaks(data?.title)}
-                </h1>
+                </h2>
 
                 {/* Organiser */}
                 {data?.organized?.name && (
@@ -382,9 +382,9 @@ export default function NewsEventsDetail({
             )} */}
             {data?.relatedNews?.length > 0 && (
               <div className="w-full h-auto p-[10px_0_10px_10px] sm:p-[15px_0_15px_15px] 3xl:p-[20px_0_20px_20px] border-l border-black/20 block">
-                <div className="text-xl sm:text-2xl lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.1] font-bold text-[#212121] mb-5 sm:mb-7.5 3xl:mb-11.25">
+                <h2 className="text-xl sm:text-2xl lg:text-[26px] 2xl:text-[32px] 3xl:text-[40px] leading-[1.1] font-bold text-[#212121] mb-5 sm:mb-7.5 3xl:mb-11.25">
                   {data?.relatedNewsTitle}
-                </div>
+                </h2>
 
                 {/* ADDED: Swiper replaces the grid container */}
                 <div className="w-full h-auto min-w-0">
