@@ -9,56 +9,15 @@ import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { withLineBreaks } from "@/lib/line-breaks";
 
-// Static upcoming events. Edit the values here.
-const UPCOMING_EVENTS = [
-  {
-    id: 1,
-    title: "International Conference on AI & Data Science",
-    day: "05",
-    month: "Dec",
-    year: "2026",
-    category: "Conference",
-    link: "/news-events",
-  },
-  {
-    id: 2,
-    title: "Campus Placement Drive 2026",
-    day: "12",
-    month: "Dec",
-    year: "2026",
-    category: "Placement",
-    link: "/news-events",
-  },
-  {
-    id: 3,
-    title: "Hackathon: Build for Bharat",
-    day: "18",
-    month: "Dec",
-    year: "2026",
-    category: "Hackathon",
-    link: "/news-events",
-  },
-  {
-    id: 4,
-    title: "Guest Lecture on Leadership in the Digital Age",
-    day: "08",
-    month: "Jan",
-    year: "2027",
-    category: "Guest Lecture",
-    link: "/news-events",
-  },
-  {
-    id: 5,
-    title: "Annual Cultural Fest – Utsav 2027",
-    day: "22",
-    month: "Jan",
-    year: "2027",
-    category: "Cultural",
-    link: "/news-events",
-  },
-];
+// The API gives upcoming events (eventDate today or later) as date "5th" and year "Dec 2026"
+const toTile = (item) => ({
+  ...item,
+  day: String(parseInt(item?.date, 10) || "").padStart(2, "0"),
+  month: String(item?.year || "").split(" ")[0],
+});
 
 export default function Events({ data }) {
+  const upcomingEvents = (data?.announcements_list || []).map(toTile);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
   });
@@ -263,7 +222,7 @@ export default function Events({ data }) {
                     <span className="ml-1.5 text-xs 3xl:text-sm font-semibold tabular-nums text-[#4A5565] dark:text-gray-300">
                       {String(selectedIndex + 1).padStart(2, "0")}
                       <span className="mx-0.5 opacity-50">/</span>
-                      {String(UPCOMING_EVENTS.length).padStart(2, "0")}
+                      {String(upcomingEvents.length).padStart(2, "0")}
                     </span>
                   </div>
                 </div>
@@ -284,7 +243,7 @@ export default function Events({ data }) {
                 ref={announcementsEmblaRef}
               >
                 <div className="w-full h-full flex flex-col backface-hidden touch-pan-y touch-pinch-zoom">
-                  {UPCOMING_EVENTS.map((event) => (
+                  {upcomingEvents.map((event) => (
                     <div
                       key={event.id}
                       className="min-h-0 flex-[0_0_calc(100%/3)] py-1.5"
