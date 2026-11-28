@@ -50,7 +50,12 @@ const splitDate = (label) => {
 
 function AnnouncementCard({ item }) {
   const { label, location } = getEventMeta(item);
-  const { day, monthYear } = splitDate(label);
+  let { day, monthYear } = splitDate(label);
+  // The API sends the day ("4th") in `date` and the month/year ("Dec 2026") in `year`.
+  if (!monthYear && item?.year) {
+    day = String(day || item?.date || "").replace(/(st|nd|rd|th)$/i, "");
+    monthYear = item.year;
+  }
   const imageUrl = item?.announcement_image?.url;
   const imageAlt = item?.announcement_image?.alternativeText || item?.title || "Announcement";
 

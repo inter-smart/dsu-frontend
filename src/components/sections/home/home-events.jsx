@@ -39,6 +39,17 @@ const UPCOMING_EVENTS = [
   },
 ];
 
+// Maps an announcement from the API to the upcoming-event tile shape.
+const toTile = (item) => ({
+  id: item?.id,
+  title: item?.title || "",
+  day: String(item?.date || "").replace(/(st|nd|rd|th)$/i, ""),
+  monthYear: item?.year || "",
+  category: item?.category || "Announcement",
+  image: item?.announcement_image?.url || "/images/events/upcoming-1.png",
+  link: item?.externalLink || item?.link,
+});
+
 export default function Events({ data }) {
   const upcomingEvents = (data?.announcements_list || []).map(toTile);
   const [emblaRef, emblaApi] = useEmblaCarousel({
