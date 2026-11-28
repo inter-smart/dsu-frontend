@@ -180,9 +180,9 @@ export default function AccordionTable({ data }) {
                 {hasHeader && (
                     <div className="flex flex-wrap justify-between mb-[30px] 2xl:mb-[45px]">
                         {data.heading && (
-                            <div className="text-[18px] lg:text-[25px] xl:text-[32px] 2xl:text-[40px] 3xl:text-[45px] font-semibold">
+                            <h2 className="text-[18px] lg:text-[25px] xl:text-[32px] 2xl:text-[40px] 3xl:text-[45px] font-semibold">
                                 {withLineBreaks(data.heading)}
-                            </div>
+                            </h2>
                         )}
                         {hasDescription && (
                             <div className="text_1 text-[#4A5565] w-full lg:w-[45%] ml-auto dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px] typography">
@@ -200,7 +200,7 @@ export default function AccordionTable({ data }) {
                                 value={`item-${item.id ?? idx}`}
                                 className="border border-[#9fa2a76b] rounded-[6px] mb-[10px] xl:mb-[20px] last-of-type:mb-0 transition-all duration-300 data-[state=open]:border-[#F97316]/50 data-[state=open]:shadow-[0_10px_35px_rgba(249,115,22,0.12)] data-[open]:border-[#F97316]/50 data-[open]:shadow-[0_10px_35px_rgba(249,115,22,0.12)]"
                             >
-                                <AccordionTrigger className="relative p-[8px_10px] md:p-[15px] xl:p-[18px] 3xl:p-[20px_25px] font-medium !text-black text-[11px] hover:no-underline md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] pr-[46px] md:pr-[56px] 2xl:pr-[66px] outline-none focus:ring-0 focus-visible:ring-0 focus-visible:border-transparent focus-visible:bg-[#FFF8EE] after:absolute after:right-[8px] after:md:right-[14px] after:2xl:right-[22px] after:top-1/2 after:-translate-y-1/2 after:flex after:size-[26px] after:md:size-[30px] after:3xl:size-[36px] after:items-center after:justify-center after:rounded-full after:bg-[#FFF3E0] after:text-[#EA580C] after:leading-none after:content-['+'] after:text-[18px] after:font-bold after:transition-all after:duration-300 dark:after:bg-white/10 dark:after:text-white data-[state=open]:after:!content-['−'] data-[panel-open]:after:!content-['−'] aria-expanded:after:!content-['−'] aria-expanded:after:bg-gradient-to-r aria-expanded:after:from-[#DC2626] aria-expanded:after:to-[#F97316] aria-expanded:after:text-white [&>svg]:!hidden">
+                                <AccordionTrigger headerAs={data?.heading ? "h3" : "h2"} className="relative p-[8px_10px] md:p-[15px] xl:p-[18px] 3xl:p-[20px_25px] font-medium !text-black text-[11px] hover:no-underline md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] pr-[46px] md:pr-[56px] 2xl:pr-[66px] outline-none focus:ring-0 focus-visible:ring-0 focus-visible:border-transparent focus-visible:bg-[#FFF8EE] after:absolute after:right-[8px] after:md:right-[14px] after:2xl:right-[22px] after:top-1/2 after:-translate-y-1/2 after:flex after:size-[26px] after:md:size-[30px] after:3xl:size-[36px] after:items-center after:justify-center after:rounded-full after:bg-[#FFF3E0] after:text-[#EA580C] after:leading-none after:content-['+'] after:text-[18px] after:font-bold after:transition-all after:duration-300 dark:after:bg-white/10 dark:after:text-white data-[state=open]:after:!content-['−'] data-[panel-open]:after:!content-['−'] aria-expanded:after:!content-['−'] aria-expanded:after:bg-gradient-to-r aria-expanded:after:from-[#DC2626] aria-expanded:after:to-[#F97316] aria-expanded:after:text-white [&>svg]:!hidden">
                                     <div className="w-full">
                                         <div className="cmn_Txt text-[#212121] dark:text-white font-semibold">{item.question}</div>
                                     </div>

@@ -45,13 +45,15 @@ function AccordionItem({
   );
 }
 
+// headerAs: heading level of the wrapper (h3 by default); use "h2" when there is no section heading above the accordion.
 function AccordionTrigger({
   className,
   children,
+  headerAs: HeaderTag = "h3",
   ...props
 }) {
   return (
-    <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Header className="flex" render={(headerProps) => <HeaderTag {...headerProps} />}>
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(

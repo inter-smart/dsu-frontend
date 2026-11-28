@@ -45,9 +45,9 @@ export default function KeyFocus({ data }) {
         {hasHeader && (
           <div className="flex flex-wrap justify-between mb-[30px] 2xl:mb-[45px]">
             {data.heading && (
-              <div className="text-[18px] lg:text-[25px] xl:text-[32px] 2xl:text-[40px] 3xl:text-[45px] font-semibold">
+              <h2 className="text-[18px] lg:text-[25px] xl:text-[32px] 2xl:text-[40px] 3xl:text-[45px] font-semibold">
                 {withLineBreaks(data.heading)}
-              </div>
+              </h2>
             )}
             {hasDescription && (
               <div className="text_1 text-[#4A5565] w-full lg:w-[45%] ml-auto dark:text-[#9CA3AF] leading-[1.6] xl:leading-[1.7] space-y-[14px] xl:space-y-[18px]  typography">
@@ -79,7 +79,7 @@ export default function KeyFocus({ data }) {
                   value={`item-${item.id}`}
                   className="border border-[#9fa2a76b] rounded-[6px] mb-[10px] xl:mb-[20px] last-of-type:mb-0"
                 >
-                  <AccordionTrigger className="relative p-[8px_10px] md:p-[15px] xl:p-[18px] 3xl:p-[20px_25px] font-medium !text-black text-[11px] hover:no-underline md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold after:text-base2 dark:after:text-white data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden">
+                  <AccordionTrigger headerAs={data?.heading ? "h3" : "h2"} className="relative p-[8px_10px] md:p-[15px] xl:p-[18px] 3xl:p-[20px_25px] font-medium !text-black text-[11px] hover:no-underline md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] 3xl:text-[20px] pr-[10px] md:pr-[15px] 2xl:pr-[25px] after:absolute after:right-[5px] after:md:right-[10px] after:2xl:right-[20px] after:top-1/2 after:-translate-y-1/2 after:content-['+'] after:text-[18px] after:font-bold after:text-base2 dark:after:text-white data-[state=open]:after:!content-['-'] data-[panel-open]:after:!content-['-'] aria-expanded:after:!content-['-'] [&>svg]:!hidden">
                     <div className="w-full">
                       <div className="cmn_Txt text-[#212121] dark:text-white font-semibold">
                         {item.question}

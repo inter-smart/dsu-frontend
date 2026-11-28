@@ -13,7 +13,7 @@ export default function AcademicPlacementReport({ data }) {
                 <div className="flex flex-wrap max-lg:gap-[15px]">
                     <div className="w-full lg:w-4/12">
                         <div className="w-full mb-[20px] xl:mb-[30px]">
-                            {data.heading && <div className="cmn_Title mb-[25px]">{data.heading}</div>}
+                            {data.heading && <h2 className="cmn_Title mb-[25px]">{data.heading}</h2>}
                             {data.description && <p>{data.description}</p>}
                         </div>
                         {data.documents?.filter((item) => item?.file?.url).map((item, id) => (

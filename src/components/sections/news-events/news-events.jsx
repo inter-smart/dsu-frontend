@@ -308,7 +308,7 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
         </div>
 
         <div className="w-full h-auto mb-6.25 lg:mb-7.5 2xl:mb-10">
-          {data?.title && <Heading className="mb-0 dark:text-white">{data.title}</Heading>}
+          {data?.title && <Heading as="h2" className="mb-0 dark:text-white">{data.title}</Heading>}
         </div>
 
         <div className="w-full h-auto gap-3.75 sm:gap-[15px_10px] lg:gap-[20px_15px] 2xl:gap-[25px_15px] 3xl:gap-[30px_20px] grid sm:grid-cols-2 lg:grid-cols-3">

@@ -12,9 +12,9 @@ export default function AcademicWhychoose({ data }) {
             <div className="container">
                 <div className="grid grid-cols-1 lg:grid-cols-12 max-lg:gap-[12px] mb-[25px] 2xl:mb-[40px] 3xl:mb-[60px]">
                     <div className="lg:col-span-4">
-                        <div className="cmn_Title max-lg:mb-0">
+                        <h2 className="cmn_Title max-lg:mb-0">
                             {withLineBreaks(data.heading)}
-                        </div>
+                        </h2>
                     </div>
                     <div className="lg:col-span-6">
                         <div className="lg:max-w-[75%] w-full">

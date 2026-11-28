@@ -52,9 +52,9 @@ function FacultyCard({ member, categoryLabel }) {
 
                 <div className="text-center mt-1">
                     <Link href={profileHref} className="block">
-                        <h4 className="font-bold text-[14px] sm:text-[15px] xl:text-[16px] 2xl:text-[20px] text-[#212121] dark:text-[#F3F4F6] group-hover:text-[#E05338] dark:group-hover:text-[#F97316] transition-colors line-clamp-1 leading-snug mb-[2px]">
+                        <h3 className="font-bold text-[14px] sm:text-[15px] xl:text-[16px] 2xl:text-[20px] text-[#212121] dark:text-[#F3F4F6] group-hover:text-[#E05338] dark:group-hover:text-[#F97316] transition-colors line-clamp-1 leading-snug mb-[2px]">
                             {withLineBreaks(member.name)}
-                        </h4>
+                        </h3>
                     </Link>
 
                     {member.designation && (

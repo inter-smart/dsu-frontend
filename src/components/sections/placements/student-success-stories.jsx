@@ -202,6 +202,8 @@ const LONG_QUOTE = 220;
 function StoryCard({ story, variant }) {
     const [open, setOpen] = useState(false);
     const long = (story.quote?.length || 0) > LONG_QUOTE;
+    // name sits one level below the story title; without a title it is the first heading under the section h2
+    const NameTag = story.title ? "h4" : "h3";
     return (
         <>
                 <div className={`w-full h-full ${variant === "bg-gradient" ? "bg-white": "bg-[#F8FAFC]"}  dark:bg-[#151618] rounded-[4px] p-5 sm:p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-md`}>
@@ -227,9 +229,11 @@ function StoryCard({ story, variant }) {
                         </div>
 
                         {/* Story Title */}
-                        <h4 className="cmn_Txt font-bold text-[#1F1F1F] dark:text-white leading-[1.3] mb-3">
+                        {story.title && (
+                            <h3 className="cmn_Txt font-bold text-[#1F1F1F] dark:text-white leading-[1.3] mb-3">
                             {withLineBreaks(story.title)}
-                        </h4>
+                        </h3>
+                        )}
 
                         {/* Story Quote Text */}
                         <p className={`text_1 text-[#64748B] dark:text-[#94A3B8] ${long ? "line-clamp-5" : ""}`}>
@@ -263,9 +267,9 @@ function StoryCard({ story, variant }) {
 
                             {/* Student Information */}
                             <div className="min-w-0">
-                                <h5 className="text-[14px] sm:text-[14.5px] 2xl:text-[16px] 3xl:text-[20px] font-bold text-[#212121] dark:text-white leading-tight truncate mb-[3px]">
+                                <NameTag className="text-[14px] sm:text-[14.5px] 2xl:text-[16px] 3xl:text-[20px] font-bold text-[#212121] dark:text-white leading-tight truncate mb-[3px]">
                                     {withLineBreaks(story.name)}
-                                </h5>
+                                </NameTag>
                                 <p className="text-[11.5px] sm:text-[12px] text-[#212121] dark:text-[#CBD5E1] leading-tight mt-0.5 truncate lg:text-[14px] xl:text-[14px] 2xl:text-[14px]">
                                     {story.role}
                                 </p>
@@ -291,7 +295,7 @@ function StoryCard({ story, variant }) {
                         </div>
                         {/* only the story scrolls; the author header stays in view */}
                         <div data-lenis-prevent className="-mr-3 min-h-0 flex-1 overflow-y-auto overscroll-contain pr-3 sm:-mr-4 sm:pr-4">
-                            {story.title && <h4 className="cmn_Txt mb-3 font-bold leading-[1.3] text-[#1F1F1F] dark:text-white">{story.title}</h4>}
+                            {story.title && <h3 className="cmn_Txt mb-3 font-bold leading-[1.3] text-[#1F1F1F] dark:text-white">{story.title}</h3>}
                             <p className="text_1 whitespace-pre-line text-[#475569] dark:text-[#94A3B8]">{story.quote}</p>
                         </div>
                     </DialogContent>

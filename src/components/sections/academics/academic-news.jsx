@@ -20,9 +20,9 @@ export default function AcademicNews({ data }) {
                 bg-[linear-gradient(135deg,#EFF6FF_0%,#F2F7FE_28%,#F9FAFB_100%)] dark:bg-none dark:bg-[#000]">
             <div className="container">
                 <div className="flex flex-wrap items-center justify-between gap-[20px] mb-[20px] xl:mb-[35px] 2xl:mb-[45px] 3xl:mb-[55px]">
-                    <div className="cmn_Title mb-0">
+                    <h2 className="cmn_Title mb-0">
                         {data?.title || "News & Events"}
-                    </div>
+                    </h2>
                 </div>
 
                 <div className="w-full relative group">

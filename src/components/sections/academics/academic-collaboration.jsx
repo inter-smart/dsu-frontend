@@ -36,7 +36,7 @@ export default function AcademicCollaboration({ data, varient }) {
                         </div>
                     </div>
                     <div className="w-full max-lg:mb-[20px]">
-                        {data.heading && <div className="cmn_Title mb-[25px]">{data.heading}</div>}
+                        {data.heading && <h2 className="cmn_Title mb-[25px]">{data.heading}</h2>}
                         {Array.isArray(data.description) ? (
                             data.description.length > 0 && (
                                 <div className="typography dark:text-[#9CA3AF]">

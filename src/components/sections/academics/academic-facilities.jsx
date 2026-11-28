@@ -10,13 +10,15 @@ import { withLineBreaks } from "@/lib/line-breaks";
 
 export default function AcademicFacilities({ data }) {
     if (!data) return null;
+    // item titles are h2 when the section has no heading of its own
+    const ItemTitle = data.heading ? "h3" : "h2";
 
     return (
         <section className="relative py-[40px] xl:py-[55px] 2xl:py-[70px] 3xl:py-[90px] 
                 bg-white dark:bg-none dark:bg-[#101010]">
             <div className="container">
                 <div className="flex flex-wrap [&>div]:lg:w-1/2  mb-[15px] lg:mb-[25px] 2xl:mb-[40px] 3xl:mb-[45px]">
-                    {data.heading && <div className="cmn_Title mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] ">{data.heading}</div>}
+                    {data.heading && <h2 className="cmn_Title mb-[15px] 2xl:mb-[25px] 3xl:mb-[30px] ">{data.heading}</h2>}
                     <div className="text_1 leading-[1.2] text-[#4A5565] dark:text-[#9CA3AF]  typography [&_p]:text-[14px] [&_p]:md:text-[15px] [&_p]:lg:text-[16px] [&_p]:2xl:text-[18px] [&_p]:3xl:text-[20px] [&_p]:leading-[22px] [&_p]:2xl:leading-[25px] [&_p]:3xl:leading-[28px] [&_p]:tracking-tight [&_p]:text-[#212121] dark:[&_p]:text-[#F9FAFB]">
                         {data?.description && <BlocksRenderer content={data.description} />}
                     </div>
@@ -82,9 +84,9 @@ export default function AcademicFacilities({ data }) {
                                 {/* Text Content */}
                                 <div className="w-full lg:w-1/2 flex items-center">
                                     <div className="w-full px-[15px] lg:px-[30px] xl:px-[40px] 2xl:px-[50px] 3xl:px-[65px] py-[20px] lg:py-0">
-                                        <h3 className="text-[22px] xl:text-[28px] 2xl:text-[34px] 3xl:text-[42px] font-bold text-[#1F1F1F] dark:text-white leading-[1.2] mb-[8px] xl:mb-[10px] 2xl:mb-[12px] 3xl:mb-[15px]">
+                                        <ItemTitle className="text-[22px] xl:text-[28px] 2xl:text-[34px] 3xl:text-[42px] font-bold text-[#1F1F1F] dark:text-white leading-[1.2] mb-[8px] xl:mb-[10px] 2xl:mb-[12px] 3xl:mb-[15px]">
                                             {withLineBreaks(item.title)}
-                                        </h3>
+                                        </ItemTitle>
                                         <div className="w-[40px] xl:w-[50px] 2xl:w-[55px] 3xl:w-[65px] h-[3px] xl:h-[4px] bg-[#EA580C] mb-[12px] xl:mb-[16px] 2xl:mb-[20px] 3xl:mb-[25px] rounded-full" />
                                         <div className="text_1 leading-[1.5] xl:leading-[1.6] text-[#4A5565] dark:text-[#9CA3AF] lg:text-[14px] xl:text-[14px] 2xl:text-[14.4px] typography [&_p]:text-[14px] [&_p]:md:text-[15px] [&_p]:lg:text-[14px] [&_p]:xl:text-[14px] [&_p]:2xl:text-[14.4px] [&_p]:3xl:text-[18px] [&_p]:leading-[1.5] [&_p]:xl:leading-[1.6] [&_p]:tracking-tight [&_p]:text-[#4A5565] dark:[&_p]:text-[#9CA3AF]">
                                             {Array.isArray(item.description) ? (

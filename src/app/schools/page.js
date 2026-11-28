@@ -9,7 +9,7 @@ export default async function Page() {
 
   return (
     <section className="container py-[40px] md:py-[60px]">
-      <div className="cmn_Title mb-[25px]">Our Schools</div>
+      <h2 className="cmn_Title mb-[25px]">Our Schools</h2>
       {list.length === 0 ? (
         <p>Schools will be listed here soon.</p>
       ) : (
