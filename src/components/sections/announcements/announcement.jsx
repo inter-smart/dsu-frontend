@@ -3,14 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import { ArrowRight, CalendarDays, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { Heading } from "@/components/ui/heading";
 import { getAnnouncementsPaged } from "@/lib/api";
 import { safeHref } from "@/lib/utils";
-import { withLineBreaks } from "@/lib/line-breaks";
 
 const IST = "Asia/Kolkata";
 
@@ -46,95 +42,61 @@ const getEventMeta = (item) => {
   return { label: str, location };
 };
 
+// "15 Dec 2026" -> { day: "15", monthYear: "Dec 2026" }; free text such as "15th" stays whole in `day`.
+const splitDate = (label) => {
+  const m = /^(\d{1,2}(?:\s*-\s*\d{1,2})?)\s+([A-Za-z]+\s+\d{4})$/.exec(label || "");
+  return m ? { day: m[1].replace(/\s/g, ""), monthYear: m[2] } : { day: label, monthYear: "" };
+};
+
 function AnnouncementCard({ item }) {
   const { label, location } = getEventMeta(item);
+  const { day, monthYear } = splitDate(label);
   const imageUrl = item?.announcement_image?.url;
   const imageAlt = item?.announcement_image?.alternativeText || item?.title || "Announcement";
 
   return (
     <Link
-      href={item?.link || "/announcements"}
-      className="group relative w-full h-full flex flex-col overflow-hidden rounded-3xl bg-white dark:bg-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.07)] ring-1 ring-black/5 dark:ring-white/10 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(0,0,0,0.16)]"
+      href={safeHref(item?.externalLink || item?.link, "/announcements")}
+      {...(item?.externalLink ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      className="group relative w-full h-[110px] sm:h-[131px] 3xl:h-[160px] flex items-stretch transition-transform duration-500 hover:-translate-y-0.5"
     >
-      {/* Poster: blurred copy fills the frame, the sharp poster sits on top in full (never cropped) */}
-      <div className="relative w-full aspect-4/4 overflow-hidden bg-gray-200 dark:bg-white/10 flex items-center justify-center">
+      <div className="relative z-10 w-[80px] sm:w-[105px] 3xl:w-[130px] shrink-0 rounded-[5px] overflow-hidden bg-gray-200 dark:bg-white/10">
         {imageUrl && (
-          <>
-            {/* Background: blurred, zoomed copy */}
-            <Image
-              src={imageUrl}
-              width={200}
-              height={200}
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-70"
-            />
-            {/* Foreground: sharp poster */}
-            <div className="p-3">
-              <Image
-                src={imageUrl}
-                width={600}
-                height={750}
-                alt={imageAlt}
-                className="relative z-1 w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-              />
+          <Image
+            src={imageUrl}
+            width={210}
+            height={262}
+            alt={imageAlt}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        )}
+      </div>
+      <div className="min-w-0 -ml-[5px] pl-[13px] sm:pl-[23px] pr-2.5 sm:pr-[15px] flex-1 flex items-center gap-2.5 sm:gap-4 rounded-[5px] bg-linear-to-b from-[#FFF8EE] to-[#FFF3E0] dark:from-white/5 dark:to-white/5 transition-shadow duration-500 group-hover:shadow-[0_12px_28px_rgba(220,38,38,0.18)]">
+        <div className="min-w-0 flex-1">
+          {EVENT_NAME && (
+            <div className="text-xs sm:text-sm 3xl:text-base leading-normal font-normal uppercase text-[#565656] dark:text-white/70 mb-1 line-clamp-1">
+              {EVENT_NAME}
             </div>
-          </>
-        )}
-      </div>
-
-      <div className="flex flex-1 flex-col px-5 pt-4 pb-4 2xl:px-6 3xl:px-7">
-        {/* Static event name */}
-        {EVENT_NAME && (
-          <span className="mb-2 inline-flex w-fit items-center rounded-full bg-(--basecolor)/10 px-3 py-1 text-[11px] 2xl:text-[12px] font-semibold uppercase mb-3 tracking-[0.08em] text-black">
-            {EVENT_NAME}
-          </span>
-        )}
-
-        {/* Date above the title */}
-        {label && (
-          <div className="my-2.5 flex items-center gap-2.5">
-            <span className="size-7 3xl:size-9 shrink-0 rounded-lg bg-linear-to-br from-(--basecolor) to-(--basecolor2) text-white flex items-center justify-center shadow-[0_4px_10px_rgba(220,38,38,0.25)]">
-              <CalendarDays aria-hidden="true" className="size-3.5 3xl:size-4.5" />
-            </span>
-            <span className="text-xs 2xl:text-[13px] 3xl:text-base font-bold uppercase tracking-[0.08em] text-black">
-              {label}
-            </span>
-            <span
-              aria-hidden="true"
-              className="h-px flex-1 bg-linear-to-r from-(--basecolor)/40 to-transparent"
-            />
-          </div>
-        )}
-
-        <h3 className="text-base text-[20px] mt-3  leading-tight font-bold text-[#212121] dark:text-white line-clamp-2 transition-colors duration-500 ">
-          {item?.title}
-        </h3>
-
-        {location && (
-          <div className="mt-2 inline-flex items-start gap-2 text-[13px] 2xl:text-sm 3xl:text-base leading-snug font-medium text-[#4A5565] dark:text-gray-300">
-            <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-(--basecolor)" />
-            <span className="line-clamp-2">{location}</span>
-          </div>
-        )}
-
-        <div className="mt-auto pt-3">
-          <div className="flex items-center justify-between border-t border-black/10 dark:border-white/10 pt-3">
-            <span className="text-sm 3xl:text-base leading-normal font-bold uppercase tracking-wide bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent">
-              Read More
-            </span>
-            <span className="size-9 3xl:size-11 shrink-0 rounded-full bg-(--basecolor)/10 text-(--basecolor) flex items-center justify-center transition-all duration-500 group-hover:bg-linear-to-r group-hover:from-(--basecolor) group-hover:to-(--basecolor2) group-hover:text-white">
-              <ArrowRight aria-hidden="true" className="size-4 -rotate-45 transition-transform duration-500 group-hover:rotate-0" />
-            </span>
-          </div>
+          )}
+          <h3 className="text-sm sm:text-base xl:text-lg 2xl:text-xl 3xl:text-[23px] leading-[1.4] font-bold text-[#212121] dark:text-white line-clamp-2">
+            {item?.title}
+          </h3>
+          {location && (
+            <div className="mt-1 hidden sm:flex items-center gap-1.5 text-xs 3xl:text-sm text-[#4A5565] dark:text-gray-300">
+              <MapPin aria-hidden="true" className="size-3.5 shrink-0 text-(--basecolor)" />
+              <span className="line-clamp-1">{location}</span>
+            </div>
+          )}
         </div>
+        {day && (
+          <div className="w-[62px] sm:w-[85px] 3xl:w-[102px] aspect-102/101 shrink-0 rounded-[5px] bg-white dark:bg-[#2a2a2a] flex items-center justify-center">
+            <div className="text-center uppercase font-bold leading-[1.1] bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent">
+              <span className="block text-lg sm:text-2xl 3xl:text-[28px]">{day}</span>
+              {monthYear && <span className="block text-[10px] sm:text-xs 3xl:text-base">{monthYear}</span>}
+            </div>
+          </div>
+        )}
       </div>
-
-      {/* Gradient line that grows along the bottom on hover */}
-      <span
-        aria-hidden="true"
-        className="absolute bottom-0 left-0 h-1 w-0 bg-linear-to-r from-(--basecolor) to-(--basecolor2) transition-all duration-500 group-hover:w-full"
-      />
     </Link>
   );
 }
@@ -143,11 +105,6 @@ export default function Announcement({ data }) {
   const [items, setItems] = useState(data?.announcements ?? []);
   const [pagination, setPagination] = useState(data?.pagination ?? null);
   const [loading, setLoading] = useState(false);
-
-  // mobile slider controls
-  const [prevEl, setPrevEl] = useState(null);
-  const [nextEl, setNextEl] = useState(null);
-  const [paginationEl, setPaginationEl] = useState(null);
 
   const hasMore = pagination && pagination.page < pagination.pageCount;
 
@@ -174,9 +131,6 @@ export default function Announcement({ data }) {
     }
   };
 
-  const sliderBtnClass =
-    "size-10 shrink-0 rounded-full border border-(--basecolor)/30 bg-white dark:bg-transparent text-(--basecolor) flex items-center justify-center transition-colors cursor-pointer hover:bg-(--basecolor) hover:text-white disabled:opacity-40 disabled:pointer-events-none";
-
   return (
     <section className="w-full h-auto py-10 sm:py-15 lg:py-20 2xl:py-25 3xl:py-30 block">
       <div className="container">
@@ -184,83 +138,10 @@ export default function Announcement({ data }) {
           <Heading as="h2" className="mb-0">{data?.title}</Heading>
         </div>
 
-        {/* Desktop / tablet: grid (2 / 3 / 4 per row) */}
-        <div className="hidden md:grid w-full h-auto gap-5 lg:gap-6 2xl:gap-7.5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+        <div className="w-full h-auto grid gap-3 sm:gap-4 lg:gap-5 lg:grid-cols-2">
           {items.map((item) => (
-            <div
-              key={item?.documentId ?? item?.id}
-              className="w-full h-auto py-2.5 sm:py-3.75 3xl:py-5 not-last:border-b border-black/10"
-            >
-              <div
-                className={`group [--image-size:130px] sm:[--image-size:200px] lg:[--image-size:230px] 2xl:[--image-size:270px] 3xl:[--image-size:340px] w-full h-full flex flex-wrap items-center`}
-              >
-                <div className="w-(--image-size) h-auto aspect-340/190 rounded-[5px] lg:rounded-[15px] 2xl:rounded-[20px] overflow-hidden block shrink-0 bg-gray-200 dark:bg-white/10">
-                  {item?.announcement_image?.url && (
-                    <Image
-                      src={item.announcement_image.url}
-                      width={340}
-                      height={190}
-                      alt={
-                        item?.announcement_image?.alternativeText ||
-                        "Announcement"
-                      }
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  )}
-                </div>
-                <div className="w-[calc(100%-var(--image-size))] h-auto pl-2.5 lg:pl-10 2xl:pl-12.5 3xl:pl-16.25 py-1">
-                  <div className="w-full h-auto sm:mb-5 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5">
-                    <div className="lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl leading-tight font-bold text-[#212121] dark:text-white mb-1 line-clamp-1 transition-colors duration-500 group-hover:!text-(--basecolor2)">
-                      {withLineBreaks(item?.title)}
-                    </div>
-                    <div className="text-sm 2xl:text-base 3xl:text-lg leading-normal font-normal text-[#4A5565] dark:text-white sm:max-w-[95%] mb-2 line-clamp-1 transition-colors duration-500 group-hover:!text-(--basecolor2)">
-                      {withLineBreaks(item?.description)}
-                    </div>
-                  </div>
-                  <Link
-                    href={safeHref(item?.externalLink || item?.link, "/announcements")}
-                    {...(item?.externalLink
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    className="text-sm 3xl:text-base leading-normal font-bold uppercase bg-linear-to-r from-(--basecolor) to-(--basecolor2) bg-clip-text text-transparent w-fit transition-opacity duration-500 hover:opacity-50"
-                  >
-                    Read More &gt;
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <AnnouncementCard key={item?.documentId ?? item?.id} item={item} />
           ))}
-        </div>
-
-        {/* Mobile: Swiper slider */}
-        <div className="md:hidden w-full h-auto">
-          <Swiper
-            modules={[Navigation, Pagination]}
-            slidesPerView={1.12}
-            spaceBetween={14}
-            navigation={{ prevEl, nextEl }}
-            pagination={{ el: paginationEl, clickable: true, dynamicBullets: true }}
-            className="w-full !overflow-hidden !py-2"
-          >
-            {items.map((item) => (
-              <SwiperSlide key={item?.documentId ?? item?.id} className="!h-auto">
-                <AnnouncementCard item={item} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-          <div className="mt-5 flex items-center justify-center gap-4">
-            <button ref={setPrevEl} type="button" aria-label="Previous announcement" className={sliderBtnClass}>
-              <ChevronLeft aria-hidden="true" className="size-5" />
-            </button>
-            <div
-              ref={setPaginationEl}
-              className="!static !w-auto flex items-center justify-center gap-1.5 [&_.swiper-pagination-bullet]:!m-0 [&_.swiper-pagination-bullet]:bg-(--basecolor)/30 [&_.swiper-pagination-bullet]:opacity-100 [&_.swiper-pagination-bullet-active]:!bg-(--basecolor)"
-            />
-            <button ref={setNextEl} type="button" aria-label="Next announcement" className={sliderBtnClass}>
-              <ChevronRight aria-hidden="true" className="size-5" />
-            </button>
-          </div>
         </div>
 
         {hasMore && (
