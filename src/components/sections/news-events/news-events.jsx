@@ -176,6 +176,7 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
             From sm up the negative top margin = section top padding (60 / 80 / 100 / 120px) + ~20px overlap,
             so the bar only touches the bottom edge of the banner and stays clear of the banner title.
             Change the "20" part to overlap more or less. */}
+        {serverMode && (
         <div className="relative z-10 w-full h-auto -mt-[24px] sm:-mt-[80px] lg:-mt-[100px] 2xl:-mt-[120px] 3xl:-mt-[140px] mb-6 sm:mb-10 lg:mb-12 2xl:mb-15 rounded-[16px] sm:rounded-[20px] pt-[3px] sm:pt-[4px] bg-linear-to-r from-(--basecolor) to-(--basecolor2) shadow-[0_10px_30px_rgba(0,0,0,0.14)] sm:shadow-[0_12px_40px_rgba(0,0,0,0.14)]">
           <div className="w-full bg-white dark:bg-[#2a2a2a] rounded-b-[14px] rounded-t-[13px] sm:rounded-b-[18px] sm:rounded-t-[17px] p-3 sm:p-5 lg:px-8 lg:py-6 flex flex-col gap-3 sm:gap-5">
             <div className="flex flex-col lg:flex-row lg:items-end gap-3 sm:gap-5 lg:gap-8">
@@ -391,6 +392,7 @@ export default function NewsEvents({ data, schoolSlug, departmentSlug }) {
             )}
           </div>
         </div>
+        )}
 
         <div className="w-full h-auto mb-6.25 lg:mb-7.5 2xl:mb-10">
           {data?.title && <Heading className="mb-0 dark:text-white">{data.title}</Heading>}
