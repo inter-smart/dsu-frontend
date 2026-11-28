@@ -55,8 +55,10 @@ export default function NewsEventsDetail({
             <div className="w-full h-auto block">
               <div className="w-full h-auto mb-5 sm:mb-6.25 lg:mb-7.5 2xl:mb-10 3xl:mb-12.5">
                 {/* Date & time */}
-                {(data?.organized?.date || data?.organized?.time) && (
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-2.5 sm:mb-3 lg:mb-4">
+                {(data?.organized?.date || data?.organized?.time || data?.venue || data?.categories?.length > 0) && (
+                  <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mb-2.5 sm:mb-3 lg:mb-4">
+                    {(data?.organized?.date || data?.organized?.time) && (
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                     {data?.organized?.date && (
                       <div className="flex items-center gap-2">
                         <svg
@@ -116,6 +118,28 @@ export default function NewsEventsDetail({
                         </span>
                       </div>
                     )}
+                    </div>
+                    )}
+
+                    {/* Venue + categories: one line, right end of the date row */}
+                    {(data?.venue || data?.categories?.length > 0) && (
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 lg:flex-nowrap lg:ml-auto">
+                        {data?.venue && (
+                          <div className="text_1 text-[#212121] dark:text-white lg:whitespace-nowrap">
+                            <span className="font-bold pr-1.25">Venue:</span>
+                            {withLineBreaks(data.venue)}
+                          </div>
+                        )}
+                        {data?.categories?.map((category) => (
+                          <span
+                            key={category?.id || category?.name}
+                            className="px-3 py-1 rounded-full border border-(--basecolor2)/40 text-xs 2xl:text-sm font-medium text-(--basecolor2) whitespace-nowrap"
+                          >
+                            {category?.name}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -129,28 +153,6 @@ export default function NewsEventsDetail({
                   <div className="text_1 text-[#212121] dark:text-white">
                     <span className="font-bold pr-1.25">Organized by:</span>
                     {withLineBreaks(data.organized.name)}
-                  </div>
-                )}
-
-                {/* Venue */}
-                {data?.venue && (
-                  <div className="text_1 text-[#212121] dark:text-white mt-1.5">
-                    <span className="font-bold pr-1.25">Venue:</span>
-                    {withLineBreaks(data.venue)}
-                  </div>
-                )}
-
-                {/* Categories */}
-                {data?.categories?.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-3.75">
-                    {data.categories.map((category) => (
-                      <span
-                        key={category?.id || category?.name}
-                        className="px-3 py-1 rounded-full border border-(--basecolor2)/40 text-xs 2xl:text-sm font-medium text-(--basecolor2)"
-                      >
-                        {category?.name}
-                      </span>
-                    ))}
                   </div>
                 )}
               </div>
