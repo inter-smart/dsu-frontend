@@ -10,6 +10,14 @@ import { usePathname } from "next/navigation";
 const AUTO = "main section > .container > *";
 const MAX_DEPTH = 5;
 
+// ScrollReveal hydrates before the page content (it sits outside the page's Suspense boundary), so only touch
+// elements React has already hydrated: changing attributes on server HTML still waiting to hydrate causes a
+// hydration mismatch. React tags every hydrated DOM node with a __reactFiber$ key.
+const hydrated = (el) => {
+  for (const k in el) if (k.startsWith("__reactFiber$")) return true;
+  return false;
+};
+
 const kids = (el) =>
   [...el.children].filter(
     (c) => c.tagName !== "SCRIPT" && c.tagName !== "STYLE" && c.getBoundingClientRect().height > 0,
@@ -41,7 +49,9 @@ const hasGroup = (el, depth) => kids(el).some((c) => isCardGroup(c) || (depth > 
 
 // Hover zoom for cards whose photo is clipped by the card, unless the image already has its own zoom.
 const markZoom = (card) => {
+  if (!hydrated(card)) return;
   card.querySelectorAll("img").forEach((img) => {
+    if (!hydrated(img)) return;
     const { width, height } = img.getBoundingClientRect();
     if (width < 120 || height < 90 || /hover:scale|group-hover/.test(img.className)) return;
     for (let n = img.parentElement; n; n = n.parentElement) {
@@ -61,6 +71,7 @@ let zoomed = [];
 
 const tag = (el, depth) => {
   if (
+    !hydrated(el) ||
     el.hasAttribute("data-reveal") ||
     el.hasAttribute("data-reveal-stagger") ||
     el.hasAttribute("data-no-reveal") ||
@@ -122,7 +133,7 @@ export default function ScrollReveal() {
     // Per-card grids: watch each card once, including cards React adds later (tab/filter changes).
     const watchCards = (grid, line) => {
       [...grid.children].forEach((c) => {
-        if (observed.has(c)) return;
+        if (observed.has(c) || !hydrated(c)) return;
         observed.add(c);
         c.style.setProperty("--reveal-delay", "0ms");
         const { top, bottom } = c.getBoundingClientRect();
@@ -135,7 +146,7 @@ export default function ScrollReveal() {
       document.querySelectorAll(AUTO).forEach((el) => tag(el, 0));
       document.querySelectorAll("[data-reveal-each]").forEach((grid) => watchCards(grid, vh() * 0.75));
       document.querySelectorAll("[data-reveal], [data-reveal-stagger]").forEach((el) => {
-        if (observed.has(el)) return;
+        if (observed.has(el) || !hydrated(el)) return;
         observed.add(el);
         const { top, bottom, height } = el.getBoundingClientRect();
         const line = inFold(el) ? vh() : vh() * 0.75;
@@ -165,12 +176,18 @@ export default function ScrollReveal() {
 
     scan();
     root.classList.add("reveal-ready");
+    // Sections inside Suspense hydrate later without any DOM change the observer could see: keep scanning for a few seconds.
+    const poll = setInterval(() => {
+      scan();
+      revealInView();
+    }, 600);
+    const stopPoll = setTimeout(() => clearInterval(poll), 8000);
 
     // Images/fonts can shift layout after the first scan, and the visitor can return to the top: re-reveal first-screen blocks that are in view.
     // wipe images keep their entrance animation on first load; after the first scroll they are re-revealed like the rest.
     const revealInView = () => {
       document.querySelectorAll("[data-reveal], [data-reveal-stagger]:not([data-reveal-each]), [data-reveal-each] > *").forEach((el) => {
-        if ((scrolled || el.getAttribute("data-reveal") !== "wipe") && eager(el)) el.classList.add("is-revealed");
+        if (hydrated(el) && (scrolled || el.getAttribute("data-reveal") !== "wipe") && eager(el)) el.classList.add("is-revealed");
       });
     };
     revealInView();
@@ -187,7 +204,7 @@ export default function ScrollReveal() {
         if (window.scrollY + vh() < document.documentElement.scrollHeight - 4) return;
         document.querySelectorAll("[data-reveal]:not(.is-revealed), [data-reveal-stagger]:not([data-reveal-each]):not(.is-revealed), [data-reveal-each] > :not(.is-revealed)").forEach((el) => {
           const r = el.getBoundingClientRect();
-          if (r.top < vh() && r.bottom > 0) el.classList.add("is-revealed");
+          if (hydrated(el) && r.top < vh() && r.bottom > 0) el.classList.add("is-revealed");
         });
       });
     };
@@ -207,6 +224,8 @@ export default function ScrollReveal() {
     return () => {
       clearTimeout(timer);
       clearTimeout(settle);
+      clearInterval(poll);
+      clearTimeout(stopPoll);
       if (frame) cancelAnimationFrame(frame);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("load", revealInView);
