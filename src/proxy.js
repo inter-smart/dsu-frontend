@@ -3,7 +3,12 @@ import { NextResponse } from "next/server";
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 const TTL = 30_000; // how long the list counts as fresh
 const TIMEOUT = 3_000; // never hold a page request longer than this on the CMS
-let cache = { at: 0, paths: [], loaded: false };
+// first segments under /ai-enabled that are static pages (src/app/ai-enabled/<name>), not school slugs
+const STATIC_AI_ENABLED = new Set([
+  "BSC-nursing", "achievements", "contact", "faculty", "hod-message", "industry-connect", "laboratory",
+  "library", "news-events", "overview", "placement", "program-offered", "student-chapters",
+]);
+let cache ={ at: 0, paths: [], loaded: false };
 let inFlight = null; // one shared refresh at a time, so requests never pile up on the CMS
 
 async function fetchPaths(preview) {
@@ -54,6 +59,15 @@ export async function proxy(request) {
   if (/^\/national-Ranking(\/|$)/.test(rawPath)) {
     const url = request.nextUrl.clone();
     url.pathname = rawPath.replace(/^\/national-Ranking/, "/national-ranking");
+    return NextResponse.redirect(url, 308);
+  }
+
+  // Department / programme pages moved from /ai-enabled/[school]/... to /schools/[school]/...
+  // The static /ai-enabled pages (overview, library, BSC-nursing, ...) keep their own addresses.
+  const aiMatch = rawPath.match(/^\/ai-enabled\/([^/]+)\/.+/);
+  if (aiMatch && !STATIC_AI_ENABLED.has(aiMatch[1])) {
+    const url = request.nextUrl.clone();
+    url.pathname = rawPath.replace(/^\/ai-enabled\//, "/schools/");
     return NextResponse.redirect(url, 308);
   }
 

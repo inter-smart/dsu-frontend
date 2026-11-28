@@ -1,5 +1,7 @@
 import { FALLBACK_HERO_MEDIA } from "@/lib/schools/entity";
-import { notFound, redirect } from "next/navigation";
+import { notFound, permanentRedirect, redirect } from "next/navigation";
+import DepartmentPage, { departmentMetadata } from "@/components/sections/academics/department-page";
+import { resolveSchoolChild } from "@/lib/schools/route";
 import SchoolTabShell from "@/components/sections/academics/school-tab-shell";
 import FlexibleSections from "@/components/flexible/FlexibleSections";
 import { getFlexiblePageBySlug } from "@/lib/api/flexible-page";
@@ -7,7 +9,8 @@ import { getSchoolBySlug } from "@/lib/api";
 import { schoolLibrarySidebarItems } from "@/lib/schools/items";
 import { usesDepartments } from "@/lib/schools/tab-page";
 
-// A Flexible Page that belongs to a school: /schools/<school>/<page-slug>, with the school's tab menu.
+// /schools/<school>/<x>: a department of the school (Overview tab), or a Flexible Page that belongs to the school
+// (<x> = the page slug, shown with the school's tab menu).
 async function load(slug, pageSlug) {
     const page = await getFlexiblePageBySlug(pageSlug);
     if (!page?.school?.slug) notFound();
@@ -19,6 +22,9 @@ async function load(slug, pageSlug) {
 
 export async function generateMetadata({ params }) {
     const { slug, pageSlug } = await params;
+    const target = await resolveSchoolChild(slug, pageSlug);
+    if (target.kind === "department") return departmentMetadata(slug, pageSlug);
+    if (target.kind === "other-school") return {};
     const page = await getFlexiblePageBySlug(pageSlug);
     if (!page || page.school?.slug !== slug) return {};
     return { title: page.seo?.metaTitle, description: page.seo?.metaDescription };
@@ -26,6 +32,9 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
     const { slug, pageSlug } = await params;
+    const target = await resolveSchoolChild(slug, pageSlug);
+    if (target.kind === "department") return <DepartmentPage schoolSlug={slug} departmentSlug={pageSlug} />;
+    if (target.kind === "other-school") permanentRedirect(`/schools/${target.schoolSlug}/${pageSlug}`);
     const { page, school } = await load(slug, pageSlug);
 
     const hero = {

@@ -5,10 +5,10 @@ import { getFlexiblePageBySlug } from "@/lib/api/flexible-page";
 import { departmentHref, libraryHref, librarySidebarItems, programmeBase, programmeHref } from "@/lib/schools/items";
 
 // Department and programme pages, resolved from the real hierarchy:
-//   /ai-enabled/[school]/[department]/[tab]
-//   /ai-enabled/[school]/programs/[programme]/[tab]         (every programme, school-direct or owned by a
+//   /schools/[school]/[department]/[tab]
+//   /schools/[school]/programs/[programme]/[tab]         (every programme, school-direct or owned by a
 //                                                            department; the old /schools/... and
-//                                                            /ai-enabled/[school]/[department]/programs/...
+//                                                            /schools/[school]/[department]/programs/...
 //                                                            URLs redirect here)
 // A tab is listed in the menu (and reachable) only when the API has something for it.
 export const DEPARTMENT_TABS = [
@@ -94,7 +94,7 @@ function buildHero(apiHero, trail, title) {
   };
 }
 
-// Shell data for a Flexible Page that belongs to a department (/ai-enabled/[school]/[department]/[slug]).
+// Shell data for a Flexible Page that belongs to a department (/schools/[school]/[department]/[slug]).
 export async function loadDepartmentFlexPage(schoolSlug, departmentSlug, pageSlug) {
   const page = await getFlexiblePageBySlug(pageSlug);
   if (!page?.department?.slug || !page.department.school?.slug) notFound();
@@ -161,7 +161,7 @@ export async function loadDepartmentPage(schoolSlug, departmentSlug, tab) {
   };
 }
 
-// One Library sub-page of a department (/ai-enabled/[school]/[department]/library/[page]); 404s for an
+// One Library sub-page of a department (/schools/[school]/[department]/library/[page]); 404s for an
 // unknown department, a department of another school, or a page the Library entry does not list.
 // `flexSlug`: the sub-page belongs to that Flexible Page's own Library Sub-pages (.../[flexSlug]/[page]) instead of the Library tab.
 export async function loadDepartmentLibraryPage(schoolSlug, departmentSlug, pageSlug, flexSlug) {
@@ -195,7 +195,7 @@ export async function loadDepartmentLibraryPage(schoolSlug, departmentSlug, page
   };
 }
 
-// Shell data for a Flexible Page that belongs to a programme (/ai-enabled/[school]/programs/[programme]/[slug]).
+// Shell data for a Flexible Page that belongs to a programme (/schools/[school]/programs/[programme]/[slug]).
 export async function loadProgramFlexPage(schoolSlug, programmeSlug, pageSlug) {
   const page = await getFlexiblePageBySlug(pageSlug);
   if (!page?.programme?.slug || !page.programme.school?.slug) notFound();
@@ -322,10 +322,16 @@ async function firstTab(load, slug, tab, tabs) {
   return null;
 }
 
+// Fixed pages of a school (src/app/schools/[slug]/<name>): never a department slug.
+const SCHOOL_PAGE_SLUGS = new Set([
+  "achievements", "contact", "dean-message", "departments", "facilities", "faculty", "industry-collaborations",
+  "library", "news-events", "overview", "placement-snapshot", "programs", "why-choose",
+]);
+
 export async function loadEntityMenu(path) {
   const clean = String(path || "").replace(/\/+$/, "");
 
-  let m = clean.match(/^\/ai-enabled\/([^/]+)\/programs\/([^/]+)(?:\/([^/]+))?$/);
+  let m = clean.match(/^\/schools\/([^/]+)\/programs\/([^/]+)(?:\/([^/]+))?$/);
   if (m) {
     const [, schoolSlug, programmeSlug, tab] = m;
     const res = await firstTab(getProgrammeTab, programmeSlug, tab, PROGRAM_TABS);
@@ -334,17 +340,20 @@ export async function loadEntityMenu(path) {
     return { kind: "programme", title: res.title, items: menuFor(shownTabs(PROGRAM_TABS, res), base, res.extraTabs, res.menuOrder) };
   }
 
-  m = clean.match(/^\/ai-enabled\/([^/]+)\/([^/]+)(?:\/([^/]+))?$/);
-  if (m) {
+  // /schools/<school>/<x>[/<tab>] is a department when <x> is one of the school's departments; otherwise it is
+  // one of the school's own pages (handled below). The school's fixed tab pages are never departments.
+  m = clean.match(/^\/schools\/([^/]+)\/([^/]+)(?:\/([^/]+))?$/);
+  if (m && !SCHOOL_PAGE_SLUGS.has(m[2])) {
     const [, schoolSlug, departmentSlug, tab] = m;
     const res = await firstTab(getDepartmentTab, departmentSlug, tab, DEPARTMENT_TABS);
-    if (!res || res.school?.slug !== schoolSlug) return null;
-    const base = departmentHref(schoolSlug, departmentSlug);
-    return {
-      kind: "department",
-      home: base,
-      items: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs, res.menuOrder),
-    };
+    if (res && res.school?.slug === schoolSlug) {
+      const base = departmentHref(schoolSlug, departmentSlug);
+      return {
+        kind: "department",
+        home: base,
+        items: departmentMenu(shownTabs(DEPARTMENT_TABS, res), base, schoolSlug, departmentSlug, res.librarySubpages, res.extraTabs, res.menuOrder),
+      };
+    }
   }
 
   m = clean.match(/^\/schools\/([^/]+)(?:\/[^/]+)?$/);

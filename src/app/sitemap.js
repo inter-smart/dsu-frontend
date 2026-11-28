@@ -137,11 +137,11 @@ export default async function sitemap() {
     })
   );
 
-  // ── departments: main page + every tab (canonical URL lives under /ai-enabled) ──
+  // ── departments: main page + every tab (canonical URL lives under /schools) ──
   await Promise.all(
     slugs(departments).map(async (d) => {
       if (!d.school?.slug) return;
-      const base = `/ai-enabled/${d.school.slug}/${d.slug}`;
+      const base = `/schools/${d.school.slug}/${d.slug}`;
       add(base, d.updatedAt, 0.7);
       const detail = await get(`/api/departments/${encodeURIComponent(d.slug)}/overview`);
       (detail?.availableTabs || []).forEach((t) => add(`${base}/${t}`, d.updatedAt, 0.6));
@@ -156,7 +156,7 @@ export default async function sitemap() {
   await Promise.all(
     slugs(programmes).map(async (p) => {
       if (!p.school?.slug) return;
-      const base = `/ai-enabled/${p.school.slug}/programs/${p.slug}`;
+      const base = `/schools/${p.school.slug}/programs/${p.slug}`;
       add(`${base}/overview`, p.updatedAt, 0.8);
       const detail = await get(`/api/programmes/${encodeURIComponent(p.slug)}/overview`);
       (detail?.availableTabs || []).forEach((t) => add(`${base}/${t}`, p.updatedAt, 0.6));
@@ -170,9 +170,9 @@ export default async function sitemap() {
       if (!d) return;
       if (d.school?.slug) add(`/schools/${d.school.slug}/${d.slug}`, d.updatedAt);
       else if (d.department?.slug && d.department.school?.slug)
-        add(`/ai-enabled/${d.department.school.slug}/${d.department.slug}/${d.slug}`, d.updatedAt);
+        add(`/schools/${d.department.school.slug}/${d.department.slug}/${d.slug}`, d.updatedAt);
       else if (d.programme?.slug && d.programme.school?.slug)
-        add(`/ai-enabled/${d.programme.school.slug}/programs/${d.programme.slug}/${d.slug}`, d.updatedAt);
+        add(`/schools/${d.programme.school.slug}/programs/${d.programme.slug}/${d.slug}`, d.updatedAt);
       else add(`/${d.slug}`, d.updatedAt);
     })
   );

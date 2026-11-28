@@ -62,11 +62,11 @@ export default async function page({ params }) {
     if (apiData.school?.slug) redirect(`/schools/${apiData.school.slug}/${apiData.slug}`);
 
     if (apiData.department?.slug && apiData.department.school?.slug) {
-        redirect(`/ai-enabled/${apiData.department.school.slug}/${apiData.department.slug}/${apiData.slug}`);
+        redirect(`/schools/${apiData.department.school.slug}/${apiData.department.slug}/${apiData.slug}`);
     }
 
     if (apiData.programme?.slug) {
-        redirect(`/ai-enabled/${apiData.programme.school.slug}/programs/${apiData.programme.slug}/${apiData.slug}`);
+        redirect(`/schools/${apiData.programme.school.slug}/programs/${apiData.programme.slug}/${apiData.slug}`);
     }
 
     return <CmsPageView page={apiData} />;

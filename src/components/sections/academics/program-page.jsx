@@ -24,8 +24,8 @@ export async function programMetadata(schoolSlug, programmeSlug, tab = "overview
     };
 }
 
-// The old programme URLs (/schools/[school]/programs/... and /ai-enabled/[school]/[department]/programs/...)
-// send visitors to the canonical /ai-enabled/[school]/programs/[programme]/[tab].
+// The old programme URLs (/ai-enabled/[school]/... and /schools/[school]/[department]/programs/...)
+// send visitors to the canonical /schools/[school]/programs/[programme]/[tab].
 export async function redirectToProgramPage(schoolSlug, programmeSlug, tab = "overview", departmentSlug) {
     const { canonical } = await loadProgramPage(schoolSlug, programmeSlug, tab, departmentSlug);
     permanentRedirect(canonical);

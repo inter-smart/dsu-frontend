@@ -4,7 +4,7 @@
 const LEVEL_CODES = { Undergraduate: "UG", Postgraduate: "PG" };
 
 export const departmentHref = (schoolSlug, departmentSlug) =>
-  `/ai-enabled/${schoolSlug}/${departmentSlug}`;
+  `/schools/${schoolSlug}/${departmentSlug}`;
 
 // A department's Library landing page, or one of its sub-pages.
 export const libraryHref = (schoolSlug, departmentSlug, pageSlug) =>
@@ -35,7 +35,7 @@ export const schoolLibrarySidebarItems = (schoolSlug, sidebar = [], flexSlug) =>
 
 // Canonical programme URL: every programme (school-direct or department-owned) lives under its school.
 // Tabs are `${programmeBase}/<tab>`; the bare base serves the Overview tab.
-export const programmeBase = (schoolSlug, programmeSlug) => `/ai-enabled/${schoolSlug}/programs/${programmeSlug}`;
+export const programmeBase = (schoolSlug, programmeSlug) => `/schools/${schoolSlug}/programs/${programmeSlug}`;
 
 // Where a programme link (school Programs / Departments tab, department Programs tab) lands: its Overview tab.
 export const programmeHref = (schoolSlug, programmeSlug) => `${programmeBase(schoolSlug, programmeSlug)}/overview`;
